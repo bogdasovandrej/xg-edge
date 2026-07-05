@@ -1,0 +1,119 @@
+{
+  "models_1x2": {
+    "glm_dc": {
+      "brier": 0.5834726687485084,
+      "logloss": 0.9826973146645993,
+      "n": 1120,
+      "brier_common": 0.573731129861061,
+      "logloss_common": 0.9691953993063369,
+      "n_common": 950
+    },
+    "gbm_dc": {
+      "brier": 0.5869104593048097,
+      "logloss": 0.9875262865677572,
+      "n": 1120,
+      "brier_common": 0.5766292668784763,
+      "logloss_common": 0.972798850017905,
+      "n_common": 950
+    },
+    "dc_classic": {
+      "brier": 0.5883696498634025,
+      "logloss": 0.9879252916957492,
+      "n": 1120,
+      "brier_common": 0.5768607503809756,
+      "logloss_common": 0.9719911635635026,
+      "n_common": 950
+    },
+    "goals_poisson": {
+      "brier": 0.5938184655878069,
+      "logloss": 0.9955516693377685,
+      "n": 1120,
+      "brier_common": 0.5806249165079456,
+      "logloss_common": 0.9774640369871515,
+      "n_common": 950
+    },
+    "uniform": {
+      "brier": 0.6666666666666669,
+      "logloss": 1.0986122886681098,
+      "n": 1120,
+      "brier_common": 0.6666666666666669,
+      "logloss_common": 1.0986122886681096,
+      "n_common": 950
+    },
+    "market": {
+      "brier": 0.5606912083759661,
+      "logloss": 0.9467624333841151,
+      "n": 950,
+      "brier_common": 0.5606912083759661,
+      "logloss_common": 0.9467624333841151,
+      "n_common": 950
+    }
+  },
+  "totals": {
+    "glm_dc": {
+      "brier": 0.24194083110359768,
+      "logloss": 0.6778357156386741,
+      "n": 1120
+    },
+    "gbm_dc": {
+      "brier": 0.24653204278544127,
+      "logloss": 0.6884657158925117,
+      "n": 1120
+    },
+    "dc_classic": {
+      "brier": 0.2442864553806632,
+      "logloss": 0.6841682153077963,
+      "n": 1120
+    },
+    "goals_poisson": {
+      "brier": 0.24375808678627392,
+      "logloss": 0.6831165148738004,
+      "n": 1120
+    },
+    "uniform": {
+      "brier": 0.25,
+      "logloss": 0.6931471805599454,
+      "n": 1120
+    },
+    "market": {
+      "brier": 0.23825480652048506,
+      "logloss": 0.6692272997350911,
+      "n": 1120
+    }
+  },
+  "config": {
+    "initial_train_end": "2023-07-01",
+    "step_days": 30,
+    "edge_threshold": 0.03,
+    "kelly_fraction": 0.25,
+    "kelly_cap": 0.02,
+    "max_goals": 10,
+    "force_rho_zero": false,
+    "models": "glm_dc,gbm_dc,dc_classic,goals_poisson,uniform,market",
+    "feature_half_life_days": 180.0
+  },
+  "bankroll": {
+    "kelly": {
+      "final_bankroll": 0.2842843051579207,
+      "roi": -0.04844405011741614,
+      "max_drawdown": 0.8208071299801506,
+      "n_bets": 1583,
+      "total_staked": 14.774068086944945
+    },
+    "flat": {
+      "final_bankroll": 0.43026640219745754,
+      "roi": -0.05793675550004651,
+      "max_drawdown": 0.6431665605536172,
+      "n_bets": 1583,
+      "total_staked": 9.833715969857598
+    }
+  },
+  "clv": {
+    "mean": -0.06815408146079967,
+    "median": -0.05693641618497092,
+    "share_positive": 0.17671517671517672,
+    "ci_low": -0.07311226045052768,
+    "ci_high": -0.06320775214508835,
+    "n": 1443
+  }
+}

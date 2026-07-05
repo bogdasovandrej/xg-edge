@@ -1,0 +1,19 @@
+# data layers are reproducible via scripts/download_data.py — never committed
+/data/
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
