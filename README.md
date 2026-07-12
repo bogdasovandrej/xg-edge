@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/bogdasovandrej/xg-edge/actions/workflows/ci.yml/badge.svg)](https://github.com/bogdasovandrej/xg-edge/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![Version](https://img.shields.io/badge/version-0.3.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 Исследовательский проект: калиброванные вероятности 1X2, тоталов, BTTS,
@@ -13,6 +13,36 @@ reliability и CLV против закрывающей линии.
 Главный результат честный и отрицательный: на зафиксированном holdout 2025/26
 у модели нет преимущества над рынком. Средний CLV равен −7.13%, кластерный 95%
 CI [−8.12%, −6.16%]. Следовательно, текущий вывод системы — не ставить.
+
+## Live v0.3
+
+Версия 0.3 добавляет отдельный контур будущих матчей и не смешивает его с
+ретроспективным backtest:
+
+- result-free fixture contract и обучение строго на данных до kickoff;
+- официальный календарь FIFA и UEFA, включая время, стадион, раунд, aggregate
+  и назначенного судью;
+- отдельная модель сборных для ЧМ-2026: предтурнирный FIFA ranking prior +
+  завершённые матчи турнира + Poisson/Dixon–Coles;
+- экспериментальная модель квалификации ЛЧ: ClubElo + Poisson, отдельная
+  симуляция вероятности прохода с учётом первого матча;
+- реестр сезона 2026/27 для EPL, La Liga, Bundesliga, Serie A и Ligue 1;
+- GitHub Actions обновляет публичный JSON каждые шесть часов;
+- live-сайт читает новый snapshot без ручного перезапуска;
+- market anchor уменьшает longshot-мискалибровку, но CLV guard оставляет
+  глобальный статус `NO BET`.
+
+Актуальные экспериментальные прогнозы на 90 минут, snapshot 2026-07-13:
+
+| Матч | П1 | X | П2 | Счёт-мода |
+| --- | ---: | ---: | ---: | ---: |
+| Франция — Испания | 37.1% | 31.1% | 31.8% | 1–1 |
+| Англия — Аргентина | 32.2% | 25.8% | 42.0% | 1–1 |
+
+Для ближайшей квалификации ЛЧ рассчитаны 12 из 14 матчей. `ML Vitebsk` и
+`Atert Bissen` отсутствуют в датированном ClubElo snapshot, поэтому система
+возвращает `no_prediction`, а не выдумывает рейтинг. Все live-оценки помечены
+experimental и не являются рекомендациями для ставок.
 
 ## Протокол без подглядывания
 
@@ -39,8 +69,14 @@ model по этому результату запрещено.
 | --- | --- | --- |
 | Understat | xG, npxG, PPDA, deep completions | признаки формы |
 | football-data.co.uk | результаты и opening/closing odds | рынок и CLV |
+| FIFA API | календарь, результаты, timelines, рейтинг сборных | ЧМ и контроль 90 минут |
+| UEFA API | fixtures, aggregate, судьи, lineups/events | ЛЧ и point-in-time контекст |
+| ClubElo | датированный рейтинг клубов | baseline квалификации ЛЧ |
 
-Охват: АПЛ, пять сезонов 2021/22–2025/26, 1900 матчей. Join источников — 100%.
+Проверенный исторический охват: АПЛ, пять сезонов 2021/22–2025/26, 1900
+матчей. Join источников — 100%. Для топ-5 лиг добавлен воспроизводимый реестр
+2026/27 и загрузчики; данные нового сезона появятся только после публикации
+источниками и не заменяются placeholder-строками.
 Сырые файлы не коммитятся; они воспроизводятся скриптом загрузки.
 
 Pinnacle closing используется как sharp benchmark и для 1X2, и для тотала 2.5.
@@ -156,9 +192,38 @@ python scripts/download_data.py
 python scripts/build_dataset.py
 python scripts/run_hypotheses.py
 python scripts/run_walkforward.py
+
+# 2026/27 top-5 raw snapshots (пропускает ещё не опубликованные файлы)
+python scripts/download_top5.py
+
+# future/live snapshots
+python scripts/fetch_current_fixtures.py --output-dir reports/live
+python scripts/predict_world_cup.py
+python scripts/predict_ucl_qualifying.py --mode live --limit 14 \
+  --output-json reports/ucl_qualifying_predictions.json \
+  --output-csv reports/ucl_qualifying_predictions.csv
+python scripts/build_live_payload.py \
+  --world-cup reports/world_cup_2026_semifinals.json \
+  --ucl reports/ucl_qualifying_predictions.json \
+  --fixtures reports/live/current_fixtures.json \
+  --output reports/live_predictions.json
 ~~~
 
 111 тестов работают без сети. CI проверяет Python 3.10 и 3.12.
+
+## Что добавлено в 0.3.0
+
+- causal future-fixture predictor с 1X2, O/U 2.5, BTTS и точным счётом;
+- официальные FIFA/UEFA feeds и экспериментальные модели ЧМ/квалификации ЛЧ;
+- топ-5 лиг и сезон 2026/27 в registry/download layer;
+- point-in-time контракты для составов, травм, судей и event-level карточек;
+- market-aware anchor, longshot shrinkage и обязательный CLV deployment gate;
+- автоматическое шестичасовое обновление и публичная live-витрина;
+- тесты no-leak, offline network mocks и воспроизводимые live snapshots.
+
+Market anchor улучшил holdout log-loss с 1.0009 до 0.9834, но его shadow CLV
+остался отрицательным: −4.83%, 95% CI [−8.00%, −1.82%]. Поэтому `NO BET`
+является результатом модели, а не временной надписью интерфейса.
 
 ## Что исправлено в 0.2.0
 
@@ -174,9 +239,16 @@ python scripts/run_walkforward.py
 
 ## Ограничения
 
-- одна лига и только публичные данные;
-- нет составов, травм, судей, FBref/Opta cross-check и event-level red-card
-  multipliers;
+- полноценный multi-league cleaned history ещё не построен: новые 2026/27
+  источники откроются по мере старта лиг;
+- UEFA даёт судей, events и подтверждённые lineups, но до официальной публикации
+  состав имеет статус unavailable; это не трактуется как «все здоровы»;
+- injuries/xG production coverage требует лицензированного провайдера. Optional
+  Sportmonks adapter не работает без пользовательского API token;
+- FBref намеренно не скрапится: его data-use policy запрещает использование
+  данных для predictive ML без письменного разрешения;
+- Opta/Stats Perform требует коммерческой лицензии; в открытый репозиторий нельзя
+  законно добавить их закрытые данные;
 - BTTS, AH и exact score реализованы на уровне агрегаторов, но ещё не имеют
   полного betting/evaluation контура;
 - 2025/26 — ретроспективный locked holdout; нужен live 2026/27;

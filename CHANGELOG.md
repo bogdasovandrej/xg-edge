@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.3.0 — 2026-07-13
+
+### Live predictions
+
+- Added result-free future fixtures with strict point-in-time cutoffs.
+- Added official FIFA World Cup and UEFA Champions League fixture feeds.
+- Added separate experimental World Cup and UCL qualifying models.
+- Added deterministic public JSON/CSV snapshots and a scheduled refresh.
+
+### Coverage and context
+
+- Added 2026/27 registry/download support for the European top five leagues.
+- Added point-in-time lineup, injury, referee and event-level red-card contracts.
+- Kept FBref disabled under its published predictive-ML data-use restriction.
+- Added optional licensed-provider boundaries for injuries and Opta-class data.
+
+### Market discipline
+
+- Added opening-market anchoring, centered-log-ratio residual shrinkage and
+  longshot controls.
+- Added a clustered CLV deployment gate that defaults to `NO BET`.
+- The anchored holdout improved log-loss but still produced negative CLV, so
+  no betting strategy was promoted.
+
+### Product
+
+- Added a responsive live forecast website.
+- Added six-hour GitHub Actions refreshes with official-data provenance.
+
 ## 0.2.0 — 2026-07-13
 
 ### Methodology

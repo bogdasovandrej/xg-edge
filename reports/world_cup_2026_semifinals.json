@@ -1,0 +1,188 @@
+{
+  "label": "experimental",
+  "warning": "90-minute probability estimates only; no betting recommendation.",
+  "predictions": [
+    {
+      "model": "fifa_prior_poisson_dixon_coles_v1",
+      "label": "experimental",
+      "scope": "90_minutes_including_stoppage_time_only",
+      "warning": "Experimental probability estimate; not a betting recommendation.",
+      "fixture_id": "400021541",
+      "stage": "Semi-final",
+      "kickoff_utc": "2026-07-14T19:00:00Z",
+      "generated_as_of_utc": "2026-07-13T00:00:00Z",
+      "home": "France",
+      "away": "Spain",
+      "lambda_home": 1.1360963273719829,
+      "lambda_away": 1.0307384321672144,
+      "rho": -0.06666458556845507,
+      "rho_method": "Dixon-Coles MLE shrunk toward 0 with 200 pseudo-matches",
+      "probabilities": {
+        "home": 0.37101562544754835,
+        "draw": 0.3113183924443772,
+        "away": 0.3176659821080745,
+        "over_2_5": 0.3683804306066202,
+        "under_2_5": 0.6316195693933798,
+        "btts_yes": 0.4456677991128052,
+        "btts_no": 0.5543322008871948
+      },
+      "top_scores": [
+        {
+          "score": "1-1",
+          "probability": 0.14306952787910523
+        },
+        {
+          "score": "0-0",
+          "probability": 0.12348117859026846
+        },
+        {
+          "score": "1-0",
+          "probability": 0.12118642916952073
+        },
+        {
+          "score": "0-1",
+          "probability": 0.10911877854532286
+        },
+        {
+          "score": "2-1",
+          "probability": 0.07619113233035316
+        }
+      ],
+      "uncertainty": {
+        "method": "gamma_posterior_parameter_draws",
+        "interval": "80% (10th-90th percentiles)",
+        "draws": 2000,
+        "seed": 3248104222,
+        "lambda_home": [
+          0.6464546486915587,
+          1.7093354279802966
+        ],
+        "lambda_away": [
+          0.5668636865910387,
+          1.567612723519603
+        ],
+        "p_home": [
+          0.19336599814747893,
+          0.5682955920278457
+        ],
+        "p_draw": [
+          0.23619233355829053,
+          0.38239564092076705
+        ],
+        "p_away": [
+          0.1555215662375678,
+          0.5055481315159296
+        ],
+        "p_over_2_5": [
+          0.1840657916872506,
+          0.5715318648569696
+        ],
+        "p_btts": [
+          0.255040357248834,
+          0.5716564292674589
+        ]
+      },
+      "data_provenance": {
+        "rankings_source": "official_fifa_api",
+        "ranking_publication_utc": "2026-06-11T10:00:00Z",
+        "results_source": "official_fifa_2026_world_cup_calendar_and_timelines",
+        "training_filter": "status == FINISHED and kickoff < generated_as_of_utc < fixture kickoff",
+        "training_matches": 100,
+        "latest_training_kickoff_utc": "2026-07-12T01:00:00Z",
+        "home_team_tournament_matches": 6,
+        "away_team_tournament_matches": 6
+      }
+    },
+    {
+      "model": "fifa_prior_poisson_dixon_coles_v1",
+      "label": "experimental",
+      "scope": "90_minutes_including_stoppage_time_only",
+      "warning": "Experimental probability estimate; not a betting recommendation.",
+      "fixture_id": "400021540",
+      "stage": "Semi-final",
+      "kickoff_utc": "2026-07-15T19:00:00Z",
+      "generated_as_of_utc": "2026-07-13T00:00:00Z",
+      "home": "England",
+      "away": "Argentina",
+      "lambda_home": 1.3754716167970134,
+      "lambda_away": 1.5984232531451776,
+      "rho": -0.06666458556845507,
+      "rho_method": "Dixon-Coles MLE shrunk toward 0 with 200 pseudo-matches",
+      "probabilities": {
+        "home": 0.3220988658251378,
+        "draw": 0.25755030523901895,
+        "away": 0.4203508289358432,
+        "over_2_5": 0.5709353692240637,
+        "under_2_5": 0.42906463077593626,
+        "btts_yes": 0.6036583816625007,
+        "btts_no": 0.39634161833749926
+      },
+      "top_scores": [
+        {
+          "score": "1-1",
+          "probability": 0.11984659805781328
+        },
+        {
+          "score": "1-2",
+          "probability": 0.0897965451078803
+        },
+        {
+          "score": "2-1",
+          "probability": 0.07727152294568375
+        },
+        {
+          "score": "0-1",
+          "probability": 0.07419553812435711
+        },
+        {
+          "score": "0-2",
+          "probability": 0.0652841861738919
+        }
+      ],
+      "uncertainty": {
+        "method": "gamma_posterior_parameter_draws",
+        "interval": "80% (10th-90th percentiles)",
+        "draws": 2000,
+        "seed": 273370500,
+        "lambda_home": [
+          0.8057942705910346,
+          2.001549362694058
+        ],
+        "lambda_away": [
+          0.9595759621133403,
+          2.359936870462639
+        ],
+        "p_home": [
+          0.15444638023535143,
+          0.5244995126945086
+        ],
+        "p_draw": [
+          0.18728730274300692,
+          0.3114789280450122
+        ],
+        "p_away": [
+          0.22451618523485273,
+          0.6394382347963227
+        ],
+        "p_over_2_5": [
+          0.3373897922890903,
+          0.7650328401892674
+        ],
+        "p_btts": [
+          0.392765611447434,
+          0.7216671463864581
+        ]
+      },
+      "data_provenance": {
+        "rankings_source": "official_fifa_api",
+        "ranking_publication_utc": "2026-06-11T10:00:00Z",
+        "results_source": "official_fifa_2026_world_cup_calendar_and_timelines",
+        "training_filter": "status == FINISHED and kickoff < generated_as_of_utc < fixture kickoff",
+        "training_matches": 100,
+        "latest_training_kickoff_utc": "2026-07-12T01:00:00Z",
+        "home_team_tournament_matches": 6,
+        "away_team_tournament_matches": 6
+      }
+    }
+  ]
+}

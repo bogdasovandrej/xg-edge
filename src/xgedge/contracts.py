@@ -121,3 +121,36 @@ class Feat:
 
 
 OUTCOMES = ["H", "D", "A"]
+
+# A future fixture deliberately has no outcome or post-match statistics.
+# ``date`` is interpreted as the scheduled kickoff timestamp in UTC by the
+# fixture validator (an explicit offset or trailing ``Z`` is recommended).
+FIXTURE_COLUMNS = (
+    Col.MATCH_ID,
+    Col.SEASON,
+    Col.DATE,
+    Col.HOME,
+    Col.AWAY,
+)
+FIXTURE_RESULT_COLUMNS = (Col.FTHG, Col.FTAG, Col.FTR)
+
+
+class Pred:
+    """Canonical columns emitted by the future-fixture predictor."""
+
+    MODEL = "model"
+    TRAIN_MATCHES = "train_matches"
+    TRAIN_END = "train_end"
+    LAMBDA_H = "lambda_home"
+    LAMBDA_A = "lambda_away"
+    RHO = "rho"
+    P_HOME = "p_home"
+    P_DRAW = "p_draw"
+    P_AWAY = "p_away"
+    P_OVER25 = "p_over25"
+    P_UNDER25 = "p_under25"
+    P_BTTS = "p_btts"
+    P_NO_BTTS = "p_no_btts"
+    TOP_SCORE = "top_score"
+    P_TOP_SCORE = "p_top_score"
+    EXACT_SCORES = "exact_scores"

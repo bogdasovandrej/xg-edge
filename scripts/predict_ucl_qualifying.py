@@ -1,0 +1,201 @@
+"""Predict future Champions League qualifiers from UEFA fixtures and ClubElo."""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+from dataclasses import asdict
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+
+import requests
+
+from xgedge.data.official_feeds import (
+    UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR,
+    UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
+    UEFA_MATCHES_URL,
+    fetch_uefa_fixtures,
+)
+from xgedge.experiments.ucl_qualifying import (
+    CLUBELO_ATTRIBUTION_URL,
+    DEFAULT_CLUBELO_URL,
+    EloPoissonCalibration,
+    clubelo_ranking_url,
+    coverage_summary,
+    fetch_clubelo_ratings,
+    parse_clubelo_csv,
+    predict_fixtures,
+)
+
+
+def _datetime(value: str) -> datetime:
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("expected an ISO-8601 datetime") from exc
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def _load_fixture_json(path: Path) -> list[dict[str, Any]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, dict):
+        payload = payload.get("fixtures")
+    if not isinstance(payload, list) or not all(isinstance(row, dict) for row in payload):
+        raise ValueError("fixture JSON must be a list or an object with a fixtures list")
+    return payload
+
+
+def _load_aliases(path: Path | None) -> dict[str, str]:
+    if path is None:
+        return {}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or not all(
+        isinstance(key, str) and isinstance(value, str) for key, value in payload.items()
+    ):
+        raise ValueError("aliases JSON must be an object of string-to-string mappings")
+    return payload
+
+
+def _flatten(prediction: dict[str, Any]) -> dict[str, Any]:
+    row = {
+        key: prediction.get(key)
+        for key in (
+            "fixture_id", "kickoff_utc", "round", "leg", "home", "away", "status", "reason"
+        )
+    }
+    probabilities = prediction.get("probabilities_90m") or {}
+    expected = prediction.get("expected_goals_90m") or {}
+    qualification = prediction.get("qualification") or {}
+    ratings = prediction.get("ratings") or {}
+    row.update(
+        {
+            "home_elo": (ratings.get("home") or {}).get("elo"),
+            "away_elo": (ratings.get("away") or {}).get("elo"),
+            "lambda_home": expected.get("home"),
+            "lambda_away": expected.get("away"),
+            "p_home_90m": probabilities.get("home_win"),
+            "p_draw_90m": probabilities.get("draw"),
+            "p_away_90m": probabilities.get("away_win"),
+            "p_home_to_advance": qualification.get("home_to_advance"),
+            "p_away_to_advance": qualification.get("away_to_advance"),
+            "p_extra_time": qualification.get("extra_time"),
+            "missing_teams": "|".join(prediction.get("missing_teams", [])),
+        }
+    )
+    return row
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--mode", choices=("live", "offline"), default="live")
+    parser.add_argument("--as-of", type=_datetime, default=None)
+    parser.add_argument("--to-date", type=_datetime, default=None)
+    parser.add_argument("--limit", type=int, default=14)
+    parser.add_argument("--fixtures-json", type=Path)
+    parser.add_argument("--ratings-csv", type=Path)
+    parser.add_argument("--aliases-json", type=Path)
+    parser.add_argument("--output-json", type=Path, required=True)
+    parser.add_argument("--output-csv", type=Path, required=True)
+    parser.add_argument("--clubelo-url", default=DEFAULT_CLUBELO_URL)
+    parser.add_argument("--uefa-url", default=UEFA_MATCHES_URL)
+    parser.add_argument("--uefa-competition-id", default=UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID)
+    parser.add_argument("--uefa-season-year", default=UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR)
+    parser.add_argument("--timeout", type=float, default=30.0)
+    parser.add_argument("--simulations", type=int, default=50_000)
+    parser.add_argument("--seed", type=int, default=20260713)
+    args = parser.parse_args(argv)
+
+    if args.limit < 1:
+        parser.error("--limit must be positive")
+    as_of = args.as_of or datetime.now(timezone.utc)
+    to_date = args.to_date or as_of + timedelta(days=370)
+    aliases = _load_aliases(args.aliases_json)
+
+    if args.mode == "offline":
+        if args.fixtures_json is None or args.ratings_csv is None:
+            parser.error("offline mode requires --fixtures-json and --ratings-csv")
+        fixtures = _load_fixture_json(args.fixtures_json)
+        rating_rows = parse_clubelo_csv(args.ratings_csv.read_text(encoding="utf-8"))
+        ratings_url = f"file:{args.ratings_csv.name}"
+        fixture_source = f"file:{args.fixtures_json.name}"
+    else:
+        session = requests.Session()
+        session.trust_env = False
+        fixtures = fetch_uefa_fixtures(
+            base_url=args.uefa_url,
+            competition_id=args.uefa_competition_id,
+            season_year=args.uefa_season_year,
+            as_of=as_of,
+            to_date=to_date,
+            timeout=args.timeout,
+            session=session,
+        )
+        rating_rows, ratings_url = fetch_clubelo_ratings(
+            as_of=as_of,
+            url_template=args.clubelo_url,
+            timeout=args.timeout,
+            session=session,
+        )
+        fixture_source = args.uefa_url
+
+    fixtures = sorted(fixtures, key=lambda row: (str(row.get("kickoff_utc", "")), str(row.get("id", ""))))[: args.limit]
+    calibration = EloPoissonCalibration()
+    predictions = predict_fixtures(
+        fixtures,
+        rating_rows,
+        as_of=as_of,
+        aliases=aliases,
+        calibration=calibration,
+        simulations=args.simulations,
+        seed=args.seed,
+    )
+    envelope = {
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "as_of_utc": as_of.isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "model": "experimental ClubElo-to-Poisson qualifier baseline",
+        "calibration": asdict(calibration),
+        "coverage": coverage_summary(predictions),
+        "sources": {
+            "fixtures": {"provider": "UEFA", "url": fixture_source},
+            "ratings": {
+                "provider": "ClubElo",
+                "url": ratings_url,
+                "documentation": CLUBELO_ATTRIBUTION_URL,
+                "attribution": "Club strength ratings supplied by ClubElo.",
+            },
+        },
+        "limitations": [
+            "Experimental baseline; no demonstrated betting or CLV edge.",
+            "90-minute probabilities use ClubElo only and omit lineups, injuries and odds.",
+            "Advancement simulation is separate and is emitted only for a second leg with a known aggregate.",
+            "A missing ClubElo team produces no prediction; no rating is imputed.",
+        ],
+        "predictions": predictions,
+    }
+
+    args.output_json.parent.mkdir(parents=True, exist_ok=True)
+    args.output_csv.parent.mkdir(parents=True, exist_ok=True)
+    args.output_json.write_text(
+        json.dumps(envelope, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    rows = [_flatten(prediction) for prediction in predictions]
+    with args.output_csv.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]) if rows else ["fixture_id"])
+        writer.writeheader()
+        writer.writerows(rows)
+    summary = envelope["coverage"]
+    print(
+        f"predicted {summary['predicted']}/{summary['fixtures']} fixtures "
+        f"({summary['coverage']:.1%}); no-prediction={summary['no_prediction']}"
+    )
+    print(f"ClubElo snapshot: {ratings_url}")
+    print(f"JSON: {args.output_json}")
+    print(f"CSV: {args.output_csv}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

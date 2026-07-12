@@ -1,0 +1,3635 @@
+{
+  "conclusion": "POSITIVE_CLV_NOT_CONFIRMED; KEEP_NO_BET",
+  "deployment_gate_from_development_only": {
+    "action": "NO BET",
+    "clv": {
+      "bootstrap_unit": "cluster",
+      "ci_high": 0.010006100300854312,
+      "ci_low": -0.034462369488528606,
+      "mean": -0.012358372526313433,
+      "median": -0.01714885887049833,
+      "n": 58,
+      "n_clusters": 58,
+      "share_positive": 0.41379310344827586
+    },
+    "min_independent_matches": 100,
+    "reason": "insufficient_independent_matches"
+  },
+  "development_grid": [
+    {
+      "candidate_count": 22,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03238796815411182,
+          "ci_low": -0.03571874961173277,
+          "mean": -0.0022185872038021155,
+          "median": -0.008244133826113276,
+          "n": 22,
+          "n_clusters": 22,
+          "share_positive": 0.4090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 0,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 25,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03017960560114197,
+          "ci_low": -0.03813354646496291,
+          "mean": -0.004646062840230379,
+          "median": -0.010079644298633839,
+          "n": 25,
+          "n_clusters": 25,
+          "share_positive": 0.4
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 1,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 10,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07074216475089526,
+          "ci_low": -0.036420725947868646,
+          "mean": 0.016882492096011125,
+          "median": 0.006993514155857805,
+          "n": 10,
+          "n_clusters": 10,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 2,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 12,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07090296971163072,
+          "ci_low": -0.030113949282172352,
+          "mean": 0.019553934849006204,
+          "median": 0.006993514155857805,
+          "n": 12,
+          "n_clusters": 12,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 3,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 22,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03238796815411182,
+          "ci_low": -0.03571874961173277,
+          "mean": -0.0022185872038021155,
+          "median": -0.008244133826113276,
+          "n": 22,
+          "n_clusters": 22,
+          "share_positive": 0.4090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 4,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 25,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03017960560114197,
+          "ci_low": -0.03813354646496291,
+          "mean": -0.004646062840230379,
+          "median": -0.010079644298633839,
+          "n": 25,
+          "n_clusters": 25,
+          "share_positive": 0.4
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 5,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 10,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07074216475089526,
+          "ci_low": -0.036420725947868646,
+          "mean": 0.016882492096011125,
+          "median": 0.006993514155857805,
+          "n": 10,
+          "n_clusters": 10,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 6,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 12,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07090296971163072,
+          "ci_low": -0.030113949282172352,
+          "mean": 0.019553934849006204,
+          "median": 0.006993514155857805,
+          "n": 12,
+          "n_clusters": 12,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 7,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 22,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03238796815411182,
+          "ci_low": -0.03571874961173277,
+          "mean": -0.0022185872038021155,
+          "median": -0.008244133826113276,
+          "n": 22,
+          "n_clusters": 22,
+          "share_positive": 0.4090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 8,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 25,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03017960560114197,
+          "ci_low": -0.03813354646496291,
+          "mean": -0.004646062840230379,
+          "median": -0.010079644298633839,
+          "n": 25,
+          "n_clusters": 25,
+          "share_positive": 0.4
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 9,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 10,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07074216475089526,
+          "ci_low": -0.036420725947868646,
+          "mean": 0.016882492096011125,
+          "median": 0.006993514155857805,
+          "n": 10,
+          "n_clusters": 10,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 10,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 12,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07090296971163072,
+          "ci_low": -0.030113949282172352,
+          "mean": 0.019553934849006204,
+          "median": 0.006993514155857805,
+          "n": 12,
+          "n_clusters": 12,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 11,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 22,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03238796815411182,
+          "ci_low": -0.03571874961173277,
+          "mean": -0.0022185872038021155,
+          "median": -0.008244133826113276,
+          "n": 22,
+          "n_clusters": 22,
+          "share_positive": 0.4090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 12,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 25,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03017960560114197,
+          "ci_low": -0.03813354646496291,
+          "mean": -0.004646062840230379,
+          "median": -0.010079644298633839,
+          "n": 25,
+          "n_clusters": 25,
+          "share_positive": 0.4
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 13,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 10,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07074216475089526,
+          "ci_low": -0.036420725947868646,
+          "mean": 0.016882492096011125,
+          "median": 0.006993514155857805,
+          "n": 10,
+          "n_clusters": 10,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 14,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 12,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07090296971163072,
+          "ci_low": -0.030113949282172352,
+          "mean": 0.019553934849006204,
+          "median": 0.006993514155857805,
+          "n": 12,
+          "n_clusters": 12,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 15,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 22,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03238796815411182,
+          "ci_low": -0.03571874961173277,
+          "mean": -0.0022185872038021155,
+          "median": -0.008244133826113276,
+          "n": 22,
+          "n_clusters": 22,
+          "share_positive": 0.4090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 16,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 25,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03017960560114197,
+          "ci_low": -0.03813354646496291,
+          "mean": -0.004646062840230379,
+          "median": -0.010079644298633839,
+          "n": 25,
+          "n_clusters": 25,
+          "share_positive": 0.4
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 17,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 10,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07074216475089526,
+          "ci_low": -0.036420725947868646,
+          "mean": 0.016882492096011125,
+          "median": 0.006993514155857805,
+          "n": 10,
+          "n_clusters": 10,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 18,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 12,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07090296971163072,
+          "ci_low": -0.030113949282172352,
+          "mean": 0.019553934849006204,
+          "median": 0.006993514155857805,
+          "n": 12,
+          "n_clusters": 12,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 19,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 22,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03238796815411182,
+          "ci_low": -0.03571874961173277,
+          "mean": -0.0022185872038021155,
+          "median": -0.008244133826113276,
+          "n": 22,
+          "n_clusters": 22,
+          "share_positive": 0.4090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 20,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 25,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.03017960560114197,
+          "ci_low": -0.03813354646496291,
+          "mean": -0.004646062840230379,
+          "median": -0.010079644298633839,
+          "n": 25,
+          "n_clusters": 25,
+          "share_positive": 0.4
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 21,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 10,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07074216475089526,
+          "ci_low": -0.036420725947868646,
+          "mean": 0.016882492096011125,
+          "median": 0.006993514155857805,
+          "n": 10,
+          "n_clusters": 10,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 22,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 12,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.0
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.07090296971163072,
+          "ci_low": -0.030113949282172352,
+          "mean": 0.019553934849006204,
+          "median": 0.006993514155857805,
+          "n": 12,
+          "n_clusters": 12,
+          "share_positive": 0.5
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 23,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5810222007528201,
+        "logloss": 0.9742162187467528,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 58,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.009093801898156544,
+          "ci_low": -0.034770453336828946,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 24,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.579193001307194,
+        "logloss": 0.9719287005975955,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 70,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.002519427085569614,
+          "ci_low": -0.045564099156123486,
+          "mean": -0.023471459773462575,
+          "median": -0.029130744177017387,
+          "n": 70,
+          "n_clusters": 70,
+          "share_positive": 0.37142857142857144
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 25,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.579193001307194,
+        "logloss": 0.9719287005975955,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 31,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.031779010015971824,
+          "ci_low": -0.03203573967680031,
+          "mean": -0.0003335929688905618,
+          "median": -0.0010087685264219548,
+          "n": 31,
+          "n_clusters": 31,
+          "share_positive": 0.4838709677419355
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 26,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.579193001307194,
+        "logloss": 0.9719287005975955,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 37,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.015128385105215641,
+          "ci_low": -0.04345062476582126,
+          "mean": -0.014605820137863518,
+          "median": -0.010079644298633839,
+          "n": 37,
+          "n_clusters": 37,
+          "share_positive": 0.40540540540540543
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 27,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.579193001307194,
+        "logloss": 0.9719287005975955,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 58,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.009093801898156544,
+          "ci_low": -0.034770453336828946,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 28,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.57903108463193,
+        "logloss": 0.9715889943387498,
+        "n": 375
+      },
+      "selected": true,
+      "selection_eligible": true,
+      "selection_rule": "highest_late_development_clv_lower_ci"
+    },
+    {
+      "candidate_count": 63,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.00829682039781837,
+          "ci_low": -0.036246452647093,
+          "mean": -0.01366316466780357,
+          "median": -0.018966192703892437,
+          "n": 63,
+          "n_clusters": 63,
+          "share_positive": 0.3968253968253968
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 29,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.57903108463193,
+        "logloss": 0.9715889943387498,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 31,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.031779010015971824,
+          "ci_low": -0.03203573967680031,
+          "mean": -0.0003335929688905618,
+          "median": -0.0010087685264219548,
+          "n": 31,
+          "n_clusters": 31,
+          "share_positive": 0.4838709677419355
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 30,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.57903108463193,
+        "logloss": 0.9715889943387498,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 32,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.02931947163272341,
+          "ci_low": -0.03406055484333329,
+          "mean": -0.002805618240949697,
+          "median": -0.003708695940007334,
+          "n": 32,
+          "n_clusters": 32,
+          "share_positive": 0.46875
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 31,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.57903108463193,
+        "logloss": 0.9715889943387498,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 58,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.009093801898156544,
+          "ci_low": -0.034770453336828946,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 32,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791895508097749,
+        "logloss": 0.9719291340898493,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 70,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.002519427085569614,
+          "ci_low": -0.045564099156123486,
+          "mean": -0.023471459773462575,
+          "median": -0.029130744177017387,
+          "n": 70,
+          "n_clusters": 70,
+          "share_positive": 0.37142857142857144
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 33,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791895508097749,
+        "logloss": 0.9719291340898493,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 31,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.031779010015971824,
+          "ci_low": -0.03203573967680031,
+          "mean": -0.0003335929688905618,
+          "median": -0.0010087685264219548,
+          "n": 31,
+          "n_clusters": 31,
+          "share_positive": 0.4838709677419355
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 34,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791895508097749,
+        "logloss": 0.9719291340898493,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 37,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.015128385105215641,
+          "ci_low": -0.04345062476582126,
+          "mean": -0.014605820137863518,
+          "median": -0.010079644298633839,
+          "n": 37,
+          "n_clusters": 37,
+          "share_positive": 0.40540540540540543
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 35,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791895508097749,
+        "logloss": 0.9719291340898493,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 58,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.009093801898156544,
+          "ci_low": -0.034770453336828946,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 36,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5790667241217461,
+        "logloss": 0.9716717202470735,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 67,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.0012817239179301616,
+          "ci_low": -0.0409311950271863,
+          "mean": -0.020119944774966238,
+          "median": -0.026299953210222715,
+          "n": 67,
+          "n_clusters": 67,
+          "share_positive": 0.373134328358209
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 37,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5790667241217461,
+        "logloss": 0.9716717202470735,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 31,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.031779010015971824,
+          "ci_low": -0.03203573967680031,
+          "mean": -0.0003335929688905618,
+          "median": -0.0010087685264219548,
+          "n": 31,
+          "n_clusters": 31,
+          "share_positive": 0.4838709677419355
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 38,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5790667241217461,
+        "logloss": 0.9716717202470735,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 33,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.028057083296925578,
+          "ci_low": -0.035853468290890145,
+          "mean": -0.004976737446443427,
+          "median": -0.006408623353592713,
+          "n": 33,
+          "n_clusters": 33,
+          "share_positive": 0.45454545454545453
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 39,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5790667241217461,
+        "logloss": 0.9716717202470735,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 58,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.009093801898156544,
+          "ci_low": -0.034770453336828946,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 40,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791861043197963,
+        "logloss": 0.9719298776828891,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 70,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.002519427085569614,
+          "ci_low": -0.045564099156123486,
+          "mean": -0.023471459773462575,
+          "median": -0.029130744177017387,
+          "n": 70,
+          "n_clusters": 70,
+          "share_positive": 0.37142857142857144
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 41,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791861043197963,
+        "logloss": 0.9719298776828891,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 31,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.031779010015971824,
+          "ci_low": -0.03203573967680031,
+          "mean": -0.0003335929688905618,
+          "median": -0.0010087685264219548,
+          "n": 31,
+          "n_clusters": 31,
+          "share_positive": 0.4838709677419355
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 42,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791861043197963,
+        "logloss": 0.9719298776828891,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 37,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.015128385105215641,
+          "ci_low": -0.04345062476582126,
+          "mean": -0.014605820137863518,
+          "median": -0.010079644298633839,
+          "n": 37,
+          "n_clusters": 37,
+          "share_positive": 0.40540540540540543
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 43,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791861043197963,
+        "logloss": 0.9719298776828891,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 58,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.009093801898156544,
+          "ci_low": -0.034770453336828946,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 44,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791032823136922,
+        "logloss": 0.9717565041424997,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 67,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.0012817239179301616,
+          "ci_low": -0.0409311950271863,
+          "mean": -0.020119944774966238,
+          "median": -0.026299953210222715,
+          "n": 67,
+          "n_clusters": 67,
+          "share_positive": 0.373134328358209
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 45,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791032823136922,
+        "logloss": 0.9717565041424997,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 31,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.031779010015971824,
+          "ci_low": -0.03203573967680031,
+          "mean": -0.0003335929688905618,
+          "median": -0.0010087685264219548,
+          "n": 31,
+          "n_clusters": 31,
+          "share_positive": 0.4838709677419355
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 46,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791032823136922,
+        "logloss": 0.9717565041424997,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 35,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.15
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.024183712801943223,
+          "ci_low": -0.036353224650162476,
+          "mean": -0.007335666242269899,
+          "median": -0.006408623353592713,
+          "n": 35,
+          "n_clusters": 35,
+          "share_positive": 0.42857142857142855
+        },
+        "min_independent_matches": 50,
+        "reason": "insufficient_independent_matches"
+      },
+      "grid_index": 47,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5791032823136922,
+        "logloss": 0.9717565041424997,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": false,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 110,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02296246144608966,
+          "ci_low": -0.0620252026035697,
+          "mean": -0.04208024406422219,
+          "median": -0.04059364156517675,
+          "n": 110,
+          "n_clusters": 110,
+          "share_positive": 0.3090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 48,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777123668443095,
+        "logloss": 0.9702338740944867,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 130,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.030168331334022754,
+          "ci_low": -0.06447241512736841,
+          "mean": -0.04741919613364846,
+          "median": -0.04381128443986804,
+          "n": 130,
+          "n_clusters": 130,
+          "share_positive": 0.2846153846153846
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 49,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777123668443095,
+        "logloss": 0.9702338740944867,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 76,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.007961538629145275,
+          "ci_low": -0.0517151311240388,
+          "mean": -0.02893336199972456,
+          "median": -0.033678850279612704,
+          "n": 76,
+          "n_clusters": 76,
+          "share_positive": 0.3815789473684211
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 50,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777123668443095,
+        "logloss": 0.9702338740944867,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 93,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.020478027867880846,
+          "ci_low": -0.06138245211402962,
+          "mean": -0.04029617663439863,
+          "median": -0.039594438643732355,
+          "n": 93,
+          "n_clusters": 93,
+          "share_positive": 0.3333333333333333
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 51,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777123668443095,
+        "logloss": 0.9702338740944867,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 110,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02296246144608966,
+          "ci_low": -0.0620252026035697,
+          "mean": -0.04208024406422219,
+          "median": -0.04059364156517675,
+          "n": 110,
+          "n_clusters": 110,
+          "share_positive": 0.3090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 52,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5773490598713393,
+        "logloss": 0.9694924977554665,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 119,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02698949612979343,
+          "ci_low": -0.06069567925050096,
+          "mean": -0.043276225490660486,
+          "median": -0.040889911775987664,
+          "n": 119,
+          "n_clusters": 119,
+          "share_positive": 0.29411764705882354
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 53,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5773490598713393,
+        "logloss": 0.9694924977554665,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 77,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.008711258149316501,
+          "ci_low": -0.054179121684415334,
+          "mean": -0.030709946091658676,
+          "median": -0.03539616541541335,
+          "n": 77,
+          "n_clusters": 77,
+          "share_positive": 0.37662337662337664
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 54,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5773490598713393,
+        "logloss": 0.9694924977554665,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 82,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.01231229429508862,
+          "ci_low": -0.05428265839897493,
+          "mean": -0.03344660278478505,
+          "median": -0.03770233259457029,
+          "n": 82,
+          "n_clusters": 82,
+          "share_positive": 0.35365853658536583
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 55,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5773490598713393,
+        "logloss": 0.9694924977554665,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 110,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02296246144608966,
+          "ci_low": -0.0620252026035697,
+          "mean": -0.04208024406422219,
+          "median": -0.04059364156517675,
+          "n": 110,
+          "n_clusters": 110,
+          "share_positive": 0.3090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 56,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777060073071976,
+        "logloss": 0.9702367504299799,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 130,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.030168331334022754,
+          "ci_low": -0.06447241512736841,
+          "mean": -0.04741919613364846,
+          "median": -0.04381128443986804,
+          "n": 130,
+          "n_clusters": 130,
+          "share_positive": 0.2846153846153846
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 57,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777060073071976,
+        "logloss": 0.9702367504299799,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 76,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.007961538629145275,
+          "ci_low": -0.0517151311240388,
+          "mean": -0.02893336199972456,
+          "median": -0.033678850279612704,
+          "n": 76,
+          "n_clusters": 76,
+          "share_positive": 0.3815789473684211
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 58,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777060073071976,
+        "logloss": 0.9702367504299799,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 93,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.020478027867880846,
+          "ci_low": -0.06138245211402962,
+          "mean": -0.04029617663439863,
+          "median": -0.039594438643732355,
+          "n": 93,
+          "n_clusters": 93,
+          "share_positive": 0.3333333333333333
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 59,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5777060073071976,
+        "logloss": 0.9702367504299799,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 110,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02296246144608966,
+          "ci_low": -0.0620252026035697,
+          "mean": -0.04208024406422219,
+          "median": -0.04059364156517675,
+          "n": 110,
+          "n_clusters": 110,
+          "share_positive": 0.3090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 60,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5774274396068816,
+        "logloss": 0.9696697678949895,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 123,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.029092307321426134,
+          "ci_low": -0.06239873606826586,
+          "mean": -0.04555252199796626,
+          "median": -0.043377116573342867,
+          "n": 123,
+          "n_clusters": 123,
+          "share_positive": 0.2926829268292683
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 61,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5774274396068816,
+        "logloss": 0.9696697678949895,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 77,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.008711258149316501,
+          "ci_low": -0.054179121684415334,
+          "mean": -0.030709946091658676,
+          "median": -0.03539616541541335,
+          "n": 77,
+          "n_clusters": 77,
+          "share_positive": 0.37662337662337664
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 62,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5774274396068816,
+        "logloss": 0.9696697678949895,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 84,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.014755574179655988,
+          "ci_low": -0.05582223014427231,
+          "mean": -0.03547581554622451,
+          "median": -0.03770233259457029,
+          "n": 84,
+          "n_clusters": 84,
+          "share_positive": 0.34523809523809523
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 63,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5774274396068816,
+        "logloss": 0.9696697678949895,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 110,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02296246144608966,
+          "ci_low": -0.0620252026035697,
+          "mean": -0.04208024406422219,
+          "median": -0.04059364156517675,
+          "n": 110,
+          "n_clusters": 110,
+          "share_positive": 0.3090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 64,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5776997018370862,
+        "logloss": 0.9702409118329882,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 130,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.030168331334022754,
+          "ci_low": -0.06447241512736841,
+          "mean": -0.04741919613364846,
+          "median": -0.04381128443986804,
+          "n": 130,
+          "n_clusters": 130,
+          "share_positive": 0.2846153846153846
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 65,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5776997018370862,
+        "logloss": 0.9702409118329882,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 75,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.006981035742459953,
+          "ci_low": -0.05127400816758461,
+          "mean": -0.02843276830343875,
+          "median": -0.03196153514381206,
+          "n": 75,
+          "n_clusters": 75,
+          "share_positive": 0.38666666666666666
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 66,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5776997018370862,
+        "logloss": 0.9702409118329882,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 92,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.019085743457974112,
+          "ci_low": -0.06063031963735434,
+          "mean": -0.04001159280193383,
+          "median": -0.039307674801101866,
+          "n": 92,
+          "n_clusters": 92,
+          "share_positive": 0.33695652173913043
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 67,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5776997018370862,
+        "logloss": 0.9702409118329882,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 110,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.02296246144608966,
+          "ci_low": -0.0620252026035697,
+          "mean": -0.04208024406422219,
+          "median": -0.04059364156517675,
+          "n": 110,
+          "n_clusters": 110,
+          "share_positive": 0.3090909090909091
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 68,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5775098176582528,
+        "logloss": 0.969855532010654,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 126,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.028837372019587554,
+          "ci_low": -0.06355615512786537,
+          "mean": -0.04622122320008675,
+          "median": -0.04381128443986804,
+          "n": 126,
+          "n_clusters": 126,
+          "share_positive": 0.29365079365079366
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 69,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5775098176582528,
+        "logloss": 0.969855532010654,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 77,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.008711258149316501,
+          "ci_low": -0.054179121684415334,
+          "mean": -0.030709946091658676,
+          "median": -0.03539616541541335,
+          "n": 77,
+          "n_clusters": 77,
+          "share_positive": 0.37662337662337664
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 70,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5775098176582528,
+        "logloss": 0.969855532010654,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 88,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.3
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.018515838296464072,
+          "ci_low": -0.0592541096718745,
+          "mean": -0.03907521374658099,
+          "median": -0.039307674801101866,
+          "n": 88,
+          "n_clusters": 88,
+          "share_positive": 0.3409090909090909
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 71,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5775098176582528,
+        "logloss": 0.969855532010654,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 154,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03413839948749635,
+          "ci_low": -0.06282391700194748,
+          "mean": -0.04804344812641259,
+          "median": -0.0452020792534541,
+          "n": 154,
+          "n_clusters": 154,
+          "share_positive": 0.2662337662337662
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 72,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763274208558337,
+        "logloss": 0.9689208179455181,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 186,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03936695230590143,
+          "ci_low": -0.06837515880367905,
+          "mean": -0.05360417269147212,
+          "median": -0.04870150606303969,
+          "n": 186,
+          "n_clusters": 186,
+          "share_positive": 0.25806451612903225
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 73,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763274208558337,
+        "logloss": 0.9689208179455181,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 125,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.030918809305185275,
+          "ci_low": -0.06616230935279283,
+          "mean": -0.04825200873826852,
+          "median": -0.04424545230639321,
+          "n": 125,
+          "n_clusters": 125,
+          "share_positive": 0.288
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 74,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763274208558337,
+        "logloss": 0.9689208179455181,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 153,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.041834850755017965,
+          "ci_low": -0.07341462538314238,
+          "mean": -0.05731027666678189,
+          "median": -0.04647682994447688,
+          "n": 153,
+          "n_clusters": 153,
+          "share_positive": 0.26143790849673204
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 75,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763274208558337,
+        "logloss": 0.9689208179455181,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 155,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03478263358006865,
+          "ci_low": -0.06423601117702966,
+          "mean": -0.04882127301742464,
+          "median": -0.04548173041323722,
+          "n": 155,
+          "n_clusters": 155,
+          "share_positive": 0.2645161290322581
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 76,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5756243069905673,
+        "logloss": 0.9675410430935124,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 170,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03603585692551468,
+          "ci_low": -0.06456800646855505,
+          "mean": -0.050396897343578204,
+          "median": -0.04721900368624077,
+          "n": 170,
+          "n_clusters": 170,
+          "share_positive": 0.25882352941176473
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 77,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5756243069905673,
+        "logloss": 0.9675410430935124,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 128,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.032344334760895585,
+          "ci_low": -0.067116104495738,
+          "mean": -0.04936904865477336,
+          "median": -0.04490507222841966,
+          "n": 128,
+          "n_clusters": 128,
+          "share_positive": 0.28125
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 78,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5756243069905673,
+        "logloss": 0.9675410430935124,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 135,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.0,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.034240532017592536,
+          "ci_low": -0.06790409462702515,
+          "mean": -0.05124347428936956,
+          "median": -0.04548173041323722,
+          "n": 135,
+          "n_clusters": 135,
+          "share_positive": 0.26666666666666666
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 79,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5756243069905673,
+        "logloss": 0.9675410430935124,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 153,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03345245595466404,
+          "ci_low": -0.06254150474063147,
+          "mean": -0.04760640612992573,
+          "median": -0.044922428093670974,
+          "n": 153,
+          "n_clusters": 153,
+          "share_positive": 0.2679738562091503
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 80,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763181107274308,
+        "logloss": 0.9689300178987744,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 185,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03899789862627278,
+          "ci_low": -0.06800904096843875,
+          "mean": -0.05327278511905358,
+          "median": -0.04796117742800465,
+          "n": 185,
+          "n_clusters": 185,
+          "share_positive": 0.2594594594594595
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 81,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763181107274308,
+        "logloss": 0.9689300178987744,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 124,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03202620499587887,
+          "ci_low": -0.06713147634631772,
+          "mean": -0.048916802724050405,
+          "median": -0.04456658433478078,
+          "n": 124,
+          "n_clusters": 124,
+          "share_positive": 0.28225806451612906
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 82,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763181107274308,
+        "logloss": 0.9689300178987744,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 152,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.04184518684506748,
+          "ci_low": -0.07397145165269538,
+          "mean": -0.05791220247050206,
+          "median": -0.05031600850180218,
+          "n": 152,
+          "n_clusters": 152,
+          "share_positive": 0.2565789473684211
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 83,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763181107274308,
+        "logloss": 0.9689300178987744,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 155,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03478263358006865,
+          "ci_low": -0.06423601117702966,
+          "mean": -0.04882127301742464,
+          "median": -0.04548173041323722,
+          "n": 155,
+          "n_clusters": 155,
+          "share_positive": 0.2645161290322581
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 84,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5757717336753203,
+        "logloss": 0.9678631677592022,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 172,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.037652618363485914,
+          "ci_low": -0.06611171876481502,
+          "mean": -0.05185292313083543,
+          "median": -0.04721900368624077,
+          "n": 172,
+          "n_clusters": 172,
+          "share_positive": 0.25
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 85,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5757717336753203,
+        "logloss": 0.9678631677592022,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 127,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03162198219101749,
+          "ci_low": -0.06744306564607552,
+          "mean": -0.04928070698194805,
+          "median": -0.04488771636316835,
+          "n": 127,
+          "n_clusters": 127,
+          "share_positive": 0.28346456692913385
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 86,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5757717336753203,
+        "logloss": 0.9678631677592022,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 142,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.25,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.0359694042740183,
+          "ci_low": -0.06887112234902959,
+          "mean": -0.05279181749781306,
+          "median": -0.045881772463862325,
+          "n": 142,
+          "n_clusters": 142,
+          "share_positive": 0.2676056338028169
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 87,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5757717336753203,
+        "logloss": 0.9678631677592022,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 153,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03345245595466404,
+          "ci_low": -0.06254150474063147,
+          "mean": -0.04760640612992573,
+          "median": -0.044922428093670974,
+          "n": 153,
+          "n_clusters": 153,
+          "share_positive": 0.2679738562091503
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 88,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763090559353764,
+        "logloss": 0.9689428828792134,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 185,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03899789862627278,
+          "ci_low": -0.06800904096843875,
+          "mean": -0.05327278511905358,
+          "median": -0.04796117742800465,
+          "n": 185,
+          "n_clusters": 185,
+          "share_positive": 0.2594594594594595
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 89,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763090559353764,
+        "logloss": 0.9689428828792134,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 124,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03202620499587887,
+          "ci_low": -0.06713147634631772,
+          "mean": -0.048916802724050405,
+          "median": -0.04456658433478078,
+          "n": 124,
+          "n_clusters": 124,
+          "share_positive": 0.28225806451612906
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 90,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763090559353764,
+        "logloss": 0.9689428828792134,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 152,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.1,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.04184518684506748,
+          "ci_low": -0.07397145165269538,
+          "mean": -0.05791220247050206,
+          "median": -0.05031600850180218,
+          "n": 152,
+          "n_clusters": 152,
+          "share_positive": 0.2565789473684211
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 91,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5763090559353764,
+        "logloss": 0.9689428828792134,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 154,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03413839948749635,
+          "ci_low": -0.06282391700194748,
+          "mean": -0.04804344812641259,
+          "median": -0.0452020792534541,
+          "n": 154,
+          "n_clusters": 154,
+          "share_positive": 0.2662337662337662
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 92,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5759315401729725,
+        "logloss": 0.9682098731993656,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 173,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.03,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03715893802946978,
+          "ci_low": -0.06536187149725113,
+          "mean": -0.05126298911939393,
+          "median": -0.04647682994447688,
+          "n": 173,
+          "n_clusters": 173,
+          "share_positive": 0.2543352601156069
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 93,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5759315401729725,
+        "logloss": 0.9682098731993656,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 127,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 6.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03162198219101749,
+          "ci_low": -0.06744306564607552,
+          "mean": -0.04928070698194805,
+          "median": -0.04488771636316835,
+          "n": 127,
+          "n_clusters": 127,
+          "share_positive": 0.28346456692913385
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 94,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5759315401729725,
+        "logloss": 0.9682098731993656,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    },
+    {
+      "candidate_count": 143,
+      "config": {
+        "bias_l2": 0.1,
+        "edge_threshold": 0.05,
+        "longshot_probability": 0.15,
+        "longshot_weight": 0.5,
+        "max_odds": 10.0,
+        "residual_weight": 0.5
+      },
+      "gate": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.03697507681696362,
+          "ci_low": -0.0682765885265085,
+          "mean": -0.05257680429619322,
+          "median": -0.04548173041323722,
+          "n": 143,
+          "n_clusters": 143,
+          "share_positive": 0.26573426573426573
+        },
+        "min_independent_matches": 50,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "grid_index": 95,
+      "market_logloss": 0.9706896058441696,
+      "metrics": {
+        "brier": 0.5759315401729725,
+        "logloss": 0.9682098731993656,
+        "n": 375
+      },
+      "selected": false,
+      "selection_eligible": true,
+      "selection_rule": null
+    }
+  ],
+  "holdout_shadow_report": {
+    "anchored_model": {
+      "name": "market_anchored_glm_dc",
+      "probability_metrics": {
+        "brier": 0.5872727984344958,
+        "logloss": 0.9834208128485301,
+        "n": 205
+      },
+      "shadow_candidate_clv": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.018182766592262155,
+          "ci_low": -0.08002492304056617,
+          "mean": -0.04826691191126827,
+          "median": -0.036465431500585954,
+          "n": 28,
+          "n_clusters": 28,
+          "share_positive": 0.25
+        },
+        "min_independent_matches": 100,
+        "reason": "insufficient_independent_matches"
+      },
+      "shadow_candidate_count": 28
+    },
+    "n_matches": 205,
+    "opening_market": {
+      "name": "de_vigged_pinnacle_opening",
+      "probability_metrics": {
+        "brier": 0.5884399124089009,
+        "logloss": 0.9846321770842582,
+        "n": 205
+      }
+    },
+    "raw_model": {
+      "name": "raw_glm_dc",
+      "probability_metrics": {
+        "brier": 0.5959813536331966,
+        "logloss": 1.0008562158121428,
+        "n": 205
+      },
+      "shadow_candidate_clv": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.04634559499371338,
+          "ci_low": -0.07122029332022388,
+          "mean": -0.05863610847126048,
+          "median": -0.05682647136209096,
+          "n": 154,
+          "n_clusters": 154,
+          "share_positive": 0.18831168831168832
+        },
+        "min_independent_matches": 100,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "shadow_candidate_count": 154
+    }
+  },
+  "late_development_report": {
+    "anchored_model": {
+      "name": "market_anchored_glm_dc",
+      "probability_metrics": {
+        "brier": 0.57903108463193,
+        "logloss": 0.9715889943387498,
+        "n": 375
+      },
+      "shadow_candidate_clv": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": 0.010006100300854312,
+          "ci_low": -0.034462369488528606,
+          "mean": -0.012358372526313433,
+          "median": -0.01714885887049833,
+          "n": 58,
+          "n_clusters": 58,
+          "share_positive": 0.41379310344827586
+        },
+        "min_independent_matches": 100,
+        "reason": "insufficient_independent_matches"
+      },
+      "shadow_candidate_count": 58
+    },
+    "n_matches": 375,
+    "opening_market": {
+      "name": "de_vigged_pinnacle_opening",
+      "probability_metrics": {
+        "brier": 0.5787892064874631,
+        "logloss": 0.9706896058441696,
+        "n": 375
+      }
+    },
+    "raw_model": {
+      "name": "raw_glm_dc",
+      "probability_metrics": {
+        "brier": 0.5750513364680605,
+        "logloss": 0.9697521443872089,
+        "n": 375
+      },
+      "shadow_candidate_clv": {
+        "action": "NO BET",
+        "clv": {
+          "bootstrap_unit": "cluster",
+          "ci_high": -0.0443235583617873,
+          "ci_low": -0.06654489692874618,
+          "mean": -0.055340073067283335,
+          "median": -0.04721900368624077,
+          "n": 246,
+          "n_clusters": 246,
+          "share_positive": 0.21544715447154472
+        },
+        "min_independent_matches": 100,
+        "reason": "clv_lower_ci_not_positive"
+      },
+      "shadow_candidate_count": 246
+    }
+  },
+  "protocol": {
+    "bootstrap_unit": "match_id cluster",
+    "candidate_price": "Bet365 opening odds",
+    "closing_reference": "Pinnacle 1X2 closing odds, proportional de-vig",
+    "early_development_fit": [
+      "2022-07-01",
+      "2024-07-01"
+    ],
+    "holdout_evaluations": 1,
+    "holdout_parameter_access": false,
+    "holdout_report_only": [
+      "2025-07-01",
+      null
+    ],
+    "late_development_selection": [
+      "2024-07-01",
+      "2025-07-01"
+    ],
+    "opening_prior": "Pinnacle 1X2 opening odds, proportional de-vig",
+    "seed": 20260713
+  },
+  "sample_sizes": {
+    "early_development": 735,
+    "holdout": 205,
+    "late_development": 375
+  },
+  "selected_anchor": {
+    "bias": [
+      0.04647242877411366,
+      -0.01693413433140349,
+      -0.029538294442710167
+    ],
+    "config": {
+      "bias_l2": 0.1,
+      "edge_threshold": 0.03,
+      "longshot_probability": 0.15,
+      "longshot_weight": 0.0,
+      "max_odds": 6.0,
+      "residual_weight": 0.15
+    }
+  }
+}
