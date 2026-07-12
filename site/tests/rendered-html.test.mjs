@@ -41,3 +41,11 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
 });
+
+test("static export prefixes every asset URL for GitHub Pages", async () => {
+  await import(`../scripts/export-static.mjs?test=${Date.now()}`);
+  const html = await readFile(new URL("../out-static/index.html", import.meta.url), "utf8");
+
+  assert.doesNotMatch(html, /["'(]\/assets\//);
+  assert.match(html, /import\("\/xg-edge\/assets\//);
+});

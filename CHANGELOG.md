@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 — 2026-07-13
+
+- Fixed GitHub Pages client asset paths so browser hydration and five-minute
+  live snapshot refreshes work under the `/xg-edge/` repository prefix.
+- Added a regression test that rejects unprefixed production asset URLs.
+
 ## 0.3.0 — 2026-07-13
 
 ### Live predictions

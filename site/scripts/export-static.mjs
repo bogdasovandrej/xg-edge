@@ -15,9 +15,7 @@ const response = await worker.fetch(
 if (!response.ok) throw new Error(`static render failed: HTTP ${response.status}`);
 
 let html = await response.text();
-html = html
-  .replaceAll('href="/assets/', 'href="/xg-edge/assets/')
-  .replaceAll('src="/assets/', 'src="/xg-edge/assets/');
+html = html.replaceAll("/assets/", "/xg-edge/assets/");
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
