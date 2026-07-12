@@ -25,7 +25,7 @@ from xgedge.data.understat import (
 FD_HEADER = (
     "Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,Referee,HY,AY,HR,AR,"
     "B365H,B365D,B365A,PSH,PSD,PSA,B365>2.5,B365<2.5,"
-    "B365CH,B365CD,B365CA,PSCH,PSCD,PSCA,B365C>2.5,B365C<2.5"
+    "B365CH,B365CD,B365CA,PSCH,PSCD,PSCA,B365C>2.5,B365C<2.5,P>2.5,P<2.5,PC>2.5,PC<2.5"
 )
 
 
@@ -40,10 +40,10 @@ def write_fd_csv(raw_dir: Path, code: str, rows: list[str]) -> Path:
 FD_ROWS_2122 = [
     # latin-1 referee name; full 4-digit-year dates
     "E0,13/08/2021,20:00,Brentford,Arsenal,2,0,H,Jos\xe9 Mu\xf1oz,1,2,0,0,"
-    "3.4,3.3,2.2,3.51,3.4,2.23,2.1,1.8,3.6,3.4,2.1,3.7,3.45,2.15,2.05,1.85",
+    "3.4,3.3,2.2,3.51,3.4,2.23,2.1,1.8,3.6,3.4,2.1,3.7,3.45,2.15,2.05,1.85,2.04,1.86,2.00,1.90",
     # empty PSH cell -> NaN; one red card each side
     "E0,14/08/2021,15:00,Man United,Leeds,5,1,H,Referee,1,1,1,1,"
-    "1.5,4.5,6.0,,4.6,6.2,1.7,2.2,1.55,4.4,6.5,1.52,4.75,6.4,1.65,2.3",
+    "1.5,4.5,6.0,,4.6,6.2,1.7,2.2,1.55,4.4,6.5,1.52,4.75,6.4,1.65,2.3,1.68,2.25,1.62,2.35",
     # fully-empty trailing rows as football-data ships them
     "," * (FD_HEADER.count(",")),
     "," * (FD_HEADER.count(",")),
@@ -197,6 +197,8 @@ def test_load_fd_season_parses_matches(tmp_path: Path):
     assert row0[Col.B365H] == pytest.approx(3.4)
     assert row0[Col.B365_O25] == pytest.approx(2.1)
     assert row0[Col.B365C_U25] == pytest.approx(1.85)
+    assert row0[Col.P_O25] == pytest.approx(2.04)
+    assert row0[Col.PC_U25] == pytest.approx(1.90)
     assert row0[Col.SEASON] == "2021-22"
 
     row1 = df.iloc[1]

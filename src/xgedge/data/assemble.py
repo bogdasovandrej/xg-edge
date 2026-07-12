@@ -47,6 +47,10 @@ _CLEANED_COLUMNS = [
     Col.B365_U25,
     Col.B365C_O25,
     Col.B365C_U25,
+    Col.P_O25,
+    Col.P_U25,
+    Col.PC_O25,
+    Col.PC_U25,
 ]
 
 

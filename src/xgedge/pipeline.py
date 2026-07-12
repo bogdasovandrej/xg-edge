@@ -32,6 +32,17 @@ from xgedge.models.poisson_glm import PoissonGBMModel, PoissonGLMModel
 DEFAULT_MODELS = ["glm_dc", "gbm_dc", "dc_classic", "goals_poisson", "uniform", "market"]
 PRIMARY_MODEL = "glm_dc"
 
+DEFAULT_FEATURE_PARAMS = {
+    "half_life_days": 180.0,
+    "red_card_weight": 0.5,
+    "adjust_opponent": False,
+    "use_npxg": False,
+    "decay": True,
+    "min_history": 5,
+    "venue_blend": 0.3,
+    "clamp": (0.5, 2.0),
+}
+
 _FEATURE_COLS = [Feat.ATT_H, Feat.DEF_H, Feat.ATT_A, Feat.DEF_A]
 _META_COLS = [Col.MATCH_ID, Col.DATE, Col.SEASON, Col.HOME, Col.AWAY,
               Col.FTHG, Col.FTAG, Col.FTR]
@@ -75,7 +86,10 @@ def run_walkforward_eval(
     the special key ``force_rho_zero`` disables the Dixon-Coles correction
     (hypothesis H9) instead.
     """
-    feature_params = dict(feature_params or {})
+    feature_params = {
+        **DEFAULT_FEATURE_PARAMS,
+        **dict(feature_params or {}),
+    }
     force_rho_zero = bool(feature_params.pop("force_rho_zero", False))
     models = list(models) if models is not None else list(DEFAULT_MODELS)
 
@@ -109,7 +123,7 @@ def run_walkforward_eval(
                 )
                 ph, pdr, pa = probs[:, 0], probs[:, 1], probs[:, 2]
                 pover = np.array(
-                    [_shin_or_nan([r[Col.B365C_O25], r[Col.B365C_U25]])[0]
+                    [_shin_or_nan([r[Col.PC_O25], r[Col.PC_U25]])[0]
                      for _, r in test.iterrows()]
                 )
             else:
@@ -169,7 +183,11 @@ def run_walkforward_eval(
             }
             clvs = bets["clv"].dropna().to_numpy()
             if len(clvs):
-                results["clv"] = summarize_clv(clvs)
+                have_clv = bets["clv"].notna()
+                results["clv"] = summarize_clv(
+                    bets.loc[have_clv, "clv"].to_numpy(),
+                    groups=bets.loc[have_clv, "match_id"].to_numpy(),
+                )
     return results
 
 
@@ -199,15 +217,29 @@ def _metrics_1x2(pred: pd.DataFrame, models: list) -> dict:
 
 def _metrics_totals(pred: pd.DataFrame, models: list) -> dict:
     y_over = ((pred[Col.FTHG] + pred[Col.FTAG]) > 2.5).to_numpy().astype(float)
+    prob_cols = {m: f"{m}_pover25" for m in models}
+    have = {m: pred[col].notna() for m, col in prob_cols.items()}
+    common = np.logical_and.reduce([mask.to_numpy() for mask in have.values()])
     out = {}
     for m in models:
-        col = f"{m}_pover25"
-        mask = pred[col].notna().to_numpy()
-        entry = {"brier": np.nan, "logloss": np.nan, "n": int(mask.sum())}
+        col = prob_cols[m]
+        mask = have[m].to_numpy()
+        entry = {
+            "brier": np.nan,
+            "logloss": np.nan,
+            "n": int(mask.sum()),
+            "brier_common": np.nan,
+            "logloss_common": np.nan,
+            "n_common": int(common.sum()),
+        }
         if mask.any():
             p = pred.loc[mask, col].to_numpy()
             entry["brier"] = brier_binary(p, y_over[mask])
             entry["logloss"] = logloss_binary(p, y_over[mask])
+        if common.any():
+            p = pred.loc[common, col].to_numpy()
+            entry["brier_common"] = brier_binary(p, y_over[common])
+            entry["logloss_common"] = logloss_binary(p, y_over[common])
         out[m] = entry
     return out
 
@@ -228,6 +260,7 @@ def _collect_bets(
         Col.B365H, Col.B365D, Col.B365A,
         Col.PSCH, Col.PSCD, Col.PSCA,
         Col.B365_O25, Col.B365_U25, Col.B365C_O25, Col.B365C_U25,
+        Col.PC_O25, Col.PC_U25,
     ]
     merged = pred.merge(
         feats[[Col.MATCH_ID] + odds_cols], on=Col.MATCH_ID, how="left"
@@ -268,7 +301,7 @@ def _collect_bets(
                     })
         p_over = row[f"{PRIMARY_MODEL}_pover25"]
         if np.isfinite(p_over):
-            close_fair = _shin_or_nan([row[Col.B365C_O25], row[Col.B365C_U25]])
+            close_fair = _shin_or_nan([row[Col.PC_O25], row[Col.PC_U25]])
             total = row[Col.FTHG] + row[Col.FTAG]
             candidates = []
             for i, (sel, p, o_col) in enumerate(

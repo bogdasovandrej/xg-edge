@@ -4,7 +4,7 @@
 
 | Parameter | Value |
 | --- | --- |
-| initial_train_end | 2023-07-01 |
+| initial_train_end | 2025-07-01 |
 | step_days | 30 |
 | edge_threshold | 0.0300 |
 | kelly_fraction | 0.2500 |
@@ -13,43 +13,52 @@
 | force_rho_zero | False |
 | models | glm_dc,gbm_dc,dc_classic,goals_poisson,uniform,market |
 | feature_half_life_days | 180.0000 |
+| feature_red_card_weight | 0.5000 |
+| feature_adjust_opponent | False |
+| feature_use_npxg | False |
+| feature_decay | True |
+| feature_min_history | 5 |
+| feature_venue_blend | 0.3000 |
+| feature_clamp | (0.5, 2.0) |
 
 ## 1X2 metrics
 
 | Model | brier | logloss | n | brier_common | logloss_common | n_common |
 | --- | --- | --- | --- | --- | --- | --- |
-| glm_dc | 0.5835 | 0.9827 | 1120 | 0.5737 | 0.9692 | 950 |
-| gbm_dc | 0.5869 | 0.9875 | 1120 | 0.5766 | 0.9728 | 950 |
-| dc_classic | 0.5884 | 0.9879 | 1120 | 0.5769 | 0.9720 | 950 |
-| goals_poisson | 0.5938 | 0.9956 | 1120 | 0.5806 | 0.9775 | 950 |
-| uniform | 0.6667 | 1.0986 | 1120 | 0.6667 | 1.0986 | 950 |
-| market | 0.5607 | 0.9468 | 950 | 0.5607 | 0.9468 | 950 |
+| glm_dc | 0.6157 | 1.0276 | 375 | 0.5959 | 1.0006 | 205 |
+| gbm_dc | 0.6109 | 1.0210 | 375 | 0.5903 | 0.9933 | 205 |
+| dc_classic | 0.6184 | 1.0375 | 375 | 0.5911 | 1.0068 | 205 |
+| goals_poisson | 0.6253 | 1.1055 | 375 | 0.5907 | 1.1135 | 205 |
+| uniform | 0.6667 | 1.0986 | 375 | 0.6667 | 1.0986 | 205 |
+| market | 0.5874 | 0.9822 | 205 | 0.5874 | 0.9822 | 205 |
 
 ## Over/Under 2.5 metrics
 
-| Model | brier | logloss | n |
-| --- | --- | --- | --- |
-| glm_dc | 0.2419 | 0.6778 | 1120 |
-| gbm_dc | 0.2465 | 0.6885 | 1120 |
-| dc_classic | 0.2443 | 0.6842 | 1120 |
-| goals_poisson | 0.2438 | 0.6831 | 1120 |
-| uniform | 0.2500 | 0.6931 | 1120 |
-| market | 0.2383 | 0.6692 | 1120 |
+| Model | brier | logloss | n | brier_common | logloss_common | n_common |
+| --- | --- | --- | --- | --- | --- | --- |
+| glm_dc | 0.2475 | 0.6884 | 375 | 0.2453 | 0.6837 | 205 |
+| gbm_dc | 0.2496 | 0.6928 | 375 | 0.2490 | 0.6913 | 205 |
+| dc_classic | 0.2516 | 0.6987 | 375 | 0.2434 | 0.6834 | 205 |
+| goals_poisson | 0.2473 | 0.6905 | 375 | 0.2389 | 0.6749 | 205 |
+| uniform | 0.2500 | 0.6931 | 375 | 0.2500 | 0.6931 | 205 |
+| market | 0.2428 | 0.6784 | 205 | 0.2428 | 0.6784 | 205 |
 
 ## Betting simulation
 
 | Staking | final_bankroll | roi | max_drawdown | n_bets | total_staked |
 | --- | --- | --- | --- | --- | --- |
-| kelly | 0.2843 | -0.0484 | 0.8208 | 1583 | 14.7741 |
-| flat | 0.4303 | -0.0579 | 0.6432 | 1583 | 9.8337 |
+| kelly | 0.4918 | -0.0922 | 0.6827 | 467 | 5.5132 |
+| flat | 0.7276 | -0.0689 | 0.4114 | 467 | 3.9553 |
 
 ## Closing line value
 
 | Statistic | Value |
 | --- | --- |
-| mean | -0.0682 |
-| median | -0.0569 |
-| share_positive | 0.1767 |
-| ci_low | -0.0731 |
-| ci_high | -0.0632 |
-| n | 1443 |
+| mean | -0.0713 |
+| median | -0.0533 |
+| share_positive | 0.1519 |
+| ci_low | -0.0812 |
+| ci_high | -0.0616 |
+| n | 270 |
+| n_clusters | 188 |
+| bootstrap_unit | cluster |

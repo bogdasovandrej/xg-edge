@@ -3,10 +3,11 @@
 Turns the cleaned matches table into per-match pre-match team ratings
 (attack / defence expected-goals rates) with exponential time decay,
 red-card down-weighting, venue blending and iterative opponent
-adjustment. Strictly causal: a match's features depend only on matches
-appearing strictly earlier in the date-sorted order — for each match the
-pre-match ratings are computed first, and only then is the match
-appended to the team histories and the league running list.
+adjustment. Strictly causal at the available date resolution: every match on
+a date is scored from state frozen at the end of the previous date. Only after
+all same-date features have been recorded are those matches appended to the
+team histories and league running list. This makes results invariant to source
+row order and prevents same-day outcomes leaking into one another.
 """
 from __future__ import annotations
 
@@ -27,6 +28,7 @@ _ODDS_COLS = [
     Col.B365CH, Col.B365CD, Col.B365CA,
     Col.PSCH, Col.PSCD, Col.PSCA,
     Col.B365_O25, Col.B365_U25, Col.B365C_O25, Col.B365C_U25,
+    Col.P_O25, Col.P_U25, Col.PC_O25, Col.PC_U25,
 ]
 
 
@@ -101,8 +103,8 @@ def build_features(
     matches: pd.DataFrame,
     half_life_days: float = 180.0,
     red_card_weight: float = 0.5,
-    adjust_opponent: bool = True,
-    use_npxg: bool = True,
+    adjust_opponent: bool = False,
+    use_npxg: bool = False,
     decay: bool = True,
     min_history: int = 5,
     venue_blend: float = 0.3,
@@ -135,65 +137,96 @@ def build_features(
     league: list = []    # (date, raw attack value), two entries per match
     rows: list = []
 
-    for _, m in df.iterrows():
-        date = m[Col.DATE]
-        home, away = m[Col.HOME], m[Col.AWAY]
-        h_hist = hist.setdefault(home, [])
-        a_hist = hist.setdefault(away, [])
-        n_h, n_a = len(h_hist), len(a_hist)
+    for date, same_date in df.groupby(Col.DATE, sort=False):
+        # Freeze every piece of state for the whole date. football-data and
+        # the cleaned contract contain a date but not a dependable kickoff
+        # timestamp, so using an earlier row from the same date would impose a
+        # fictional result order.
+        league_avg = _league_avg(league, date, half_life_days, decay)
+        pending_updates: list[tuple] = []
 
-        h_att, h_def, h_att_o, h_def_o = _team_ratings(
-            h_hist, date, "H", half_life_days, red_card_weight, decay, venue_blend)
-        a_att, a_def, a_att_o, a_def_o = _team_ratings(
-            a_hist, date, "A", half_life_days, red_card_weight, decay, venue_blend)
+        for _, m in same_date.iterrows():
+            home, away = m[Col.HOME], m[Col.AWAY]
+            h_hist = hist.setdefault(home, [])
+            a_hist = hist.setdefault(away, [])
+            n_h, n_a = len(h_hist), len(a_hist)
 
-        row = {
-            Col.MATCH_ID: m[Col.MATCH_ID],
-            Col.SEASON: m[Col.SEASON],
-            Col.DATE: date,
-            Col.HOME: home,
-            Col.AWAY: away,
-            Col.FTHG: m[Col.FTHG],
-            Col.FTAG: m[Col.FTAG],
-            Col.FTR: m[Col.FTR],
-            Feat.ATT_H: h_att,
-            Feat.DEF_H: h_def,
-            Feat.ATT_A: a_att,
-            Feat.DEF_A: a_def,
-            Feat.N_HIST_H: n_h,
-            Feat.N_HIST_A: n_a,
-            Feat.IS_VALID: (n_h >= min_history) and (n_a >= min_history),
-        }
-        for c in odds_present:
-            row[c] = m[c]
-        rows.append(row)
+            h_att, h_def, h_att_o, h_def_o = _team_ratings(
+                h_hist, date, "H", half_life_days, red_card_weight, decay,
+                venue_blend,
+            )
+            a_att, a_def, a_att_o, a_def_o = _team_ratings(
+                a_hist, date, "A", half_life_days, red_card_weight, decay,
+                venue_blend,
+            )
 
-        # State update AFTER features are recorded — keeps the pass causal.
-        raw_att_h = float(m[att_h_col])
-        raw_att_a = float(m[att_a_col])
-        red = bool(m[Col.RED_H] + m[Col.RED_A] > 0)
+            row = {
+                Col.MATCH_ID: m[Col.MATCH_ID],
+                Col.SEASON: m[Col.SEASON],
+                Col.DATE: date,
+                Col.HOME: home,
+                Col.AWAY: away,
+                Col.FTHG: m[Col.FTHG],
+                Col.FTAG: m[Col.FTAG],
+                Col.FTR: m[Col.FTR],
+                Feat.ATT_H: h_att,
+                Feat.DEF_H: h_def,
+                Feat.ATT_A: a_att,
+                Feat.DEF_A: a_def,
+                Feat.N_HIST_H: n_h,
+                Feat.N_HIST_A: n_a,
+                Feat.IS_VALID: (n_h >= min_history) and (n_a >= min_history),
+            }
+            for c in odds_present:
+                row[c] = m[c]
+            rows.append(row)
 
-        # A match with missing xG metrics carries no form signal; appending
-        # NaN would poison both teams' ratings and the league average for
-        # every later match, so it is excluded from history entirely.
-        if not (math.isfinite(raw_att_h) and math.isfinite(raw_att_a)):
-            continue
+            raw_att_h = float(m[att_h_col])
+            raw_att_a = float(m[att_a_col])
 
-        if adjust_opponent:
-            league_avg = _league_avg(league, date, half_life_days, decay)
-            r_a_att = _opponent_ratio(a_att_o, n_a, league_avg, min_history, clamp)
-            r_a_def = _opponent_ratio(a_def_o, n_a, league_avg, min_history, clamp)
-            r_h_att = _opponent_ratio(h_att_o, n_h, league_avg, min_history, clamp)
-            r_h_def = _opponent_ratio(h_def_o, n_h, league_avg, min_history, clamp)
-        else:
-            r_a_att = r_a_def = r_h_att = r_h_def = 1.0
+            # A match with missing xG metrics carries no form signal;
+            # appending NaN would poison all later ratings.
+            if not (math.isfinite(raw_att_h) and math.isfinite(raw_att_a)):
+                continue
 
-        h_hist.append({"date": date, "venue": "H", "red": red,
-                       "att": raw_att_h / r_a_def, "def": raw_att_a / r_a_att})
-        a_hist.append({"date": date, "venue": "A", "red": red,
-                       "att": raw_att_a / r_h_def, "def": raw_att_h / r_h_att})
-        league.append((date, raw_att_h))
-        league.append((date, raw_att_a))
+            if adjust_opponent:
+                r_a_att = _opponent_ratio(
+                    a_att_o, n_a, league_avg, min_history, clamp
+                )
+                r_a_def = _opponent_ratio(
+                    a_def_o, n_a, league_avg, min_history, clamp
+                )
+                r_h_att = _opponent_ratio(
+                    h_att_o, n_h, league_avg, min_history, clamp
+                )
+                r_h_def = _opponent_ratio(
+                    h_def_o, n_h, league_avg, min_history, clamp
+                )
+            else:
+                r_a_att = r_a_def = r_h_att = r_h_def = 1.0
+
+            red = bool(m[Col.RED_H] + m[Col.RED_A] > 0)
+            pending_updates.append(
+                (
+                    h_hist,
+                    a_hist,
+                    {"date": date, "venue": "H", "red": red,
+                     "att": raw_att_h / r_a_def,
+                     "def": raw_att_a / r_a_att},
+                    {"date": date, "venue": "A", "red": red,
+                     "att": raw_att_a / r_h_def,
+                     "def": raw_att_h / r_h_att},
+                    raw_att_h,
+                    raw_att_a,
+                )
+            )
+
+        # Commit the date as one atomic observation batch.
+        for h_hist, a_hist, h_entry, a_entry, raw_att_h, raw_att_a in pending_updates:
+            h_hist.append(h_entry)
+            a_hist.append(a_entry)
+            league.append((date, raw_att_h))
+            league.append((date, raw_att_a))
 
     cols = [
         Col.MATCH_ID, Col.SEASON, Col.DATE, Col.HOME, Col.AWAY,

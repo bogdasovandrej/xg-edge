@@ -1,6 +1,7 @@
 """De-margining bookmaker odds, expected value, and Kelly staking."""
 from __future__ import annotations
 
+import math
 from collections.abc import Sequence
 
 import numpy as np
@@ -73,10 +74,11 @@ def simulate_bankroll(
 ) -> dict:
     """Settle bets chronologically, compounding from bankroll 1.0.
 
-    ``bets`` needs columns "date", "p_model", "odds", "won" (bool). Each stake
-    is a fraction of the CURRENT bankroll: for "kelly" via
-    :func:`kelly_stake`, for "flat" the constant ``flat_size``. Zero-stake
-    bets (no Kelly edge) are skipped and excluded from ``n_bets``.
+    Bets need date, p_model, odds and won columns. Each stake is a fraction of
+    the bankroll available at the start of its calendar date. All bets on the
+    same date are settled as one batch because the dataset has no dependable
+    kickoff timestamps; no same-day result may finance a later source row.
+    Zero-stake bets are skipped and excluded from the bet count.
     ``max_drawdown`` is the largest relative peak-to-trough decline of the
     equity curve; ``roi`` is total pnl divided by total staked.
     """
@@ -85,23 +87,31 @@ def simulate_bankroll(
     max_dd = 0.0
     total_staked = 0.0
     n_bets = 0
-    for row in bets.sort_values("date", kind="stable").itertuples(index=False):
-        odds = float(row.odds)
-        if staking == "kelly":
-            f = kelly_stake(float(row.p_model), odds, fraction=fraction, cap=cap)
-        elif staking == "flat":
-            f = flat_size
-        else:
-            raise ValueError(f"unknown staking scheme: {staking!r}")
-        stake = f * bankroll
-        if stake <= 0.0:
-            continue
-        total_staked += stake
-        n_bets += 1
-        if bool(row.won):
-            bankroll += stake * (odds - 1.0)
-        else:
-            bankroll -= stake
+    if staking not in {"kelly", "flat"}:
+        raise ValueError(f"unknown staking scheme: {staking!r}")
+    ordered = bets.sort_values("date", kind="stable").copy()
+    ordered["_settlement_date"] = pd.to_datetime(ordered["date"]).dt.normalize()
+    for _, day in ordered.groupby("_settlement_date", sort=False):
+        opening_bankroll = bankroll
+        day_stakes: list[float] = []
+        day_pnl: list[float] = []
+        for row in day.itertuples(index=False):
+            odds = float(row.odds)
+            if staking == "kelly":
+                f = kelly_stake(
+                    float(row.p_model), odds, fraction=fraction, cap=cap
+                )
+            else:
+                f = flat_size
+            stake = f * opening_bankroll
+            if stake <= 0.0:
+                continue
+            day_stakes.append(stake)
+            n_bets += 1
+            day_pnl.append(stake * (odds - 1.0) if bool(row.won) else -stake)
+
+        total_staked += math.fsum(day_stakes)
+        bankroll = opening_bankroll + math.fsum(day_pnl)
         peak = max(peak, bankroll)
         max_dd = max(max_dd, (peak - bankroll) / peak)
     roi = (bankroll - 1.0) / total_staked if total_staked > 0.0 else 0.0

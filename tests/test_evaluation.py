@@ -183,6 +183,33 @@ def test_summarize_clv_deterministic():
     assert a == b
 
 
+def test_summarize_clv_cluster_bootstrap_resamples_matches():
+    rng = np.random.default_rng(5)
+    match_values = rng.normal(0.01, 0.08, 100)
+    clvs = np.repeat(match_values, 2)
+    groups = np.repeat(np.arange(100), 2)
+
+    iid = summarize_clv(clvs, n_boot=2000, seed=4)
+    clustered = summarize_clv(
+        clvs, n_boot=2000, seed=4, groups=groups
+    )
+
+    assert clustered["n_clusters"] == 100
+    assert clustered["bootstrap_unit"] == "cluster"
+    iid_width = iid["ci_high"] - iid["ci_low"]
+    clustered_width = clustered["ci_high"] - clustered["ci_low"]
+    assert clustered_width > iid_width
+
+
+def test_summarize_clv_rejects_misaligned_groups():
+    with pytest.raises(ValueError, match="groups"):
+        summarize_clv(np.array([0.01, 0.02]), groups=np.array(["m1"]))
+    with pytest.raises(ValueError, match="one-dimensional"):
+        summarize_clv(np.array([[0.01], [0.02]]))
+    with pytest.raises(ValueError, match="positive integer"):
+        summarize_clv(np.array([0.01, 0.02]), n_boot=2.5)
+
+
 # ---------------------------------------------------------------------------
 # report
 # ---------------------------------------------------------------------------

@@ -27,6 +27,8 @@ def make_matches(rows: list) -> pd.DataFrame:
             Col.FTR: r.get("ftr", "D"),
             Col.NPXG_H: float(r["xh"]),
             Col.NPXG_A: float(r["xa"]),
+            Col.XG_H: float(r["xh"]),
+            Col.XG_A: float(r["xa"]),
             Col.RED_H: r.get("red_h", 0),
             Col.RED_A: r.get("red_a", 0),
         }
@@ -54,6 +56,43 @@ def test_no_leakage_prefix_invariance():
     out_full = build_features(full)
     out_prefix = build_features(full.iloc[:k].copy())
     pdt.assert_frame_equal(out_full.iloc[:k].reset_index(drop=True), out_prefix)
+
+
+def test_same_date_matches_are_an_atomic_order_invariant_batch():
+    """Source row order on one date must not change any current/future feature."""
+    rows = [
+        {"date": "2024-08-01", "home": "arsenal", "away": "chelsea",
+         "xh": 1.0, "xa": 0.9},
+        {"date": "2024-08-02", "home": "everton", "away": "fulham",
+         "xh": 2.0, "xa": 0.5},
+        {"date": "2024-08-08", "home": "arsenal", "away": "everton",
+         "xh": 1.5, "xa": 1.2},
+        {"date": "2024-08-09", "home": "chelsea", "away": "fulham",
+         "xh": 0.8, "xa": 1.7},
+        # Same date: neither result may enter the other's adjustment state.
+        {"date": "2024-08-15", "home": "arsenal", "away": "fulham",
+         "xh": 3.0, "xa": 0.4},
+        {"date": "2024-08-15", "home": "chelsea", "away": "everton",
+         "xh": 0.3, "xa": 2.5},
+        {"date": "2024-08-22", "home": "arsenal", "away": "chelsea",
+         "xh": 1.1, "xa": 1.0},
+        {"date": "2024-08-22", "home": "everton", "away": "fulham",
+         "xh": 1.4, "xa": 0.8},
+    ]
+    original = make_matches(rows)
+    swapped = make_matches(rows[:4] + [rows[5], rows[4]] + rows[6:])
+
+    compare = [
+        Col.DATE, Col.HOME, Col.AWAY,
+        Feat.ATT_H, Feat.DEF_H, Feat.ATT_A, Feat.DEF_A,
+        Feat.N_HIST_H, Feat.N_HIST_A, Feat.IS_VALID,
+    ]
+    left = build_features(original, min_history=1)[compare]
+    right = build_features(swapped, min_history=1)[compare]
+    keys = [Col.DATE, Col.HOME, Col.AWAY]
+    left = left.sort_values(keys).reset_index(drop=True)
+    right = right.sort_values(keys).reset_index(drop=True)
+    pdt.assert_frame_equal(left, right, check_exact=True)
 
 
 def test_cold_start_nan_and_is_valid():

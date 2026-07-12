@@ -97,6 +97,10 @@ class Col:
     B365_U25 = "b365_u25"
     B365C_O25 = "b365c_o25"
     B365C_U25 = "b365c_u25"
+    P_O25 = "p_o25"          # Pinnacle pre-closing total 2.5
+    P_U25 = "p_u25"
+    PC_O25 = "pc_o25"        # Pinnacle closing total 2.5
+    PC_U25 = "pc_u25"
 
 
 class Feat:

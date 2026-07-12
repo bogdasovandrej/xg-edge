@@ -65,6 +65,13 @@ def _synthetic_matches(n_per_season: int = 120, seed: int = 7) -> pd.DataFrame:
                 Col.B365_O25: o["over"], Col.B365_U25: o["under"],
                 Col.B365C_O25: o["over"] * drift,
                 Col.B365C_U25: o["under"] * drift,
+                Col.P_O25: o["over"], Col.P_U25: o["under"],
+                Col.PC_O25: (
+                    np.nan if missing_odds else o["over"] * drift
+                ),
+                Col.PC_U25: (
+                    np.nan if missing_odds else o["under"] * drift
+                ),
             })
     return pd.DataFrame(rows).sort_values(Col.DATE).reset_index(drop=True)
 
@@ -114,9 +121,21 @@ def test_market_only_where_closing_exists(results: dict) -> None:
     pred = results["predictions"]
     n_market = results["models_1x2"]["market"]["n"]
     assert 0 < n_market <= len(pred)
-    assert results["models_1x2"]["market"]["n_common"] == n_market or True
+    assert results["models_1x2"]["market"]["n_common"] == n_market
     # market predictions must be NaN exactly where closing odds were NaN
     assert pred["market_ph"].isna().sum() == len(pred) - n_market
+    assert results["totals"]["market"]["n_common"] == results["totals"]["market"]["n"]
+
+
+def test_effective_feature_config_is_locked_and_reported(results: dict) -> None:
+    config = results["config"]
+    assert config["feature_half_life_days"] == 180.0
+    assert config["feature_adjust_opponent"] is False
+    assert config["feature_use_npxg"] is False
+    assert config["feature_decay"] is True
+    assert config["feature_min_history"] == 5
+    assert config["feature_venue_blend"] == 0.3
+
 
 
 def test_force_rho_zero_variant() -> None:

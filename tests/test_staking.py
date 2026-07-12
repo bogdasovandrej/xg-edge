@@ -125,6 +125,27 @@ def test_simulate_settles_in_date_order() -> None:
     assert out_a == out_b
 
 
+def test_same_date_bets_use_opening_bankroll_without_result_order_leakage() -> None:
+    bets = _bets(
+        [
+            ("2024-01-01 12:00", 0.6, 2.0, True),
+            ("2024-01-01 20:00", 0.6, 3.0, False),
+        ]
+    )
+    reversed_bets = bets.iloc[::-1].reset_index(drop=True)
+
+    out = simulate_bankroll(bets, staking="flat", flat_size=0.1)
+    reversed_out = simulate_bankroll(
+        reversed_bets, staking="flat", flat_size=0.1
+    )
+
+    # Both stakes are 10% of the day's opening bankroll (0.1), so the win and
+    # loss cancel. Sequential settlement would incorrectly end at 0.99/1.01.
+    assert out["final_bankroll"] == pytest.approx(1.0)
+    assert out["total_staked"] == pytest.approx(0.2)
+    assert out == reversed_out
+
+
 def test_simulate_empty_bets() -> None:
     out = simulate_bankroll(_bets([]), staking="flat")
     assert out == {

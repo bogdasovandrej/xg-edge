@@ -1,88 +1,106 @@
 {
   "models_1x2": {
     "glm_dc": {
-      "brier": 0.5834726687485084,
-      "logloss": 0.9826973146645993,
-      "n": 1120,
-      "brier_common": 0.573731129861061,
-      "logloss_common": 0.9691953993063369,
-      "n_common": 950
+      "brier": 0.6156915055284294,
+      "logloss": 1.0275843083351832,
+      "n": 375,
+      "brier_common": 0.595859562534703,
+      "logloss_common": 1.0006397761006636,
+      "n_common": 205
     },
     "gbm_dc": {
-      "brier": 0.5869104593048097,
-      "logloss": 0.9875262865677572,
-      "n": 1120,
-      "brier_common": 0.5766292668784763,
-      "logloss_common": 0.972798850017905,
-      "n_common": 950
+      "brier": 0.6109490167093897,
+      "logloss": 1.020967046281663,
+      "n": 375,
+      "brier_common": 0.5903430365227699,
+      "logloss_common": 0.9932804723741593,
+      "n_common": 205
     },
     "dc_classic": {
-      "brier": 0.5883696498634025,
-      "logloss": 0.9879252916957492,
-      "n": 1120,
-      "brier_common": 0.5768607503809756,
-      "logloss_common": 0.9719911635635026,
-      "n_common": 950
+      "brier": 0.6183625871136295,
+      "logloss": 1.0375370952662988,
+      "n": 375,
+      "brier_common": 0.5911261228191721,
+      "logloss_common": 1.0068275392036448,
+      "n_common": 205
     },
     "goals_poisson": {
-      "brier": 0.5938184655878069,
-      "logloss": 0.9955516693377685,
-      "n": 1120,
-      "brier_common": 0.5806249165079456,
-      "logloss_common": 0.9774640369871515,
-      "n_common": 950
+      "brier": 0.6252663487453043,
+      "logloss": 1.1054580293145728,
+      "n": 375,
+      "brier_common": 0.5907243296526864,
+      "logloss_common": 1.1135155037244506,
+      "n_common": 205
     },
     "uniform": {
-      "brier": 0.6666666666666669,
-      "logloss": 1.0986122886681098,
-      "n": 1120,
+      "brier": 0.666666666666667,
+      "logloss": 1.0986122886681096,
+      "n": 375,
       "brier_common": 0.6666666666666669,
       "logloss_common": 1.0986122886681096,
-      "n_common": 950
+      "n_common": 205
     },
     "market": {
-      "brier": 0.5606912083759661,
-      "logloss": 0.9467624333841151,
-      "n": 950,
-      "brier_common": 0.5606912083759661,
-      "logloss_common": 0.9467624333841151,
-      "n_common": 950
+      "brier": 0.5874394028237179,
+      "logloss": 0.9821771116869402,
+      "n": 205,
+      "brier_common": 0.5874394028237179,
+      "logloss_common": 0.9821771116869402,
+      "n_common": 205
     }
   },
   "totals": {
     "glm_dc": {
-      "brier": 0.24194083110359768,
-      "logloss": 0.6778357156386741,
-      "n": 1120
+      "brier": 0.24751774351143097,
+      "logloss": 0.6883745026039484,
+      "n": 375,
+      "brier_common": 0.24534209800230883,
+      "logloss_common": 0.6837218781652975,
+      "n_common": 205
     },
     "gbm_dc": {
-      "brier": 0.24653204278544127,
-      "logloss": 0.6884657158925117,
-      "n": 1120
+      "brier": 0.24957196504499712,
+      "logloss": 0.692833620251172,
+      "n": 375,
+      "brier_common": 0.24903312789687104,
+      "logloss_common": 0.6913157367846958,
+      "n_common": 205
     },
     "dc_classic": {
-      "brier": 0.2442864553806632,
-      "logloss": 0.6841682153077963,
-      "n": 1120
+      "brier": 0.25155059943519387,
+      "logloss": 0.6987283139153075,
+      "n": 375,
+      "brier_common": 0.24338051073327857,
+      "logloss_common": 0.6834156239263662,
+      "n_common": 205
     },
     "goals_poisson": {
-      "brier": 0.24375808678627392,
-      "logloss": 0.6831165148738004,
-      "n": 1120
+      "brier": 0.24734644914089934,
+      "logloss": 0.6904786959430746,
+      "n": 375,
+      "brier_common": 0.23886778655394952,
+      "logloss_common": 0.6748653672603956,
+      "n_common": 205
     },
     "uniform": {
       "brier": 0.25,
       "logloss": 0.6931471805599454,
-      "n": 1120
+      "n": 375,
+      "brier_common": 0.25,
+      "logloss_common": 0.6931471805599453,
+      "n_common": 205
     },
     "market": {
-      "brier": 0.23825480652048506,
-      "logloss": 0.6692272997350911,
-      "n": 1120
+      "brier": 0.24275764900809346,
+      "logloss": 0.6784289050563801,
+      "n": 205,
+      "brier_common": 0.24275764900809346,
+      "logloss_common": 0.6784289050563801,
+      "n_common": 205
     }
   },
   "config": {
-    "initial_train_end": "2023-07-01",
+    "initial_train_end": "2025-07-01",
     "step_days": 30,
     "edge_threshold": 0.03,
     "kelly_fraction": 0.25,
@@ -90,30 +108,42 @@
     "max_goals": 10,
     "force_rho_zero": false,
     "models": "glm_dc,gbm_dc,dc_classic,goals_poisson,uniform,market",
-    "feature_half_life_days": 180.0
+    "feature_half_life_days": 180.0,
+    "feature_red_card_weight": 0.5,
+    "feature_adjust_opponent": false,
+    "feature_use_npxg": false,
+    "feature_decay": true,
+    "feature_min_history": 5,
+    "feature_venue_blend": 0.3,
+    "feature_clamp": [
+      0.5,
+      2.0
+    ]
   },
   "bankroll": {
     "kelly": {
-      "final_bankroll": 0.2842843051579207,
-      "roi": -0.04844405011741614,
-      "max_drawdown": 0.8208071299801506,
-      "n_bets": 1583,
-      "total_staked": 14.774068086944945
+      "final_bankroll": 0.49179133370859,
+      "roi": -0.09218021874204371,
+      "max_drawdown": 0.6826977952060594,
+      "n_bets": 467,
+      "total_staked": 5.513207423748653
     },
     "flat": {
-      "final_bankroll": 0.43026640219745754,
-      "roi": -0.05793675550004651,
-      "max_drawdown": 0.6431665605536172,
-      "n_bets": 1583,
-      "total_staked": 9.833715969857598
+      "final_bankroll": 0.7275696204670671,
+      "roi": -0.06887741407064465,
+      "max_drawdown": 0.4113616538942876,
+      "n_bets": 467,
+      "total_staked": 3.9552933745960988
     }
   },
   "clv": {
-    "mean": -0.06815408146079967,
-    "median": -0.05693641618497092,
-    "share_positive": 0.17671517671517672,
-    "ci_low": -0.07311226045052768,
-    "ci_high": -0.06320775214508835,
-    "n": 1443
+    "mean": -0.07125472648188005,
+    "median": -0.053332822186854756,
+    "share_positive": 0.15185185185185185,
+    "ci_low": -0.08116767535484053,
+    "ci_high": -0.06160481110236088,
+    "n": 270,
+    "n_clusters": 188,
+    "bootstrap_unit": "cluster"
   }
 }

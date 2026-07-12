@@ -37,6 +37,10 @@ _ODDS_COLUMNS = {
     "B365<2.5": Col.B365_U25,
     "B365C>2.5": Col.B365C_O25,
     "B365C<2.5": Col.B365C_U25,
+    "P>2.5": Col.P_O25,
+    "P<2.5": Col.P_U25,
+    "PC>2.5": Col.PC_O25,
+    "PC<2.5": Col.PC_U25,
 }
 
 

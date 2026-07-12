@@ -15,7 +15,7 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--half-life", type=float, default=180.0)
     parser.add_argument("--edge-threshold", type=float, default=0.03)
-    parser.add_argument("--initial-train-end", default="2023-07-01")
+    parser.add_argument("--initial-train-end", default="2025-07-01")
     parser.add_argument("--step-days", type=int, default=30)
     args = parser.parse_args(argv)
 

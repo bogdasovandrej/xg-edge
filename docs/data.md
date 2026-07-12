@@ -1,63 +1,89 @@
-# Данные: источники, контракт, слои
+# Данные: источники, контракт и защита от утечки
 
 ## Слои
 
-```
-data/raw/       неизменяемые payload'ы источников (fd_*.csv, understat_*.json)
-data/cleaned/   matches.parquet — канонические ID, join 1:1, контроль полноты
-data/features/  зарезервировано под версионируемые фичи
-```
+~~~text
+data/raw/       неизменяемые fd CSV и Understat JSON
+data/cleaned/   matches.parquet с каноническими ID
+data/features/  зарезервированный версионируемый слой
+~~~
 
-Сырые данные неприкосновенны: загрузчики идемпотентны (существующий файл не
-перезаписывается), любая трансформация воспроизводима скриптом. Слои не
-коммитятся (см. `.gitignore`) и восстанавливаются `scripts/download_data.py`.
+Raw-файлы не коммитятся. Загрузчики идемпотентны: существующий raw payload не
+перезаписывается. Полный cleaned dataset воспроизводится командами:
 
-## Источники
+~~~bash
+python scripts/download_data.py
+python scripts/build_dataset.py
+~~~
 
-### football-data.co.uk
+Текущий контракт: 1900 матчей АПЛ, по 380 в сезонах 2021/22–2025/26,
+1900 уникальных match_id, join football-data и Understat 100%.
 
-- URL: `https://www.football-data.co.uk/mmz4281/{код сезона}/E0.csv`
-  (например `2526` для 2025/26).
-- Даты `dayfirst`, встречаются оба формата года (`%d/%m/%Y` и `%d/%m/%y`).
-- Коэффициенты: `B365H/D/A`, `PSH/D/A` — **предзакрытие** (сборка линий за
-  несколько дней до тура); `B365CH/CD/CA`, `PSCH/PSCD/PSCA` — **закрытие**.
-  Тоталы: `B365>2.5`, `B365<2.5` и закрывающие `B365C>2.5`, `B365C<2.5`.
-- Красные карточки: `HR`, `AR`.
-- Пробелы в данных: в сезоне 2025/26 у 170 матчей нет закрывающих линий
-  Pinnacle — эти матчи исключаются только из CLV и рыночного бейзлайна, не из
-  модели.
+## football-data.co.uk
 
-### Understat
+URL сезона: https://www.football-data.co.uk/mmz4281/{season}/E0.csv.
 
-- С конца 2025 данные отдаются JSON-эндпоинтом
-  `GET https://understat.com/getLeagueData/{league}/{year}` (ключи `dates`,
-  `teams`); старые страницы с `JSON.parse('...')`-блобами больше не содержат
-  данных — в `data/understat.py` оставлен фолбэк-парсер для архивного HTML.
-- `dates` — список матчей: команды, голы, xG, kickoff datetime, `isResult`.
-- `teams[*].history` — пер-матчевые строки команды: `npxG`, `npxGA`,
-  `ppda {att, def}` (значение = att/def), `deep`, `deep_allowed` и т.д.;
-  join к матчу по (каноническая команда, дата, `h_a`).
+Используются:
 
-## Канонические ID команд
+- результаты, даты, красные карточки;
+- B365H/D/A и B365 over/under 2.5 как цены принятия решения;
+- PSCH/PSCD/PSCA как Pinnacle closing 1X2;
+- PC>2.5 и PC<2.5 как Pinnacle closing totals;
+- Bet365 closing хранится для аудита, но не подменяет отсутствующий Pinnacle
+  benchmark.
 
-Единый словарь `data/teams.py`: у football-data «Wolves», у Understat
-«Wolverhampton Wanderers» → канонически `wolves`. Неизвестное имя — `KeyError`
-со списком известных (осознанный fail-fast: новые команды добавляются руками,
-а не угадываются). Join cleaned-слоя за 5 сезонов: **1900/1900 матчей, 100%**.
+Для 2025/26 Pinnacle closing отсутствует у 170 матчей 1X2. Pinnacle closing
+totals присутствует в 1719 из 1900 матчей всего. Такие строки остаются в
+модельной оценке, но исключаются из market-common subset и CLV.
+
+Даты football-data могут иметь двух- или четырёхзначный год; загрузчик
+обрабатывает оба формата day-first.
+
+## Understat
+
+Основной endpoint:
+
+GET https://understat.com/getLeagueData/EPL/{year}
+
+Payload содержит dates и teams. Из dates берутся xG и матчи с isResult. Из
+team history — npxG, PPDA и deep completions. Старый parser встроенных
+JSON.parse blobs сохранён только как fallback для архивного HTML.
+
+Understat kickoff datetime нормализуется до календарной даты для join с
+football-data.
+
+## Канонические команды
+
+data/teams.py хранит явные source-name -> canonical-id mappings. Например,
+Wolves и Wolverhampton Wanderers становятся wolves. Неизвестное имя вызывает
+KeyError: новая команда добавляется явно, а не угадывается.
+
+Join выполняется по season, date, home и away с validate=one_to_one. При потере
+5% или более строк сборка останавливается и показывает несовпавшие матчи.
 
 ## Контракт колонок
 
-Все модули общаются только через константы `src/xgedge/contracts.py`
-(`Col.*` для cleaned, `Feat.*` для фичей) — ни одного строкового литерала
-имени колонки за пределами этого файла.
+src/xgedge/contracts.py — единственный словарь имён Col и Feat. В v0.2 в него
+добавлены Pinnacle totals:
+
+- p_o25 / p_u25 — pre-closing;
+- pc_o25 / pc_u25 — closing.
+
+build_features переносит odds без использования в фундаментальных признаках.
 
 ## Правила против утечки будущего
 
-1. Любой признак вычислим строго до стартового свистка: рейтинги считаются
-   **до** добавления текущего матча в историю команды
-   (`features/builder.py`, хронологический проход).
-2. Ставки — только по ценам предзакрытия; закрывающая линия используется
-   исключительно как бенчмарк CLV и рыночный бейзлайн.
-3. Walk-forward: `max(train date) < min(test date)` гарантируется сплиттером
-   и проверяется тестом.
-4. Товарищеские матчи в данных отсутствуют (только АПЛ).
+1. Матчи сортируются по дате.
+2. Все матчи одной даты сначала получают признаки из состояния на конец
+   предыдущей даты.
+3. Только после расчёта всего same-date batch его xG добавляется в history.
+4. Поэтому перестановка строк внутри даты не меняет текущие или будущие фичи.
+5. Walk-forward обучается только на датах строго меньше начала test window.
+6. Closing odds не входят в признаки и используются только после прогноза.
+7. Все ставки одной даты рассчитываются от банка на начало даты и затем
+   погашаются одним батчем.
+8. CLV confidence interval resamples match_id clusters, а не коррелированные
+   selections как независимые строки.
+
+Эти свойства покрыты regression-тестами, включая order-invariance одной даты,
+same-day bankroll и cluster bootstrap.

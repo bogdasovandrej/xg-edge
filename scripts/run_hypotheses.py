@@ -1,9 +1,8 @@
 """Hypothesis ablations: each registered metric earns its place, or it goes.
 
 Runs the primary model (glm_dc) through the same walk-forward protocol with
-one mechanism removed (or changed) at a time and compares log-loss/Brier
-against the BASE configuration. A positive delta (variant worse than base)
-supports the hypothesis that the mechanism adds value.
+one mechanism added, removed or changed at a time. Verdicts describe only the
+variant relative to BASE; the hypothesis registry interprets the direction.
 """
 from __future__ import annotations
 
@@ -11,20 +10,20 @@ import argparse
 
 import pandas as pd
 
-from xgedge.contracts import CLEANED_MATCHES, REPORTS_DIR
+from xgedge.contracts import CLEANED_MATCHES, REPORTS_DIR, Col
 from xgedge.pipeline import PRIMARY_MODEL, run_walkforward_eval
 
-# variant -> (feature_params overrides, hypothesis, what removing it tests)
+# variant -> (feature_params overrides, hypothesis, what the variant tests)
 VARIANTS = {
     "BASE": ({}, "-", "reference configuration"),
-    "H2_no_opp_adjust": ({"adjust_opponent": False}, "H2",
-                         "opponent-strength normalization of xG"),
-    "H7_xg_with_pens": ({"use_npxg": False}, "H7",
-                        "using npxG instead of raw xG"),
+    "H2_with_opp_adjust": ({"adjust_opponent": True}, "H2",
+                           "adding opponent-strength normalization of xG"),
+    "H7_npxg": ({"use_npxg": True}, "H7",
+                 "replacing raw xG with npxG"),
     "H8_no_decay": ({"decay": False}, "H8",
-                    "exponential time-decay of match weights"),
+                    "removing exponential time-decay"),
     "H9_rho_zero": ({"force_rho_zero": True}, "H9",
-                    "Dixon-Coles low-score correction"),
+                    "forcing Dixon-Coles rho to zero"),
     "HL_90": ({"half_life_days": 90.0}, "-", "half-life sensitivity: 90d"),
     "HL_365": ({"half_life_days": 365.0}, "-", "half-life sensitivity: 365d"),
 }
@@ -35,9 +34,12 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--step-days", type=int, default=30)
     parser.add_argument("--initial-train-end", default="2023-07-01")
+    parser.add_argument("--data-end", default="2025-07-01")
     args = parser.parse_args(argv)
 
     matches = pd.read_parquet(CLEANED_MATCHES)
+    data_end = pd.Timestamp(args.data_end)
+    matches = matches[matches[Col.DATE] < data_end].copy()
     rows = []
     for name, (overrides, hyp, desc) in VARIANTS.items():
         res = run_walkforward_eval(
@@ -62,9 +64,9 @@ def main(argv: list[str] | None = None) -> None:
         if row["variant"] == "BASE" or row["hypothesis"] == "-":
             return "-"
         if row["delta_logloss_vs_base"] >= LOGLOSS_THRESHOLD:
-            return "supported"        # removing the mechanism hurt
-        if row["delta_logloss_vs_base"] <= 0:
-            return "failed"           # model is no worse without it
+            return "variant_worse"
+        if row["delta_logloss_vs_base"] <= -LOGLOSS_THRESHOLD:
+            return "variant_better"
         return "inconclusive"
 
     df["verdict"] = df.apply(verdict, axis=1)
@@ -79,10 +81,11 @@ def main(argv: list[str] | None = None) -> None:
     body = ["| " + " | ".join(fmt(v) for v in row) + " |"
             for row in df.itertuples(index=False)]
     lines = [
-        "# Hypothesis ablations (walk-forward, glm_dc)",
+        "# Development-only hypothesis ablations (walk-forward, glm_dc)",
         "",
-        f"Support threshold: variant log-loss at least {LOGLOSS_THRESHOLD}"
-        " worse than BASE.",
+        f"Data strictly before {args.data_end}; test windows start {args.initial_train_end}.",
+        "",
+        f"Decision threshold: |variant log-loss - BASE| >= {LOGLOSS_THRESHOLD}.",
         "",
         header, sep, *body,
         "",

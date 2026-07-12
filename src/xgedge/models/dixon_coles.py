@@ -37,6 +37,28 @@ def score_matrix(
 
     Rows index home goals 0..max_goals, columns away goals.
     """
+    if not np.isfinite([lh, la, rho]).all():
+        raise ValueError("lh, la and rho must be finite")
+    if lh < 0.0 or la < 0.0:
+        raise ValueError("Poisson lambdas must be non-negative")
+    if (
+        isinstance(max_goals, bool)
+        or not isinstance(max_goals, (int, np.integer))
+        or max_goals < 1
+    ):
+        raise ValueError("max_goals must be an integer of at least 1")
+    corrections = np.array(
+        [
+            tau(0, 0, lh, la, rho),
+            tau(1, 0, lh, la, rho),
+            tau(0, 1, lh, la, rho),
+            tau(1, 1, lh, la, rho),
+        ],
+        dtype=float,
+    )
+    if np.any(corrections < 0.0):
+        raise ValueError("rho produces a negative Dixon-Coles cell correction")
+
     goals = np.arange(max_goals + 1)
     m = np.outer(poisson.pmf(goals, lh), poisson.pmf(goals, la))
     for x in (0, 1):
@@ -58,15 +80,34 @@ def fit_rho(
     lam_a = np.asarray(lam_a, dtype=float)
     gh = np.asarray(goals_h, dtype=float)
     ga = np.asarray(goals_a, dtype=float)
+    arrays = (lam_h, lam_a, gh, ga)
+    if len({arr.size for arr in arrays}) != 1:
+        raise ValueError("lambda and goal arrays must have equal lengths")
+    if lam_h.size == 0:
+        return 0.0
+    if any(arr.ndim != 1 for arr in arrays):
+        raise ValueError("lambda and goal arrays must be one-dimensional")
+    if not all(np.isfinite(arr).all() for arr in arrays):
+        raise ValueError("lambda and goal arrays must be finite")
+    if np.any(lam_h < 0.0) or np.any(lam_a < 0.0):
+        raise ValueError("Poisson lambdas must be non-negative")
+    if np.any(gh < 0.0) or np.any(ga < 0.0):
+        raise ValueError("goal counts must be non-negative")
+
     w = np.ones_like(lam_h) if weights is None else np.asarray(weights, dtype=float)
+    if w.ndim != 1 or w.size != lam_h.size:
+        raise ValueError("weights must be one-dimensional and match lambdas")
+    if not np.isfinite(w).all() or np.any(w < 0.0):
+        raise ValueError("weights must be finite and non-negative")
 
     base = poisson.pmf(gh, lam_h) * poisson.pmf(ga, lam_a)
-
-    # Vectorized tau over observed scorelines.
     is00 = (gh == 0) & (ga == 0)
     is10 = (gh == 1) & (ga == 0)
     is01 = (gh == 0) & (ga == 1)
     is11 = (gh == 1) & (ga == 1)
+    informative = is00 | is10 | is01 | is11
+    if not np.any(informative & (w > 0.0)):
+        return 0.0
 
     def nll(rho: float) -> float:
         t = np.ones_like(base)
@@ -74,10 +115,34 @@ def fit_rho(
         t[is10] = 1.0 + lam_a[is10] * rho
         t[is01] = 1.0 + lam_h[is01] * rho
         t[is11] = 1.0 - rho
+        if np.any(t[informative] <= 0.0):
+            return float("inf")
         p = np.clip(base * t, _PROB_FLOOR, None)
         return -float(np.sum(w * np.log(p)))
 
-    res = minimize_scalar(nll, bounds=(-0.2, 0.2), method="bounded")
+    max_lh = float(np.max(lam_h))
+    max_la = float(np.max(lam_a))
+    max_product = float(np.max(lam_h * lam_a))
+    lower = max(
+        -0.2,
+        -1.0 / max_lh if max_lh > 0.0 else -0.2,
+        -1.0 / max_la if max_la > 0.0 else -0.2,
+    )
+    upper = min(
+        0.2,
+        1.0 / max_product if max_product > 0.0 else 0.2,
+    )
+    margin = 1e-9
+    if lower + 2.0 * margin >= upper:
+        return 0.0
+
+    res = minimize_scalar(
+        nll,
+        bounds=(lower + margin, upper - margin),
+        method="bounded",
+    )
+    if not res.success or not np.isfinite(res.x):
+        return 0.0
     return float(res.x)
 
 

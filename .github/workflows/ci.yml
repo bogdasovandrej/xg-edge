@@ -18,5 +18,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install
         run: pip install -e .[dev]
+      - name: Dependency check
+        run: pip check
+      - name: Compile
+        run: python -m compileall -q src scripts
       - name: Test
         run: pytest

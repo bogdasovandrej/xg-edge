@@ -64,6 +64,21 @@ def test_tau_outside_low_scores_is_one() -> None:
     assert tau(0, 2, 1.3, 1.1, -0.1) == 1.0
     assert tau(3, 4, 1.3, 1.1, 0.15) == 1.0
 
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"lh": -0.1, "la": 1.0},
+        {"lh": np.nan, "la": 1.0},
+        {"lh": 1.0, "la": 1.0, "max_goals": 0},
+        {"lh": 3.0, "la": 3.0, "rho": 0.2},
+    ],
+)
+def test_score_matrix_rejects_invalid_parameters(kwargs: dict) -> None:
+    with pytest.raises(ValueError):
+        score_matrix(**kwargs)
+
+
+
 
 # ---------------------------------------------------------------------------
 # fit_rho
@@ -80,6 +95,17 @@ def test_fit_rho_recovers_known_rho(rho_true: float) -> None:
     goals_a = flat_idx % (max_goals + 1)
     rho_hat = fit_rho(np.full(n, lh), np.full(n, la), goals_h, goals_a)
     assert abs(rho_hat - rho_true) < 0.05
+
+
+def test_fit_rho_returns_zero_when_sample_has_no_low_scores() -> None:
+    n = 50
+    rho_hat = fit_rho(
+        np.full(n, 1.4),
+        np.full(n, 1.1),
+        np.full(n, 2),
+        np.full(n, 3),
+    )
+    assert rho_hat == 0.0
 
 
 # ---------------------------------------------------------------------------
