@@ -64,7 +64,7 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
 
     as_of = args.as_of or datetime.now(timezone.utc)
-    to_date = args.to_date or as_of + timedelta(days=370)
+    to_date = args.to_date or as_of + timedelta(days=45)
     session = requests.Session()
     # Reproducible public-data fetches must not silently inherit a desktop
     # SOCKS/system proxy that is unavailable inside the project environment.

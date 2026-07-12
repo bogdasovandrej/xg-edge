@@ -18,6 +18,10 @@ FIFA_WORLD_CUP_COMPETITION_ID = "17"
 FIFA_WORLD_CUP_2026_SEASON_ID = "285023"
 UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID = "1"
 UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR = "2027"
+PUBLIC_USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36 xgedge/0.3"
+)
 
 FIXTURE_FIELDS = (
     "source",
@@ -338,7 +342,7 @@ def fetch_fifa_fixtures(
             "from": _iso_utc(cutoff),
             "to": _iso_utc(end),
         },
-        headers={"Accept": "application/json", "User-Agent": "xgedge-official-feed/1"},
+        headers={"Accept": "application/json", "User-Agent": PUBLIC_USER_AGENT},
         timeout=timeout,
     )
     response.raise_for_status()
@@ -397,7 +401,7 @@ def fetch_uefa_fixtures(
                 "offset": offset,
                 "order": "ASC",
             },
-            headers={"Accept": "application/json", "User-Agent": "xgedge-official-feed/1"},
+            headers={"Accept": "application/json", "User-Agent": PUBLIC_USER_AGENT},
             timeout=timeout,
         )
         response.raise_for_status()

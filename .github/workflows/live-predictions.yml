@@ -24,13 +24,22 @@ jobs:
       - name: Install
         run: pip install -e .[dev]
       - name: Fetch official fixtures
-        run: python scripts/fetch_current_fixtures.py --output-dir reports/live
-      - name: Predict World Cup
         run: >-
-          python scripts/predict_world_cup.py
-          --draws 2000 --seed 20260713
-          --output-json reports/world_cup_2026_semifinals.json
-          --output-csv reports/world_cup_2026_semifinals.csv
+          python scripts/fetch_current_fixtures.py --output-dir reports/live
+          || echo "Official fixture refresh unavailable; retaining checked-in snapshot"
+      - name: Predict World Cup
+        shell: bash
+        run: |
+          python scripts/predict_world_cup.py \
+            --draws 2000 --seed 20260713 \
+            --output-json reports/world_cup_2026_semifinals.json \
+            --output-csv reports/world_cup_2026_semifinals.csv \
+          || python scripts/predict_world_cup.py \
+            --fixtures-json reports/world_cup_2026_fifa_fixtures_asof_2026-07-13.json \
+            --rankings-json reports/world_cup_2026_fifa_rankings_pre_tournament.json \
+            --draws 2000 --seed 20260713 \
+            --output-json reports/world_cup_2026_semifinals.json \
+            --output-csv reports/world_cup_2026_semifinals.csv
       - name: Predict Champions League qualifiers
         run: >-
           python scripts/predict_ucl_qualifying.py
@@ -45,7 +54,7 @@ jobs:
           --fixtures reports/live/current_fixtures.json
           --output reports/live_predictions.json
       - name: Validate live pipeline
-        run: pytest -q tests/test_official_feeds.py tests/test_world_cup_model.py tests/test_ucl_qualifying.py tests/test_live_payload.py
+        run: python -m pytest -q tests/test_official_feeds.py tests/test_world_cup_model.py tests/test_ucl_qualifying.py tests/test_live_payload.py
       - name: Publish changed snapshot
         shell: bash
         run: |

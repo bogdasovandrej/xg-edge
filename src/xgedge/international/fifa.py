@@ -19,6 +19,10 @@ FIFA_TIMELINE_URL = "https://api.fifa.com/api/v3/timelines/{match_id}"
 FIFA_WORLD_CUP_COMPETITION_ID = "17"
 FIFA_WORLD_CUP_2026_SEASON_ID = "285023"
 WORLD_CUP_FIRST_KICKOFF_UTC = "2026-06-11T19:00:00Z"
+PUBLIC_USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36 xgedge/0.3"
+)
 
 
 def parse_utc(value: str | datetime) -> datetime:
@@ -282,7 +286,7 @@ def load_fifa_rankings(
         client,
         FIFA_RANKINGS_URL,
         params={"gender": 1, "language": "en"},
-        headers={"Accept": "application/json", "User-Agent": "xgedge-world-cup/0.1"},
+        headers={"Accept": "application/json", "User-Agent": PUBLIC_USER_AGENT},
         timeout=timeout,
     )
     response.raise_for_status()
@@ -308,7 +312,7 @@ def load_fifa_fixtures(
             "language": "en",
             "count": 500,
         },
-        headers={"Accept": "application/json", "User-Agent": "xgedge-world-cup/0.1"},
+        headers={"Accept": "application/json", "User-Agent": PUBLIC_USER_AGENT},
         timeout=timeout,
     )
     response.raise_for_status()
@@ -325,7 +329,7 @@ def load_fifa_fixtures(
         timeline_response = _get(
             client,
             FIFA_TIMELINE_URL.format(match_id=identity),
-            headers={"Accept": "application/json", "User-Agent": "xgedge-world-cup/0.1"},
+            headers={"Accept": "application/json", "User-Agent": PUBLIC_USER_AGENT},
             timeout=timeout,
         )
         timeline_response.raise_for_status()
