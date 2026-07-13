@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1 — 2026-07-13
+
+- Updated the dashboard to separate the anchored holdout calibration gain from
+  the still-negative shadow CLV and the empty prospective sample.
+
 ## 0.4.0 — 2026-07-13
 
 - Added expandable match dossiers and match search to the public site.

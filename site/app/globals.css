@@ -42,7 +42,8 @@ h1 { margin: 22px 0 25px; font-size: clamp(62px, 9vw, 136px); line-height: .82; 
 .truth-panel dl div { display: flex; justify-content: space-between; gap: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: 12px; }
 .truth-panel dt { color: #aab2ac; }
 .truth-panel dd { margin: 0; font-family: var(--font-mono); }
-.truth-panel small { display: block; color: #8f9992; line-height: 1.5; margin-top: 20px; }
+.truth-panel > small { display: block; color: #8f9992; line-height: 1.5; margin-top: 20px; }
+.truth-panel dd small { color: #778078; font-size: 8px; }
 
 .ticker { display: flex; gap: 28px; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden; background: var(--lime); border-block: 1px solid var(--ink); padding: 13px 20px; font: 700 11px/1 var(--font-mono); letter-spacing: .07em; }
 .ticker i { width: 5px; height: 5px; background: var(--ink); transform: rotate(45deg); }

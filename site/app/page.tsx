@@ -360,13 +360,13 @@ export default function Home() {
         <aside className="truth-panel">
           <span className="panel-label">Текущий вердикт</span>
           <strong>NO BET</strong>
-          <p>Holdout 2025/26</p>
+          <p>Market-anchor holdout 2025/26</p>
           <dl>
-            <div><dt>Средний CLV</dt><dd>−7.13%</dd></div>
-            <div><dt>Kelly ROI</dt><dd>−9.2%</dd></div>
-            <div><dt>Live-доказательство</dt><dd>нет</dd></div>
+            <div><dt>Shadow CLV</dt><dd>−4.83%</dd></div>
+            <div><dt>Log-loss</dt><dd>0.9834 <small>vs 0.9846</small></dd></div>
+            <div><dt>Live-выборка</dt><dd>0 / 100</dd></div>
           </dl>
-          <small>Красный статус снимется только если нижняя граница live CLV станет выше нуля.</small>
+          <small>95% CI CLV: −8.00%…−1.82%. Красный статус снимется только если нижняя граница prospective CLV станет выше нуля.</small>
         </aside>
       </section>
 
