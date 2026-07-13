@@ -7,6 +7,7 @@ the normalized snapshot.
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+from math import isfinite
 from typing import Any, Iterable, Mapping
 
 import requests
@@ -35,6 +36,9 @@ FIXTURE_FIELDS = (
     "away_id",
     "away",
     "venue",
+    "venue_city",
+    "latitude",
+    "longitude",
     "round",
     "stage",
     "leg",
@@ -124,6 +128,16 @@ def _integer(value: Any) -> int | None:
     return parsed if parsed >= 0 else None
 
 
+def _number(value: Any) -> float | None:
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return None
+    return parsed if isfinite(parsed) else None
+
+
 def _fifa_team(
     team: Any, placeholder: Any = None
 ) -> tuple[str | None, str | None]:
@@ -192,6 +206,9 @@ def normalize_fifa_fixture(match: Mapping[str, Any]) -> dict[str, Any] | None:
         "away_id": away_id,
         "away": away,
         "venue": venue,
+        "venue_city": _translation(stadium.get("CityName")) if isinstance(stadium, Mapping) else None,
+        "latitude": _number(stadium.get("Latitude")) if isinstance(stadium, Mapping) else None,
+        "longitude": _number(stadium.get("Longitude")) if isinstance(stadium, Mapping) else None,
         "round": _translation(match.get("GroupName")) or (
             f"Match {match['MatchNumber']}" if match.get("MatchNumber") is not None else None
         ),
@@ -297,6 +314,9 @@ def normalize_uefa_fixture(match: Mapping[str, Any]) -> dict[str, Any] | None:
         "away": away,
         "venue": _translation(_nested(stadium, "translations", "officialName"))
         or _translation(_nested(stadium, "translations", "name")),
+        "venue_city": _translation(_nested(stadium, "city", "translations", "name")),
+        "latitude": _number(_nested(stadium, "geolocation", "latitude")),
+        "longitude": _number(_nested(stadium, "geolocation", "longitude")),
         "round": (
             round_info.get("metaData", {}).get("name")
             if isinstance(round_info, Mapping)

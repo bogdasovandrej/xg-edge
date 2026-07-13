@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-13T09:50:42Z",
+  "generated_at": "2026-07-13T12:36:26Z",
   "status": "experimental-no-bet",
   "betting_gate": {
     "allowed": false,
@@ -25,7 +25,222 @@
       "top_score": "2-0",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 2:0"
+      "first_leg": "Агрегат 2:0",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048641",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "52350",
+            "name": "KuPS Kuopio",
+            "elo": 1296.51391602,
+            "elo_meta": {
+              "rating": 1296.51391602,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T15:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "53080",
+            "name": "Vardar",
+            "elo": 1099.73193359,
+            "elo_meta": {
+              "rating": 1099.73193359,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T15:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Matthew MacDermid",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 25.6,
+          "wind_kph": 7.2,
+          "precipitation_mm": 0.0,
+          "condition": "ясно",
+          "forecast_for": "2026-07-14T15:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 45.6,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.624186163077763,
+              "contribution": 15.604654076944074
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.7657665719303836,
+            "fair_odds": 1.3058809781669483,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.165909360962854,
+            "fair_odds": 6.027387449366967,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.06832406710676248,
+            "fair_odds": 14.636131049362305,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048637",
@@ -46,7 +261,222 @@
       "top_score": "1-1",
       "uncertainty": "средняя",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 3:2"
+      "first_leg": "Агрегат 3:2",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048637",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "2605905",
+            "name": "Iberia Tbilisi",
+            "elo": 1149.44433594,
+            "elo_meta": {
+              "rating": 1149.44433594,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T16:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "59341",
+            "name": "Flora Tallinn",
+            "elo": 1130.34924316,
+            "elo_meta": {
+              "rating": 1130.34924316,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T16:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Florian Lata",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 29.7,
+          "wind_kph": 3.6,
+          "precipitation_mm": 0.0,
+          "condition": "переменная облачность",
+          "forecast_for": "2026-07-14T16:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 53.31,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.9323741162551159,
+              "contribution": 23.309352906377896
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.5207311351123979,
+            "fair_odds": 1.9203768174609988,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.2460834238816589,
+            "fair_odds": 4.063662575179783,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.23318544100594316,
+            "fair_odds": 4.288432398206684,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048638",
@@ -67,7 +497,222 @@
       "top_score": "1-1",
       "uncertainty": "средняя",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:3"
+      "first_leg": "Агрегат 1:3",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048638",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "63401",
+            "name": "Inter Escaldes",
+            "elo": 1002.06817627,
+            "elo_meta": {
+              "rating": 1002.06817627,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T16:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "2605572",
+            "name": "L. Red Imps",
+            "elo": 1065.0925293,
+            "elo_meta": {
+              "rating": 1065.0925293,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T16:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Sven Wolfensberger",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 33.9,
+          "wind_kph": 13.0,
+          "precipitation_mm": 0.0,
+          "condition": "ясно",
+          "forecast_for": "2026-07-14T16:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 54.72,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.9887927039255475,
+              "contribution": 24.71981759813869
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.37300541559321143,
+            "fair_odds": 2.6809262230406063,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "П2",
+            "probability": 0.36600340938032405,
+            "fair_odds": 2.732214985901601,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "X",
+            "probability": 0.26099117502646446,
+            "fair_odds": 3.8315471774039875,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048640",
@@ -88,7 +733,222 @@
       "top_score": "1-0",
       "uncertainty": "средняя",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 0:2"
+      "first_leg": "Агрегат 0:2",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048640",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "2607924",
+            "name": "Riga",
+            "elo": 1283.32739258,
+            "elo_meta": {
+              "rating": 1283.32739258,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "2610304",
+            "name": "Ararat-Armenia",
+            "elo": 1246.33862305,
+            "elo_meta": {
+              "rating": 1246.33862305,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Bence Csonka",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 23.8,
+          "wind_kph": 15.1,
+          "precipitation_mm": 0.0,
+          "condition": "ясно",
+          "forecast_for": "2026-07-14T17:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 52.7,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.9078957811899493,
+              "contribution": 22.69739452974873
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.5517346126631335,
+            "fair_odds": 1.8124655895216764,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.23963492717858992,
+            "fair_odds": 4.173014392241502,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.20863046015827658,
+            "fair_odds": 4.793163947591135,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048646",
@@ -109,7 +969,222 @@
       "top_score": "2-0",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 0:1"
+      "first_leg": "Агрегат 0:1",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048646",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "52287",
+            "name": "Győri ETO",
+            "elo": 1454.81445312,
+            "elo_meta": {
+              "rating": 1454.81445312,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:00:00Z"
+            },
+            "level": "average",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "52697",
+            "name": "Víkingur R.",
+            "elo": 1285.12316895,
+            "elo_meta": {
+              "rating": 1285.12316895,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Mateo Erceg",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 31.2,
+          "wind_kph": 8.4,
+          "precipitation_mm": 0.0,
+          "condition": "пасмурно",
+          "forecast_for": "2026-07-14T17:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 46.8,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.6719112457163721,
+              "contribution": 16.7977811429093
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.738553786720896,
+            "fair_odds": 1.3539975259485144,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.17816233744056395,
+            "fair_odds": 5.612858555661946,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.08328387583854018,
+            "fair_odds": 12.007126108523918,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048635",
@@ -130,7 +1205,222 @@
       "top_score": "0-1",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 0:2"
+      "first_leg": "Агрегат 0:2",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048635",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "60457",
+            "name": "The New Saints",
+            "elo": 1066.42773438,
+            "elo_meta": {
+              "rating": 1066.42773438,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:30:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "2609356",
+            "name": "Sabah",
+            "elo": 1311.19018555,
+            "elo_meta": {
+              "rating": 1311.19018555,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:30:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Mateo Busquets Ferrer",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 27.2,
+          "wind_kph": 18.7,
+          "precipitation_mm": 0.0,
+          "condition": "пасмурно",
+          "forecast_for": "2026-07-14T17:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 49.35,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.773935389056765,
+              "contribution": 19.348384726419123
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П2",
+            "probability": 0.6718275881723247,
+            "fair_odds": 1.4884771295570831,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.20457297803190413,
+            "fair_odds": 4.888231132090404,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П1",
+            "probability": 0.12359943379577107,
+            "fair_odds": 8.090651949525475,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048645",
@@ -151,7 +1441,222 @@
       "top_score": "2-0",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:1"
+      "first_leg": "Агрегат 1:1",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048645",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "50044",
+            "name": "Levski Sofia",
+            "elo": 1441.24841309,
+            "elo_meta": {
+              "rating": 1441.24841309,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:30:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "50104",
+            "name": "Borac",
+            "elo": 1210.83227539,
+            "elo_meta": {
+              "rating": 1210.83227539,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T17:30:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Andrew Madley",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 26.2,
+          "wind_kph": 8.9,
+          "precipitation_mm": 0.0,
+          "condition": "преимущественно ясно",
+          "forecast_for": "2026-07-14T17:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 44.23,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.569179229543646,
+              "contribution": 14.22948073859115
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.7947180260744355,
+            "fair_odds": 1.2583079371428996,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.1518791422678841,
+            "fair_odds": 6.5841825616594685,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.0534028316576803,
+            "fair_odds": 18.72559879240377,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048642",
@@ -172,7 +1677,222 @@
       "top_score": "1-0",
       "uncertainty": "средняя",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:1"
+      "first_leg": "Агрегат 1:1",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048642",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "2608290",
+            "name": "Drita",
+            "elo": 1242.50073242,
+            "elo_meta": {
+              "rating": 1242.50073242,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T18:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "2605907",
+            "name": "Kauno Žalgiris",
+            "elo": 1131.27331543,
+            "elo_meta": {
+              "rating": 1131.27331543,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T18:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Oguzhan Çakir",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 23.2,
+          "wind_kph": 7.6,
+          "precipitation_mm": 0.0,
+          "condition": "преимущественно ясно",
+          "forecast_for": "2026-07-14T18:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 49.51,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.7805386530194992,
+              "contribution": 19.51346632548748
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.6669934486373135,
+            "fair_odds": 1.499265100793761,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.20629161546943894,
+            "fair_odds": 4.84750675748208,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.1267149358932476,
+            "fair_odds": 7.8917295183139355,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "400021541",
@@ -183,15 +1903,998 @@
       "away": "Испания",
       "venue": "Dallas Stadium",
       "model": "fifa_prior_poisson_dixon_coles_v1",
-      "p_home": 0.37101562544754835,
-      "p_draw": 0.3113183924443772,
-      "p_away": 0.3176659821080745,
+      "p_home": 0.39983926738062286,
+      "p_draw": 0.2956406550990483,
+      "p_away": 0.3045200775203289,
+      "probability_basis": "market_anchored",
+      "raw_model_1x2": {
+        "home": 0.37101562544754835,
+        "draw": 0.3113183924443772,
+        "away": 0.3176659821080745
+      },
       "p_over25": 0.3683804306066202,
       "p_btts": 0.4456677991128052,
       "top_score": "1-1",
       "uncertainty": "высокая",
       "recommendation": "NO BET",
-      "first_leg": null
+      "first_leg": null,
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "400021541",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "43946",
+            "name": "France",
+            "elo": 1900.9768504227673,
+            "elo_meta": {
+              "rating": 1900.9768504227673,
+              "matches": 6,
+              "scope": "national",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T19:00:00Z"
+            },
+            "level": "elite",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "international_major",
+            "recent_matches": [
+              {
+                "match_id": "400021536",
+                "kickoff_utc": "2026-07-09T20:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43872",
+                "opponent": "Morocco",
+                "score_90": {
+                  "for": 2,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1891.5984632322384,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-09T20:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1769.8109306742917,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-09T20:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.6684239410492006,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021533",
+                "kickoff_utc": "2026-07-04T21:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43928",
+                "opponent": "Paraguay",
+                "score_90": {
+                  "for": 1,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1889.5107654783094,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-04T21:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1516.1172515603807,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-04T21:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8956151123035523,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021523",
+                "kickoff_utc": "2026-06-30T21:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43970",
+                "opponent": "Sweden",
+                "score_90": {
+                  "for": 3,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1885.6828635789095,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-30T21:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1523.3729455725468,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-30T21:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8894979903975005,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021489",
+                "kickoff_utc": "2026-06-26T19:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43961",
+                "opponent": "Norway",
+                "score_90": {
+                  "for": 4,
+                  "against": 1
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1880.4015214899653,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-26T19:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1582.3987491177736,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-26T19:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8475407861632788,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021492",
+                "kickoff_utc": "2026-06-22T21:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43818",
+                "opponent": "Iraq",
+                "score_90": {
+                  "for": 3,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1877.9006315109361,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-22T21:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1434.3194351163254,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-22T21:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.9278055248696948,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021490",
+                "kickoff_utc": "2026-06-16T19:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43879",
+                "opponent": "Senegal",
+                "score_90": {
+                  "for": 3,
+                  "against": 1
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1870.7,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-16T19:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1684.07,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-16T19:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.7454192314895767,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              }
+            ],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "43969",
+            "name": "Spain",
+            "elo": 1892.6156285050943,
+            "elo_meta": {
+              "rating": 1892.6156285050943,
+              "matches": 6,
+              "scope": "national",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T19:00:00Z"
+            },
+            "level": "elite",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "international_major",
+            "recent_matches": [
+              {
+                "match_id": "400021538",
+                "kickoff_utc": "2026-07-10T19:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43935",
+                "opponent": "Belgium",
+                "score_90": {
+                  "for": 2,
+                  "against": 1
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1886.358466471156,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-10T19:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1749.678856670624,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-10T19:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.6871418983030766,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021529",
+                "kickoff_utc": "2026-07-06T19:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43963",
+                "opponent": "Portugal",
+                "score_90": {
+                  "for": 1,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1879.2925096345982,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-06T19:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1774.2671793207426,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-06T19:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.6467021581721156,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021519",
+                "kickoff_utc": "2026-07-02T19:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43934",
+                "opponent": "Austria",
+                "score_90": {
+                  "for": 3,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1873.3915467696966,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-02T19:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1598.3656718057055,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-02T19:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8296538750735528,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021484",
+                "kickoff_utc": "2026-06-27T00:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43930",
+                "opponent": "Uruguay",
+                "score_90": {
+                  "for": 1,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1868.7654661195174,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-27T00:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1660.136906693559,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-27T00:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.768695967491046,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021483",
+                "kickoff_utc": "2026-06-21T16:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43835",
+                "opponent": "Saudi Arabia",
+                "score_90": {
+                  "for": 4,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1865.7541052709037,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-21T16:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1430.031883773061,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-21T16:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.9247159787846552,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021482",
+                "kickoff_utc": "2026-06-15T16:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43850",
+                "opponent": "Cabo Verde",
+                "score_90": {
+                  "for": 0,
+                  "against": 0
+                },
+                "result_90": "draw",
+                "team_elo_before": {
+                  "rating": 1874.71,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-15T16:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1371.11,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-15T16:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.9477947364548158,
+                "actual_team_score": 0.5,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              }
+            ],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": null,
+        "weather": {
+          "status": "available",
+          "temperature_c": 32.1,
+          "wind_kph": 13.0,
+          "precipitation_mm": 0.0,
+          "condition": "преимущественно ясно",
+          "forecast_for": "2026-07-14T19:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "referee",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 28.0,
+          "label": "low",
+          "sources": [
+            "official_fifa_api",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "some_adjusted_npxg_is_unknown",
+            "lineups_unavailable",
+            "absences_unavailable",
+            "referee_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 53.38,
+          "coverage_weight": 90.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.9971131118421843,
+              "contribution": 24.927827796054608
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.21804852269646383,
+              "sample": 12,
+              "contribution": 5.4512130674115955
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.4,
+              "minimum_team_matches": 6,
+              "contribution": 8.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.75,
+              "missing": 3,
+              "total": 4,
+              "contribution": 15.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "X",
+            "probability": 0.2956406550990483,
+            "fair_odds": 3.3824847251301438,
+            "market_odds": 3.25,
+            "point_edge": -0.03916787092809304,
+            "status": "WATCH_ONLY",
+            "rank": 1
+          },
+          {
+            "selection": "П2",
+            "probability": 0.3045200775203289,
+            "fair_odds": 3.2838557251885727,
+            "market_odds": 3.15,
+            "point_edge": -0.04076175581096397,
+            "status": "WATCH_ONLY",
+            "rank": 2
+          },
+          {
+            "selection": "П1",
+            "probability": 0.39983926738062286,
+            "fair_odds": 2.5010049827048637,
+            "market_odds": 2.35,
+            "point_edge": -0.06037772165553623,
+            "status": "WATCH_ONLY",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "Positive prospective CLV has not been demonstrated."
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
+        "market": {
+          "basis": "opening_market_prior_plus_shrunk_model_residual",
+          "bookmaker": "DraftKings Sportsbook",
+          "captured_at_utc": "2026-07-13T00:30:43Z",
+          "source_url": "https://dknetwork.draftkings.com/2026/07/11/world-cup-2026-france-vs-spain-opening-odds/",
+          "calibration_scope": "domestic-development shrinkage transferred to neutral international match; fitted domestic intercept removed",
+          "calibration_warning": "International prospective calibration is not yet available; uncertainty remains high.",
+          "raw_model": {
+            "home": 0.37101562544754835,
+            "draw": 0.3113183924443772,
+            "away": 0.3176659821080745
+          },
+          "market_fair": {
+            "home": 0.40500445059835827,
+            "draw": 0.2928493719711206,
+            "away": 0.3021461774305212
+          },
+          "anchored": {
+            "home": 0.39983926738062286,
+            "draw": 0.2956406550990483,
+            "away": 0.3045200775203289
+          }
+        }
+      }
     },
     {
       "id": "2048636",
@@ -212,7 +2915,222 @@
       "top_score": "2-0",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 0:2"
+      "first_leg": "Агрегат 0:2",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048636",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "52381",
+            "name": "Shamrock Rovers",
+            "elo": 1313.01416016,
+            "elo_meta": {
+              "rating": 1313.01416016,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "50092",
+            "name": "Floriana",
+            "elo": 1063.39416504,
+            "elo_meta": {
+              "rating": 1063.39416504,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Joakim Östling",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 20.8,
+          "wind_kph": 13.0,
+          "precipitation_mm": 0.0,
+          "condition": "ясно",
+          "forecast_for": "2026-07-14T19:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 43.51,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.5402229234112789,
+              "contribution": 13.505573085281972
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.8090497568997286,
+            "fair_odds": 1.236017922843202,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.14453773032188902,
+            "fair_odds": 6.918608710493626,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.04641251277838217,
+            "fair_odds": 21.545913809384956,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048639",
@@ -233,7 +3151,222 @@
       "top_score": "2-0",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:0"
+      "first_leg": "Агрегат 1:0",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048639",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "85009",
+            "name": "Larne",
+            "elo": 1059.32751465,
+            "elo_meta": {
+              "rating": 1059.32751465,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "64514",
+            "name": "Tre Fiori",
+            "elo": 736.193237305,
+            "elo_meta": {
+              "rating": 736.193237305,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-14T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Sigurd Kringstad",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 20.5,
+          "wind_kph": 7.2,
+          "precipitation_mm": 0.0,
+          "condition": "ясно",
+          "forecast_for": "2026-07-14T19:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 41.17,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.4468668569604846,
+              "contribution": 11.171671424012116
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.8515421272911162,
+            "fair_odds": 1.1743400214163808,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.12111870067619739,
+            "fair_odds": 8.256363339575712,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "probability": 0.02733917203268644,
+            "fair_odds": 36.57755248785187,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048643",
@@ -254,7 +3387,193 @@
       "top_score": null,
       "uncertainty": "не оценена",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 4:1"
+      "first_leg": "Агрегат 4:1",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048643",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "2606501",
+            "name": "U. Craiova",
+            "elo": 1500.0,
+            "elo_meta": {
+              "rating": 1500.0,
+              "matches": 0,
+              "scope": "club",
+              "source": "cold_start_prior",
+              "as_of": "2026-07-15T17:30:00Z"
+            },
+            "level": "average",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "2613945",
+            "name": "ML Vitebsk",
+            "elo": 1500.0,
+            "elo_meta": {
+              "rating": 1500.0,
+              "matches": 0,
+              "scope": "club",
+              "source": "cold_start_prior",
+              "as_of": "2026-07-15T17:30:00Z"
+            },
+            "level": "average",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Márton Rúsz",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 30.8,
+          "wind_kph": 1.8,
+          "precipitation_mm": 0.0,
+          "condition": "преимущественно ясно",
+          "forecast_for": "2026-07-15T17:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 30.0,
+          "coverage_weight": 40.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048648",
@@ -275,7 +3594,193 @@
       "top_score": null,
       "uncertainty": "не оценена",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:2"
+      "first_leg": "Агрегат 1:2",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048648",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "2605351",
+            "name": "Atert Bissen",
+            "elo": 1500.0,
+            "elo_meta": {
+              "rating": 1500.0,
+              "matches": 0,
+              "scope": "club",
+              "source": "cold_start_prior",
+              "as_of": "2026-07-15T18:15:00Z"
+            },
+            "level": "average",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "57475",
+            "name": "Klaksvík",
+            "elo": 1500.0,
+            "elo_meta": {
+              "rating": 1500.0,
+              "matches": 0,
+              "scope": "club",
+              "source": "cold_start_prior",
+              "as_of": "2026-07-15T18:15:00Z"
+            },
+            "level": "average",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Igor Stojchevski",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 27.7,
+          "wind_kph": 13.0,
+          "precipitation_mm": 0.0,
+          "condition": "преимущественно ясно",
+          "forecast_for": "2026-07-15T18:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 30.0,
+          "coverage_weight": 40.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "400021540",
@@ -286,15 +3791,998 @@
       "away": "Аргентина",
       "venue": "Atlanta Stadium",
       "model": "fifa_prior_poisson_dixon_coles_v1",
-      "p_home": 0.3220988658251378,
-      "p_draw": 0.25755030523901895,
-      "p_away": 0.4203508289358432,
+      "p_home": 0.36548941374059757,
+      "p_draw": 0.30783062221307633,
+      "p_away": 0.3266799640463261,
+      "probability_basis": "market_anchored",
+      "raw_model_1x2": {
+        "home": 0.3220988658251378,
+        "draw": 0.25755030523901895,
+        "away": 0.4203508289358432
+      },
       "p_over25": 0.5709353692240637,
       "p_btts": 0.6036583816625007,
       "top_score": "1-1",
       "uncertainty": "высокая",
       "recommendation": "NO BET",
-      "first_leg": null
+      "first_leg": null,
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "400021540",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "43942",
+            "name": "England",
+            "elo": 1836.1725228284636,
+            "elo_meta": {
+              "rating": 1836.1725228284636,
+              "matches": 6,
+              "scope": "national",
+              "source": "provided_prior",
+              "as_of": "2026-07-15T19:00:00Z"
+            },
+            "level": "elite",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "international_major",
+            "recent_matches": [
+              {
+                "match_id": "400021539",
+                "kickoff_utc": "2026-07-11T21:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43961",
+                "opponent": "Norway",
+                "score_90": {
+                  "for": 1,
+                  "against": 1
+                },
+                "result_90": "draw",
+                "team_elo_before": {
+                  "rating": 1842.1696878673613,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-11T21:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1601.4995514490527,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-11T21:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.7998582519448894,
+                "actual_team_score": 0.5,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021531",
+                "kickoff_utc": "2026-07-06T01:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43911",
+                "opponent": "Mexico",
+                "score_90": {
+                  "for": 3,
+                  "against": 2
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1835.4292506752556,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-06T01:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1717.8927952525855,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-06T01:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.662978140394715,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021512",
+                "kickoff_utc": "2026-07-01T16:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "20014",
+                "opponent": "Congo DR",
+                "score_90": {
+                  "for": 2,
+                  "against": 1
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1832.9924970622253,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-01T16:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1489.875226974166,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-01T16:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8781623193484838,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021508",
+                "kickoff_utc": "2026-06-27T21:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43914",
+                "opponent": "Panama",
+                "score_90": {
+                  "for": 2,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1828.9269378470183,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-27T21:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1518.9146369028213,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-27T21:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8562607754805844,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021506",
+                "kickoff_utc": "2026-06-23T20:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43860",
+                "opponent": "Ghana",
+                "score_90": {
+                  "for": 0,
+                  "against": 0
+                },
+                "result_90": "draw",
+                "team_elo_before": {
+                  "rating": 1837.7126460763739,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-23T20:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1361.9108376678403,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-23T20:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.9392854114677821,
+                "actual_team_score": 0.5,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021507",
+                "kickoff_utc": "2026-06-17T20:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43938",
+                "opponent": "Croatia",
+                "score_90": {
+                  "for": 4,
+                  "against": 2
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1828.02,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-17T20:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1714.87,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-17T20:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.6573132115877464,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              }
+            ],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "43922",
+            "name": "Argentina",
+            "elo": 1877.0596636794369,
+            "elo_meta": {
+              "rating": 1877.0596636794369,
+              "matches": 6,
+              "scope": "national",
+              "source": "provided_prior",
+              "as_of": "2026-07-15T19:00:00Z"
+            },
+            "level": "elite",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "international_major",
+            "recent_matches": [
+              {
+                "match_id": "400021537",
+                "kickoff_utc": "2026-07-12T01:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43971",
+                "opponent": "Switzerland",
+                "score_90": {
+                  "for": 1,
+                  "against": 1
+                },
+                "result_90": "draw",
+                "team_elo_before": {
+                  "rating": 1882.4905073461518,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-12T01:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1671.0690458690674,
+                  "matches": 5,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-12T01:00:00Z"
+                },
+                "opponent_level": "strong",
+                "elo_expected_team_score_neutral": 0.7715421833357493,
+                "actual_team_score": 0.5,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021528",
+                "kickoff_utc": "2026-07-07T16:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43855",
+                "opponent": "Egypt",
+                "score_90": {
+                  "for": 3,
+                  "against": 2
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1879.5629374320094,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-07T16:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1573.2477104266532,
+                  "matches": 4,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-07T16:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8536215042928844,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021521",
+                "kickoff_utc": "2026-07-03T22:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43850",
+                "opponent": "Cabo Verde",
+                "score_90": {
+                  "for": 1,
+                  "against": 1
+                },
+                "result_90": "draw",
+                "team_elo_before": {
+                  "rating": 1888.5010471027983,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-03T22:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1387.9982624664838,
+                  "matches": 3,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-03T22:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.9469054835394435,
+                "actual_team_score": 0.5,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021495",
+                "kickoff_utc": "2026-06-28T02:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "away",
+                "opponent_id": "43820",
+                "opponent": "Jordan",
+                "score_90": {
+                  "for": 3,
+                  "against": 1
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1887.0828617117268,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-28T02:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1376.0943053256165,
+                  "matches": 2,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-28T02:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.9498595746496798,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021494",
+                "kickoff_utc": "2026-06-22T17:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43934",
+                "opponent": "Austria",
+                "score_90": {
+                  "for": 2,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1882.3425745229742,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-22T17:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1603.912454132362,
+                  "matches": 1,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-22T17:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8324055392030715,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              },
+              {
+                "match_id": "400021496",
+                "kickoff_utc": "2026-06-17T01:00:00Z",
+                "competition": "FIFA World Cup 2026",
+                "competition_level": "international_major",
+                "venue": "home",
+                "opponent_id": "43843",
+                "opponent": "Algeria",
+                "score_90": {
+                  "for": 3,
+                  "against": 0
+                },
+                "result_90": "win",
+                "team_elo_before": {
+                  "rating": 1877.27,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-17T01:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1571.03,
+                  "matches": 0,
+                  "scope": "national",
+                  "source": "provided_prior",
+                  "as_of": "2026-06-17T01:00:00Z"
+                },
+                "opponent_level": "average",
+                "elo_expected_team_score_neutral": 0.8535673866838195,
+                "actual_team_score": 1.0,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_fifa_api"
+                }
+              }
+            ],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": null,
+        "weather": {
+          "status": "available",
+          "temperature_c": 32.8,
+          "wind_kph": 10.7,
+          "precipitation_mm": 0.0,
+          "condition": "переменная облачность",
+          "forecast_for": "2026-07-15T19:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "referee",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 28.0,
+          "label": "low",
+          "sources": [
+            "official_fifa_api",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "some_adjusted_npxg_is_unknown",
+            "lineups_unavailable",
+            "absences_unavailable",
+            "referee_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 53.61,
+          "coverage_weight": 90.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.9817710232220712,
+              "contribution": 24.54427558055178
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.24278523988723996,
+              "sample": 12,
+              "contribution": 6.069630997180999
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.4,
+              "minimum_team_matches": 6,
+              "contribution": 8.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.75,
+              "missing": 3,
+              "total": 4,
+              "contribution": 15.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П2",
+            "probability": 0.3266799640463261,
+            "fair_odds": 3.061099883855109,
+            "market_odds": 3.05,
+            "point_edge": -0.0036261096587054675,
+            "status": "WATCH_ONLY",
+            "rank": 1
+          },
+          {
+            "selection": "П1",
+            "probability": 0.36548941374059757,
+            "fair_odds": 2.736057358722132,
+            "market_odds": 2.55,
+            "point_edge": -0.0680019949614763,
+            "status": "WATCH_ONLY",
+            "rank": 2
+          },
+          {
+            "selection": "X",
+            "probability": 0.30783062221307633,
+            "fair_odds": 3.248539709307455,
+            "market_odds": 3.0,
+            "point_edge": -0.076508133360771,
+            "status": "WATCH_ONLY",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "Positive prospective CLV has not been demonstrated."
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
+        "market": {
+          "basis": "opening_market_prior_plus_shrunk_model_residual",
+          "bookmaker": "DraftKings Sportsbook",
+          "captured_at_utc": "2026-07-13T00:30:43Z",
+          "source_url": "https://dknetwork.draftkings.com/2026/07/12/world-cup-2026-argentina-vs-england-opening-odds-2/",
+          "calibration_scope": "domestic-development shrinkage transferred to neutral international match; fitted domestic intercept removed",
+          "calibration_warning": "International prospective calibration is not yet available; uncertainty remains high.",
+          "raw_model": {
+            "home": 0.3220988658251378,
+            "draw": 0.25755030523901895,
+            "away": 0.4203508289358432
+          },
+          "market_fair": {
+            "home": 0.3722917302410742,
+            "draw": 0.316447970704913,
+            "away": 0.31126029905401287
+          },
+          "anchored": {
+            "home": 0.36548941374059757,
+            "draw": 0.30783062221307633,
+            "away": 0.3266799640463261
+          }
+        }
+      }
     },
     {
       "id": "2048644",
@@ -315,7 +4803,222 @@
       "top_score": "1-1",
       "uncertainty": "средняя",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:1"
+      "first_leg": "Агрегат 1:1",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048644",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "88148",
+            "name": "Egnatia",
+            "elo": 1157.89331055,
+            "elo_meta": {
+              "rating": 1157.89331055,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-15T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "2607112",
+            "name": "Petrocub",
+            "elo": 1159.45910645,
+            "elo_meta": {
+              "rating": 1159.45910645,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-15T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Philip Farrugia",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 26.9,
+          "wind_kph": 3.3,
+          "precipitation_mm": 0.0,
+          "condition": "ясно",
+          "forecast_for": "2026-07-15T19:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 53.9,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.9559279015864781,
+              "contribution": 23.898197539661954
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П1",
+            "probability": 0.48396531890813815,
+            "fair_odds": 2.0662637609159153,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "П2",
+            "probability": 0.2637350291997958,
+            "fair_odds": 3.7916844153547666,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "X",
+            "probability": 0.25229965189206593,
+            "fair_odds": 3.9635409422911176,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     },
     {
       "id": "2048647",
@@ -336,7 +5039,222 @@
       "top_score": "0-1",
       "uncertainty": "низкая",
       "recommendation": "NO BET",
-      "first_leg": "Агрегат 1:2"
+      "first_leg": "Агрегат 1:2",
+      "details": {
+        "schema_version": "match-dossier/1.0",
+        "fixture_id": "2048647",
+        "generated_as_of": "2026-07-13T12:36:26Z",
+        "teams": {
+          "home": {
+            "team_id": "73936",
+            "name": "Sutjeska",
+            "elo": 1082.15710449,
+            "elo_meta": {
+              "rating": 1082.15710449,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-15T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "79970",
+            "name": "Kairat Almaty",
+            "elo": 1294.38867188,
+            "elo_meta": {
+              "rating": 1294.38867188,
+              "matches": 0,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-15T19:00:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league_qualifying",
+            "recent_matches": [],
+            "likely_lineup": null,
+            "absences": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          }
+        },
+        "referee": {
+          "status": "available",
+          "referee_id": null,
+          "name": "Wojciech Myc",
+          "season": null,
+          "matches": null,
+          "yellow_cards_per_match": null,
+          "red_cards_per_match": null,
+          "comparison": null,
+          "source": "official_fixture",
+          "snapshot_at": "2026-07-13T12:36:26Z"
+        },
+        "weather": {
+          "status": "available",
+          "temperature_c": 22.8,
+          "wind_kph": 3.7,
+          "precipitation_mm": 0.0,
+          "condition": "преимущественно ясно",
+          "forecast_for": "2026-07-15T19:00:00Z",
+          "source": "open_meteo",
+          "snapshot_at": "2026-07-13T00:30:43Z"
+        },
+        "context_availability": {
+          "lineups": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "lineups",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "absences": {
+            "status": "unavailable",
+            "reason": "provider_not_configured",
+            "provider": "absences",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "referee": {
+            "status": "available",
+            "reason": null,
+            "provider": "official_fixture",
+            "snapshot_at": "2026-07-13T12:36:26Z"
+          },
+          "weather": {
+            "status": "available",
+            "reason": null,
+            "provider": "open_meteo",
+            "snapshot_at": "2026-07-13T00:30:43Z"
+          }
+        },
+        "adjustments": [
+          {
+            "name": "penalty_removal",
+            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
+            "standard_penalty_xg": 0.76
+          },
+          {
+            "name": "red_card_neutralization",
+            "method": "event_time_score_state_heuristic_v1",
+            "warning": "heuristic_not_causal_estimate"
+          },
+          {
+            "name": "opponent_strength",
+            "method": "point_in_time_elo_ratio_clamped_v1",
+            "factor_clamp": [
+              0.7,
+              1.4
+            ]
+          }
+        ],
+        "data_quality": {
+          "score": 20.0,
+          "label": "low",
+          "sources": [
+            "official_fixture",
+            "open_meteo"
+          ],
+          "warnings": [
+            "fewer_than_10_official_matches_for_at_least_one_team",
+            "lineups_unavailable",
+            "absences_unavailable"
+          ],
+          "scoring": {
+            "official_history_max": 30,
+            "adjusted_npxg_coverage_max": 30,
+            "lineup_absence_referee_weather_max": 40
+          }
+        },
+        "tail_risk": {
+          "label": "medium",
+          "score": 50.84,
+          "coverage_weight": 65.0,
+          "drivers": [
+            {
+              "name": "outcome_entropy",
+              "status": "available",
+              "weight": 25.0,
+              "raw": 0.8336310697589808,
+              "contribution": 20.84077674397452
+            },
+            {
+              "name": "recent_elo_surprise",
+              "status": "unknown",
+              "weight": 25.0,
+              "contribution": 0.0
+            },
+            {
+              "name": "history_sparsity",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 1.0,
+              "minimum_team_matches": 0,
+              "contribution": 20.0
+            },
+            {
+              "name": "missing_prematch_context",
+              "status": "available",
+              "weight": 20.0,
+              "raw": 0.5,
+              "missing": 2,
+              "total": 4,
+              "contribution": 10.0
+            },
+            {
+              "name": "recent_red_card_incidence",
+              "status": "unknown",
+              "weight": 10.0,
+              "contribution": 0.0
+            }
+          ],
+          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
+        },
+        "candidate_bets": [
+          {
+            "selection": "П2",
+            "probability": 0.6249586952372373,
+            "fair_odds": 1.6001057471812519,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "probability": 0.22014766328827506,
+            "fair_odds": 4.542405697445617,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 2
+          },
+          {
+            "selection": "П1",
+            "probability": 0.15489364147448775,
+            "fair_odds": 6.456042936821962,
+            "market_odds": null,
+            "point_edge": null,
+            "status": "NO_VERIFIED_MARKET_PRICE",
+            "rank": 3
+          }
+        ],
+        "betting_gate": {
+          "allowed": false,
+          "reason": "no_validated_positive_clv_edge"
+        },
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+      }
     }
   ]
 }

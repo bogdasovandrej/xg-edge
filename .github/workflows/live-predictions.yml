@@ -46,15 +46,26 @@ jobs:
           --mode live --limit 14 --simulations 100000 --seed 20260713
           --output-json reports/ucl_qualifying_predictions.json
           --output-csv reports/ucl_qualifying_predictions.csv
+      - name: Fetch point-in-time weather
+        run: >-
+          python scripts/fetch_weather_context.py
+          --fixtures reports/live/current_fixtures.json
+          --output reports/live/match_context.json
+          || echo "Weather refresh unavailable; retaining checked-in snapshot"
       - name: Build public payload
         run: >-
           python scripts/build_live_payload.py
           --world-cup reports/world_cup_2026_semifinals.json
           --ucl reports/ucl_qualifying_predictions.json
           --fixtures reports/live/current_fixtures.json
+          --markets reports/live/world_cup_opening_markets.json
+          --anchor-audit reports/market_anchor_audit.json
+          --world-cup-history reports/world_cup_2026_fifa_fixtures_asof_2026-07-13.json
+          --rankings reports/world_cup_2026_fifa_rankings_pre_tournament.json
+          --contexts reports/live/match_context.json
           --output reports/live_predictions.json
       - name: Validate live pipeline
-        run: python -m pytest -q tests/test_official_feeds.py tests/test_world_cup_model.py tests/test_ucl_qualifying.py tests/test_live_payload.py
+        run: python -m pytest -q tests/test_official_feeds.py tests/test_world_cup_model.py tests/test_ucl_qualifying.py tests/test_live_payload.py tests/test_live_market.py tests/test_match_dossier.py tests/test_weather.py
       - name: Publish changed snapshot
         shell: bash
         run: |

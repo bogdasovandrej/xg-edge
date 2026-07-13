@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.4.0 — 2026-07-13
+
+- Added expandable match dossiers and match search to the public site.
+- Added separate point-in-time Elo ledgers for clubs and national teams.
+- Added auditable npxG, opponent-strength and event-time red-card adjustment
+  primitives that fail closed when provider fields are missing.
+- Added referee, lineup, absence and weather availability sections with explicit
+  provenance and no invented values.
+- Added Open-Meteo kickoff forecasts using official UEFA stadium coordinates or
+  a verified FIFA venue city.
+- Added transparent tail-risk diagnostics; they measure forecast fragility and
+  do not claim to predict black swans.
+- Added timestamped World Cup opening prices and neutral-site market anchoring.
+  England is now the anchored 90-minute favourite, while the disagreeing raw
+  model remains visible for audit.
+- Added top-three market watchlists with probability, fair price, quoted price
+  and point edge. The global prospective CLV gate remains `NO BET`.
+
 ## 0.3.1 — 2026-07-13
 
 - Fixed GitHub Pages client asset paths so browser hydration and five-minute

@@ -57,7 +57,11 @@ def _fifa_match(match_id="wc-semi", date="2026-07-14T19:00:00Z", score=None):
         "CompetitionName": [{"Locale": "en-GB", "Description": "FIFA World Cup"}],
         "StageName": [{"Locale": "en-GB", "Description": "Final Stage"}],
         "GroupName": [{"Locale": "en-GB", "Description": "Semi-final"}],
-        "Stadium": {"Name": [{"Locale": "en-GB", "Description": "MetLife Stadium"}]},
+        "Stadium": {
+            "Name": [{"Locale": "en-GB", "Description": "MetLife Stadium"}],
+            "CityName": [{"Locale": "en-GB", "Description": "New York"}],
+            "Latitude": 40.8135, "Longitude": -74.0745,
+        },
         "Officials": [
             {"OfficialType": 4, "Name": [{"Description": "Fourth Official"}]},
             {"OfficialType": 1, "Name": [{"Locale": "en-GB", "Description": "Jane Referee"}]},
@@ -86,7 +90,9 @@ def test_fifa_feed_filters_past_and_normalizes_configurable_request() -> None:
         "competition": "FIFA World Cup", "season_id": "285023",
         "kickoff_utc": "2026-07-14T19:00:00Z", "home_id": "fra",
         "home": "France", "away_id": "bra", "away": "Brazil",
-        "venue": "MetLife Stadium", "round": "Semi-final", "stage": "Final Stage",
+        "venue": "MetLife Stadium", "venue_city": "New York",
+        "latitude": 40.8135, "longitude": -74.0745,
+        "round": "Semi-final", "stage": "Final Stage",
         "leg": None, "first_leg_home_score": None, "first_leg_away_score": None,
         "aggregate_home_score": None, "aggregate_away_score": None,
         "referee": "Jane Referee",
@@ -127,7 +133,11 @@ def _uefa_match(match_id, date, *, status="UPCOMING", second_leg=False):
         "competitionPhase": "QUALIFYING",
         "homeTeam": {"id": "kups", "internationalName": "KuPS Kuopio"},
         "awayTeam": {"id": "vardar", "internationalName": "Vardar"},
-        "stadium": {"translations": {"officialName": {"EN": "Kuopio Stadium"}}},
+        "stadium": {
+            "translations": {"officialName": {"EN": "Kuopio Stadium"}},
+            "city": {"translations": {"name": {"EN": "Kuopio"}}},
+            "geolocation": {"latitude": 62.895198, "longitude": 27.666192},
+        },
         "round": {"metaData": {"name": "First qualifying round"}},
         "referees": [
             {"role": "REFEREE_OBSERVER", "person": {"translations": {"name": {"EN": "Observer"}}}},
@@ -170,6 +180,8 @@ def test_uefa_feed_paginates_and_orients_first_leg_to_current_home() -> None:
     assert leg["leg"] == 2
     assert leg["referee"] == "Matthew Ref"
     assert leg["venue"] == "Kuopio Stadium"
+    assert leg["venue_city"] == "Kuopio"
+    assert leg["latitude"] == pytest.approx(62.895198)
     assert session.calls[0][1]["params"]["offset"] == 0
     assert session.calls[1][1]["params"]["offset"] == 2
     assert session.calls[0][1]["params"]["competitionId"] == "custom-ucl"

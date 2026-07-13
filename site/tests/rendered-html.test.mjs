@@ -24,6 +24,8 @@ test("server-renders the xg-edge live dashboard", async () => {
   assert.match(html, /Вероятности/);
   assert.match(html, /NO BET/);
   assert.match(html, /Франция/);
+  assert.match(html, /Поиск матча/);
+  assert.match(html, /Открыть полный разбор/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
@@ -35,6 +37,9 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   ]);
 
   assert.match(page, /reports\/live_predictions\.json/);
+  assert.match(page, /market_anchored|market_fair/);
+  assert.match(page, /Tail risk/);
+  assert.match(page, /Кандидат не является рекомендацией/);
   assert.match(page, /Asia\/Yekaterinburg/);
   assert.match(page, /recommendation/);
   assert.match(layout, /lang="ru"/);
