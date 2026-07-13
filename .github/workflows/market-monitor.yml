@@ -1,0 +1,68 @@
+name: Market monitor
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: xgedge-data-writers
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check configuration
+        id: config
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        shell: bash
+        run: |
+          if [ -n "$THE_ODDS_API_KEY" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "THE_ODDS_API_KEY is not configured; market capture skipped"
+          fi
+      - uses: actions/setup-python@v5
+        if: steps.config.outputs.enabled == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        if: steps.config.outputs.enabled == 'true'
+        run: pip install -e .[dev]
+      - name: Capture opening or closing-window odds
+        if: steps.config.outputs.enabled == 'true'
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: >-
+          python scripts/capture_bookmaker_odds.py
+          --fixtures reports/live/current_fixtures.json
+          --live-payload reports/live_predictions.json
+          --ledger reports/live/prospective_clv.json
+          --snapshot-output reports/live/bookmaker_odds.json
+      - name: Validate ledger
+        if: steps.config.outputs.enabled == 'true'
+        run: python -m pytest -q tests/test_bookmaker_odds.py tests/test_prospective.py tests/test_capture_bookmaker_odds.py
+      - name: Publish snapshots
+        if: steps.config.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/live/prospective_clv.json reports/live_predictions.json
+          if [ -f reports/live/bookmaker_odds.json ]; then
+            git add reports/live/bookmaker_odds.json
+          fi
+          if git diff --cached --quiet; then
+            echo "No market-data changes"
+          else
+            git commit -m "data: capture bookmaker odds and prospective CLV"
+            git push
+          fi

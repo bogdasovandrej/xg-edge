@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0 — 2026-07-14
+
+- Added an official The Odds API adapter and a quota-aware cloud market monitor.
+- Added an append-only prospective ledger with post-kickoff CLV finalization,
+  model/competition cohorts and fixed-horizon confirmation.
+- Restricted confirmatory CLV to an auditable Pinnacle 1X2 price universe;
+  non-sharp consensus remains diagnostic only.
+- Added automatic official FIFA/UEFA result settlement and calibration metrics.
+- Added a bounded StatsBomb Open Data adapter for historical event-level xG,
+  npxG, penalties, lineups, referees and dismissals.
+- Replaced hard-coded dashboard CLV numbers with the live evidence state.
+- Hardened public snapshots against stale, in-play and pre-forecast odds, JSON
+  NaN, secret-bearing HTTP errors and out-of-order captures.
+
 ## 0.4.1 — 2026-07-13
 
 - Updated the dashboard to separate the anchored holdout calibration gain from

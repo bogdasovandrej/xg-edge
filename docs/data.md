@@ -87,3 +87,33 @@ build_features переносит odds без использования в фу
 
 Эти свойства покрыты regression-тестами, включая order-invariance одной даты,
 same-day bankroll и cluster bootstrap.
+
+## Проспективные коэффициенты и CLV
+
+The Odds API используется только через официальный v4 endpoint и секрет
+`THE_ODDS_API_KEY`. В репозиторий попадают нормализованные цены и quota headers,
+но никогда не API key или полный URL ошибки.
+
+- production market: `h2h`, region `eu`;
+- discovery: максимум один запрос на sport key за 24 часа;
+- closing window: последние 60 минут до kickoff, poll каждые 15 минут;
+- фактическим временем снимка считается `received_at` после HTTP-ответа;
+- ответ после kickoff не допускается ни в CLV, ни в публичный prematch market;
+- shadow taken price и confirmatory close берутся только у Pinnacle;
+- median других букмекеров — diagnostic fallback, не confirmatory evidence;
+- CLV фиксируется после kickoff и не зависит от результата матча;
+- result settlement отдельно считает log-loss и multiclass Brier;
+- каждая комбинация competition/model/probability basis/policy образует
+  независимую когорту с одной проверкой на фиксированном horizon n=100.
+
+## StatsBomb Open Data
+
+`statsbomb-open-data` — легальный исторический event-level слой, а не замена
+текущей Opta. Adapter сохраняет обязательную атрибуцию, каталог покрытия и
+флаг `current_coverage_guaranteed: false`. Для одного явно выбранного матча он
+нормализует xG/npxG, пенальти, составы, судью и удаления с минутой и
+`score_before`; удары серии пенальти не включаются в match xG.
+
+По умолчанию CLI загружает только компактный `competitions.json`. Events и
+lineups скачиваются только с явным `--match-id`, чтобы случайно не копировать
+весь открытый архив.

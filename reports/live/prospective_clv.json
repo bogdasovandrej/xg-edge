@@ -1,0 +1,68 @@
+{
+  "schema_version": "prospective-clv/1.2",
+  "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+  "policy": {
+    "market": "1X2",
+    "taken_benchmark": "pinnacle",
+    "closing_benchmark": "pinnacle",
+    "region": "eu",
+    "odds_format": "decimal",
+    "commission": "none",
+    "edge_threshold": 0.03,
+    "max_odds": 6.0,
+    "closing_window_minutes": 60,
+    "confirmatory_horizon": 100,
+    "ordering": [
+      "kickoff_utc",
+      "fixture_id"
+    ],
+    "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
+  },
+  "updated_at": "2026-07-14T00:00:00Z",
+  "cohorts": {},
+  "fixtures": {},
+  "gate": {
+    "action": "NO BET",
+    "reason": "global_gate_disabled_cohort_specific_only",
+    "min_independent_matches": 100,
+    "clv": {
+      "mean": null,
+      "median": null,
+      "share_positive": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n": 0,
+      "n_clusters": 0,
+      "bootstrap_unit": "cluster"
+    },
+    "calibration": {
+      "n": 0,
+      "mean_logloss": null,
+      "mean_brier": null
+    },
+    "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+    "policy": {
+      "market": "1X2",
+      "taken_benchmark": "pinnacle",
+      "closing_benchmark": "pinnacle",
+      "region": "eu",
+      "odds_format": "decimal",
+      "commission": "none",
+      "edge_threshold": 0.03,
+      "max_odds": 6.0,
+      "closing_window_minutes": 60,
+      "confirmatory_horizon": 100,
+      "ordering": [
+        "kickoff_utc",
+        "fixture_id"
+      ],
+      "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
+    },
+    "cohorts": {},
+    "cohort_count": 0,
+    "tracked_fixtures": 0,
+    "shadow_candidates": 0,
+    "confirmatory_ready": 0,
+    "diagnostic_closes": 0
+  }
+}

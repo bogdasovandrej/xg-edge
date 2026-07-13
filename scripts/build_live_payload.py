@@ -14,7 +14,9 @@ from xgedge.decision.live_market import (
     market_index,
 )
 from xgedge.data.point_in_time import available_snapshot
+from xgedge.data.bookmaker_odds import apply_odds_snapshot_to_live_payload
 from xgedge.dossier.builder import build_match_dossier
+from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
 
 
 TEAM_RU = {
@@ -289,6 +291,8 @@ def build_payload(
     world_cup_history: dict | None = None,
     rankings: dict | None = None,
     context_document: dict | None = None,
+    prospective_ledger: dict | None = None,
+    odds_snapshot: dict | None = None,
 ) -> dict:
     fixture_by_id = _fixture_index(fixtures)
     markets = market_index(market_document)
@@ -307,7 +311,7 @@ def build_payload(
     )
     rows = _world_cup_rows(world_cup, fixture_by_id, markets, anchor, dossiers) + _ucl_rows(ucl, fixture_by_id, dossiers)
     rows.sort(key=lambda row: (row["kickoff_utc"], row["competition"], row["id"]))
-    return {
+    payload = {
         "generated_at": generated_at,
         "status": "experimental-no-bet",
         "betting_gate": {
@@ -316,6 +320,13 @@ def build_payload(
         },
         "forecasts": rows,
     }
+    if odds_snapshot is not None:
+        payload = apply_odds_snapshot_to_live_payload(
+            payload, odds_snapshot, now=generated_at
+        )
+    if prospective_ledger is not None:
+        payload = apply_summary_to_live_payload(payload, prospective_summary(prospective_ledger))
+    return payload
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -328,6 +339,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--world-cup-history", type=Path)
     parser.add_argument("--rankings", type=Path)
     parser.add_argument("--contexts", type=Path)
+    parser.add_argument("--prospective-ledger", type=Path)
+    parser.add_argument("--odds-snapshot", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--generated-at")
     args = parser.parse_args(argv)
@@ -341,6 +354,12 @@ def main(argv: list[str] | None = None) -> None:
         world_cup_history=_read(args.world_cup_history) if args.world_cup_history else None,
         rankings=_read(args.rankings) if args.rankings else None,
         context_document=_read(args.contexts) if args.contexts else None,
+        prospective_ledger=_read(args.prospective_ledger) if args.prospective_ledger else None,
+        odds_snapshot=(
+            _read(args.odds_snapshot)
+            if args.odds_snapshot and args.odds_snapshot.exists()
+            else None
+        ),
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

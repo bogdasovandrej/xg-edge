@@ -1,0 +1,44 @@
+name: Official result monitor
+
+on:
+  schedule:
+    - cron: "11,41 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: xgedge-data-writers
+  cancel-in-progress: false
+
+jobs:
+  settle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e .[dev]
+      - name: Finalize closing line and settle finished matches
+        run: >-
+          python scripts/settle_prospective_results.py
+          --ledger reports/live/prospective_clv.json
+          --live-payload reports/live_predictions.json
+      - name: Validate result contract
+        run: python -m pytest -q tests/test_official_results.py tests/test_prospective.py
+      - name: Publish changed settlement
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/live/prospective_clv.json reports/live_predictions.json
+          if git diff --cached --quiet; then
+            echo "No completed prospective fixtures"
+          else
+            git commit -m "data: settle prospective match results"
+            git push
+          fi

@@ -24,6 +24,13 @@ type Forecast = {
   first_leg?: string | null;
   probability_basis?: string | null;
   raw_model_1x2?: { home: number; draw: number; away: number } | null;
+  evaluation_cohort_id?: string | null;
+  cohort_gate?: {
+    allowed?: boolean;
+    action?: string | null;
+    reason?: string | null;
+    decision_status?: string | null;
+  } | null;
   details?: MatchDetails | null;
 };
 
@@ -56,11 +63,36 @@ type TeamDetail = {
 type CandidateBet = {
   rank?: number;
   selection?: string;
+  outcome?: string;
   probability?: number | null;
   fair_odds?: number | null;
   market_odds?: number | null;
   point_edge?: number | null;
   status?: string | null;
+  edge_status?: string | null;
+  bookmaker?: string | null;
+  bookmaker_key?: string | null;
+  source_provider?: string | null;
+};
+
+type MarketPrice = {
+  odds?: number | null;
+  bookmaker?: string | null;
+  bookmaker_key?: string | null;
+};
+
+type MarketSnapshot = {
+  source_provider?: string | null;
+  status?: "SHADOW_ONLY" | "STALE" | "REJECTED" | string | null;
+  reason?: string | null;
+  captured_at_utc?: string | null;
+  bookmakers?: number | null;
+  best_1x2?: {
+    home?: MarketPrice | null;
+    draw?: MarketPrice | null;
+    away?: MarketPrice | null;
+  } | null;
+  source_url?: string | null;
 };
 
 type MatchDetails = {
@@ -93,12 +125,55 @@ type MatchDetails = {
     calibration_warning?: string;
   } | null;
   candidate_bets?: CandidateBet[] | null;
+  market_snapshot?: MarketSnapshot | null;
+  market_candidates?: CandidateBet[] | null;
   betting_gate?: { allowed?: boolean; reason?: string } | null;
+};
+
+type ProspectiveClvSummary = {
+  action?: "BET" | "NO BET" | string | null;
+  reason?: string | null;
+  min_independent_matches?: number | null;
+  clv?: {
+    mean?: number | null;
+    median?: number | null;
+    share_positive?: number | null;
+    ci_low?: number | null;
+    ci_high?: number | null;
+    n?: number | null;
+    n_clusters?: number | null;
+    bootstrap_unit?: string | null;
+  } | null;
+  calibration?: {
+    n?: number | null;
+    mean_logloss?: number | null;
+    mean_brier?: number | null;
+  } | null;
+  tracked_fixtures?: number | null;
+  shadow_candidates?: number | null;
+  confirmatory_ready?: number | null;
+  cohort_count?: number | null;
+  cohorts?: Record<string, {
+    action?: string | null;
+    reason?: string | null;
+    min_independent_matches?: number | null;
+    confirmatory_ready?: number | null;
+    tracked_fixtures?: number | null;
+    dimensions?: {
+      competition_or_sport?: string | null;
+      model?: string | null;
+      probability_basis?: string | null;
+    } | null;
+    clv?: ProspectiveClvSummary["clv"];
+    decision?: { status?: string | null; locked?: boolean | null } | null;
+  }> | null;
 };
 
 type LivePayload = {
   generated_at: string;
   status: string;
+  betting_gate?: { allowed?: boolean; reason?: string | null } | null;
+  prospective_clv?: ProspectiveClvSummary | null;
   forecasts: Forecast[];
 };
 
@@ -108,6 +183,25 @@ const DATA_URL =
 const FALLBACK: LivePayload = {
   generated_at: "2026-07-13T00:00:00Z",
   status: "official-fixtures-only",
+  betting_gate: { allowed: false, reason: "insufficient_independent_matches" },
+  prospective_clv: {
+    action: "NO BET",
+    reason: "insufficient_independent_matches",
+    min_independent_matches: 100,
+    clv: {
+      mean: null,
+      median: null,
+      share_positive: null,
+      ci_low: null,
+      ci_high: null,
+      n: 0,
+      n_clusters: 0,
+      bootstrap_unit: "cluster",
+    },
+    calibration: { n: 0, mean_logloss: null, mean_brier: null },
+    tracked_fixtures: 0,
+    shadow_candidates: 0,
+  },
   forecasts: [
     {
       id: "400021541",
@@ -149,6 +243,75 @@ const localTime = (iso: string) =>
 const competitionName = (name: string) =>
   name.includes("World Cup") ? "ЧМ-2026" : "Квалификация ЛЧ";
 
+const finiteNumber = (value?: number | null) =>
+  typeof value === "number" && Number.isFinite(value) ? value : null;
+
+const signedPercent = (value?: number | null) => {
+  const safe = finiteNumber(value);
+  if (safe == null) return "—";
+  const sign = safe > 0 ? "+" : safe < 0 ? "−" : "";
+  return `${sign}${Math.abs(safe * 100).toFixed(2)}%`;
+};
+
+const gateReason = (reason?: string | null) => ({
+  insufficient_independent_matches: "недостаточно независимых матчей",
+  confirmatory_horizon_not_reached: "фиксированный горизонт ещё не достигнут",
+  awaiting_one_shot_finalization: "ожидается однократная проверка",
+  global_gate_disabled_cohort_specific_only: "общий гейт закрыт: модели проверяются раздельно",
+  cohort_not_yet_tracked: "эта модель ещё не набрала live-наблюдений",
+  clv_lower_ci_not_positive: "нижняя граница CLV не выше нуля",
+  positive_clv_confirmed: "положительный CLV подтверждён",
+}[reason || ""] || "prospective CLV ещё не подтверждён");
+
+function ProspectiveClvPanel({
+  summary,
+  allowed,
+}: {
+  summary?: ProspectiveClvSummary | null;
+  allowed: boolean;
+}) {
+  const cohortRows = Object.values(summary?.cohorts || {});
+  const leading = cohortRows.sort((a, b) =>
+    (finiteNumber(b.confirmatory_ready) ?? 0) - (finiteNumber(a.confirmatory_ready) ?? 0) ||
+    (finiteNumber(b.tracked_fixtures) ?? 0) - (finiteNumber(a.tracked_fixtures) ?? 0)
+  )[0];
+  const clv = leading?.clv || summary?.clv;
+  const observations = Math.max(0, Math.trunc(finiteNumber(clv?.n) ?? 0));
+  const independentMatches = Math.max(0, Math.trunc(finiteNumber(clv?.n_clusters) ?? observations));
+  const minimum = Math.max(1, Math.trunc(finiteNumber(leading?.min_independent_matches) ?? finiteNumber(summary?.min_independent_matches) ?? 100));
+  const ciLow = finiteNumber(clv?.ci_low);
+  const ciHigh = finiteNumber(clv?.ci_high);
+  const mean = finiteNumber(clv?.mean);
+  const reason = leading?.reason || summary?.reason;
+  const gateOpen = allowed && leading?.action === "BET" && reason === "positive_clv_confirmed" &&
+    independentMatches >= minimum && ciLow != null && ciLow > 0;
+  const waiting = independentMatches < minimum;
+  const status = gateOpen ? "OPEN" : waiting ? "WAIT" : "CLOSED";
+  const interval = observations > 0 && ciLow != null && ciHigh != null
+    ? `${signedPercent(ciLow)}…${signedPercent(ciHigh)}`
+    : "—";
+
+  return (
+    <aside className="truth-panel" aria-label="Статус prospective CLV">
+      <span className="panel-label">Текущий вердикт</span>
+      <strong className={gateOpen ? "gate-open" : undefined}>{gateOpen ? "BET" : "NO BET"}</strong>
+      <p><b>{status}</b> · {gateReason(reason)}</p>
+      <dl>
+        <div><dt>Prospective CLV</dt><dd>{observations > 0 ? signedPercent(mean) : "—"}</dd></div>
+        <div><dt>95% CI CLV</dt><dd>{interval}</dd></div>
+        <div><dt>Независимая выборка</dt><dd>{independentMatches} / {minimum}</dd></div>
+      </dl>
+      <small>
+        {!leading
+          ? "CLV пока не измерен: нет отдельной когорты model × competition с сохранённой ценой и closing line."
+          : observations < minimum
+            ? `Лидирующая когорта: ${leading.dimensions?.competition_or_sport || "турнир"} · ${leading.dimensions?.model || "модель"}. Промежуточный CLV скрыт до заранее заданного n=${minimum}.`
+            : `Однократная проверка зафиксирована на ${minimum} матчах; последующие матчи не меняют принятое решение.`}
+      </small>
+    </aside>
+  );
+}
+
 function ProbabilityBar({ label, value }: { label: string; value?: number | null }) {
   const width = value == null ? 0 : Math.max(2, value * 100);
   return (
@@ -169,6 +332,105 @@ const levelName = (value?: string | null) => ({
   elite: "элитный", strong: "сильный", average: "средний", developing: "развивающийся",
   high: "высокий", medium: "средний", low: "низкий",
 }[value || ""] || value || "не оценён");
+
+const marketSnapshotReason = (status?: string | null, reason?: string | null) => {
+  const explanations: Record<string, string> = {
+    missing_received_at: "у снимка отсутствует время получения",
+    missing_kickoff: "не подтверждено время начала матча",
+    captured_at_or_after_kickoff: "снимок получен во время или после начала матча",
+    captured_before_forecast: "снимок старше опубликованного прогноза",
+    captured_in_future: "время снимка находится в будущем",
+    older_than_ttl: "снимок старше допустимого TTL",
+    incomplete_1x2: "нет полного набора цен П1/X/П2",
+    invalid_forecast_probabilities: "вероятности прогноза не прошли проверку",
+  };
+  if (reason) return `${explanations[reason] || "снимок не прошёл проверку"} (${reason})`;
+  if (status === "STALE") return "снимок устарел, код причины не передан";
+  if (status === "REJECTED") return "снимок отклонён, код причины не передан";
+  return "у SHADOW_ONLY-снимка отсутствует captured_at_utc";
+};
+
+function BookmakerSnapshot({ details }: { details?: MatchDetails | null }) {
+  const snapshot = details?.market_snapshot;
+  if (!snapshot) return null;
+
+  const capturedAt = snapshot.captured_at_utc?.trim() || null;
+  const eligibleFresh = snapshot.status === "SHADOW_ONLY" && capturedAt != null;
+  const booksValue = finiteNumber(snapshot.bookmakers);
+  const books = booksValue == null ? null : Math.max(0, Math.trunc(booksValue));
+  const outcomes = [
+    ["home", "П1"],
+    ["draw", "X"],
+    ["away", "П2"],
+  ] as const;
+  const priceRows = outcomes.flatMap(([key, label]) => {
+    const price = snapshot.best_1x2?.[key];
+    return finiteNumber(price?.odds) == null ? [] : [{ key, label, price }];
+  });
+  const shadowCandidates = (details?.market_candidates || [])
+    .filter((candidate) => candidate.status === "SHADOW_ONLY")
+    .slice(0, 3);
+  const hiddenReason = eligibleFresh
+    ? "нет полного проверенного набора цен П1/X/П2 (incomplete_1x2)"
+    : marketSnapshotReason(snapshot.status, snapshot.reason);
+
+  return (
+    <>
+      <section className={`market-snapshot market-snapshot-${String(snapshot.status || "unknown").toLowerCase()}`}>
+        <div className="dossier-title">
+          <h4>Снимок рынка</h4>
+          <span className={eligibleFresh ? "shadow-badge" : "snapshot-blocked"}>
+            {snapshot.status || "UNKNOWN"}{eligibleFresh ? " · НЕ РЕКОМЕНДАЦИЯ" : ""}
+          </span>
+        </div>
+        <dl className="snapshot-meta">
+          <div><dt>captured_at_utc</dt><dd>{capturedAt ? <time dateTime={capturedAt}>{capturedAt}</time> : "отсутствует"}</dd></div>
+          <div><dt>books</dt><dd>{books == null ? "не указано" : books}</dd></div>
+          <div><dt>provider</dt><dd>{snapshot.source_provider || "не указан"}</dd></div>
+        </dl>
+        {eligibleFresh && priceRows.length === 3 ? (
+          <div className="snapshot-prices" aria-label="Зафиксированные цены 1X2">
+            {priceRows.map(({ key, label, price }) => (
+              <div key={key}>
+                <b>{label}</b>
+                <strong>{decimal(price.odds)}</strong>
+                <span>{price.bookmaker || price.bookmaker_key || "book не указан"}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="snapshot-warning">Цены и shadow-кандидаты скрыты: {hiddenReason}.</p>
+        )}
+        {eligibleFresh && priceRows.length === 3 && (
+          <p className="audit-note">Это зафиксированный предматчевый SHADOW_ONLY-снимок, а не текущая цена.</p>
+        )}
+      </section>
+
+      {eligibleFresh && priceRows.length === 3 && shadowCandidates.length > 0 && (
+        <section className="shadow-candidate-section">
+          <div className="dossier-title">
+            <h4>Топ-3 shadow-кандидата</h4>
+            <span className="shadow-badge">SHADOW_ONLY · НЕ РЕКОМЕНДАЦИЯ</span>
+          </div>
+          <div className="candidate-grid">
+            {shadowCandidates.map((candidate, index) => (
+              <div key={`${candidate.selection}-${candidate.bookmaker_key}-${index}`}>
+                <b>#{candidate.rank || index + 1} · {candidate.selection || "исход не указан"}</b>
+                <span>Вероятность {percent(candidate.probability)}</span>
+                <span>Fair {decimal(candidate.fair_odds)} · снимок {decimal(candidate.market_odds)}</span>
+                <span>{candidate.bookmaker || candidate.bookmaker_key || "book не указан"}</span>
+                <strong className={(candidate.point_edge || 0) > 0 ? "positive-edge" : "negative-edge"}>
+                  shadow edge {candidate.point_edge == null ? "—" : `${(candidate.point_edge * 100).toFixed(1)}%`}
+                </strong>
+              </div>
+            ))}
+          </div>
+          <p className="audit-note">Автоматические кандидаты ведутся отдельно от ручного списка и используются только для prospective CLV-аудита.</p>
+        </section>
+      )}
+    </>
+  );
+}
 
 function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: string }) {
   const matches = team?.recent_matches || [];
@@ -220,6 +482,8 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
           </section>
         )}
 
+        <BookmakerSnapshot details={details} />
+
         <div className="team-comparison">
           <TeamHistory team={details?.teams?.home} fallbackName={forecast.home} />
           <TeamHistory team={details?.teams?.away} fallbackName={forecast.away} />
@@ -235,7 +499,7 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
         <section className="candidate-section">
           <div className="dossier-title"><h4>Топ-3 кандидата рынка</h4><span className="no-bet">NO BET</span></div>
           {candidates.length ? <div className="candidate-grid">{candidates.slice(0, 3).map((bet, index) => <div key={`${bet.selection}-${index}`}><b>#{bet.rank || index + 1} · {bet.selection}</b><span>Вероятность {percent(bet.probability)}</span><span>Fair {decimal(bet.fair_odds)} · рынок {decimal(bet.market_odds)}</span><strong className={(bet.point_edge || 0) > 0 ? "positive-edge" : "negative-edge"}>оценка {bet.point_edge == null ? "нет цены" : `${(bet.point_edge * 100).toFixed(1)}%`}</strong></div>)}</div> : <p className="unknown-data">Нет синхронной котировки — оценка ставки невозможна.</p>}
-          <p className="audit-note">Кандидат не является рекомендацией: CLV-гейт остаётся закрытым.</p>
+          <p className="audit-note">Кандидат не является рекомендацией: cohort gate — {forecast.cohort_gate?.decision_status || "pending"} ({forecast.cohort_gate?.reason || "cohort_not_yet_tracked"}).</p>
         </section>
       </div>
     </details>
@@ -357,17 +621,10 @@ export default function Home() {
             <a href="https://github.com/bogdasovandrej/xg-edge" className="secondary-action">Открытый код ↗</a>
           </div>
         </div>
-        <aside className="truth-panel">
-          <span className="panel-label">Текущий вердикт</span>
-          <strong>NO BET</strong>
-          <p>Market-anchor holdout 2025/26</p>
-          <dl>
-            <div><dt>Shadow CLV</dt><dd>−4.83%</dd></div>
-            <div><dt>Log-loss</dt><dd>0.9834 <small>vs 0.9846</small></dd></div>
-            <div><dt>Live-выборка</dt><dd>0 / 100</dd></div>
-          </dl>
-          <small>95% CI CLV: −8.00%…−1.82%. Красный статус снимется только если нижняя граница prospective CLV станет выше нуля.</small>
-        </aside>
+        <ProspectiveClvPanel
+          summary={payload.prospective_clv}
+          allowed={payload.betting_gate?.allowed === true}
+        />
       </section>
 
       <section className="ticker" aria-label="Принципы модели">
