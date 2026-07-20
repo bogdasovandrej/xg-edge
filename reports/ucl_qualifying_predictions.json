@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-07-19T19:36:25Z",
-  "as_of_utc": "2026-07-19T19:36:24Z",
+  "generated_at_utc": "2026-07-20T04:08:53Z",
+  "as_of_utc": "2026-07-20T04:08:51Z",
   "model": "experimental ClubElo-to-Poisson qualifier baseline",
   "calibration": {
     "version": "clubelo-poisson-v1",
@@ -31,7 +31,7 @@
     },
     "ratings": {
       "provider": "ClubElo",
-      "url": "http://api.clubelo.com/2026-07-19",
+      "url": "http://api.clubelo.com/2026-07-20",
       "documentation": "http://clubelo.com/API",
       "attribution": "Club strength ratings supplied by ClubElo."
     }
@@ -163,7 +163,7 @@
           "elo": 1246.33862305,
           "rank": null,
           "valid_from": "2026-07-15",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-21"
         },
         "away": {
           "club": "Shamrock",
@@ -171,7 +171,7 @@
           "elo": 1313.01416016,
           "rank": null,
           "valid_from": "2026-07-15",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-21"
         },
         "adjusted_elo_difference": -1.6755371100000502
       },
@@ -399,7 +399,7 @@
           "elo": 1189.47131348,
           "rank": null,
           "valid_from": "2026-01-01",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-21"
         },
         "away": {
           "club": "Kauno Zalgiris",
@@ -407,7 +407,7 @@
           "elo": 1131.27331543,
           "rank": null,
           "valid_from": "2026-07-15",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-21"
         },
         "adjusted_elo_difference": 123.19799805000002
       },
@@ -489,7 +489,7 @@
           "elo": 1059.32751465,
           "rank": null,
           "valid_from": "2026-07-15",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-21"
         },
         "away": {
           "club": "Crvena Zvezda",
@@ -497,7 +497,7 @@
           "elo": 1586.15527344,
           "rank": null,
           "valid_from": "2026-07-18",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-21"
         },
         "adjusted_elo_difference": -461.82775878999996
       },
@@ -593,7 +593,7 @@
           "elo": 1456.90454102,
           "rank": null,
           "valid_from": "2026-03-20",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-22"
         },
         "away": {
           "club": "Kairat",
@@ -601,7 +601,7 @@
           "elo": 1294.38867188,
           "rank": null,
           "valid_from": "2026-07-16",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-22"
         },
         "adjusted_elo_difference": 227.51586913999995
       },
@@ -683,42 +683,42 @@
           "elo": 1441.24841309,
           "rank": null,
           "valid_from": "2026-07-18",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-22"
         },
         "away": {
           "club": "Craiova",
           "country": "ROM",
-          "elo": 1458.68518066,
+          "elo": 1458.68530273,
           "rank": null,
           "valid_from": "2026-07-19",
-          "valid_to": "2026-07-25"
+          "valid_to": "2026-07-22"
         },
-        "adjusted_elo_difference": 47.56323242999997
+        "adjusted_elo_difference": 47.56311035999988
       },
       "expected_goals_90m": {
-        "home": 1.505265118119901,
-        "away": 1.1447348818800989
+        "home": 1.5052646612035463,
+        "away": 1.1447353387964536
       },
       "probabilities_90m": {
-        "home_win": 0.4552897675772336,
-        "draw": 0.2560369598747124,
-        "away_win": 0.288673272548054
+        "home_win": 0.4552895462251457,
+        "draw": 0.2560369848711891,
+        "away_win": 0.2886734689036652
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.36518858708498175,
-            "high": 0.5441552197230413
+            "low": 0.3651883714478975,
+            "high": 0.5441550098039044
           },
           "draw": {
-            "low": 0.2413117586475306,
-            "high": 0.2609866266196705
+            "low": 0.24131180419419784,
+            "high": 0.2609866252897522
           },
           "away_win": {
-            "low": 0.21453302162942806,
-            "high": 0.3738247862953477
+            "low": 0.21453318600189772,
+            "high": 0.3738250032623503
           }
         }
       },
@@ -727,31 +727,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12174126275133212
+          "probability": 0.12174127438966714
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10634887140975885
+          "probability": 0.10634883912788341
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09162643812772493
+          "probability": 0.09162641907432513
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08087695734515446
+          "probability": 0.08087698962674639
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08004162324226442
+          "probability": 0.08004157464961194
         }
       ],
       "qualification": null,
@@ -773,7 +773,7 @@
           "elo": 1157.89331055,
           "rank": null,
           "valid_from": "2026-07-16",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-22"
         },
         "away": {
           "club": "Celje",
@@ -781,7 +781,7 @@
           "elo": 1455.5267334,
           "rank": null,
           "valid_from": "2026-07-18",
-          "valid_to": "2026-08-29"
+          "valid_to": "2026-07-22"
         },
         "adjusted_elo_difference": -232.63342285
       },
