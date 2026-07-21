@@ -51,6 +51,24 @@ def _forecast(
     }
 
 
+def test_ingest_preserves_per_forecast_generation_time_after_payload_refresh() -> None:
+    forecast = _forecast()
+    forecast["forecast_generated_at"] = "2026-07-14T11:30:00Z"
+    payload = _payload(forecast)
+    payload["generated_at"] = "2026-07-14T12:10:00Z"
+
+    ledger = ingest_odds_snapshot(
+        None,
+        _snapshot("2026-07-14T12:15:00Z", (2.20, 4.0, 4.0)),
+        fixtures=[_fixture()],
+        live_payload=payload,
+    )
+
+    assert ledger["fixtures"]["m1"]["forecast"]["generated_at"] == (
+        "2026-07-14T11:30:00Z"
+    )
+
+
 def _payload(*forecasts: dict) -> dict:
     return {
         "generated_at": "2026-07-14T12:00:00Z",

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0 — 2026-07-22
+
+- Added an immutable forecast evidence archive with hash-linked append events.
+- Added scheduled PAPER challenger evaluation and a guarded model registry.
+- Added a public predicted-vs-actual archive backed by frozen forecasts and
+  official 90-minute results.
+- Added a football-data.org v4 fixture adapter for the 2026/27 top-five league
+  calendar, gated behind `FOOTBALL_DATA_API_KEY`.
+- Added a high-score/totals audit for the last 100 EPL matches; no O3.5/O4.5
+  betting signal passed multiple-testing discipline.
+- Hardened score display: exact scores are shown as probability distributions,
+  never as promised results.
+
 ## 0.5.0 — 2026-07-14
 
 - Added an official The Odds API adapter and a quota-aware cloud market monitor.

@@ -118,17 +118,29 @@ def test_dossier_keeps_last_ten_official_and_rejects_future_context() -> None:
     lineups = available_snapshot(
         "official", [{"match_id": "future", "team_id": "A", "player_id": "1",
                       "player_name": "Player", "lineup_status": "starter",
-                      "is_confirmed": True}],
+                      "is_confirmed": True, "field_position": "MIDFIELDER",
+                      "jersey_number": 8}],
+        snapshot_at="2026-01-31T12:00:00Z",
+    )
+    coaches = available_snapshot(
+        "official",
+        [{
+            "match_id": "future", "team_id": "A", "coach_id": "c1",
+            "coach_name": "Coach A", "role": "head_coach",
+        }],
         snapshot_at="2026-01-31T12:00:00Z",
     )
     dossier = build_match_dossier(
         fixture, history, cutoff="2026-01-31T12:00:00Z",
-        contexts={"lineups": lineups},
+        contexts={"lineups": lineups, "coaches": coaches},
         forecast_probabilities={"home": .5, "draw": .3, "away": .2},
     )
 
     assert len(dossier["teams"]["home"]["recent_matches"]) == 10
     assert dossier["teams"]["home"]["likely_lineup"][0]["player_name"] == "Player"
+    assert dossier["teams"]["home"]["likely_lineup"][0]["field_position"] == "MIDFIELDER"
+    assert dossier["teams"]["home"]["coach"]["coach_name"] == "Coach A"
+    assert dossier["context_availability"]["coaches"]["status"] == "available"
     assert dossier["betting_gate"]["allowed"] is False
     assert dossier["tail_risk"]["interpretation"].endswith("not_black_swan_prediction")
     assert "fewer_than_10_official_matches_for_at_least_one_team" in dossier["data_quality"]["warnings"]

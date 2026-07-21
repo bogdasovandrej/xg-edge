@@ -1,0 +1,184 @@
+{
+  "schema_version": "paper-trading-ledger/1.0",
+  "event_schema_version": "paper-event/1.0",
+  "created_at": "2026-07-20T22:30:00Z",
+  "updated_at": "2026-07-20T22:30:00Z",
+  "policy": {
+    "mode": "PAPER_ONLY",
+    "real_money_execution": false,
+    "starting_balance_rub": 10000.0,
+    "target_balance_rub": 1000000.0,
+    "target_role": "diagnostic_only_not_ranking_input",
+    "ruin_threshold_rub": 100.0,
+    "maximum_stake_fraction": 0.01,
+    "maximum_quote_age_seconds": 1800,
+    "market": "REGULATION_1X2",
+    "one_candidate_per_match": true,
+    "strategy_ids": [
+      "flat_1pct",
+      "fractional_kelly_025",
+      "conservative_edge_5pp"
+    ],
+    "strategy_elimination": "disabled_until_preregistered_evidence",
+    "strategy_ranking_score": {
+      "roi_weight": 0.15,
+      "log_growth_per_bet_weight": 0.2,
+      "clv_weight": 0.65,
+      "max_drawdown_penalty": 1.0,
+      "ruin_rate_penalty": 2.0,
+      "full_evidence_bets": 100
+    },
+    "parlays": "disabled_until_singles_are_prospectively_validated"
+  },
+  "strategies": {
+    "flat_1pct": {
+      "strategy_id": "flat_1pct",
+      "label": "Фиксированные 1%",
+      "events": [
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "cycle_started",
+          "event_id": "event:cycle_started:flat_1pct:1",
+          "timestamp": "2026-07-20T22:30:00Z",
+          "strategy_id": "flat_1pct",
+          "cycle_id": "flat_1pct:cycle:1",
+          "starting_balance_rub": 10000.0
+        }
+      ]
+    },
+    "fractional_kelly_025": {
+      "strategy_id": "fractional_kelly_025",
+      "label": "1/4 Kelly, лимит 1%",
+      "events": [
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "cycle_started",
+          "event_id": "event:cycle_started:fractional_kelly_025:1",
+          "timestamp": "2026-07-20T22:30:00Z",
+          "strategy_id": "fractional_kelly_025",
+          "cycle_id": "fractional_kelly_025:cycle:1",
+          "starting_balance_rub": 10000.0
+        }
+      ]
+    },
+    "conservative_edge_5pp": {
+      "strategy_id": "conservative_edge_5pp",
+      "label": "Только edge от 5 п.п.",
+      "events": [
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "cycle_started",
+          "event_id": "event:cycle_started:conservative_edge_5pp:1",
+          "timestamp": "2026-07-20T22:30:00Z",
+          "strategy_id": "conservative_edge_5pp",
+          "cycle_id": "conservative_edge_5pp:cycle:1",
+          "starting_balance_rub": 10000.0
+        }
+      ]
+    }
+  },
+  "enrollments": {},
+  "settlements": {},
+  "update_history": [],
+  "paper_trading": {
+    "schema_version": "paper-trading-summary/1.0",
+    "status": "PAPER_ONLY_EMPTY",
+    "real_money_execution": false,
+    "updated_at": "2026-07-20T22:30:00Z",
+    "starting_balance_rub": 10000.0,
+    "target_balance_rub": 1000000.0,
+    "target_role": "diagnostic_only_not_ranking_input",
+    "totals": {
+      "strategies": 3,
+      "enrolled_matches": 0,
+      "settled_matches": 0,
+      "open_matches": 0,
+      "settled_bets": 0,
+      "open_bets": 0
+    },
+    "leaderboard": [
+      {
+        "rank": 1,
+        "strategy_id": "conservative_edge_5pp",
+        "label": "Только edge от 5 п.п.",
+        "score": 0.0,
+        "equity_balance_rub": 10000.0,
+        "available_balance_rub": 10000.0,
+        "pnl_rub": 0.0,
+        "roi": 0.0,
+        "max_drawdown": 0.0,
+        "log_growth": 0.0,
+        "mean_clv": null,
+        "total_staked_rub": 0.0,
+        "settled_bets": 0,
+        "open_bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "voids": 0,
+        "cycle_count": 1,
+        "ruin_count": 0,
+        "ruin_rate": 0.0,
+        "target_hit_count": 0
+      },
+      {
+        "rank": 2,
+        "strategy_id": "flat_1pct",
+        "label": "Фиксированные 1%",
+        "score": 0.0,
+        "equity_balance_rub": 10000.0,
+        "available_balance_rub": 10000.0,
+        "pnl_rub": 0.0,
+        "roi": 0.0,
+        "max_drawdown": 0.0,
+        "log_growth": 0.0,
+        "mean_clv": null,
+        "total_staked_rub": 0.0,
+        "settled_bets": 0,
+        "open_bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "voids": 0,
+        "cycle_count": 1,
+        "ruin_count": 0,
+        "ruin_rate": 0.0,
+        "target_hit_count": 0
+      },
+      {
+        "rank": 3,
+        "strategy_id": "fractional_kelly_025",
+        "label": "1/4 Kelly, лимит 1%",
+        "score": 0.0,
+        "equity_balance_rub": 10000.0,
+        "available_balance_rub": 10000.0,
+        "pnl_rub": 0.0,
+        "roi": 0.0,
+        "max_drawdown": 0.0,
+        "log_growth": 0.0,
+        "mean_clv": null,
+        "total_staked_rub": 0.0,
+        "settled_bets": 0,
+        "open_bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "voids": 0,
+        "cycle_count": 1,
+        "ruin_count": 0,
+        "ruin_rate": 0.0,
+        "target_hit_count": 0
+      }
+    ],
+    "selection_policy": {
+      "status": "PREREGISTERED",
+      "minimum_settled_bets_for_full_evidence": 100,
+      "speed_to_target_used_for_ranking": false,
+      "strategy_deletion": false
+    },
+    "parlays": {
+      "status": "DISABLED",
+      "reason": "singles_require_prospective_clv_validation_before_parlay_research"
+    }
+  }
+}

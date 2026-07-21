@@ -15,8 +15,12 @@ from xgedge.decision.live_market import (
 )
 from xgedge.data.point_in_time import available_snapshot
 from xgedge.data.bookmaker_odds import apply_odds_snapshot_to_live_payload
+from xgedge.decision.ranking import rank_paper_candidates
 from xgedge.dossier.builder import build_match_dossier
 from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
+from xgedge.markets.markets import prob_over
+from xgedge.models.dixon_coles import score_matrix
+from xgedge.simulation.ledger import public_paper_summary
 
 
 TEAM_RU = {
@@ -42,11 +46,104 @@ def _uncertainty(low: float | None, high: float | None) -> str:
     return "низкая"
 
 
+def _as_utc(value: Any) -> datetime | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def _future_forecasts(rows: list[dict], generated_at: str) -> list[dict]:
+    """Keep only fixtures whose regulation kickoff is strictly in the future."""
+    cutoff = _as_utc(generated_at)
+    if cutoff is None:
+        raise ValueError("generated_at must be an ISO-8601 timestamp")
+    return [
+        row
+        for row in rows
+        if (kickoff := _as_utc(row.get("kickoff_utc"))) is not None
+        and kickoff > cutoff
+    ]
+
+
+def _uefa_stage_label(fixture: dict, prediction: dict) -> str:
+    round_name = fixture.get("round") or prediction.get("round")
+    translated = {
+        "First qualifying round": "1-й квалификационный раунд",
+        "Second qualifying round": "2-й квалификационный раунд",
+        "Third qualifying round": "3-й квалификационный раунд",
+        "Play-offs": "Раунд плей-офф",
+    }.get(str(round_name), str(round_name or fixture.get("stage") or "Квалификация"))
+    leg = fixture.get("leg") if fixture.get("leg") is not None else prediction.get("leg")
+    leg_label = {1: "первый матч", 2: "ответный матч"}.get(leg)
+    return f"{translated} · {leg_label}" if leg_label else translated
+
+
 def _fixture_index(payload: Any) -> dict[str, dict]:
     rows = payload.get("fixtures", []) if isinstance(payload, dict) else payload
     if not isinstance(rows, list):
         raise ValueError("fixture snapshot must be a list or contain a fixtures list")
     return {str(row["id"]): row for row in rows if isinstance(row, dict) and row.get("id")}
+
+
+def _top_five_rows(document: dict | None) -> list[dict]:
+    if not isinstance(document, dict) or document.get("schema_version") != "top-five-fixtures/1.0":
+        return []
+    fixtures = document.get("fixtures")
+    if not isinstance(fixtures, list):
+        return []
+    rows = []
+    for fixture in fixtures:
+        if not isinstance(fixture, dict):
+            continue
+        fixture_id = str(fixture.get("id") or "").strip()
+        home = str(fixture.get("home") or "").strip()
+        away = str(fixture.get("away") or "").strip()
+        kickoff = fixture.get("kickoff_utc")
+        if not fixture_id or not home or not away or _as_utc(kickoff) is None:
+            continue
+        rows.append({
+            "id": fixture_id,
+            "competition": fixture.get("competition") or "Top-5 league",
+            "stage": fixture.get("round") or fixture.get("stage") or "Domestic league",
+            "kickoff_utc": kickoff,
+            "home": home,
+            "away": away,
+            "venue": fixture.get("venue"),
+            "model": "Pending top-five model",
+            "forecast_generated_at": document.get("generated_at"),
+            "p_home": None,
+            "p_draw": None,
+            "p_away": None,
+            "p_over25": None,
+            "p_btts": None,
+            "score_distribution": None,
+            "uncertainty": "не оценена",
+            "recommendation": "NO BET",
+            "first_leg": None,
+            "probability_basis": "calendar_only_no_validated_top5_features",
+            "details": {
+                "data_quality": {
+                    "score": 0,
+                    "label": "low",
+                    "sources": ["football-data.org"],
+                    "warnings": [
+                        "Top-five fixture loaded, but no validated point-in-time xG feature set is attached yet."
+                    ],
+                },
+                "candidate_bets": [],
+                "betting_gate": {
+                    "allowed": False,
+                    "reason": "top_five_model_not_validated",
+                },
+            },
+        })
+    return rows
 
 
 def _world_cup_history(document: dict | None) -> list[dict]:
@@ -76,6 +173,15 @@ def _national_priors(rankings: dict | None) -> dict[tuple[str, str], float]:
         for row in rows
         if isinstance(row, dict) and row.get("team_id") is not None and row.get("rating") is not None
     }
+
+
+def _uefa_history(document: dict | None) -> list[dict]:
+    if not isinstance(document, dict) or document.get("schema_version") != "uefa-club-history/1.0":
+        return []
+    rows = document.get("matches")
+    if not isinstance(rows, list):
+        raise ValueError("UEFA history document must contain a matches list")
+    return [dict(row) for row in rows if isinstance(row, dict)]
 
 
 def _fixture_context(fixture: dict, generated_at: str, supplied: dict | None) -> dict:
@@ -116,6 +222,55 @@ def _fair_candidates(probabilities: dict) -> list[dict]:
     return rows
 
 
+def _score_distribution(
+    scores: Any,
+    *,
+    lambda_home: Any,
+    lambda_away: Any,
+    rho: Any = 0.0,
+) -> dict[str, Any]:
+    scenarios = []
+    for source in scores if isinstance(scores, list) else []:
+        if not isinstance(source, dict) or not isinstance(source.get("score"), str):
+            continue
+        probability = source.get("probability")
+        if (
+            isinstance(probability, (int, float))
+            and not isinstance(probability, bool)
+            and math.isfinite(float(probability))
+            and 0.0 <= float(probability) <= 1.0
+        ):
+            scenarios.append({
+                "score": source["score"],
+                "probability": float(probability),
+            })
+    scenarios = scenarios[:5]
+    coverage = min(1.0, sum(row["probability"] for row in scenarios))
+    try:
+        lam_h, lam_a, fitted_rho = (
+            float(lambda_home), float(lambda_away), float(rho or 0.0)
+        )
+        if not math.isfinite(lam_h + lam_a + fitted_rho) or lam_h < 0 or lam_a < 0:
+            raise ValueError
+        matrix = score_matrix(lam_h, lam_a, fitted_rho, max_goals=10)
+        expected = {"home": lam_h, "away": lam_a, "total": lam_h + lam_a}
+        over35, over45 = prob_over(matrix, 3.5), prob_over(matrix, 4.5)
+    except (TypeError, ValueError):
+        expected, over35, over45 = None, None, None
+    return {
+        "top_score": scenarios[0]["score"] if scenarios else None,
+        "top_score_probability": scenarios[0]["probability"] if scenarios else None,
+        "score_scenarios": scenarios,
+        "score_scenarios_coverage": coverage if scenarios else None,
+        "other_score_probability": 1.0 - coverage if scenarios else None,
+        "score_display": "distribution_not_exact_score_prediction",
+        "expected_goals": expected,
+        "p_over35": over35,
+        "p_over45": over45,
+        "tail_probability_status": "RAW_POISSON_UNCALIBRATED_NO_BET",
+    }
+
+
 def _build_dossiers(
     world_cup: dict,
     ucl: dict,
@@ -125,10 +280,12 @@ def _build_dossiers(
     world_cup_history: dict | None,
     rankings: dict | None,
     context_document: dict | None,
+    uefa_history: dict | None,
 ) -> dict[str, dict]:
     output: dict[str, dict] = {}
     history = _world_cup_history(world_cup_history)
     national_priors = _national_priors(rankings)
+    club_history = _uefa_history(uefa_history)
     supplied = context_document.get("fixtures", {}) if isinstance(context_document, dict) else {}
     for prediction in world_cup.get("predictions", []):
         fixture_id = str(prediction.get("fixture_id"))
@@ -151,7 +308,16 @@ def _build_dossiers(
         home_rating, away_rating = ratings.get("home") or {}, ratings.get("away") or {}
         if not source or not source.get("home_id") or not source.get("away_id"):
             continue
-        fixture = {**source, "scope": "club", "competition_level": "uefa_champions_league_qualifying"}
+        fixture = {
+            **source,
+            "scope": "club",
+            "competition_level": (
+                "uefa_champions_league" if str(source.get("competition_id")) == "1"
+                else "uefa_europa_league" if str(source.get("competition_id")) == "14"
+                else "uefa_conference_league" if str(source.get("competition_id")) == "2019"
+                else "uefa_club"
+            ),
+        }
         priors = {}
         if home_rating.get("elo") is not None:
             priors[("club", str(fixture["home_id"]))] = float(home_rating["elo"])
@@ -159,7 +325,7 @@ def _build_dossiers(
             priors[("club", str(fixture["away_id"]))] = float(away_rating["elo"])
         dossier = build_match_dossier(
             fixture,
-            [],
+            club_history,
             cutoff=generated_at,
             contexts=_fixture_context(fixture, generated_at, supplied.get(fixture_id)),
             forecast_probabilities=prediction.get("probabilities_90m"),
@@ -183,6 +349,12 @@ def _world_cup_rows(
         interval = prediction.get("uncertainty", {}).get("p_home", [None, None])
         fixture = fixtures.get(str(prediction["fixture_id"]), {})
         scores = prediction.get("top_scores") or []
+        score_distribution = _score_distribution(
+            scores,
+            lambda_home=prediction.get("lambda_home"),
+            lambda_away=prediction.get("lambda_away"),
+            rho=prediction.get("rho"),
+        )
         raw = {"home": probs["home"], "draw": probs["draw"], "away": probs["away"]}
         market = markets.get(str(prediction["fixture_id"]))
         comparison = anchor_live_1x2(raw, market, anchor) if market and anchor else None
@@ -210,6 +382,11 @@ def _world_cup_rows(
             "away": TEAM_RU.get(prediction["away"], prediction["away"]),
             "venue": fixture.get("venue"),
             "model": prediction.get("model"),
+            "forecast_generated_at": (
+                prediction.get("generated_as_of_utc")
+                or document.get("as_of_utc")
+                or document.get("generated_at_utc")
+            ),
             "p_home": public_probs["home"],
             "p_draw": public_probs["draw"],
             "p_away": public_probs["away"],
@@ -217,7 +394,7 @@ def _world_cup_rows(
             "raw_model_1x2": raw,
             "p_over25": probs["over_2_5"],
             "p_btts": probs["btts_yes"],
-            "top_score": scores[0]["score"] if scores else None,
+            **score_distribution,
             "uncertainty": _uncertainty(*interval),
             "recommendation": "NO BET",
             "first_leg": None,
@@ -250,6 +427,11 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             .get("home_win", {})
         )
         scores = prediction.get("most_likely_scores_90m") or []
+        score_distribution = _score_distribution(
+            scores,
+            lambda_home=lam_h,
+            lambda_away=lam_a,
+        )
         agg_h, agg_a = fixture.get("aggregate_home_score"), fixture.get("aggregate_away_score")
         first_leg = (
             f"Агрегат {agg_h}:{agg_a}"
@@ -257,13 +439,18 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
         )
         rows.append({
             "id": fixture_id,
-            "competition": "UEFA Champions League",
-            "stage": "1-й квалификационный раунд · ответный матч",
+            "competition": fixture.get("competition") or "UEFA Champions League",
+            "stage": _uefa_stage_label(fixture, prediction),
             "kickoff_utc": prediction["kickoff_utc"],
             "home": prediction["home"],
             "away": prediction["away"],
             "venue": fixture.get("venue"),
             "model": "ClubElo–Poisson (experimental)",
+            "forecast_generated_at": (
+                prediction.get("generated_as_of_utc")
+                or document.get("as_of_utc")
+                or document.get("generated_at_utc")
+            ),
             "p_home": probs.get("home_win"),
             "p_draw": probs.get("draw"),
             "p_away": probs.get("away_win"),
@@ -271,7 +458,7 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             "p_btts": p_btts,
             "p_home_advance": qualification.get("home_to_advance"),
             "p_away_advance": qualification.get("away_to_advance"),
-            "top_score": scores[0]["score"] if scores else None,
+            **score_distribution,
             "uncertainty": _uncertainty(interval.get("low"), interval.get("high")),
             "recommendation": "NO BET",
             "first_leg": first_leg,
@@ -293,6 +480,9 @@ def build_payload(
     context_document: dict | None = None,
     prospective_ledger: dict | None = None,
     odds_snapshot: dict | None = None,
+    paper_ledger: dict | None = None,
+    uefa_history: dict | None = None,
+    top_five_fixtures: dict | None = None,
 ) -> dict:
     fixture_by_id = _fixture_index(fixtures)
     markets = market_index(market_document)
@@ -308,12 +498,36 @@ def build_payload(
         world_cup_history=world_cup_history,
         rankings=rankings,
         context_document=context_document,
+        uefa_history=uefa_history,
     )
-    rows = _world_cup_rows(world_cup, fixture_by_id, markets, anchor, dossiers) + _ucl_rows(ucl, fixture_by_id, dossiers)
+    rows = (
+        _world_cup_rows(world_cup, fixture_by_id, markets, anchor, dossiers)
+        + _ucl_rows(ucl, fixture_by_id, dossiers)
+        + _top_five_rows(top_five_fixtures)
+    )
+    rows = _future_forecasts(rows, generated_at)
     rows.sort(key=lambda row: (row["kickoff_utc"], row["competition"], row["id"]))
+    for row in rows:
+        row.update({
+            "decision_status": "FORECAST_ONLY",
+            "model_status": "MODEL_IN_QUARANTINE",
+            "market_period": "REGULATION_90_MINUTES",
+            "betting_eligible": False,
+        })
+        if _as_utc(row.get("forecast_generated_at")) is None:
+            row["forecast_generated_at"] = generated_at
     payload = {
         "generated_at": generated_at,
-        "status": "experimental-no-bet",
+        "status": "PAPER_ONLY_MODEL_IN_QUARANTINE",
+        "validation_protocol": {
+            "mode": "PAPER_ONLY",
+            "model_status": "MODEL_IN_QUARANTINE",
+            "primary_confirmatory_market": "REGULATION_1X2",
+            "settlement_period": "REGULATION_90_MINUTES",
+            "real_money_execution": False,
+            "parlays": "SIMULATION_ONLY_DISABLED_PENDING_INDIVIDUAL_EDGE",
+            "governance": "docs/model-governance.md",
+        },
         "betting_gate": {
             "allowed": False,
             "reason": "Positive prospective CLV has not been demonstrated.",
@@ -326,6 +540,9 @@ def build_payload(
         )
     if prospective_ledger is not None:
         payload = apply_summary_to_live_payload(payload, prospective_summary(prospective_ledger))
+    payload["paper_candidate_ranking"] = rank_paper_candidates(payload)
+    if paper_ledger is not None:
+        payload["paper_trading"] = public_paper_summary(paper_ledger)
     return payload
 
 
@@ -341,6 +558,9 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--contexts", type=Path)
     parser.add_argument("--prospective-ledger", type=Path)
     parser.add_argument("--odds-snapshot", type=Path)
+    parser.add_argument("--paper-ledger", type=Path)
+    parser.add_argument("--uefa-history", type=Path)
+    parser.add_argument("--top-five-fixtures", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--generated-at")
     args = parser.parse_args(argv)
@@ -358,6 +578,21 @@ def main(argv: list[str] | None = None) -> None:
         odds_snapshot=(
             _read(args.odds_snapshot)
             if args.odds_snapshot and args.odds_snapshot.exists()
+            else None
+        ),
+        paper_ledger=(
+            _read(args.paper_ledger)
+            if args.paper_ledger and args.paper_ledger.exists()
+            else None
+        ),
+        uefa_history=(
+            _read(args.uefa_history)
+            if args.uefa_history and args.uefa_history.exists()
+            else None
+        ),
+        top_five_fixtures=(
+            _read(args.top_five_fixtures)
+            if args.top_five_fixtures and args.top_five_fixtures.exists()
             else None
         ),
     )

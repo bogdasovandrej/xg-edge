@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-07-13T20:04:21Z",
-  "as_of_utc": "2026-07-13T20:04:19Z",
-  "model": "experimental ClubElo-to-Poisson qualifier baseline",
+  "generated_at_utc": "2026-07-20T22:34:15Z",
+  "as_of_utc": "2026-07-20T22:30:00Z",
+  "model": "experimental ClubElo-to-Poisson UEFA qualifier baseline",
   "calibration": {
     "version": "clubelo-poisson-v1",
     "total_goals": 2.65,
@@ -12,22 +12,27 @@
   },
   "coverage": {
     "fixtures": 14,
-    "predicted": 12,
-    "no_prediction": 2,
-    "coverage": 0.8571428571428571,
-    "missing_teams": [
-      "Atert Bissen",
-      "ML Vitebsk"
-    ]
+    "predicted": 14,
+    "no_prediction": 0,
+    "coverage": 1.0,
+    "missing_teams": []
   },
   "sources": {
     "fixtures": {
       "provider": "UEFA",
-      "url": "https://match.uefa.com/v5/matches"
+      "url": "https://match.uefa.com/v5/matches",
+      "competitions": [
+        {
+          "key": "ucl",
+          "id": "1",
+          "code": "UCL",
+          "name": "UEFA Champions League"
+        }
+      ]
     },
     "ratings": {
       "provider": "ClubElo",
-      "url": "http://api.clubelo.com/2026-07-13",
+      "url": "http://api.clubelo.com/2026-07-20",
       "documentation": "http://clubelo.com/API",
       "attribution": "Club strength ratings supplied by ClubElo."
     }
@@ -40,57 +45,60 @@
   ],
   "predictions": [
     {
-      "fixture_id": "2048641",
-      "kickoff_utc": "2026-07-14T15:00:00Z",
+      "fixture_id": "2048713",
+      "kickoff_utc": "2026-07-21T16:00:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "KuPS Kuopio",
-      "away": "Vardar",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Mjällby",
+      "away": "L. Red Imps",
       "status": "ok",
       "ratings": {
         "home": {
-          "club": "Kuopio",
-          "country": "FIN",
-          "elo": 1296.51391602,
+          "club": "Mjaellby",
+          "country": "SWE",
+          "elo": 1515.64575195,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-07-18",
+          "valid_to": "2026-07-21"
         },
         "away": {
-          "club": "Vardar",
-          "country": "MAC",
-          "elo": 1099.73193359,
+          "club": "Lincoln",
+          "country": "GIB",
+          "elo": 1065.0925293,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
         },
-        "adjusted_elo_difference": 261.78198242999997
+        "adjusted_elo_difference": 515.55322265
       },
       "expected_goals_90m": {
-        "home": 2.1693085731651958,
-        "away": 0.48069142683480415
+        "home": 2.5204052753376236,
+        "away": 0.12959472466237631
       },
       "probabilities_90m": {
-        "home_win": 0.7657665719303836,
-        "draw": 0.165909360962854,
-        "away_win": 0.06832406710676248
+        "home_win": 0.8928863151776452,
+        "draw": 0.0956886494417292,
+        "away_win": 0.011425035380625557
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.7126408666835921,
-            "high": 0.8070260374090283
+            "low": 0.8802848872680088,
+            "high": 0.9022158892996193
           },
           "draw": {
-            "low": 0.14559075897961227,
-            "high": 0.18902085330127158
+            "low": 0.08953894712899567,
+            "high": 0.10374301078721065
           },
           "away_win": {
-            "low": 0.047383203611359476,
-            "high": 0.09833828001513627
+            "low": 0.00824516357138509,
+            "high": 0.0159721019447805
           }
         }
       },
@@ -99,56 +107,233 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.1662416585117484
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.1532669538747901
+          "probability": 0.22441874201973266
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.12020981834224555
+          "probability": 0.18854206042372243
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.17808147301998517
+        },
+        {
+          "score": "4-0",
+          "home_goals": 4,
+          "away_goals": 0,
+          "probability": 0.11880060092874373
+        },
+        {
+          "score": "0-0",
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07065588806789418
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048715",
+      "kickoff_utc": "2026-07-21T16:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Sabah",
+      "away": "KuPS Kuopio",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Sabah",
+          "country": "AZE",
+          "elo": 1311.19018555,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Kuopio",
+          "country": "FIN",
+          "elo": 1296.51403809,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": 79.67614746000004
+      },
+      "expected_goals_90m": {
+        "home": 1.6236404990707491,
+        "away": 1.0263595009292508
+      },
+      "probabilities_90m": {
+        "home_win": 0.5129417651989417,
+        "draw": 0.24753143782818138,
+        "away_win": 0.2395267969728768
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.4228268513754138,
+            "high": 0.5975561178880151
+          },
+          "draw": {
+            "low": 0.22813369620666432,
+            "high": 0.25904551515567037
+          },
+          "away_win": {
+            "low": 0.17431018590532077,
+            "high": 0.3181276334689159
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11773606673523439
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11471230755757403
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.07991094002939661
+          "probability": 0.0955805230763115
         },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09312577414616836
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07251363020485
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048718",
+      "kickoff_utc": "2026-07-21T16:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Ararat-Armenia",
+      "away": "Shamrock Rovers",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Ararat",
+          "country": "ARM",
+          "elo": 1246.33862305,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Shamrock",
+          "country": "IRL",
+          "elo": 1313.01416016,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": -1.6755371100000502
+      },
+      "expected_goals_90m": {
+        "home": 1.3186101264454861,
+        "away": 1.3313898735545138
+      },
+      "probabilities_90m": {
+        "home_win": 0.36653398610516374,
+        "draw": 0.2609936246192844,
+        "away_win": 0.37247238927555193
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.28209693123747215,
+            "high": 0.45666996752620587
+          },
+          "draw": {
+            "low": 0.2551614443160693,
+            "high": 0.2609936246192844
+          },
+          "away_win": {
+            "low": 0.28745010328511267,
+            "high": 0.46274162444645855
+          }
+        }
+      },
+      "most_likely_scores_90m": [
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.07367411074469697
+          "probability": 0.12403419223550405
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09406434073872696
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09316143580419493
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.082568933758432
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08177637095361087
         }
       ],
-      "qualification": {
-        "home_to_advance": 0.99475,
-        "away_to_advance": 0.005249999999999977,
-        "extra_time": 0.01133,
-        "home_to_advance_mc_se": 0.00022852653018850955,
-        "extra_time_mc_se": 0.00033468837894375716,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 2,
-          "away": 0
-        }
-      },
+      "qualification": null,
       "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     },
     {
-      "fixture_id": "2048637",
-      "kickoff_utc": "2026-07-14T16:00:00Z",
+      "fixture_id": "2048723",
+      "kickoff_utc": "2026-07-21T16:00:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
       "home": "Iberia Tbilisi",
-      "away": "Flora Tallinn",
+      "away": "S. Bratislava",
       "status": "ok",
       "ratings": {
         "home": {
@@ -156,451 +341,43 @@
           "country": "GEO",
           "elo": 1149.44433594,
           "rank": null,
-          "valid_from": "2026-07-09",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
         },
         "away": {
-          "club": "Flora Tallinn",
-          "country": "EST",
-          "elo": 1130.34924316,
+          "club": "Slovan Bratislava",
+          "country": "SLK",
+          "elo": 1366.51843262,
           "rank": null,
-          "valid_from": "2026-07-09",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-07-21"
         },
-        "adjusted_elo_difference": 84.09509277999996
+        "adjusted_elo_difference": -152.07409668000014
       },
       "expected_goals_90m": {
-        "home": 1.6395901538301962,
-        "away": 1.0104098461698037
+        "home": 0.7794447024510316,
+        "away": 1.8705552975489683
       },
       "probabilities_90m": {
-        "home_win": 0.5207311351123979,
-        "draw": 0.2460834238816589,
-        "away_win": 0.23318544100594316
+        "home_win": 0.14985479880978553,
+        "draw": 0.21787840504747177,
+        "away_win": 0.6322667961427425
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.43084409219253383,
-            "high": 0.6045836934372997
+            "low": 0.105452470964245,
+            "high": 0.20851777085889095
           },
           "draw": {
-            "low": 0.22616437283778276,
-            "high": 0.25842621310082864
+            "low": 0.19371242514104894,
+            "high": 0.23960210319727426
           },
           "away_win": {
-            "low": 0.1692519337249176,
-            "high": 0.3107296947066377
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11704505254776952
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.11583918445713522
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09595295785593043
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.09496439313181941
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.07138677447796582
-        }
-      ],
-      "qualification": {
-        "home_to_advance": 0.85351,
-        "away_to_advance": 0.14649,
-        "extra_time": 0.14912,
-        "home_to_advance_mc_se": 0.0011181711850159616,
-        "extra_time_mc_se": 0.0011264245451871155,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 3,
-          "away": 2
-        }
-      },
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2048638",
-      "kickoff_utc": "2026-07-14T16:00:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Inter Escaldes",
-      "away": "L. Red Imps",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Escaldes",
-          "country": "AND",
-          "elo": 1002.06817627,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "away": {
-          "club": "Lincoln",
-          "country": "GIB",
-          "elo": 1065.0925293,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "adjusted_elo_difference": 1.975646969999957
-      },
-      "expected_goals_90m": {
-        "home": 1.3325343578207947,
-        "away": 1.3174656421792053
-      },
-      "probabilities_90m": {
-        "home_win": 0.37300541559321143,
-        "draw": 0.26099117502646446,
-        "away_win": 0.36600340938032405
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 50.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.2879320167424195,
-            "high": 0.4632849968909625
-          },
-          "draw": {
-            "low": 0.2550949526446667,
-            "high": 0.26099117502646446
-          },
-          "away_win": {
-            "low": 0.2816200504643709,
-            "high": 0.4561258708814785
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.12403306634871104
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.09414519997921869
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.09308057658757314
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.08263916120776185
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.0817046517042803
-        }
-      ],
-      "qualification": {
-        "home_to_advance": 0.11356,
-        "away_to_advance": 0.88644,
-        "extra_time": 0.10762,
-        "home_to_advance_mc_se": 0.001003315136933556,
-        "extra_time_mc_se": 0.0009799894672903376,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 1,
-          "away": 3
-        }
-      },
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2048640",
-      "kickoff_utc": "2026-07-14T17:00:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Riga",
-      "away": "Ararat-Armenia",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "FK Riga",
-          "country": "LAT",
-          "elo": 1283.32739258,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "away": {
-          "club": "Ararat",
-          "country": "ARM",
-          "elo": 1246.33862305,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "adjusted_elo_difference": 101.9887695299999
-      },
-      "expected_goals_90m": {
-        "home": 1.7031502920969868,
-        "away": 0.9468497079030131
-      },
-      "probabilities_90m": {
-        "home_win": 0.5517346126631335,
-        "draw": 0.23963492717858992,
-        "away_win": 0.20863046015827658
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 50.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.4633087547359086,
-            "high": 0.6321389963496276
-          },
-          "draw": {
-            "low": 0.2179185928828213,
-            "high": 0.25509203723890306
-          },
-          "away_win": {
-            "low": 0.14994241076755133,
-            "high": 0.2815992080251883
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.12032985818239846
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11393429107201497
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.10246991655567048
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09702361055958272
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.07065134459404844
-        }
-      ],
-      "qualification": {
-        "home_to_advance": 0.23488,
-        "away_to_advance": 0.76512,
-        "extra_time": 0.17235,
-        "home_to_advance_mc_se": 0.001340564752632263,
-        "extra_time_mc_se": 0.0011943428213875612,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 0,
-          "away": 2
-        }
-      },
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2048646",
-      "kickoff_utc": "2026-07-14T17:00:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Győri ETO",
-      "away": "Víkingur R.",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Gyoer",
-          "country": "HUN",
-          "elo": 1454.81445312,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "away": {
-          "club": "Vikingur",
-          "country": "ISL",
-          "elo": 1285.12316895,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "adjusted_elo_difference": 234.69128417000002
-      },
-      "expected_goals_90m": {
-        "home": 2.104873006169382,
-        "away": 0.545126993830618
-      },
-      "probabilities_90m": {
-        "home_win": 0.738553786720896,
-        "draw": 0.17816233744056395,
-        "away_win": 0.08328387583854018
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 50.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.6784595990127124,
-            "high": 0.7860384040545924
-          },
-          "draw": {
-            "low": 0.1561959718728518,
-            "high": 0.20217289616607254
-          },
-          "away_win": {
-            "low": 0.05776562407255589,
-            "high": 0.11936750482121514
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.1565118349373769
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.1487138031402757
-        },
-        {
-          "score": "3-0",
-          "home_goals": 3,
-          "away_goals": 0,
-          "probability": 0.10981251216857417
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.08531882607832615
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.08106790844697681
-        }
-      ],
-      "qualification": {
-        "home_to_advance": 0.65678,
-        "away_to_advance": 0.34321999999999997,
-        "extra_time": 0.25312,
-        "home_to_advance_mc_se": 0.00150139945251089,
-        "extra_time_mc_se": 0.001374955510552978,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 0,
-          "away": 1
-        }
-      },
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2048635",
-      "kickoff_utc": "2026-07-14T17:30:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "The New Saints",
-      "away": "Sabah",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "The New Saints",
-          "country": "WAL",
-          "elo": 1066.42773438,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "away": {
-          "club": "Sabah",
-          "country": "AZE",
-          "elo": 1311.19018555,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "adjusted_elo_difference": -179.76245117000008
-      },
-      "expected_goals_90m": {
-        "home": 0.6947117714335789,
-        "away": 1.955288228566421
-      },
-      "probabilities_90m": {
-        "home_win": 0.12359943379577107,
-        "draw": 0.20457297803190413,
-        "away_win": 0.6718275881723247
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 50.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.08632614331718005,
-            "high": 0.17421029094802348
-          },
-          "draw": {
-            "low": 0.1804664590724873,
-            "high": 0.22809553187646267
-          },
-          "away_win": {
-            "low": 0.597694177175514,
-            "high": 0.7332073976103326
+            "low": 0.5518801259438348,
+            "high": 0.7008351038947058
           }
         }
       },
@@ -609,100 +386,277 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.13814441717690018
+          "probability": 0.13215759220573184
         },
         {
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.13505607637408093
+          "probability": 0.12360404210587399
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09597055277062366
+          "probability": 0.10300953513344144
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.09382504606070648
+          "probability": 0.09634251582095774
         },
         {
           "score": "0-3",
           "home_goals": 0,
           "away_goals": 3,
-          "probability": 0.08802451877686933
+          "probability": 0.0770693985865361
         }
       ],
-      "qualification": {
-        "home_to_advance": 0.01629,
-        "away_to_advance": 0.98371,
-        "extra_time": 0.02652,
-        "home_to_advance_mc_se": 0.0004003078303006325,
-        "extra_time_mc_se": 0.0005081012654973416,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 0,
-          "away": 2
-        }
-      },
+      "qualification": null,
       "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     },
     {
-      "fixture_id": "2048645",
-      "kickoff_utc": "2026-07-14T17:30:00Z",
+      "fixture_id": "2048717",
+      "kickoff_utc": "2026-07-21T17:00:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Levski Sofia",
-      "away": "Borac",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Aarhus",
+      "away": "Lech Poznań",
       "status": "ok",
       "ratings": {
         "home": {
-          "club": "Levski",
-          "country": "BUL",
-          "elo": 1441.24841309,
+          "club": "Aarhus",
+          "country": "DEN",
+          "elo": 1582.55212402,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-05-18",
+          "valid_to": "2026-07-21"
         },
         "away": {
-          "club": "Borac Banja Luka",
-          "country": "BHZ",
-          "elo": 1210.83227539,
+          "club": "Lech",
+          "country": "POL",
+          "elo": 1520.91870117,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-05-24",
+          "valid_to": "2026-07-21"
         },
-        "adjusted_elo_difference": 295.41613770000004
+        "adjusted_elo_difference": 126.63342284999999
       },
       "expected_goals_90m": {
-        "home": 2.2408580567644454,
-        "away": 0.40914194323555453
+        "home": 1.7876294142124838,
+        "away": 0.8623705857875161
       },
       "probabilities_90m": {
-        "home_win": 0.7947180260744355,
-        "draw": 0.1518791422678841,
-        "away_win": 0.0534028316576803
+        "home_win": 0.5926684692447366,
+        "draw": 0.2294712736237928,
+        "away_win": 0.17786025713147052
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.7497617513873991,
-            "high": 0.829054014759989
+            "low": 0.5075522932713925,
+            "high": 0.6675519396937359
           },
           "draw": {
-            "low": 0.13383042372426657,
-            "high": 0.17322288809337108
+            "low": 0.20609438523490267,
+            "high": 0.24849238999866294
           },
           "away_win": {
-            "low": 0.037115561515744376,
-            "high": 0.07701536051922983
+            "low": 0.12635367507136136,
+            "high": 0.24395531672994458
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.12629855674466273
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.11288750750467173
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10891616036401264
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09735086597489641
+        },
+        {
+          "score": "0-0",
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07065142011008017
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048721",
+      "kickoff_utc": "2026-07-21T18:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Thun",
+      "away": "GNK Dinamo",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Thun",
+          "country": "SUI",
+          "elo": 1463.22155762,
+          "rank": null,
+          "valid_from": "2026-05-18",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Dinamo Zagreb",
+          "country": "CRO",
+          "elo": 1577.11853027,
+          "rank": null,
+          "valid_from": "2026-05-24",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": -48.89697264999995
+      },
+      "expected_goals_90m": {
+        "home": 1.13974523174326,
+        "away": 1.51025476825674
+      },
+      "probabilities_90m": {
+        "home_win": 0.2865319053930784,
+        "draw": 0.2557603140928098,
+        "away_win": 0.45770778051411165
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.21274221505522228,
+            "high": 0.37145608885856485
+          },
+          "draw": {
+            "low": 0.24081176255427944,
+            "high": 0.2609971808759279
+          },
+          "away_win": {
+            "low": 0.3675467302655074,
+            "high": 0.5464460223904983
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12161240988147977
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10670139825500433
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09183286095134896
+        },
+        {
+          "score": "0-2",
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08057314774714085
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08052443365026073
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048725",
+      "kickoff_utc": "2026-07-21T18:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Fenerbahçe",
+      "away": "Górnik Zabrze",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Fenerbahce",
+          "country": "TUR",
+          "elo": 1655.55847168,
+          "rank": 70,
+          "valid_from": "2026-07-05",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Gornik",
+          "country": "POL",
+          "elo": 1452.04492188,
+          "rank": null,
+          "valid_from": "2026-05-24",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": 268.51354979999996
+      },
+      "expected_goals_90m": {
+        "home": 2.184368784645373,
+        "away": 0.4656312153546267
+      },
+      "probabilities_90m": {
+        "home_win": 0.7719753268875433,
+        "draw": 0.16298849083632763,
+        "away_win": 0.06503618227612912
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.7205373356985039,
+            "high": 0.8117746692473904
+          },
+          "draw": {
+            "low": 0.14311121431929316,
+            "high": 0.1857940744086332
+          },
+          "away_win": {
+            "low": 0.04511411643331646,
+            "high": 0.09366858989286309
           }
         }
       },
@@ -711,100 +665,184 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.17738972681898765
+          "probability": 0.16855809314757977
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.1583230372700349
+          "probability": 0.1543311681914048
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.13250173284319083
-        },
-        {
-          "score": "4-0",
-          "home_goals": 4,
-          "away_goals": 0,
-          "probability": 0.07422939389422856
+          "probability": 0.12273101235697347
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.07257757754074474
+          "probability": 0.07848590977016594
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.07186140941206311
         }
       ],
-      "qualification": {
-        "home_to_advance": 0.90171,
-        "away_to_advance": 0.09828999999999999,
-        "extra_time": 0.15073,
-        "home_to_advance_mc_se": 0.0009414301668206729,
-        "extra_time_mc_se": 0.0011314171074365102,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 1,
-          "away": 1
-        }
-      },
+      "qualification": null,
       "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     },
     {
-      "fixture_id": "2048642",
-      "kickoff_utc": "2026-07-14T18:00:00Z",
+      "fixture_id": "2048726",
+      "kickoff_utc": "2026-07-21T18:30:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Drita",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Sturm Graz",
+      "away": "Hearts",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Sturm Graz",
+          "country": "AUT",
+          "elo": 1471.63842773,
+          "rank": null,
+          "valid_from": "2026-05-18",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Hearts",
+          "country": "SCO",
+          "elo": 1473.26843262,
+          "rank": null,
+          "valid_from": "2026-05-17",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": 63.36999510999999
+      },
+      "expected_goals_90m": {
+        "home": 1.564026659745102,
+        "away": 1.085973340254898
+      },
+      "probabilities_90m": {
+        "home_win": 0.48384987475312013,
+        "draw": 0.2523166759458668,
+        "away_win": 0.26383344930101305
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.39337070102959026,
+            "high": 0.5709220004725142
+          },
+          "draw": {
+            "low": 0.23510256855621983,
+            "high": 0.2606008630494333
+          },
+          "away_win": {
+            "low": 0.19397543097126618,
+            "high": 0.3460284359209763
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12000056931186112
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11050047442573017
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09384204479417038
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08641284395816193
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07672539886974705
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048716",
+      "kickoff_utc": "2026-07-21T18:45:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Klaksvík",
       "away": "Kauno Žalgiris",
       "status": "ok",
       "ratings": {
         "home": {
-          "club": "Drita",
-          "country": "KOS",
-          "elo": 1242.50073242,
+          "club": "Klaksvik",
+          "country": "FAR",
+          "elo": 1189.47131348,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-07-21"
         },
         "away": {
           "club": "Kauno Zalgiris",
           "country": "LIT",
           "elo": 1131.27331543,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
         },
-        "adjusted_elo_difference": 176.22741699000017
+        "adjusted_elo_difference": 123.19799805000002
       },
       "expected_goals_90m": {
-        "home": 1.9448070311659693,
-        "away": 0.7051929688340306
+        "home": 1.7760855966370541,
+        "away": 0.8739144033629458
       },
       "probabilities_90m": {
-        "home_win": 0.6669934486373135,
-        "draw": 0.20629161546943894,
-        "away_win": 0.1267149358932476
+        "home_win": 0.5871034650241873,
+        "draw": 0.2309621371264997,
+        "away_win": 0.18193439784931284
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.5920133357701476,
-            "high": 0.7292961986006627
+            "low": 0.5014438027244691,
+            "high": 0.6627994852199796
           },
           "draw": {
-            "low": 0.18213093046240064,
-            "high": 0.2296485586396609
+            "low": 0.20776166122888096,
+            "high": 0.24954083908756122
           },
           "away_win": {
-            "low": 0.08857287093693664,
-            "high": 0.17833810559019153
+            "low": 0.12943885355113918,
+            "high": 0.2490153581879696
           }
         }
       },
@@ -813,158 +851,47 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.1374038579772701
+          "probability": 0.12548294799845197
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.13361199455176256
+          "probability": 0.11143422828180352
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09689623453624058
+          "probability": 0.10966135563229071
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09422223910979374
-        },
-        {
-          "score": "3-0",
-          "home_goals": 3,
-          "away_goals": 0,
-          "probability": 0.08661651548412568
-        }
-      ],
-      "qualification": {
-        "home_to_advance": 0.80001,
-        "away_to_advance": 0.19999,
-        "extra_time": 0.2059,
-        "home_to_advance_mc_se": 0.0012648873463672564,
-        "extra_time_mc_se": 0.0012786914795993598,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 1,
-          "away": 1
-        }
-      },
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2048636",
-      "kickoff_utc": "2026-07-14T19:00:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Shamrock Rovers",
-      "away": "Floriana",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Shamrock",
-          "country": "IRL",
-          "elo": 1313.01416016,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "away": {
-          "club": "Floriana",
-          "country": "MLT",
-          "elo": 1063.39416504,
-          "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
-        },
-        "adjusted_elo_difference": 314.6199951200001
-      },
-      "expected_goals_90m": {
-        "home": 2.2776605802066654,
-        "away": 0.3723394197933345
-      },
-      "probabilities_90m": {
-        "home_win": 0.8090497568997286,
-        "draw": 0.14453773032188902,
-        "away_win": 0.04641251277838217
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 50.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.7684102950222724,
-            "high": 0.8398581753765242
-          },
-          "draw": {
-            "low": 0.1278152315262554,
-            "high": 0.1646714171751625
-          },
-          "away_win": {
-            "low": 0.032326593097220406,
-            "high": 0.06691828780256523
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.18326493399105753
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.1609238317453155
-        },
-        {
-          "score": "3-0",
-          "home_goals": 3,
-          "away_goals": 0,
-          "probability": 0.13913843862853614
-        },
-        {
-          "score": "4-0",
-          "home_goals": 4,
-          "away_goals": 0,
-          "probability": 0.07922753421393028
+          "probability": 0.09738397712310264
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.07065312239399336
+          "probability": 0.07065140792541129
         }
       ],
-      "qualification": {
-        "home_to_advance": 0.50329,
-        "away_to_advance": 0.49671,
-        "extra_time": 0.24221,
-        "home_to_advance_mc_se": 0.0015811046009040642,
-        "extra_time_mc_se": 0.0013547852815114284,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 0,
-          "away": 2
-        }
-      },
+      "qualification": null,
       "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     },
     {
-      "fixture_id": "2048639",
-      "kickoff_utc": "2026-07-14T19:00:00Z",
+      "fixture_id": "2048714",
+      "kickoff_utc": "2026-07-21T19:00:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
       "home": "Larne",
-      "away": "Tre Fiori",
+      "away": "Crvena Zvezda",
       "status": "ok",
       "ratings": {
         "home": {
@@ -972,43 +899,229 @@
           "country": "NIR",
           "elo": 1059.32751465,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
         },
         "away": {
-          "club": "Tre Fiori",
-          "country": "SMR",
-          "elo": 736.193237305,
+          "club": "Crvena Zvezda",
+          "country": "SRB",
+          "elo": 1586.15527344,
           "rank": null,
-          "valid_from": "2026-07-08",
-          "valid_to": "2026-07-14"
+          "valid_from": "2026-07-18",
+          "valid_to": "2026-07-21"
         },
-        "adjusted_elo_difference": 388.134277345
+        "adjusted_elo_difference": -461.82775878999996
       },
       "expected_goals_90m": {
-        "home": 2.39370777199401,
-        "away": 0.25629222800598983
+        "home": 0.17348859705090316,
+        "away": 2.4765114029490967
       },
       "probabilities_90m": {
-        "home_win": 0.8515421272911162,
-        "draw": 0.12111870067619739,
-        "away_win": 0.02733917203268644
+        "home_win": 0.0163820044612209,
+        "draw": 0.10443257136907215,
+        "away_win": 0.879185424169707
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.8246344482610322,
-            "high": 0.8715866110420629
+            "low": 0.011710122387264349,
+            "high": 0.023136949947009548
           },
           "draw": {
-            "low": 0.10914259527661771,
-            "high": 0.13624335619014538
+            "low": 0.09621741781579572,
+            "high": 0.1150780109935812
           },
           "away_win": {
-            "low": 0.019270793681319443,
-            "high": 0.03912219554882246
+            "low": 0.8617850390594094,
+            "high": 0.8920724597969398
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "0-2",
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.21666807841719
+        },
+        {
+          "score": "0-3",
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.17886032228508003
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.1749784621699506
+        },
+        {
+          "score": "0-4",
+          "home_goals": 0,
+          "away_goals": 4,
+          "probability": 0.11073740691853774
+        },
+        {
+          "score": "0-0",
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07065522168061958
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048722",
+      "kickoff_utc": "2026-07-21T19:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Víkingur R.",
+      "away": "H. Beer-Sheva",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Vikingur",
+          "country": "ISL",
+          "elo": 1285.12316895,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Beer-Sheva",
+          "country": "ISR",
+          "elo": 1466.13769531,
+          "rank": null,
+          "valid_from": "2026-05-24",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": -116.01452635999999
+      },
+      "expected_goals_90m": {
+        "home": 0.8983027541957714,
+        "away": 1.7516972458042286
+      },
+      "probabilities_90m": {
+        "home_win": 0.19067925210541004,
+        "draw": 0.23400769028111587,
+        "away_win": 0.5753130576134741
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.13609993973281648,
+            "high": 0.25979717536196406
+          },
+          "draw": {
+            "low": 0.21123288637701565,
+            "high": 0.2516032143440275
+          },
+          "away_win": {
+            "low": 0.4885996102940084,
+            "high": 0.6526671738901678
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.12375983519904489
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1111738008181168
+        },
+        {
+          "score": "0-2",
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.10839488122967605
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09737142034934154
+        },
+        {
+          "score": "0-0",
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07065138424775282
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048720",
+      "kickoff_utc": "2026-07-22T17:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Omonia",
+      "away": "Kairat Almaty",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Omonia",
+          "country": "CYP",
+          "elo": 1456.90454102,
+          "rank": null,
+          "valid_from": "2026-03-20",
+          "valid_to": "2026-07-22"
+        },
+        "away": {
+          "club": "Kairat",
+          "country": "KAZ",
+          "elo": 1294.38867188,
+          "rank": null,
+          "valid_from": "2026-07-16",
+          "valid_to": "2026-07-22"
+        },
+        "adjusted_elo_difference": 227.51586913999995
+      },
+      "expected_goals_90m": {
+        "home": 2.086770885825673,
+        "away": 0.5632291141743271
+      },
+      "probabilities_90m": {
+        "home_win": 0.7307292025053305,
+        "draw": 0.18152315955402762,
+        "away_win": 0.087747637940642
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.6687628774592709,
+            "high": 0.7799479634728499
+          },
+          "draw": {
+            "low": 0.15916802020837448,
+            "high": 0.20566555608680895
+          },
+          "away_win": {
+            "low": 0.060884016318775824,
+            "high": 0.12557156645392004
           }
         }
       },
@@ -1017,84 +1130,140 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.20241847521056572
+          "probability": 0.15383122134259306
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.16912546934828782
+          "probability": 0.14743470151657467
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.16151022576890264
+          "probability": 0.1070035046762427
         },
         {
-          "score": "4-0",
-          "home_goals": 4,
-          "away_goals": 0,
-          "probability": 0.09665207066988235
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08664222252914354
         },
         {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.07065418399314577
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.08303951633373667
         }
       ],
-      "qualification": {
-        "home_to_advance": 0.99076,
-        "away_to_advance": 0.009240000000000026,
-        "extra_time": 0.02393,
-        "home_to_advance_mc_se": 0.0003025660655129723,
-        "extra_time_mc_se": 0.0004832944764840583,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 1,
-          "away": 0
-        }
-      },
+      "qualification": null,
       "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     },
     {
-      "fixture_id": "2048643",
-      "kickoff_utc": "2026-07-15T17:30:00Z",
+      "fixture_id": "2048719",
+      "kickoff_utc": "2026-07-22T17:30:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "U. Craiova",
-      "away": "ML Vitebsk",
-      "status": "no_prediction",
-      "reason": "clubelo_team_not_found",
-      "missing_teams": [
-        "ML Vitebsk"
-      ]
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Levski Sofia",
+      "away": "U. Craiova",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Levski",
+          "country": "BUL",
+          "elo": 1441.24841309,
+          "rank": null,
+          "valid_from": "2026-07-18",
+          "valid_to": "2026-07-22"
+        },
+        "away": {
+          "club": "Craiova",
+          "country": "ROM",
+          "elo": 1458.68530273,
+          "rank": null,
+          "valid_from": "2026-07-19",
+          "valid_to": "2026-07-22"
+        },
+        "adjusted_elo_difference": 47.56311035999988
+      },
+      "expected_goals_90m": {
+        "home": 1.5052646612035463,
+        "away": 1.1447353387964536
+      },
+      "probabilities_90m": {
+        "home_win": 0.4552895462251457,
+        "draw": 0.2560369848711891,
+        "away_win": 0.2886734689036652
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.3651883714478975,
+            "high": 0.5441550098039044
+          },
+          "draw": {
+            "low": 0.24131180419419784,
+            "high": 0.2609866252897522
+          },
+          "away_win": {
+            "low": 0.21453318600189772,
+            "high": 0.3738250032623503
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12174127438966714
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10634883912788341
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09162641907432513
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08087698962674639
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08004157464961194
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     },
     {
-      "fixture_id": "2048648",
-      "kickoff_utc": "2026-07-15T18:15:00Z",
+      "fixture_id": "2048724",
+      "kickoff_utc": "2026-07-22T19:00:00Z",
+      "competition_id": "1",
       "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Atert Bissen",
-      "away": "Klaksvík",
-      "status": "no_prediction",
-      "reason": "clubelo_team_not_found",
-      "missing_teams": [
-        "Atert Bissen"
-      ]
-    },
-    {
-      "fixture_id": "2048644",
-      "kickoff_utc": "2026-07-15T19:00:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
       "home": "Egnatia",
-      "away": "Petrocub",
+      "away": "Celje",
       "status": "ok",
       "ratings": {
         "home": {
@@ -1102,193 +1271,79 @@
           "country": "ALB",
           "elo": 1157.89331055,
           "rank": null,
-          "valid_from": "2026-07-09",
-          "valid_to": "2026-07-15"
+          "valid_from": "2026-07-16",
+          "valid_to": "2026-07-22"
         },
         "away": {
-          "club": "Petrocub",
-          "country": "MOL",
-          "elo": 1159.45910645,
+          "club": "Celje",
+          "country": "SVN",
+          "elo": 1455.5267334,
           "rank": null,
-          "valid_from": "2026-07-09",
-          "valid_to": "2026-07-15"
+          "valid_from": "2026-07-18",
+          "valid_to": "2026-07-22"
         },
-        "adjusted_elo_difference": 63.43420409999999
+        "adjusted_elo_difference": -232.63342285
       },
       "expected_goals_90m": {
-        "home": 1.5642635539810898,
-        "away": 1.08573644601891
+        "home": 0.5502740758867536,
+        "away": 2.099725924113246
       },
       "probabilities_90m": {
-        "home_win": 0.48396531890813815,
-        "draw": 0.25229965189206593,
-        "away_win": 0.2637350291997958
+        "home_win": 0.08454142120306629,
+        "draw": 0.17912189898122,
+        "away_win": 0.7363366798157138
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.39348608598701523,
-            "high": 0.5710289275091354
+            "low": 0.05864313968491139,
+            "high": 0.12111865387369444
           },
           "draw": {
-            "low": 0.23507616138161008,
-            "high": 0.2605970269396244
+            "low": 0.15704156234626282,
+            "high": 0.20317535141412468
           },
           "away_win": {
-            "low": 0.19389491110925458,
-            "high": 0.34591688707336027
+            "low": 0.6757059947121807,
+            "high": 0.7843152979688257
           }
         }
       },
       "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11999256436393169
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.11051721143184486
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09384999759161423
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.0864390229652286
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.07670866207842507
-        }
-      ],
-      "qualification": {
-        "home_to_advance": 0.62375,
-        "away_to_advance": 0.37625,
-        "extra_time": 0.25482,
-        "home_to_advance_mc_se": 0.0015319462702719049,
-        "extra_time_mc_se": 0.0013779940769103472,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 1,
-          "away": 1
-        }
-      },
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2048647",
-      "kickoff_utc": "2026-07-15T19:00:00Z",
-      "competition": "UEFA Champions League",
-      "round": "First qualifying round",
-      "leg": 2,
-      "home": "Sutjeska",
-      "away": "Kairat Almaty",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Sutjeska",
-          "country": "MNT",
-          "elo": 1082.15710449,
-          "rank": null,
-          "valid_from": "2026-07-09",
-          "valid_to": "2026-07-15"
-        },
-        "away": {
-          "club": "Kairat",
-          "country": "KAZ",
-          "elo": 1294.38867188,
-          "rank": null,
-          "valid_from": "2026-07-09",
-          "valid_to": "2026-07-15"
-        },
-        "adjusted_elo_difference": -147.23156739
-      },
-      "expected_goals_90m": {
-        "home": 0.7948691338622823,
-        "away": 1.8551308661377175
-      },
-      "probabilities_90m": {
-        "home_win": 0.15489364147448775,
-        "draw": 0.22014766328827506,
-        "away_win": 0.6249586952372373
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 50.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.10917422419625403,
-            "high": 0.21497993958338696
-          },
-          "draw": {
-            "low": 0.1960647268213935,
-            "high": 0.2414353629373342
-          },
-          "away_win": {
-            "low": 0.5435846974792786,
-            "high": 0.6947610489823526
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.13106778903630112
-        },
         {
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.12157395049883449
+          "probability": 0.15574728314901168
         },
         {
-          "score": "1-1",
-          "home_goals": 1,
+          "score": "0-1",
+          "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.10418173994852901
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.09663538073322454
+          "probability": 0.14835010737392948
         },
         {
           "score": "0-3",
           "home_goals": 0,
           "away_goals": 3,
-          "probability": 0.07517852936289558
+          "probability": 0.109008869346062
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08570369230669496
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.08163321824288972
         }
       ],
-      "qualification": {
-        "home_to_advance": 0.0867,
-        "away_to_advance": 0.9133,
-        "extra_time": 0.10868,
-        "home_to_advance_mc_se": 0.000889848919761102,
-        "extra_time_mc_se": 0.0009842187642998888,
-        "simulations": 100000,
-        "penalty_model": "50/50 after simulated extra time",
-        "aggregate_before_kickoff": {
-          "home": 1,
-          "away": 2
-        }
-      },
+      "qualification": null,
       "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
     }
   ]

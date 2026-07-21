@@ -15,7 +15,11 @@ from xgedge.data.point_in_time import (
     available_snapshot,
     unavailable_snapshot,
 )
-from xgedge.data.uefa_match_context import fetch_uefa_match_context
+from xgedge.data.uefa_match_context import (
+    fetch_uefa_match_context,
+    fetch_uefa_prematch_context,
+    normalize_uefa_lineups,
+)
 
 
 class FakeResponse:
@@ -51,23 +55,43 @@ def test_uefa_context_uses_official_resources_and_normalizes_events():
     lineups = {
         "announcedAt": "2026-07-14T17:55:00Z",
         "homeTeam": {
-            "id": "fra",
-            "internationalName": "France",
-            "startingXI": [{
-                "player": {"id": "p1", "internationalName": "Player One"},
+            "team": {"id": "fra", "internationalName": "France"},
+            "field": [{
+                "player": {
+                    "id": "p1",
+                    "internationalName": "Player One",
+                    "fieldPosition": "MIDFIELDER",
+                    "detailedFieldPosition": "CENTRAL_MIDFIELDER",
+                    "age": "25",
+                    "birthDate": "2001-02-03",
+                },
+                "jerseyNumber": "8",
+                "isLateUpdate": True,
                 "expectedMinutes": 82,
             }],
-            "substitutes": [{
+            "bench": [{
                 "player": {"id": "p2", "internationalName": "Player Two"},
+                "jerseyNumber": 14,
+                "isLateUpdate": False,
                 "expectedMinutes": 0,
                 "minutesPlayed": 0,
             }],
+            "coaches": [{
+                "coach": {"id": "coach-1", "internationalName": "Home Coach"},
+                "coachRole": "HEAD_COACH",
+                "isLateUpdate": False,
+            }],
         },
         "awayTeam": {
-            "id": "bra",
-            "internationalName": "Brazil",
-            "startingXI": [{
+            "team": {"id": "bra", "internationalName": "Brazil"},
+            "field": [{
                 "player": {"id": "p3", "internationalName": "Player Three"},
+                "jerseyNumber": 9,
+            }],
+            "bench": [],
+            "coaches": [{
+                "coach": {"id": "coach-2", "internationalName": "Away Coach"},
+                "coachRole": "ASSISTANT_COACH",
             }],
         },
         "referees": [{
@@ -117,24 +141,112 @@ def test_uefa_context_uses_official_resources_and_normalizes_events():
     starters = result["lineups"]["records"]
     assert starters[0]["snapshot_at"] == "2026-07-14T19:45:00Z"
     assert starters[0]["announced_at"] == "2026-07-14T17:55:00Z"
+    assert starters[0]["team_id"] == "fra"
     assert starters[0]["player_name"] == "Player One"
+    assert starters[0]["field_position"] == "MIDFIELDER"
+    assert starters[0]["detailed_field_position"] == "CENTRAL_MIDFIELDER"
+    assert starters[0]["age"] == 25
+    assert starters[0]["birth_date"] == "2001-02-03"
+    assert starters[0]["jersey_number"] == 8
+    assert starters[0]["is_late_update"] is True
     assert starters[0]["expected_minutes"] == 82.0
     assert starters[0]["confirmed_minutes"] is None
     assert starters[1]["lineup_status"] == "substitute"
+    assert starters[1]["jersey_number"] == 14
+    assert starters[1]["is_late_update"] is False
     assert starters[1]["expected_minutes"] == 0.0
     assert starters[1]["confirmed_minutes"] == 0.0
+    assert starters[2]["team_id"] == "bra"
+    assert starters[2]["lineup_status"] == "starter"
+    assert {row["player_id"] for row in starters} == {"p1", "p2", "p3"}
+    coaches = result["coaches"]
+    assert coaches["status"] == "available"
+    assert coaches["provider"] == "uefa_lineups"
+    assert [row["coach_id"] for row in coaches["records"]] == [
+        "coach-1",
+        "coach-2",
+    ]
+    assert coaches["records"][0]["role"] == "head_coach"
+    assert coaches["records"][0]["is_late_update"] is False
     cards = result["red_cards"]["records"]
     assert cards[0]["red_card_side"] == "away"
     assert (cards[0]["score_before_home"], cards[0]["score_before_away"]) == (1, 0)
     assert cards[1]["event_type"] == "second_yellow_red"
     assert (cards[1]["minute"], cards[1]["added_time"]) == (45, 2)
     assert result["referees"]["records"][0]["referee_name"] == "Jane Referee"
+    with pytest.raises(ValueError, match="post-kickoff"):
+        assert_prematch_snapshot(
+            result["lineups"]["snapshot_at"], "2026-07-14T19:00:00Z"
+        )
+
+
+def test_uefa_lineups_keep_legacy_starting_xi_and_substitutes():
+    records = normalize_uefa_lineups(
+        {
+            "homeTeam": {
+                "id": "legacy-home",
+                "internationalName": "Legacy Home",
+                "startingXI": [{
+                    "player": {"id": "starter", "internationalName": "Starter"},
+                }],
+                "substitutes": [{
+                    "player": {"id": "sub", "internationalName": "Substitute"},
+                }],
+            },
+            "awayTeam": {
+                "id": "legacy-away",
+                "internationalName": "Legacy Away",
+                "startingXI": [],
+                "substitutes": [],
+            },
+        },
+        match_id="legacy-match",
+        snapshot_at="2026-07-14T17:00:00Z",
+    )
+
+    assert [(row["player_id"], row["lineup_status"]) for row in records] == [
+        ("starter", "starter"),
+        ("sub", "substitute"),
+    ]
+
+
+def test_prematch_context_does_not_request_live_events():
+    lineups = {
+        "homeTeam": {
+            "team": {"id": "h", "internationalName": "Home"},
+            "field": [{"player": {"id": "p", "internationalName": "Player"}}],
+            "bench": [],
+        },
+        "awayTeam": {
+            "team": {"id": "a", "internationalName": "Away"},
+            "field": [],
+            "bench": [],
+        },
+    }
+    session = FakeSession([lineups])
+
+    result = fetch_uefa_prematch_context(
+        "m",
+        snapshot_at="2026-07-14T17:00:00Z",
+        base_url="https://match.uefa.test/v5/matches/{match_id}",
+        session=session,
+    )
+
+    assert [call[0] for call in session.calls] == [
+        "https://match.uefa.test/v5/matches/m/lineups"
+    ]
+    assert result["lineups"]["records"][0]["player_id"] == "p"
+    assert "red_cards" not in result
 
 
 def test_post_kickoff_snapshot_is_rejected_for_prematch_use():
     with pytest.raises(ValueError, match="post-kickoff"):
         assert_prematch_snapshot(
             "2026-07-14T19:00:01Z", "2026-07-14T19:00:00Z"
+        )
+    with pytest.raises(ValueError, match="at-or-post-kickoff"):
+        assert_prematch_snapshot(
+            "2026-07-14T19:00:00Z", "2026-07-14T19:00:00Z"
         )
     with pytest.raises(ValueError, match="cutoff cannot be after kickoff"):
         aggregate_availability_features(

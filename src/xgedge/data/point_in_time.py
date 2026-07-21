@@ -74,10 +74,10 @@ def assert_prematch_snapshot(
     """Reject information captured after kickoff from pre-match features."""
     snapshot = as_utc(snapshot_at, field="snapshot_at")
     kickoff = as_utc(kickoff_utc, field="kickoff_utc")
-    if snapshot > kickoff:
+    if snapshot >= kickoff:
         raise ValueError(
-            "post-kickoff snapshot cannot be used in pre-match features: "
-            f"{iso_utc(snapshot)} > {iso_utc(kickoff)}"
+            "at-or-post-kickoff snapshot cannot be used in pre-match features: "
+            f"{iso_utc(snapshot)} >= {iso_utc(kickoff)}"
         )
 
 

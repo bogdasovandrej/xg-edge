@@ -1,4 +1,4 @@
-"""Experimental UEFA Champions League qualifying predictor based on ClubElo.
+"""Experimental UEFA club-qualifying predictor based on ClubElo.
 
 This module deliberately stays separate from the validated xG pipeline.  It
 turns a *published* ClubElo difference into an independent-Poisson score model
@@ -38,8 +38,14 @@ DEFAULT_TEAM_ALIASES: dict[str, str] = {
     "Kairat Almaty": "Kairat",
     "KuPS Kuopio": "Kuopio",
     "L. Red Imps": "Lincoln",
+    "Lech Poznań": "Lech",
     "Levski Sofia": "Levski",
+    "Mjällby": "Mjaellby",
+    "GNK Dinamo": "Dinamo Zagreb",
+    "Górnik Zabrze": "Gornik",
+    "H. Beer-Sheva": "Beer-Sheva",
     "Riga": "FK Riga",
+    "S. Bratislava": "Slovan Bratislava",
     "Shamrock Rovers": "Shamrock",
     "U. Craiova": "Craiova",
     "Víkingur R.": "Vikingur",
@@ -355,8 +361,11 @@ def predict_fixture(
     base = {
         "fixture_id": fixture_id or None,
         "kickoff_utc": fixture.get("kickoff_utc"),
+        "competition_id": fixture.get("competition_id"),
         "competition": fixture.get("competition"),
+        "season_id": fixture.get("season_id"),
         "round": fixture.get("round"),
+        "stage": fixture.get("stage"),
         "leg": fixture.get("leg"),
         "home": home or None,
         "away": away or None,

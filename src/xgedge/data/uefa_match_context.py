@@ -56,6 +56,40 @@ def _float(value: Any) -> float | None:
     return parsed if isfinite(parsed) and parsed >= 0 else None
 
 
+def _integer(value: Any) -> int | None:
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return None
+    return parsed if parsed >= 0 else None
+
+
+def _boolean(value: Any) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    if value in (0, 1):
+        return bool(value)
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"true", "yes", "1"}:
+            return True
+        if normalized in {"false", "no", "0"}:
+            return False
+    return None
+
+
+def _text(value: Any) -> str | None:
+    translated = _translated(value)
+    if translated is not None:
+        return translated
+    if value is None or isinstance(value, (bool, Mapping, list)):
+        return None
+    text = str(value).strip()
+    return text or None
+
+
 def _first_present(*values: Any) -> Any:
     return next((value for value in values if value is not None), None)
 
@@ -84,6 +118,19 @@ def _team_blocks(payload: Mapping[str, Any]) -> Iterable[tuple[str | None, Mappi
                 yield side, block
 
 
+def _first_player_list(block: Mapping[str, Any], *keys: str) -> list[Any]:
+    """Return the first populated UEFA list while tolerating legacy aliases."""
+    empty: list[Any] = []
+    for key in keys:
+        value = block.get(key)
+        if not isinstance(value, list):
+            continue
+        if value:
+            return value
+        empty = value
+    return empty
+
+
 def normalize_uefa_lineups(
     payload: Mapping[str, Any],
     *,
@@ -101,8 +148,11 @@ def normalize_uefa_lineups(
         team_obj = block.get("team") if isinstance(block.get("team"), Mapping) else block
         team_id, team_name = _identity(team_obj)
         groups = (
-            ("starter", block.get("players") or block.get("startingXI") or block.get("starters")),
-            ("substitute", block.get("substitutes") or block.get("bench")),
+            (
+                "starter",
+                _first_player_list(block, "field", "players", "startingXI", "starters"),
+            ),
+            ("substitute", _first_player_list(block, "bench", "substitutes")),
         )
         seen_players: set[tuple[str | None, str | None]] = set()
         for default_status, players in groups:
@@ -112,6 +162,7 @@ def normalize_uefa_lineups(
                 if not isinstance(assignment, Mapping):
                     continue
                 player_obj = assignment.get("player") or assignment.get("person") or assignment
+                player = _mapping(player_obj)
                 player_id, player_name = _identity(player_obj)
                 key = (player_id, player_name)
                 if key in seen_players or (player_id is None and player_name is None):
@@ -137,6 +188,26 @@ def normalize_uefa_lineups(
                     "side": side,
                     "player_id": player_id,
                     "player_name": player_name,
+                    "field_position": _text(player.get("fieldPosition")),
+                    "detailed_field_position": _text(
+                        player.get("detailedFieldPosition")
+                    ),
+                    "age": _integer(player.get("age")),
+                    "birth_date": _text(player.get("birthDate")),
+                    "jersey_number": _integer(
+                        _first_present(
+                            assignment.get("jerseyNumber"),
+                            player.get("jerseyNumber"),
+                        )
+                    ),
+                    "is_late_update": _boolean(
+                        _first_present(
+                            assignment.get("isLateUpdate"),
+                            player.get("isLateUpdate"),
+                            block.get("isLateUpdate"),
+                            payload.get("isLateUpdate"),
+                        )
+                    ),
                     "lineup_status": status,
                     "is_confirmed": True,
                     "expected_minutes": _float(
@@ -153,6 +224,71 @@ def normalize_uefa_lineups(
                         )
                     ),
                 })
+    if not saw_block:
+        raise ValueError("unexpected UEFA lineups response: team lineups are missing")
+    return output
+
+
+def normalize_uefa_coaches(
+    payload: Mapping[str, Any],
+    *,
+    match_id: str | int,
+    snapshot_at: datetime | str,
+) -> list[dict[str, Any]]:
+    """Normalize team coaches separately from player line-up records."""
+    if not isinstance(payload, Mapping):
+        raise ValueError("unexpected UEFA lineups response")
+    announced_at = _timestamp(payload, snapshot_at)
+    output: list[dict[str, Any]] = []
+    saw_block = False
+    for side, block in _team_blocks(payload):
+        saw_block = True
+        team_obj = block.get("team") if isinstance(block.get("team"), Mapping) else block
+        team_id, team_name = _identity(team_obj)
+        coaches = block.get("coaches")
+        if not isinstance(coaches, list):
+            continue
+        seen_coaches: set[tuple[str | None, str | None]] = set()
+        for assignment in coaches:
+            if not isinstance(assignment, Mapping):
+                continue
+            coach_obj = assignment.get("coach") or assignment.get("person") or assignment
+            coach = _mapping(coach_obj)
+            coach_id, coach_name = _identity(coach_obj)
+            identity = (coach_id, coach_name)
+            if identity in seen_coaches or (coach_id is None and coach_name is None):
+                continue
+            seen_coaches.add(identity)
+            role = _text(
+                _first_present(
+                    assignment.get("coachRole"),
+                    assignment.get("role"),
+                    assignment.get("type"),
+                    coach.get("coachRole"),
+                    coach.get("role"),
+                    coach.get("type"),
+                )
+            )
+            output.append({
+                "provider": "uefa",
+                "match_id": str(match_id),
+                "snapshot_at": iso_utc(snapshot_at, field="snapshot_at"),
+                "announced_at": announced_at,
+                "team_id": team_id,
+                "team_name": team_name,
+                "side": side,
+                "coach_id": coach_id,
+                "coach_name": coach_name,
+                "role": role.lower() if role else None,
+                "is_late_update": _boolean(
+                    _first_present(
+                        assignment.get("isLateUpdate"),
+                        coach.get("isLateUpdate"),
+                        block.get("isLateUpdate"),
+                        payload.get("isLateUpdate"),
+                    )
+                ),
+            })
     if not saw_block:
         raise ValueError("unexpected UEFA lineups response: team lineups are missing")
     return output
@@ -294,6 +430,41 @@ def normalize_uefa_referees(
     return referees
 
 
+def fetch_uefa_prematch_context(
+    match_id: str | int,
+    *,
+    snapshot_at: datetime | str | None = None,
+    base_url: str = UEFA_MATCH_URL,
+    timeout: float = 30.0,
+    session: requests.Session | None = None,
+) -> dict[str, Any]:
+    """Fetch the official lineup resource without requesting live events."""
+    captured = snapshot_at or datetime.now(timezone.utc)
+    client = session or requests.Session()
+    root = base_url.format(match_id=match_id).rstrip("/")
+    response = client.get(
+        f"{root}/lineups",
+        headers={"Accept": "application/json", "User-Agent": "xgedge-point-in-time/1"},
+        timeout=timeout,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    lineups = normalize_uefa_lineups(
+        payload, match_id=match_id, snapshot_at=captured
+    )
+    coaches = normalize_uefa_coaches(
+        payload, match_id=match_id, snapshot_at=captured
+    )
+    referees = normalize_uefa_referees(
+        payload, match_id=match_id, snapshot_at=captured
+    )
+    return {
+        "lineups": available_snapshot("uefa_lineups", lineups, snapshot_at=captured),
+        "coaches": available_snapshot("uefa_lineups", coaches, snapshot_at=captured),
+        "referees": available_snapshot("uefa_match", referees, snapshot_at=captured),
+    }
+
+
 def fetch_uefa_match_context(
     match_id: str | int,
     *,
@@ -315,6 +486,9 @@ def fetch_uefa_match_context(
     lineups = normalize_uefa_lineups(
         responses["lineups"], match_id=match_id, snapshot_at=captured
     )
+    coaches = normalize_uefa_coaches(
+        responses["lineups"], match_id=match_id, snapshot_at=captured
+    )
     context = normalize_uefa_events(
         responses["events"], match_id=match_id, snapshot_at=captured
     )
@@ -330,6 +504,7 @@ def fetch_uefa_match_context(
             unique_referees.append(referee)
     return {
         "lineups": available_snapshot("uefa_lineups", lineups, snapshot_at=captured),
+        "coaches": available_snapshot("uefa_lineups", coaches, snapshot_at=captured),
         "red_cards": available_snapshot(
             "uefa_events", context["red_cards"], snapshot_at=captured
         ),

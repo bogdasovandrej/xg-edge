@@ -1,0 +1,79 @@
+name: UEFA prematch context monitor
+
+on:
+  schedule:
+    - cron: "9,24,39,54 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: xgedge-data-writers
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e .[dev]
+      - name: Capture official UEFA prematch context
+        id: context
+        shell: bash
+        run: |
+          python scripts/capture_uefa_context.py \
+            --fixtures reports/live/current_fixtures.json \
+            --output reports/live/match_context.json \
+            --window-hours 4
+          if git diff --quiet -- reports/live/match_context.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Rebuild public payload with frozen forecast timestamps
+        if: steps.context.outputs.changed == 'true'
+        run: >-
+          python scripts/build_live_payload.py
+          --world-cup reports/world_cup_2026_semifinals.json
+          --ucl reports/ucl_qualifying_predictions.json
+          --fixtures reports/live/current_fixtures.json
+          --markets reports/live/world_cup_opening_markets.json
+          --anchor-audit reports/market_anchor_audit.json
+          --world-cup-history reports/world_cup_2026_fifa_fixtures_asof_2026-07-13.json
+          --rankings reports/world_cup_2026_fifa_rankings_pre_tournament.json
+          --contexts reports/live/match_context.json
+          --prospective-ledger reports/live/prospective_clv.json
+          --odds-snapshot reports/live/bookmaker_odds.json
+          --paper-ledger reports/live/paper_trading.json
+          --uefa-history reports/live/uefa_club_history.json
+          --top-five-fixtures reports/live/top5_fixtures.json
+          --output reports/live_predictions.json
+      - name: Update PAPER strategy ledger
+        if: steps.context.outputs.changed == 'true'
+        run: >-
+          python scripts/update_paper_trading.py
+          --ledger reports/live/paper_trading.json
+          --live-payload reports/live_predictions.json
+          --prospective-ledger reports/live/prospective_clv.json
+      - name: Validate point-in-time context
+        if: steps.context.outputs.changed == 'true'
+        run: python -m pytest -q tests/test_context_capture.py tests/test_point_in_time_context.py tests/test_match_dossier.py tests/test_live_payload.py tests/test_bookmaker_odds.py tests/test_paper_ranking.py tests/test_paper_ledger.py
+      - name: Publish changed context
+        if: steps.context.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/live/match_context.json reports/live/paper_trading.json reports/live_predictions.json
+          if git diff --cached --quiet; then
+            echo "No prematch context changes"
+          else
+            git commit -m "data: refresh official UEFA prematch context"
+            git push
+          fi

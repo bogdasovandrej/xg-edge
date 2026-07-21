@@ -1,4 +1,4 @@
-"""Predict future Champions League qualifiers from UEFA fixtures and ClubElo."""
+"""Predict future UEFA club qualifiers from official fixtures and ClubElo."""
 from __future__ import annotations
 
 import argparse
@@ -12,10 +12,12 @@ from typing import Any
 import requests
 
 from xgedge.data.official_feeds import (
-    UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR,
-    UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
+    UEFA_CLUB_2027_SEASON_YEAR,
+    UEFA_CLUB_COMPETITION_BY_ID,
+    UEFA_CLUB_COMPETITION_BY_KEY,
     UEFA_MATCHES_URL,
-    fetch_uefa_fixtures,
+    fetch_uefa_club_fixtures,
+    resolve_uefa_competitions,
 )
 from xgedge.experiments.ucl_qualifying import (
     CLUBELO_ATTRIBUTION_URL,
@@ -63,7 +65,9 @@ def _flatten(prediction: dict[str, Any]) -> dict[str, Any]:
     row = {
         key: prediction.get(key)
         for key in (
-            "fixture_id", "kickoff_utc", "round", "leg", "home", "away", "status", "reason"
+            "fixture_id", "kickoff_utc", "competition_id", "competition",
+            "season_id", "round", "stage", "leg", "home", "away", "status",
+            "reason",
         )
     }
     probabilities = prediction.get("probabilities_90m") or {}
@@ -101,8 +105,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output-csv", type=Path, required=True)
     parser.add_argument("--clubelo-url", default=DEFAULT_CLUBELO_URL)
     parser.add_argument("--uefa-url", default=UEFA_MATCHES_URL)
-    parser.add_argument("--uefa-competition-id", default=UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID)
-    parser.add_argument("--uefa-season-year", default=UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR)
+    parser.add_argument(
+        "--uefa-competition",
+        action="append",
+        choices=("all", *UEFA_CLUB_COMPETITION_BY_KEY),
+        help="verified UEFA competition key; repeatable (default: ucl)",
+    )
+    parser.add_argument(
+        "--uefa-competition-id",
+        action="append",
+        choices=tuple(UEFA_CLUB_COMPETITION_BY_ID),
+        help="backward-compatible verified UEFA competition ID; repeatable",
+    )
+    parser.add_argument("--uefa-season-year", default=UEFA_CLUB_2027_SEASON_YEAR)
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--simulations", type=int, default=50_000)
     parser.add_argument("--seed", type=int, default=20260713)
@@ -113,6 +128,20 @@ def main(argv: list[str] | None = None) -> int:
     as_of = args.as_of or datetime.now(timezone.utc)
     to_date = args.to_date or as_of + timedelta(days=370)
     aliases = _load_aliases(args.aliases_json)
+    if args.uefa_competition and args.uefa_competition_id:
+        parser.error("use either --uefa-competition or --uefa-competition-id, not both")
+    if args.uefa_competition_id:
+        competitions = tuple(
+            dict.fromkeys(
+                UEFA_CLUB_COMPETITION_BY_ID[value]
+                for value in args.uefa_competition_id
+            )
+        )
+    else:
+        try:
+            competitions = resolve_uefa_competitions(args.uefa_competition or ("ucl",))
+        except ValueError as exc:
+            parser.error(str(exc))
 
     if args.mode == "offline":
         if args.fixtures_json is None or args.ratings_csv is None:
@@ -124,9 +153,9 @@ def main(argv: list[str] | None = None) -> int:
     else:
         session = requests.Session()
         session.trust_env = False
-        fixtures = fetch_uefa_fixtures(
+        fixtures = fetch_uefa_club_fixtures(
             base_url=args.uefa_url,
-            competition_id=args.uefa_competition_id,
+            competitions=competitions,
             season_year=args.uefa_season_year,
             as_of=as_of,
             to_date=to_date,
@@ -155,11 +184,23 @@ def main(argv: list[str] | None = None) -> int:
     envelope = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "as_of_utc": as_of.isoformat(timespec="seconds").replace("+00:00", "Z"),
-        "model": "experimental ClubElo-to-Poisson qualifier baseline",
+        "model": "experimental ClubElo-to-Poisson UEFA qualifier baseline",
         "calibration": asdict(calibration),
         "coverage": coverage_summary(predictions),
         "sources": {
-            "fixtures": {"provider": "UEFA", "url": fixture_source},
+            "fixtures": {
+                "provider": "UEFA",
+                "url": fixture_source,
+                "competitions": [
+                    {
+                        "key": competition.key,
+                        "id": competition.competition_id,
+                        "code": competition.code,
+                        "name": competition.name,
+                    }
+                    for competition in competitions
+                ],
+            },
             "ratings": {
                 "provider": "ClubElo",
                 "url": ratings_url,
@@ -188,7 +229,7 @@ def main(argv: list[str] | None = None) -> int:
         writer.writerows(rows)
     summary = envelope["coverage"]
     print(
-        f"predicted {summary['predicted']}/{summary['fixtures']} fixtures "
+        f"predicted {summary['predicted']}/{summary['fixtures']} UEFA fixtures "
         f"({summary['coverage']:.1%}); no-prediction={summary['no_prediction']}"
     )
     print(f"ClubElo snapshot: {ratings_url}")

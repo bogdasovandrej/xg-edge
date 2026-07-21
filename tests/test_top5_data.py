@@ -7,6 +7,7 @@ import pandas as pd
 import pytest
 
 from scripts import download_top5
+from scripts.fetch_top5_fixtures import fetch_top5_fixtures
 from xgedge.contracts import Col
 from xgedge.data.competitions import (
     TOP5_COMPETITIONS,
@@ -156,3 +157,42 @@ def test_download_top5_cli_tolerates_unpublished_sources(
     assert result == 0
     assert "not published yet" in capsys.readouterr().out
     assert list(tmp_path.iterdir()) == []
+
+
+def test_football_data_org_top5_fixture_provider_normalizes_scheduled_matches():
+    class Session:
+        def __init__(self):
+            self.calls = []
+
+        def get(self, url, **kwargs):
+            self.calls.append((url, kwargs))
+            code = url.rsplit("/", 2)[-2]
+            return _Response(payload={
+                "matches": [{
+                    "id": 100,
+                    "utcDate": "2026-08-15T16:30:00Z",
+                    "matchday": 1,
+                    "competition": {
+                        "name": "Premier League" if code == "PL" else code
+                    },
+                    "season": {"id": 2627},
+                    "homeTeam": {"id": 65, "shortName": "Man City"},
+                    "awayTeam": {"id": 57, "shortName": "Arsenal"},
+                }]
+            })
+
+    session = Session()
+    document = fetch_top5_fixtures(
+        api_key="token",
+        as_of="2026-08-01T00:00:00Z",
+        to_date="2026-08-31T00:00:00Z",
+        session=session,
+    )
+
+    assert document["schema_version"] == "top-five-fixtures/1.0"
+    assert document["status"] == "available"
+    assert len(document["fixtures"]) == 5
+    assert document["fixtures"][0]["source"] == "football-data.org"
+    assert document["fixtures"][0]["id"].startswith("fdorg:")
+    assert session.calls[0][1]["headers"] == {"X-Auth-Token": "token"}
+    assert session.calls[0][1]["params"]["status"] == "SCHEDULED"

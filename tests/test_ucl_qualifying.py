@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import numpy as np
 import pytest
 
+import scripts.predict_ucl_qualifying as predictor_cli
 from scripts.predict_ucl_qualifying import main as cli_main
 from xgedge.experiments.ucl_qualifying import (
     ClubEloIndex,
@@ -27,8 +28,11 @@ def _fixture(**overrides):
     fixture = {
         "id": "ucl-1",
         "kickoff_utc": "2026-07-14T18:00:00Z",
+        "competition_id": "1",
         "competition": "UEFA Champions League",
+        "season_id": "2027",
         "round": "First qualifying round",
+        "stage": "QUALIFYING",
         "leg": 1,
         "home": "Home FC",
         "away": "Away FK",
@@ -56,6 +60,25 @@ def test_name_normalization_and_explicit_aliases():
     )
     assert index.lookup("GYŐRI ETO").club == "Gyoer"
     assert index.lookup("Unlisted United") is None
+
+
+def test_verified_default_aliases_cover_current_uefa_names():
+    ratings = [
+        ClubEloRating("Mjaellby", "SWE", 1515.6),
+        ClubEloRating("Lech", "POL", 1520.9),
+        ClubEloRating("Dinamo Zagreb", "CRO", 1577.1),
+        ClubEloRating("Gornik", "POL", 1452.0),
+        ClubEloRating("Beer-Sheva", "ISR", 1466.1),
+        ClubEloRating("Slovan Bratislava", "SLK", 1366.5),
+    ]
+    index = ClubEloIndex(ratings)
+
+    assert index.lookup("Mjällby").club == "Mjaellby"
+    assert index.lookup("Lech Poznań").club == "Lech"
+    assert index.lookup("GNK Dinamo").club == "Dinamo Zagreb"
+    assert index.lookup("Górnik Zabrze").club == "Gornik"
+    assert index.lookup("H. Beer-Sheva").club == "Beer-Sheva"
+    assert index.lookup("S. Bratislava").club == "Slovan Bratislava"
 
 
 def test_csv_parser_and_dated_url():
@@ -148,7 +171,13 @@ def test_unknown_team_and_past_fixture_are_no_prediction_not_imputation():
         as_of=AS_OF,
     )
     assert past == {
-        **{key: past[key] for key in ("fixture_id", "kickoff_utc", "competition", "round", "leg", "home", "away")},
+        **{
+            key: past[key]
+            for key in (
+                "fixture_id", "kickoff_utc", "competition_id", "competition",
+                "season_id", "round", "stage", "leg", "home", "away",
+            )
+        },
         "status": "no_prediction",
         "reason": "not_a_future_fixture",
     }
@@ -203,6 +232,78 @@ def test_offline_cli_writes_json_and_csv_without_network(tmp_path, monkeypatch):
     assert payload["sources"]["ratings"]["provider"] == "ClubElo"
     assert "no demonstrated betting or CLV edge" in payload["limitations"][0]
     assert csv_path.read_text(encoding="utf-8").splitlines()[1]
+
+
+def test_live_cli_can_predict_verified_uefa_competitions_without_hardcoding(
+    tmp_path, monkeypatch
+):
+    json_path = tmp_path / "predictions.json"
+    csv_path = tmp_path / "predictions.csv"
+    fixtures = [
+        _fixture(
+            id="uel-1",
+            competition_id="14",
+            competition="UEFA Europa League",
+            round="Second qualifying round",
+            stage="QUALIFYING",
+            leg=1,
+        ),
+        _fixture(
+            id="uecl-1",
+            kickoff_utc="2026-07-14T19:00:00Z",
+            competition_id="2019",
+            competition="UEFA Conference League",
+            round="Second qualifying round",
+            stage="QUALIFYING",
+            leg=2,
+            aggregate_home_score=1,
+            aggregate_away_score=0,
+        ),
+    ]
+    seen = {}
+
+    def fake_fixtures(**kwargs):
+        seen["competition_keys"] = [row.key for row in kwargs["competitions"]]
+        return fixtures
+
+    monkeypatch.setattr(predictor_cli, "fetch_uefa_club_fixtures", fake_fixtures)
+    monkeypatch.setattr(
+        predictor_cli,
+        "fetch_clubelo_ratings",
+        lambda **kwargs: (
+            [
+                ClubEloRating("Home", "AAA", 1600.0),
+                ClubEloRating("Away", "BBB", 1500.0),
+            ],
+            "https://ratings.test/2026-07-13",
+        ),
+    )
+
+    exit_code = predictor_cli.main([
+        "--mode", "live",
+        "--as-of", "2026-07-13T00:00:00Z",
+        "--uefa-competition", "all",
+        "--output-json", str(json_path),
+        "--output-csv", str(csv_path),
+        "--simulations", "1000",
+    ])
+
+    assert exit_code == 0
+    assert seen["competition_keys"] == ["ucl", "uel", "uecl"]
+    payload = json.loads(json_path.read_text(encoding="utf-8"))
+    assert [row["competition"] for row in payload["predictions"]] == [
+        "UEFA Europa League",
+        "UEFA Conference League",
+    ]
+    assert [row["competition_id"] for row in payload["predictions"]] == ["14", "2019"]
+    assert payload["predictions"][1]["round"] == "Second qualifying round"
+    assert payload["predictions"][1]["stage"] == "QUALIFYING"
+    assert payload["predictions"][1]["leg"] == 2
+    assert [row["code"] for row in payload["sources"]["fixtures"]["competitions"]] == [
+        "UCL",
+        "UEL",
+        "UECL",
+    ]
 
 
 @pytest.mark.parametrize(

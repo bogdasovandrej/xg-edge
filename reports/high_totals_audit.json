@@ -1,0 +1,702 @@
+{
+  "conclusion": {
+    "betting_action": "NO_BET_FOR_O3.5_OR_O4.5",
+    "exact_score": "A single modal score is too concentrated and should not be presented as the forecast; retain top-k probabilities plus residual mass.",
+    "high_totals": "O3.5/O4.5 probabilities are uncalibrated research diagnostics. No direct prices exist in the repository, so no value-bet or CLV claim is possible.",
+    "markers": "No pre-match marker is promoted. Exploratory associations require a new, untouched prospective sample after multiple-testing control."
+  },
+  "data_quality": {
+    "duplicate_match_id_rows_full_data": 0,
+    "expected_grain": "one completed EPL match per row",
+    "invalid_bet365_closing_1x2_rows": 0,
+    "invalid_bet365_closing_ou25_rows": 0,
+    "invalid_goal_rows": 0,
+    "invalid_result_rows": 0,
+    "invalid_xg_rows": 0,
+    "required_null_counts_in_sample": {
+      "away": 0,
+      "b365c_o25": 0,
+      "b365c_u25": 0,
+      "b365ca": 0,
+      "b365cd": 0,
+      "b365ch": 0,
+      "date": 0,
+      "ftag": 0,
+      "fthg": 0,
+      "ftr": 0,
+      "home": 0,
+      "match_id": 0,
+      "red_a": 0,
+      "red_h": 0,
+      "season": 0,
+      "xg_a": 0,
+      "xg_h": 0
+    },
+    "result_goal_mismatches": 0,
+    "rows_in_audit_sample": 100,
+    "rows_in_cleaned_data": 1900,
+    "rows_in_season": 380,
+    "sample_complete_for_required_fields": true
+  },
+  "exact_scores": {
+    "display_policy": "show a ranked distribution and residual mass, not one promised score",
+    "fixed_naive_1_1_top1_baseline": {
+      "definition": "always predict 1:1; fixed football baseline, not selected from the sample",
+      "hits": 12,
+      "rate": 0.12
+    },
+    "mean_negative_log_likelihood": 2.8708103854380984,
+    "mean_probability_outside_top5": 0.5538962468315127,
+    "mean_top5_probability_mass": 0.4461037531684873,
+    "n": 100,
+    "predicted_modal_score_counts": {
+      "0:2": 1,
+      "1:0": 2,
+      "1:1": 89,
+      "1:2": 2,
+      "2:0": 3,
+      "2:1": 3
+    },
+    "top_k_hits": {
+      "top_1": {
+        "hits": 11,
+        "rate": 0.11
+      },
+      "top_10": {
+        "hits": 82,
+        "rate": 0.82
+      },
+      "top_3": {
+        "hits": 32,
+        "rate": 0.32
+      },
+      "top_5": {
+        "hits": 44,
+        "rate": 0.44
+      }
+    }
+  },
+  "high_totals": {
+    "O3.5": {
+      "base_rate": 0.27,
+      "bet365_ou25_implied_poisson_tail": {
+        "brier": 0.20990293980474573,
+        "calibration_bins": [
+          {
+            "mean_probability": 0.26337912154123244,
+            "n": 22,
+            "observed_rate": 0.2727272727272727,
+            "probability_max": 0.2801974599342587,
+            "probability_min": 0.20784060867620902
+          },
+          {
+            "mean_probability": 0.3109527338179316,
+            "n": 26,
+            "observed_rate": 0.2692307692307692,
+            "probability_max": 0.3248574071086334,
+            "probability_min": 0.29185740496236134
+          },
+          {
+            "mean_probability": 0.3536258180580315,
+            "n": 20,
+            "observed_rate": 0.35,
+            "probability_max": 0.36276652815843935,
+            "probability_min": 0.34448510795762366
+          },
+          {
+            "mean_probability": 0.3789885396938529,
+            "n": 12,
+            "observed_rate": 0.25,
+            "probability_max": 0.37898853969385293,
+            "probability_min": 0.37898853969385293
+          },
+          {
+            "mean_probability": 0.434622479015219,
+            "n": 20,
+            "observed_rate": 0.2,
+            "probability_max": 0.511105262808991,
+            "probability_min": 0.3977482039619932
+          }
+        ],
+        "ece_5_quantile_bins": 0.07603258823150352,
+        "events": 27,
+        "log_loss": 0.6107258027951752,
+        "mean_probability": 0.3419194017096457,
+        "n": 100,
+        "observed_rate": 0.27,
+        "observed_rate_wilson_95": [
+          0.1926958414957634,
+          0.36432116767944994
+        ],
+        "predicted_minus_observed": 0.07191940170964582,
+        "predicted_minus_observed_bootstrap_95": [
+          -0.02064231265946362,
+          0.15956049855128568
+        ]
+      },
+      "events": 27,
+      "glm_dc_raw_poisson_tail": {
+        "brier": 0.20641982734253633,
+        "calibration_bins": [
+          {
+            "mean_probability": 0.2784071970499218,
+            "n": 20,
+            "observed_rate": 0.2,
+            "probability_max": 0.29843795149147256,
+            "probability_min": 0.24732660321923883
+          },
+          {
+            "mean_probability": 0.31429333881697197,
+            "n": 20,
+            "observed_rate": 0.3,
+            "probability_max": 0.32742734000650103,
+            "probability_min": 0.30380316888476583
+          },
+          {
+            "mean_probability": 0.3431203297825859,
+            "n": 20,
+            "observed_rate": 0.35,
+            "probability_max": 0.3584989804594095,
+            "probability_min": 0.3277182656663661
+          },
+          {
+            "mean_probability": 0.36664703355485867,
+            "n": 20,
+            "observed_rate": 0.3,
+            "probability_max": 0.381532986428888,
+            "probability_min": 0.3588308153894809
+          },
+          {
+            "mean_probability": 0.407131630764506,
+            "n": 20,
+            "observed_rate": 0.2,
+            "probability_max": 0.46176916735704876,
+            "probability_min": 0.3820200194958704
+          }
+        ],
+        "ece_5_quantile_bins": 0.0746717740807345,
+        "events": 27,
+        "log_loss": 0.6036975840717372,
+        "mean_probability": 0.3419199059937688,
+        "n": 100,
+        "observed_rate": 0.27,
+        "observed_rate_wilson_95": [
+          0.1926958414957634,
+          0.36432116767944994
+        ],
+        "predicted_minus_observed": 0.07191990599376885,
+        "predicted_minus_observed_bootstrap_95": [
+          -0.017838519340445076,
+          0.1578719569740699
+        ]
+      },
+      "n": 100
+    },
+    "O4.5": {
+      "base_rate": 0.08,
+      "bet365_ou25_implied_poisson_tail": {
+        "brier": 0.08734971854366691,
+        "calibration_bins": [
+          {
+            "mean_probability": 0.12240934502240641,
+            "n": 22,
+            "observed_rate": 0.09090909090909091,
+            "probability_max": 0.13325614762290083,
+            "probability_min": 0.08791527585621528
+          },
+          {
+            "mean_probability": 0.15443914728163138,
+            "n": 26,
+            "observed_rate": 0.11538461538461539,
+            "probability_max": 0.16423855101349516,
+            "probability_min": 0.14112815423230018
+          },
+          {
+            "mean_probability": 0.18542706494295474,
+            "n": 20,
+            "observed_rate": 0.0,
+            "probability_max": 0.1922913467443591,
+            "probability_min": 0.17856278314155039
+          },
+          {
+            "mean_probability": 0.20478580471731256,
+            "n": 12,
+            "observed_rate": 0.08333333333333333,
+            "probability_max": 0.20478580471731256,
+            "probability_min": 0.20478580471731256
+          },
+          {
+            "mean_probability": 0.25072685913386367,
+            "n": 20,
+            "observed_rate": 0.1,
+            "probability_max": 0.3176613405232229,
+            "probability_min": 0.219601871935731
+          }
+        ],
+        "ece_5_quantile_bins": 0.09888931557959477,
+        "events": 8,
+        "log_loss": 0.3299934651743001,
+        "mean_probability": 0.17888931557959473,
+        "n": 100,
+        "observed_rate": 0.08,
+        "observed_rate_wilson_95": [
+          0.041093461484380624,
+          0.14998107700948735
+        ],
+        "predicted_minus_observed": 0.09888931557959475,
+        "predicted_minus_observed_bootstrap_95": [
+          0.039692851167966954,
+          0.1501244396743987
+        ]
+      },
+      "events": 8,
+      "glm_dc_raw_poisson_tail": {
+        "brier": 0.0862385619260608,
+        "calibration_bins": [
+          {
+            "mean_probability": 0.1322040576570704,
+            "n": 20,
+            "observed_rate": 0.1,
+            "probability_max": 0.1456386304690273,
+            "probability_min": 0.1119001357222054
+          },
+          {
+            "mean_probability": 0.15673793637667738,
+            "n": 20,
+            "observed_rate": 0.1,
+            "probability_max": 0.16608893648530468,
+            "probability_min": 0.1493521865856136
+          },
+          {
+            "mean_probability": 0.17759820915073893,
+            "n": 20,
+            "observed_rate": 0.1,
+            "probability_max": 0.1890527297770338,
+            "probability_min": 0.16629800997056363
+          },
+          {
+            "mean_probability": 0.1952836681552234,
+            "n": 20,
+            "observed_rate": 0.05,
+            "probability_max": 0.20677028812531728,
+            "probability_min": 0.18930385086480483
+          },
+          {
+            "mean_probability": 0.22741908239361677,
+            "n": 20,
+            "observed_rate": 0.05,
+            "probability_max": 0.2731566200792051,
+            "probability_min": 0.20715124098289275
+          }
+        ],
+        "ece_5_quantile_bins": 0.09784859074666538,
+        "events": 8,
+        "log_loss": 0.32747144460185346,
+        "mean_probability": 0.1778485907466654,
+        "n": 100,
+        "observed_rate": 0.08,
+        "observed_rate_wilson_95": [
+          0.041093461484380624,
+          0.14998107700948735
+        ],
+        "predicted_minus_observed": 0.09784859074666538,
+        "predicted_minus_observed_bootstrap_95": [
+          0.04012517423289001,
+          0.14831026072226824
+        ]
+      },
+      "n": 100
+    }
+  },
+  "market_availability": {
+    "bet365_closing_ou25_complete_rows": 100,
+    "direct_o35_or_o45_odds_columns_present": false,
+    "pinnacle_closing_ou25_complete_rows": 0,
+    "tail_probability_contract": "derived from a de-vigged O/U2.5 pair under a Poisson assumption; not a direct O3.5/O4.5 quote",
+    "unavailable_context": {
+      "coach_or_tactical_change": "not present in cleaned/features/market data",
+      "direct_o35_o45_prices": "not present in cleaned/features/market data",
+      "goalkeeper_change_or_age": "not present in cleaned/features/market data",
+      "rivalry_or_derby": "not present in cleaned/features/market data"
+    }
+  },
+  "model_vs_market_derived_poisson": {
+    "O3.5": {
+      "brier_delta_bootstrap_95": [
+        -0.011724147486941717,
+        0.004625385863136439
+      ],
+      "conclusion": "NO_SIGNIFICANT_BRIER_DIFFERENCE",
+      "delta_definition": "model minus market-derived Poisson; negative favours model",
+      "log_loss_delta_bootstrap_95": [
+        -0.025945638322656936,
+        0.011245267257879362
+      ],
+      "mean_brier_delta": -0.003483112462209375,
+      "mean_log_loss_delta": -0.007028218723438009
+    },
+    "O4.5": {
+      "brier_delta_bootstrap_95": [
+        -0.005230889745555126,
+        0.0032447485340553433
+      ],
+      "conclusion": "NO_SIGNIFICANT_BRIER_DIFFERENCE",
+      "delta_definition": "model minus market-derived Poisson; negative favours model",
+      "log_loss_delta_bootstrap_95": [
+        -0.016525075465160483,
+        0.011867064298069583
+      ],
+      "mean_brier_delta": -0.001111156617606082,
+      "mean_log_loss_delta": -0.002522020572446725
+    }
+  },
+  "postmatch_descriptive_only": {
+    "mean_finishing_residual_all": -0.5177142100000001,
+    "mean_finishing_residual_o35": 0.7053205185185185,
+    "mean_total_xg_all": 3.1677142099999998,
+    "mean_total_xg_not_o35": 2.9563708904109585,
+    "mean_total_xg_o35": 3.7391239259259255,
+    "purpose": "description after the fact only; forbidden as pre-match signal",
+    "red_card_match_rate_all": 0.09,
+    "red_card_match_rate_o35": 0.07407407407407407
+  },
+  "prematch_marker_screen": {
+    "alpha": 0.05,
+    "family": "all registered marker x endpoint tests in this audit",
+    "leakage_guard": {
+      "closing_market_features_are_benchmark_only": true,
+      "postmatch_fields_excluded": [
+        "deep_a",
+        "deep_h",
+        "ftag",
+        "fthg",
+        "ftr",
+        "npxg_a",
+        "npxg_h",
+        "ppda_a",
+        "ppda_h",
+        "red_a",
+        "red_h",
+        "xg_a",
+        "xg_h"
+      ],
+      "registry_only": true
+    },
+    "method": "separate univariate logistic regressions; coefficient per one population SD",
+    "multiple_testing": "Benjamini-Hochberg false-discovery-rate adjustment",
+    "n_hypotheses": 18,
+    "n_surviving_fdr_0_05": 0,
+    "tests": [
+      {
+        "availability": "strictly earlier match dates only",
+        "coefficient": 0.3156009930915582,
+        "endpoint": "O3.5",
+        "marker": "xg_defence_form_sum",
+        "odds_ratio_per_1sd": 1.3710830748499347,
+        "p_value": 0.17251321662004715,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.5606291222729578,
+        "source": "causal decayed team defence features",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "strictly earlier match dates only",
+        "coefficient": -0.27548225115479313,
+        "endpoint": "O3.5",
+        "marker": "xg_attack_form_sum",
+        "odds_ratio_per_1sd": 0.75920590700259,
+        "p_value": 0.2240653914843601,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4256722475900558,
+        "source": "causal decayed team attack features",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-match model output",
+        "coefficient": -0.4033303560052091,
+        "endpoint": "O4.5",
+        "marker": "model_expected_total",
+        "odds_ratio_per_1sd": 0.66809135487233,
+        "p_value": 0.29707828895592625,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4157608695652174,
+        "source": "leak-free walk-forward GLM/Dixon-Coles lambdas",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-match model output",
+        "coefficient": -0.4009901035072454,
+        "endpoint": "O4.5",
+        "marker": "model_p_over35",
+        "odds_ratio_per_1sd": 0.6696566882577049,
+        "p_value": 0.30023993631703805,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4157608695652174,
+        "source": "leak-free walk-forward GLM/Dixon-Coles score matrix",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-match model output",
+        "coefficient": 0.3127911261079521,
+        "endpoint": "O4.5",
+        "marker": "model_match_balance",
+        "odds_ratio_per_1sd": 1.3672359213122052,
+        "p_value": 0.44035227496961327,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.5720108695652174,
+        "source": "leak-free walk-forward GLM/Dixon-Coles lambdas",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": -0.2789798390474742,
+        "endpoint": "O4.5",
+        "marker": "market_implied_total",
+        "odds_ratio_per_1sd": 0.7565551559338741,
+        "p_value": 0.4778405257134575,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4565217391304347,
+        "source": "Bet365 closing O/U 2.5 pair, de-vigged then Poisson-transformed",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": -0.2724349123394168,
+        "endpoint": "O4.5",
+        "marker": "market_poisson_p_over35",
+        "odds_ratio_per_1sd": 0.7615229933122959,
+        "p_value": 0.48742762978034104,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4565217391304347,
+        "source": "Bet365 closing O/U 2.5 pair, de-vigged then Poisson-transformed",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": -0.15365084327346828,
+        "endpoint": "O3.5",
+        "marker": "market_implied_total",
+        "odds_ratio_per_1sd": 0.8575713955653392,
+        "p_value": 0.505262800892528,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4809741248097413,
+        "source": "Bet365 closing O/U 2.5 pair, de-vigged then Poisson-transformed",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": -0.15104589774475893,
+        "endpoint": "O3.5",
+        "marker": "market_poisson_p_over35",
+        "odds_ratio_per_1sd": 0.8598082344946659,
+        "p_value": 0.5121696099296533,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4809741248097413,
+        "source": "Bet365 closing O/U 2.5 pair, de-vigged then Poisson-transformed",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": -0.2522265389347096,
+        "endpoint": "O4.5",
+        "marker": "market_favourite_probability",
+        "odds_ratio_per_1sd": 0.7770686818165262,
+        "p_value": 0.5241803071712634,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.42051630434782605,
+        "source": "Bet365 closing 1X2, proportional de-vig",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-match model output",
+        "coefficient": -0.1382911605748156,
+        "endpoint": "O3.5",
+        "marker": "model_match_balance",
+        "odds_ratio_per_1sd": 0.8708450990698747,
+        "p_value": 0.5339053635916278,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4419076610857433,
+        "source": "leak-free walk-forward GLM/Dixon-Coles lambdas",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-match model output",
+        "coefficient": -0.11374150634391748,
+        "endpoint": "O3.5",
+        "marker": "model_expected_total",
+        "odds_ratio_per_1sd": 0.8924886287160407,
+        "p_value": 0.616035675069666,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.4901065449010655,
+        "source": "leak-free walk-forward GLM/Dixon-Coles lambdas",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-match model output",
+        "coefficient": -0.11279486202346733,
+        "endpoint": "O3.5",
+        "marker": "model_p_over35",
+        "odds_ratio_per_1sd": 0.8933338980290553,
+        "p_value": 0.6189767031473694,
+        "q_value_bh_all_tests": 0.8570446658963576,
+        "roc_auc": 0.48959918822932524,
+        "source": "leak-free walk-forward GLM/Dixon-Coles score matrix",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "strictly earlier match dates only",
+        "coefficient": -0.1279784717845492,
+        "endpoint": "O4.5",
+        "marker": "xg_attack_form_sum",
+        "odds_ratio_per_1sd": 0.8798723210216468,
+        "p_value": 0.7261856434511933,
+        "q_value_bh_all_tests": 0.9108573564002374,
+        "roc_auc": 0.49320652173913043,
+        "source": "causal decayed team attack features",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": 0.12517592794732918,
+        "endpoint": "O4.5",
+        "marker": "market_1x2_entropy",
+        "odds_ratio_per_1sd": 1.1333478230850584,
+        "p_value": 0.7590477970001978,
+        "q_value_bh_all_tests": 0.9108573564002374,
+        "roc_auc": 0.5726902173913044,
+        "source": "Bet365 closing 1X2, proportional de-vig",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "strictly earlier match dates only",
+        "coefficient": -0.04991797472602741,
+        "endpoint": "O4.5",
+        "marker": "xg_defence_form_sum",
+        "odds_ratio_per_1sd": 0.951307452554962,
+        "p_value": 0.8923797027621981,
+        "q_value_bh_all_tests": 0.9466943712292955,
+        "roc_auc": 0.4375,
+        "source": "causal decayed team defence features",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": 0.02987499512753493,
+        "endpoint": "O3.5",
+        "marker": "market_favourite_probability",
+        "odds_ratio_per_1sd": 1.030325730166637,
+        "p_value": 0.8941002394943345,
+        "q_value_bh_all_tests": 0.9466943712292955,
+        "roc_auc": 0.5200405885337391,
+        "source": "Bet365 closing 1X2, proportional de-vig",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      },
+      {
+        "availability": "pre-kickoff closing benchmark; not an earlier executable quote",
+        "coefficient": -0.007676359203623279,
+        "endpoint": "O3.5",
+        "marker": "market_1x2_entropy",
+        "odds_ratio_per_1sd": 0.9923530287959954,
+        "p_value": 0.9727213716295783,
+        "q_value_bh_all_tests": 0.9727213716295782,
+        "roc_auc": 0.47691527143581935,
+        "source": "Bet365 closing 1X2, proportional de-vig",
+        "status": "ESTIMATED",
+        "survives_fdr_0_05": false
+      }
+    ]
+  },
+  "protocol": {
+    "bootstrap_resamples": 10000,
+    "feature_config": {
+      "adjust_opponent": false,
+      "clamp": [
+        0.5,
+        2.0
+      ],
+      "decay": true,
+      "half_life_days": 180.0,
+      "min_history": 5,
+      "red_card_weight": 0.5,
+      "use_npxg": false,
+      "venue_blend": 0.3
+    },
+    "league": "EPL",
+    "model": "Poisson GLM plus training-only Dixon-Coles rho",
+    "network_access": false,
+    "same_date_rule": "feature state frozen until all matches on a date are recorded",
+    "sample_end": "2026-05-24",
+    "sample_rule": "last 100 matches after stable sort by date and match_id",
+    "sample_size": 100,
+    "sample_start": "2026-03-01",
+    "score_grid": "0..10 goals per team, normalized to one",
+    "season": "2025-26",
+    "seed": 20260721,
+    "walkforward_initial_train_end": "2023-07-01",
+    "walkforward_step_days": 30,
+    "walkforward_training_rule": "only rows before each test-window start"
+  },
+  "schema": "high-totals-exact-score-audit/1.0",
+  "source": {
+    "columns": [
+      "match_id",
+      "season",
+      "date",
+      "home",
+      "away",
+      "fthg",
+      "ftag",
+      "ftr",
+      "xg_h",
+      "xg_a",
+      "npxg_h",
+      "npxg_a",
+      "ppda_h",
+      "ppda_a",
+      "deep_h",
+      "deep_a",
+      "red_h",
+      "red_a",
+      "b365h",
+      "b365d",
+      "b365a",
+      "psh",
+      "psd",
+      "psa",
+      "b365ch",
+      "b365cd",
+      "b365ca",
+      "psch",
+      "pscd",
+      "psca",
+      "b365_o25",
+      "b365_u25",
+      "b365c_o25",
+      "b365c_u25",
+      "p_o25",
+      "p_u25",
+      "pc_o25",
+      "pc_u25"
+    ],
+    "path": "data/cleaned/matches.parquet",
+    "sha256": "3c30ac7414d50f026844ea8fd81e625fb5daf942f134206ffb91e1ab5879eba9"
+  },
+  "status": "RESEARCH_ONLY_NO_BET"
+}
