@@ -1,7 +1,8 @@
-"""Official The Odds API adapter with strict point-in-time normalization."""
+"""Official bookmaker API adapters with strict point-in-time normalization."""
 from __future__ import annotations
 
 import os
+import re
 from copy import deepcopy
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -15,10 +16,17 @@ from xgedge.experiments.ucl_qualifying import normalize_team_name
 
 THE_ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 THE_ODDS_API_DOCS = "https://the-odds-api.com/liveapi/guides/v4/"
+ODDS_API_IO_BASE = "https://api.odds-api.io/v3"
+ODDS_API_IO_DOCS = "https://docs.odds-api.io/guides/fetching-odds"
 
 SPORT_KEYS = {
     "FIFA World Cup 2026": "soccer_fifa_world_cup",
     "UEFA Champions League": "soccer_uefa_champs_league",
+    "Premier League": "soccer_epl",
+    "La Liga": "soccer_spain_la_liga",
+    "Bundesliga": "soccer_germany_bundesliga",
+    "Serie A": "soccer_italy_serie_a",
+    "Ligue 1": "soccer_france_ligue_one",
 }
 
 OUTCOME_KEYS = ("home", "draw", "away")
@@ -241,6 +249,102 @@ def normalize_odds_event(
     }
 
 
+def _bookmaker_key(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", name.casefold()).strip("_") or "unknown"
+
+
+def normalize_odds_api_io_event(
+    event: Mapping[str, Any],
+    *,
+    fixtures: Iterable[Mapping[str, Any]],
+    snapshot_at: str | datetime,
+    requested_at: str | datetime | None = None,
+    aliases: Mapping[str, str] | None = None,
+    tolerance_hours: float = 6.0,
+) -> dict[str, Any] | None:
+    """Normalize the official Odds-API.io v3 response into our provider contract."""
+    if not isinstance(event, Mapping):
+        return None
+    home, away = event.get("home"), event.get("away")
+    if not isinstance(home, str) or not isinstance(away, str):
+        return None
+    provider_books = event.get("bookmakers")
+    if not isinstance(provider_books, Mapping):
+        return None
+    books: list[dict[str, Any]] = []
+    for title, raw_markets in provider_books.items():
+        if not isinstance(title, str) or not isinstance(raw_markets, list):
+            continue
+        markets: list[dict[str, Any]] = []
+        latest: list[datetime] = []
+        for raw_market in raw_markets:
+            if not isinstance(raw_market, Mapping):
+                continue
+            updated = raw_market.get("updatedAt")
+            if updated:
+                latest.append(as_utc(updated, field="updatedAt"))
+            market_name = str(raw_market.get("name") or "").strip().casefold()
+            raw_odds = raw_market.get("odds")
+            if not isinstance(raw_odds, list):
+                continue
+            if market_name in {"ml", "moneyline", "match result"}:
+                outcomes: list[dict[str, Any]] = []
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    outcomes.extend([
+                        {"name": home, "price": row.get("home")},
+                        {"name": "Draw", "price": row.get("draw")},
+                        {"name": away, "price": row.get("away")},
+                    ])
+                markets.append({"key": "h2h", "outcomes": outcomes})
+            elif market_name in {"totals", "over/under", "over under"}:
+                outcomes = []
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    line = row.get("hdp", row.get("max"))
+                    outcomes.extend([
+                        {"name": "Over", "point": line, "price": row.get("over")},
+                        {"name": "Under", "point": line, "price": row.get("under")},
+                    ])
+                markets.append({"key": "totals", "outcomes": outcomes})
+        if markets:
+            books.append({
+                "key": _bookmaker_key(title),
+                "title": title,
+                "last_update": (
+                    iso_utc(max(latest), field="updatedAt") if latest else None
+                ),
+                "markets": markets,
+            })
+    league = event.get("league") if isinstance(event.get("league"), Mapping) else {}
+    transformed = {
+        "id": event.get("id"),
+        "sport_key": str(league.get("slug") or "football"),
+        "commence_time": event.get("date"),
+        "home_team": home,
+        "away_team": away,
+        "bookmakers": books,
+    }
+    normalized = normalize_odds_event(
+        transformed,
+        fixtures=fixtures,
+        snapshot_at=snapshot_at,
+        requested_at=requested_at,
+        aliases=aliases,
+        tolerance_hours=tolerance_hours,
+    )
+    if normalized is None:
+        return None
+    normalized.update({
+        "provider": "odds_api_io",
+        "source_provider": "odds_api_io",
+        "source_url": ODDS_API_IO_DOCS,
+    })
+    return normalized
+
+
 def _record_time(record: Mapping[str, Any]) -> datetime:
     value = record.get("received_at") or record.get("snapshot_at")
     return as_utc(value, field="received_at")
@@ -363,7 +467,11 @@ def merge_odds_snapshots(
         "requested_sport_keys": requested_keys,
         "quota": deepcopy(current.get("quota", prior.get("quota"))),
         "errors": deepcopy(current.get("errors", [])),
-        "documentation": current.get("documentation") or prior.get("documentation") or THE_ODDS_API_DOCS,
+        "documentation": (
+            current.get("documentation")
+            or prior.get("documentation")
+            or (ODDS_API_IO_DOCS if current_provider == "odds_api_io" else THE_ODDS_API_DOCS)
+        ),
     })
     return output
 
@@ -497,7 +605,9 @@ def apply_odds_snapshot_to_live_payload(
         source_provider = str(
             record.get("source_provider") or record.get("provider") or provider
         )
-        source_url = record.get("source_url") or THE_ODDS_API_DOCS
+        source_url = record.get("source_url") or (
+            ODDS_API_IO_DOCS if source_provider == "odds_api_io" else THE_ODDS_API_DOCS
+        )
         try:
             received = _record_time(record)
         except (TypeError, ValueError):
@@ -775,5 +885,228 @@ class TheOddsApiProvider:
             "documentation": THE_ODDS_API_DOCS,
             "sport_poll_times": poll_times,
             "requested_sport_keys": unique_keys,
+        })
+        return result
+
+
+@dataclass(frozen=True)
+class OddsApiIoConfig:
+    bookmakers: tuple[str, ...] = ("Bet365", "Unibet", "Pinnacle")
+    batch_size: int = 10
+    kickoff_tolerance_hours: float = 6.0
+
+    def validate(self) -> None:
+        if not self.bookmakers or any(not name.strip() for name in self.bookmakers):
+            raise ValueError("bookmakers must contain at least one non-empty name")
+        if not 1 <= self.batch_size <= 10:
+            raise ValueError("batch_size must be in [1, 10]")
+        if not 0 < self.kickoff_tolerance_hours <= 24:
+            raise ValueError("kickoff_tolerance_hours must be in (0, 24]")
+
+
+class OddsApiIoProvider:
+    """Official Odds-API.io v3 football adapter with batched pre-match odds."""
+
+    name = "odds_api_io"
+
+    def __init__(
+        self,
+        api_key: str | None = None,
+        *,
+        base_url: str = ODDS_API_IO_BASE,
+        config: OddsApiIoConfig | None = None,
+        timeout: float = 30.0,
+        session: requests.Session | None = None,
+    ) -> None:
+        self.api_key = api_key or os.getenv("ODDS_API_IO_KEY")
+        configured_books = os.getenv("ODDS_API_IO_BOOKMAKERS")
+        self.config = config or OddsApiIoConfig(
+            bookmakers=(
+                tuple(name.strip() for name in configured_books.split(",") if name.strip())
+                if configured_books else OddsApiIoConfig.bookmakers
+            )
+        )
+        self.config.validate()
+        self.base_url = base_url.rstrip("/")
+        self.timeout = timeout
+        self.session = session
+
+    @staticmethod
+    def _payload_list(payload: Any, *, name: str) -> list[Any]:
+        if isinstance(payload, Mapping):
+            payload = payload.get("data")
+        if not isinstance(payload, list):
+            raise ValueError(f"{name} response must be a list")
+        return payload
+
+    @staticmethod
+    def _update_quota(quota: dict[str, Any], response: Any) -> None:
+        headers = getattr(response, "headers", {})
+        if not hasattr(headers, "get"):
+            return
+        for header, field in (
+            ("x-ratelimit-remaining", "remaining"),
+            ("x-ratelimit-limit", "limit"),
+        ):
+            value = headers.get(header)
+            try:
+                quota[field] = int(value) if value is not None else quota[field]
+            except (TypeError, ValueError):
+                pass
+        reset = headers.get("x-ratelimit-reset")
+        if reset:
+            quota["reset"] = str(reset)
+
+    def fetch_snapshot(
+        self,
+        *,
+        sport_keys: Iterable[str],
+        fixtures: Iterable[Mapping[str, Any]],
+        snapshot_at: str | datetime | None = None,
+        aliases: Mapping[str, str] | None = None,
+    ) -> dict[str, Any]:
+        deterministic_clock = (
+            as_utc(snapshot_at, field="snapshot_at")
+            if snapshot_at is not None else None
+        )
+        if not self.api_key:
+            return unavailable_snapshot(
+                self.name,
+                "missing_api_key",
+                snapshot_at=deterministic_clock or _utc_now(),
+            )
+        client = self.session or requests.Session()
+        fixture_rows = [dict(row) for row in fixtures]
+        requested_keys = sorted({
+            str(key).strip() for key in sport_keys if str(key).strip()
+        })
+        requested = deterministic_clock or _utc_now()
+        received = requested
+        records: list[dict[str, Any]] = []
+        errors: list[dict[str, str]] = []
+        quota: dict[str, Any] = {"remaining": None, "limit": None, "reset": None}
+        headers = {"Accept": "application/json", "User-Agent": "xgedge-odds/2"}
+        try:
+            future_kickoffs = [
+                as_utc(row["kickoff_utc"], field="kickoff_utc")
+                for row in fixture_rows if row.get("kickoff_utc")
+                and as_utc(row["kickoff_utc"], field="kickoff_utc") > requested
+            ]
+            horizon = max(future_kickoffs) + timedelta(hours=1) if future_kickoffs else requested + timedelta(days=14)
+            response = client.get(
+                f"{self.base_url}/events",
+                params={
+                    "apiKey": self.api_key,
+                    "sport": "football",
+                    "status": "pending",
+                    "from": iso_utc(requested, field="requested_at"),
+                    "to": iso_utc(horizon, field="horizon"),
+                    "limit": 5000,
+                },
+                headers=headers,
+                timeout=self.timeout,
+            )
+            received = deterministic_clock or _utc_now()
+            response.raise_for_status()
+            self._update_quota(quota, response)
+            events = self._payload_list(response.json(), name="events")
+            matched_event_ids: list[str] = []
+            for event in events:
+                if not isinstance(event, Mapping) or event.get("id") is None:
+                    continue
+                candidate = {
+                    "home_team": event.get("home"),
+                    "away_team": event.get("away"),
+                    "commence_time": event.get("date"),
+                }
+                if match_provider_event(
+                    candidate,
+                    fixture_rows,
+                    aliases=aliases,
+                    tolerance_hours=self.config.kickoff_tolerance_hours,
+                ):
+                    matched_event_ids.append(str(event["id"]))
+            matched_event_ids = list(dict.fromkeys(matched_event_ids))
+            for start in range(0, len(matched_event_ids), self.config.batch_size):
+                batch = matched_event_ids[start:start + self.config.batch_size]
+                batch_requested = deterministic_clock or _utc_now()
+                try:
+                    odds_response = client.get(
+                        f"{self.base_url}/odds/multi",
+                        params={
+                            "apiKey": self.api_key,
+                            "eventIds": ",".join(batch),
+                            "bookmakers": ",".join(self.config.bookmakers),
+                        },
+                        headers=headers,
+                        timeout=self.timeout,
+                    )
+                    batch_received = deterministic_clock or _utc_now()
+                    received = max(received, batch_received)
+                    odds_response.raise_for_status()
+                    self._update_quota(quota, odds_response)
+                    odds_events = self._payload_list(
+                        odds_response.json(), name="multi-odds"
+                    )
+                    for event in odds_events:
+                        normalized = normalize_odds_api_io_event(
+                            event,
+                            fixtures=fixture_rows,
+                            snapshot_at=batch_received,
+                            requested_at=batch_requested,
+                            aliases=aliases,
+                            tolerance_hours=self.config.kickoff_tolerance_hours,
+                        )
+                        if normalized:
+                            records.append(normalized)
+                except requests.HTTPError as exc:
+                    response_value = getattr(exc, "response", None)
+                    status = getattr(response_value, "status_code", None)
+                    errors.append({
+                        "sport_key": "football",
+                        "error": f"HTTPError: status={status if status is not None else 'unknown'}",
+                    })
+                except requests.RequestException as exc:
+                    errors.append({"sport_key": "football", "error": type(exc).__name__})
+                except (TypeError, ValueError) as exc:
+                    errors.append({
+                        "sport_key": "football",
+                        "error": f"{type(exc).__name__}: {exc}",
+                    })
+        except requests.HTTPError as exc:
+            response_value = getattr(exc, "response", None)
+            status = getattr(response_value, "status_code", None)
+            errors.append({
+                "sport_key": "football",
+                "error": f"HTTPError: status={status if status is not None else 'unknown'}",
+            })
+        except requests.RequestException as exc:
+            errors.append({"sport_key": "football", "error": type(exc).__name__})
+        except (TypeError, ValueError) as exc:
+            errors.append({
+                "sport_key": "football",
+                "error": f"{type(exc).__name__}: {exc}",
+            })
+
+        poll_times = {
+            key: {
+                "requested_at": iso_utc(requested, field="requested_at"),
+                "received_at": iso_utc(received, field="received_at"),
+                "status": "unavailable" if errors else "available",
+            }
+            for key in requested_keys
+        }
+        if not records and errors:
+            result = unavailable_snapshot(
+                self.name, "football_requests_failed", snapshot_at=received
+            )
+        else:
+            result = available_snapshot(self.name, records, snapshot_at=received)
+        result.update({
+            "quota": quota,
+            "errors": errors,
+            "documentation": ODDS_API_IO_DOCS,
+            "sport_poll_times": poll_times,
+            "requested_sport_keys": requested_keys,
         })
         return result

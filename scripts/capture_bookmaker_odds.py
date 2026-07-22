@@ -11,6 +11,7 @@ from typing import Any, Mapping
 import requests
 
 from xgedge.data.bookmaker_odds import (
+    OddsApiIoProvider,
     SPORT_KEYS,
     TheOddsApiProvider,
     apply_odds_snapshot_to_live_payload,
@@ -48,6 +49,9 @@ def sport_key_for_fixture(fixture: Mapping[str, Any]) -> str | None:
         return SPORT_KEYS["FIFA World Cup 2026"]
     if "Champions League" in competition:
         return SPORT_KEYS["UEFA Champions League"]
+    for name in ("Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1"):
+        if name in competition:
+            return SPORT_KEYS[name]
     return None
 
 
@@ -113,6 +117,15 @@ def quota_request_mode(
     remaining = quota.get("remaining") if isinstance(quota, Mapping) else None
     if isinstance(remaining, bool) or not isinstance(remaining, int):
         return "normal"
+    reset = quota.get("reset") if isinstance(quota, Mapping) else None
+    if reset:
+        try:
+            if now >= as_utc(reset, field="quota.reset"):
+                return "normal"
+        except (TypeError, ValueError):
+            # A malformed optional provider header must not break the monitor;
+            # the conservative persisted-quota policy below still applies.
+            pass
     if remaining > reserve:
         return "normal"
     if remaining > 0:
@@ -126,6 +139,7 @@ def quota_request_mode(
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fixtures", type=Path, required=True)
+    parser.add_argument("--top-five-fixtures", type=Path)
     parser.add_argument("--live-payload", type=Path, required=True)
     parser.add_argument("--ledger", type=Path, required=True)
     parser.add_argument("--snapshot-output", type=Path, required=True)
@@ -141,6 +155,17 @@ def main(argv: list[str] | None = None) -> None:
 
     now = as_utc(args.now or datetime.now(timezone.utc), field="now")
     fixtures = _read(args.fixtures)
+    if args.top_five_fixtures and args.top_five_fixtures.exists():
+        top_five = _read(args.top_five_fixtures)
+        if not isinstance(top_five, Mapping) or not isinstance(top_five.get("fixtures"), list):
+            raise ValueError("top-five fixture document must contain a fixtures list")
+        if not isinstance(fixtures, list):
+            raise ValueError("fixtures must contain a list")
+        known_ids = {str(row.get("id")) for row in fixtures if isinstance(row, Mapping)}
+        fixtures = fixtures + [
+            row for row in top_five["fixtures"]
+            if isinstance(row, Mapping) and str(row.get("id")) not in known_ids
+        ]
     live_payload = _read(args.live_payload)
     ledger = _read(args.ledger) if args.ledger.exists() else new_ledger(updated_at=now)
     finalized = finalize_clv_after_kickoff(ledger, finalized_at=now)
@@ -154,11 +179,25 @@ def main(argv: list[str] | None = None) -> None:
         _write(args.live_payload, live_payload)
     if not isinstance(fixtures, list):
         raise ValueError("fixtures must contain a list")
-    api_key = os.getenv("THE_ODDS_API_KEY")
-    if not api_key:
-        print("THE_ODDS_API_KEY is not configured; no odds request was made")
+    odds_api_io_key = os.getenv("ODDS_API_IO_KEY")
+    legacy_api_key = os.getenv("THE_ODDS_API_KEY")
+    if not odds_api_io_key and not legacy_api_key:
+        print(
+            "ODDS_API_IO_KEY and THE_ODDS_API_KEY are not configured; "
+            "no odds request was made"
+        )
         return
-    last_snapshot = _read(args.snapshot_output) if args.snapshot_output.exists() else None
+    if odds_api_io_key:
+        provider = OddsApiIoProvider(api_key=odds_api_io_key, timeout=args.timeout)
+    else:
+        provider = TheOddsApiProvider(api_key=legacy_api_key, timeout=args.timeout)
+    stored_snapshot = _read(args.snapshot_output) if args.snapshot_output.exists() else None
+    last_snapshot = (
+        stored_snapshot
+        if isinstance(stored_snapshot, Mapping)
+        and stored_snapshot.get("provider") == provider.name
+        else None
+    )
     quota_mode = quota_request_mode(
         last_snapshot,
         now=now,
@@ -203,7 +242,7 @@ def main(argv: list[str] | None = None) -> None:
 
     session = requests.Session()
     session.trust_env = False
-    provider = TheOddsApiProvider(api_key=api_key, timeout=args.timeout, session=session)
+    provider.session = session
     snapshot = provider.fetch_snapshot(
         sport_keys=keys,
         fixtures=fixtures,

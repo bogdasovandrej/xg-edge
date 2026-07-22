@@ -19,6 +19,11 @@ def _fixture(identity: str, competition: str, kickoff: str) -> dict:
 def test_maps_supported_competitions_without_guessing_unknowns() -> None:
     assert sport_key_for_fixture({"competition": "FIFA World Cup™"}) == "soccer_fifa_world_cup"
     assert sport_key_for_fixture({"competition": "UEFA Champions League"}) == "soccer_uefa_champs_league"
+    assert sport_key_for_fixture({"competition": "Premier League"}) == "soccer_epl"
+    assert sport_key_for_fixture({"competition": "La Liga"}) == "soccer_spain_la_liga"
+    assert sport_key_for_fixture({"competition": "Bundesliga"}) == "soccer_germany_bundesliga"
+    assert sport_key_for_fixture({"competition": "Serie A"}) == "soccer_italy_serie_a"
+    assert sport_key_for_fixture({"competition": "Ligue 1"}) == "soccer_france_ligue_one"
     assert sport_key_for_fixture({"competition": "Friendly"}) is None
 
 
@@ -78,7 +83,6 @@ def test_quota_reserve_disables_discovery_and_zero_has_weekly_probe() -> None:
     assert quota_request_mode(empty, now=NOW) == "blocked"
     old = {"snapshot_at": "2026-07-01T11:00:00Z", "quota": {"remaining": 0}}
     assert quota_request_mode(old, now=NOW) == "probe"
-
     fixtures = [
         _fixture("new", "UEFA Champions League", "2026-07-20T12:00:00Z"),
         _fixture("close", "FIFA World Cup™", "2026-07-14T12:45:00Z"),
@@ -87,3 +91,14 @@ def test_quota_reserve_disables_discovery_and_zero_has_weekly_probe() -> None:
         fixtures, {"fixtures": {}}, now=NOW, closing_window_minutes=60,
         discovery_days=14, include_discovery=False,
     ) == ["soccer_fifa_world_cup"]
+
+
+def test_hourly_quota_is_reenabled_after_provider_reset() -> None:
+    reset = {
+        "snapshot_at": "2026-07-14T11:00:00Z",
+        "quota": {
+            "remaining": 0,
+            "reset": "2026-07-14T11:59:59Z",
+        },
+    }
+    assert quota_request_mode(reset, now=NOW) == "normal"
