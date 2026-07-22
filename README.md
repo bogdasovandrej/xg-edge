@@ -1,5 +1,8 @@
 # xg-edge — вероятностная модель футбольных исходов
 
+Каноническая спецификация продукта и сохранённые требования владельца:
+[`docs/PRODUCT_REQUIREMENTS_RU.md`](docs/PRODUCT_REQUIREMENTS_RU.md).
+
 [![CI](https://github.com/bogdasovandrej/xg-edge/actions/workflows/ci.yml/badge.svg)](https://github.com/bogdasovandrej/xg-edge/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Version](https://img.shields.io/badge/version-0.6.0-blue)
