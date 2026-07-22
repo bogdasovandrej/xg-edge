@@ -178,6 +178,50 @@ def _normalize_totals(outcomes: Any) -> list[dict[str, float]]:
     ]
 
 
+def _normalize_btts(outcomes: Any) -> dict[str, float] | None:
+    if not isinstance(outcomes, list):
+        return None
+    values: dict[str, float] = {}
+    aliases = {
+        "yes": "yes", "да": "yes", "btts yes": "yes",
+        "no": "no", "нет": "no", "btts no": "no",
+    }
+    for outcome in outcomes:
+        if not isinstance(outcome, Mapping):
+            continue
+        key = aliases.get(str(outcome.get("name") or "").strip().casefold())
+        value = _price(outcome.get("price"))
+        if key and value is not None:
+            values[key] = value
+    return values if set(values) == {"yes", "no"} else None
+
+
+def _normalize_spreads(
+    outcomes: Any, *, home: str, away: str, aliases: Mapping[str, str]
+) -> list[dict[str, float]]:
+    if not isinstance(outcomes, list):
+        return []
+    home_key, away_key = _canonical(home, aliases), _canonical(away, aliases)
+    grouped: dict[float, dict[str, float]] = {}
+    for outcome in outcomes:
+        if not isinstance(outcome, Mapping):
+            continue
+        name = outcome.get("name")
+        line, value = _point(outcome.get("point")), _price(outcome.get("price"))
+        if not isinstance(name, str) or line is None or value is None:
+            continue
+        canonical = _canonical(name, aliases)
+        if canonical == home_key:
+            grouped.setdefault(line, {})["home"] = value
+        elif canonical == away_key:
+            grouped.setdefault(-line, {})["away"] = value
+    return [
+        {"line": line, "home": prices["home"], "away": prices["away"]}
+        for line, prices in sorted(grouped.items())
+        if set(prices) == {"home", "away"}
+    ]
+
+
 def normalize_odds_event(
     event: Mapping[str, Any],
     *,
@@ -229,6 +273,16 @@ def normalize_odds_event(
                 totals = _normalize_totals(market.get("outcomes"))
                 if totals:
                     normalized["totals"] = totals
+            elif market.get("key") == "btts":
+                btts = _normalize_btts(market.get("outcomes"))
+                if btts:
+                    normalized["btts"] = btts
+            elif market.get("key") == "spreads":
+                spreads = _normalize_spreads(
+                    market.get("outcomes"), home=home, away=away, aliases=alias_map
+                )
+                if spreads:
+                    normalized["spreads"] = spreads
         if not normalized:
             continue
         books.append({
@@ -318,6 +372,32 @@ def normalize_odds_api_io_event(
                         {"name": "Under", "point": line, "price": row.get("under")},
                     ])
                 markets.append({"key": "totals", "outcomes": outcomes})
+            elif market_name in {"both teams to score", "btts", "both teams score"}:
+                outcomes = []
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    outcomes.extend([
+                        {"name": "Yes", "price": row.get("yes")},
+                        {"name": "No", "price": row.get("no")},
+                    ])
+                markets.append({"key": "btts", "outcomes": outcomes})
+            elif market_name in {"asian handicap", "spread", "spreads", "handicap"}:
+                outcomes = []
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    line = row.get("hdp", row.get("handicap"))
+                    parsed_line = _point(line)
+                    outcomes.extend([
+                        {"name": home, "point": parsed_line, "price": row.get("home")},
+                        {
+                            "name": away,
+                            "point": -parsed_line if parsed_line is not None else None,
+                            "price": row.get("away"),
+                        },
+                    ])
+                markets.append({"key": "spreads", "outcomes": outcomes})
         if markets:
             books.append({
                 "key": _bookmaker_key(title),
@@ -508,6 +588,63 @@ def _best_h2h_prices(record: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
     return best
 
 
+def _quoted_price(book: Mapping[str, Any], odds: float) -> dict[str, Any]:
+    return {
+        "odds": odds,
+        "bookmaker_key": str(book.get("key") or "unknown"),
+        "bookmaker": str(book.get("title") or book.get("key") or "unknown"),
+    }
+
+
+def _best_btts_prices(record: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+    best: dict[str, dict[str, Any]] = {}
+    for book in record.get("bookmakers", []):
+        if not isinstance(book, Mapping):
+            continue
+        markets = book.get("markets")
+        btts = markets.get("btts") if isinstance(markets, Mapping) else None
+        if not isinstance(btts, Mapping):
+            continue
+        for outcome in ("yes", "no"):
+            value = _price(btts.get(outcome))
+            if value is None:
+                continue
+            if outcome not in best or value > best[outcome]["odds"]:
+                best[outcome] = _quoted_price(book, value)
+    return best if set(best) == {"yes", "no"} else {}
+
+
+def _best_line_prices(
+    record: Mapping[str, Any], *, market: str, outcomes: tuple[str, str]
+) -> list[dict[str, Any]]:
+    best: dict[float, dict[str, dict[str, Any]]] = {}
+    for book in record.get("bookmakers", []):
+        if not isinstance(book, Mapping):
+            continue
+        markets = book.get("markets")
+        lines = markets.get(market) if isinstance(markets, Mapping) else None
+        if not isinstance(lines, list):
+            continue
+        for row in lines:
+            if not isinstance(row, Mapping):
+                continue
+            line = _point(row.get("line"))
+            if line is None:
+                continue
+            for outcome in outcomes:
+                value = _price(row.get(outcome))
+                if value is None:
+                    continue
+                current = best.setdefault(line, {}).get(outcome)
+                if current is None or value > current["odds"]:
+                    best[line][outcome] = _quoted_price(book, value)
+    return [
+        {"line": line, **prices}
+        for line, prices in sorted(best.items())
+        if set(prices) == set(outcomes)
+    ]
+
+
 def _utc_now() -> datetime:
     return datetime.now(timezone.utc)
 
@@ -536,7 +673,10 @@ def _clear_provider_market_fields(output: dict[str, Any]) -> None:
             )
         ):
             details.pop("candidate_bets", None)
-        for field in ("live_odds", "market_snapshot", "market_candidates"):
+        for field in (
+            "live_odds", "market_snapshot", "market_candidates",
+            "expanded_market_candidates",
+        ):
             details.pop(field, None)
     output.pop("odds_feed", None)
 
@@ -668,6 +808,13 @@ def apply_odds_snapshot_to_live_payload(
             rejected += int(status != "STALE")
             continue
         best = _best_h2h_prices(record)
+        best_totals = _best_line_prices(
+            record, market="totals", outcomes=("over", "under")
+        )
+        best_btts = _best_btts_prices(record)
+        best_spreads = _best_line_prices(
+            record, market="spreads", outcomes=("home", "away")
+        )
         if set(best) != set(OUTCOME_KEYS):
             details["market_snapshot"] = {
                 "source_provider": source_provider,
@@ -725,6 +872,71 @@ def apply_odds_snapshot_to_live_payload(
         candidates.sort(key=lambda row: (-row["point_edge"], OUTCOME_KEYS.index(row["outcome"])))
         for rank, candidate in enumerate(candidates, 1):
             candidate["rank"] = rank
+        expanded_candidates: list[dict[str, Any]] = []
+
+        def add_binary_candidate(
+            *, selection: str, outcome: str, market: str,
+            probability: Any, price: Mapping[str, Any] | None,
+        ) -> None:
+            if (
+                not isinstance(probability, (int, float))
+                or isinstance(probability, bool)
+                or not isfinite(float(probability))
+                or not 0 < float(probability) < 1
+                or not isinstance(price, Mapping)
+            ):
+                return
+            quoted = _price(price.get("odds"))
+            if quoted is None:
+                return
+            parsed_probability = float(probability)
+            edge = parsed_probability * quoted - 1.0
+            expanded_candidates.append({
+                "selection": selection,
+                "outcome": outcome,
+                "market": market,
+                "probability": parsed_probability,
+                "fair_odds": 1.0 / parsed_probability,
+                "market_odds": quoted,
+                "bookmaker": price.get("bookmaker"),
+                "bookmaker_key": price.get("bookmaker_key"),
+                "point_edge": edge,
+                "source_provider": source_provider,
+                "status": "EXPERIMENTAL_SHADOW",
+                "edge_status": (
+                    "POSITIVE_SHADOW_EDGE" if edge > 0.03 else "BELOW_EDGE_THRESHOLD"
+                ),
+            })
+
+        total_25 = next(
+            (row for row in best_totals if abs(float(row["line"]) - 2.5) < 1e-9),
+            None,
+        )
+        p_over25 = forecast.get("p_over25")
+        if isinstance(total_25, Mapping) and isinstance(p_over25, (int, float)):
+            add_binary_candidate(
+                selection="ТБ 2.5", outcome="over_2_5", market="totals_2_5",
+                probability=p_over25, price=total_25.get("over"),
+            )
+            add_binary_candidate(
+                selection="ТМ 2.5", outcome="under_2_5", market="totals_2_5",
+                probability=1.0 - float(p_over25), price=total_25.get("under"),
+            )
+        p_btts = forecast.get("p_btts")
+        if best_btts and isinstance(p_btts, (int, float)):
+            add_binary_candidate(
+                selection="ОЗ — да", outcome="btts_yes", market="btts",
+                probability=p_btts, price=best_btts.get("yes"),
+            )
+            add_binary_candidate(
+                selection="ОЗ — нет", outcome="btts_no", market="btts",
+                probability=1.0 - float(p_btts), price=best_btts.get("no"),
+            )
+        expanded_candidates.sort(
+            key=lambda row: (-row["point_edge"], str(row["selection"]))
+        )
+        for rank, candidate in enumerate(expanded_candidates, 1):
+            candidate["rank"] = rank
         details["market_snapshot"] = {
             "source_provider": source_provider,
             "status": "SHADOW_ONLY",
@@ -732,9 +944,13 @@ def apply_odds_snapshot_to_live_payload(
             "captured_at_utc": iso_utc(received, field="received_at"),
             "bookmakers": len(record.get("bookmakers", [])),
             "best_1x2": best,
+            "best_totals": best_totals,
+            "best_btts": best_btts or None,
+            "best_spreads": best_spreads,
             "source_url": source_url,
         }
         details["market_candidates"] = candidates
+        details["expanded_market_candidates"] = expanded_candidates
         matched += 1
     output["odds_feed"] = {
         "source_provider": provider,

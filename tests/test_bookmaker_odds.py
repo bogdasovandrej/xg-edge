@@ -99,6 +99,16 @@ def _odds_api_io_event():
                     "updatedAt": "2026-07-14T12:00:00Z",
                     "odds": [{"hdp": 2.5, "over": "1.95", "under": "1.85"}],
                 },
+                {
+                    "name": "Both Teams to Score",
+                    "updatedAt": "2026-07-14T12:00:00Z",
+                    "odds": [{"yes": "1.82", "no": "1.98"}],
+                },
+                {
+                    "name": "Asian Handicap",
+                    "updatedAt": "2026-07-14T12:00:00Z",
+                    "odds": [{"hdp": -0.5, "home": "2.05", "away": "1.75"}],
+                },
             ]
         },
     }
@@ -133,6 +143,15 @@ def test_normalizes_odds_api_io_h2h_totals_and_provenance() -> None:
         "line": 2.5,
         "over": 1.95,
         "under": 1.85,
+    }
+    assert row["bookmakers"][0]["markets"]["btts"] == {
+        "yes": 1.82,
+        "no": 1.98,
+    }
+    assert row["bookmakers"][0]["markets"]["spreads"][0] == {
+        "line": -0.5,
+        "home": 2.05,
+        "away": 1.75,
     }
 
 
@@ -284,6 +303,7 @@ def _forecast_payload(
             "id": "2048641",
             "kickoff_utc": kickoff or "2026-07-14T15:00:00Z",
             "p_home": .50, "p_draw": .28, "p_away": .22,
+            "p_over25": .55, "p_btts": .52,
             "details": {
                 "candidate_bets": [{"selection": "manual"}],
                 "live_odds": {"obsolete": True},
@@ -322,8 +342,37 @@ def test_attaches_recent_prices_as_separate_shadow_candidates() -> None:
     assert len(details["market_candidates"]) == 3
     assert all(row["status"] == "SHADOW_ONLY" for row in details["market_candidates"])
     assert all(row["source_provider"] == "the_odds_api" for row in details["market_candidates"])
+    assert {row["selection"] for row in details["expanded_market_candidates"]} == {
+        "ТБ 2.5", "ТМ 2.5",
+    }
+    assert details["market_snapshot"]["best_totals"][0]["line"] == 2.5
     assert result["odds_feed"]["matched_forecasts"] == 1
     assert result["odds_feed"]["status"] == "SHADOW_ONLY"
+
+
+def test_attaches_odds_api_io_btts_and_spreads_without_promoting_them() -> None:
+    record = normalize_odds_api_io_event(
+        _odds_api_io_event(),
+        fixtures=[_fixture()],
+        snapshot_at="2026-07-14T12:05:00Z",
+    )
+    snapshot = _available_snapshot(record)
+    snapshot["provider"] = "odds_api_io"
+    result = apply_odds_snapshot_to_live_payload(
+        _forecast_payload(), snapshot, now="2026-07-14T12:10:00Z"
+    )
+    details = result["forecasts"][0]["details"]
+
+    assert details["market_snapshot"]["best_btts"]["yes"]["odds"] == 1.82
+    assert details["market_snapshot"]["best_spreads"][0]["line"] == -0.5
+    assert {row["selection"] for row in details["expanded_market_candidates"]} == {
+        "ТБ 2.5", "ТМ 2.5", "ОЗ — да", "ОЗ — нет",
+    }
+    assert all(
+        row["status"] == "EXPERIMENTAL_SHADOW"
+        for row in details["expanded_market_candidates"]
+    )
+    assert all(row["status"] == "SHADOW_ONLY" for row in details["market_candidates"])
 
 
 def test_post_kickoff_capture_is_rejected() -> None:
