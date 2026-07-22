@@ -194,9 +194,7 @@ def test_odds_api_io_batches_matched_events_and_keeps_quota() -> None:
     assert session.calls[0][1]["params"]["apiKey"] == "secret"
     assert session.calls[1][0] == "https://odds.test/v3/odds/multi"
     assert session.calls[1][1]["params"]["eventIds"] == "123456"
-    assert session.calls[1][1]["params"]["bookmakers"] == (
-        "Bet365,Unibet,William Hill,Betway,Betfair Sportsbook"
-    )
+    assert session.calls[1][1]["params"]["bookmakers"] == "Bet365,Unibet"
     assert "Pinnacle" not in session.calls[1][1]["params"]["bookmakers"]
     assert "secret" not in str(result)
 
