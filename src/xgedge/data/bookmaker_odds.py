@@ -1236,6 +1236,11 @@ class OddsApiIoProvider:
         received = requested
         records: list[dict[str, Any]] = []
         errors: list[dict[str, str]] = []
+        discovery: dict[str, Any] = {
+            "events_returned": 0,
+            "matched_events": 0,
+            "unmatched_near_kickoff": [],
+        }
         quota: dict[str, Any] = {"remaining": None, "limit": None, "reset": None}
         headers = {"Accept": "application/json", "User-Agent": "xgedge-odds/2"}
         try:
@@ -1263,6 +1268,7 @@ class OddsApiIoProvider:
             self._update_quota(quota, response)
             events = self._payload_list(response.json(), name="events")
             matched_event_ids: list[str] = []
+            matched_fixture_ids: set[str] = set()
             for event in events:
                 if not isinstance(event, Mapping) or event.get("id") is None:
                     continue
@@ -1271,14 +1277,52 @@ class OddsApiIoProvider:
                     "away_team": event.get("away"),
                     "commence_time": event.get("date"),
                 }
-                if match_provider_event(
+                fixture = match_provider_event(
                     candidate,
                     fixture_rows,
                     aliases=aliases,
                     tolerance_hours=self.config.kickoff_tolerance_hours,
-                ):
+                )
+                if fixture:
                     matched_event_ids.append(str(event["id"]))
+                    matched_fixture_ids.add(str(fixture["id"]))
             matched_event_ids = list(dict.fromkeys(matched_event_ids))
+            discovery["events_returned"] = len(events)
+            discovery["matched_events"] = len(matched_event_ids)
+            tolerance = timedelta(hours=self.config.kickoff_tolerance_hours)
+            nearby_audit: list[dict[str, Any]] = []
+            for fixture in fixture_rows:
+                fixture_id = str(fixture.get("id") or "")
+                if not fixture_id or fixture_id in matched_fixture_ids:
+                    continue
+                try:
+                    scheduled = as_utc(fixture.get("kickoff_utc"), field="kickoff_utc")
+                except (TypeError, ValueError):
+                    continue
+                nearby = []
+                for event in events:
+                    if not isinstance(event, Mapping) or event.get("id") is None:
+                        continue
+                    try:
+                        event_time = as_utc(event.get("date"), field="date")
+                    except (TypeError, ValueError):
+                        continue
+                    if abs(event_time - scheduled) <= tolerance:
+                        nearby.append({
+                            "provider_event_id": str(event["id"]),
+                            "home": str(event.get("home") or ""),
+                            "away": str(event.get("away") or ""),
+                            "kickoff_utc": iso_utc(event_time, field="date"),
+                        })
+                if nearby:
+                    nearby_audit.append({
+                        "fixture_id": fixture_id,
+                        "home": fixture.get("home"),
+                        "away": fixture.get("away"),
+                        "kickoff_utc": iso_utc(scheduled, field="kickoff_utc"),
+                        "provider_candidates": nearby[:3],
+                    })
+            discovery["unmatched_near_kickoff"] = nearby_audit[:25]
             for start in range(0, len(matched_event_ids), self.config.batch_size):
                 batch = matched_event_ids[start:start + self.config.batch_size]
                 batch_requested = deterministic_clock or _utc_now()
@@ -1350,5 +1394,6 @@ class OddsApiIoProvider:
             "documentation": ODDS_API_IO_DOCS,
             "sport_poll_times": poll_times,
             "requested_sport_keys": requested_keys,
+            "discovery": discovery,
         })
         return result
