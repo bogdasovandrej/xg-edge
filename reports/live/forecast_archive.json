@@ -2,7 +2,7 @@
   "schema_version": "match-evidence-archive/1.0",
   "mode": "PAPER_ONLY",
   "created_at": "2026-07-20T22:30:00Z",
-  "updated_at": "2026-07-22T20:51:11Z",
+  "updated_at": "2026-07-22T21:50:26Z",
   "fixture_snapshots": [
     {
       "snapshot_id": "fixture-uefa-2048713-6be154ff9689e3b3",
@@ -2313,6 +2313,24 @@
         "score_basis": "regulation_time_only"
       },
       "content_hash": "314db38552dde376b09915e95a69892195203c4f052e98a224ecfbeba2215a41"
+    },
+    {
+      "result_id": "result-uefa-2048724",
+      "fixture_key": "uefa:2048724",
+      "fixture_id": "2048724",
+      "status": "FINISHED",
+      "settlement_period": "90M",
+      "home_goals_90": 3,
+      "away_goals_90": 3,
+      "outcome": "draw",
+      "observed_at": "2026-07-22T21:50:26Z",
+      "provenance": {
+        "provider": "uefa",
+        "official": true,
+        "endpoint_family": "https://match.uefa.com/v5/matches/",
+        "score_basis": "regulation_time_only"
+      },
+      "content_hash": "62193b79d31312f869100237f3597043dcaaba3e14fdab6fe5543923ab9e5a0c"
     }
   ],
   "events": [
@@ -3105,6 +3123,16 @@
       "appended_at": "2026-07-22T20:51:11Z",
       "previous_event_hash": "ceae1168aac8963fce07d1e15919c65cb72e54a1a7e609639a8b80adf13d38de",
       "event_hash": "41ee8b6f5b592ead1e9cbc83b9446cfe98fa7b7ca53faa7b563a077e9b11e9ce"
+    },
+    {
+      "sequence": 80,
+      "event_type": "result_appended",
+      "entity_type": "result",
+      "entity_id": "result-uefa-2048724",
+      "content_hash": "62193b79d31312f869100237f3597043dcaaba3e14fdab6fe5543923ab9e5a0c",
+      "appended_at": "2026-07-22T21:50:26Z",
+      "previous_event_hash": "41ee8b6f5b592ead1e9cbc83b9446cfe98fa7b7ca53faa7b563a077e9b11e9ce",
+      "event_hash": "14cba55b280302e642b10593b1ea30056048de20cd8cb1be083b9743cad5e881"
     }
   ]
 }
