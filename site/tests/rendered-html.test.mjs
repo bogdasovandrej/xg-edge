@@ -54,7 +54,7 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /live_predictions\.json/);
   assert.match(page, /market_anchored|market_fair/);
   assert.match(page, /Tail risk/);
-  assert.match(page, /Кандидат не является рекомендацией/);
+  assert.match(page, /PAPER-кандидат не является рекомендацией/);
   assert.match(page, /Asia\/Yekaterinburg/);
   assert.match(page, /recommendation/);
   assert.match(page, /payload\.prospective_clv/);
@@ -108,7 +108,14 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /Тоталы и ОЗ: модель против цены/);
   assert.match(page, /Азиатская фора хозяев/);
   assert.match(page, /Положительный расчётный EV не равен доказанной прибыли/);
-  assert.match(page, /details\?\.candidate_bets \|\| \[\]/);
+  assert.match(page, /details\?\.market_candidates \|\| \[\]/);
+  assert.match(page, /details\?\.expanded_market_candidates \|\| \[\]/);
+  assert.match(page, /Топ-3 ставок по реальным котировкам/);
+  assert.match(page, /finiteNumber\(candidate\.market_odds\)/);
+  assert.match(page, /marketSnapshotEligible/);
+  assert.match(page, /candidate\.status === "EXPERIMENTAL_SHADOW"/);
+  assert.match(page, /не считаются ставками и не попадают в топ-3/);
+  assert.doesNotMatch(page, /const candidates = details\?\.candidate_bets/);
   assert.doesNotMatch(page, /live price/i);
   assert.match(layout, /lang="ru"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
