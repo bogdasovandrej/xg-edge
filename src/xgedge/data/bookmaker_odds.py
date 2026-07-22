@@ -89,6 +89,15 @@ def _point(value: Any) -> float | None:
     return parsed if isfinite(parsed) else None
 
 
+def _api_key(value: str | None, environment_name: str) -> str | None:
+    """Read a server-side key and discard accidental surrounding whitespace."""
+    raw = value or os.getenv(environment_name)
+    if raw is None:
+        return None
+    cleaned = raw.strip()
+    return cleaned or None
+
+
 def _canonical(name: str, aliases: Mapping[str, str]) -> str:
     direct = normalize_team_name(name)
     alias_index = {
@@ -755,7 +764,7 @@ class TheOddsApiProvider:
         timeout: float = 30.0,
         session: requests.Session | None = None,
     ) -> None:
-        self.api_key = api_key or os.getenv("THE_ODDS_API_KEY")
+        self.api_key = _api_key(api_key, "THE_ODDS_API_KEY")
         self.base_url = base_url.rstrip("/")
         self.config = config or OddsApiConfig()
         self.config.validate()
@@ -918,7 +927,7 @@ class OddsApiIoProvider:
         timeout: float = 30.0,
         session: requests.Session | None = None,
     ) -> None:
-        self.api_key = api_key or os.getenv("ODDS_API_IO_KEY")
+        self.api_key = _api_key(api_key, "ODDS_API_IO_KEY")
         configured_books = os.getenv("ODDS_API_IO_BOOKMAKERS")
         self.config = config or OddsApiIoConfig(
             bookmakers=(

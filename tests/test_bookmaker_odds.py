@@ -143,7 +143,7 @@ def test_odds_api_io_batches_matched_events_and_keeps_quota() -> None:
         }),
     ])
     result = OddsApiIoProvider(
-        api_key="secret",
+        api_key="\n secret \r\n",
         base_url="https://odds.test/v3",
         session=session,
     ).fetch_snapshot(
@@ -162,6 +162,7 @@ def test_odds_api_io_batches_matched_events_and_keeps_quota() -> None:
     }
     assert session.calls[0][0] == "https://odds.test/v3/events"
     assert session.calls[0][1]["params"]["sport"] == "football"
+    assert session.calls[0][1]["params"]["apiKey"] == "secret"
     assert session.calls[1][0] == "https://odds.test/v3/odds/multi"
     assert session.calls[1][1]["params"]["eventIds"] == "123456"
     assert "secret" not in str(result)
@@ -196,7 +197,7 @@ def test_provider_keeps_quota_headers_and_does_not_expose_key() -> None:
         "x-requests-remaining": "499", "x-requests-used": "1", "x-requests-last": "1",
     })])
     result = TheOddsApiProvider(
-        api_key="secret", base_url="https://example.test/v4", session=session
+        api_key="\n secret \r\n", base_url="https://example.test/v4", session=session
     ).fetch_snapshot(
         sport_keys=["soccer_uefa_champs_league"], fixtures=[_fixture()],
         snapshot_at="2026-07-14T12:05:00Z",
