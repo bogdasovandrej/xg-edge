@@ -87,9 +87,16 @@ def _uncertainty_penalty(label: Any, config: PaperRankingConfig) -> float:
 
 def _candidate_source(details: Mapping[str, Any]) -> tuple[list[Any], Mapping[str, Any], str]:
     live = details.get("market_candidates")
+    expanded = details.get("expanded_market_candidates")
     snapshot = details.get("market_snapshot")
-    if isinstance(live, list) and isinstance(snapshot, Mapping):
-        return live, snapshot, "live_best_price"
+    if isinstance(snapshot, Mapping) and (
+        isinstance(live, list) or isinstance(expanded, list)
+    ):
+        rows = [
+            *list(live if isinstance(live, list) else []),
+            *list(expanded if isinstance(expanded, list) else []),
+        ]
+        return rows, snapshot, "live_best_price"
     manual = details.get("candidate_bets")
     market = details.get("market")
     if isinstance(manual, list) and isinstance(market, Mapping):
@@ -198,6 +205,8 @@ def rank_paper_candidates(
                 "away": forecast.get("away"),
                 "selection": source.get("selection"),
                 "outcome": source.get("outcome"),
+                "market": source.get("market") or "1x2",
+                "line": source.get("line"),
                 "model_probability": probability,
                 "break_even_probability": 1.0 / odds,
                 "probability_edge": probability - 1.0 / odds,

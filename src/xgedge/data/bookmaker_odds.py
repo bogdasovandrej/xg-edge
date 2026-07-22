@@ -13,6 +13,7 @@ import requests
 
 from xgedge.data.point_in_time import available_snapshot, as_utc, iso_utc, unavailable_snapshot
 from xgedge.experiments.ucl_qualifying import normalize_team_name
+from xgedge.markets.paper_markets import market_probability, score_matrix, supported_line
 
 THE_ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 THE_ODDS_API_DOCS = "https://the-odds-api.com/liveapi/guides/v4/"
@@ -196,6 +197,68 @@ def _normalize_btts(outcomes: Any) -> dict[str, float] | None:
     return values if set(values) == {"yes", "no"} else None
 
 
+def _normalize_two_way_teams(
+    outcomes: Any, *, home: str, away: str, aliases: Mapping[str, str]
+) -> dict[str, float] | None:
+    if not isinstance(outcomes, list):
+        return None
+    expected = {_canonical(home, aliases): "home", _canonical(away, aliases): "away"}
+    values: dict[str, float] = {}
+    for outcome in outcomes:
+        if not isinstance(outcome, Mapping):
+            continue
+        name, value = outcome.get("name"), _price(outcome.get("price"))
+        if isinstance(name, str) and value is not None:
+            key = expected.get(_canonical(name, aliases))
+            if key:
+                values[key] = value
+    return values if set(values) == {"home", "away"} else None
+
+
+def _normalize_double_chance(outcomes: Any) -> dict[str, float] | None:
+    if not isinstance(outcomes, list):
+        return None
+    names = {
+        "home or draw": "home_draw", "home/draw": "home_draw", "1x": "home_draw",
+        "home or away": "home_away", "home/away": "home_away", "12": "home_away",
+        "draw or away": "draw_away", "draw/away": "draw_away", "x2": "draw_away",
+    }
+    values: dict[str, float] = {}
+    for outcome in outcomes:
+        if not isinstance(outcome, Mapping):
+            continue
+        key = names.get(str(outcome.get("name") or "").strip().casefold())
+        value = _price(outcome.get("price"))
+        if key and value is not None:
+            values[key] = value
+    return values if set(values) == {"home_draw", "home_away", "draw_away"} else None
+
+
+def _normalize_team_totals(
+    outcomes: Any, *, home: str, away: str, aliases: Mapping[str, str]
+) -> list[dict[str, Any]]:
+    if not isinstance(outcomes, list):
+        return []
+    teams = {_canonical(home, aliases): "home", _canonical(away, aliases): "away"}
+    grouped: dict[tuple[str, float], dict[str, float]] = {}
+    for outcome in outcomes:
+        if not isinstance(outcome, Mapping):
+            continue
+        side = str(outcome.get("name") or "").strip().casefold()
+        description = outcome.get("description") or outcome.get("team")
+        line = _point(outcome.get("point"))
+        value = _price(outcome.get("price"))
+        team = teams.get(_canonical(str(description or ""), aliases))
+        if side not in {"over", "under"} or team is None or line is None or value is None:
+            continue
+        grouped.setdefault((team, line), {})[side] = value
+    return [
+        {"team": team, "line": line, "over": prices["over"], "under": prices["under"]}
+        for (team, line), prices in sorted(grouped.items())
+        if set(prices) == {"over", "under"}
+    ]
+
+
 def _normalize_spreads(
     outcomes: Any, *, home: str, away: str, aliases: Mapping[str, str]
 ) -> list[dict[str, float]]:
@@ -283,6 +346,22 @@ def normalize_odds_event(
                 )
                 if spreads:
                     normalized["spreads"] = spreads
+            elif market.get("key") == "draw_no_bet":
+                values = _normalize_two_way_teams(
+                    market.get("outcomes"), home=home, away=away, aliases=alias_map
+                )
+                if values:
+                    normalized["draw_no_bet"] = values
+            elif market.get("key") == "double_chance":
+                values = _normalize_double_chance(market.get("outcomes"))
+                if values:
+                    normalized["double_chance"] = values
+            elif market.get("key") in {"team_totals", "alternate_team_totals"}:
+                values = _normalize_team_totals(
+                    market.get("outcomes"), home=home, away=away, aliases=alias_map
+                )
+                if values:
+                    normalized["team_totals"] = values
         if not normalized:
             continue
         books.append({
@@ -398,6 +477,52 @@ def normalize_odds_api_io_event(
                         },
                     ])
                 markets.append({"key": "spreads", "outcomes": outcomes})
+            elif market_name in {"draw no bet", "draw-no-bet", "dnb"}:
+                outcomes = []
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    outcomes.extend([
+                        {"name": home, "price": row.get("home")},
+                        {"name": away, "price": row.get("away")},
+                    ])
+                markets.append({"key": "draw_no_bet", "outcomes": outcomes})
+            elif market_name in {"double chance", "double_chance"}:
+                outcomes = []
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    outcomes.extend([
+                        {"name": "Home or Draw", "price": row.get("homeDraw", row.get("1X"))},
+                        {"name": "Home or Away", "price": row.get("homeAway", row.get("12"))},
+                        {"name": "Draw or Away", "price": row.get("drawAway", row.get("X2"))},
+                    ])
+                markets.append({"key": "double_chance", "outcomes": outcomes})
+            elif market_name in {
+                "home total", "home team total", "away total", "away team total",
+                "team totals", "team total",
+            }:
+                outcomes = []
+                fixed_team = (
+                    home if market_name.startswith("home")
+                    else away if market_name.startswith("away")
+                    else None
+                )
+                for row in raw_odds:
+                    if not isinstance(row, Mapping):
+                        continue
+                    team_value = str(row.get("team") or row.get("name") or "").casefold()
+                    team = fixed_team or (
+                        home if team_value in {"home", home.casefold()}
+                        else away if team_value in {"away", away.casefold()}
+                        else None
+                    )
+                    line = row.get("hdp", row.get("max", row.get("line")))
+                    outcomes.extend([
+                        {"name": "Over", "description": team, "point": line, "price": row.get("over")},
+                        {"name": "Under", "description": team, "point": line, "price": row.get("under")},
+                    ])
+                markets.append({"key": "team_totals", "outcomes": outcomes})
         if markets:
             books.append({
                 "key": _bookmaker_key(title),
@@ -615,6 +740,56 @@ def _best_btts_prices(record: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
     return best if set(best) == {"yes", "no"} else {}
 
 
+def _best_map_prices(
+    record: Mapping[str, Any], *, market: str, outcomes: tuple[str, ...]
+) -> dict[str, dict[str, Any]]:
+    best: dict[str, dict[str, Any]] = {}
+    for book in record.get("bookmakers", []):
+        if not isinstance(book, Mapping):
+            continue
+        markets = book.get("markets")
+        prices = markets.get(market) if isinstance(markets, Mapping) else None
+        if not isinstance(prices, Mapping):
+            continue
+        for outcome in outcomes:
+            value = _price(prices.get(outcome))
+            if value is not None and (
+                outcome not in best or value > best[outcome]["odds"]
+            ):
+                best[outcome] = _quoted_price(book, value)
+    return best if set(best) == set(outcomes) else {}
+
+
+def _best_team_total_prices(record: Mapping[str, Any]) -> list[dict[str, Any]]:
+    best: dict[tuple[str, float], dict[str, dict[str, Any]]] = {}
+    for book in record.get("bookmakers", []):
+        if not isinstance(book, Mapping):
+            continue
+        markets = book.get("markets")
+        lines = markets.get("team_totals") if isinstance(markets, Mapping) else None
+        if not isinstance(lines, list):
+            continue
+        for row in lines:
+            if not isinstance(row, Mapping) or row.get("team") not in {"home", "away"}:
+                continue
+            line = _point(row.get("line"))
+            if line is None:
+                continue
+            key = (str(row["team"]), line)
+            for side in ("over", "under"):
+                value = _price(row.get(side))
+                if value is None:
+                    continue
+                current = best.setdefault(key, {}).get(side)
+                if current is None or value > current["odds"]:
+                    best[key][side] = _quoted_price(book, value)
+    return [
+        {"team": team, "line": line, **prices}
+        for (team, line), prices in sorted(best.items())
+        if set(prices) == {"over", "under"}
+    ]
+
+
 def _best_line_prices(
     record: Mapping[str, Any], *, market: str, outcomes: tuple[str, str]
 ) -> list[dict[str, Any]]:
@@ -816,6 +991,15 @@ def apply_odds_snapshot_to_live_payload(
         best_spreads = _best_line_prices(
             record, market="spreads", outcomes=("home", "away")
         )
+        best_dnb = _best_map_prices(
+            record, market="draw_no_bet", outcomes=("home", "away")
+        )
+        best_double_chance = _best_map_prices(
+            record,
+            market="double_chance",
+            outcomes=("home_draw", "home_away", "draw_away"),
+        )
+        best_team_totals = _best_team_total_prices(record)
         if set(best) != set(OUTCOME_KEYS):
             details["market_snapshot"] = {
                 "source_provider": source_provider,
@@ -858,6 +1042,8 @@ def apply_odds_snapshot_to_live_payload(
             candidates.append({
                 "selection": OUTCOME_LABELS[outcome],
                 "outcome": outcome,
+                "market": "1x2",
+                "line": None,
                 "probability": probability,
                 "fair_odds": 1.0 / probability,
                 "market_odds": price["odds"],
@@ -878,6 +1064,7 @@ def apply_odds_snapshot_to_live_payload(
         def add_binary_candidate(
             *, selection: str, outcome: str, market: str,
             probability: Any, price: Mapping[str, Any] | None,
+            line: float | None = None,
         ) -> None:
             if (
                 not isinstance(probability, (int, float))
@@ -896,6 +1083,7 @@ def apply_odds_snapshot_to_live_payload(
                 "selection": selection,
                 "outcome": outcome,
                 "market": market,
+                "line": line,
                 "probability": parsed_probability,
                 "fair_odds": 1.0 / parsed_probability,
                 "market_odds": quoted,
@@ -909,30 +1097,146 @@ def apply_odds_snapshot_to_live_payload(
                 ),
             })
 
-        total_25 = next(
-            (row for row in best_totals if abs(float(row["line"]) - 2.5) < 1e-9),
-            None,
-        )
-        p_over25 = forecast.get("p_over25")
-        if isinstance(total_25, Mapping) and isinstance(p_over25, (int, float)):
+        expected = forecast.get("expected_goals")
+        score_probabilities = None
+        if isinstance(expected, Mapping):
+            try:
+                score_probabilities = score_matrix(
+                    float(expected.get("home")), float(expected.get("away"))
+                )
+            except (TypeError, ValueError):
+                score_probabilities = None
+
+        for total_row in best_totals:
+            if not isinstance(total_row, Mapping):
+                continue
+            line = supported_line(total_row.get("line"))
+            if line is None:
+                continue
+            p_over = None
+            if abs(line - 2.5) < 1e-9 and isinstance(forecast.get("p_over25"), (int, float)):
+                p_over = float(forecast["p_over25"])
+            elif score_probabilities is not None:
+                try:
+                    p_over = market_probability(
+                        score_probabilities, market="totals", selection="over", line=line
+                    )
+                except ValueError:
+                    p_over = None
+            if p_over is None:
+                continue
             add_binary_candidate(
-                selection="ТБ 2.5", outcome="over_2_5", market="totals_2_5",
-                probability=p_over25, price=total_25.get("over"),
+                selection=f"ТБ {line:g}", outcome="over", market="totals",
+                probability=p_over, price=total_row.get("over"), line=line,
             )
             add_binary_candidate(
-                selection="ТМ 2.5", outcome="under_2_5", market="totals_2_5",
-                probability=1.0 - float(p_over25), price=total_25.get("under"),
+                selection=f"ТМ {line:g}", outcome="under", market="totals",
+                probability=1.0 - float(p_over), price=total_row.get("under"), line=line,
             )
         p_btts = forecast.get("p_btts")
         if best_btts and isinstance(p_btts, (int, float)):
             add_binary_candidate(
-                selection="ОЗ — да", outcome="btts_yes", market="btts",
+                selection="ОЗ — да", outcome="yes", market="btts",
                 probability=p_btts, price=best_btts.get("yes"),
             )
             add_binary_candidate(
-                selection="ОЗ — нет", outcome="btts_no", market="btts",
+                selection="ОЗ — нет", outcome="no", market="btts",
                 probability=1.0 - float(p_btts), price=best_btts.get("no"),
             )
+        if score_probabilities is not None:
+            for spread_row in best_spreads:
+                if not isinstance(spread_row, Mapping):
+                    continue
+                home_line = supported_line(spread_row.get("line"))
+                if home_line is None:
+                    continue
+                for side, selected_line, label in (
+                    ("home", home_line, f"{forecast.get('home')} {home_line:+g}"),
+                    ("away", -home_line, f"{forecast.get('away')} {-home_line:+g}"),
+                ):
+                    try:
+                        probability = market_probability(
+                            score_probabilities,
+                            market="asian_handicap",
+                            selection=side,
+                            line=selected_line,
+                        )
+                    except ValueError:
+                        continue
+                    add_binary_candidate(
+                        selection=label,
+                        outcome=side,
+                        market="asian_handicap",
+                        probability=probability,
+                        price=spread_row.get(side),
+                        line=selected_line,
+                    )
+            for side, label in (
+                ("home", f"{forecast.get('home')} DNB"),
+                ("away", f"{forecast.get('away')} DNB"),
+            ):
+                if side not in best_dnb:
+                    continue
+                try:
+                    probability = market_probability(
+                        score_probabilities, market="draw_no_bet", selection=side
+                    )
+                except ValueError:
+                    continue
+                add_binary_candidate(
+                    selection=label,
+                    outcome=side,
+                    market="draw_no_bet",
+                    probability=probability,
+                    price=best_dnb.get(side),
+                )
+            for side, label in (
+                ("home_draw", "1X"),
+                ("home_away", "12"),
+                ("draw_away", "X2"),
+            ):
+                if side not in best_double_chance:
+                    continue
+                try:
+                    probability = market_probability(
+                        score_probabilities, market="double_chance", selection=side
+                    )
+                except ValueError:
+                    continue
+                add_binary_candidate(
+                    selection=label,
+                    outcome=side,
+                    market="double_chance",
+                    probability=probability,
+                    price=best_double_chance.get(side),
+                )
+            for total_row in best_team_totals:
+                if not isinstance(total_row, Mapping):
+                    continue
+                team = str(total_row.get("team") or "")
+                line = supported_line(total_row.get("line"))
+                if team not in {"home", "away"} or line is None:
+                    continue
+                team_name = forecast.get(team)
+                for side, prefix in (("over", "ТБ"), ("under", "ТМ")):
+                    selection_key = f"{team}_{side}"
+                    try:
+                        probability = market_probability(
+                            score_probabilities,
+                            market="team_totals",
+                            selection=selection_key,
+                            line=line,
+                        )
+                    except ValueError:
+                        continue
+                    add_binary_candidate(
+                        selection=f"{team_name} ИТ{prefix} {line:g}",
+                        outcome=selection_key,
+                        market="team_totals",
+                        probability=probability,
+                        price=total_row.get(side),
+                        line=line,
+                    )
         expanded_candidates.sort(
             key=lambda row: (-row["point_edge"], str(row["selection"]))
         )
@@ -948,6 +1252,9 @@ def apply_odds_snapshot_to_live_payload(
             "best_totals": best_totals,
             "best_btts": best_btts or None,
             "best_spreads": best_spreads,
+            "best_draw_no_bet": best_dnb or None,
+            "best_double_chance": best_double_chance or None,
+            "best_team_totals": best_team_totals,
             "source_url": source_url,
         }
         details["market_candidates"] = candidates

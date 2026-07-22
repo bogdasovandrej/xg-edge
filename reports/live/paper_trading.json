@@ -1,5 +1,5 @@
 {
-  "schema_version": "paper-trading-ledger/1.0",
+  "schema_version": "paper-trading-ledger/1.1",
   "event_schema_version": "paper-event/1.0",
   "created_at": "2026-07-20T22:30:00Z",
   "updated_at": "2026-07-20T22:30:00Z",
@@ -12,7 +12,16 @@
     "ruin_threshold_rub": 100.0,
     "maximum_stake_fraction": 0.01,
     "maximum_quote_age_seconds": 1800,
-    "market": "REGULATION_1X2",
+    "market": "REGULATION_SCORE_MARKETS_V1",
+    "supported_markets": [
+      "1x2",
+      "asian_handicap",
+      "btts",
+      "double_chance",
+      "draw_no_bet",
+      "team_totals",
+      "totals"
+    ],
     "one_candidate_per_match": true,
     "strategy_ids": [
       "flat_1pct",
@@ -170,6 +179,7 @@
         "target_hit_count": 0
       }
     ],
+    "markets": {},
     "selection_policy": {
       "status": "PREREGISTERED",
       "minimum_settled_bets_for_full_evidence": 100,

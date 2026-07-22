@@ -95,6 +95,7 @@ type CandidateBet = {
   selection?: string;
   outcome?: string;
   market?: string;
+  line?: number | null;
   probability?: number | null;
   fair_odds?: number | null;
   market_odds?: number | null;
@@ -220,6 +221,8 @@ type PaperCandidate = {
   home?: string | null;
   away?: string | null;
   selection?: string | null;
+  market?: string | null;
+  line?: number | null;
   model_probability?: number | null;
   break_even_probability?: number | null;
   probability_edge?: number | null;
@@ -256,6 +259,7 @@ type PaperStrategyRow = {
   open_bets?: number | null;
   wins?: number | null;
   losses?: number | null;
+  pushes?: number | null;
   cycle_count?: number | null;
   ruin_count?: number | null;
   target_hit_count?: number | null;
@@ -277,6 +281,11 @@ type PaperTradingSummary = {
     open_bets?: number | null;
   } | null;
   leaderboard?: PaperStrategyRow[] | null;
+  markets?: Record<string, {
+    enrolled?: number | null;
+    settled?: number | null;
+    open?: number | null;
+  }> | null;
   selection_policy?: {
     minimum_settled_bets_for_full_evidence?: number | null;
     speed_to_target_used_for_ranking?: boolean | null;
@@ -603,7 +612,7 @@ function PaperCandidateBoard({ ranking, nowMs }: { ranking?: PaperCandidateRanki
               <b>#{candidate.rank || index + 1}</b>
               <div>
                 <strong>{candidate.home} — {candidate.away}</strong>
-                <span>{candidate.selection} · {candidate.bookmaker || "букмекер не указан"}</span>
+                <span>{candidate.selection} · {marketName(candidate.market)}{candidate.line == null ? "" : ` ${candidate.line}`} · {candidate.bookmaker || "букмекер не указан"}</span>
               </div>
               <dl>
                 <div><dt>Модель</dt><dd>{percent(candidate.model_probability)}</dd></div>
@@ -632,6 +641,9 @@ function PaperTradingLab({ summary }: { summary?: PaperTradingSummary | null }) 
     Math.trunc(finiteNumber(summary?.selection_policy?.minimum_settled_bets_for_full_evidence) ?? 100),
   );
   const settled = Math.max(0, Math.trunc(finiteNumber(summary?.totals?.settled_matches) ?? 0));
+  const marketRows = Object.entries(summary?.markets || {})
+    .filter(([, value]) => (finiteNumber(value.enrolled) ?? 0) > 0)
+    .sort(([left], [right]) => left.localeCompare(right));
   return (
     <section className="paper-lab" id="paper-bank" aria-label="Турнир PAPER-стратегий">
       <div className="paper-lab-heading">
@@ -675,6 +687,9 @@ function PaperTradingLab({ summary }: { summary?: PaperTradingSummary | null }) 
         })}
       </div>
       <div className="paper-lab-note">
+        <p><b>Рынки в журнале:</b> {marketRows.length
+          ? marketRows.map(([market, value]) => `${marketName(market)}: ${Math.trunc(finiteNumber(value.settled) ?? 0)}/${Math.trunc(finiteNumber(value.enrolled) ?? 0)}`).join(" · ")
+          : "ставок пока нет"}.</p>
         <p>После разорения новый цикл снова начинается с 10 000 ₽, но проигрыши и прошлые циклы не удаляются. Победитель определяется по CLV, логарифмическому росту и риску, а не по случайной скорости до 1 млн ₽.</p>
         <p><b>Экспрессы: {summary?.parlays?.status || "DISABLED"}.</b> Они останутся только симуляцией и не включатся, пока одиночные ставки не покажут устойчивый prospective CLV.</p>
       </div>
@@ -958,6 +973,16 @@ function ProbabilityBar({ label, value }: { label: string; value?: number | null
 
 const decimal = (value?: number | null, digits = 2) =>
   value == null ? "—" : value.toFixed(digits);
+
+const marketName = (value?: string | null) => ({
+  "1x2": "1X2",
+  totals: "тотал",
+  team_totals: "инд. тотал",
+  btts: "ОЗ",
+  asian_handicap: "азиатская фора",
+  double_chance: "двойной шанс",
+  draw_no_bet: "DNB",
+}[String(value || "1x2")] || value || "рынок");
 
 const levelName = (value?: string | null) => ({
   elite: "элитный", strong: "сильный", average: "средний", developing: "развивающийся",
