@@ -966,6 +966,30 @@ class OddsApiIoProvider:
         if reset:
             quota["reset"] = str(reset)
 
+    def _http_error(self, exc: requests.HTTPError, *, stage: str) -> dict[str, str]:
+        """Return a bounded diagnostic without credentials or request URLs."""
+        response = getattr(exc, "response", None)
+        status = getattr(response, "status_code", None)
+        detail: str | None = None
+        if response is not None:
+            try:
+                payload = response.json()
+            except (requests.JSONDecodeError, ValueError):
+                payload = None
+            if isinstance(payload, Mapping):
+                value = payload.get("error") or payload.get("message")
+                if isinstance(value, str):
+                    detail = " ".join(value.split())[:240]
+                    if self.api_key:
+                        detail = detail.replace(self.api_key, "***")
+        message = (
+            f"HTTPError: stage={stage}; "
+            f"status={status if status is not None else 'unknown'}"
+        )
+        if detail:
+            message += f"; detail={detail}"
+        return {"sport_key": "football", "error": message}
+
     def fetch_snapshot(
         self,
         *,
@@ -1069,12 +1093,7 @@ class OddsApiIoProvider:
                         if normalized:
                             records.append(normalized)
                 except requests.HTTPError as exc:
-                    response_value = getattr(exc, "response", None)
-                    status = getattr(response_value, "status_code", None)
-                    errors.append({
-                        "sport_key": "football",
-                        "error": f"HTTPError: status={status if status is not None else 'unknown'}",
-                    })
+                    errors.append(self._http_error(exc, stage="multi_odds"))
                 except requests.RequestException as exc:
                     errors.append({"sport_key": "football", "error": type(exc).__name__})
                 except (TypeError, ValueError) as exc:
@@ -1083,12 +1102,7 @@ class OddsApiIoProvider:
                         "error": f"{type(exc).__name__}: {exc}",
                     })
         except requests.HTTPError as exc:
-            response_value = getattr(exc, "response", None)
-            status = getattr(response_value, "status_code", None)
-            errors.append({
-                "sport_key": "football",
-                "error": f"HTTPError: status={status if status is not None else 'unknown'}",
-            })
+            errors.append(self._http_error(exc, stage="events"))
         except requests.RequestException as exc:
             errors.append({"sport_key": "football", "error": type(exc).__name__})
         except (TypeError, ValueError) as exc:

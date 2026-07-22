@@ -38,6 +38,16 @@ class ErrorSession:
         raise requests.HTTPError("401 for secret-bearing URL", response=response)
 
 
+class OddsApiIoErrorSession:
+    def get(self, url, **kwargs):
+        response = requests.Response()
+        response.status_code = 400
+        response.url = f"{url}?apiKey={kwargs['params']['apiKey']}"
+        response.headers["Content-Type"] = "application/json"
+        response._content = b'{"error":"Invalid filter for secret"}'
+        raise requests.HTTPError("400 for secret-bearing URL", response=response)
+
+
 def _fixture():
     return {
         "id": "2048641", "kickoff_utc": "2026-07-14T15:00:00Z",
@@ -190,6 +200,24 @@ def test_odds_api_io_missing_key_is_explicit_and_makes_no_request(monkeypatch) -
     assert result["status"] == "unavailable"
     assert result["reason"] == "missing_api_key"
     assert session.calls == []
+
+
+def test_odds_api_io_http_error_has_stage_and_redacted_safe_detail() -> None:
+    result = OddsApiIoProvider(
+        api_key="secret", session=OddsApiIoErrorSession()
+    ).fetch_snapshot(
+        sport_keys=["soccer_uefa_champs_league"], fixtures=[_fixture()],
+        snapshot_at="2026-07-14T12:05:00Z",
+    )
+    assert result["status"] == "unavailable"
+    assert result["errors"] == [{
+        "sport_key": "football",
+        "error": (
+            "HTTPError: stage=events; status=400; "
+            "detail=Invalid filter for ***"
+        ),
+    }]
+    assert "secret" not in str(result)
 
 
 def test_provider_keeps_quota_headers_and_does_not_expose_key() -> None:
