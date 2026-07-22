@@ -2,7 +2,7 @@
   "schema_version": "match-evidence-archive/1.0",
   "mode": "PAPER_ONLY",
   "created_at": "2026-07-20T22:30:00Z",
-  "updated_at": "2026-07-22T17:40:39Z",
+  "updated_at": "2026-07-22T20:25:14Z",
   "fixture_snapshots": [
     {
       "snapshot_id": "fixture-uefa-2048713-6be154ff9689e3b3",
@@ -1885,6 +1885,42 @@
         "score_basis": "regulation_time_only"
       },
       "content_hash": "ed469e8bd1716829be8c1d6fd801534bc440ef07ab50a4f001a1d39b5212302e"
+    },
+    {
+      "result_id": "result-uefa-2048719",
+      "fixture_key": "uefa:2048719",
+      "fixture_id": "2048719",
+      "status": "FINISHED",
+      "settlement_period": "90M",
+      "home_goals_90": 1,
+      "away_goals_90": 0,
+      "outcome": "home",
+      "observed_at": "2026-07-22T20:25:14Z",
+      "provenance": {
+        "provider": "uefa",
+        "official": true,
+        "endpoint_family": "https://match.uefa.com/v5/matches/",
+        "score_basis": "regulation_time_only"
+      },
+      "content_hash": "adfbcbf4037287aed9a7211adc0d7cc3cd0d973d4d344f4fcfa921c64bee4e5a"
+    },
+    {
+      "result_id": "result-uefa-2048720",
+      "fixture_key": "uefa:2048720",
+      "fixture_id": "2048720",
+      "status": "FINISHED",
+      "settlement_period": "90M",
+      "home_goals_90": 1,
+      "away_goals_90": 0,
+      "outcome": "home",
+      "observed_at": "2026-07-22T20:25:14Z",
+      "provenance": {
+        "provider": "uefa",
+        "official": true,
+        "endpoint_family": "https://match.uefa.com/v5/matches/",
+        "score_basis": "regulation_time_only"
+      },
+      "content_hash": "314db38552dde376b09915e95a69892195203c4f052e98a224ecfbeba2215a41"
     }
   ],
   "events": [
@@ -2517,6 +2553,26 @@
       "appended_at": "2026-07-22T17:40:39Z",
       "previous_event_hash": "b986793815b39a57bf0de8d24f7b6816126c99ad3daf07336cfccba43b38d6e9",
       "event_hash": "db6c128535c65f8a4707a4c798102b57ce38ea70137e7d7d1ee9ccaf298b5508"
+    },
+    {
+      "sequence": 64,
+      "event_type": "result_appended",
+      "entity_type": "result",
+      "entity_id": "result-uefa-2048719",
+      "content_hash": "adfbcbf4037287aed9a7211adc0d7cc3cd0d973d4d344f4fcfa921c64bee4e5a",
+      "appended_at": "2026-07-22T20:25:14Z",
+      "previous_event_hash": "db6c128535c65f8a4707a4c798102b57ce38ea70137e7d7d1ee9ccaf298b5508",
+      "event_hash": "e069f3f80f8e7d73c1f21aa7d04c50c02b95c06bfad4757b5a3424d275e1fa4b"
+    },
+    {
+      "sequence": 65,
+      "event_type": "result_appended",
+      "entity_type": "result",
+      "entity_id": "result-uefa-2048720",
+      "content_hash": "314db38552dde376b09915e95a69892195203c4f052e98a224ecfbeba2215a41",
+      "appended_at": "2026-07-22T20:25:14Z",
+      "previous_event_hash": "e069f3f80f8e7d73c1f21aa7d04c50c02b95c06bfad4757b5a3424d275e1fa4b",
+      "event_hash": "b818155a5a1941a08f86325077e76e8c2171d9daf69e0ccfa809e3e1d661b8d1"
     }
   ]
 }
