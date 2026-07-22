@@ -514,6 +514,7 @@ def test_rolling_merge_keeps_latest_fixture_and_per_sport_poll_times() -> None:
     current = {
         "provider": "the_odds_api", "status": "available",
         "snapshot_at": "2026-07-14T12:30:00Z", "records": [newer],
+        "discovery": {"events_returned": 42, "matched_events": 1},
         "sport_poll_times": {
             "sport-a": {"requested_at": "2026-07-14T12:29:58Z", "received_at": "2026-07-14T12:30:00Z", "status": "available"},
         },
@@ -527,6 +528,7 @@ def test_rolling_merge_keeps_latest_fixture_and_per_sport_poll_times() -> None:
     }
     assert merged["sport_poll_times"]["sport-a"]["received_at"] == "2026-07-14T12:30:00Z"
     assert merged["sport_poll_times"]["sport-b"]["received_at"] == "2026-07-14T11:00:00Z"
+    assert merged["discovery"] == {"events_returned": 42, "matched_events": 1}
 
 
 def test_rolling_merge_retains_records_through_one_failed_sport_poll() -> None:

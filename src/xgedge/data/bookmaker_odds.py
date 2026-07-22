@@ -556,6 +556,7 @@ def merge_odds_snapshots(
         "requested_sport_keys": requested_keys,
         "quota": deepcopy(current.get("quota", prior.get("quota"))),
         "errors": deepcopy(current.get("errors", [])),
+        "discovery": deepcopy(current.get("discovery", prior.get("discovery"))),
         "documentation": (
             current.get("documentation")
             or prior.get("documentation")
