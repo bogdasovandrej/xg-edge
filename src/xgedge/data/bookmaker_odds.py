@@ -1118,9 +1118,8 @@ class TheOddsApiProvider:
 class OddsApiIoConfig:
     # Keep defaults aligned with the provider's live /v3/bookmakers catalogue.
     # Pinnacle is documented in old examples but the API currently rejects it.
-    bookmakers: tuple[str, ...] = (
-        "Bet365", "Unibet", "William Hill", "Betway", "Betfair Sportsbook",
-    )
+    # The connected plan permits at most two books per request.
+    bookmakers: tuple[str, ...] = ("Bet365", "Unibet")
     batch_size: int = 10
     kickoff_tolerance_hours: float = 6.0
 
