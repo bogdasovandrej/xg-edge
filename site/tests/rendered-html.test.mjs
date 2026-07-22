@@ -50,7 +50,8 @@ test("uses the public snapshot and contains no disposable starter", async () => 
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
-  assert.match(page, /reports\/live_predictions\.json/);
+  assert.match(page, /SITE_DATA_ROOT = "\/xg-edge\/data"/);
+  assert.match(page, /live_predictions\.json/);
   assert.match(page, /market_anchored|market_fair/);
   assert.match(page, /Tail risk/);
   assert.match(page, /Кандидат не является рекомендацией/);
@@ -73,9 +74,9 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /Экспрессы:/);
   assert.match(page, /speed_to_target_used_for_ranking/);
   assert.match(page, /PROSPECTIVE_URL/);
-  assert.match(page, /reports\/live\/prospective_clv\.json/);
+  assert.match(page, /prospective_clv\.json/);
   assert.match(page, /FORECAST_ARCHIVE_URL/);
-  assert.match(page, /reports\/live\/forecast_archive\.json/);
+  assert.match(page, /forecast_archive\.json/);
   assert.match(page, /match-evidence-archive\/1\.0/);
   assert.match(page, /CompletedForecastArchive/);
   assert.match(page, /forecastArchive/);
@@ -116,8 +117,16 @@ test("uses the public snapshot and contains no disposable starter", async () => 
 
 test("static export prefixes every asset URL for GitHub Pages", async () => {
   await import(`../scripts/export-static.mjs?test=${Date.now()}`);
-  const html = await readFile(new URL("../out-static/index.html", import.meta.url), "utf8");
+  const [html, livePayload, prospectiveLedger, forecastArchive] = await Promise.all([
+    readFile(new URL("../out-static/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../out-static/data/live_predictions.json", import.meta.url), "utf8"),
+    readFile(new URL("../out-static/data/prospective_clv.json", import.meta.url), "utf8"),
+    readFile(new URL("../out-static/data/forecast_archive.json", import.meta.url), "utf8"),
+  ]);
 
   assert.doesNotMatch(html, /["'(]\/assets\//);
   assert.match(html, /import\("\/xg-edge\/assets\//);
+  assert.ok(Array.isArray(JSON.parse(livePayload).forecasts));
+  assert.match(JSON.parse(prospectiveLedger).schema_version, /^prospective-clv\//);
+  assert.equal(JSON.parse(forecastArchive).schema_version, "match-evidence-archive/1.0");
 });
