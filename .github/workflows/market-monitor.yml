@@ -50,6 +50,7 @@ jobs:
           --live-payload reports/live_predictions.json
           --ledger reports/live/prospective_clv.json
           --snapshot-output reports/live/bookmaker_odds.json
+          ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
       - name: Update PAPER strategy ledger
         if: steps.config.outputs.enabled == 'true'
         run: >-
