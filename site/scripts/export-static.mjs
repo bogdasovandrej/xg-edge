@@ -2,6 +2,7 @@ import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
+const repository = fileURLToPath(new URL("../../", import.meta.url));
 const output = fileURLToPath(new URL("../out-static/", import.meta.url));
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
 workerUrl.searchParams.set("export", Date.now().toString());
@@ -20,6 +21,10 @@ html = html.replaceAll("/assets/", "/xg-edge/assets/");
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(`${root}dist/client`, output, { recursive: true });
+await mkdir(`${output}data`, { recursive: true });
+await cp(`${repository}reports/live_predictions.json`, `${output}data/live_predictions.json`);
+await cp(`${repository}reports/live/prospective_clv.json`, `${output}data/prospective_clv.json`);
+await cp(`${repository}reports/live/forecast_archive.json`, `${output}data/forecast_archive.json`);
 await writeFile(`${output}index.html`, html, "utf8");
 await writeFile(`${output}.nojekyll`, "", "utf8");
 console.log(`Static site exported to ${output}`);

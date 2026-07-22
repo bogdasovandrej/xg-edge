@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "site/**"
+      - "reports/live_predictions.json"
+      - "reports/live/prospective_clv.json"
+      - "reports/live/forecast_archive.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 

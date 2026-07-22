@@ -393,12 +393,10 @@ type LivePayload = {
   forecasts: Forecast[];
 };
 
-const DATA_URL =
-  "https://raw.githubusercontent.com/bogdasovandrej/xg-edge/main/reports/live_predictions.json";
-const PROSPECTIVE_URL =
-  "https://raw.githubusercontent.com/bogdasovandrej/xg-edge/main/reports/live/prospective_clv.json";
-const FORECAST_ARCHIVE_URL =
-  "https://raw.githubusercontent.com/bogdasovandrej/xg-edge/main/reports/live/forecast_archive.json";
+const SITE_DATA_ROOT = "/xg-edge/data";
+const DATA_URL = `${SITE_DATA_ROOT}/live_predictions.json`;
+const PROSPECTIVE_URL = `${SITE_DATA_ROOT}/prospective_clv.json`;
+const FORECAST_ARCHIVE_URL = `${SITE_DATA_ROOT}/forecast_archive.json`;
 
 const FALLBACK: LivePayload = {
   generated_at: "2026-07-21T00:00:00Z",
