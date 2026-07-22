@@ -2,8 +2,11 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+import pytest
+
 from scripts.capture_bookmaker_odds import (
     quota_request_mode,
+    require_available_records,
     required_sport_keys,
     sport_key_for_fixture,
 )
@@ -102,3 +105,26 @@ def test_hourly_quota_is_reenabled_after_provider_reset() -> None:
         },
     }
     assert quota_request_mode(reset, now=NOW) == "normal"
+
+
+def test_unavailable_provider_fails_with_sanitized_diagnostic() -> None:
+    with pytest.raises(
+        RuntimeError,
+        match=(
+            "reason=football_requests_failed; "
+            "errors=HTTPError: status=401"
+        ),
+    ):
+        require_available_records({
+            "status": "unavailable",
+            "reason": "football_requests_failed",
+            "records": None,
+            "errors": [{"error": "HTTPError: status=401"}],
+        })
+
+
+def test_available_provider_records_are_safe_to_count() -> None:
+    assert require_available_records({
+        "status": "available",
+        "records": [{"fixture_id": "match-1"}],
+    }) == [{"fixture_id": "match-1"}]

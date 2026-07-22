@@ -136,6 +136,27 @@ def quota_request_mode(
     return "blocked"
 
 
+def require_available_records(snapshot: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Return normalized records or fail with a secret-free provider summary."""
+    status = snapshot.get("status")
+    records = snapshot.get("records")
+    if status != "available":
+        reason = str(snapshot.get("reason") or "snapshot_unavailable")
+        raw_errors = snapshot.get("errors")
+        errors = [
+            str(row.get("error") or "unknown_error")
+            for row in raw_errors
+            if isinstance(row, Mapping)
+        ] if isinstance(raw_errors, list) else []
+        detail = ", ".join(errors) if errors else "no provider detail"
+        raise RuntimeError(
+            f"bookmaker provider unavailable: reason={reason}; errors={detail}"
+        )
+    if not isinstance(records, list):
+        raise ValueError("available bookmaker snapshot records must be a list")
+    return [dict(record) for record in records if isinstance(record, Mapping)]
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fixtures", type=Path, required=True)
@@ -248,6 +269,7 @@ def main(argv: list[str] | None = None) -> None:
         fixtures=fixtures,
         snapshot_at=now if args.now else None,
     )
+    snapshot_records = require_available_records(snapshot)
     rolling = merge_odds_snapshots(last_snapshot, snapshot)
     _write(args.snapshot_output, rolling)
     updated = (
@@ -267,7 +289,9 @@ def main(argv: list[str] | None = None) -> None:
     public["paper_candidate_ranking"] = rank_paper_candidates(public)
     public["odds_snapshot_at"] = rolling.get("snapshot_at")
     _write(args.live_payload, public)
-    matched = sum(record.get("fixture_id") is not None for record in snapshot.get("records", []))
+    matched = sum(
+        record.get("fixture_id") is not None for record in snapshot_records
+    )
     print(
         f"Captured {matched} matched events; quota_mode={quota_mode}; "
         f"prospective CLV n={updated['gate']['clv']['n']}"
