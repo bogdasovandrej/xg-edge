@@ -140,8 +140,11 @@ def test_production_clock_is_captured_per_sport_after_http(monkeypatch) -> None:
     assert result["snapshot_at"] == "2026-07-14T12:00:08Z"
 
 
-def _forecast_payload(*, generated_at="2026-07-14T12:00:00Z", kickoff=None):
-    return {
+def _forecast_payload(
+    *, generated_at="2026-07-14T12:00:00Z", kickoff=None,
+    forecast_generated_at=None,
+):
+    payload = {
         "generated_at": generated_at,
         "forecasts": [{
             "id": "2048641",
@@ -154,6 +157,9 @@ def _forecast_payload(*, generated_at="2026-07-14T12:00:00Z", kickoff=None):
             },
         }],
     }
+    if forecast_generated_at is not None:
+        payload["forecasts"][0]["forecast_generated_at"] = forecast_generated_at
+    return payload
 
 
 def _available_snapshot(record):
@@ -225,6 +231,24 @@ def test_snapshot_before_forecast_generation_is_rejected() -> None:
     snapshot = result["forecasts"][0]["details"]["market_snapshot"]
     assert snapshot["status"] == "REJECTED"
     assert snapshot["reason"] == "captured_before_forecast"
+
+
+def test_context_refresh_does_not_reject_quote_after_frozen_forecast() -> None:
+    record = normalize_odds_event(
+        _event(), fixtures=[_fixture()], snapshot_at="2026-07-14T12:05:00Z"
+    )
+    result = apply_odds_snapshot_to_live_payload(
+        _forecast_payload(
+            generated_at="2026-07-14T12:09:00Z",
+            forecast_generated_at="2026-07-14T12:00:00Z",
+        ),
+        _available_snapshot(record),
+        now="2026-07-14T12:10:00Z",
+    )
+
+    assert result["forecasts"][0]["details"]["market_snapshot"]["status"] == (
+        "SHADOW_ONLY"
+    )
 
 
 def test_future_snapshot_is_rejected() -> None:

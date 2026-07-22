@@ -14,11 +14,13 @@ from xgedge.data.official_feeds import (
     FIFA_WORLD_CUP_2026_SEASON_ID,
     FIFA_WORLD_CUP_COMPETITION_ID,
     FIXTURE_FIELDS,
-    UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR,
-    UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
+    UEFA_CLUB_2027_SEASON_YEAR,
+    UEFA_CLUB_COMPETITION_BY_ID,
+    UEFA_CLUB_COMPETITION_BY_KEY,
     UEFA_MATCHES_URL,
     fetch_fifa_fixtures,
-    fetch_uefa_fixtures,
+    fetch_uefa_club_fixtures,
+    resolve_uefa_competitions,
 )
 
 
@@ -58,8 +60,19 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--fifa-season-id", default=FIFA_WORLD_CUP_2026_SEASON_ID)
     parser.add_argument("--fifa-count", type=int, default=500)
     parser.add_argument("--uefa-url", default=UEFA_MATCHES_URL)
-    parser.add_argument("--uefa-competition-id", default=UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID)
-    parser.add_argument("--uefa-season-year", default=UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR)
+    parser.add_argument(
+        "--uefa-competition",
+        action="append",
+        choices=("all", *UEFA_CLUB_COMPETITION_BY_KEY),
+        help="verified UEFA competition key; repeatable (default: all)",
+    )
+    parser.add_argument(
+        "--uefa-competition-id",
+        action="append",
+        choices=tuple(UEFA_CLUB_COMPETITION_BY_ID),
+        help="backward-compatible verified UEFA competition ID; repeatable",
+    )
+    parser.add_argument("--uefa-season-year", default=UEFA_CLUB_2027_SEASON_YEAR)
     parser.add_argument("--uefa-page-size", type=int, default=100)
     args = parser.parse_args(argv)
 
@@ -69,6 +82,20 @@ def main(argv: list[str] | None = None) -> None:
     # Reproducible public-data fetches must not silently inherit a desktop
     # SOCKS/system proxy that is unavailable inside the project environment.
     session.trust_env = False
+    if args.uefa_competition and args.uefa_competition_id:
+        parser.error("use either --uefa-competition or --uefa-competition-id, not both")
+    if args.uefa_competition_id:
+        uefa_competitions = tuple(
+            dict.fromkeys(
+                UEFA_CLUB_COMPETITION_BY_ID[value]
+                for value in args.uefa_competition_id
+            )
+        )
+    else:
+        try:
+            uefa_competitions = resolve_uefa_competitions(args.uefa_competition)
+        except ValueError as exc:
+            parser.error(str(exc))
     fixtures: list[dict] = []
     if args.source in ("all", "fifa"):
         fixtures.extend(fetch_fifa_fixtures(
@@ -82,9 +109,9 @@ def main(argv: list[str] | None = None) -> None:
             session=session,
         ))
     if args.source in ("all", "uefa"):
-        fixtures.extend(fetch_uefa_fixtures(
+        fixtures.extend(fetch_uefa_club_fixtures(
             base_url=args.uefa_url,
-            competition_id=args.uefa_competition_id,
+            competitions=uefa_competitions,
             season_year=args.uefa_season_year,
             as_of=as_of,
             to_date=to_date,

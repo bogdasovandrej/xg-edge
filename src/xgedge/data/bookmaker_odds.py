@@ -515,7 +515,11 @@ def apply_odds_snapshot_to_live_payload(
             kickoff = as_utc(forecast["kickoff_utc"], field="kickoff_utc")
         except (KeyError, TypeError, ValueError):
             kickoff = None
-        generated_value = forecast.get("generated_at") or output.get("generated_at")
+        generated_value = (
+            forecast.get("forecast_generated_at")
+            or forecast.get("generated_at")
+            or output.get("generated_at")
+        )
         try:
             generated = (
                 as_utc(generated_value, field="generated_at")

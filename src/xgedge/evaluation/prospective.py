@@ -476,7 +476,10 @@ def ingest_odds_snapshot(
                 "provider_event_id": record.get("provider_event_id"),
                 "sport_key": record.get("sport_key"),
                 "forecast": {
-                    "generated_at": live_payload.get("generated_at"),
+                    "generated_at": (
+                        forecast.get("forecast_generated_at")
+                        or live_payload.get("generated_at")
+                    ),
                     "competition": forecast.get("competition"),
                     "model": forecast.get("model"),
                     "probability_basis": forecast.get("probability_basis"),

@@ -1,0 +1,33 @@
+{
+  "schema_version": "legacy-quarantine/1.0",
+  "status": "DATA_QUALITY_ISSUES_DO_NOT_TRAIN_OR_VALIDATE",
+  "source": "user_supplied_prompt_2026-07-21",
+  "verified": false,
+  "summary_claims": {
+    "priced_recommendations_approx": 16,
+    "wins_approx": 8,
+    "losses_approx": 8,
+    "average_odds_approx": 1.64,
+    "hit_rate_approx": 0.5,
+    "break_even_hit_rate_approx": 0.61,
+    "roi_approx": -0.26
+  },
+  "known_risks": [
+    "incorrect_or_unverified_odds",
+    "asynchronous_market_sides",
+    "mixed_market_contracts",
+    "regulation_time_vs_extra_time_confusion",
+    "activation_status_unknown"
+  ],
+  "allowed_use": [
+    "manual_reconstruction",
+    "data_quality_examples",
+    "hypothesis_generation"
+  ],
+  "forbidden_use": [
+    "model_training",
+    "confirmatory_validation",
+    "promotion_gate",
+    "profitability_claims"
+  ]
+}

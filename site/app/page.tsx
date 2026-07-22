@@ -15,12 +15,25 @@ type Forecast = {
   p_draw?: number | null;
   p_away?: number | null;
   p_over25?: number | null;
+  p_over35?: number | null;
+  p_over45?: number | null;
   p_btts?: number | null;
   p_home_advance?: number | null;
   p_away_advance?: number | null;
   top_score?: string | null;
+  top_score_probability?: number | null;
+  score_scenarios?: Array<{ score?: string | null; probability?: number | null }> | null;
+  score_scenarios_coverage?: number | null;
+  other_score_probability?: number | null;
+  score_display?: string | null;
+  tail_probability_status?: string | null;
+  expected_goals?: { home?: number | null; away?: number | null; total?: number | null } | null;
   uncertainty?: string | null;
   recommendation?: string | null;
+  decision_status?: string | null;
+  model_status?: string | null;
+  market_period?: string | null;
+  betting_eligible?: boolean | null;
   first_leg?: string | null;
   probability_basis?: string | null;
   raw_model_1x2?: { home: number; draw: number; away: number } | null;
@@ -56,8 +69,21 @@ type TeamDetail = {
   level?: string | null;
   competition_level?: string | null;
   recent_matches?: RecentMatch[] | null;
-  likely_lineup?: Array<{ player_name?: string | null; status?: string | null; is_confirmed?: boolean | null }> | null;
+  likely_lineup?: Array<{
+    player_name?: string | null;
+    status?: string | null;
+    is_confirmed?: boolean | null;
+    field_position?: string | null;
+    detailed_field_position?: string | null;
+    jersey_number?: number | null;
+    is_late_update?: boolean | null;
+  }> | null;
   absences?: Array<{ player_name?: string | null; status?: string | null }> | null;
+  coach?: {
+    coach_name?: string | null;
+    role?: string | null;
+    is_late_update?: boolean | null;
+  } | null;
 };
 
 type CandidateBet = {
@@ -169,20 +195,188 @@ type ProspectiveClvSummary = {
   }> | null;
 };
 
+type PaperCandidate = {
+  rank?: number | null;
+  fixture_id: string;
+  competition?: string | null;
+  kickoff_utc?: string | null;
+  home?: string | null;
+  away?: string | null;
+  selection?: string | null;
+  model_probability?: number | null;
+  break_even_probability?: number | null;
+  probability_edge?: number | null;
+  odds?: number | null;
+  bookmaker?: string | null;
+  robust_edge?: number | null;
+  data_quality_score?: number | null;
+  status?: string | null;
+  real_money_eligible?: boolean | null;
+};
+
+type PaperCandidateRanking = {
+  status?: string | null;
+  real_money_execution?: boolean | null;
+  eligible_matches?: number | null;
+  displayed_candidates?: number | null;
+  rejection_counts?: Record<string, number> | null;
+  candidates?: PaperCandidate[] | null;
+};
+
+type PaperStrategyRow = {
+  rank?: number | null;
+  strategy_id?: string | null;
+  label?: string | null;
+  score?: number | null;
+  equity_balance_rub?: number | null;
+  available_balance_rub?: number | null;
+  pnl_rub?: number | null;
+  roi?: number | null;
+  max_drawdown?: number | null;
+  log_growth?: number | null;
+  mean_clv?: number | null;
+  settled_bets?: number | null;
+  open_bets?: number | null;
+  wins?: number | null;
+  losses?: number | null;
+  cycle_count?: number | null;
+  ruin_count?: number | null;
+  target_hit_count?: number | null;
+};
+
+type PaperTradingSummary = {
+  status?: string | null;
+  real_money_execution?: boolean | null;
+  updated_at?: string | null;
+  starting_balance_rub?: number | null;
+  target_balance_rub?: number | null;
+  target_role?: string | null;
+  totals?: {
+    strategies?: number | null;
+    enrolled_matches?: number | null;
+    settled_matches?: number | null;
+    open_matches?: number | null;
+    settled_bets?: number | null;
+    open_bets?: number | null;
+  } | null;
+  leaderboard?: PaperStrategyRow[] | null;
+  selection_policy?: {
+    minimum_settled_bets_for_full_evidence?: number | null;
+    speed_to_target_used_for_ranking?: boolean | null;
+    strategy_deletion?: boolean | null;
+  } | null;
+  parlays?: { status?: string | null; reason?: string | null } | null;
+};
+
+type OutcomeKey = "home" | "draw" | "away";
+
+type ProspectiveFixtureRecord = {
+  fixture_id?: string | null;
+  evaluation_cohort_id?: string | null;
+  home?: string | null;
+  away?: string | null;
+  kickoff_utc?: string | null;
+  forecast?: {
+    generated_at?: string | null;
+    competition?: string | null;
+    model?: string | null;
+    probability_basis?: string | null;
+    probabilities?: Partial<Record<OutcomeKey, number | null>> | null;
+  } | null;
+  result?: {
+    home_goals_90?: number | null;
+    away_goals_90?: number | null;
+    outcome?: OutcomeKey | string | null;
+  } | null;
+  calibration?: {
+    brier?: number | null;
+    logloss?: number | null;
+  } | null;
+};
+
+type ProspectiveLedger = {
+  schema_version?: string | null;
+  updated_at?: string | null;
+  fixtures?: Record<string, ProspectiveFixtureRecord> | null;
+};
+
+type ForecastArchiveDocument = {
+  schema_version?: string | null;
+  updated_at?: string | null;
+  fixture_snapshots?: Array<{
+    fixture_key?: string | null;
+    fixture?: {
+      id?: string | null;
+      competition?: string | null;
+      kickoff_utc?: string | null;
+      home?: string | null;
+      away?: string | null;
+    } | null;
+  }> | null;
+  forecasts?: Array<{
+    forecast_id?: string | null;
+    fixture_key?: string | null;
+    fixture_id?: string | null;
+    kickoff_utc?: string | null;
+    generated_at?: string | null;
+    model?: string | null;
+    probability_basis?: string | null;
+    probabilities?: Partial<Record<OutcomeKey, number | null>> | null;
+  }> | null;
+  results?: Array<{
+    fixture_key?: string | null;
+    fixture_id?: string | null;
+    home_goals_90?: number | null;
+    away_goals_90?: number | null;
+    outcome?: OutcomeKey | string | null;
+  }> | null;
+};
+
+type ArchiveRow = {
+  id: string;
+  home: string;
+  away: string;
+  kickoffUtc: string;
+  competition: string;
+  model: string;
+  cohortId: string;
+  predicted: OutcomeKey | null;
+  predictedProbability: number | null;
+  probabilities: Record<OutcomeKey, number> | null;
+  actual: OutcomeKey;
+  homeGoals: number;
+  awayGoals: number;
+  correct: boolean | null;
+  brier: number | null;
+  logloss: number | null;
+};
+
 type LivePayload = {
   generated_at: string;
   status: string;
   betting_gate?: { allowed?: boolean; reason?: string | null } | null;
   prospective_clv?: ProspectiveClvSummary | null;
+  validation_protocol?: {
+    mode?: string | null;
+    model_status?: string | null;
+    real_money_execution?: boolean | null;
+    parlays?: string | null;
+  } | null;
+  paper_candidate_ranking?: PaperCandidateRanking | null;
+  paper_trading?: PaperTradingSummary | null;
   forecasts: Forecast[];
 };
 
 const DATA_URL =
   "https://raw.githubusercontent.com/bogdasovandrej/xg-edge/main/reports/live_predictions.json";
+const PROSPECTIVE_URL =
+  "https://raw.githubusercontent.com/bogdasovandrej/xg-edge/main/reports/live/prospective_clv.json";
+const FORECAST_ARCHIVE_URL =
+  "https://raw.githubusercontent.com/bogdasovandrej/xg-edge/main/reports/live/forecast_archive.json";
 
 const FALLBACK: LivePayload = {
-  generated_at: "2026-07-13T00:00:00Z",
-  status: "official-fixtures-only",
+  generated_at: "2026-07-21T00:00:00Z",
+  status: "offline-empty-fallback",
   betting_gate: { allowed: false, reason: "insufficient_independent_matches" },
   prospective_clv: {
     action: "NO BET",
@@ -202,30 +396,46 @@ const FALLBACK: LivePayload = {
     tracked_fixtures: 0,
     shadow_candidates: 0,
   },
-  forecasts: [
-    {
-      id: "400021541",
-      competition: "FIFA World Cup 2026",
-      stage: "Полуфинал",
-      kickoff_utc: "2026-07-14T19:00:00Z",
-      home: "Франция",
-      away: "Испания",
-      venue: "Dallas Stadium",
-      uncertainty: "модель готовится",
-      recommendation: "NO BET",
+  validation_protocol: {
+    mode: "PAPER_ONLY",
+    model_status: "MODEL_IN_QUARANTINE",
+    real_money_execution: false,
+    parlays: "SIMULATION_ONLY_DISABLED_PENDING_INDIVIDUAL_EDGE",
+  },
+  paper_candidate_ranking: {
+    status: "PAPER_ONLY",
+    real_money_execution: false,
+    eligible_matches: 0,
+    displayed_candidates: 0,
+    candidates: [],
+  },
+  paper_trading: {
+    status: "PAPER_ONLY_EMPTY",
+    real_money_execution: false,
+    updated_at: "2026-07-21T00:00:00Z",
+    starting_balance_rub: 10_000,
+    target_balance_rub: 1_000_000,
+    totals: {
+      strategies: 3,
+      enrolled_matches: 0,
+      settled_matches: 0,
+      open_matches: 0,
+      settled_bets: 0,
+      open_bets: 0,
     },
-    {
-      id: "400021540",
-      competition: "FIFA World Cup 2026",
-      stage: "Полуфинал",
-      kickoff_utc: "2026-07-15T19:00:00Z",
-      home: "Англия",
-      away: "Аргентина",
-      venue: "Atlanta Stadium",
-      uncertainty: "модель готовится",
-      recommendation: "NO BET",
+    leaderboard: [
+      { rank: 1, strategy_id: "conservative_edge_5pp", label: "Только edge от 5 п.п.", equity_balance_rub: 10_000, pnl_rub: 0, roi: 0, max_drawdown: 0, settled_bets: 0, open_bets: 0, wins: 0, losses: 0, cycle_count: 1, ruin_count: 0 },
+      { rank: 2, strategy_id: "flat_1pct", label: "Фиксированные 1%", equity_balance_rub: 10_000, pnl_rub: 0, roi: 0, max_drawdown: 0, settled_bets: 0, open_bets: 0, wins: 0, losses: 0, cycle_count: 1, ruin_count: 0 },
+      { rank: 3, strategy_id: "fractional_kelly_025", label: "1/4 Kelly, лимит 1%", equity_balance_rub: 10_000, pnl_rub: 0, roi: 0, max_drawdown: 0, settled_bets: 0, open_bets: 0, wins: 0, losses: 0, cycle_count: 1, ruin_count: 0 },
+    ],
+    selection_policy: {
+      minimum_settled_bets_for_full_evidence: 100,
+      speed_to_target_used_for_ranking: false,
+      strategy_deletion: false,
     },
-  ],
+    parlays: { status: "DISABLED" },
+  },
+  forecasts: [],
 };
 
 const percent = (value?: number | null) =>
@@ -240,8 +450,28 @@ const localTime = (iso: string) =>
     minute: "2-digit",
   }).format(new Date(iso));
 
-const competitionName = (name: string) =>
-  name.includes("World Cup") ? "ЧМ-2026" : "Квалификация ЛЧ";
+const archiveDate = (iso: string) =>
+  new Intl.DateTimeFormat("ru-RU", {
+    timeZone: "Asia/Yekaterinburg",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(iso));
+
+const competitionName = (name: string) => {
+  if (name.includes("World Cup")) return "ЧМ-2026";
+  if (name.includes("Champions")) return "Лига чемпионов";
+  if (name.includes("Premier")) return "АПЛ";
+  if (name.includes("La Liga")) return "Ла Лига";
+  if (name.includes("Bundesliga")) return "Бундеслига";
+  if (name.includes("Serie A")) return "Серия A";
+  if (name.includes("Ligue 1")) return "Лига 1";
+  return name;
+};
+
+const isTopFiveCompetition = (name: string) =>
+  ["Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1"]
+    .some((competition) => name.includes(competition));
 
 const finiteNumber = (value?: number | null) =>
   typeof value === "number" && Number.isFinite(value) ? value : null;
@@ -252,6 +482,22 @@ const signedPercent = (value?: number | null) => {
   const sign = safe > 0 ? "+" : safe < 0 ? "−" : "";
   return `${sign}${Math.abs(safe * 100).toFixed(2)}%`;
 };
+
+const rub = (value?: number | null) => {
+  const safe = finiteNumber(value);
+  return safe == null
+    ? "—"
+    : new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 }).format(safe) + " ₽";
+};
+
+const isOutcomeKey = (value?: string | null): value is OutcomeKey =>
+  value === "home" || value === "draw" || value === "away";
+
+const outcomeName = (value?: OutcomeKey | null) => ({
+  home: "П1",
+  draw: "X",
+  away: "П2",
+}[value || ""] || "—");
 
 const gateReason = (reason?: string | null) => ({
   insufficient_independent_matches: "недостаточно независимых матчей",
@@ -312,6 +558,374 @@ function ProspectiveClvPanel({
   );
 }
 
+function PaperCandidateBoard({ ranking, nowMs }: { ranking?: PaperCandidateRanking | null; nowMs: number }) {
+  const candidates = (ranking?.candidates || [])
+    .filter((candidate) => {
+      const kickoff = candidate.kickoff_utc ? new Date(candidate.kickoff_utc).getTime() : NaN;
+      return Number.isFinite(kickoff) && kickoff > nowMs;
+    })
+    .slice(0, 6);
+  return (
+    <section className="paper-board" id="paper-picks" aria-label="Строгий PAPER-отбор матчей">
+      <div className="paper-board-heading">
+        <div>
+          <p className="eyebrow">Строгий фильтр · лучшие доступные цены</p>
+          <h2>Очередь PAPER-кандидатов</h2>
+        </div>
+        <span className="paper-only-badge">PAPER ONLY</span>
+      </div>
+      <p className="paper-board-intro">
+        В список попадает не более одного исхода на матч: модельная вероятность выше точки безубыточности,
+        а преимущество остаётся положительным после штрафа за неопределённость и качество данных.
+        Это виртуальный тест, не обещание прибыли.
+      </p>
+      {candidates.length ? (
+        <div className="paper-candidate-list">
+          {candidates.map((candidate, index) => (
+            <a className="paper-candidate" href={`#match-${candidate.fixture_id}`} key={`${candidate.fixture_id}-${candidate.selection}`}>
+              <b>#{candidate.rank || index + 1}</b>
+              <div>
+                <strong>{candidate.home} — {candidate.away}</strong>
+                <span>{candidate.selection} · {candidate.bookmaker || "букмекер не указан"}</span>
+              </div>
+              <dl>
+                <div><dt>Модель</dt><dd>{percent(candidate.model_probability)}</dd></div>
+                <div><dt>Безубыток</dt><dd>{percent(candidate.break_even_probability)}</dd></div>
+                <div><dt>Коэф.</dt><dd>{decimal(candidate.odds)}</dd></div>
+                <div><dt>Robust EV</dt><dd>{signedPercent(candidate.robust_edge)}</dd></div>
+              </dl>
+              <small>{candidate.kickoff_utc ? `${localTime(candidate.kickoff_utc)} YEKT` : "время уточняется"}</small>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div className="paper-empty">
+          <strong>Сейчас строгий фильтр не пропустил ни одного матча.</strong>
+          <span>Это корректный результат: без свежей синхронной цены и достаточного качества данных система молчит.</span>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function PaperTradingLab({ summary }: { summary?: PaperTradingSummary | null }) {
+  const rows = (summary?.leaderboard || []).slice(0, 3);
+  const minimum = Math.max(
+    1,
+    Math.trunc(finiteNumber(summary?.selection_policy?.minimum_settled_bets_for_full_evidence) ?? 100),
+  );
+  const settled = Math.max(0, Math.trunc(finiteNumber(summary?.totals?.settled_matches) ?? 0));
+  return (
+    <section className="paper-lab" id="paper-bank" aria-label="Турнир PAPER-стратегий">
+      <div className="paper-lab-heading">
+        <div>
+          <p className="eyebrow">Автоматическая виртуальная лаборатория</p>
+          <h2>10 000 ₽ → проверка,<br />не обещание миллиона.</h2>
+        </div>
+        <div className="paper-lab-status">
+          <span>PAPER ONLY</span>
+          <b>{settled} / {minimum}</b>
+          <small>матчей до полной оценки</small>
+        </div>
+      </div>
+      <div className="paper-lab-facts">
+        <div><span>Старт каждого цикла</span><b>{rub(summary?.starting_balance_rub ?? 10_000)}</b></div>
+        <div><span>Цель-диагностика</span><b>{rub(summary?.target_balance_rub ?? 1_000_000)}</b></div>
+        <div><span>Матчей в журнале</span><b>{Math.max(0, Math.trunc(finiteNumber(summary?.totals?.enrolled_matches) ?? 0))}</b></div>
+        <div><span>Открыто сейчас</span><b>{Math.max(0, Math.trunc(finiteNumber(summary?.totals?.open_matches) ?? 0))}</b></div>
+      </div>
+      <div className="strategy-board">
+        {rows.map((row, index) => {
+          const n = Math.max(0, Math.trunc(finiteNumber(row.settled_bets) ?? 0));
+          const evidence = Math.min(100, n / minimum * 100);
+          return (
+            <article key={row.strategy_id || index}>
+              <header><b>#{row.rank || index + 1}</b><span>{n < minimum ? "малая выборка" : "полная оценка"}</span></header>
+              <h3>{row.label || row.strategy_id || "Стратегия"}</h3>
+              <strong>{rub(row.equity_balance_rub)}</strong>
+              <dl>
+                <div><dt>P&amp;L</dt><dd>{rub(row.pnl_rub)}</dd></div>
+                <div><dt>ROI</dt><dd>{signedPercent(row.roi)}</dd></div>
+                <div><dt>CLV</dt><dd>{signedPercent(row.mean_clv)}</dd></div>
+                <div><dt>Max DD</dt><dd>{percent(row.max_drawdown)}</dd></div>
+                <div><dt>W–L</dt><dd>{Math.trunc(finiteNumber(row.wins) ?? 0)}–{Math.trunc(finiteNumber(row.losses) ?? 0)}</dd></div>
+                <div><dt>Циклы / крахи</dt><dd>{Math.trunc(finiteNumber(row.cycle_count) ?? 1)} / {Math.trunc(finiteNumber(row.ruin_count) ?? 0)}</dd></div>
+              </dl>
+              <div className="evidence-track"><i style={{ width: `${evidence}%` }} /></div>
+              <small>{n} ставок · открыто {Math.trunc(finiteNumber(row.open_bets) ?? 0)}</small>
+            </article>
+          );
+        })}
+      </div>
+      <div className="paper-lab-note">
+        <p>После разорения новый цикл снова начинается с 10 000 ₽, но проигрыши и прошлые циклы не удаляются. Победитель определяется по CLV, логарифмическому росту и риску, а не по случайной скорости до 1 млн ₽.</p>
+        <p><b>Экспрессы: {summary?.parlays?.status || "DISABLED"}.</b> Они останутся только симуляцией и не включатся, пока одиночные ставки не покажут устойчивый prospective CLV.</p>
+      </div>
+    </section>
+  );
+}
+
+function CompletedForecastArchive({
+  archive,
+  ledger,
+  status,
+}: {
+  archive?: ForecastArchiveDocument | null;
+  ledger?: ProspectiveLedger | null;
+  status: "loading" | "live" | "unavailable";
+}) {
+  const [archiveQuery, setArchiveQuery] = useState("");
+  const [resultFilter, setResultFilter] = useState<"all" | "hit" | "miss">("all");
+
+  const rows = useMemo<ArchiveRow[]>(() => {
+    if (archive?.schema_version === "match-evidence-archive/1.0") {
+      const fixtures = new Map<string, NonNullable<ForecastArchiveDocument["fixture_snapshots"]>[number]["fixture"]>();
+      (archive.fixture_snapshots || []).forEach((snapshot) => {
+        if (snapshot.fixture_key && snapshot.fixture) fixtures.set(snapshot.fixture_key, snapshot.fixture);
+      });
+      const forecasts = new Map<string, NonNullable<ForecastArchiveDocument["forecasts"]>[number]>();
+      (archive.forecasts || []).forEach((forecast) => {
+        const key = forecast.fixture_key || "";
+        if (!key) return;
+        const previous = forecasts.get(key);
+        if (!previous || String(forecast.generated_at || "") > String(previous.generated_at || "")) {
+          forecasts.set(key, forecast);
+        }
+      });
+      return (archive.results || []).flatMap((result) => {
+        const key = result.fixture_key || "";
+        const forecast = forecasts.get(key);
+        const fixture = fixtures.get(key);
+        const actual = isOutcomeKey(result.outcome) ? result.outcome : null;
+        const homeGoals = finiteNumber(result.home_goals_90);
+        const awayGoals = finiteNumber(result.away_goals_90);
+        const kickoff = forecast?.kickoff_utc || fixture?.kickoff_utc || "";
+        const home = fixture?.home?.trim() || "";
+        const away = fixture?.away?.trim() || "";
+        if (
+          !forecast || !actual || !home || !away ||
+          !Number.isInteger(homeGoals) || !Number.isInteger(awayGoals) ||
+          (homeGoals ?? -1) < 0 || (awayGoals ?? -1) < 0 ||
+          !Number.isFinite(new Date(kickoff).getTime())
+        ) return [];
+        const pHome = finiteNumber(forecast.probabilities?.home);
+        const pDraw = finiteNumber(forecast.probabilities?.draw);
+        const pAway = finiteNumber(forecast.probabilities?.away);
+        const hasProbabilityVector = pHome != null && pDraw != null && pAway != null &&
+          pHome >= 0 && pDraw >= 0 && pAway >= 0 &&
+          Math.abs(pHome + pDraw + pAway - 1) <= 0.01;
+        const probabilities: Record<OutcomeKey, number> | null = hasProbabilityVector
+          ? { home: pHome, draw: pDraw, away: pAway }
+          : null;
+        const prediction = probabilities
+          ? (Object.entries(probabilities) as Array<[OutcomeKey, number]>)
+            .sort((left, right) => right[1] - left[1])[0]
+          : null;
+        const predicted = prediction?.[0] || null;
+        const predictedProbability = prediction?.[1] ?? null;
+        const brier = probabilities
+          ? (Object.entries(probabilities) as Array<[OutcomeKey, number]>)
+            .reduce((sum, [outcome, probability]) => sum + (probability - (outcome === actual ? 1 : 0)) ** 2, 0)
+          : null;
+        const logloss = probabilities ? -Math.log(Math.max(probabilities[actual], 1e-12)) : null;
+        return [{
+          id: forecast.forecast_id || result.fixture_id || key,
+          home,
+          away,
+          kickoffUtc: kickoff,
+          competition: fixture?.competition?.trim() || "турнир не записан",
+          model: forecast.model?.trim() || "модель не записана",
+          cohortId: forecast.probability_basis || "archive",
+          predicted,
+          predictedProbability,
+          probabilities,
+          actual,
+          homeGoals: homeGoals as number,
+          awayGoals: awayGoals as number,
+          correct: predicted ? predicted === actual : null,
+          brier,
+          logloss,
+        }];
+      }).sort((left, right) =>
+        new Date(right.kickoffUtc).getTime() - new Date(left.kickoffUtc).getTime()
+      );
+    }
+    const fixtures = ledger?.fixtures;
+    if (!fixtures || typeof fixtures !== "object") return [];
+    return Object.entries(fixtures).flatMap(([key, record]) => {
+      const result = record?.result;
+      const homeGoals = finiteNumber(result?.home_goals_90);
+      const awayGoals = finiteNumber(result?.away_goals_90);
+      const actual = isOutcomeKey(result?.outcome) ? result.outcome : null;
+      const kickoff = record?.kickoff_utc || "";
+      const home = record?.home?.trim() || "";
+      const away = record?.away?.trim() || "";
+      const scoreOutcome = homeGoals != null && awayGoals != null
+        ? homeGoals > awayGoals ? "home" : awayGoals > homeGoals ? "away" : "draw"
+        : null;
+      if (
+        !actual || scoreOutcome !== actual || !home || !away ||
+        !Number.isInteger(homeGoals) || !Number.isInteger(awayGoals) ||
+        (homeGoals ?? -1) < 0 || (awayGoals ?? -1) < 0 ||
+        !Number.isFinite(new Date(kickoff).getTime())
+      ) return [];
+
+      const sourceProbabilities = record?.forecast?.probabilities;
+      const pHome = finiteNumber(sourceProbabilities?.home);
+      const pDraw = finiteNumber(sourceProbabilities?.draw);
+      const pAway = finiteNumber(sourceProbabilities?.away);
+      const hasProbabilityVector = pHome != null && pDraw != null && pAway != null &&
+        pHome >= 0 && pDraw >= 0 && pAway >= 0 &&
+        Math.abs(pHome + pDraw + pAway - 1) <= 0.01;
+      const probabilities: Record<OutcomeKey, number> | null = hasProbabilityVector
+        ? { home: pHome, draw: pDraw, away: pAway }
+        : null;
+      const prediction = probabilities
+        ? (Object.entries(probabilities) as Array<[OutcomeKey, number]>)
+          .sort((left, right) => right[1] - left[1])[0]
+        : null;
+      const predicted = prediction?.[0] || null;
+      const predictedProbability = prediction?.[1] ?? null;
+      const brier = finiteNumber(record?.calibration?.brier);
+      const logloss = finiteNumber(record?.calibration?.logloss);
+
+      return [{
+        id: record.fixture_id || key,
+        home,
+        away,
+        kickoffUtc: kickoff,
+        competition: record.forecast?.competition?.trim() || "турнир не записан",
+        model: record.forecast?.model?.trim() || "модель не записана",
+        cohortId: record.evaluation_cohort_id || "когорта не записана",
+        predicted,
+        predictedProbability,
+        probabilities,
+        actual,
+        homeGoals: homeGoals as number,
+        awayGoals: awayGoals as number,
+        correct: predicted ? predicted === actual : null,
+        brier: brier != null && brier >= 0 ? brier : null,
+        logloss: logloss != null && logloss >= 0 ? logloss : null,
+      }];
+    }).sort((left, right) =>
+      new Date(right.kickoffUtc).getTime() - new Date(left.kickoffUtc).getTime()
+    );
+  }, [archive, ledger]);
+
+  const filteredRows = useMemo(() => {
+    const needle = archiveQuery.trim().toLocaleLowerCase("ru-RU");
+    return rows.filter((row) => {
+      const inResult = resultFilter === "all" ||
+        (resultFilter === "hit" && row.correct === true) ||
+        (resultFilter === "miss" && row.correct === false);
+      if (!inResult) return false;
+      if (!needle) return true;
+      return [row.home, row.away, row.competition, row.model, row.cohortId]
+        .join(" ").toLocaleLowerCase("ru-RU").includes(needle);
+    });
+  }, [archiveQuery, resultFilter, rows]);
+
+  const scoredRows = rows.filter((row) => row.brier != null && row.logloss != null);
+  const topOneRows = rows.filter((row) => row.predictedProbability != null && row.correct != null);
+  const accuracy = topOneRows.length
+    ? topOneRows.filter((row) => row.correct).length / topOneRows.length
+    : null;
+  const meanConfidence = topOneRows.length
+    ? topOneRows.reduce((sum, row) => sum + (row.predictedProbability || 0), 0) / topOneRows.length
+    : null;
+  const meanBrier = scoredRows.length
+    ? scoredRows.reduce((sum, row) => sum + (row.brier || 0), 0) / scoredRows.length
+    : null;
+  const meanLogloss = scoredRows.length
+    ? scoredRows.reduce((sum, row) => sum + (row.logloss || 0), 0) / scoredRows.length
+    : null;
+  const calibrationGap = topOneRows.length >= 30 && accuracy != null && meanConfidence != null
+    ? accuracy - meanConfidence
+    : null;
+  const visibleRows = filteredRows.slice(0, 100);
+  const sourceUpdated = archive?.updated_at && Number.isFinite(new Date(archive.updated_at).getTime())
+    ? `${new Date(archive.updated_at).toLocaleString("ru-RU", { timeZone: "Asia/Yekaterinburg" })} YEKT`
+    : ledger?.updated_at && Number.isFinite(new Date(ledger.updated_at).getTime())
+      ? `${new Date(ledger.updated_at).toLocaleString("ru-RU", { timeZone: "Asia/Yekaterinburg" })} YEKT`
+    : "—";
+
+  return (
+    <section className="archive-section" id="completed-archive" aria-label="Архив завершённых прогнозов">
+      <div className="archive-heading">
+        <div>
+          <p className="eyebrow">Predicted vs actual · официальный результат за 90 минут</p>
+          <h2>Архив проверенных<br />прогнозов</h2>
+        </div>
+        <span className="paper-only-badge">PAPER ONLY</span>
+      </div>
+      <p className="archive-intro">
+        Здесь остаются только прогнозы, сохранённые до матча и затем закрытые официальным результатом.
+        Записи берутся из контролируемого prospective-журнала: исходный прогноз после старта не перезаписывается,
+        а сайт не скрывает проигрыши и не создаёт результаты.
+      </p>
+
+      <div className="archive-metrics" aria-label="Качество прогнозов на завершённых матчах">
+        <div><span>Завершено</span><b>{rows.length || "—"}</b><small>официально закрытых матчей</small></div>
+        <div><span>Top-1 1X2</span><b>{percent(accuracy)}</b><small>угадан самый вероятный исход · n={topOneRows.length}</small></div>
+        <div><span>Mean Brier</span><b>{meanBrier == null ? "—" : meanBrier.toFixed(3)}</b><small>ниже лучше · диапазон 0–2</small></div>
+        <div><span>Mean log loss</span><b>{meanLogloss == null ? "—" : meanLogloss.toFixed(3)}</b><small>ниже лучше · n={scoredRows.length}</small></div>
+        <div><span>Top-1 calib. gap</span><b>{signedPercent(calibrationGap)}</b><small>{topOneRows.length < 30 ? `покажется после 30 матчей · сейчас ${topOneRows.length}` : "точность минус средняя уверенность"}</small></div>
+      </div>
+
+      <div className="archive-controls">
+        <label htmlFor="archive-search">Поиск в архиве</label>
+        <div className="archive-search-box">
+          <input id="archive-search" type="search" value={archiveQuery} onChange={(event) => setArchiveQuery(event.target.value)} placeholder="Команда, турнир, модель или когорта" />
+          <button type="button" onClick={() => setArchiveQuery("")} disabled={!archiveQuery}>Очистить</button>
+        </div>
+        <div className="archive-result-filter" role="group" aria-label="Фильтр попаданий">
+          {([[
+            "all", "Все",
+          ], ["hit", "Попал"], ["miss", "Мимо"]] as const).map(([value, label]) => (
+            <button type="button" key={value} className={resultFilter === value ? "active" : ""} onClick={() => setResultFilter(value)}>{label}</button>
+          ))}
+        </div>
+        <span>{filteredRows.length} найдено</span>
+      </div>
+
+      {visibleRows.length ? (
+        <div className="archive-table" role="table" aria-label="Predicted versus actual">
+          <div className="archive-table-head" role="row">
+            <span>Дата</span><span>Матч</span><span>Прогноз 1X2</span><span>Факт 90&apos;</span><span>Brier</span><span>Log loss</span>
+          </div>
+          {visibleRows.map((row) => (
+            <div className="archive-table-row" role="row" key={row.id}>
+              <time className="archive-date" dateTime={row.kickoffUtc}><b>{archiveDate(row.kickoffUtc)}</b><small>{localTime(row.kickoffUtc).split(", ").at(-1)} YEKT</small></time>
+              <span className="archive-match"><b>{row.home} — {row.away}</b><small>{competitionName(row.competition)} · {row.model}</small></span>
+              <span className="archive-prediction"><b>{outcomeName(row.predicted)} · {percent(row.predictedProbability)}</b><small>{row.probabilities ? `П1 ${percent(row.probabilities.home)} · X ${percent(row.probabilities.draw)} · П2 ${percent(row.probabilities.away)}` : "вектор вероятностей не прошёл проверку"}</small></span>
+              <span className="archive-actual"><b>{row.homeGoals}:{row.awayGoals} · {outcomeName(row.actual)}</b><small className={row.correct ? "archive-hit" : row.correct === false ? "archive-miss" : ""}>{row.correct == null ? "top-1 недоступен" : row.correct ? "top-1 угадан" : "top-1 не угадан"}</small></span>
+              <span className="archive-score archive-brier">{row.brier == null ? "—" : row.brier.toFixed(3)}</span>
+              <span className="archive-score archive-logloss">{row.logloss == null ? "—" : row.logloss.toFixed(3)}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="archive-empty">
+          <strong>{rows.length
+            ? "По этому запросу завершённых матчей нет."
+            : status === "loading"
+              ? "Загружаем prospective-журнал…"
+              : status === "unavailable"
+                ? "Prospective-журнал сейчас недоступен."
+                : "Архив пока пуст."}</strong>
+          <span>{rows.length
+            ? "Измените поиск или фильтр попаданий."
+            : status === "live"
+              ? "Ни один прогноз ещё не закрыт официальным результатом. Метрики показаны как «—», а не как нулевой успех."
+              : "Сайт не подставляет демонстрационные матчи: дождитесь следующего автоматического обновления."}</span>
+        </div>
+      )}
+      {filteredRows.length > visibleRows.length && <p className="archive-limit">Показаны последние 100 из {filteredRows.length}; поиск работает по всему журналу.</p>}
+      <p className="archive-source">Источник: {archive?.schema_version || ledger?.schema_version || "match-evidence-archive/1.0 (ожидается)"} · обновлён {sourceUpdated}. Brier и log loss оценивают качество вероятностей; top-1 gap — только диагностический срез, а не полная reliability-кривая. Эти метрики сами по себе не доказывают прибыльность или CLV.</p>
+    </section>
+  );
+}
+
 function ProbabilityBar({ label, value }: { label: string; value?: number | null }) {
   const width = value == null ? 0 : Math.max(2, value * 100);
   return (
@@ -332,6 +946,13 @@ const levelName = (value?: string | null) => ({
   elite: "элитный", strong: "сильный", average: "средний", developing: "развивающийся",
   high: "высокий", medium: "средний", low: "низкий",
 }[value || ""] || value || "не оценён");
+
+const positionName = (value?: string | null) => ({
+  GOALKEEPER: "вр",
+  DEFENDER: "защ",
+  MIDFIELDER: "пз",
+  FORWARD: "нап",
+}[String(value || "").toUpperCase()] || "позиция —");
 
 const marketSnapshotReason = (status?: string | null, reason?: string | null) => {
   const explanations: Record<string, string> = {
@@ -432,8 +1053,56 @@ function BookmakerSnapshot({ details }: { details?: MatchDetails | null }) {
   );
 }
 
+function ScoreDistribution({ forecast }: { forecast: Forecast }) {
+  const scenarios = (forecast.score_scenarios || [])
+    .filter((row) => row.score && finiteNumber(row.probability) != null)
+    .slice(0, 5);
+  if (!scenarios.length && forecast.expected_goals?.total == null) return null;
+  return (
+    <section className="score-distribution">
+      <div className="dossier-title">
+        <h4>Сценарии счёта — не точный прогноз</h4>
+        <span>90 минут · полное распределение</span>
+      </div>
+      {forecast.expected_goals && (
+        <div className="expected-goals-strip">
+          <div><b>{forecast.home}</b><strong>{decimal(forecast.expected_goals.home)}</strong></div>
+          <div><b>Ожидаемый тотал</b><strong>{decimal(forecast.expected_goals.total)}</strong></div>
+          <div><b>{forecast.away}</b><strong>{decimal(forecast.expected_goals.away)}</strong></div>
+        </div>
+      )}
+      {scenarios.length > 0 && (
+        <div className="score-scenario-grid">
+          {scenarios.map((row, index) => (
+            <div key={`${row.score}-${index}`}>
+              <b>#{index + 1}</b><strong>{row.score}</strong><span>{percent(row.probability)}</span>
+            </div>
+          ))}
+          <div className="all-other-scores">
+            <b>Остальные счета</b><strong>{percent(forecast.other_score_probability)}</strong>
+          </div>
+        </div>
+      )}
+      {forecast.p_over35 != null && forecast.p_over45 != null && (
+        <div className="tail-research-strip">
+          <div><b>ТБ 3.5 · raw</b><strong>{percent(forecast.p_over35)}</strong></div>
+          <div><b>ТБ 4.5 · raw</b><strong>{percent(forecast.p_over45)}</strong></div>
+          <p>Пуассоновский хвост не откалиброван по прямым линиям 3.5/4.5 и не участвует в отборе ставок.</p>
+        </div>
+      )}
+      <p className="audit-note">
+        Даже верхний сценарий имеет вероятность только {percent(forecast.top_score_probability)}.
+        Пять показанных сценариев покрывают {percent(forecast.score_scenarios_coverage)}; остальная масса распределена между другими счетами.
+      </p>
+    </section>
+  );
+}
+
 function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: string }) {
   const matches = team?.recent_matches || [];
+  const starters = (team?.likely_lineup || [])
+    .filter((player) => player.status === "starter" && player.player_name)
+    .slice(0, 11);
   return (
     <section className="team-dossier">
       <div className="dossier-title">
@@ -454,9 +1123,21 @@ function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: 
         </div>
       ) : <p className="unknown-data">Нет десяти подтверждённых официальных матчей с xG — значения не подставлены.</p>}
       <div className="availability-grid">
-        <div><b>Состав</b><span>{team?.likely_lineup?.length ? `${team.likely_lineup.length} игроков · ${team.likely_lineup.every((p) => p.is_confirmed) ? "подтверждён" : "предварительный"}` : "не опубликован"}</span></div>
+        <div><b>Состав</b><span>{starters.length ? `${starters.length} стартеров · ${starters.every((p) => p.is_confirmed) ? "официальный" : "предварительный"}` : "не опубликован"}</span></div>
+        <div><b>Тренер</b><span>{team?.coach?.coach_name || "не подтверждён"}</span></div>
         <div><b>Пропускают</b><span>{team?.absences?.length ? team.absences.map((p) => p.player_name).filter(Boolean).join(", ") : "нет подтверждённого источника"}</span></div>
       </div>
+      {starters.length > 0 && (
+        <div className="lineup-list" aria-label={`Состав: ${fallbackName}`}>
+          {starters.map((player, index) => (
+            <span key={`${player.player_name}-${index}`}>
+              <b>{player.jersey_number ?? "—"}</b>
+              <i>{player.player_name}</i>
+              <small>{positionName(player.field_position)}</small>
+            </span>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -483,6 +1164,7 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
         )}
 
         <BookmakerSnapshot details={details} />
+        <ScoreDistribution forecast={forecast} />
 
         <div className="team-comparison">
           <TeamHistory team={details?.teams?.home} fallbackName={forecast.home} />
@@ -510,7 +1192,7 @@ function ForecastCard({ forecast }: { forecast: Forecast }) {
   const hasPrediction = forecast.p_home != null;
   const hasAdvance = forecast.p_home_advance != null;
   return (
-    <article className="forecast-card">
+    <article className="forecast-card" id={`match-${forecast.id}`}>
       <div className="card-topline">
         <span className="competition-pill">{competitionName(forecast.competition)}</span>
         <time dateTime={forecast.kickoff_utc}>{localTime(forecast.kickoff_utc)} YEKT</time>
@@ -540,19 +1222,20 @@ function ForecastCard({ forecast }: { forecast: Forecast }) {
           <>
             <div><span>Проход хозяев</span><b>{percent(forecast.p_home_advance)}</b></div>
             <div><span>Проход гостей</span><b>{percent(forecast.p_away_advance)}</b></div>
+            <div><span>Ожидаемый тотал</span><b>{decimal(forecast.expected_goals?.total)}</b></div>
           </>
         ) : (
           <>
             <div><span>ТБ 2.5</span><b>{percent(forecast.p_over25)}</b></div>
             <div><span>Обе забьют</span><b>{percent(forecast.p_btts)}</b></div>
+            <div><span>Ожидаемый тотал</span><b>{decimal(forecast.expected_goals?.total)}</b></div>
           </>
         )}
-        <div><span>Счёт-мода</span><b>{forecast.top_score || "—"}</b></div>
       </div>
       <div className="card-footer">
         <span>{forecast.model || "Официальный календарь"}</span>
         <span className="uncertainty">{forecast.uncertainty || "не оценена"}</span>
-        <strong className="no-bet">{forecast.recommendation || "NO BET"}</strong>
+        <strong className="no-bet">{forecast.betting_eligible ? forecast.recommendation || "BET" : "PAPER ONLY"}</strong>
       </div>
       <MatchDossier forecast={forecast} />
     </article>
@@ -561,6 +1244,10 @@ function ForecastCard({ forecast }: { forecast: Forecast }) {
 
 export default function Home() {
   const [payload, setPayload] = useState<LivePayload>(FALLBACK);
+  const [prospectiveLedger, setProspectiveLedger] = useState<ProspectiveLedger | null>(null);
+  const [forecastArchive, setForecastArchive] = useState<ForecastArchiveDocument | null>(null);
+  const [archiveStatus, setArchiveStatus] = useState<"loading" | "live" | "unavailable">("loading");
+  const [nowMs, setNowMs] = useState(() => new Date(FALLBACK.generated_at).getTime());
   const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [live, setLive] = useState(false);
@@ -568,16 +1255,42 @@ export default function Home() {
   useEffect(() => {
     let active = true;
     const refresh = async () => {
-      try {
-        const response = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
-        if (!response.ok) return;
-        const next = (await response.json()) as LivePayload;
-        if (active && Array.isArray(next.forecasts) && next.forecasts.length) {
-          setPayload(next);
-          setLive(true);
-        }
-      } catch {
-        // The embedded official-fixture fallback remains visible offline.
+      const cacheBuster = Date.now();
+      const [next, nextLedger, nextArchive] = await Promise.all([
+        fetch(`${DATA_URL}?t=${cacheBuster}`, { cache: "no-store" })
+          .then(async (response) => response.ok ? response.json() as Promise<LivePayload> : null)
+          .catch(() => null),
+        fetch(`${PROSPECTIVE_URL}?t=${cacheBuster}`, { cache: "no-store" })
+          .then(async (response) => response.ok ? response.json() as Promise<ProspectiveLedger> : null)
+          .catch(() => null),
+        fetch(`${FORECAST_ARCHIVE_URL}?t=${cacheBuster}`, { cache: "no-store" })
+          .then(async (response) => response.ok ? response.json() as Promise<ForecastArchiveDocument> : null)
+          .catch(() => null),
+      ]);
+      if (!active) return;
+      setNowMs(cacheBuster);
+      if (next && Array.isArray(next.forecasts)) {
+        setPayload(next);
+        setLive(true);
+      }
+      const validLedger = nextLedger &&
+        typeof nextLedger.schema_version === "string" &&
+        nextLedger.schema_version.startsWith("prospective-clv/") &&
+        nextLedger.fixtures != null &&
+        typeof nextLedger.fixtures === "object" &&
+        !Array.isArray(nextLedger.fixtures);
+      const validArchive = nextArchive &&
+        nextArchive.schema_version === "match-evidence-archive/1.0" &&
+        Array.isArray(nextArchive.forecasts) &&
+        Array.isArray(nextArchive.results);
+      if (validArchive) {
+        setForecastArchive(nextArchive);
+        setArchiveStatus("live");
+      } else if (validLedger) {
+        setProspectiveLedger(nextLedger);
+        setArchiveStatus("live");
+      } else {
+        setArchiveStatus("unavailable");
       }
     };
     refresh();
@@ -587,15 +1300,26 @@ export default function Home() {
 
   const forecasts = useMemo(
     () => payload.forecasts.filter((item) => {
+      const kickoff = new Date(item.kickoff_utc).getTime();
+      const isFuture = Number.isFinite(kickoff) && kickoff > nowMs;
       const inCompetition = filter === "all" ||
-        (filter === "world-cup" ? item.competition.includes("World Cup") : item.competition.includes("Champions"));
+        (filter === "world-cup" && item.competition.includes("World Cup")) ||
+        (filter === "ucl" && item.competition.includes("Champions")) ||
+        (filter === "top-five" && isTopFiveCompetition(item.competition));
       const needle = query.trim().toLocaleLowerCase("ru-RU");
-      if (!needle) return inCompetition;
+      if (!needle) return isFuture && inCompetition;
       const referee = item.details?.referee?.name || "";
-      return inCompetition && [item.home, item.away, item.competition, item.stage, item.venue || "", referee]
+      return isFuture && inCompetition && [item.home, item.away, item.competition, item.stage, item.venue || "", referee]
         .join(" ").toLocaleLowerCase("ru-RU").includes(needle);
     }),
-    [payload, filter, query],
+    [payload, filter, query, nowMs],
+  );
+  const hasFutureForecasts = useMemo(
+    () => payload.forecasts.some((item) => {
+      const kickoff = new Date(item.kickoff_utc).getTime();
+      return Number.isFinite(kickoff) && kickoff > nowMs;
+    }),
+    [payload, nowMs],
   );
 
   return (
@@ -610,14 +1334,16 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">ЧМ-2026 · Лига чемпионов · 90 минут</p>
+          <p className="eyebrow">Лига чемпионов · Top-5 2026/27 · 90 минут</p>
           <h1>Вероятности<br />без обещаний.</h1>
           <p className="lead">
-            Модель публикует прогноз до матча, показывает неопределённость и не создаёт ставку,
+            Модель публикует прогноз до матча, ранжирует только PAPER-кандидатов и не создаёт реальную ставку,
             пока преимущество над closing line не доказано на новых данных.
           </p>
           <div className="hero-actions">
             <a href="#forecasts" className="primary-action">Смотреть матчи</a>
+            <a href="#paper-bank" className="secondary-action">PAPER-банк</a>
+            <a href="#completed-archive" className="secondary-action">Архив качества</a>
             <a href="https://github.com/bogdasovandrej/xg-edge" className="secondary-action">Открытый код ↗</a>
           </div>
         </div>
@@ -631,8 +1357,15 @@ export default function Home() {
         <span>POINT-IN-TIME</span><i />
         <span>NO FUTURE LEAKAGE</span><i />
         <span>OFFICIAL FIFA + UEFA</span><i />
-        <span>PROSPECTIVE CLV</span>
+        <span>PROSPECTIVE CLV</span><i />
+        <span>PAPER BANKROLL</span>
       </section>
+
+      <PaperCandidateBoard ranking={payload.paper_candidate_ranking} nowMs={nowMs} />
+
+      <PaperTradingLab summary={payload.paper_trading} />
+
+      <CompletedForecastArchive archive={forecastArchive} ledger={prospectiveLedger} status={archiveStatus} />
 
       <section className="forecasts-section" id="forecasts">
         <div className="section-heading">
@@ -641,7 +1374,7 @@ export default function Home() {
             <h2>Прогнозы и календарь</h2>
           </div>
           <div className="filters" role="group" aria-label="Фильтр соревнований">
-            {[["all", "Все"], ["world-cup", "ЧМ"], ["ucl", "ЛЧ"]].map(([value, label]) => (
+            {[["all", "Все"], ["ucl", "ЛЧ"], ["top-five", "Top-5"], ["world-cup", "ЧМ"]].map(([value, label]) => (
               <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>
             ))}
           </div>
@@ -654,7 +1387,11 @@ export default function Home() {
         <div className="forecast-grid">
           {forecasts.map((forecast) => <ForecastCard key={forecast.id} forecast={forecast} />)}
         </div>
-        {!forecasts.length && <div className="empty-search">Матчи не найдены. Измените запрос или сбросьте фильтр.</div>}
+        {!forecasts.length && <div className="empty-search">
+          {hasFutureForecasts
+            ? "Матчи не найдены. Измените запрос или сбросьте фильтр."
+            : "Официальный источник пока не вернул будущих матчей с готовым прогнозом. Прошедшие матчи не показываются как будущие."}
+        </div>}
         <p className="updated">
           Снимок: {new Date(payload.generated_at).toLocaleString("ru-RU", { timeZone: "Asia/Yekaterinburg" })} YEKT · обновление каждые 5 минут
         </p>

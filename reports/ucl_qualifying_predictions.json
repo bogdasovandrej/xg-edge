@@ -25,7 +25,15 @@
   "sources": {
     "fixtures": {
       "provider": "UEFA",
-      "url": "https://match.uefa.com/v5/matches"
+      "url": "https://match.uefa.com/v5/matches",
+      "competitions": [
+        {
+          "key": "ucl",
+          "id": "1",
+          "code": "UCL",
+          "name": "UEFA Champions League"
+        }
+      ]
     },
     "ratings": {
       "provider": "ClubElo",
@@ -122,6 +130,81 @@
           "probability": 0.08664222252914354
         },
         {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09312577414616836
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07251363020485
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2048718",
+      "kickoff_utc": "2026-07-21T16:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "Second qualifying round",
+      "stage": "QUALIFYING",
+      "leg": 1,
+      "home": "Ararat-Armenia",
+      "away": "Shamrock Rovers",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Ararat",
+          "country": "ARM",
+          "elo": 1246.33862305,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "away": {
+          "club": "Shamrock",
+          "country": "IRL",
+          "elo": 1313.01416016,
+          "rank": null,
+          "valid_from": "2026-07-15",
+          "valid_to": "2026-07-21"
+        },
+        "adjusted_elo_difference": -1.6755371100000502
+      },
+      "expected_goals_90m": {
+        "home": 1.3186101264454861,
+        "away": 1.3313898735545138
+      },
+      "probabilities_90m": {
+        "home_win": 0.36653398610516374,
+        "draw": 0.2609936246192844,
+        "away_win": 0.37247238927555193
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 50.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.28209693123747215,
+            "high": 0.45666996752620587
+          },
+          "draw": {
+            "low": 0.2551614443160693,
+            "high": 0.2609936246192844
+          },
+          "away_win": {
+            "low": 0.28745010328511267,
+            "high": 0.46274162444645855
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
@@ -142,9 +225,9 @@
       "status": "ok",
       "ratings": {
         "home": {
-          "club": "Levski",
-          "country": "BUL",
-          "elo": 1441.24841309,
+          "club": "Aarhus",
+          "country": "DEN",
+          "elo": 1582.55212402,
           "rank": null,
           "valid_from": "2026-07-18",
           "valid_to": "2026-07-22"

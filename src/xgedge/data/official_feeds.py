@@ -6,9 +6,10 @@ the normalized snapshot.
 """
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from math import isfinite
-from typing import Any, Iterable, Mapping
+from typing import Any, Iterable, Mapping, Sequence
 
 import requests
 
@@ -18,11 +19,61 @@ UEFA_MATCHES_URL = "https://match.uefa.com/v5/matches"
 FIFA_WORLD_CUP_COMPETITION_ID = "17"
 FIFA_WORLD_CUP_2026_SEASON_ID = "285023"
 UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID = "1"
+UEFA_EUROPA_LEAGUE_COMPETITION_ID = "14"
+UEFA_CONFERENCE_LEAGUE_COMPETITION_ID = "2019"
 UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR = "2027"
+UEFA_CLUB_2027_SEASON_YEAR = UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR
 PUBLIC_USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36 xgedge/0.3"
 )
+
+
+@dataclass(frozen=True)
+class UefaCompetition:
+    """Verified metadata for a men's UEFA club competition.
+
+    The IDs below were checked against the official ``match.uefa.com/v5``
+    match metadata.  Keeping the expected code and name lets multi-competition
+    callers fail closed if an endpoint ever returns a different competition.
+    """
+
+    key: str
+    competition_id: str
+    code: str
+    name: str
+    competition_level: str
+
+
+UEFA_CLUB_COMPETITIONS: tuple[UefaCompetition, ...] = (
+    UefaCompetition(
+        "ucl",
+        UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
+        "UCL",
+        "UEFA Champions League",
+        "uefa_champions_league",
+    ),
+    UefaCompetition(
+        "uel",
+        UEFA_EUROPA_LEAGUE_COMPETITION_ID,
+        "UEL",
+        "UEFA Europa League",
+        "uefa_europa_league",
+    ),
+    UefaCompetition(
+        "uecl",
+        UEFA_CONFERENCE_LEAGUE_COMPETITION_ID,
+        "UECL",
+        "UEFA Conference League",
+        "uefa_conference_league",
+    ),
+)
+UEFA_CLUB_COMPETITION_BY_KEY = {
+    competition.key: competition for competition in UEFA_CLUB_COMPETITIONS
+}
+UEFA_CLUB_COMPETITION_BY_ID = {
+    competition.competition_id: competition for competition in UEFA_CLUB_COMPETITIONS
+}
 
 FIXTURE_FIELDS = (
     "source",
@@ -47,6 +98,17 @@ FIXTURE_FIELDS = (
     "aggregate_home_score",
     "aggregate_away_score",
     "referee",
+)
+
+UEFA_HISTORY_FIELDS = FIXTURE_FIELDS + (
+    "status",
+    "official",
+    "scope",
+    "competition_level",
+    "home_goals_90",
+    "away_goals_90",
+    "score_basis",
+    "provenance",
 )
 
 
@@ -136,6 +198,52 @@ def _number(value: Any) -> float | None:
     except (TypeError, ValueError):
         return None
     return parsed if isfinite(parsed) else None
+
+
+def resolve_uefa_competitions(
+    keys: Iterable[str] | None = None,
+) -> tuple[UefaCompetition, ...]:
+    """Resolve stable CLI keys; ``None`` or ``all`` selects all verified cups."""
+    if keys is None:
+        return UEFA_CLUB_COMPETITIONS
+    normalized = [str(key).strip().casefold() for key in keys if str(key).strip()]
+    if not normalized or normalized == ["all"]:
+        return UEFA_CLUB_COMPETITIONS
+    if "all" in normalized:
+        raise ValueError("'all' cannot be combined with named UEFA competitions")
+    unknown = sorted(set(normalized) - set(UEFA_CLUB_COMPETITION_BY_KEY))
+    if unknown:
+        raise ValueError(f"unknown UEFA competition key(s): {', '.join(unknown)}")
+    selected: list[UefaCompetition] = []
+    seen: set[str] = set()
+    for key in normalized:
+        if key not in seen:
+            selected.append(UEFA_CLUB_COMPETITION_BY_KEY[key])
+            seen.add(key)
+    return tuple(selected)
+
+
+def _assert_uefa_competition_metadata(
+    match: Mapping[str, Any], expected: UefaCompetition
+) -> None:
+    competition = match.get("competition")
+    if not isinstance(competition, Mapping):
+        raise ValueError(
+            f"UEFA match is missing competition metadata for {expected.key}"
+        )
+    actual_id = str(competition.get("id", ""))
+    actual_code = str(competition.get("code", ""))
+    actual_name = str(_nested(competition, "metaData", "name") or "")
+    if (
+        actual_id != expected.competition_id
+        or actual_code != expected.code
+        or actual_name != expected.name
+    ):
+        raise ValueError(
+            "UEFA competition metadata mismatch: "
+            f"expected {expected.competition_id}/{expected.code}/{expected.name}, "
+            f"got {actual_id}/{actual_code}/{actual_name}"
+        )
 
 
 def _fifa_team(
@@ -332,6 +440,52 @@ def normalize_uefa_fixture(match: Mapping[str, Any]) -> dict[str, Any] | None:
     }
 
 
+def normalize_uefa_completed_match(
+    match: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    """Normalize one finished UEFA club match using ``score.regular`` only.
+
+    UEFA's ``score.total`` may include extra time.  A finished row without a
+    complete regulation score therefore fails closed instead of falling back
+    to another score object.  The endpoint does not supply xG, so this contract
+    deliberately emits no xG value.
+    """
+    if not isinstance(match, Mapping):
+        raise TypeError("UEFA match must be a mapping")
+    if str(match.get("status", "")).upper() != "FINISHED":
+        return None
+    regular = _nested(match, "score", "regular")
+    if not isinstance(regular, Mapping):
+        return None
+    home_goals = _integer(regular.get("home"))
+    away_goals = _integer(regular.get("away"))
+    if home_goals is None or away_goals is None:
+        return None
+    fixture = normalize_uefa_fixture(match)
+    if fixture is None:
+        return None
+    competition_id = str(fixture.get("competition_id") or "")
+    registered = UEFA_CLUB_COMPETITION_BY_ID.get(competition_id)
+    return {
+        **fixture,
+        "status": "FINISHED",
+        "official": True,
+        "scope": "club",
+        "competition_level": (
+            registered.competition_level if registered is not None else "uefa_club"
+        ),
+        "home_goals_90": home_goals,
+        "away_goals_90": away_goals,
+        "score_basis": "uefa_score_regular_90m",
+        "provenance": {
+            "source": "official_uefa_match_api",
+            "provider": "UEFA",
+            "match_url": f"{UEFA_MATCHES_URL}/{fixture['id']}",
+            "xg": "not_provided",
+        },
+    }
+
+
 def fetch_fifa_fixtures(
     *,
     base_url: str = FIFA_CALENDAR_URL,
@@ -384,26 +538,25 @@ def fetch_fifa_fixtures(
     return sorted(fixtures, key=lambda row: (row["kickoff_utc"], row["id"]))
 
 
-def fetch_uefa_fixtures(
+def _fetch_uefa_match_pages(
     *,
-    base_url: str = UEFA_MATCHES_URL,
-    competition_id: str | int = UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
-    season_year: str | int = UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR,
-    as_of: datetime | str | None = None,
-    to_date: datetime | str | None = None,
-    page_size: int = 100,
-    max_pages: int = 50,
-    timeout: float = 30.0,
-    session: requests.Session | None = None,
-) -> list[dict[str, Any]]:
-    """Fetch paginated future UEFA fixtures and normalize them."""
-    cutoff = _as_utc(as_of)
-    end = _as_utc(to_date) if to_date is not None else cutoff + timedelta(days=370)
-    if end <= cutoff:
-        raise ValueError("to_date must be later than as_of")
+    base_url: str,
+    competition_id: str | int,
+    season_year: str | int,
+    start: datetime,
+    end: datetime,
+    page_size: int,
+    max_pages: int,
+    order: str,
+    timeout: float,
+    session: requests.Session | None,
+    expected_competition: UefaCompetition | None,
+) -> list[Mapping[str, Any]]:
     for value, name in ((page_size, "page_size"), (max_pages, "max_pages")):
         if isinstance(value, bool) or not isinstance(value, int) or value < 1:
             raise ValueError(f"{name} must be a positive integer")
+    if order not in {"ASC", "DESC"}:
+        raise ValueError("order must be ASC or DESC")
 
     client = session or requests.Session()
     raw_matches: list[Mapping[str, Any]] = []
@@ -415,11 +568,11 @@ def fetch_uefa_fixtures(
             params={
                 "competitionId": str(competition_id),
                 "seasonYear": str(season_year),
-                "fromDate": cutoff.date().isoformat(),
+                "fromDate": start.date().isoformat(),
                 "toDate": end.date().isoformat(),
                 "limit": page_size,
                 "offset": offset,
-                "order": "ASC",
+                "order": order,
             },
             headers={"Accept": "application/json", "User-Agent": PUBLIC_USER_AGENT},
             timeout=timeout,
@@ -432,6 +585,8 @@ def fetch_uefa_fixtures(
         for match in page:
             if not isinstance(match, Mapping) or match.get("id") is None:
                 continue
+            if expected_competition is not None:
+                _assert_uefa_competition_metadata(match, expected_competition)
             identity = str(match["id"])
             if identity not in seen:
                 seen.add(identity)
@@ -440,6 +595,40 @@ def fetch_uefa_fixtures(
         if len(page) < page_size or new_count == 0:
             break
         offset += len(page)
+    return raw_matches
+
+
+def fetch_uefa_fixtures(
+    *,
+    base_url: str = UEFA_MATCHES_URL,
+    competition_id: str | int = UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
+    season_year: str | int = UEFA_CHAMPIONS_LEAGUE_2027_SEASON_YEAR,
+    as_of: datetime | str | None = None,
+    to_date: datetime | str | None = None,
+    page_size: int = 100,
+    max_pages: int = 50,
+    timeout: float = 30.0,
+    session: requests.Session | None = None,
+    expected_competition: UefaCompetition | None = None,
+) -> list[dict[str, Any]]:
+    """Fetch paginated future UEFA fixtures and normalize them."""
+    cutoff = _as_utc(as_of)
+    end = _as_utc(to_date) if to_date is not None else cutoff + timedelta(days=370)
+    if end <= cutoff:
+        raise ValueError("to_date must be later than as_of")
+    raw_matches = _fetch_uefa_match_pages(
+        base_url=base_url,
+        competition_id=competition_id,
+        season_year=season_year,
+        start=cutoff,
+        end=end,
+        page_size=page_size,
+        max_pages=max_pages,
+        order="ASC",
+        timeout=timeout,
+        session=session,
+        expected_competition=expected_competition,
+    )
 
     fixtures = []
     excluded_statuses = {"FINISHED", "LIVE", "PLAYING", "CANCELLED", "ABANDONED"}
@@ -452,3 +641,173 @@ def fetch_uefa_fixtures(
         if cutoff < kickoff <= end and status not in excluded_statuses:
             fixtures.append(normalized)
     return sorted(fixtures, key=lambda row: (row["kickoff_utc"], row["id"]))
+
+
+def _merge_unique_uefa_rows(
+    rows: Iterable[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    by_id: dict[str, dict[str, Any]] = {}
+    for source in rows:
+        row = dict(source)
+        identity = str(row.get("id") or "")
+        if not identity:
+            raise ValueError("normalized UEFA row has no id")
+        previous = by_id.get(identity)
+        if previous is not None and previous != row:
+            raise ValueError(f"conflicting UEFA rows for match {identity}")
+        by_id[identity] = row
+    return sorted(
+        by_id.values(), key=lambda row: (str(row.get("kickoff_utc") or ""), row["id"])
+    )
+
+
+def fetch_uefa_club_fixtures(
+    *,
+    competitions: Sequence[UefaCompetition] = UEFA_CLUB_COMPETITIONS,
+    base_url: str = UEFA_MATCHES_URL,
+    season_year: str | int = UEFA_CLUB_2027_SEASON_YEAR,
+    as_of: datetime | str | None = None,
+    to_date: datetime | str | None = None,
+    page_size: int = 100,
+    max_pages: int = 50,
+    timeout: float = 30.0,
+    session: requests.Session | None = None,
+) -> list[dict[str, Any]]:
+    """Fetch future fixtures for verified UCL, UEL and/or UECL metadata."""
+    if not competitions:
+        return []
+    rows: list[dict[str, Any]] = []
+    for competition in competitions:
+        if not isinstance(competition, UefaCompetition):
+            raise TypeError("competitions must contain UefaCompetition values")
+        rows.extend(
+            fetch_uefa_fixtures(
+                base_url=base_url,
+                competition_id=competition.competition_id,
+                season_year=season_year,
+                as_of=as_of,
+                to_date=to_date,
+                page_size=page_size,
+                max_pages=max_pages,
+                timeout=timeout,
+                session=session,
+                expected_competition=competition,
+            )
+        )
+    return _merge_unique_uefa_rows(rows)
+
+
+def fetch_uefa_completed_matches(
+    *,
+    competition_id: str | int = UEFA_CHAMPIONS_LEAGUE_COMPETITION_ID,
+    season_year: str | int = UEFA_CLUB_2027_SEASON_YEAR,
+    as_of: datetime | str | None = None,
+    from_date: datetime | str | None = None,
+    lookback_days: int = 730,
+    team_ids: Iterable[str | int] | None = None,
+    base_url: str = UEFA_MATCHES_URL,
+    page_size: int = 100,
+    max_pages: int = 50,
+    timeout: float = 30.0,
+    session: requests.Session | None = None,
+    expected_competition: UefaCompetition | None = None,
+) -> list[dict[str, Any]]:
+    """Fetch finished official UEFA matches with regulation-time scores.
+
+    ``team_ids`` is an exact provider-ID filter.  No name matching is used and
+    rows without ``score.regular`` are excluded.  The result is suitable for
+    the club match-dossier history contract but intentionally contains no xG.
+    """
+    end = _as_utc(as_of)
+    if isinstance(lookback_days, bool) or not isinstance(lookback_days, int):
+        raise ValueError("lookback_days must be a positive integer")
+    if lookback_days < 1:
+        raise ValueError("lookback_days must be a positive integer")
+    start = (
+        _as_utc(from_date)
+        if from_date is not None
+        else end - timedelta(days=lookback_days)
+    )
+    if end <= start:
+        raise ValueError("as_of must be later than from_date")
+    wanted = (
+        None
+        if team_ids is None
+        else {str(value).strip() for value in team_ids if str(value).strip()}
+    )
+    if wanted == set():
+        return []
+    raw_matches = _fetch_uefa_match_pages(
+        base_url=base_url,
+        competition_id=competition_id,
+        season_year=season_year,
+        start=start,
+        end=end,
+        page_size=page_size,
+        max_pages=max_pages,
+        order="DESC",
+        timeout=timeout,
+        session=session,
+        expected_competition=expected_competition,
+    )
+    history: list[dict[str, Any]] = []
+    for match in raw_matches:
+        normalized = normalize_uefa_completed_match(match)
+        if normalized is None:
+            continue
+        kickoff = _as_utc(normalized["kickoff_utc"])
+        if not (start <= kickoff < end):
+            continue
+        participant_ids = {
+            str(value)
+            for value in (normalized.get("home_id"), normalized.get("away_id"))
+            if value is not None
+        }
+        if wanted is not None and not (participant_ids & wanted):
+            continue
+        history.append(normalized)
+    return _merge_unique_uefa_rows(history)
+
+
+def fetch_uefa_completed_history(
+    *,
+    team_ids: Iterable[str | int],
+    competitions: Sequence[UefaCompetition] = UEFA_CLUB_COMPETITIONS,
+    season_years: Sequence[str | int] = (UEFA_CLUB_2027_SEASON_YEAR, "2026"),
+    as_of: datetime | str | None = None,
+    from_date: datetime | str | None = None,
+    lookback_days: int = 730,
+    base_url: str = UEFA_MATCHES_URL,
+    page_size: int = 100,
+    max_pages: int = 50,
+    timeout: float = 30.0,
+    session: requests.Session | None = None,
+) -> list[dict[str, Any]]:
+    """Return recent UCL/UEL/UECL history for exact UEFA club IDs."""
+    wanted = tuple(
+        dict.fromkeys(str(value).strip() for value in team_ids if str(value).strip())
+    )
+    if not wanted or not competitions or not season_years:
+        return []
+    rows: list[dict[str, Any]] = []
+    for season_year in dict.fromkeys(str(value) for value in season_years):
+        for competition in competitions:
+            if not isinstance(competition, UefaCompetition):
+                raise TypeError("competitions must contain UefaCompetition values")
+            rows.extend(
+                fetch_uefa_completed_matches(
+                    competition_id=competition.competition_id,
+                    season_year=season_year,
+                    as_of=as_of,
+                    from_date=from_date,
+                    lookback_days=lookback_days,
+                    team_ids=wanted,
+                    base_url=base_url,
+                    page_size=page_size,
+                    max_pages=max_pages,
+                    timeout=timeout,
+                    session=session,
+                    expected_competition=competition,
+                )
+            )
+    return _merge_unique_uefa_rows(rows)

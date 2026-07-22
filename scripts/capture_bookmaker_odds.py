@@ -24,6 +24,7 @@ from xgedge.evaluation.prospective import (
     new_ledger,
     prospective_summary,
 )
+from xgedge.decision.ranking import rank_paper_candidates
 
 
 def _read(path: Path) -> Any:
@@ -149,6 +150,7 @@ def main(argv: list[str] | None = None) -> None:
         live_payload = apply_summary_to_live_payload(
             live_payload, prospective_summary(ledger)
         )
+        live_payload["paper_candidate_ranking"] = rank_paper_candidates(live_payload)
         _write(args.live_payload, live_payload)
     if not isinstance(fixtures, list):
         raise ValueError("fixtures must contain a list")
@@ -191,6 +193,7 @@ def main(argv: list[str] | None = None) -> None:
             refreshed = apply_summary_to_live_payload(
                 refreshed, prospective_summary(ledger)
             )
+            refreshed["paper_candidate_ranking"] = rank_paper_candidates(refreshed)
             _write(args.live_payload, refreshed)
         print(
             "No bookmaker request required "
@@ -222,6 +225,7 @@ def main(argv: list[str] | None = None) -> None:
         live_payload, rolling, now=public_now
     )
     public = apply_summary_to_live_payload(public, prospective_summary(updated))
+    public["paper_candidate_ranking"] = rank_paper_candidates(public)
     public["odds_snapshot_at"] = rolling.get("snapshot_at")
     _write(args.live_payload, public)
     matched = sum(record.get("fixture_id") is not None for record in snapshot.get("records", []))

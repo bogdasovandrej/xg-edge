@@ -3,6 +3,7 @@ from __future__ import annotations
 import pytest
 
 from scripts.build_live_payload import build_payload
+from xgedge.simulation.ledger import new_paper_ledger
 
 
 def test_live_payload_combines_models_and_forces_no_bet() -> None:
@@ -26,16 +27,70 @@ def test_live_payload_combines_models_and_forces_no_bet() -> None:
         {"id": "ucl1", "venue": "Kuopio", "aggregate_home_score": 2, "aggregate_away_score": 0},
     ]
 
-    payload = build_payload(world_cup, ucl, fixtures, "2026-07-13T00:00:00Z")
+    payload = build_payload(
+        world_cup,
+        ucl,
+        fixtures,
+        "2026-07-13T00:00:00Z",
+        paper_ledger=new_paper_ledger(created_at="2026-07-13T00:00:00Z"),
+    )
 
     assert payload["betting_gate"]["allowed"] is False
+    assert payload["status"] == "PAPER_ONLY_MODEL_IN_QUARANTINE"
+    assert payload["validation_protocol"]["real_money_execution"] is False
+    assert payload["paper_candidate_ranking"]["status"] == "PAPER_ONLY"
+    assert payload["paper_candidate_ranking"]["candidates"] == []
+    assert payload["paper_trading"]["starting_balance_rub"] == 10_000
+    assert payload["paper_trading"]["totals"]["strategies"] == 3
     assert [row["id"] for row in payload["forecasts"]] == ["ucl1", "wc1"]
     assert all(row["recommendation"] == "NO BET" for row in payload["forecasts"])
+    assert all(row["decision_status"] == "FORECAST_ONLY" for row in payload["forecasts"])
+    assert all(row["market_period"] == "REGULATION_90_MINUTES" for row in payload["forecasts"])
+    assert all(
+        row["forecast_generated_at"] == "2026-07-13T00:00:00Z"
+        for row in payload["forecasts"]
+    )
     ucl_row = payload["forecasts"][0]
     assert ucl_row["first_leg"] == "Агрегат 2:0"
     assert ucl_row["p_home_advance"] is None
     assert ucl_row["p_over25"] == pytest.approx(0.4561869)
+    assert ucl_row["p_over35"] == pytest.approx(0.2424176)
+    assert ucl_row["p_over45"] == pytest.approx(0.1088146)
+    assert ucl_row["expected_goals"]["total"] == pytest.approx(2.5)
+    assert ucl_row["top_score_probability"] == .16
+    assert ucl_row["score_display"] == "distribution_not_exact_score_prediction"
+    assert ucl_row["tail_probability_status"] == "RAW_POISSON_UNCALIBRATED_NO_BET"
     assert payload["forecasts"][1]["home"] == "Франция"
+    assert payload["forecasts"][1]["score_scenarios_coverage"] == .14
+
+
+def test_live_payload_includes_top_five_calendar_without_fake_probabilities() -> None:
+    payload = build_payload(
+        {"predictions": []},
+        {"predictions": []},
+        [],
+        "2026-08-01T00:00:00Z",
+        top_five_fixtures={
+            "schema_version": "top-five-fixtures/1.0",
+            "generated_at": "2026-08-01T00:00:00Z",
+            "fixtures": [{
+                "id": "fdorg:PL:100",
+                "competition": "Premier League",
+                "round": "Matchday 1",
+                "kickoff_utc": "2026-08-15T16:30:00Z",
+                "home": "Man City",
+                "away": "Arsenal",
+                "venue": None,
+            }],
+        },
+    )
+
+    row = payload["forecasts"][0]
+    assert row["id"] == "fdorg:PL:100"
+    assert row["competition"] == "Premier League"
+    assert row["p_home"] is None
+    assert row["betting_eligible"] is False
+    assert row["probability_basis"] == "calendar_only_no_validated_top5_features"
 
 
 def test_live_payload_uses_verified_market_anchor() -> None:
@@ -102,3 +157,94 @@ def test_live_payload_builds_dynamic_elo_dossier_from_official_history() -> None
     assert details["teams"]["home"]["recent_matches"][0]["match_id"] == "past"
     assert details["data_quality"]["warnings"]
     assert details["betting_gate"]["allowed"] is False
+
+
+def test_live_payload_drops_past_fixtures_and_uses_official_uefa_round_and_leg() -> None:
+    predictions = {
+        "predictions": [
+            {
+                "fixture_id": "past",
+                "kickoff_utc": "2026-07-20T18:00:00Z",
+                "home": "Past Home",
+                "away": "Past Away",
+                "status": "ok",
+                "expected_goals_90m": {"home": 1.0, "away": 1.0},
+                "probabilities_90m": {"home_win": .35, "draw": .30, "away_win": .35},
+            },
+            {
+                "fixture_id": "future",
+                "kickoff_utc": "2026-07-22T18:00:00Z",
+                "home": "Future Home",
+                "away": "Future Away",
+                "status": "ok",
+                "expected_goals_90m": {"home": 1.2, "away": .8},
+                "probabilities_90m": {"home_win": .45, "draw": .30, "away_win": .25},
+            },
+        ]
+    }
+    fixtures = [
+        {
+            "id": "past",
+            "source": "uefa",
+            "competition_id": "1",
+            "competition": "UEFA Champions League",
+            "kickoff_utc": "2026-07-20T18:00:00Z",
+            "home_id": "past-home",
+            "away_id": "past-away",
+            "home": "Past Home",
+            "away": "Past Away",
+            "round": "First qualifying round",
+            "leg": 2,
+        },
+        {
+            "id": "future",
+            "competition": "UEFA Champions League",
+            "round": "Second qualifying round",
+            "leg": 1,
+        },
+    ]
+
+    payload = build_payload(
+        {"predictions": []}, predictions, fixtures, "2026-07-21T00:00:00Z"
+    )
+
+    assert [row["id"] for row in payload["forecasts"]] == ["future"]
+    assert payload["forecasts"][0]["stage"] == (
+        "2-й квалификационный раунд · первый матч"
+    )
+
+
+def test_live_payload_uses_verified_uefa_history_without_inventing_xg() -> None:
+    uefa = {"predictions": [{
+        "fixture_id": "future", "kickoff_utc": "2026-07-22T18:00:00Z",
+        "home": "Home", "away": "Away", "status": "ok",
+        "ratings": {"home": {"elo": 1550}, "away": {"elo": 1500}},
+        "expected_goals_90m": {"home": 1.2, "away": .8},
+        "probabilities_90m": {"home_win": .45, "draw": .30, "away_win": .25},
+    }]}
+    fixture = {
+        "id": "future", "source": "uefa", "competition_id": "1",
+        "competition": "UEFA Champions League", "kickoff_utc": "2026-07-22T18:00:00Z",
+        "home_id": "h", "away_id": "a", "home": "Home", "away": "Away",
+    }
+    history = {
+        "schema_version": "uefa-club-history/1.0",
+        "matches": [{
+            "id": "past", "kickoff_utc": "2026-07-01T18:00:00Z",
+            "home_id": "h", "away_id": "old", "home": "Home", "away": "Old",
+            "home_goals_90": 2, "away_goals_90": 0, "status": "FINISHED",
+            "official": True, "scope": "club", "competition": "UEFA Champions League",
+            "competition_level": "uefa_champions_league",
+            "provenance": {"source": "official_uefa_match_api", "xg": "not_provided"},
+        }],
+    }
+
+    payload = build_payload(
+        {"predictions": []}, uefa, [fixture], "2026-07-21T00:00:00Z",
+        uefa_history=history,
+    )
+    recent = payload["forecasts"][0]["details"]["teams"]["home"]["recent_matches"]
+
+    assert recent[0]["match_id"] == "past"
+    assert recent[0]["score_90"] == {"for": 2, "against": 0}
+    assert recent[0]["xg"]["non_penalty"]["status"] == "unknown"

@@ -78,7 +78,7 @@ def _select_context(
         if status not in {"available", "unavailable"}:
             raise ValueError(f"invalid {kind} snapshot status")
         captured = as_utc(snapshot.get("snapshot_at"), field="snapshot_at")
-        if captured > kickoff:
+        if captured >= kickoff:
             raise ValueError(f"post-kickoff {kind} snapshot cannot enter a prematch dossier")
         if captured <= cutoff:
             candidates.append((captured, snapshot))
@@ -122,6 +122,20 @@ def _compact_player(record: Mapping[str, Any]) -> dict[str, Any]:
         "status": record.get("lineup_status") or record.get("availability_status"),
         "is_confirmed": record.get("is_confirmed"),
         "expected_minutes": record.get("expected_minutes"),
+        "field_position": record.get("field_position"),
+        "detailed_field_position": record.get("detailed_field_position"),
+        "jersey_number": record.get("jersey_number"),
+        "is_late_update": record.get("is_late_update"),
+        "source": record.get("provider"),
+    }
+
+
+def _compact_coach(record: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        "coach_id": record.get("coach_id"),
+        "coach_name": record.get("coach_name"),
+        "role": record.get("role"),
+        "is_late_update": record.get("is_late_update"),
         "source": record.get("provider"),
     }
 
@@ -440,6 +454,12 @@ def build_match_dossier(
         )
         for key in CONTEXT_KEYS
     }
+    coach_context = _select_context(
+        "coaches",
+        (contexts or {}).get("coaches"),
+        cutoff=boundary,
+        kickoff=kickoff,
+    )
     histories = {
         "home": _team_history(home_id, scope, rows, kickoff, elo, adjustment_cfg, 10),
         "away": _team_history(away_id, scope, rows, kickoff, elo, adjustment_cfg, 10),
@@ -454,6 +474,10 @@ def build_match_dossier(
         side: _records_for(
             selected_contexts["absences"], fixture_id=fixture_id, team_id=team_id
         )
+        for side, team_id in (("home", home_id), ("away", away_id))
+    }
+    coach_records = {
+        side: _records_for(coach_context, fixture_id=fixture_id, team_id=team_id)
         for side, team_id in (("home", home_id), ("away", away_id))
     }
     teams: dict[str, Any] = {}
@@ -476,6 +500,11 @@ def build_match_dossier(
             "absences": (
                 [_compact_player(row) for row in absence_records[side]]
                 if absence_records[side] is not None
+                else None
+            ),
+            "coach": (
+                _compact_coach(coach_records[side][0])
+                if coach_records[side]
                 else None
             ),
             "availability": {
@@ -522,6 +551,13 @@ def build_match_dossier(
                 "snapshot_at": snapshot.get("snapshot_at"),
             }
             for key, snapshot in selected_contexts.items()
+        } | {
+            "coaches": {
+                "status": coach_context.get("status"),
+                "reason": coach_context.get("reason"),
+                "provider": coach_context.get("provider"),
+                "snapshot_at": coach_context.get("snapshot_at"),
+            }
         },
         "adjustments": adjustments,
         "data_quality": _data_quality(history_values, selected_contexts),
