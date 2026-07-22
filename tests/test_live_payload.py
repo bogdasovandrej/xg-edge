@@ -6,7 +6,7 @@ from scripts.build_live_payload import build_payload
 from xgedge.simulation.ledger import new_paper_ledger
 
 
-def test_live_payload_combines_models_and_forces_no_bet() -> None:
+def test_live_payload_combines_models_and_publishes_full_line() -> None:
     world_cup = {"predictions": [{
         "fixture_id": "wc1", "stage": "Semi-final", "kickoff_utc": "2026-07-14T19:00:00Z",
         "home": "France", "away": "Spain", "model": "fifa_model",
@@ -36,15 +36,18 @@ def test_live_payload_combines_models_and_forces_no_bet() -> None:
     )
 
     assert payload["betting_gate"]["allowed"] is False
-    assert payload["status"] == "PAPER_ONLY_MODEL_IN_QUARANTINE"
+    assert payload["status"] == "MODEL_FORECASTS_ACTIVE_CLV_BACKGROUND_AUDIT"
     assert payload["validation_protocol"]["real_money_execution"] is False
     assert payload["paper_candidate_ranking"]["status"] == "PAPER_ONLY"
     assert payload["paper_candidate_ranking"]["candidates"] == []
     assert payload["paper_trading"]["starting_balance_rub"] == 10_000
     assert payload["paper_trading"]["totals"]["strategies"] == 3
     assert [row["id"] for row in payload["forecasts"]] == ["ucl1", "wc1"]
-    assert all(row["recommendation"] == "NO BET" for row in payload["forecasts"])
-    assert all(row["decision_status"] == "FORECAST_ONLY" for row in payload["forecasts"])
+    assert all(row["recommendation"] == "MODEL FORECAST" for row in payload["forecasts"])
+    assert all(
+        row["decision_status"] == "MODEL_FORECAST_AVAILABLE"
+        for row in payload["forecasts"]
+    )
     assert all(row["market_period"] == "REGULATION_90_MINUTES" for row in payload["forecasts"])
     assert all(
         row["forecast_generated_at"] == "2026-07-13T00:00:00Z"
@@ -60,6 +63,29 @@ def test_live_payload_combines_models_and_forces_no_bet() -> None:
     assert ucl_row["top_score_probability"] == .16
     assert ucl_row["score_display"] == "distribution_not_exact_score_prediction"
     assert ucl_row["tail_probability_status"] == "RAW_POISSON_UNCALIBRATED_NO_BET"
+    assert len(ucl_row["model_market_forecasts"]) == 40
+    assert {
+        row["market"] for row in ucl_row["model_market_forecasts"]
+    } == {
+        "1x2", "double_chance", "draw_no_bet", "btts", "totals",
+        "team_totals", "asian_handicap",
+    }
+    assert all(
+        0 < row["conservative_probability"] < row["theoretical_probability"] < 1
+        for row in ucl_row["model_market_forecasts"]
+    )
+    recommended = [
+        row for row in ucl_row["model_market_forecasts"]
+        if row["recommendation_rank"] is not None
+    ]
+    assert sorted(row["recommendation_rank"] for row in recommended) == [1, 2, 3]
+    assert len({row["recommendation_group"] for row in recommended}) == 3
+    assert all(row["reliability_haircut"] == pytest.approx(.03) for row in recommended)
+    assert all(
+        row["conservative_probability"]
+        == pytest.approx(row["theoretical_probability"] - .03)
+        for row in recommended
+    )
     assert payload["forecasts"][1]["home"] == "Франция"
     assert payload["forecasts"][1]["score_scenarios_coverage"] == .14
 
