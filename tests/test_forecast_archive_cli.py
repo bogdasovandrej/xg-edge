@@ -66,6 +66,17 @@ def _payload(kickoff: datetime) -> dict:
             "lambda_home": 1.4,
             "lambda_away": 0.8,
             "top_score": "1-0",
+            "model_market_forecasts": [{
+                "market": "totals",
+                "selection": "over",
+                "line": 2.5,
+                "label": "ТБ 2.5",
+                "theoretical_probability": 0.52,
+                "conservative_probability": 0.48,
+                "reliability_haircut": 0.04,
+                "conservative_fair_odds": 2.0833333333,
+                "recommendation_rank": 1,
+            }],
         }],
     }
 
@@ -89,6 +100,10 @@ def test_archive_cli_freezes_forecast_then_appends_official_result(tmp_path: Pat
     assert first["forecasts_added"] == 1
     archive = validate_archive(json.loads(archive_path.read_text(encoding="utf-8")))
     assert len(archive["forecasts"]) == 1
+    frozen = archive["forecasts"][0]
+    assert frozen["expected_goals"] == {"home": 1.4, "away": 0.8}
+    assert frozen["model_market_forecasts"][0]["label"] == "ТБ 2.5"
+    assert frozen["model_market_forecasts"][0]["recommendation_rank"] == 1
 
     def fake_fetcher(*args, **kwargs):
         return {

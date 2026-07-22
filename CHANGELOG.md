@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.8.0 — 2026-07-23
+
+- Replaced the blocking public `NO BET / WAIT / 0 of 100` panel with an active
+  model-forecast summary; CLV validation continues as a background audit.
+- Added 40 score-resolvable outcomes per predicted match across 1X2, double
+  chance, DNB, BTTS, totals, team totals and Asian handicaps.
+- Added three diversified model scenarios per match with an explicit 3–6
+  percentage-point reliability haircut and conservative fair-price ceiling.
+- Hid empty bankroll leaderboards until a real quoted price creates PAPER
+  activity, while retaining the append-only ledger and all settlement logic.
+- Extended immutable pre-kickoff archive records and the completed-match UI to
+  settle and score the frozen full line instead of evaluating only 1X2.
+
 ## 0.7.0 — 2026-07-23
 
 - Extended the automatic PAPER selector and settlement ledger beyond 1X2 to

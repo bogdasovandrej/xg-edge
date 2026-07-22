@@ -19,6 +19,7 @@ from xgedge.decision.ranking import rank_paper_candidates
 from xgedge.dossier.builder import build_match_dossier
 from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
 from xgedge.markets.markets import prob_over
+from xgedge.markets.paper_markets import market_probability
 from xgedge.models.dixon_coles import score_matrix
 from xgedge.simulation.ledger import public_paper_summary
 
@@ -222,6 +223,106 @@ def _fair_candidates(probabilities: dict) -> list[dict]:
     return rows
 
 
+def _model_market_forecasts(
+    lambda_home: Any,
+    lambda_away: Any,
+    *,
+    uncertainty: str,
+    rho: Any = 0.0,
+) -> list[dict[str, Any]]:
+    """Price the full score-resolvable line without pretending a bookmaker quote exists."""
+    try:
+        home_xg = float(lambda_home)
+        away_xg = float(lambda_away)
+        fitted_rho = float(rho or 0.0)
+        if not math.isfinite(home_xg + away_xg + fitted_rho) or home_xg <= 0 or away_xg <= 0:
+            raise ValueError
+        matrix = score_matrix(home_xg, away_xg, fitted_rho, max_goals=12)
+    except (TypeError, ValueError):
+        return []
+
+    haircut = {
+        "низкая": 0.03,
+        "средняя": 0.04,
+        "высокая": 0.06,
+    }.get(uncertainty, 0.05)
+    definitions: list[tuple[str, str, float | None, str, str]] = [
+        ("1x2", "home", None, "П1", "исход"),
+        ("1x2", "draw", None, "X", "исход"),
+        ("1x2", "away", None, "П2", "исход"),
+        ("double_chance", "home_draw", None, "1X", "исход"),
+        ("double_chance", "home_away", None, "12", "исход"),
+        ("double_chance", "draw_away", None, "X2", "исход"),
+        ("draw_no_bet", "home", None, "П1 с возвратом", "исход"),
+        ("draw_no_bet", "away", None, "П2 с возвратом", "исход"),
+        ("btts", "yes", None, "Обе забьют — да", "обе забьют"),
+        ("btts", "no", None, "Обе забьют — нет", "обе забьют"),
+    ]
+    for line in (1.5, 2.5, 3.5, 4.5):
+        definitions.extend([
+            ("totals", "over", line, f"ТБ {line:.1f}", "тотал"),
+            ("totals", "under", line, f"ТМ {line:.1f}", "тотал"),
+        ])
+    for line in (0.5, 1.5, 2.5):
+        definitions.extend([
+            ("team_totals", "home_over", line, f"ИТБ1 {line:.1f}", "инд. тотал хозяев"),
+            ("team_totals", "home_under", line, f"ИТМ1 {line:.1f}", "инд. тотал хозяев"),
+            ("team_totals", "away_over", line, f"ИТБ2 {line:.1f}", "инд. тотал гостей"),
+            ("team_totals", "away_under", line, f"ИТМ2 {line:.1f}", "инд. тотал гостей"),
+        ])
+    for line in (-1.5, -0.5, 0.0, 0.5, 1.5):
+        definitions.extend([
+            ("asian_handicap", "home", line, f"Ф1({line:+.1f})", "фора"),
+            ("asian_handicap", "away", line, f"Ф2({line:+.1f})", "фора"),
+        ])
+
+    rows: list[dict[str, Any]] = []
+    for market, selection, line, label, recommendation_group in definitions:
+        try:
+            probability = market_probability(
+                matrix, market=market, selection=selection, line=line
+            )
+        except ValueError:
+            continue
+        # A fixed percentage-point haircut cannot be subtracted from a tail
+        # probability smaller than the haircut.  Reduce such rare outcomes
+        # proportionally so the conservative estimate can never exceed the
+        # theoretical one or become non-positive.
+        applied_haircut = min(haircut, probability * 0.5)
+        conservative = probability - applied_haircut
+        rows.append({
+            "market": market,
+            "selection": selection,
+            "line": line,
+            "label": label,
+            "theoretical_probability": probability,
+            "reliability_haircut": applied_haircut,
+            "conservative_probability": conservative,
+            "theoretical_fair_odds": 1.0 / probability,
+            "conservative_fair_odds": 1.0 / conservative,
+            "recommendation_group": recommendation_group,
+            "recommendation_rank": None,
+            "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
+            "settlement_period": "REGULATION_90_MINUTES",
+        })
+
+    # Select diverse scenarios instead of filling the top three with correlated
+    # variants of the same market.  They are forecasts, not bookmaker value bets.
+    group_best: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        group = str(row["recommendation_group"])
+        current = group_best.get(group)
+        if current is None or row["conservative_probability"] > current["conservative_probability"]:
+            group_best[group] = row
+    recommended = sorted(
+        group_best.values(),
+        key=lambda row: (-row["conservative_probability"], row["conservative_fair_odds"]),
+    )[:3]
+    for rank, row in enumerate(recommended, start=1):
+        row["recommendation_rank"] = rank
+    return rows
+
+
 def _score_distribution(
     scores: Any,
     *,
@@ -364,6 +465,7 @@ def _world_cup_rows(
     for prediction in document.get("predictions", []):
         probs = prediction["probabilities"]
         interval = prediction.get("uncertainty", {}).get("p_home", [None, None])
+        uncertainty_label = _uncertainty(*interval)
         fixture = fixtures.get(str(prediction["fixture_id"]), {})
         scores = prediction.get("top_scores") or []
         score_distribution = _score_distribution(
@@ -411,9 +513,17 @@ def _world_cup_rows(
             "raw_model_1x2": raw,
             "p_over25": probs["over_2_5"],
             "p_btts": probs["btts_yes"],
+            "lambda_home": prediction.get("lambda_home"),
+            "lambda_away": prediction.get("lambda_away"),
+            "model_market_forecasts": _model_market_forecasts(
+                prediction.get("lambda_home"),
+                prediction.get("lambda_away"),
+                uncertainty=uncertainty_label,
+                rho=prediction.get("rho"),
+            ),
             **score_distribution,
-            "uncertainty": _uncertainty(*interval),
-            "recommendation": "NO BET",
+            "uncertainty": uncertainty_label,
+            "recommendation": "MODEL FORECAST",
             "first_leg": None,
             "details": details or None,
         })
@@ -443,6 +553,7 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             .get("intervals", {})
             .get("home_win", {})
         )
+        uncertainty_label = _uncertainty(interval.get("low"), interval.get("high"))
         scores = prediction.get("most_likely_scores_90m") or []
         score_distribution = _score_distribution(
             scores,
@@ -475,9 +586,16 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             "p_btts": p_btts,
             "p_home_advance": qualification.get("home_to_advance"),
             "p_away_advance": qualification.get("away_to_advance"),
+            "lambda_home": lam_h,
+            "lambda_away": lam_a,
+            "model_market_forecasts": _model_market_forecasts(
+                lam_h,
+                lam_a,
+                uncertainty=uncertainty_label,
+            ),
             **score_distribution,
-            "uncertainty": _uncertainty(interval.get("low"), interval.get("high")),
-            "recommendation": "NO BET",
+            "uncertainty": uncertainty_label,
+            "recommendation": "MODEL FORECAST",
             "first_leg": first_leg,
             "details": dossiers.get(fixture_id),
         })
@@ -526,8 +644,8 @@ def build_payload(
     rows.sort(key=lambda row: (row["kickoff_utc"], row["competition"], row["id"]))
     for row in rows:
         row.update({
-            "decision_status": "FORECAST_ONLY",
-            "model_status": "MODEL_IN_QUARANTINE",
+            "decision_status": "MODEL_FORECAST_AVAILABLE",
+            "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
             "market_period": "REGULATION_90_MINUTES",
             "betting_eligible": False,
         })
@@ -535,11 +653,11 @@ def build_payload(
             row["forecast_generated_at"] = generated_at
     payload = {
         "generated_at": generated_at,
-        "status": "PAPER_ONLY_MODEL_IN_QUARANTINE",
+        "status": "MODEL_FORECASTS_ACTIVE_CLV_BACKGROUND_AUDIT",
         "validation_protocol": {
-            "mode": "PAPER_ONLY",
-            "model_status": "MODEL_IN_QUARANTINE",
-            "primary_confirmatory_market": "REGULATION_1X2",
+            "mode": "MODEL_FORECAST_WITH_BACKGROUND_CLV_AUDIT",
+            "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
+            "primary_confirmatory_market": "SCORE_RESOLVABLE_FULL_LINE",
             "settlement_period": "REGULATION_90_MINUTES",
             "real_money_execution": False,
             "parlays": "SIMULATION_ONLY_DISABLED_PENDING_INDIVIDUAL_EDGE",
@@ -547,7 +665,7 @@ def build_payload(
         },
         "betting_gate": {
             "allowed": False,
-            "reason": "Positive prospective CLV has not been demonstrated.",
+            "reason": "Real-money gate remains closed; model forecasts stay visible.",
         },
         "forecasts": rows,
     }

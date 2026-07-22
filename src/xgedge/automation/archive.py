@@ -25,6 +25,7 @@ from xgedge.data.official_results import (
     fetch_tracked_results,
 )
 from xgedge.data.point_in_time import as_utc, iso_utc
+from xgedge.markets.paper_markets import SUPPORTED_SCORE_MARKETS, canonical_market
 
 ARCHIVE_SCHEMA_VERSION = "match-evidence-archive/1.0"
 ARCHIVE_MODE = "PAPER_ONLY"
@@ -314,6 +315,54 @@ def _probabilities(forecast: Mapping[str, Any]) -> dict[str, float]:
     return probabilities
 
 
+def _model_market_forecasts(forecast: Mapping[str, Any]) -> list[dict[str, Any]]:
+    source_rows = forecast.get("model_market_forecasts")
+    if source_rows is None:
+        return []
+    if not isinstance(source_rows, list):
+        raise ValueError("model_market_forecasts must be an array")
+    output: list[dict[str, Any]] = []
+    for source in source_rows[:64]:
+        if not isinstance(source, Mapping):
+            raise ValueError("model market forecast entries must be objects")
+        market = canonical_market(source.get("market"))
+        if market not in SUPPORTED_SCORE_MARKETS:
+            raise ValueError(f"unsupported archived market: {market}")
+        selection = _strict_text(source.get("selection"), field="market.selection")
+        label = _strict_text(source.get("label"), field="market.label")
+        line_value = source.get("line")
+        line = None if line_value is None else float(line_value)
+        if line is not None and not isfinite(line):
+            raise ValueError("market line must be finite")
+        theoretical = float(source.get("theoretical_probability"))
+        conservative = float(source.get("conservative_probability"))
+        haircut = float(source.get("reliability_haircut"))
+        fair = float(source.get("conservative_fair_odds"))
+        if not (
+            isfinite(theoretical) and 0.0 < theoretical < 1.0
+            and isfinite(conservative) and 0.0 < conservative < 1.0
+            and isfinite(haircut) and 0.0 <= haircut <= 0.25
+            and isfinite(fair) and fair > 1.0
+        ):
+            raise ValueError("invalid model market probability")
+        rank_value = source.get("recommendation_rank")
+        rank = rank_value if isinstance(rank_value, int) and not isinstance(rank_value, bool) and rank_value > 0 else None
+        output.append({
+            "market": market,
+            "selection": selection,
+            "line": line,
+            "label": label,
+            "theoretical_probability": theoretical,
+            "conservative_probability": conservative,
+            "reliability_haircut": haircut,
+            "conservative_fair_odds": fair,
+            "recommendation_rank": rank,
+            "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
+            "settlement_period": "REGULATION_90_MINUTES",
+        })
+    return output
+
+
 def append_frozen_forecasts(
     archive: Mapping[str, Any],
     live_payload: Mapping[str, Any],
@@ -349,6 +398,7 @@ def append_frozen_forecasts(
             generated = as_utc(generated_value, field="forecast_generated_at")
             kickoff = as_utc(source.get("kickoff_utc"), field="kickoff_utc")
             probabilities = _probabilities(source)
+            market_forecasts = _model_market_forecasts(source)
         except (TypeError, ValueError):
             skipped += 1
             continue
@@ -379,15 +429,17 @@ def append_frozen_forecasts(
             "settlement_period": "90M",
             "probabilities": probabilities,
             "expected_goals": {
-                "home": source.get("lambda_home"),
-                "away": source.get("lambda_away"),
+                "home": source.get("lambda_home", (source.get("expected_goals") or {}).get("home")),
+                "away": source.get("lambda_away", (source.get("expected_goals") or {}).get("away")),
             },
+            "model_market_forecasts": market_forecasts,
             "top_score": source.get("top_score"),
             "source_forecast_hash": _hash({
                 key: source.get(key)
                 for key in (
                     "id", "kickoff_utc", "model", "p_home", "p_draw", "p_away",
                     "lambda_home", "lambda_away", "top_score",
+                    "model_market_forecasts",
                 )
             }),
             "provenance": {

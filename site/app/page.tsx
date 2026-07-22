@@ -37,6 +37,7 @@ type Forecast = {
   first_leg?: string | null;
   probability_basis?: string | null;
   raw_model_1x2?: { home: number; draw: number; away: number } | null;
+  model_market_forecasts?: ModelMarketForecast[] | null;
   evaluation_cohort_id?: string | null;
   cohort_gate?: {
     allowed?: boolean;
@@ -45,6 +46,21 @@ type Forecast = {
     decision_status?: string | null;
   } | null;
   details?: MatchDetails | null;
+};
+
+type ModelMarketForecast = {
+  market?: string | null;
+  selection?: string | null;
+  line?: number | null;
+  label?: string | null;
+  theoretical_probability?: number | null;
+  reliability_haircut?: number | null;
+  conservative_probability?: number | null;
+  theoretical_fair_odds?: number | null;
+  conservative_fair_odds?: number | null;
+  recommendation_group?: string | null;
+  recommendation_rank?: number | null;
+  status?: string | null;
 };
 
 type RecentMatch = {
@@ -348,6 +364,8 @@ type ForecastArchiveDocument = {
     model?: string | null;
     probability_basis?: string | null;
     probabilities?: Partial<Record<OutcomeKey, number | null>> | null;
+    expected_goals?: { home?: number | null; away?: number | null } | null;
+    model_market_forecasts?: ModelMarketForecast[] | null;
   }> | null;
   results?: Array<{
     fixture_key?: string | null;
@@ -375,6 +393,11 @@ type ArchiveRow = {
   correct: boolean | null;
   brier: number | null;
   logloss: number | null;
+  marketSelections: Array<ModelMarketForecast & { settlement: "win" | "loss" | "push" }>;
+  marketWins: number;
+  marketLosses: number;
+  marketPushes: number;
+  marketBrier: number | null;
 };
 
 type LivePayload = {
@@ -523,22 +546,65 @@ const outcomeName = (value?: OutcomeKey | null) => ({
   away: "П2",
 }[value || ""] || "—");
 
-const gateReason = (reason?: string | null) => ({
-  insufficient_independent_matches: "недостаточно независимых матчей",
-  confirmatory_horizon_not_reached: "фиксированный горизонт ещё не достигнут",
-  awaiting_one_shot_finalization: "ожидается однократная проверка",
-  global_gate_disabled_cohort_specific_only: "общий гейт закрыт: модели проверяются раздельно",
-  cohort_not_yet_tracked: "эта модель ещё не набрала live-наблюдений",
-  clv_lower_ci_not_positive: "нижняя граница CLV не выше нуля",
-  positive_clv_confirmed: "положительный CLV подтверждён",
-}[reason || ""] || "prospective CLV ещё не подтверждён");
+const settleModelMarket = (
+  forecast: ModelMarketForecast,
+  homeGoals: number,
+  awayGoals: number,
+): "win" | "loss" | "push" | null => {
+  const market = forecast.market;
+  const selection = forecast.selection;
+  const line = finiteNumber(forecast.line);
+  if (!market || !selection) return null;
+  if (market === "1x2") {
+    const actual = homeGoals > awayGoals ? "home" : awayGoals > homeGoals ? "away" : "draw";
+    return selection === actual ? "win" : "loss";
+  }
+  if (market === "btts") {
+    const yes = homeGoals > 0 && awayGoals > 0;
+    return (selection === "yes") === yes ? "win" : "loss";
+  }
+  if (market === "double_chance") {
+    const won = selection === "home_draw" ? homeGoals >= awayGoals
+      : selection === "home_away" ? homeGoals !== awayGoals
+        : selection === "draw_away" ? homeGoals <= awayGoals
+          : null;
+    return won == null ? null : won ? "win" : "loss";
+  }
+  if (market === "draw_no_bet") {
+    if (homeGoals === awayGoals) return "push";
+    const actual = homeGoals > awayGoals ? "home" : "away";
+    return selection === actual ? "win" : "loss";
+  }
+  if (line == null) return null;
+  if (market === "asian_handicap") {
+    const difference = selection === "home" ? homeGoals - awayGoals
+      : selection === "away" ? awayGoals - homeGoals
+        : null;
+    if (difference == null) return null;
+    const adjusted = difference + line;
+    return adjusted > 0 ? "win" : adjusted < 0 ? "loss" : "push";
+  }
+  let metric: number;
+  let direction: "over" | "under";
+  if (market === "totals" && (selection === "over" || selection === "under")) {
+    metric = homeGoals + awayGoals;
+    direction = selection;
+  } else if (market === "team_totals" && /^(home|away)_(over|under)$/.test(selection)) {
+    metric = selection.startsWith("home_") ? homeGoals : awayGoals;
+    direction = selection.endsWith("over") ? "over" : "under";
+  } else {
+    return null;
+  }
+  if (metric === line) return "push";
+  return (metric > line) === (direction === "over") ? "win" : "loss";
+};
 
 function ProspectiveClvPanel({
   summary,
-  allowed,
+  forecasts,
 }: {
   summary?: ProspectiveClvSummary | null;
-  allowed: boolean;
+  forecasts: Forecast[];
 }) {
   const cohortRows = Object.values(summary?.cohorts || {});
   const leading = cohortRows.sort((a, b) =>
@@ -549,61 +615,82 @@ function ProspectiveClvPanel({
   const observations = Math.max(0, Math.trunc(finiteNumber(clv?.n) ?? 0));
   const independentMatches = Math.max(0, Math.trunc(finiteNumber(clv?.n_clusters) ?? observations));
   const minimum = Math.max(1, Math.trunc(finiteNumber(leading?.min_independent_matches) ?? finiteNumber(summary?.min_independent_matches) ?? 100));
-  const ciLow = finiteNumber(clv?.ci_low);
-  const ciHigh = finiteNumber(clv?.ci_high);
-  const mean = finiteNumber(clv?.mean);
-  const reason = leading?.reason || summary?.reason;
-  const gateOpen = allowed && leading?.action === "BET" && reason === "positive_clv_confirmed" &&
-    independentMatches >= minimum && ciLow != null && ciLow > 0;
-  const waiting = independentMatches < minimum;
-  const status = gateOpen ? "OPEN" : waiting ? "WAIT" : "CLOSED";
-  const interval = observations > 0 && ciLow != null && ciHigh != null
-    ? `${signedPercent(ciLow)}…${signedPercent(ciHigh)}`
-    : "—";
+  const modelLines = forecasts.reduce(
+    (sum, forecast) => sum + (forecast.model_market_forecasts || []).length,
+    0,
+  );
+  const modelPicks = forecasts.reduce(
+    (sum, forecast) => sum + (forecast.model_market_forecasts || [])
+      .filter((row) => finiteNumber(row.recommendation_rank) != null).length,
+    0,
+  );
+  const haircuts = forecasts.flatMap((forecast) => forecast.model_market_forecasts || [])
+    .filter((row) => finiteNumber(row.recommendation_rank) != null)
+    .map((row) => finiteNumber(row.reliability_haircut))
+    .filter((value): value is number => value != null);
+  const minimumHaircut = haircuts.length ? Math.min(...haircuts) : 0.03;
+  const maximumHaircut = haircuts.length ? Math.max(...haircuts) : 0.06;
 
   return (
-    <aside className="truth-panel" aria-label="Статус prospective CLV">
-      <span className="panel-label">Текущий вердикт</span>
-      <strong className={gateOpen ? "gate-open" : undefined}>{gateOpen ? "BET" : "NO BET"}</strong>
-      <p><b>{status}</b> · {gateReason(reason)}</p>
+    <aside className="truth-panel" aria-label="Активность модели и фоновый CLV-аудит">
+      <span className="panel-label">Активный режим</span>
+      <strong className="gate-open">MODEL FORECAST</strong>
+      <p><b>FULL LINE</b> · прогнозы публикуются, CLV проверяется в фоне</p>
       <dl>
-        <div><dt>Prospective CLV</dt><dd>{observations > 0 ? signedPercent(mean) : "—"}</dd></div>
-        <div><dt>95% CI CLV</dt><dd>{interval}</dd></div>
-        <div><dt>Независимая выборка</dt><dd>{independentMatches} / {minimum}</dd></div>
+        <div><dt>Матчи с моделью</dt><dd>{forecasts.filter((row) => (row.model_market_forecasts || []).length > 0).length}</dd></div>
+        <div><dt>Рассчитано рынков</dt><dd>{modelLines}</dd></div>
+        <div><dt>Сценариев в топ-3</dt><dd>{modelPicks}</dd></div>
+        <div><dt>Поправка надёжности</dt><dd>−{(minimumHaircut * 100).toFixed(0)}…−{(maximumHaircut * 100).toFixed(0)} п.п.</dd></div>
       </dl>
       <small>
-        {!leading
-          ? "CLV пока не измерен: нет отдельной когорты model × competition с сохранённой ценой и closing line."
-          : observations < minimum
-            ? `Лидирующая когорта: ${leading.dimensions?.competition_or_sport || "турнир"} · ${leading.dimensions?.model || "модель"}. Промежуточный CLV скрыт до заранее заданного n=${minimum}.`
-            : `Однократная проверка зафиксирована на ${minimum} матчах; последующие матчи не меняют принятое решение.`}
+        Фоновый CLV-аудит: {independentMatches}/{minimum} независимых матчей, наблюдений {observations}.
+        Он влияет на будущую оценку надёжности, но больше не скрывает модельные прогнозы.
       </small>
     </aside>
   );
 }
 
-function PaperCandidateBoard({ ranking, nowMs }: { ranking?: PaperCandidateRanking | null; nowMs: number }) {
+function PaperCandidateBoard({
+  ranking,
+  forecasts,
+  nowMs,
+}: {
+  ranking?: PaperCandidateRanking | null;
+  forecasts: Forecast[];
+  nowMs: number;
+}) {
   const candidates = (ranking?.candidates || [])
     .filter((candidate) => {
       const kickoff = candidate.kickoff_utc ? new Date(candidate.kickoff_utc).getTime() : NaN;
       return Number.isFinite(kickoff) && kickoff > nowMs;
     })
     .slice(0, 6);
+  const modelCandidates = forecasts.flatMap((forecast) =>
+    (forecast.model_market_forecasts || [])
+      .filter((row) => finiteNumber(row.recommendation_rank) != null)
+      .map((row) => ({ forecast, row }))
+  )
+    .sort((left, right) =>
+      (finiteNumber(right.row.conservative_probability) || 0) -
+      (finiteNumber(left.row.conservative_probability) || 0)
+    )
+    .slice(0, 6);
+  const hasBookmakerCandidates = candidates.length > 0;
   return (
-    <section className="paper-board" id="paper-picks" aria-label="Строгий PAPER-отбор матчей">
+    <section className="paper-board" id="paper-picks" aria-label="Прогнозные сценарии ближайших матчей">
       <div className="paper-board-heading">
         <div>
-          <p className="eyebrow">Строгий фильтр · лучшие доступные цены</p>
-          <h2>Очередь PAPER-кандидатов</h2>
+          <p className="eyebrow">Полная линия · вероятность со штрафом за надёжность</p>
+          <h2>{hasBookmakerCandidates ? "Bookmaker-value кандидаты" : "Сильнейшие модельные сценарии"}</h2>
         </div>
-        <span className="paper-only-badge">PAPER ONLY</span>
+        <span className="paper-only-badge">{hasBookmakerCandidates ? "PAPER VALUE" : "MODEL FORECAST"}</span>
       </div>
       <p className="paper-board-intro">
-        В список попадает не более одного исхода на матч: модельная вероятность выше точки безубыточности,
-        а преимущество остаётся положительным после штрафа за неопределённость и качество данных.
-        Это виртуальный тест, не обещание прибыли.
+        Модельные сценарии публикуются сразу и не ждут CLV-гейта. Если API даст свежую котировку,
+        блок автоматически переключится на сравнение с ценой букмекера. До этого fair означает только
+        консервативную расчётную границу модели.
       </p>
-      {candidates.length ? (
+      {hasBookmakerCandidates ? (
         <div className="paper-candidate-list">
           {candidates.map((candidate, index) => (
             <a className="paper-candidate" href={`#match-${candidate.fixture_id}`} key={`${candidate.fixture_id}-${candidate.selection}`}>
@@ -622,17 +709,36 @@ function PaperCandidateBoard({ ranking, nowMs }: { ranking?: PaperCandidateRanki
             </a>
           ))}
         </div>
+      ) : modelCandidates.length ? (
+        <div className="paper-candidate-list">
+          {modelCandidates.map(({ forecast, row }, index) => (
+            <a className="paper-candidate" href={`#match-${forecast.id}`} key={`${forecast.id}-${row.market}-${row.selection}-${row.line}`}>
+              <b>#{index + 1}</b>
+              <div>
+                <strong>{forecast.home} — {forecast.away}</strong>
+                <span>{row.label} · {marketName(row.market)} · MODEL ONLY</span>
+              </div>
+              <dl>
+                <div><dt>Теория</dt><dd>{percent(row.theoretical_probability)}</dd></div>
+                <div><dt>Надёжно</dt><dd>{percent(row.conservative_probability)}</dd></div>
+                <div><dt>Fair до</dt><dd>{decimal(row.conservative_fair_odds)}</dd></div>
+                <div><dt>Штраф</dt><dd>−{((finiteNumber(row.reliability_haircut) || 0) * 100).toFixed(0)} п.п.</dd></div>
+              </dl>
+              <small>{localTime(forecast.kickoff_utc)} YEKT</small>
+            </a>
+          ))}
+        </div>
       ) : (
         <div className="paper-empty">
-          <strong>Сейчас строгий фильтр не пропустил ни одного матча.</strong>
-          <span>Это корректный результат: без свежей синхронной цены и достаточного качества данных система молчит.</span>
+          <strong>Матчи загружены, но распределение счёта ещё не рассчитано.</strong>
+          <span>Календарная запись без ожидаемых голов не превращается в выдуманную рекомендацию.</span>
         </div>
       )}
     </section>
   );
 }
 
-function PaperTradingLab({ summary }: { summary?: PaperTradingSummary | null }) {
+function PaperTradingLab({ summary, forecasts }: { summary?: PaperTradingSummary | null; forecasts: Forecast[] }) {
   const rows = (summary?.leaderboard || []).slice(0, 3);
   const minimum = Math.max(
     1,
@@ -642,26 +748,34 @@ function PaperTradingLab({ summary }: { summary?: PaperTradingSummary | null }) 
   const marketRows = Object.entries(summary?.markets || {})
     .filter(([, value]) => (finiteNumber(value.enrolled) ?? 0) > 0)
     .sort(([left], [right]) => left.localeCompare(right));
+  const enrolled = Math.max(0, Math.trunc(finiteNumber(summary?.totals?.enrolled_matches) ?? 0));
+  const open = Math.max(0, Math.trunc(finiteNumber(summary?.totals?.open_matches) ?? 0));
+  const hasLedgerActivity = enrolled > 0 || settled > 0 || open > 0;
+  const modelLines = forecasts.reduce((sum, row) => sum + (row.model_market_forecasts || []).length, 0);
+  const modelPicks = forecasts.reduce(
+    (sum, row) => sum + (row.model_market_forecasts || []).filter((market) => finiteNumber(market.recommendation_rank) != null).length,
+    0,
+  );
   return (
     <section className="paper-lab" id="paper-bank" aria-label="Турнир PAPER-стратегий">
       <div className="paper-lab-heading">
         <div>
           <p className="eyebrow">Автоматическая виртуальная лаборатория</p>
-          <h2>10 000 ₽ → проверка,<br />не обещание миллиона.</h2>
+          <h2>{hasLedgerActivity ? "PAPER-банк и результаты" : "Модель считает сейчас"}</h2>
         </div>
         <div className="paper-lab-status">
-          <span>PAPER ONLY</span>
-          <b>{settled} / {minimum}</b>
-          <small>матчей до полной оценки</small>
+          <span>{hasLedgerActivity ? "PAPER BANK" : "MODEL ACTIVE"}</span>
+          <b>{hasLedgerActivity ? `${settled} / ${minimum}` : forecasts.length}</b>
+          <small>{hasLedgerActivity ? "матчей до полной оценки" : "матчей рассчитано"}</small>
         </div>
       </div>
       <div className="paper-lab-facts">
         <div><span>Старт каждого цикла</span><b>{rub(summary?.starting_balance_rub ?? 10_000)}</b></div>
         <div><span>Цель-диагностика</span><b>{rub(summary?.target_balance_rub ?? 1_000_000)}</b></div>
-        <div><span>Матчей в журнале</span><b>{Math.max(0, Math.trunc(finiteNumber(summary?.totals?.enrolled_matches) ?? 0))}</b></div>
-        <div><span>Открыто сейчас</span><b>{Math.max(0, Math.trunc(finiteNumber(summary?.totals?.open_matches) ?? 0))}</b></div>
+        <div><span>Матчей в журнале</span><b>{enrolled}</b></div>
+        <div><span>Открыто сейчас</span><b>{open}</b></div>
       </div>
-      <div className="strategy-board">
+      {hasLedgerActivity ? <div className="strategy-board">
         {rows.map((row, index) => {
           const n = Math.max(0, Math.trunc(finiteNumber(row.settled_bets) ?? 0));
           const evidence = Math.min(100, n / minimum * 100);
@@ -683,11 +797,14 @@ function PaperTradingLab({ summary }: { summary?: PaperTradingSummary | null }) 
             </article>
           );
         })}
-      </div>
+      </div> : <div className="model-tracker-active">
+        <strong>{forecasts.length} матчей · {modelLines} модельных исходов · {modelPicks} сценариев в топ-3</strong>
+        <span>Пустые карточки ROI скрыты: без букмекерской цены нельзя честно рассчитать денежный результат. Модельные прогнозы уже доступны выше и внутри каждого матча.</span>
+      </div>}
       <div className="paper-lab-note">
         <p><b>Рынки в журнале:</b> {marketRows.length
           ? marketRows.map(([market, value]) => `${marketName(market)}: ${Math.trunc(finiteNumber(value.settled) ?? 0)}/${Math.trunc(finiteNumber(value.enrolled) ?? 0)}`).join(" · ")
-          : "ставок пока нет"}.</p>
+          : `${modelLines} модельных исходов считаются; денежных PAPER-ставок без цены нет`}.</p>
         <p>После разорения новый цикл снова начинается с 10 000 ₽, но проигрыши и прошлые циклы не удаляются. Победитель определяется по CLV, логарифмическому росту и риску, а не по случайной скорости до 1 млн ₽.</p>
         <p><b>Экспрессы: {summary?.parlays?.status || "DISABLED"}.</b> Они останутся только симуляцией и не включатся, пока одиночные ставки не покажут устойчивый prospective CLV.</p>
       </div>
@@ -758,6 +875,27 @@ function CompletedForecastArchive({
             .reduce((sum, [outcome, probability]) => sum + (probability - (outcome === actual ? 1 : 0)) ** 2, 0)
           : null;
         const logloss = probabilities ? -Math.log(Math.max(probabilities[actual], 1e-12)) : null;
+        const marketSelections = (forecast.model_market_forecasts || []).flatMap((marketForecast) => {
+          const settlement = settleModelMarket(
+            marketForecast,
+            homeGoals as number,
+            awayGoals as number,
+          );
+          return settlement ? [{ ...marketForecast, settlement }] : [];
+        });
+        const marketWins = marketSelections.filter((row) => row.settlement === "win").length;
+        const marketLosses = marketSelections.filter((row) => row.settlement === "loss").length;
+        const marketPushes = marketSelections.filter((row) => row.settlement === "push").length;
+        const scoredMarkets = marketSelections.filter((row) =>
+          row.settlement !== "push" && finiteNumber(row.conservative_probability) != null
+        );
+        const marketBrier = scoredMarkets.length
+          ? scoredMarkets.reduce((sum, row) => {
+            const probability = finiteNumber(row.conservative_probability) || 0;
+            const actualValue = row.settlement === "win" ? 1 : 0;
+            return sum + (probability - actualValue) ** 2;
+          }, 0) / scoredMarkets.length
+          : null;
         return [{
           id: forecast.forecast_id || result.fixture_id || key,
           home,
@@ -775,6 +913,11 @@ function CompletedForecastArchive({
           correct: predicted ? predicted === actual : null,
           brier,
           logloss,
+          marketSelections,
+          marketWins,
+          marketLosses,
+          marketPushes,
+          marketBrier,
         }];
       }).sort((left, right) =>
         new Date(right.kickoffUtc).getTime() - new Date(left.kickoffUtc).getTime()
@@ -836,6 +979,11 @@ function CompletedForecastArchive({
         correct: predicted ? predicted === actual : null,
         brier: brier != null && brier >= 0 ? brier : null,
         logloss: logloss != null && logloss >= 0 ? logloss : null,
+        marketSelections: [],
+        marketWins: 0,
+        marketLosses: 0,
+        marketPushes: 0,
+        marketBrier: null,
       }];
     }).sort((left, right) =>
       new Date(right.kickoffUtc).getTime() - new Date(left.kickoffUtc).getTime()
@@ -869,6 +1017,22 @@ function CompletedForecastArchive({
   const meanLogloss = scoredRows.length
     ? scoredRows.reduce((sum, row) => sum + (row.logloss || 0), 0) / scoredRows.length
     : null;
+  const fullLineRows = rows.filter((row) => row.marketSelections.length > 0);
+  const fullLineSelections = fullLineRows.reduce(
+    (sum, row) => sum + row.marketWins + row.marketLosses,
+    0,
+  );
+  const fullLineWins = fullLineRows.reduce((sum, row) => sum + row.marketWins, 0);
+  const marketScoredRows = fullLineRows.filter((row) => row.marketBrier != null);
+  const meanMarketBrier = marketScoredRows.length
+    ? marketScoredRows.reduce((sum, row) => sum + (row.marketBrier || 0), 0) /
+      marketScoredRows.length
+    : null;
+  const recommendedSettlements = fullLineRows.flatMap((row) => row.marketSelections)
+    .filter((market) => finiteNumber(market.recommendation_rank) != null && market.settlement !== "push");
+  const recommendationHitRate = recommendedSettlements.length
+    ? recommendedSettlements.filter((market) => market.settlement === "win").length / recommendedSettlements.length
+    : null;
   const calibrationGap = topOneRows.length >= 30 && accuracy != null && meanConfidence != null
     ? accuracy - meanConfidence
     : null;
@@ -899,6 +1063,9 @@ function CompletedForecastArchive({
         <div><span>Top-1 1X2</span><b>{percent(accuracy)}</b><small>угадан самый вероятный исход · n={topOneRows.length}</small></div>
         <div><span>Mean Brier</span><b>{meanBrier == null ? "—" : meanBrier.toFixed(3)}</b><small>ниже лучше · диапазон 0–2</small></div>
         <div><span>Mean log loss</span><b>{meanLogloss == null ? "—" : meanLogloss.toFixed(3)}</b><small>ниже лучше · n={scoredRows.length}</small></div>
+        <div><span>Вся линия</span><b>{fullLineSelections ? percent(fullLineWins / fullLineSelections) : "—"}</b><small>попадания без возвратов · n={fullLineSelections}</small></div>
+        <div><span>Top-3 model</span><b>{percent(recommendationHitRate)}</b><small>рекомендованные сценарии · n={recommendedSettlements.length}</small></div>
+        <div><span>Full-line Brier</span><b>{meanMarketBrier == null ? "—" : meanMarketBrier.toFixed(3)}</b><small>все сохранённые голевые рынки</small></div>
         <div><span>Top-1 calib. gap</span><b>{signedPercent(calibrationGap)}</b><small>{topOneRows.length < 30 ? `покажется после 30 матчей · сейчас ${topOneRows.length}` : "точность минус средняя уверенность"}</small></div>
       </div>
 
@@ -921,13 +1088,30 @@ function CompletedForecastArchive({
       {visibleRows.length ? (
         <div className="archive-table" role="table" aria-label="Predicted versus actual">
           <div className="archive-table-head" role="row">
-            <span>Дата</span><span>Матч</span><span>Прогноз 1X2</span><span>Факт 90&apos;</span><span>Brier</span><span>Log loss</span>
+            <span>Дата</span><span>Матч</span><span>Прогноз + вся линия</span><span>Факт 90&apos;</span><span>Brier</span><span>Log loss</span>
           </div>
           {visibleRows.map((row) => (
             <div className="archive-table-row" role="row" key={row.id}>
               <time className="archive-date" dateTime={row.kickoffUtc}><b>{archiveDate(row.kickoffUtc)}</b><small>{localTime(row.kickoffUtc).split(", ").at(-1)} YEKT</small></time>
               <span className="archive-match"><b>{row.home} — {row.away}</b><small>{competitionName(row.competition)} · {row.model}</small></span>
-              <span className="archive-prediction"><b>{outcomeName(row.predicted)} · {percent(row.predictedProbability)}</b><small>{row.probabilities ? `П1 ${percent(row.probabilities.home)} · X ${percent(row.probabilities.draw)} · П2 ${percent(row.probabilities.away)}` : "вектор вероятностей не прошёл проверку"}</small></span>
+              <span className="archive-prediction">
+                <b>{outcomeName(row.predicted)} · {percent(row.predictedProbability)}</b>
+                <small>{row.probabilities ? `П1 ${percent(row.probabilities.home)} · X ${percent(row.probabilities.draw)} · П2 ${percent(row.probabilities.away)}` : "вектор вероятностей не прошёл проверку"}</small>
+                <small className="archive-full-line">
+                  {row.marketSelections.length
+                    ? `Вся линия: ${row.marketWins} выиграло · ${row.marketLosses} проиграло · ${row.marketPushes} возврат`
+                    : "Старый архив: полная линия ещё не сохранялась"}
+                </small>
+                {row.marketSelections.some((market) => finiteNumber(market.recommendation_rank) != null) && (
+                  <small className="archive-recommendations">
+                    Top-3: {row.marketSelections
+                      .filter((market) => finiteNumber(market.recommendation_rank) != null)
+                      .sort((left, right) => (finiteNumber(left.recommendation_rank) || 99) - (finiteNumber(right.recommendation_rank) || 99))
+                      .map((market) => `${market.label} ${market.settlement === "win" ? "✓" : market.settlement === "push" ? "↔" : "✕"}`)
+                      .join(" · ")}
+                  </small>
+                )}
+              </span>
               <span className="archive-actual"><b>{row.homeGoals}:{row.awayGoals} · {outcomeName(row.actual)}</b><small className={row.correct ? "archive-hit" : row.correct === false ? "archive-miss" : ""}>{row.correct == null ? "top-1 недоступен" : row.correct ? "top-1 угадан" : "top-1 не угадан"}</small></span>
               <span className="archive-score archive-brier">{row.brier == null ? "—" : row.brier.toFixed(3)}</span>
               <span className="archive-score archive-logloss">{row.logloss == null ? "—" : row.logloss.toFixed(3)}</span>
@@ -1153,6 +1337,65 @@ function BookmakerSnapshot({ details }: { details?: MatchDetails | null }) {
         </section>
       )}
     </>
+  );
+}
+
+function ModelMarketBoard({ forecast }: { forecast: Forecast }) {
+  const rows = (forecast.model_market_forecasts || [])
+    .filter((row) =>
+      row.label &&
+      finiteNumber(row.theoretical_probability) != null &&
+      finiteNumber(row.conservative_probability) != null &&
+      finiteNumber(row.conservative_fair_odds) != null
+    );
+  if (!rows.length) return null;
+  const recommendations = rows
+    .filter((row) => finiteNumber(row.recommendation_rank) != null)
+    .sort((left, right) => (finiteNumber(left.recommendation_rank) || 99) - (finiteNumber(right.recommendation_rank) || 99))
+    .slice(0, 3);
+  const markets = Array.from(new Set(rows.map((row) => row.market).filter(Boolean)));
+  const haircut = finiteNumber(rows[0]?.reliability_haircut);
+
+  return (
+    <section className="model-market-section" aria-label="Полная модельная линия">
+      <div className="dossier-title">
+        <h4>Модельные рекомендации по полной линии</h4>
+        <span className="model-forecast-badge">MODEL FORECAST</span>
+      </div>
+      <p className="model-market-intro">
+        Вероятность для решения уже уменьшена на {haircut == null ? "несколько" : (haircut * 100).toFixed(0)} п.п.
+        из-за неопределённости. Fair — расчётная граница модели, не коэффициент букмекера.
+      </p>
+      <div className="candidate-grid model-recommendation-grid">
+        {recommendations.map((row, index) => (
+          <div key={`${row.market}-${row.selection}-${row.line}-${index}`}>
+            <b>#{row.recommendation_rank || index + 1} · {row.label}</b>
+            <span>{marketName(row.market)} · 90 минут</span>
+            <span>Теория {percent(row.theoretical_probability)}</span>
+            <strong>Консервативно {percent(row.conservative_probability)}</strong>
+            <span>Fair до {decimal(row.conservative_fair_odds)}</span>
+          </div>
+        ))}
+      </div>
+      <details className="full-model-line">
+        <summary>Открыть всю линию · {rows.length} исходов · {markets.length} типов рынка</summary>
+        <div className="market-line-grid">
+          {rows.map((row, index) => (
+            <div key={`${row.market}-${row.selection}-${row.line}-${index}`}>
+              <b>{row.label}</b>
+              <span>{marketName(row.market)}</span>
+              <span>Теория <strong>{percent(row.theoretical_probability)}</strong></span>
+              <span>После штрафа <strong>{percent(row.conservative_probability)}</strong></span>
+              <span>Fair <strong>{decimal(row.conservative_fair_odds)}</strong></span>
+            </div>
+          ))}
+        </div>
+      </details>
+      <p className="audit-note">
+        Это автоматический прогноз модели для проверки результатом. Когда появится реальная цена,
+        отдельный bookmaker-value блок сравнит её с этой консервативной вероятностью.
+      </p>
+    </section>
   );
 }
 
@@ -1419,6 +1662,7 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
           </section>
         )}
 
+        <ModelMarketBoard forecast={forecast} />
         <BookmakerSnapshot details={details} />
         <ScoreDistribution forecast={forecast} />
 
@@ -1504,7 +1748,7 @@ function ForecastCard({ forecast }: { forecast: Forecast }) {
       <div className="card-footer">
         <span>{forecast.model || "Официальный календарь"}</span>
         <span className="uncertainty">{forecast.uncertainty || "не оценена"}</span>
-        <strong className="no-bet">{forecast.betting_eligible ? forecast.recommendation || "BET" : "PAPER ONLY"}</strong>
+          <strong className="model-forecast-card">{forecast.recommendation || "MODEL FORECAST"}</strong>
       </div>
       <MatchDossier forecast={forecast} />
     </article>
@@ -1606,8 +1850,8 @@ export default function Home() {
           <p className="eyebrow">Лига чемпионов · Top-5 2026/27 · 90 минут</p>
           <h1>Вероятности<br />без обещаний.</h1>
           <p className="lead">
-            Модель публикует прогноз до матча, ранжирует только PAPER-кандидатов и не создаёт реальную ставку,
-            пока преимущество над closing line не доказано на новых данных.
+            Модель публикует полный набор прогнозов до матча и сразу показывает три наиболее устойчивых сценария.
+            Bookmaker-value и CLV считаются отдельно и больше не блокируют модельный разбор.
           </p>
           <div className="hero-actions">
             <a href="#forecasts" className="primary-action">Смотреть матчи</a>
@@ -1618,7 +1862,7 @@ export default function Home() {
         </div>
         <ProspectiveClvPanel
           summary={payload.prospective_clv}
-          allowed={payload.betting_gate?.allowed === true}
+          forecasts={payload.forecasts}
         />
       </section>
 
@@ -1630,9 +1874,9 @@ export default function Home() {
         <span>PAPER BANKROLL</span>
       </section>
 
-      <PaperCandidateBoard ranking={payload.paper_candidate_ranking} nowMs={nowMs} />
+      <PaperCandidateBoard ranking={payload.paper_candidate_ranking} forecasts={payload.forecasts} nowMs={nowMs} />
 
-      <PaperTradingLab summary={payload.paper_trading} />
+      <PaperTradingLab summary={payload.paper_trading} forecasts={payload.forecasts} />
 
       <CompletedForecastArchive archive={forecastArchive} ledger={prospectiveLedger} status={archiveStatus} />
 
