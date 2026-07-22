@@ -183,7 +183,19 @@ def test_live_payload_drops_past_fixtures_and_uses_official_uefa_round_and_leg()
         ]
     }
     fixtures = [
-        {"id": "past", "round": "First qualifying round", "leg": 2},
+        {
+            "id": "past",
+            "source": "uefa",
+            "competition_id": "1",
+            "competition": "UEFA Champions League",
+            "kickoff_utc": "2026-07-20T18:00:00Z",
+            "home_id": "past-home",
+            "away_id": "past-away",
+            "home": "Past Home",
+            "away": "Past Away",
+            "round": "First qualifying round",
+            "leg": 2,
+        },
         {
             "id": "future",
             "competition": "UEFA Champions League",

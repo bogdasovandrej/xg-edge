@@ -142,3 +142,38 @@ def test_model_registry_blocks_self_learning_until_fixed_evidence_threshold(tmp_
     assert result["paper_promoted"] is False
     assert registry["champion"]["candidate_id"] is None
     assert registry["challengers"][0]["training"]["n_settled"] == 0
+
+    repeated = update_registry_files(
+        registry_path,
+        archive_path=archive_path,
+        evaluated_at=T0 + timedelta(minutes=3),
+    )
+    registry = validate_registry(json.loads(registry_path.read_text(encoding="utf-8")))
+    assert repeated["registry_changed"] is False
+    assert len(registry["challengers"]) == 1
+
+    revised_payload = _payload(kickoff)
+    revised_at = T0 + timedelta(minutes=4)
+    revised_payload["generated_at"] = revised_at.isoformat().replace("+00:00", "Z")
+    revised_payload["forecasts"][0]["forecast_generated_at"] = revised_payload[
+        "generated_at"
+    ]
+    revised_payload["forecasts"][0]["p_home"] = 0.51
+    revised_payload["forecasts"][0]["p_away"] = 0.19
+    _write(payload_path, revised_payload)
+    update_archive_files(
+        archive_path,
+        fixtures_path=fixtures_path,
+        live_payload_path=payload_path,
+        observed_at=T0 + timedelta(minutes=5),
+    )
+    update_registry_files(
+        registry_path,
+        archive_path=archive_path,
+        evaluated_at=T0 + timedelta(minutes=6),
+    )
+    registry = validate_registry(json.loads(registry_path.read_text(encoding="utf-8")))
+    assert len(registry["challengers"]) == 2
+    assert registry["challengers"][0]["candidate_id"] != registry["challengers"][1][
+        "candidate_id"
+    ]

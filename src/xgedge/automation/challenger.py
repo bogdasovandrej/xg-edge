@@ -345,7 +345,12 @@ def evaluate_temperature_challenger(
 ) -> dict[str, Any]:
     """Train/evaluate one challenger using only evidence known by ``evaluated_at``."""
     as_of = as_utc(evaluated_at, field="evaluated_at")
-    rows, quality = _training_rows(archive, as_of=as_of)
+    validated_archive = validate_archive(archive)
+    rows, quality = _training_rows(validated_archive, as_of=as_of)
+    archive_event_chain_head = (
+        str(validated_archive["events"][-1]["event_hash"])
+        if validated_archive["events"] else "0" * 64
+    )
     blocks = _walk_forward_blocks(rows)
     champion_oos: list[np.ndarray] = []
     challenger_oos: list[np.ndarray] = []
@@ -452,6 +457,7 @@ def evaluate_temperature_challenger(
         "family": _POLICY["challenger_family"],
         "source_model": quality["source_model"],
         "data_fingerprint": data_fingerprint,
+        "archive_event_chain_head": archive_event_chain_head,
         "policy_hash": POLICY_HASH,
     }
     candidate = {
@@ -474,6 +480,7 @@ def evaluate_temperature_challenger(
                 if training_cutoff is not None else None
             ),
             "data_fingerprint": data_fingerprint,
+            "archive_event_chain_head": archive_event_chain_head,
             "source_archive_schema": "match-evidence-archive/1.0",
             "official_results_only": True,
             "regulation_time_only": True,

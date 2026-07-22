@@ -283,6 +283,9 @@ def _build_dossiers(
     uefa_history: dict | None,
 ) -> dict[str, dict]:
     output: dict[str, dict] = {}
+    cutoff = _as_utc(generated_at)
+    if cutoff is None:
+        raise ValueError("generated_at must be an ISO-8601 timestamp")
     history = _world_cup_history(world_cup_history)
     national_priors = _national_priors(rankings)
     club_history = _uefa_history(uefa_history)
@@ -290,7 +293,14 @@ def _build_dossiers(
     for prediction in world_cup.get("predictions", []):
         fixture_id = str(prediction.get("fixture_id"))
         source = fixtures.get(fixture_id)
-        if not source or not source.get("home_id") or not source.get("away_id"):
+        kickoff = _as_utc(source.get("kickoff_utc")) if source else None
+        if (
+            not source
+            or not source.get("home_id")
+            or not source.get("away_id")
+            or kickoff is None
+            or kickoff <= cutoff
+        ):
             continue
         fixture = {**source, "scope": "national", "competition_level": "international_major"}
         output[fixture_id] = build_match_dossier(
@@ -306,7 +316,14 @@ def _build_dossiers(
         source = fixtures.get(fixture_id)
         ratings = prediction.get("ratings") or {}
         home_rating, away_rating = ratings.get("home") or {}, ratings.get("away") or {}
-        if not source or not source.get("home_id") or not source.get("away_id"):
+        kickoff = _as_utc(source.get("kickoff_utc")) if source else None
+        if (
+            not source
+            or not source.get("home_id")
+            or not source.get("away_id")
+            or kickoff is None
+            or kickoff <= cutoff
+        ):
             continue
         fixture = {
             **source,

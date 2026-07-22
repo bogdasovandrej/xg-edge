@@ -14,6 +14,7 @@ from xgedge.automation.challenger import (
     register_challenger,
     validate_registry,
 )
+from xgedge.data.point_in_time import as_utc
 from xgedge.simulation.ledger import write_json_atomic
 
 
@@ -42,7 +43,16 @@ def update_files(
         if registry_path.exists()
         else empty_registry(created_at=when)
     )
-    candidate = evaluate_temperature_challenger(archive, evaluated_at=when)
+    # A repeated schedule over the same immutable archive must produce the same
+    # challenger bytes.  Clamp the evaluation cutoff to the archive head rather
+    # than embedding the wall-clock time of every no-op run.
+    evaluation_cutoff = min(
+        as_utc(when, field="evaluated_at"),
+        as_utc(archive["updated_at"], field="archive.updated_at"),
+    )
+    candidate = evaluate_temperature_challenger(
+        archive, evaluated_at=evaluation_cutoff
+    )
     updated, operation = register_challenger(
         registry,
         candidate,
