@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T16:36:29Z",
+  "generated_at": "2026-07-22T18:01:56Z",
   "status": "PAPER_ONLY_MODEL_IN_QUARANTINE",
   "validation_protocol": {
     "mode": "PAPER_ONLY",
@@ -16,3196 +16,6 @@
     "reason": "global_gate_disabled_cohort_specific_only"
   },
   "forecasts": [
-    {
-      "id": "2048720",
-      "competition": "UEFA Champions League",
-      "stage": "2-й квалификационный раунд · первый матч",
-      "kickoff_utc": "2026-07-22T17:00:00Z",
-      "home": "Omonia",
-      "away": "Kairat Almaty",
-      "venue": "GSP",
-      "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T14:28:44Z",
-      "p_home": 0.7307292025053305,
-      "p_draw": 0.18152315955402762,
-      "p_away": 0.087747637940642,
-      "p_over25": 0.49404900047099853,
-      "p_btts": 0.37719649240022163,
-      "p_home_advance": null,
-      "p_away_advance": null,
-      "top_score": "2-0",
-      "top_score_probability": 0.15383122134259306,
-      "score_scenarios": [
-        {
-          "score": "2-0",
-          "probability": 0.15383122134259306
-        },
-        {
-          "score": "1-0",
-          "probability": 0.14743470151657467
-        },
-        {
-          "score": "3-0",
-          "probability": 0.1070035046762427
-        },
-        {
-          "score": "2-1",
-          "probability": 0.08664222252914354
-        },
-        {
-          "score": "2-0",
-          "probability": 0.09312577414616836
-        }
-      ],
-      "score_scenarios_coverage": 0.5880374242107224,
-      "other_score_probability": 0.41196257578927764,
-      "score_display": "distribution_not_exact_score_prediction",
-      "expected_goals": {
-        "home": 2.086770885825673,
-        "away": 0.5632291141743271,
-        "total": 2.65
-      },
-      "p_over35": 0.2749080164725675,
-      "p_over45": 0.1297312229576381,
-      "tail_probability_status": "RAW_POISSON_UNCALIBRATED_NO_BET",
-      "uncertainty": "низкая",
-      "recommendation": "NO BET",
-      "first_leg": null,
-      "details": {
-        "schema_version": "match-dossier/1.0",
-        "fixture_id": "2048720",
-        "generated_as_of": "2026-07-22T16:36:29Z",
-        "teams": {
-          "home": {
-            "team_id": "50077",
-            "name": "Omonia",
-            "elo": 1505.1326816906676,
-            "elo_meta": {
-              "rating": 1505.1326816906676,
-              "matches": 14,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-07-22T17:00:00Z"
-            },
-            "level": "average",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
-              {
-                "match_id": "2047741",
-                "kickoff_utc": "2026-02-26T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "52356",
-                "opponent": "Rijeka",
-                "score_90": {
-                  "for": 1,
-                  "against": 3
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1516.5686125548498,
-                  "matches": 13,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-02-26T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1528.8828552406708,
-                  "matches": 3,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-02-26T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.48228579726825466,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2047741",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2047733",
-                "kickoff_utc": "2026-02-19T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "52356",
-                "opponent": "Rijeka",
-                "score_90": {
-                  "for": 0,
-                  "against": 1
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1528.458652435126,
-                  "matches": 12,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-02-19T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1516.9928153603946,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-02-19T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5164946783375086,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2047733",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046398",
-                "kickoff_utc": "2025-12-18T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "60566",
-                "opponent": "Raków",
-                "score_90": {
-                  "for": 0,
-                  "against": 1
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1540.795021879908,
-                  "matches": 11,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-18T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1513.0938992090016,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-18T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5397808613101188,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046398",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046372",
-                "kickoff_utc": "2025-12-11T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "50042",
-                "opponent": "SK Rapid",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1530.8204236381714,
-                  "matches": 10,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-11T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1474.937874264399,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-11T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5797350426321136,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046372",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046359",
-                "kickoff_utc": "2025-11-27T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "52723",
-                "opponent": "Dynamo Kyiv",
-                "score_90": {
-                  "for": 2,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1519.6718037561022,
-                  "matches": 9,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-27T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-11-27T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5282797877434222,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046359",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046350",
-                "kickoff_utc": "2025-11-06T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "4251",
-                "opponent": "Lausanne-Sport",
-                "score_90": {
-                  "for": 1,
-                  "against": 1
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1518.6287628173482,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-06T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-11-06T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5267832834206839,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046350",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046327",
-                "kickoff_utc": "2025-10-23T16:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "2608290",
-                "opponent": "Drita",
-                "score_90": {
-                  "for": 1,
-                  "against": 1
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1517.5275270129957,
-                  "matches": 7,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-23T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.9441786006687,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-23T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5238472497602529,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046327",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046306",
-                "kickoff_utc": "2025-10-02T16:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "70853",
-                "opponent": "Mainz",
-                "score_90": {
-                  "for": 0,
-                  "against": 1
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1529.9243006608417,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-02T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-10-02T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5429583581031913,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046306",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045896",
-                "kickoff_utc": "2025-08-28T16:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "2603990",
-                "opponent": "Wolfsberger",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1521.8438295190008,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-28T16:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1509.3148671801457,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-28T16:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5180228144993118,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045896",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045872",
-                "kickoff_utc": "2025-08-21T17:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "2603990",
-                "opponent": "Wolfsberger",
-                "score_90": {
-                  "for": 1,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1531.1586966991465,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-21T17:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-08-21T17:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5447211381868016,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045872",
-                  "xg": "not_provided"
-                }
-              }
-            ],
-            "likely_lineup": null,
-            "absences": null,
-            "coach": null,
-            "availability": {
-              "lineup": "unavailable",
-              "absences": "unavailable"
-            }
-          },
-          "away": {
-            "team_id": "79970",
-            "name": "Kairat Almaty",
-            "elo": 1339.7597180098585,
-            "elo_meta": {
-              "rating": 1339.7597180098585,
-              "matches": 18,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-07-22T17:00:00Z"
-            },
-            "level": "developing",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
-              {
-                "match_id": "2048647",
-                "kickoff_utc": "2026-07-15T19:00:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "73936",
-                "opponent": "Sutjeska",
-                "score_90": {
-                  "for": 2,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1317.595784545071,
-                  "matches": 17,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-07-15T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1486.1443630046056,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-07-15T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.2748319481300278,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048647",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2048633",
-                "kickoff_utc": "2026-07-08T15:00:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "73936",
-                "opponent": "Sutjeska",
-                "score_90": {
-                  "for": 2,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1303.7401475496765,
-                  "matches": 16,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-07-08T15:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2026-07-08T15:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.2442049284585059,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048633",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046034",
-                "kickoff_utc": "2026-01-28T20:00:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "52280",
-                "opponent": "Arsenal",
-                "score_90": {
-                  "for": 2,
-                  "against": 3
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1307.6207612042797,
-                  "matches": 15,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-01-28T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2026-01-28T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.24835146162610436,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046034",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046019",
-                "kickoff_utc": "2026-01-20T15:30:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "50043",
-                "opponent": "Club Brugge",
-                "score_90": {
-                  "for": 1,
-                  "against": 4
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1318.9178867703183,
-                  "matches": 14,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-01-20T15:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2026-01-20T15:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.26068863556830874,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046019",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046001",
-                "kickoff_utc": "2025-12-09T15:30:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "2610",
-                "opponent": "Olympiacos",
-                "score_90": {
-                  "for": 0,
-                  "against": 1
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1325.610745215894,
-                  "matches": 13,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-09T15:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-12-09T15:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.26818214691175574,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046001",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045991",
-                "kickoff_utc": "2025-11-26T17:45:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "52709",
-                "opponent": "Copenhagen",
-                "score_90": {
-                  "for": 2,
-                  "against": 3
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1329.9084316446817,
-                  "matches": 12,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-26T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-11-26T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.2730652835735325,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045991",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045967",
-                "kickoff_utc": "2025-11-05T20:00:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "50138",
-                "opponent": "Inter",
-                "score_90": {
-                  "for": 1,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1334.2918715392007,
-                  "matches": 11,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-05T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-11-05T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.2781026496334993,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045967",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045947",
-                "kickoff_utc": "2025-10-21T16:45:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "2609532",
-                "opponent": "Pafos",
-                "score_90": {
-                  "for": 0,
-                  "against": 0
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1330.820335612355,
-                  "matches": 10,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-21T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1511.6627736795128,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-21T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.26095462939424957,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045947",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045929",
-                "kickoff_utc": "2025-09-30T16:45:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "50051",
-                "opponent": "Real Madrid",
-                "score_90": {
-                  "for": 0,
-                  "against": 5
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1347.0381988072877,
-                  "matches": 9,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-09-30T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-09-30T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.2930702599490252,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045929",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045918",
-                "kickoff_utc": "2025-09-18T19:00:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "50149",
-                "opponent": "Sporting CP",
-                "score_90": {
-                  "for": 1,
-                  "against": 4
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1355.3744463397245,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-09-18T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-09-18T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.30311004083980175,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045918",
-                  "xg": "not_provided"
-                }
-              }
-            ],
-            "likely_lineup": null,
-            "absences": null,
-            "coach": null,
-            "availability": {
-              "lineup": "unavailable",
-              "absences": "unavailable"
-            }
-          }
-        },
-        "referee": {
-          "status": "available",
-          "referee_id": null,
-          "name": "Gustavo Correia",
-          "season": null,
-          "matches": null,
-          "yellow_cards_per_match": null,
-          "red_cards_per_match": null,
-          "comparison": null,
-          "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
-        },
-        "weather": null,
-        "context_availability": {
-          "lineups": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "absences": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "referee": {
-            "status": "available",
-            "reason": null,
-            "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "weather": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "coaches": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          }
-        },
-        "adjustments": [
-          {
-            "name": "penalty_removal",
-            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
-            "standard_penalty_xg": 0.76
-          },
-          {
-            "name": "red_card_neutralization",
-            "method": "event_time_score_state_heuristic_v1",
-            "warning": "heuristic_not_causal_estimate"
-          },
-          {
-            "name": "opponent_strength",
-            "method": "point_in_time_elo_ratio_clamped_v1",
-            "factor_clamp": [
-              0.7,
-              1.4
-            ]
-          }
-        ],
-        "data_quality": {
-          "score": 40.0,
-          "label": "low",
-          "sources": [
-            "official_fixture",
-            "official_uefa_match_api"
-          ],
-          "warnings": [
-            "some_adjusted_npxg_is_unknown",
-            "lineups_unavailable",
-            "absences_unavailable",
-            "weather_unavailable"
-          ],
-          "scoring": {
-            "official_history_max": 30,
-            "adjusted_npxg_coverage_max": 30,
-            "lineup_absence_referee_weather_max": 40
-          }
-        },
-        "tail_risk": {
-          "label": "medium",
-          "score": 41.74,
-          "coverage_weight": 90.0,
-          "drivers": [
-            {
-              "name": "outcome_entropy",
-              "status": "available",
-              "weight": 25.0,
-              "raw": 0.6849552793307032,
-              "contribution": 17.12388198326758
-            },
-            {
-              "name": "recent_elo_surprise",
-              "status": "available",
-              "weight": 25.0,
-              "raw": 0.3847706346815605,
-              "sample": 20,
-              "contribution": 9.619265867039012
-            },
-            {
-              "name": "history_sparsity",
-              "status": "available",
-              "weight": 20.0,
-              "raw": 0.0,
-              "minimum_team_matches": 10,
-              "contribution": 0.0
-            },
-            {
-              "name": "missing_prematch_context",
-              "status": "available",
-              "weight": 20.0,
-              "raw": 0.75,
-              "missing": 3,
-              "total": 4,
-              "contribution": 15.0
-            },
-            {
-              "name": "recent_red_card_incidence",
-              "status": "unknown",
-              "weight": 10.0,
-              "contribution": 0.0
-            }
-          ],
-          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
-        },
-        "candidate_bets": [
-          {
-            "selection": "П1",
-            "probability": 0.7307292025053305,
-            "fair_odds": 1.368496012710954,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 1
-          },
-          {
-            "selection": "X",
-            "probability": 0.18152315955402762,
-            "fair_odds": 5.508938927995935,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 2
-          },
-          {
-            "selection": "П2",
-            "probability": 0.087747637940642,
-            "fair_odds": 11.396318162734621,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 3
-          }
-        ],
-        "betting_gate": {
-          "allowed": false,
-          "reason": "no_validated_positive_clv_edge"
-        },
-        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
-      },
-      "decision_status": "FORECAST_ONLY",
-      "model_status": "MODEL_IN_QUARANTINE",
-      "market_period": "REGULATION_90_MINUTES",
-      "betting_eligible": false,
-      "evaluation_cohort_id": "cohort-ae13fb4be794d0d8ed1018c1",
-      "cohort_gate": {
-        "allowed": false,
-        "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
-        "decision_status": "pending"
-      },
-      "prospective_clv": {
-        "cohort_id": "cohort-ae13fb4be794d0d8ed1018c1",
-        "gate": {
-          "allowed": false,
-          "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
-          "decision_status": "pending"
-        }
-      }
-    },
-    {
-      "id": "2048719",
-      "competition": "UEFA Champions League",
-      "stage": "2-й квалификационный раунд · первый матч",
-      "kickoff_utc": "2026-07-22T17:30:00Z",
-      "home": "Levski Sofia",
-      "away": "U. Craiova",
-      "venue": "Georgi Asparuhov Stadium",
-      "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T14:28:44Z",
-      "p_home": 0.4552895462251457,
-      "p_draw": 0.2560369848711891,
-      "p_away": 0.2886734689036652,
-      "p_over25": 0.49404900047099853,
-      "p_btts": 0.5303845203561306,
-      "p_home_advance": null,
-      "p_away_advance": null,
-      "top_score": "1-1",
-      "top_score_probability": 0.12174127438966714,
-      "score_scenarios": [
-        {
-          "score": "1-1",
-          "probability": 0.12174127438966714
-        },
-        {
-          "score": "1-0",
-          "probability": 0.10634883912788341
-        },
-        {
-          "score": "2-1",
-          "probability": 0.09162641907432513
-        },
-        {
-          "score": "0-1",
-          "probability": 0.08087698962674639
-        },
-        {
-          "score": "2-0",
-          "probability": 0.08004157464961194
-        }
-      ],
-      "score_scenarios_coverage": 0.48063509686823397,
-      "other_score_probability": 0.519364903131766,
-      "score_display": "distribution_not_exact_score_prediction",
-      "expected_goals": {
-        "home": 1.5052646612035463,
-        "away": 1.1447353387964536,
-        "total": 2.65
-      },
-      "p_over35": 0.2749164616067652,
-      "p_over45": 0.12974135896352026,
-      "tail_probability_status": "RAW_POISSON_UNCALIBRATED_NO_BET",
-      "uncertainty": "средняя",
-      "recommendation": "NO BET",
-      "first_leg": null,
-      "details": {
-        "schema_version": "match-dossier/1.0",
-        "fixture_id": "2048719",
-        "generated_as_of": "2026-07-22T16:36:29Z",
-        "teams": {
-          "home": {
-            "team_id": "50044",
-            "name": "Levski Sofia",
-            "elo": 1571.6992847850192,
-            "elo_meta": {
-              "rating": 1571.6992847850192,
-              "matches": 10,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-07-22T17:30:00Z"
-            },
-            "level": "average",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
-              {
-                "match_id": "2048645",
-                "kickoff_utc": "2026-07-14T17:30:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "50104",
-                "opponent": "Borac",
-                "score_90": {
-                  "for": 4,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1557.9783283126587,
-                  "matches": 9,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-07-14T17:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.088261250715,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-07-14T17:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5825479989704129,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048645",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2048631",
-                "kickoff_utc": "2026-07-07T18:30:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "50104",
-                "opponent": "Borac",
-                "score_90": {
-                  "for": 1,
-                  "against": 1
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1558.0665895633738,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-07-07T18:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2026-07-07T18:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5827950903348614,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048631",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045887",
-                "kickoff_utc": "2025-08-28T17:30:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "52327",
-                "opponent": "AZ Alkmaar",
-                "score_90": {
-                  "for": 1,
-                  "against": 4
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1575.4123647247015,
-                  "matches": 7,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-28T17:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1519.9055267680792,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-28T17:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5792080099441483,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045887",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045863",
-                "kickoff_utc": "2025-08-21T18:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "52327",
-                "opponent": "AZ Alkmaar",
-                "score_90": {
-                  "for": 0,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1595.3178914927807,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-21T18:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-08-21T18:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6338325104797561,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045863",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045802",
-                "kickoff_utc": "2025-08-14T16:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "2609356",
-                "opponent": "Sabah",
-                "score_90": {
-                  "for": 2,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1581.3204037959063,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-14T16:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1522.7666555420433,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-14T16:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5834767856950532,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045802",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045772",
-                "kickoff_utc": "2025-08-07T18:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "2609356",
-                "opponent": "Sabah",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1574.0980556304319,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-07T18:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1529.9890037075177,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-07T18:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5631391699794528,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045772",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045407",
-                "kickoff_utc": "2025-07-31T19:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "52336",
-                "opponent": "Braga",
-                "score_90": {
-                  "for": 0,
-                  "against": 0
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1574.5553361555449,
-                  "matches": 3,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-07-31T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1503.6566956276217,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-07-31T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.600638295549389,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045407",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045399",
-                "kickoff_utc": "2025-07-24T17:30:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "52336",
-                "opponent": "Braga",
-                "score_90": {
-                  "for": 0,
-                  "against": 0
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1578.2120317831666,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-07-24T17:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-07-24T17:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6106926442663969,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045399",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045316",
-                "kickoff_utc": "2025-07-17T18:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "59340",
-                "opponent": "H. Beer-Sheva",
-                "score_90": {
-                  "for": 0,
-                  "against": 0
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1578.7877114360622,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-07-17T18:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1503.7644125839379,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-07-17T18:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6063198379168427,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045316",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045308",
-                "kickoff_utc": "2025-07-10T17:30:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "59340",
-                "opponent": "H. Beer-Sheva",
-                "score_90": {
-                  "for": 0,
-                  "against": 0
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1582.55212402,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-07-10T17:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-07-10T17:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6166157303636903,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045308",
-                  "xg": "not_provided"
-                }
-              }
-            ],
-            "likely_lineup": null,
-            "absences": null,
-            "coach": null,
-            "availability": {
-              "lineup": "unavailable",
-              "absences": "unavailable"
-            }
-          },
-          "away": {
-            "team_id": "2606501",
-            "name": "U. Craiova",
-            "elo": 1514.1119554287588,
-            "elo_meta": {
-              "rating": 1514.1119554287588,
-              "matches": 14,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-07-22T17:30:00Z"
-            },
-            "level": "average",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
-              {
-                "match_id": "2048643",
-                "kickoff_utc": "2026-07-15T17:30:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "home",
-                "opponent_id": "2613945",
-                "opponent": "ML Vitebsk",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1506.4336957405326,
-                  "matches": 13,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-07-15T17:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1479.2699936901352,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-07-15T17:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5390122526292591,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048643",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2048629",
-                "kickoff_utc": "2026-07-08T17:00:00Z",
-                "competition": "UEFA Champions League",
-                "competition_level": "uefa_champions_league",
-                "venue": "away",
-                "opponent_id": "2613945",
-                "opponent": "ML Vitebsk",
-                "score_90": {
-                  "for": 4,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1485.7036894306677,
-                  "matches": 12,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-07-08T17:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2026-07-08T17:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.47943755914271735,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048629",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046403",
-                "kickoff_utc": "2025-12-18T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "50129",
-                "opponent": "AEK Athens",
-                "score_90": {
-                  "for": 2,
-                  "against": 3
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1494.0518814684883,
-                  "matches": 11,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-18T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1496.972236441758,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-18T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.4957973703315474,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046403",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046385",
-                "kickoff_utc": "2025-12-11T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "50033",
-                "opponent": "Sparta Praha",
-                "score_90": {
-                  "for": 1,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1504.6007900641794,
-                  "matches": 10,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-11T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1540.510563708894,
-                  "matches": 3,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-11T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.44850491813831683,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046385",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046369",
-                "kickoff_utc": "2025-11-27T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "70853",
-                "opponent": "Mainz",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1495.6729183911411,
-                  "matches": 9,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-27T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1513.2796498094613,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-11-27T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.4746835445556134,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046369",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046336",
-                "kickoff_utc": "2025-11-06T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "50042",
-                "opponent": "SK Rapid",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1484.0568075979847,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-06T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1485.7028936598954,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-11-06T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.49763110945726463,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046336",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046333",
-                "kickoff_utc": "2025-10-23T19:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "2609987",
-                "opponent": "Noah",
-                "score_90": {
-                  "for": 1,
-                  "against": 1
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1485.2264158890212,
-                  "matches": 7,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-23T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1499.4032262572161,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-23T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.4796092453249396,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046333",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046312",
-                "kickoff_utc": "2025-10-02T19:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "60566",
-                "opponent": "Raków",
-                "score_90": {
-                  "for": 0,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1497.030600478762,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-02T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-10-02T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.49572679462401925,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046312",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045882",
-                "kickoff_utc": "2025-08-28T17:30:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "2600288",
-                "opponent": "Başakşehir",
-                "score_90": {
-                  "for": 3,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1485.002504622111,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-28T17:30:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1487.6739063005198,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-28T17:30:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.49615561970749966,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045882",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045858",
-                "kickoff_utc": "2025-08-21T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "2600288",
-                "opponent": "Başakşehir",
-                "score_90": {
-                  "for": 2,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1472.6764109226308,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-21T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-08-21T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.4607590604535092,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045858",
-                  "xg": "not_provided"
-                }
-              }
-            ],
-            "likely_lineup": null,
-            "absences": null,
-            "coach": null,
-            "availability": {
-              "lineup": "unavailable",
-              "absences": "unavailable"
-            }
-          }
-        },
-        "referee": {
-          "status": "available",
-          "referee_id": null,
-          "name": "Adam Ladebäck",
-          "season": null,
-          "matches": null,
-          "yellow_cards_per_match": null,
-          "red_cards_per_match": null,
-          "comparison": null,
-          "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
-        },
-        "weather": null,
-        "context_availability": {
-          "lineups": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "absences": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "referee": {
-            "status": "available",
-            "reason": null,
-            "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "weather": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          },
-          "coaches": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
-          }
-        },
-        "adjustments": [
-          {
-            "name": "penalty_removal",
-            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
-            "standard_penalty_xg": 0.76
-          },
-          {
-            "name": "red_card_neutralization",
-            "method": "event_time_score_state_heuristic_v1",
-            "warning": "heuristic_not_causal_estimate"
-          },
-          {
-            "name": "opponent_strength",
-            "method": "point_in_time_elo_ratio_clamped_v1",
-            "factor_clamp": [
-              0.7,
-              1.4
-            ]
-          }
-        ],
-        "data_quality": {
-          "score": 40.0,
-          "label": "low",
-          "sources": [
-            "official_fixture",
-            "official_uefa_match_api"
-          ],
-          "warnings": [
-            "some_adjusted_npxg_is_unknown",
-            "lineups_unavailable",
-            "absences_unavailable",
-            "weather_unavailable"
-          ],
-          "scoring": {
-            "official_history_max": 30,
-            "adjusted_npxg_coverage_max": 30,
-            "lineup_absence_referee_weather_max": 40
-          }
-        },
-        "tail_risk": {
-          "label": "medium",
-          "score": 48.64,
-          "coverage_weight": 90.0,
-          "drivers": [
-            {
-              "name": "outcome_entropy",
-              "status": "available",
-              "weight": 25.0,
-              "raw": 0.9700692539247732,
-              "contribution": 24.25173134811933
-            },
-            {
-              "name": "recent_elo_surprise",
-              "status": "available",
-              "weight": 25.0,
-              "raw": 0.37568394280166234,
-              "sample": 20,
-              "contribution": 9.392098570041558
-            },
-            {
-              "name": "history_sparsity",
-              "status": "available",
-              "weight": 20.0,
-              "raw": 0.0,
-              "minimum_team_matches": 10,
-              "contribution": 0.0
-            },
-            {
-              "name": "missing_prematch_context",
-              "status": "available",
-              "weight": 20.0,
-              "raw": 0.75,
-              "missing": 3,
-              "total": 4,
-              "contribution": 15.0
-            },
-            {
-              "name": "recent_red_card_incidence",
-              "status": "unknown",
-              "weight": 10.0,
-              "contribution": 0.0
-            }
-          ],
-          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
-        },
-        "candidate_bets": [
-          {
-            "selection": "П1",
-            "probability": 0.4552895462251457,
-            "fair_odds": 2.1964044821391284,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 1
-          },
-          {
-            "selection": "П2",
-            "probability": 0.2886734689036652,
-            "fair_odds": 3.4641216035468627,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 2
-          },
-          {
-            "selection": "X",
-            "probability": 0.2560369848711891,
-            "fair_odds": 3.9056857371722877,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 3
-          }
-        ],
-        "betting_gate": {
-          "allowed": false,
-          "reason": "no_validated_positive_clv_edge"
-        },
-        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
-      },
-      "decision_status": "FORECAST_ONLY",
-      "model_status": "MODEL_IN_QUARANTINE",
-      "market_period": "REGULATION_90_MINUTES",
-      "betting_eligible": false,
-      "evaluation_cohort_id": "cohort-ae13fb4be794d0d8ed1018c1",
-      "cohort_gate": {
-        "allowed": false,
-        "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
-        "decision_status": "pending"
-      },
-      "prospective_clv": {
-        "cohort_id": "cohort-ae13fb4be794d0d8ed1018c1",
-        "gate": {
-          "allowed": false,
-          "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
-          "decision_status": "pending"
-        }
-      }
-    },
     {
       "id": "2048724",
       "competition": "UEFA Champions League",
@@ -3264,7 +74,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048724",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "88148",
@@ -3802,11 +612,270 @@
                 }
               }
             ],
-            "likely_lineup": null,
+            "likely_lineup": [
+              {
+                "player_id": "250098527",
+                "player_name": "Mario Dajsinani",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "GOALKEEPER",
+                "detailed_field_position": "GOALKEEPER",
+                "jersey_number": 98,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250186256",
+                "player_name": "Fernando Medeiros",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 7,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250196560",
+                "player_name": "Soumaila Bakayoko",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 9,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250100824",
+                "player_name": "Alessandro Albanese",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 10,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250129514",
+                "player_name": "Altin Kryeziu",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 17,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250102602",
+                "player_name": "Arbenit Xhemajli",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": null,
+                "jersey_number": 19,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250110715",
+                "player_name": "Karim Loukili",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 20,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250087546",
+                "player_name": "Guillem Jaime",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": null,
+                "jersey_number": 22,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250134798",
+                "player_name": "Elion Sota",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": null,
+                "jersey_number": 28,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250186512",
+                "player_name": "Andrey Yago",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": null,
+                "jersey_number": 29,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250120614",
+                "player_name": "Eneo Bitri",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 33,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250167084",
+                "player_name": "Levani Tandilashvili",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "GOALKEEPER",
+                "detailed_field_position": null,
+                "jersey_number": 1,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250091934",
+                "player_name": "Bruno Puja",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "GOALKEEPER",
+                "detailed_field_position": null,
+                "jersey_number": 12,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250221216",
+                "player_name": "Adjessa Daniel",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 2,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250120681",
+                "player_name": "Albano Aleksi",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 6,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250221488",
+                "player_name": "Ibrahim Diabate",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 8,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250071550",
+                "player_name": "Edison Ndreca",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 16,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250181105",
+                "player_name": "Numan Ajetovikj",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": null,
+                "jersey_number": 24,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250136324",
+                "player_name": "Geralb Smajli",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 55,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250113877",
+                "player_name": "Ildi Gruda",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 77,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250221490",
+                "player_name": "Jurguens Montenegro",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 99,
+                "is_late_update": false,
+                "source": "uefa"
+              }
+            ],
             "absences": null,
-            "coach": null,
+            "coach": {
+              "coach_id": "21208",
+              "coach_name": "Nevil Dede",
+              "role": "coach",
+              "is_late_update": null,
+              "source": "uefa"
+            },
             "availability": {
-              "lineup": "unavailable",
+              "lineup": "available",
               "absences": "unavailable"
             }
           },
@@ -4476,11 +1545,294 @@
                 }
               }
             ],
-            "likely_lineup": null,
+            "likely_lineup": [
+              {
+                "player_id": "250117953",
+                "player_name": "Žan-Luk Leban",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "GOALKEEPER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 1,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250050100",
+                "player_name": "Damjan Vukliševič",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 3,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250209622",
+                "player_name": "Darko Hrka",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 4,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250004269",
+                "player_name": "Mario Kvesić",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 8,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250117960",
+                "player_name": "Svit Sešlar",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 10,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250118640",
+                "player_name": "Milot Avdyli",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 11,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250210953",
+                "player_name": "Papa Daniel",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 13,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250106279",
+                "player_name": "Alpha Diounkou",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 20,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250099206",
+                "player_name": "Leonardo Koutris",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "FULL_BACK",
+                "jersey_number": 33,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250130104",
+                "player_name": "Armandas Kučys",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 47,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250222281",
+                "player_name": "Yaya Dukuly",
+                "status": "starter",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 91,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250196569",
+                "player_name": "Luka Kolar",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "GOALKEEPER",
+                "detailed_field_position": null,
+                "jersey_number": 12,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250083917",
+                "player_name": "Žiga Frelih",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "GOALKEEPER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 23,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250104464",
+                "player_name": "Pijus Širvys",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 2,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250126076",
+                "player_name": "Artemijus Tutyškinas",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 6,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250194498",
+                "player_name": "Florjan Jevšenak",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 7,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250098487",
+                "player_name": "Andrej Kotnik",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 17,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250162997",
+                "player_name": "Mark Zabukovnik",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 19,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250118656",
+                "player_name": "Veton Tusha",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": null,
+                "jersey_number": 25,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250158746",
+                "player_name": "Ivan Ćalušić",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 27,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250183317",
+                "player_name": "Matic Ivanšek",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "DEFENDER",
+                "detailed_field_position": null,
+                "jersey_number": 77,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250025004",
+                "player_name": "Rudi Požeg Vancaš",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "MIDFIELDER",
+                "detailed_field_position": "UNKNOWN",
+                "jersey_number": 94,
+                "is_late_update": false,
+                "source": "uefa"
+              },
+              {
+                "player_id": "250196403",
+                "player_name": "Matej Poplatnik",
+                "status": "substitute",
+                "is_confirmed": true,
+                "expected_minutes": null,
+                "field_position": "FORWARD",
+                "detailed_field_position": null,
+                "jersey_number": 99,
+                "is_late_update": false,
+                "source": "uefa"
+              }
+            ],
             "absences": null,
-            "coach": null,
+            "coach": {
+              "coach_id": "250217905",
+              "coach_name": "Vítor Campelos",
+              "role": "coach",
+              "is_late_update": null,
+              "source": "uefa"
+            },
             "availability": {
-              "lineup": "unavailable",
+              "lineup": "available",
               "absences": "unavailable"
             }
           }
@@ -4495,7 +1847,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": {
           "status": "available",
@@ -4509,22 +1861,22 @@
         },
         "context_availability": {
           "lineups": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "status": "available",
+            "reason": null,
+            "provider": "uefa_lineups",
+            "snapshot_at": "2026-07-22T18:01:48Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "available",
@@ -4533,10 +1885,10 @@
             "snapshot_at": "2026-07-14T14:17:22Z"
           },
           "coaches": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "status": "available",
+            "reason": null,
+            "provider": "uefa_lineups",
+            "snapshot_at": "2026-07-22T18:01:48Z"
           }
         },
         "adjustments": [
@@ -4560,17 +1912,17 @@
           }
         ],
         "data_quality": {
-          "score": 47.0,
+          "score": 57.0,
           "label": "low",
           "sources": [
             "official_fixture",
             "official_uefa_match_api",
-            "open_meteo"
+            "open_meteo",
+            "uefa_lineups"
           ],
           "warnings": [
             "fewer_than_10_official_matches_for_at_least_one_team",
             "some_adjusted_npxg_is_unknown",
-            "lineups_unavailable",
             "absences_unavailable"
           ],
           "scoring": {
@@ -4581,15 +1933,15 @@
         },
         "tail_risk": {
           "label": "medium",
-          "score": 43.54,
+          "score": 38.54,
           "coverage_weight": 90.0,
           "drivers": [
             {
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.6756374502100941,
-              "contribution": 16.890936255252353
+              "raw": 0.6756374502100942,
+              "contribution": 16.890936255252356
             },
             {
               "name": "recent_elo_surprise",
@@ -4611,10 +1963,10 @@
               "name": "missing_prematch_context",
               "status": "available",
               "weight": 20.0,
-              "raw": 0.5,
-              "missing": 2,
+              "raw": 0.25,
+              "missing": 1,
               "total": 4,
-              "contribution": 10.0
+              "contribution": 5.0
             },
             {
               "name": "recent_red_card_incidence",
@@ -4722,8 +2074,8 @@
           "probability": 0.08014771105351691
         }
       ],
-      "score_scenarios_coverage": 0.48188955829546715,
-      "other_score_probability": 0.5181104417045328,
+      "score_scenarios_coverage": 0.4818895582954671,
+      "other_score_probability": 0.5181104417045329,
       "score_display": "distribution_not_exact_score_prediction",
       "expected_goals": {
         "home": 1.5155869322463704,
@@ -4739,7 +2091,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048729",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "52350",
@@ -5970,7 +3322,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": {
           "status": "available",
@@ -5987,19 +3339,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "available",
@@ -6011,7 +3363,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -6070,7 +3422,7 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.4331275077868361,
+              "raw": 0.4331275077868362,
               "sample": 18,
               "contribution": 10.828187694670904
             },
@@ -6189,7 +3541,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048727",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "2605572",
@@ -6899,7 +4251,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -6907,19 +4259,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
@@ -6931,7 +4283,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -7080,7 +4432,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048735",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "50164",
@@ -7790,7 +5142,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -7798,19 +5150,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
@@ -7822,7 +5174,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -7996,7 +5348,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048738",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "59030",
@@ -9227,7 +6579,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -9235,31 +6587,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -9462,7 +6814,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048740",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "50120",
@@ -10172,7 +7524,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -10180,31 +7532,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -10263,9 +7615,9 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.4347440900757594,
+              "raw": 0.43474409007575954,
               "sample": 10,
-              "contribution": 10.868602251893986
+              "contribution": 10.86860225189399
             },
             {
               "name": "history_sparsity",
@@ -10407,7 +7759,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048732",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "52381",
@@ -11508,7 +8860,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -11516,31 +8868,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -11592,14 +8944,14 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.8607366420009793,
+              "raw": 0.8607366420009794,
               "contribution": 21.518416050024484
             },
             {
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.3810740825978872,
+              "raw": 0.38107408259788716,
               "sample": 16,
               "contribution": 9.52685206494718
             },
@@ -11743,7 +9095,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048734",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "79970",
@@ -13104,7 +10456,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -13112,31 +10464,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -13187,16 +10539,16 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.9143325333799779,
-              "contribution": 22.858313334499446
+              "raw": 0.9143325333799777,
+              "contribution": 22.858313334499442
             },
             {
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.38477063468156053,
+              "raw": 0.3847706346815604,
               "sample": 20,
-              "contribution": 9.619265867039013
+              "contribution": 9.61926586703901
             },
             {
               "name": "history_sparsity",
@@ -13338,7 +10690,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048730",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "2605907",
@@ -14439,7 +11791,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -14447,31 +11799,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -14523,16 +11875,16 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.9884351455177864,
-              "contribution": 24.71087863794466
+              "raw": 0.9884351455177862,
+              "contribution": 24.710878637944656
             },
             {
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.5858105501700094,
+              "raw": 0.5858105501700093,
               "sample": 16,
-              "contribution": 14.645263754250234
+              "contribution": 14.645263754250232
             },
             {
               "name": "history_sparsity",
@@ -14649,7 +12001,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048731",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "64227",
@@ -15359,7 +12711,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -15367,31 +12719,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -15565,7 +12917,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048733",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "2606501",
@@ -16926,7 +14278,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -16934,31 +14286,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -17135,7 +14487,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048736",
-        "generated_as_of": "2026-07-22T16:36:29Z",
+        "generated_as_of": "2026-07-22T18:01:56Z",
         "teams": {
           "home": {
             "team_id": "59340",
@@ -17976,7 +15328,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T16:36:29Z"
+          "snapshot_at": "2026-07-22T18:01:56Z"
         },
         "weather": null,
         "context_availability": {
@@ -17984,31 +15336,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T16:36:29Z"
+            "snapshot_at": "2026-07-22T18:01:56Z"
           }
         },
         "adjustments": [
@@ -18173,7 +15525,7 @@
     "schema_version": "paper-candidate-ranking/1.0",
     "status": "PAPER_ONLY",
     "real_money_execution": false,
-    "generated_at": "2026-07-22T16:36:29Z",
+    "generated_at": "2026-07-22T18:01:56Z",
     "policy": {
       "version": "paper-ranking-v1",
       "minimum_point_edge": 0.03,
@@ -18190,7 +15542,7 @@
     "eligible_matches": 0,
     "displayed_candidates": 0,
     "rejection_counts": {
-      "missing_verified_market_candidates": 14
+      "missing_verified_market_candidates": 12
     },
     "candidates": []
   },
