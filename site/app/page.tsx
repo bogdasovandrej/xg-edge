@@ -1368,7 +1368,24 @@ function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: 
 
 function MatchDossier({ forecast }: { forecast: Forecast }) {
   const details = forecast.details;
-  const candidates = details?.candidate_bets || [];
+  const marketSnapshotEligible = details?.market_snapshot?.status === "SHADOW_ONLY" &&
+    Boolean(details.market_snapshot.captured_at_utc?.trim());
+  const pricedCandidates = [
+    ...(details?.market_candidates || []),
+    ...(details?.expanded_market_candidates || []),
+  ]
+    .filter((candidate) =>
+      marketSnapshotEligible &&
+      (candidate.status === "SHADOW_ONLY" || candidate.status === "EXPERIMENTAL_SHADOW") &&
+      finiteNumber(candidate.probability) != null &&
+      finiteNumber(candidate.market_odds) != null &&
+      finiteNumber(candidate.fair_odds) != null
+    )
+    .sort((left, right) => (finiteNumber(right.point_edge) || 0) - (finiteNumber(left.point_edge) || 0))
+    .slice(0, 3);
+  const missingPriceReason = details?.market_snapshot?.reason
+    ? marketSnapshotReason(details.market_snapshot.status, details.market_snapshot.reason)
+    : "букмекерский API пока не сопоставил событие с проверенной предматчевой линией";
   return (
     <details className="match-dossier">
       <summary><span>Открыть полный разбор</span><small>Elo · форма · составы · рынок · риск</small></summary>
@@ -1406,9 +1423,34 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
         <ScoreDistribution forecast={forecast} />
 
         <section className="candidate-section">
-          <div className="dossier-title"><h4>Топ-3 кандидата рынка</h4><span className="no-bet">NO BET</span></div>
-          {candidates.length ? <div className="candidate-grid">{candidates.slice(0, 3).map((bet, index) => <div key={`${bet.selection}-${index}`}><b>#{bet.rank || index + 1} · {bet.selection}</b><span>Вероятность {percent(bet.probability)}</span><span>Fair {decimal(bet.fair_odds)} · рынок {decimal(bet.market_odds)}</span><strong className={(bet.point_edge || 0) > 0 ? "positive-edge" : "negative-edge"}>оценка {bet.point_edge == null ? "нет цены" : `${(bet.point_edge * 100).toFixed(1)}%`}</strong></div>)}</div> : <p className="unknown-data">Нет синхронной котировки — оценка ставки невозможна.</p>}
-          <p className="audit-note">Кандидат не является рекомендацией: cohort gate — {forecast.cohort_gate?.decision_status || "pending"} ({forecast.cohort_gate?.reason || "cohort_not_yet_tracked"}).</p>
+          <div className="dossier-title">
+            <h4>Топ-3 ставок по реальным котировкам</h4>
+            <span className={pricedCandidates.length ? "shadow-badge" : "no-bet"}>
+              {pricedCandidates.length ? "PAPER ONLY" : "NO BET"}
+            </span>
+          </div>
+          {pricedCandidates.length ? (
+            <div className="candidate-grid">
+              {pricedCandidates.map((bet, index) => (
+                <div key={`${bet.market}-${bet.selection}-${bet.bookmaker_key}-${index}`}>
+                  <b>#{index + 1} · {bet.selection || "рынок не указан"}</b>
+                  <span>{bet.market || "рынок"}{bet.line == null ? "" : ` · линия ${decimal(bet.line, 1)}`}</span>
+                  <span>Вероятность {percent(bet.probability)}</span>
+                  <span>Fair {decimal(bet.fair_odds)} · коэффициент {decimal(bet.market_odds)}</span>
+                  <span>{bet.bookmaker || bet.bookmaker_key || "букмекер не указан"}</span>
+                  <strong className={(bet.point_edge || 0) > 0 ? "positive-edge" : "negative-edge"}>
+                    оценка {bet.point_edge == null ? "—" : `${(bet.point_edge * 100).toFixed(1)}%`}
+                  </strong>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="unknown-data">
+              Нет подтверждённой котировки: {missingPriceReason}. Модельные вероятности П1/X/П2 без цены
+              не считаются ставками и не попадают в топ-3.
+            </p>
+          )}
+          <p className="audit-note">PAPER-кандидат не является рекомендацией: cohort gate — {forecast.cohort_gate?.decision_status || "pending"} ({forecast.cohort_gate?.reason || "cohort_not_yet_tracked"}).</p>
         </section>
       </div>
     </details>
