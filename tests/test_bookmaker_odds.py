@@ -184,6 +184,11 @@ def test_odds_api_io_batches_matched_events_and_keeps_quota() -> None:
     assert result["provider"] == "odds_api_io"
     assert result["status"] == "available"
     assert result["records"][0]["fixture_id"] == "2048641"
+    assert result["discovery"] == {
+        "events_returned": 1,
+        "matched_events": 1,
+        "unmatched_near_kickoff": [],
+    }
     assert result["quota"] == {
         "remaining": 98,
         "limit": 100,
