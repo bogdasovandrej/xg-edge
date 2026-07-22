@@ -6,9 +6,11 @@ import requests
 
 import xgedge.data.bookmaker_odds as bookmaker_odds
 from xgedge.data.bookmaker_odds import (
+    OddsApiIoProvider,
     TheOddsApiProvider,
     apply_odds_snapshot_to_live_payload,
     merge_odds_snapshots,
+    normalize_odds_api_io_event,
     normalize_odds_event,
 )
 
@@ -63,6 +65,35 @@ def _event():
     }
 
 
+def _odds_api_io_event():
+    return {
+        "id": 123456,
+        "home": "KuPS",
+        "away": "Vardar",
+        "date": "2026-07-14T15:00:00Z",
+        "status": "pending",
+        "sport": {"name": "Football", "slug": "football"},
+        "league": {
+            "name": "UEFA Champions League",
+            "slug": "uefa-champions-league",
+        },
+        "bookmakers": {
+            "Bet365": [
+                {
+                    "name": "ML",
+                    "updatedAt": "2026-07-14T12:00:00Z",
+                    "odds": [{"home": "1.80", "draw": "3.60", "away": "4.50"}],
+                },
+                {
+                    "name": "Totals",
+                    "updatedAt": "2026-07-14T12:00:00Z",
+                    "odds": [{"hdp": 2.5, "over": "1.95", "under": "1.85"}],
+                },
+            ]
+        },
+    }
+
+
 def test_normalizes_h2h_totals_and_explicit_alias_match() -> None:
     row = normalize_odds_event(
         _event(), fixtures=[_fixture()], snapshot_at="2026-07-14T12:05:00Z"
@@ -75,12 +106,86 @@ def test_normalizes_h2h_totals_and_explicit_alias_match() -> None:
     assert row["bookmakers"][0]["markets"]["totals"][0]["line"] == 2.5
 
 
+def test_normalizes_odds_api_io_h2h_totals_and_provenance() -> None:
+    row = normalize_odds_api_io_event(
+        _odds_api_io_event(),
+        fixtures=[_fixture()],
+        snapshot_at="2026-07-14T12:05:00Z",
+    )
+    assert row["fixture_id"] == "2048641"
+    assert row["source_provider"] == "odds_api_io"
+    assert row["bookmakers"][0]["markets"]["h2h"] == {
+        "home": 1.8,
+        "draw": 3.6,
+        "away": 4.5,
+    }
+    assert row["bookmakers"][0]["markets"]["totals"][0] == {
+        "line": 2.5,
+        "over": 1.95,
+        "under": 1.85,
+    }
+
+
+def test_odds_api_io_batches_matched_events_and_keeps_quota() -> None:
+    event_without_odds = {
+        key: value for key, value in _odds_api_io_event().items()
+        if key != "bookmakers"
+    }
+    session = Session([
+        Response([event_without_odds], {
+            "x-ratelimit-limit": "100",
+            "x-ratelimit-remaining": "99",
+        }),
+        Response([_odds_api_io_event()], {
+            "x-ratelimit-limit": "100",
+            "x-ratelimit-remaining": "98",
+            "x-ratelimit-reset": "2026-07-14T13:00:00Z",
+        }),
+    ])
+    result = OddsApiIoProvider(
+        api_key="secret",
+        base_url="https://odds.test/v3",
+        session=session,
+    ).fetch_snapshot(
+        sport_keys=["soccer_uefa_champs_league"],
+        fixtures=[_fixture()],
+        snapshot_at="2026-07-14T12:05:00Z",
+    )
+
+    assert result["provider"] == "odds_api_io"
+    assert result["status"] == "available"
+    assert result["records"][0]["fixture_id"] == "2048641"
+    assert result["quota"] == {
+        "remaining": 98,
+        "limit": 100,
+        "reset": "2026-07-14T13:00:00Z",
+    }
+    assert session.calls[0][0] == "https://odds.test/v3/events"
+    assert session.calls[0][1]["params"]["sport"] == "football"
+    assert session.calls[1][0] == "https://odds.test/v3/odds/multi"
+    assert session.calls[1][1]["params"]["eventIds"] == "123456"
+    assert "secret" not in str(result)
+
+
 def test_missing_key_is_explicit_and_makes_no_request() -> None:
     session = Session([])
     result = TheOddsApiProvider(api_key=None, session=session).fetch_snapshot(
         sport_keys=["soccer_uefa_champs_league"], fixtures=[_fixture()],
         snapshot_at="2026-07-14T12:05:00Z",
     )
+    assert result["status"] == "unavailable"
+    assert result["reason"] == "missing_api_key"
+    assert session.calls == []
+
+
+def test_odds_api_io_missing_key_is_explicit_and_makes_no_request(monkeypatch) -> None:
+    monkeypatch.delenv("ODDS_API_IO_KEY", raising=False)
+    session = Session([])
+    result = OddsApiIoProvider(api_key=None, session=session).fetch_snapshot(
+        sport_keys=["soccer_uefa_champs_league"], fixtures=[_fixture()],
+        snapshot_at="2026-07-14T12:05:00Z",
+    )
+    assert result["provider"] == "odds_api_io"
     assert result["status"] == "unavailable"
     assert result["reason"] == "missing_api_key"
     assert session.calls == []

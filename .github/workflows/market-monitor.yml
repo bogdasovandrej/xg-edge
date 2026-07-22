@@ -20,14 +20,15 @@ jobs:
       - name: Check configuration
         id: config
         env:
+          ODDS_API_IO_KEY: ${{ secrets.ODDS_API_IO_KEY }}
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
         shell: bash
         run: |
-          if [ -n "$THE_ODDS_API_KEY" ]; then
+          if [ -n "$ODDS_API_IO_KEY" ] || [ -n "$THE_ODDS_API_KEY" ]; then
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           else
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "THE_ODDS_API_KEY is not configured; market capture skipped"
+            echo "ODDS_API_IO_KEY and THE_ODDS_API_KEY are not configured; market capture skipped"
           fi
       - uses: actions/setup-python@v5
         if: steps.config.outputs.enabled == 'true'
@@ -40,10 +41,12 @@ jobs:
       - name: Capture opening or closing-window odds
         if: steps.config.outputs.enabled == 'true'
         env:
+          ODDS_API_IO_KEY: ${{ secrets.ODDS_API_IO_KEY }}
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
         run: >-
           python scripts/capture_bookmaker_odds.py
           --fixtures reports/live/current_fixtures.json
+          --top-five-fixtures reports/live/top5_fixtures.json
           --live-payload reports/live_predictions.json
           --ledger reports/live/prospective_clv.json
           --snapshot-output reports/live/bookmaker_odds.json

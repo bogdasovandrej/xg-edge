@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.1 — 2026-07-22
+
+- Added Odds-API.io as the primary bookmaker feed with a free-tier-friendly
+  batched endpoint for up to ten matched events per request.
+- Added pre-match 1X2 and totals normalization for Bet365, Unibet and Pinnacle,
+  while retaining The Odds API as a fallback.
+- Extended market capture to Top-5 fixtures and made hourly quota reset handling
+  automatic.
+- Kept credentials server-side and all fixture joins exact/fail-closed.
+
 ## 0.6.0 — 2026-07-22
 
 - Added an immutable forecast evidence archive with hash-linked append events.
