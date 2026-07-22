@@ -50,6 +50,9 @@ type Forecast = {
 type RecentMatch = {
   match_id: string;
   kickoff_utc: string;
+  competition?: string | null;
+  competition_level?: string | null;
+  venue?: "home" | "away" | string | null;
   opponent?: string | null;
   score_90?: { for: number; against: number } | null;
   result_90?: string | null;
@@ -57,10 +60,11 @@ type RecentMatch = {
   opponent_elo_before?: { rating?: number | null } | null;
   xg?: {
     raw?: number | null;
-    non_penalty?: { status?: string; value?: number | null } | null;
-    red_and_opponent_adjusted_npxg?: { status?: string; value?: number | null } | null;
+    non_penalty?: { status?: string; value?: number | null; reason?: string | null; source?: string | null } | null;
+    red_and_opponent_adjusted_npxg?: { status?: string; value?: number | null; reason?: string | null } | null;
   } | null;
   red_cards?: unknown[] | null;
+  provenance?: { source?: string | null; provider?: string | null; match_url?: string | null; xg?: string | null } | null;
 };
 
 type TeamDetail = {
@@ -90,6 +94,7 @@ type CandidateBet = {
   rank?: number;
   selection?: string;
   outcome?: string;
+  market?: string;
   probability?: number | null;
   fair_odds?: number | null;
   market_odds?: number | null;
@@ -118,6 +123,17 @@ type MarketSnapshot = {
     draw?: MarketPrice | null;
     away?: MarketPrice | null;
   } | null;
+  best_totals?: Array<{
+    line?: number | null;
+    over?: MarketPrice | null;
+    under?: MarketPrice | null;
+  }> | null;
+  best_btts?: { yes?: MarketPrice | null; no?: MarketPrice | null } | null;
+  best_spreads?: Array<{
+    line?: number | null;
+    home?: MarketPrice | null;
+    away?: MarketPrice | null;
+  }> | null;
   source_url?: string | null;
 };
 
@@ -153,6 +169,7 @@ type MatchDetails = {
   candidate_bets?: CandidateBet[] | null;
   market_snapshot?: MarketSnapshot | null;
   market_candidates?: CandidateBet[] | null;
+  expanded_market_candidates?: CandidateBet[] | null;
   betting_gate?: { allowed?: boolean; reason?: string } | null;
 };
 
@@ -991,6 +1008,17 @@ function BookmakerSnapshot({ details }: { details?: MatchDetails | null }) {
   const shadowCandidates = (details?.market_candidates || [])
     .filter((candidate) => candidate.status === "SHADOW_ONLY")
     .slice(0, 3);
+  const expandedCandidates = (details?.expanded_market_candidates || [])
+    .filter((candidate) => candidate.status === "EXPERIMENTAL_SHADOW")
+    .slice(0, 3);
+  const totals = (snapshot.best_totals || []).filter((row) =>
+    finiteNumber(row.line) != null && finiteNumber(row.over?.odds) != null && finiteNumber(row.under?.odds) != null
+  );
+  const spreads = (snapshot.best_spreads || []).filter((row) =>
+    finiteNumber(row.line) != null && finiteNumber(row.home?.odds) != null && finiteNumber(row.away?.odds) != null
+  );
+  const btts = snapshot.best_btts;
+  const hasBtts = finiteNumber(btts?.yes?.odds) != null && finiteNumber(btts?.no?.odds) != null;
   const hiddenReason = eligibleFresh
     ? "нет полного проверенного набора цен П1/X/П2 (incomplete_1x2)"
     : marketSnapshotReason(snapshot.status, snapshot.reason);
@@ -1025,6 +1053,35 @@ function BookmakerSnapshot({ details }: { details?: MatchDetails | null }) {
         {eligibleFresh && priceRows.length === 3 && (
           <p className="audit-note">Это зафиксированный предматчевый SHADOW_ONLY-снимок, а не текущая цена.</p>
         )}
+
+        {eligibleFresh && (totals.length > 0 || hasBtts || spreads.length > 0) && (
+          <div className="expanded-market-board">
+            <h5>Дополнительные рынки</h5>
+            <div className="market-line-grid">
+              {totals.map((row) => (
+                <div key={`total-${row.line}`}>
+                  <b>Тотал {decimal(row.line, 1)}</b>
+                  <span>ТБ <strong>{decimal(row.over?.odds)}</strong> · {row.over?.bookmaker || row.over?.bookmaker_key || "book —"}</span>
+                  <span>ТМ <strong>{decimal(row.under?.odds)}</strong> · {row.under?.bookmaker || row.under?.bookmaker_key || "book —"}</span>
+                </div>
+              ))}
+              {hasBtts && (
+                <div>
+                  <b>Обе забьют</b>
+                  <span>Да <strong>{decimal(btts?.yes?.odds)}</strong> · {btts?.yes?.bookmaker || btts?.yes?.bookmaker_key || "book —"}</span>
+                  <span>Нет <strong>{decimal(btts?.no?.odds)}</strong> · {btts?.no?.bookmaker || btts?.no?.bookmaker_key || "book —"}</span>
+                </div>
+              )}
+              {spreads.map((row) => (
+                <div key={`spread-${row.line}`}>
+                  <b>Азиатская фора хозяев {finiteNumber(row.line)! > 0 ? "+" : ""}{decimal(row.line, 1)}</b>
+                  <span>Хозяева <strong>{decimal(row.home?.odds)}</strong> · {row.home?.bookmaker || row.home?.bookmaker_key || "book —"}</span>
+                  <span>Гости <strong>{decimal(row.away?.odds)}</strong> · {row.away?.bookmaker || row.away?.bookmaker_key || "book —"}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {eligibleFresh && priceRows.length === 3 && shadowCandidates.length > 0 && (
@@ -1047,6 +1104,29 @@ function BookmakerSnapshot({ details }: { details?: MatchDetails | null }) {
             ))}
           </div>
           <p className="audit-note">Автоматические кандидаты ведутся отдельно от ручного списка и используются только для prospective CLV-аудита.</p>
+        </section>
+      )}
+
+      {eligibleFresh && expandedCandidates.length > 0 && (
+        <section className="shadow-candidate-section expanded-candidate-section">
+          <div className="dossier-title">
+            <h4>Тоталы и ОЗ: модель против цены</h4>
+            <span className="shadow-badge">EXPERIMENTAL SHADOW</span>
+          </div>
+          <div className="candidate-grid">
+            {expandedCandidates.map((candidate, index) => (
+              <div key={`${candidate.market}-${candidate.selection}-${candidate.bookmaker_key}-${index}`}>
+                <b>#{candidate.rank || index + 1} · {candidate.selection || "рынок не указан"}</b>
+                <span>Вероятность модели {percent(candidate.probability)}</span>
+                <span>Fair {decimal(candidate.fair_odds)} · снимок {decimal(candidate.market_odds)}</span>
+                <span>{candidate.bookmaker || candidate.bookmaker_key || "book не указан"}</span>
+                <strong className={(candidate.point_edge || 0) > 0 ? "positive-edge" : "negative-edge"}>
+                  shadow EV {candidate.point_edge == null ? "—" : `${(candidate.point_edge * 100).toFixed(1)}%`}
+                </strong>
+              </div>
+            ))}
+          </div>
+          <p className="audit-note">Эти рынки ещё не допущены к ставкам: сначала нужен отдельный prospective CLV по каждой линии. Положительный расчётный EV не равен доказанной прибыли.</p>
         </section>
       )}
     </>
@@ -1098,6 +1178,127 @@ function ScoreDistribution({ forecast }: { forecast: Forecast }) {
   );
 }
 
+const shortMatchDate = (value?: string | null) => {
+  if (!value) return "дата —";
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime())
+    ? "дата —"
+    : new Intl.DateTimeFormat("ru-RU", { day: "2-digit", month: "2-digit" }).format(parsed);
+};
+
+const resultLetter = (result?: string | null) => ({ win: "В", draw: "Н", loss: "П" }[result || ""] || "—");
+const resultClass = (result?: string | null) =>
+  result === "win" ? "form-win" : result === "draw" ? "form-draw" : result === "loss" ? "form-loss" : "form-unknown";
+
+const confirmedMean = (matches: RecentMatch[], metric: "non_penalty" | "red_and_opponent_adjusted_npxg") => {
+  const values = matches
+    .map((match) => finiteNumber(match.xg?.[metric]?.value))
+    .filter((value): value is number => value != null);
+  return values.length ? { value: values.reduce((sum, value) => sum + value, 0) / values.length, n: values.length } : null;
+};
+
+function RecentFormHeader({ forecast }: { forecast: Forecast }) {
+  const teams = [
+    { side: "home", name: forecast.home, detail: forecast.details?.teams?.home },
+    { side: "away", name: forecast.away, detail: forecast.details?.teams?.away },
+  ] as const;
+  return (
+    <section className="recent-form-header">
+      <div className="dossier-title">
+        <h4>Последние официальные матчи</h4>
+        <span>товарищеские исключены · до начала матча</span>
+      </div>
+      <div className="form-team-grid">
+        {teams.map(({ side, name, detail }) => {
+          const matches = (detail?.recent_matches || []).slice(0, 5);
+          const npxg = confirmedMean(matches, "non_penalty");
+          const adjusted = confirmedMean(matches, "red_and_opponent_adjusted_npxg");
+          return (
+            <article key={side}>
+              <header><b>{detail?.name || name}</b><span>Elo {detail?.elo == null ? "—" : Math.round(detail.elo)}</span></header>
+              {matches.length > 0 ? (
+                <>
+                  <div className="form-strip" aria-label={`Форма ${name}: последние ${matches.length} официальных матчей`}>
+                    {matches.map((match) => (
+                      <span className={resultClass(match.result_90)} key={match.match_id} title={`${match.opponent || "Соперник"} ${match.score_90 ? `${match.score_90.for}:${match.score_90.against}` : ""}`}>
+                        {resultLetter(match.result_90)}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="form-results">
+                    {matches.map((match) => (
+                      <div key={match.match_id}>
+                        <time dateTime={match.kickoff_utc}>{shortMatchDate(match.kickoff_utc)}</time>
+                        <small>{match.venue === "away" ? "в гостях" : match.venue === "home" ? "дома" : "поле —"}</small>
+                        <b>{match.opponent || "Соперник"}</b>
+                        <strong>{match.score_90 ? `${match.score_90.for}:${match.score_90.against}` : "—"}</strong>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : <p className="unknown-data">Подтверждённая официальная история пока не загружена.</p>}
+              <dl className="form-xg-summary">
+                <div><dt>Средний npxG</dt><dd>{npxg ? `${decimal(npxg.value)} · ${npxg.n}/${matches.length}` : "нет event-data"}</dd></div>
+                <div><dt>npxG* КК+Elo</dt><dd>{adjusted ? `${decimal(adjusted.value)} · ${adjusted.n}/${matches.length}` : "нет event-data"}</dd></div>
+              </dl>
+            </article>
+          );
+        })}
+      </div>
+      <p className="audit-note">npxG убирает пенальти; npxG* дополнительно учитывает подтверждённые красные карточки и силу соперника. Ошибки вратаря/защиты исключаются только при наличии event-level тега — счёт не превращается в выдуманный xG.</p>
+    </section>
+  );
+}
+
+function ModelAnalysisBrief({ forecast }: { forecast: Forecast }) {
+  const probabilities = [
+    { name: forecast.home, value: finiteNumber(forecast.p_home) },
+    { name: "ничья", value: finiteNumber(forecast.p_draw) },
+    { name: forecast.away, value: finiteNumber(forecast.p_away) },
+  ].filter((row): row is { name: string; value: number } => row.value != null)
+    .sort((a, b) => b.value - a.value);
+  const leader = probabilities[0];
+  const margin = leader && probabilities[1] ? leader.value - probabilities[1].value : null;
+  const stage = `${forecast.competition} ${forecast.stage}`.toLocaleLowerCase("ru-RU");
+  const highStakes = /квалиф|qualification|play.?off|плей.?офф|полуфин|semifinal|финал|final/.test(stage);
+  const firstLeg = Boolean(forecast.first_leg && /first|1st|перв/i.test(forecast.first_leg));
+  const homeHistory = forecast.details?.teams?.home?.recent_matches || [];
+  const awayHistory = forecast.details?.teams?.away?.recent_matches || [];
+  const knownXg = [...homeHistory.slice(0, 5), ...awayHistory.slice(0, 5)]
+    .filter((match) => finiteNumber(match.xg?.non_penalty?.value) != null).length;
+  const lineupKnown = [forecast.details?.teams?.home, forecast.details?.teams?.away]
+    .every((team) => (team?.likely_lineup || []).some((player) => player.status === "starter"));
+  const summary = leader
+    ? `${leader.name === "ничья" ? "Самый вероятный отдельный исход — ничья" : `Модель отдаёт первое место исходу «${leader.name}»`} (${percent(leader.value)}), ${margin != null && margin < 0.08 ? "но преимущество небольшое — матч близкий" : "с заметным отрывом от следующего исхода"}.`
+    : "Фундаментальная вероятность ещё не выпущена: данных недостаточно для численного вывода.";
+  const goals = forecast.p_over25 == null
+    ? "Тотальный рынок пока не рассчитан."
+    : forecast.p_over25 >= 0.58
+      ? `Профиль тяготеет к ТБ 2.5 (${percent(forecast.p_over25)}), но цена должна пройти отдельный CLV-фильтр.`
+      : forecast.p_over25 <= 0.42
+        ? `Профиль тяготеет к ТМ 2.5 (${percent(1 - forecast.p_over25)}), без статуса готовой ставки.`
+        : `По тоталу 2.5 явного перевеса нет: ТБ ${percent(forecast.p_over25)}, ТМ ${percent(1 - forecast.p_over25)}.`;
+  const risks = [
+    homeHistory.length + awayHistory.length === 0 ? "официальная история команд пока не загружена" : null,
+    knownXg < 6 && homeHistory.length + awayHistory.length > 0 ? `event-level npxG подтверждён лишь для ${knownXg} из ${Math.min(10, homeHistory.length + awayHistory.length)} последних показанных матчей` : null,
+    !lineupKnown ? "составы предварительные или ещё не опубликованы" : null,
+    forecast.details?.referee?.name ? null : "назначение судьи не подтверждено",
+    forecast.details?.weather?.temperature_c == null ? "погода не подтверждена" : null,
+    forecast.details?.tail_risk?.label ? `tail risk: ${levelName(forecast.details.tail_risk.label)}` : "tail risk не оценён",
+  ].filter((risk): risk is string => Boolean(risk));
+  return (
+    <section className="model-analysis-brief">
+      <div className="dossier-title"><h4>Алгоритмический разбор</h4><span>без выдуманных новостей и инсайдов</span></div>
+      <div className="analysis-columns">
+        <div><b>Сценарий матча</b><p>{summary} {goals} ОЗ — {percent(forecast.p_btts)}.</p></div>
+        <div><b>Мотивация</b><p>{highStakes ? "Турнирная стадия предполагает высокую структурную мотивацию." : "По одной стадии мотивацию подтвердить нельзя."} {firstLeg ? "Первый матч пары повышает риск осторожного темпа." : "Точный стимул по таблице, ротации и заявлениям тренера пока не подтверждён."}</p></div>
+        <div><b>Главные риски</b>{risks.length ? <ul>{risks.slice(0, 4).map((risk) => <li key={risk}>{risk}</li>)}</ul> : <p>Критических пробелов в загруженном срезе не обнаружено.</p>}</div>
+      </div>
+      <p className="audit-note">Текст собран детерминированно из вероятностей, Elo, официальной формы и аудита качества. Он не подменяет отсутствующие травмы, новости или мотивацию «мнением нейросети».</p>
+    </section>
+  );
+}
+
 function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: string }) {
   const matches = team?.recent_matches || [];
   const starters = (team?.likely_lineup || [])
@@ -1111,17 +1312,17 @@ function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: 
       </div>
       {matches.length ? (
         <div className="history-table" role="table" aria-label={`Последние официальные матчи: ${fallbackName}`}>
-          <div className="history-head" role="row"><span>Матч</span><span>Счёт</span><span>npxG</span><span>adj.</span></div>
+          <div className="history-head" role="row"><span>Официальный матч</span><span>Счёт</span><span>npxG без пен.</span><span>npxG* КК+Elo</span></div>
           {matches.map((match) => (
             <div className="history-row" role="row" key={match.match_id}>
-              <span><b>{match.opponent || "Соперник"}</b><small>{match.opponent_level ? `${levelName(match.opponent_level)} · Elo ${Math.round(match.opponent_elo_before?.rating || 0)}` : "уровень не подтверждён"}</small></span>
-              <span>{match.score_90 ? `${match.score_90.for}:${match.score_90.against}` : "—"}</span>
-              <span>{decimal(match.xg?.non_penalty?.value)}</span>
-              <span>{decimal(match.xg?.red_and_opponent_adjusted_npxg?.value)}</span>
+              <span><b>{shortMatchDate(match.kickoff_utc)} · {match.venue === "away" ? "гости" : match.venue === "home" ? "дома" : "поле —"} · {match.opponent || "Соперник"}</b><small>{match.competition || "официальный турнир"} · {match.opponent_level ? levelName(match.opponent_level) : "уровень не подтверждён"}{finiteNumber(match.opponent_elo_before?.rating) == null ? "" : ` · Elo ${Math.round(match.opponent_elo_before!.rating!)}`}</small></span>
+              <span className={`history-result ${resultClass(match.result_90)}`}><b>{resultLetter(match.result_90)}</b>{match.score_90 ? `${match.score_90.for}:${match.score_90.against}` : "—"}</span>
+              <span title={match.xg?.non_penalty?.reason || undefined}>{finiteNumber(match.xg?.non_penalty?.value) == null ? "нет" : decimal(match.xg?.non_penalty?.value)}</span>
+              <span title={match.xg?.red_and_opponent_adjusted_npxg?.reason || undefined}>{finiteNumber(match.xg?.red_and_opponent_adjusted_npxg?.value) == null ? "нет" : decimal(match.xg?.red_and_opponent_adjusted_npxg?.value)}</span>
             </div>
           ))}
         </div>
-      ) : <p className="unknown-data">Нет десяти подтверждённых официальных матчей с xG — значения не подставлены.</p>}
+      ) : <p className="unknown-data">Подтверждённая история официальных матчей не загружена — значения не подставлены.</p>}
       <div className="availability-grid">
         <div><b>Состав</b><span>{starters.length ? `${starters.length} стартеров · ${starters.every((p) => p.is_confirmed) ? "официальный" : "предварительный"}` : "не опубликован"}</span></div>
         <div><b>Тренер</b><span>{team?.coach?.coach_name || "не подтверждён"}</span></div>
@@ -1149,6 +1350,21 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
     <details className="match-dossier">
       <summary><span>Открыть полный разбор</span><small>Elo · форма · составы · рынок · риск</small></summary>
       <div className="dossier-content">
+        <RecentFormHeader forecast={forecast} />
+        <ModelAnalysisBrief forecast={forecast} />
+
+        <div className="team-comparison">
+          <TeamHistory team={details?.teams?.home} fallbackName={forecast.home} />
+          <TeamHistory team={details?.teams?.away} fallbackName={forecast.away} />
+        </div>
+
+        <div className="context-grid">
+          <section><h4>Судья</h4>{details?.referee?.name ? <><b>{details.referee.name}</b><p>{details.referee.yellow_cards_per_match == null ? "Статистика карточек пока не подтверждена." : `${decimal(details.referee.yellow_cards_per_match, 1)} ЖК/матч · ${details.referee.matches || "—"} игр`}</p></> : <p>Назначение или статистика недоступны.</p>}</section>
+          <section><h4>Погода</h4>{details?.weather?.temperature_c == null ? <p>Проверенный прогноз погоды недоступен.</p> : <p>{decimal(details.weather.temperature_c, 0)}°C · ветер {decimal(details.weather.wind_kph, 0)} км/ч · осадки {decimal(details.weather.precipitation_mm, 1)} мм</p>}</section>
+          <section><h4>Tail risk</h4>{details?.tail_risk ? <><b>{levelName(details.tail_risk.label)} · {decimal(details.tail_risk.score, 0)}/100</b><p>Это хрупкость прогноза, а не предсказание «чёрного лебедя».</p></> : <p>Не оценён из-за недостатка данных.</p>}</section>
+          <section><h4>Качество данных</h4>{details?.data_quality ? <><b>{decimal(details.data_quality.score, 0)}/100 · {levelName(details.data_quality.label)}</b><p>{details.data_quality.warnings?.length || 0} предупреждений</p></> : <p>Детальный аудит ещё не сформирован.</p>}</section>
+        </div>
+
         {details?.market && (
           <section className="market-comparison">
             <div className="dossier-title"><h4>Модель против рынка</h4><span>{details.market.bookmaker || "проверенная линия"}</span></div>
@@ -1165,18 +1381,6 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
 
         <BookmakerSnapshot details={details} />
         <ScoreDistribution forecast={forecast} />
-
-        <div className="team-comparison">
-          <TeamHistory team={details?.teams?.home} fallbackName={forecast.home} />
-          <TeamHistory team={details?.teams?.away} fallbackName={forecast.away} />
-        </div>
-
-        <div className="context-grid">
-          <section><h4>Судья</h4>{details?.referee?.name ? <><b>{details.referee.name}</b><p>{details.referee.yellow_cards_per_match == null ? "Статистика карточек пока не подтверждена." : `${decimal(details.referee.yellow_cards_per_match, 1)} ЖК/матч · ${details.referee.matches || "—"} игр`}</p></> : <p>Назначение или статистика недоступны.</p>}</section>
-          <section><h4>Погода</h4>{details?.weather?.temperature_c == null ? <p>Проверенный прогноз погоды недоступен.</p> : <p>{decimal(details.weather.temperature_c, 0)}°C · ветер {decimal(details.weather.wind_kph, 0)} км/ч · осадки {decimal(details.weather.precipitation_mm, 1)} мм</p>}</section>
-          <section><h4>Tail risk</h4>{details?.tail_risk ? <><b>{levelName(details.tail_risk.label)} · {decimal(details.tail_risk.score, 0)}/100</b><p>Это хрупкость прогноза, а не предсказание «чёрного лебедя».</p></> : <p>Не оценён из-за недостатка данных.</p>}</section>
-          <section><h4>Качество данных</h4>{details?.data_quality ? <><b>{decimal(details.data_quality.score, 0)}/100 · {levelName(details.data_quality.label)}</b><p>{details.data_quality.warnings?.length || 0} предупреждений</p></> : <p>Детальный аудит ещё не сформирован.</p>}</section>
-        </div>
 
         <section className="candidate-section">
           <div className="dossier-title"><h4>Топ-3 кандидата рынка</h4><span className="no-bet">NO BET</span></div>

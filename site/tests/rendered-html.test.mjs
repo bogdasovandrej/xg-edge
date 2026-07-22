@@ -91,6 +91,7 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.doesNotMatch(page, /−4\.83%|−8\.00%|0\.9834/);
   assert.match(page, /details\?\.market_snapshot/);
   assert.match(page, /details\?\.market_candidates/);
+  assert.match(page, /details\?\.expanded_market_candidates/);
   assert.match(page, /Снимок рынка/);
   assert.match(page, /captured_at_utc/);
   assert.match(page, /Топ-3 shadow-кандидата/);
@@ -98,6 +99,14 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /candidate\.status === "SHADOW_ONLY"/);
   assert.match(page, /older_than_ttl/);
   assert.match(page, /Цены и shadow-кандидаты скрыты/);
+  assert.match(page, /Последние официальные матчи/);
+  assert.match(page, /товарищеские исключены/);
+  assert.match(page, /npxG убирает пенальти/);
+  assert.match(page, /Красные карточки|красные карточки/);
+  assert.match(page, /Алгоритмический разбор/);
+  assert.match(page, /Тоталы и ОЗ: модель против цены/);
+  assert.match(page, /Азиатская фора хозяев/);
+  assert.match(page, /Положительный расчётный EV не равен доказанной прибыли/);
   assert.match(page, /details\?\.candidate_bets \|\| \[\]/);
   assert.doesNotMatch(page, /live price/i);
   assert.match(layout, /lang="ru"/);
