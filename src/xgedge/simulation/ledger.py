@@ -7,7 +7,6 @@ or real-money execution path.
 from __future__ import annotations
 
 from copy import deepcopy
-from dataclasses import asdict
 from datetime import datetime, timedelta, timezone
 from hashlib import sha256
 import json
@@ -15,7 +14,7 @@ from math import isfinite
 import os
 from pathlib import Path
 import tempfile
-from typing import Any, Iterable, Mapping
+from typing import Any, Mapping
 
 from xgedge.simulation.paper import (
     STARTING_BALANCE_RUB,
@@ -33,8 +32,15 @@ from xgedge.simulation.paper import (
     TargetObserved,
     rank_strategies,
 )
+from xgedge.markets.paper_markets import (
+    SUPPORTED_SCORE_MARKETS,
+    canonical_market,
+    settle_score_market,
+    supported_line,
+)
 
-LEDGER_SCHEMA_VERSION = "paper-trading-ledger/1.0"
+LEDGER_SCHEMA_VERSION = "paper-trading-ledger/1.1"
+LEGACY_LEDGER_SCHEMA_VERSION = "paper-trading-ledger/1.0"
 EVENT_SCHEMA_VERSION = "paper-event/1.0"
 SUMMARY_SCHEMA_VERSION = "paper-trading-summary/1.0"
 RESULTS_SCHEMA_VERSION = "paper-official-results/1.0"
@@ -59,7 +65,8 @@ _POLICY: dict[str, Any] = {
     "ruin_threshold_rub": RUIN_THRESHOLD_RUB,
     "maximum_stake_fraction": 0.01,
     "maximum_quote_age_seconds": int(MAX_QUOTE_AGE.total_seconds()),
-    "market": "REGULATION_1X2",
+    "market": "REGULATION_SCORE_MARKETS_V1",
+    "supported_markets": sorted(SUPPORTED_SCORE_MARKETS),
     "one_candidate_per_match": True,
     "strategy_ids": list(STRATEGY_LABELS),
     "strategy_elimination": "disabled_until_preregistered_evidence",
@@ -366,6 +373,15 @@ def _public_summary_unvalidated(
         })
     total_settled = sum(row["settled_bets"] for row in leaderboard)
     total_open = sum(row["open_bets"] for row in leaderboard)
+    market_counts: dict[str, dict[str, int]] = {}
+    for key, enrollment in document["enrollments"].items():
+        market = canonical_market(enrollment.get("market"))
+        counts = market_counts.setdefault(market, {"enrolled": 0, "settled": 0, "open": 0})
+        counts["enrolled"] += 1
+        if key in document["settlements"]:
+            counts["settled"] += 1
+        else:
+            counts["open"] += 1
     return {
         "schema_version": SUMMARY_SCHEMA_VERSION,
         "status": "PAPER_ONLY_TRACKING" if document["enrollments"] else "PAPER_ONLY_EMPTY",
@@ -383,6 +399,7 @@ def _public_summary_unvalidated(
             "open_bets": total_open,
         },
         "leaderboard": leaderboard,
+        "markets": dict(sorted(market_counts.items())),
         "selection_policy": {
             "status": "PREREGISTERED",
             "minimum_settled_bets_for_full_evidence": 100,
@@ -449,7 +466,7 @@ def _validate_action(action: Mapping[str, Any], strategy_id: str) -> None:
 def _validate_enrollment(row: Mapping[str, Any], fixture_id: str) -> None:
     expected = {
         "fixture_id", "competition", "stage", "kickoff_utc", "home", "away",
-        "selection", "outcome", "model_probability", "bookmaker_probability",
+        "selection", "outcome", "market", "line", "model_probability", "bookmaker_probability",
         "odds", "bookmaker", "bookmaker_key", "quote_source",
         "quote_captured_at", "data_quality_score", "point_edge", "robust_edge",
         "market_period", "enrolled_at", "strategy_actions",
@@ -457,8 +474,25 @@ def _validate_enrollment(row: Mapping[str, Any], fixture_id: str) -> None:
     _exact_fields(row, expected, f"enrollment {fixture_id}")
     if _text(row["fixture_id"], "fixture_id") != fixture_id:
         raise ValueError(f"enrollment key/id mismatch for {fixture_id}")
-    if row["outcome"] not in OUTCOMES:
-        raise ValueError(f"enrollment {fixture_id} has unsupported outcome")
+    market_kind = canonical_market(row["market"])
+    if market_kind not in SUPPORTED_SCORE_MARKETS or market_kind != row["market"]:
+        raise ValueError(f"enrollment {fixture_id} has unsupported market")
+    line = row["line"]
+    if market_kind in {"totals", "team_totals", "asian_handicap"}:
+        if supported_line(line) is None:
+            raise ValueError(f"enrollment {fixture_id} has unsupported line")
+    elif line is not None:
+        raise ValueError(f"enrollment {fixture_id} must not have a line")
+    try:
+        settle_score_market(
+            market=market_kind,
+            selection=_text(row["outcome"], "outcome"),
+            line=line,
+            home_goals=0,
+            away_goals=0,
+        )
+    except ValueError as exc:
+        raise ValueError(f"enrollment {fixture_id} has unsupported selection") from exc
     _timestamp(row["kickoff_utc"], "kickoff_utc")
     _timestamp(row["quote_captured_at"], "quote_captured_at")
     _timestamp(row["enrolled_at"], "enrolled_at")
@@ -470,7 +504,7 @@ def _validate_enrollment(row: Mapping[str, Any], fixture_id: str) -> None:
     if abs(market - 1.0 / odds) > 1e-9 or model <= market:
         raise ValueError(f"enrollment {fixture_id} has inconsistent market edge")
     if row["market_period"] != "REGULATION_90_MINUTES":
-        raise ValueError(f"enrollment {fixture_id} is not regulation 1X2")
+        raise ValueError(f"enrollment {fixture_id} is not a regulation-time market")
     actions = row["strategy_actions"]
     if not isinstance(actions, Mapping) or set(actions) != set(STRATEGY_LABELS):
         raise ValueError(f"enrollment {fixture_id} strategy actions are incomplete")
@@ -482,12 +516,44 @@ def _validate_enrollment(row: Mapping[str, Any], fixture_id: str) -> None:
 
 def _validate_settlement(row: Mapping[str, Any], fixture_id: str) -> None:
     expected = {
-        "fixture_id", "outcome", "settled_at", "result_source",
+        "fixture_id", "outcome", "home_goals_90", "away_goals_90",
+        "market", "selection", "line", "selection_result", "settled_at", "result_source",
         "closing_benchmark", "closing_odds", "strategy_results",
     }
     _exact_fields(row, expected, f"settlement {fixture_id}")
     if row["fixture_id"] != fixture_id or row["outcome"] not in OUTCOMES:
         raise ValueError(f"settlement {fixture_id} has invalid identity/outcome")
+    market_kind = canonical_market(row["market"])
+    if market_kind not in SUPPORTED_SCORE_MARKETS or market_kind != row["market"]:
+        raise ValueError(f"settlement {fixture_id} has invalid market")
+    home, away = row["home_goals_90"], row["away_goals_90"]
+    if home is not None or away is not None:
+        if (
+            isinstance(home, bool) or isinstance(away, bool)
+            or not isinstance(home, int) or not isinstance(away, int)
+            or home < 0 or away < 0
+        ):
+            raise ValueError(f"settlement {fixture_id} has invalid goals")
+        expected_outcome = "home" if home > away else "away" if away > home else "draw"
+        if row["outcome"] != expected_outcome:
+            raise ValueError(f"settlement {fixture_id} outcome conflicts with goals")
+        expected_result = settle_score_market(
+            market=market_kind,
+            selection=row["selection"],
+            line=row["line"],
+            home_goals=home,
+            away_goals=away,
+        )
+        if row["selection_result"] != expected_result:
+            raise ValueError(f"settlement {fixture_id} selection result conflicts with goals")
+    elif market_kind != "1x2":
+        raise ValueError(f"settlement {fixture_id} requires goals for this market")
+    else:
+        expected_result = "win" if row["selection"] == row["outcome"] else "loss"
+        if row["selection_result"] != expected_result:
+            raise ValueError(f"settlement {fixture_id} selection result conflicts with outcome")
+    if row["selection_result"] not in {"win", "loss", "push", "void"}:
+        raise ValueError(f"settlement {fixture_id} has invalid selection result")
     _timestamp(row["settled_at"], "settled_at")
     _text(row["result_source"], "result_source")
     if row["closing_odds"] is None:
@@ -495,13 +561,13 @@ def _validate_settlement(row: Mapping[str, Any], fixture_id: str) -> None:
             raise ValueError("closing benchmark must be null when closing odds are absent")
     else:
         _number(row["closing_odds"], "closing_odds", minimum=1, strict_minimum=True)
-        if row["closing_benchmark"] != "pinnacle_fair_1x2":
+        if row["closing_benchmark"] != "pinnacle_fair_1x2" or market_kind != "1x2":
             raise ValueError("only a validated Pinnacle fair close may be stored")
     results = row["strategy_results"]
     if not isinstance(results, Mapping) or set(results) != set(STRATEGY_LABELS):
         raise ValueError("settlement strategy results are incomplete")
     for result in results.values():
-        if result not in {"win", "loss", "not_placed"}:
+        if result not in {"win", "loss", "push", "void", "not_placed"}:
             raise ValueError("unsupported strategy settlement result")
 
 
@@ -541,6 +607,13 @@ def validate_paper_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
         if fixture_id not in enrollments or not isinstance(row, Mapping):
             raise ValueError(f"settlement {fixture_id} has no enrollment")
         _validate_settlement(row, str(fixture_id))
+        enrollment = enrollments[fixture_id]
+        if (
+            row["market"] != enrollment["market"]
+            or row["selection"] != enrollment["outcome"]
+            or row["line"] != enrollment["line"]
+        ):
+            raise ValueError(f"settlement {fixture_id} does not match enrollment")
     history = source["update_history"]
     if not isinstance(history, list):
         raise ValueError("update_history must be a list")
@@ -601,12 +674,50 @@ def validate_paper_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
     return document
 
 
+def _migrate_legacy_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
+    """Upgrade the strict 1X2 v1.0 ledger without changing event history."""
+    if source.get("schema_version") != LEGACY_LEDGER_SCHEMA_VERSION:
+        return deepcopy(dict(source))
+    document = deepcopy(dict(source))
+    policy = document.get("policy")
+    if not isinstance(policy, Mapping) or policy.get("market") != "REGULATION_1X2":
+        raise ValueError("unsupported legacy paper policy")
+    document["schema_version"] = LEDGER_SCHEMA_VERSION
+    document["policy"] = deepcopy(_POLICY)
+    enrollments = document.get("enrollments")
+    settlements = document.get("settlements")
+    if not isinstance(enrollments, dict) or not isinstance(settlements, dict):
+        raise ValueError("legacy paper ledger has invalid positions")
+    for row in enrollments.values():
+        if not isinstance(row, dict):
+            raise ValueError("legacy enrollment must be an object")
+        row["market"] = "1x2"
+        row["line"] = None
+    for fixture_id, row in settlements.items():
+        if not isinstance(row, dict) or fixture_id not in enrollments:
+            raise ValueError("legacy settlement must match an enrollment")
+        enrollment = enrollments[fixture_id]
+        actual = row.get("outcome")
+        selection_result = "win" if enrollment.get("outcome") == actual else "loss"
+        row.update({
+            "home_goals_90": None,
+            "away_goals_90": None,
+            "market": "1x2",
+            "selection": enrollment.get("outcome"),
+            "line": None,
+            "selection_result": selection_result,
+        })
+    simulators = _simulators(document)
+    document["paper_trading"] = _public_summary_unvalidated(document, simulators)
+    return document
+
+
 def load_paper_ledger(path: Path) -> dict[str, Any]:
     try:
         source = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise ValueError(f"cannot read paper ledger: {exc}") from exc
-    return validate_paper_ledger(source)
+    return validate_paper_ledger(_migrate_legacy_ledger(source))
 
 
 def write_json_atomic(path: Path, document: Mapping[str, Any]) -> bool:
@@ -682,6 +793,29 @@ def _candidate_rows(
                 maximum=100,
             )
             outcome = _text(source.get("outcome"), "outcome")
+            market_kind = canonical_market(source.get("market"))
+            line_value = source.get("line")
+            if market_kind == "totals" and outcome in {"over_2_5", "under_2_5"}:
+                outcome = "over" if outcome.startswith("over") else "under"
+                line_value = 2.5
+            if market_kind == "btts" and outcome in {"btts_yes", "btts_no"}:
+                outcome = "yes" if outcome.endswith("yes") else "no"
+            if market_kind not in SUPPORTED_SCORE_MARKETS:
+                raise ValueError("unsupported market")
+            line = (
+                supported_line(line_value)
+                if market_kind in {"totals", "team_totals", "asian_handicap"}
+                else None
+            )
+            if market_kind in {"totals", "team_totals", "asian_handicap"} and line is None:
+                raise ValueError("unsupported line")
+            settle_score_market(
+                market=market_kind,
+                selection=outcome,
+                line=line,
+                home_goals=0,
+                away_goals=0,
+            )
             bookmaker = _text(source.get("bookmaker"), "bookmaker")
             quote_source = _text(source.get("quote_source"), "quote_source")
         except ValueError:
@@ -690,7 +824,7 @@ def _candidate_rows(
         if source.get("status") != "PAPER_ONLY" or source.get("real_money_eligible") is not False:
             reject("not_paper_only")
             continue
-        if outcome not in OUTCOMES or source.get("market_period") != "REGULATION_90_MINUTES":
+        if source.get("market_period") != "REGULATION_90_MINUTES":
             reject("unsupported_market")
             continue
         if abs(market - 1.0 / odds) > 1e-9:
@@ -723,6 +857,8 @@ def _candidate_rows(
             "away": source.get("away"),
             "selection": source.get("selection"),
             "outcome": outcome,
+            "market": market_kind,
+            "line": line,
             "model_probability": model,
             "bookmaker_probability": market,
             "odds": odds,
@@ -739,7 +875,7 @@ def _candidate_rows(
     return accepted, dict(sorted(rejections.items()))
 
 
-def _prospective_results(source: Mapping[str, Any] | None) -> dict[str, dict[str, str]]:
+def _prospective_results(source: Mapping[str, Any] | None) -> dict[str, dict[str, Any]]:
     if source is None:
         return {}
     if source.get("schema_version") != PROSPECTIVE_SCHEMA_VERSION:
@@ -750,7 +886,7 @@ def _prospective_results(source: Mapping[str, Any] | None) -> dict[str, dict[str
     fixtures = source.get("fixtures")
     if not isinstance(fixtures, Mapping):
         raise ValueError("prospective CLV fixtures must be an object")
-    output: dict[str, dict[str, str]] = {}
+    output: dict[str, dict[str, Any]] = {}
     for fixture_id, entry in fixtures.items():
         if not isinstance(entry, Mapping):
             raise ValueError("prospective fixture must be an object")
@@ -773,12 +909,14 @@ def _prospective_results(source: Mapping[str, Any] | None) -> dict[str, dict[str
             raise ValueError("prospective result outcome conflicts with its goals")
         output[str(fixture_id)] = {
             "outcome": expected,
+            "home_goals_90": home,
+            "away_goals_90": away,
             "source": "prospective_clv_official_result",
         }
     return output
 
 
-def _explicit_results(source: Mapping[str, Any] | None) -> dict[str, dict[str, str]]:
+def _explicit_results(source: Mapping[str, Any] | None) -> dict[str, dict[str, Any]]:
     if source is None:
         return {}
     rows: Mapping[str, Any]
@@ -792,8 +930,10 @@ def _explicit_results(source: Mapping[str, Any] | None) -> dict[str, dict[str, s
         raise ValueError(f"unsupported paper results schema: {source.get('schema_version')}")
     else:
         rows = source
-    output: dict[str, dict[str, str]] = {}
+    output: dict[str, dict[str, Any]] = {}
     for fixture_id, value in rows.items():
+        home: int | None = None
+        away: int | None = None
         if isinstance(value, str):
             outcome = value
         elif isinstance(value, Mapping):
@@ -815,18 +955,28 @@ def _explicit_results(source: Mapping[str, Any] | None) -> dict[str, dict[str, s
             raise ValueError("explicit result must be an outcome or result object")
         if outcome not in OUTCOMES:
             raise ValueError("explicit result outcome must be home, draw, or away")
-        output[str(fixture_id)] = {"outcome": str(outcome), "source": source_name}
+        output[str(fixture_id)] = {
+            "outcome": str(outcome),
+            "home_goals_90": home,
+            "away_goals_90": away,
+            "source": source_name,
+        }
     return output
 
 
 def _merge_results(
-    prospective: Mapping[str, dict[str, str]], explicit: Mapping[str, dict[str, str]]
-) -> dict[str, dict[str, str]]:
+    prospective: Mapping[str, dict[str, Any]], explicit: Mapping[str, dict[str, Any]]
+) -> dict[str, dict[str, Any]]:
     output = dict(prospective)
     for fixture_id, row in explicit.items():
         existing = output.get(fixture_id)
-        if existing is not None and existing["outcome"] != row["outcome"]:
-            raise ValueError(f"conflicting official results for fixture {fixture_id}")
+        if existing is not None:
+            conflict = existing["outcome"] != row["outcome"]
+            for field in ("home_goals_90", "away_goals_90"):
+                if existing.get(field) is not None and row.get(field) is not None:
+                    conflict = conflict or existing[field] != row[field]
+            if conflict:
+                raise ValueError(f"conflicting official results for fixture {fixture_id}")
         output[fixture_id] = row if existing is None else existing
     return output
 
@@ -906,25 +1056,49 @@ def update_paper_ledger(
         enrollment = document["enrollments"][fixture_id]
         if when < _timestamp(enrollment["kickoff_utc"], "kickoff_utc"):
             raise ValueError(f"official result for {fixture_id} precedes kickoff")
-        outcome = results[fixture_id]["outcome"]
-        close = _closing_odds(prospective_ledger, enrollment)
+        match_result = results[fixture_id]
+        outcome = match_result["outcome"]
+        home_goals = match_result.get("home_goals_90")
+        away_goals = match_result.get("away_goals_90")
+        if home_goals is None or away_goals is None:
+            if enrollment["market"] != "1x2":
+                continue
+            selection_result = "win" if enrollment["outcome"] == outcome else "loss"
+        else:
+            selection_result = settle_score_market(
+                market=enrollment["market"],
+                selection=enrollment["outcome"],
+                line=enrollment["line"],
+                home_goals=home_goals,
+                away_goals=away_goals,
+            )
+        close = (
+            _closing_odds(prospective_ledger, enrollment)
+            if enrollment["market"] == "1x2"
+            else None
+        )
         strategy_results: dict[str, str] = {}
         for strategy_id, action in enrollment["strategy_actions"].items():
             if not action["accepted"]:
                 strategy_results[strategy_id] = "not_placed"
                 continue
-            result = "win" if enrollment["outcome"] == outcome else "loss"
             simulators[strategy_id].settle_bet(
                 bet_id=action["bet_id"],
-                result=result,
+                result=selection_result,
                 closing_odds=close,
                 timestamp=when,
                 event_id=_stable_id("event:settled", strategy_id, fixture_id),
             )
-            strategy_results[strategy_id] = result
+            strategy_results[strategy_id] = selection_result
         document["settlements"][fixture_id] = {
             "fixture_id": fixture_id,
             "outcome": outcome,
+            "home_goals_90": home_goals,
+            "away_goals_90": away_goals,
+            "market": enrollment["market"],
+            "selection": enrollment["outcome"],
+            "line": enrollment["line"],
+            "selection_result": selection_result,
             "settled_at": _iso(when),
             "result_source": results[fixture_id]["source"],
             "closing_benchmark": "pinnacle_fair_1x2" if close is not None else None,
@@ -945,7 +1119,10 @@ def update_paper_ledger(
                 model_probability=candidate["model_probability"],
                 bookmaker_probability=candidate["bookmaker_probability"],
             )
-            bet_id = _stable_id("paper-bet", strategy_id, fixture_id, candidate["outcome"])
+            bet_id = _stable_id(
+                "paper-bet", strategy_id, fixture_id, candidate["market"],
+                candidate["outcome"], candidate["line"],
+            )
             placed = simulator.place_bet(
                 bet_id=bet_id,
                 match_id=fixture_id,
@@ -953,7 +1130,10 @@ def update_paper_ledger(
                 model_probability=candidate["model_probability"],
                 bookmaker_probability=candidate["bookmaker_probability"],
                 timestamp=when,
-                event_id=_stable_id("event:placed", strategy_id, fixture_id),
+                event_id=_stable_id(
+                    "event:placed", strategy_id, fixture_id, candidate["market"],
+                    candidate["outcome"], candidate["line"],
+                ),
             )
             actions[strategy_id] = {
                 "accepted": placed is not None,

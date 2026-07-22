@@ -242,3 +242,55 @@ def test_summary_tampering_is_rejected() -> None:
     ledger["paper_trading"]["real_money_execution"] = True
     with pytest.raises(ValueError, match="summary does not match"):
         validate_paper_ledger(ledger)
+
+
+@pytest.mark.parametrize(
+    ("market", "selection", "outcome", "line", "goals", "expected"),
+    [
+        ("totals", "ТБ 2.5", "over", 2.5, (2, 1), "win"),
+        ("btts", "ОЗ — да", "yes", None, (2, 1), "win"),
+        ("asian_handicap", "Home -1", "home", -1.0, (2, 1), "push"),
+        ("draw_no_bet", "Home DNB", "home", None, (1, 1), "push"),
+    ],
+)
+def test_goal_market_enrollment_and_automatic_settlement(
+    market: str,
+    selection: str,
+    outcome: str,
+    line: float | None,
+    goals: tuple[int, int],
+    expected: str,
+) -> None:
+    candidate = _candidate()
+    candidate.update({
+        "market": market,
+        "line": line,
+        "selection": selection,
+        "outcome": outcome,
+    })
+    ledger = new_paper_ledger(created_at=T0 - timedelta(hours=1))
+    opened, operation = update_paper_ledger(
+        ledger, _payload(candidate), now=T0
+    )
+    assert operation["enrolled"] == 1
+    assert opened["enrollments"]["m1"]["market"] == market
+
+    actual = "home" if goals[0] > goals[1] else "away" if goals[1] > goals[0] else "draw"
+    settled, operation = update_paper_ledger(
+        opened,
+        _payload(),
+        now=T0 + timedelta(hours=3),
+        official_results={
+            "m1": {
+                "status": "FINISHED",
+                "home_goals_90": goals[0],
+                "away_goals_90": goals[1],
+                "outcome": actual,
+            }
+        },
+    )
+    assert operation["settled"] == 1
+    assert settled["settlements"]["m1"]["selection_result"] == expected
+    assert settled["paper_trading"]["markets"][market]["settled"] == 1
+    for row in settled["paper_trading"]["leaderboard"]:
+        assert row[f"{expected}es" if expected == "push" else f"{expected}s"] == 1

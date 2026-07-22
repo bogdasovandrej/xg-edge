@@ -112,3 +112,30 @@ def test_quote_can_precede_payload_refresh_but_not_frozen_forecast() -> None:
     })
 
     assert result["displayed_candidates"] == 1
+
+
+def test_expanded_total_can_become_the_single_paper_candidate() -> None:
+    row = _forecast("total")
+    row["details"]["market_candidates"] = []
+    row["details"]["expanded_market_candidates"] = [{
+        "selection": "ТБ 2.5",
+        "outcome": "over",
+        "market": "totals",
+        "line": 2.5,
+        "probability": .57,
+        "market_odds": 2.0,
+        "point_edge": .14,
+        "bookmaker": "Book A",
+        "bookmaker_key": "a",
+        "source_provider": "odds_api_io",
+    }]
+    result = rank_paper_candidates({
+        "generated_at": "2026-07-29T15:00:00Z",
+        "forecasts": [row],
+    })
+
+    assert result["displayed_candidates"] == 1
+    candidate = result["candidates"][0]
+    assert candidate["market"] == "totals"
+    assert candidate["line"] == 2.5
+    assert candidate["outcome"] == "over"

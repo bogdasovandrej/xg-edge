@@ -24,7 +24,9 @@ class Response:
 
 
 class Session:
-    def __init__(self, payloads): self.payloads = iter(payloads); self.calls = []
+    def __init__(self, payloads):
+        self.payloads = iter(payloads)
+        self.calls = []
     def get(self, url, **kwargs):
         self.calls.append((url, kwargs))
         return next(self.payloads)
@@ -380,6 +382,47 @@ def test_attaches_odds_api_io_btts_and_spreads_without_promoting_them() -> None:
         for row in details["expanded_market_candidates"]
     )
     assert all(row["status"] == "SHADOW_ONLY" for row in details["market_candidates"])
+
+
+def test_additional_goal_markets_are_normalized_and_priced_from_score_matrix() -> None:
+    event = deepcopy(_event())
+    event["bookmakers"][0]["markets"].extend([
+        {"key": "draw_no_bet", "outcomes": [
+            {"name": "KuPS", "price": 1.42},
+            {"name": "Vardar", "price": 2.75},
+        ]},
+        {"key": "double_chance", "outcomes": [
+            {"name": "Home or Draw", "price": 1.25},
+            {"name": "Home or Away", "price": 1.35},
+            {"name": "Draw or Away", "price": 1.90},
+        ]},
+        {"key": "team_totals", "outcomes": [
+            {"name": "Over", "description": "KuPS", "point": 1.5, "price": 1.95},
+            {"name": "Under", "description": "KuPS", "point": 1.5, "price": 1.85},
+            {"name": "Over", "description": "Vardar", "point": .5, "price": 1.75},
+            {"name": "Under", "description": "Vardar", "point": .5, "price": 2.05},
+        ]},
+    ])
+    record = normalize_odds_event(
+        event, fixtures=[_fixture()], snapshot_at="2026-07-14T12:05:00Z"
+    )
+    payload = _forecast_payload()
+    payload["forecasts"][0].update({
+        "home": "KuPS Kuopio",
+        "away": "Vardar",
+        "expected_goals": {"home": 1.6, "away": .9},
+    })
+    result = apply_odds_snapshot_to_live_payload(
+        payload, _available_snapshot(record), now="2026-07-14T12:10:00Z"
+    )
+    details = result["forecasts"][0]["details"]
+    snapshot = details["market_snapshot"]
+
+    assert snapshot["best_draw_no_bet"]["home"]["odds"] == 1.42
+    assert snapshot["best_double_chance"]["draw_away"]["odds"] == 1.9
+    assert len(snapshot["best_team_totals"]) == 2
+    markets = {row["market"] for row in details["expanded_market_candidates"]}
+    assert {"totals", "draw_no_bet", "double_chance", "team_totals"} <= markets
 
 
 def test_post_kickoff_capture_is_rejected() -> None:

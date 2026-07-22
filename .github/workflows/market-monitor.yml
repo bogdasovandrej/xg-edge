@@ -60,7 +60,7 @@ jobs:
           --prospective-ledger reports/live/prospective_clv.json
       - name: Validate ledger
         if: steps.config.outputs.enabled == 'true'
-        run: python -m pytest -q tests/test_bookmaker_odds.py tests/test_prospective.py tests/test_capture_bookmaker_odds.py tests/test_paper_simulation.py tests/test_paper_ledger.py tests/test_update_paper_trading.py
+        run: python -m pytest -q tests/test_bookmaker_odds.py tests/test_prospective.py tests/test_capture_bookmaker_odds.py tests/test_paper_markets.py tests/test_paper_simulation.py tests/test_paper_ledger.py tests/test_update_paper_trading.py
       - name: Publish snapshots
         if: steps.config.outputs.enabled == 'true'
         shell: bash

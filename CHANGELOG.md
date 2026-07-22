@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.0 — 2026-07-23
+
+- Extended the automatic PAPER selector and settlement ledger beyond 1X2 to
+  regulation-time totals, BTTS, Asian handicaps, team totals, double chance
+  and draw-no-bet markets.
+- Added score-matrix pricing for supported whole/half lines and fail-closed
+  handling for quarter lines, cards, corners and any market without an official
+  settlement field.
+- Added automatic v1.0-to-v1.1 ledger migration without deleting historical
+  strategy events, plus per-market open/settled counters on the public site.
+- Added parsing for additional bookmaker markets when the connected provider
+  returns them, while preserving real-money execution as disabled.
+
 ## 0.6.1 — 2026-07-22
 
 - Added Odds-API.io as the primary bookmaker feed with a free-tier-friendly
