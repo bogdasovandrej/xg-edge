@@ -28,6 +28,19 @@ type Forecast = {
   score_display?: string | null;
   tail_probability_status?: string | null;
   expected_goals?: { home?: number | null; away?: number | null; total?: number | null } | null;
+  expected_goals_basis?: {
+    method?: string | null;
+    expected_total_goals?: number | null;
+    prior_total_goals?: number | null;
+    prior_matches?: number | null;
+    recent_match_limit?: number | null;
+    team_histories_used?: Array<{
+      side?: string | null;
+      matches?: number | null;
+      raw_average_total_goals?: number | null;
+      shrunk_total_goals?: number | null;
+    }> | null;
+  } | null;
   uncertainty?: string | null;
   recommendation?: string | null;
   decision_status?: string | null;
@@ -60,6 +73,10 @@ type ModelMarketForecast = {
   conservative_fair_odds?: number | null;
   recommendation_group?: string | null;
   recommendation_rank?: number | null;
+  recommendation_role?: "VALUE_SINGLE" | "BALANCED_SINGLE" | "EXPRESS_LEG" | string | null;
+  target_market_odds?: number | null;
+  minimum_market_odds?: number | null;
+  price_status?: string | null;
   status?: string | null;
 };
 
@@ -661,22 +678,51 @@ function PaperCandidateBoard({
   forecasts: Forecast[];
   nowMs: number;
 }) {
-  const candidates = (ranking?.candidates || [])
+  const candidatePool = (ranking?.candidates || [])
     .filter((candidate) => {
       const kickoff = candidate.kickoff_utc ? new Date(candidate.kickoff_utc).getTime() : NaN;
       return Number.isFinite(kickoff) && kickoff > nowMs;
-    })
-    .slice(0, 6);
-  const modelCandidates = forecasts.flatMap((forecast) =>
+    });
+  const valueCandidate = candidatePool.filter((candidate) =>
+      (finiteNumber(candidate.odds) || 0) > 1.5 &&
+      (finiteNumber(candidate.robust_edge) || 0) > 0
+    ).sort((left, right) =>
+      (finiteNumber(right.robust_edge) || 0) - (finiteNumber(left.robust_edge) || 0)
+    )[0];
+  const paperCandidateKey = (candidate: PaperCandidate) =>
+    `${candidate.fixture_id}|${candidate.market}|${candidate.selection}|${candidate.line}`;
+  const afterValue = candidatePool.filter((candidate) =>
+    (finiteNumber(candidate.robust_edge) || 0) > 0 &&
+    (!valueCandidate || paperCandidateKey(candidate) !== paperCandidateKey(valueCandidate))
+  );
+  const balancedCandidate = afterValue.sort((left, right) =>
+      Math.abs((finiteNumber(left.odds) || 99) - 1.5) -
+      Math.abs((finiteNumber(right.odds) || 99) - 1.5)
+    )[0];
+  const expressCandidate = afterValue.filter((candidate) =>
+    !balancedCandidate || paperCandidateKey(candidate) !== paperCandidateKey(balancedCandidate)
+  ).sort((left, right) =>
+    Math.abs((finiteNumber(left.odds) || 99) - 1.3) -
+    Math.abs((finiteNumber(right.odds) || 99) - 1.3)
+  )[0];
+  const candidates = [
+    valueCandidate && { candidate: valueCandidate, role: "VALUE-ординар · кэф >1.50" },
+    balancedCandidate && { candidate: balancedCandidate, role: "Ординар · около 1.50" },
+    expressCandidate && { candidate: expressCandidate, role: "Плечо экспресса · около 1.30" },
+  ].filter((row): row is { candidate: PaperCandidate; role: string } => Boolean(row));
+  const modelPool = forecasts.flatMap((forecast) =>
     (forecast.model_market_forecasts || [])
       .filter((row) => finiteNumber(row.recommendation_rank) != null)
       .map((row) => ({ forecast, row }))
-  )
-    .sort((left, right) =>
-      (finiteNumber(right.row.conservative_probability) || 0) -
-      (finiteNumber(left.row.conservative_probability) || 0)
-    )
-    .slice(0, 6);
+  );
+  const modelCandidates = ["VALUE_SINGLE", "BALANCED_SINGLE", "EXPRESS_LEG"].flatMap((role) =>
+    modelPool.filter(({ row }) => row.recommendation_role === role)
+      .sort((left, right) =>
+        (finiteNumber(right.row.conservative_probability) || 0) -
+        (finiteNumber(left.row.conservative_probability) || 0)
+      )
+      .slice(0, 2)
+  );
   const hasBookmakerCandidates = candidates.length > 0;
   return (
     <section className="paper-board" id="paper-picks" aria-label="Прогнозные сценарии ближайших матчей">
@@ -694,9 +740,9 @@ function PaperCandidateBoard({
       </p>
       {hasBookmakerCandidates ? (
         <div className="paper-candidate-list">
-          {candidates.map((candidate, index) => (
+          {candidates.map(({ candidate, role }, index) => (
             <a className="paper-candidate" href={`#match-${candidate.fixture_id}`} key={`${candidate.fixture_id}-${candidate.selection}`}>
-              <b>#{candidate.rank || index + 1}</b>
+              <b>#{index + 1} · {role}</b>
               <div>
                 <strong>{candidate.home} — {candidate.away}</strong>
                 <span>{candidate.selection} · {marketName(candidate.market)}{candidate.line == null ? "" : ` ${candidate.line}`} · {candidate.bookmaker || "букмекер не указан"}</span>
@@ -718,12 +764,12 @@ function PaperCandidateBoard({
               <b>#{index + 1}</b>
               <div>
                 <strong>{forecast.home} — {forecast.away}</strong>
-                <span>{row.label} · {marketName(row.market)} · MODEL ONLY</span>
+                <span>{recommendationRoleName(row.recommendation_role)} · {row.label} · {marketName(row.market)}</span>
               </div>
               <dl>
                 <div><dt>Теория</dt><dd>{percent(row.theoretical_probability)}</dd></div>
                 <div><dt>Надёжно</dt><dd>{percent(row.conservative_probability)}</dd></div>
-                <div><dt>Fair до</dt><dd>{decimal(row.conservative_fair_odds)}</dd></div>
+                <div><dt>Мин. кэф</dt><dd>{decimal(row.minimum_market_odds || row.conservative_fair_odds)}</dd></div>
                 <div><dt>Штраф</dt><dd>−{((finiteNumber(row.reliability_haircut) || 0) * 100).toFixed(0)} п.п.</dd></div>
               </dl>
               <small>{localTime(forecast.kickoff_utc)} YEKT</small>
@@ -1168,6 +1214,51 @@ const marketName = (value?: string | null) => ({
   draw_no_bet: "DNB",
 }[String(value || "1x2")] || value || "рынок");
 
+const recommendationRoleName = (role?: string | null) => ({
+  VALUE_SINGLE: "VALUE-ординар · кэф >1.50",
+  BALANCED_SINGLE: "Ординар · около 1.50",
+  EXPRESS_LEG: "Плечо экспресса · около 1.30",
+}[role || ""] || "Модельный кандидат");
+
+const selectPricedCandidateRoles = (source: CandidateBet[]) => {
+  const pool = source.filter((candidate) => (finiteNumber(candidate.point_edge) || 0) > 0);
+  const selected: Array<{ bet: CandidateBet; role: string }> = [];
+  const used = new Set<CandidateBet>();
+  const pick = (
+    role: string,
+    eligible: (candidate: CandidateBet) => boolean,
+    compare: (left: CandidateBet, right: CandidateBet) => number,
+  ) => {
+    const candidate = pool.filter((row) => !used.has(row) && eligible(row)).sort(compare)[0];
+    if (candidate) {
+      used.add(candidate);
+      selected.push({ bet: candidate, role });
+    }
+  };
+  pick(
+    "VALUE-ординар · кэф >1.50",
+    (candidate) => (finiteNumber(candidate.market_odds) || 0) > 1.5,
+    (left, right) => (finiteNumber(right.point_edge) || 0) - (finiteNumber(left.point_edge) || 0),
+  );
+  pick(
+    "Ординар · около 1.50",
+    () => true,
+    (left, right) =>
+      Math.abs((finiteNumber(left.market_odds) || 99) - 1.5) -
+      Math.abs((finiteNumber(right.market_odds) || 99) - 1.5) ||
+      (finiteNumber(right.point_edge) || 0) - (finiteNumber(left.point_edge) || 0),
+  );
+  pick(
+    "Плечо экспресса · около 1.30",
+    () => true,
+    (left, right) =>
+      Math.abs((finiteNumber(left.market_odds) || 99) - 1.3) -
+      Math.abs((finiteNumber(right.market_odds) || 99) - 1.3) ||
+      (finiteNumber(right.probability) || 0) - (finiteNumber(left.probability) || 0),
+  );
+  return selected;
+};
+
 const levelName = (value?: string | null) => ({
   elite: "элитный", strong: "сильный", average: "средний", developing: "развивающийся",
   high: "высокий", medium: "средний", low: "низкий",
@@ -1366,16 +1457,19 @@ function ModelMarketBoard({ forecast }: { forecast: Forecast }) {
       </div>
       <p className="model-market-intro">
         Вероятность для решения уже уменьшена на {haircut == null ? "несколько" : (haircut * 100).toFixed(0)} п.п.
-        из-за неопределённости. Fair — расчётная граница модели, не коэффициент букмекера.
+        из-за неопределённости. Без реальной котировки это лист ожидания: ставка появляется только
+        если цена букмекера не ниже указанного минимального коэффициента.
       </p>
       <div className="candidate-grid model-recommendation-grid">
         {recommendations.map((row, index) => (
           <div key={`${row.market}-${row.selection}-${row.line}-${index}`}>
-            <b>#{row.recommendation_rank || index + 1} · {row.label}</b>
+            <b>#{row.recommendation_rank || index + 1} · {recommendationRoleName(row.recommendation_role)}</b>
+            <span><strong>{row.label}</strong></span>
             <span>{marketName(row.market)} · 90 минут</span>
             <span>Теория {percent(row.theoretical_probability)}</span>
             <strong>Консервативно {percent(row.conservative_probability)}</strong>
-            <span>Fair до {decimal(row.conservative_fair_odds)}</span>
+            <span>Искомый кэф ≈ {decimal(row.target_market_odds)}</span>
+            <span>Ставить только от {decimal(row.minimum_market_odds || row.conservative_fair_odds)}</span>
           </div>
         ))}
       </div>
@@ -1388,7 +1482,7 @@ function ModelMarketBoard({ forecast }: { forecast: Forecast }) {
               <span>{marketName(row.market)}</span>
               <span>Теория <strong>{percent(row.theoretical_probability)}</strong></span>
               <span>После штрафа <strong>{percent(row.conservative_probability)}</strong></span>
-              <span>Fair <strong>{decimal(row.conservative_fair_odds)}</strong></span>
+              <span>Мин. безубыточный кэф <strong>{decimal(row.conservative_fair_odds)}</strong></span>
             </div>
           ))}
         </div>
@@ -1405,6 +1499,8 @@ function ScoreDistribution({ forecast }: { forecast: Forecast }) {
   const scenarios = (forecast.score_scenarios || [])
     .filter((row) => row.score && finiteNumber(row.probability) != null)
     .slice(0, 5);
+  const totalHistoryMatches = (forecast.expected_goals_basis?.team_histories_used || [])
+    .reduce((sum, row) => sum + (finiteNumber(row.matches) || 0), 0);
   if (!scenarios.length && forecast.expected_goals?.total == null) return null;
   return (
     <section className="score-distribution">
@@ -1413,11 +1509,20 @@ function ScoreDistribution({ forecast }: { forecast: Forecast }) {
         <span>90 минут · полное распределение</span>
       </div>
       {forecast.expected_goals && (
-        <div className="expected-goals-strip">
-          <div><b>{forecast.home}</b><strong>{decimal(forecast.expected_goals.home)}</strong></div>
-          <div><b>Ожидаемый тотал</b><strong>{decimal(forecast.expected_goals.total)}</strong></div>
-          <div><b>{forecast.away}</b><strong>{decimal(forecast.expected_goals.away)}</strong></div>
-        </div>
+        <>
+          <div className="expected-goals-strip">
+            <div><b>{forecast.home}</b><strong>{decimal(forecast.expected_goals.home)}</strong></div>
+            <div><b>Ожидаемый тотал</b><strong>{decimal(forecast.expected_goals.total)}</strong></div>
+            <div><b>{forecast.away}</b><strong>{decimal(forecast.expected_goals.away)}</strong></div>
+          </div>
+          {forecast.expected_goals_basis?.method === "official_uefa_recent_totals_bayesian_shrinkage" && (
+            <p className="audit-note">
+              Тотал матча индивидуальный: использовано {totalHistoryMatches} последних официальных
+              командных наблюдений, затем применено сжатие к базовому среднему
+              {" "}{decimal(forecast.expected_goals_basis.prior_total_goals)}.
+            </p>
+          )}
+        </>
       )}
       {scenarios.length > 0 && (
         <div className="score-scenario-grid">
@@ -1615,7 +1720,7 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
   const details = forecast.details;
   const marketSnapshotEligible = details?.market_snapshot?.status === "SHADOW_ONLY" &&
     Boolean(details.market_snapshot.captured_at_utc?.trim());
-  const pricedCandidates = [
+  const pricedCandidatePool = [
     ...(details?.market_candidates || []),
     ...(details?.expanded_market_candidates || []),
   ]
@@ -1625,9 +1730,8 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
       finiteNumber(candidate.probability) != null &&
       finiteNumber(candidate.market_odds) != null &&
       finiteNumber(candidate.fair_odds) != null
-    )
-    .sort((left, right) => (finiteNumber(right.point_edge) || 0) - (finiteNumber(left.point_edge) || 0))
-    .slice(0, 3);
+    );
+  const pricedCandidates = selectPricedCandidateRoles(pricedCandidatePool);
   const missingPriceReason = details?.market_snapshot?.reason
     ? marketSnapshotReason(details.market_snapshot.status, details.market_snapshot.reason)
     : "букмекерский API пока не сопоставил событие с проверенной предматчевой линией";
@@ -1677,15 +1781,16 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
           </div>
           {pricedCandidates.length ? (
             <div className="candidate-grid">
-              {pricedCandidates.map((bet, index) => (
+              {pricedCandidates.map(({ bet, role }, index) => (
                 <div key={`${bet.market}-${bet.selection}-${bet.bookmaker_key}-${index}`}>
-                  <b>#{index + 1} · {bet.selection || "рынок не указан"}</b>
+                  <b>#{index + 1} · {role}</b>
+                  <span><strong>{bet.selection || "рынок не указан"}</strong></span>
                   <span>{bet.market || "рынок"}{bet.line == null ? "" : ` · линия ${decimal(bet.line, 1)}`}</span>
                   <span>Вероятность {percent(bet.probability)}</span>
                   <span>Fair {decimal(bet.fair_odds)} · коэффициент {decimal(bet.market_odds)}</span>
                   <span>{bet.bookmaker || bet.bookmaker_key || "букмекер не указан"}</span>
-                  <strong className={(bet.point_edge || 0) > 0 ? "positive-edge" : "negative-edge"}>
-                    оценка {bet.point_edge == null ? "—" : `${(bet.point_edge * 100).toFixed(1)}%`}
+                  <strong className="positive-edge">
+                    оценка +{((finiteNumber(bet.point_edge) || 0) * 100).toFixed(1)}%
                   </strong>
                 </div>
               ))}

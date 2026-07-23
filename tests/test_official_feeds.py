@@ -212,6 +212,10 @@ def test_live_workflow_keeps_all_three_uefa_qualifiers_enabled() -> None:
 
     assert workflow.count("--uefa-competition all") == 2
     assert "--source uefa" in workflow
+    assert "--history-json reports/live/uefa_club_history.json" in workflow
+    assert workflow.index("Fetch official UEFA club history") < workflow.index(
+        "Predict Champions, Europa and Conference League qualifiers"
+    )
     assert "--limit 200" in workflow
     assert "Champions, Europa and Conference League qualifiers" in workflow
     assert "Official fixture refresh unavailable" not in workflow

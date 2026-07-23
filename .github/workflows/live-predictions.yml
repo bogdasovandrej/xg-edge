@@ -42,19 +42,20 @@ jobs:
             --draws 2000 --seed 20260713 \
             --output-json reports/world_cup_2026_semifinals.json \
             --output-csv reports/world_cup_2026_semifinals.csv
-      - name: Predict Champions, Europa and Conference League qualifiers
-        run: >-
-          python scripts/predict_ucl_qualifying.py
-          --mode live --uefa-competition all
-          --limit 200 --simulations 100000 --seed 20260713
-          --output-json reports/ucl_qualifying_predictions.json
-          --output-csv reports/ucl_qualifying_predictions.csv
       - name: Fetch official UEFA club history
         run: >-
           python scripts/fetch_uefa_history.py
           --fixtures reports/live/current_fixtures.json
           --output reports/live/uefa_club_history.json
           || echo "UEFA history refresh unavailable; retaining checked-in snapshot"
+      - name: Predict Champions, Europa and Conference League qualifiers
+        run: >-
+          python scripts/predict_ucl_qualifying.py
+          --mode live --uefa-competition all
+          --history-json reports/live/uefa_club_history.json
+          --limit 200 --simulations 100000 --seed 20260713
+          --output-json reports/ucl_qualifying_predictions.json
+          --output-csv reports/ucl_qualifying_predictions.csv
       - name: Fetch point-in-time weather
         run: >-
           python scripts/fetch_weather_context.py

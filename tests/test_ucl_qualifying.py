@@ -12,6 +12,7 @@ from xgedge.experiments.ucl_qualifying import (
     ClubEloIndex,
     ClubEloRating,
     EloPoissonCalibration,
+    build_team_goal_environment,
     clubelo_ranking_url,
     coverage_summary,
     fetch_clubelo_ratings,
@@ -36,6 +37,8 @@ def _fixture(**overrides):
         "leg": 1,
         "home": "Home FC",
         "away": "Away FK",
+        "home_id": "home-id",
+        "away_id": "away-id",
         "aggregate_home_score": None,
         "aggregate_away_score": None,
     }
@@ -133,6 +136,57 @@ def test_transparent_formula_produces_valid_90m_distribution():
     intervals = result["uncertainty_90m"]["intervals"]
     for outcome, probability in probabilities.items():
         assert intervals[outcome]["low"] <= probability <= intervals[outcome]["high"]
+
+
+def test_official_pre_match_history_produces_match_specific_goal_totals():
+    history = {"matches": [
+        {
+            "id": "h1",
+            "kickoff_utc": "2026-07-01T18:00:00Z",
+            "status": "FINISHED",
+            "official": True,
+            "home_id": "home-id",
+            "away_id": "other-1",
+            "home_goals_90": 3,
+            "away_goals_90": 2,
+        },
+        {
+            "id": "h2",
+            "kickoff_utc": "2026-07-02T18:00:00Z",
+            "status": "FINISHED",
+            "official": True,
+            "home_id": "other-2",
+            "away_id": "away-id",
+            "home_goals_90": 0,
+            "away_goals_90": 0,
+        },
+        {
+            "id": "future-leak",
+            "kickoff_utc": "2026-07-14T19:00:00Z",
+            "status": "FINISHED",
+            "official": True,
+            "home_id": "home-id",
+            "away_id": "away-id",
+            "home_goals_90": 9,
+            "away_goals_90": 9,
+        },
+    ]}
+    environment = build_team_goal_environment(history, as_of=AS_OF)
+    result = predict_fixture(
+        _fixture(), _ratings(), as_of=AS_OF, goal_environment=environment
+    )
+    expected_total = sum(result["expected_goals_90m"].values())
+
+    assert expected_total != pytest.approx(2.65)
+    assert expected_total == pytest.approx((3.0416666667 + 2.2083333333) / 2)
+    assert result["expected_goals_basis"]["method"] == (
+        "official_uefa_recent_totals_bayesian_shrinkage"
+    )
+    assert len(result["expected_goals_basis"]["team_histories_used"]) == 2
+    assert all(
+        row["matches"] == 1
+        for row in result["expected_goals_basis"]["team_histories_used"]
+    )
 
 
 def test_aggregate_only_changes_separate_advancement_simulation():
