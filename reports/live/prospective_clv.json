@@ -18,9 +18,86 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-07-22T20:52:24Z",
-  "cohorts": {},
-  "fixtures": {},
+  "updated_at": "2026-07-23T15:29:10Z",
+  "cohorts": {
+    "cohort-2321dc082453574423333920": {
+      "id": "cohort-2321dc082453574423333920",
+      "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+      "dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "clubelo–poisson (experimental)",
+        "probability_basis": "unspecified_probability_basis"
+      },
+      "decision": {
+        "status": "pending",
+        "locked": false,
+        "horizon": 100,
+        "locked_at": null,
+        "fixture_ids": [],
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "clv": null
+      }
+    }
+  },
+  "fixtures": {
+    "2048850": {
+      "fixture_id": "2048850",
+      "evaluation_cohort_id": "cohort-2321dc082453574423333920",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "clubelo–poisson (experimental)",
+        "probability_basis": "unspecified_probability_basis"
+      },
+      "home": "FC Santa Coloma",
+      "away": "SK Rapid",
+      "kickoff_utc": "2026-07-23T17:00:00Z",
+      "provider_event_id": "72180312",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-23T14:37:14Z",
+        "competition": "UEFA Conference League",
+        "model": "ClubElo–Poisson (experimental)",
+        "probability_basis": null,
+        "probabilities": null
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-23T15:29:10Z",
+          "phase": "opening",
+          "provider_event_id": "72180312",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-07-23T15:28:02Z",
+              "odds": {
+                "home": 9.5,
+                "draw": 5.25,
+                "away": 1.222
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-23T15:00:56Z",
+              "odds": {
+                "home": 10.0,
+                "draw": 5.8,
+                "away": 1.24
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    }
+  },
   "gate": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -58,9 +135,55 @@
       ],
       "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
     },
-    "cohorts": {},
-    "cohort_count": 0,
-    "tracked_fixtures": 0,
+    "cohorts": {
+      "cohort-2321dc082453574423333920": {
+        "id": "cohort-2321dc082453574423333920",
+        "dimensions": {
+          "competition_or_sport": "uefa conference league",
+          "model": "clubelo–poisson (experimental)",
+          "probability_basis": "unspecified_probability_basis"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 1,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2048850"
+        ]
+      }
+    },
+    "cohort_count": 1,
+    "tracked_fixtures": 1,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0

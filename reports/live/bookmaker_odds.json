@@ -2,441 +2,817 @@
   "provider": "odds_api_io",
   "status": "available",
   "reason": null,
-  "snapshot_at": "2026-07-22T20:52:24Z",
-  "records": [],
+  "snapshot_at": "2026-07-23T15:29:10Z",
+  "records": [
+    {
+      "provider": "odds_api_io",
+      "source_provider": "odds_api_io",
+      "status": "SHADOW_ONLY",
+      "provider_event_id": "72180312",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "fixture_id": "2048850",
+      "match_status": "matched",
+      "snapshot_at": "2026-07-23T15:29:10Z",
+      "requested_at": "2026-07-23T15:29:10Z",
+      "received_at": "2026-07-23T15:29:10Z",
+      "commence_time": "2026-07-23T17:00:00Z",
+      "home": "FC Santa Coloma",
+      "away": "SK Rapid",
+      "bookmakers": [
+        {
+          "key": "bet365",
+          "title": "Bet365",
+          "last_update": "2026-07-23T15:28:02Z",
+          "markets": {
+            "h2h": {
+              "home": 9.5,
+              "draw": 5.25,
+              "away": 1.222
+            },
+            "draw_no_bet": {
+              "home": 7.5,
+              "away": 1.071
+            },
+            "spreads": [
+              {
+                "line": 1.75,
+                "home": 1.9,
+                "away": 1.9
+              }
+            ],
+            "totals": [
+              {
+                "line": 3.0,
+                "over": 1.775,
+                "under": 2.025
+              }
+            ],
+            "btts": {
+              "yes": 2.0,
+              "no": 1.727
+            }
+          }
+        },
+        {
+          "key": "bet365_no_latency",
+          "title": "Bet365 (no latency)",
+          "last_update": "2026-07-23T15:15:28Z",
+          "markets": {
+            "totals": [
+              {
+                "line": 2.5,
+                "over": 1.44,
+                "under": 2.62
+              }
+            ]
+          }
+        },
+        {
+          "key": "unibet",
+          "title": "Unibet",
+          "last_update": "2026-07-23T15:00:56Z",
+          "markets": {
+            "h2h": {
+              "home": 10.0,
+              "draw": 5.8,
+              "away": 1.24
+            },
+            "draw_no_bet": {
+              "home": 7.0,
+              "away": 1.06
+            },
+            "double_chance": {
+              "home_draw": 3.5,
+              "home_away": 1.09,
+              "draw_away": 1.02
+            },
+            "spreads": [
+              {
+                "line": 1.5,
+                "home": 2.05,
+                "away": 1.66
+              },
+              {
+                "line": 2.5,
+                "home": 1.41,
+                "away": 2.6
+              }
+            ],
+            "totals": [
+              {
+                "line": 1.5,
+                "over": 1.11,
+                "under": 5.3
+              },
+              {
+                "line": 2.5,
+                "over": 1.4,
+                "under": 2.65
+              },
+              {
+                "line": 3.5,
+                "over": 2.0,
+                "under": 1.68
+              },
+              {
+                "line": 4.5,
+                "over": 3.25,
+                "under": 1.28
+              },
+              {
+                "line": 5.5,
+                "over": 5.4,
+                "under": 1.1
+              }
+            ],
+            "btts": {
+              "yes": 1.77,
+              "no": 1.91
+            }
+          }
+        }
+      ],
+      "source_url": "https://docs.odds-api.io/guides/fetching-odds"
+    }
+  ],
   "sport_poll_times": {
     "soccer_uefa_champs_league": {
       "requested_at": "2026-07-22T20:52:15Z",
       "received_at": "2026-07-22T20:52:24Z",
       "status": "available"
+    },
+    "soccer_uefa_europa_conference_league": {
+      "requested_at": "2026-07-23T15:28:30Z",
+      "received_at": "2026-07-23T15:29:10Z",
+      "status": "available"
+    },
+    "soccer_uefa_europa_league": {
+      "requested_at": "2026-07-23T15:28:30Z",
+      "received_at": "2026-07-23T15:29:10Z",
+      "status": "available"
     }
   },
   "requested_sport_keys": [
-    "soccer_uefa_champs_league"
+    "soccer_uefa_europa_conference_league",
+    "soccer_uefa_europa_league"
   ],
   "quota": {
-    "remaining": 96,
+    "remaining": 98,
     "limit": 100,
-    "reset": "2026-07-22T20:59:18Z"
+    "reset": "2026-07-23T16:28:31Z"
   },
   "errors": [],
   "discovery": {
-    "events_returned": 2194,
-    "matched_events": 1,
+    "events_returned": 2345,
+    "matched_events": 6,
     "unmatched_near_kickoff": [
       {
-        "fixture_id": "2048720",
-        "home": "Omonia",
-        "away": "Kairat Almaty",
-        "kickoff_utc": "2026-07-22T17:00:00Z",
+        "fixture_id": "2048824",
+        "home": "Liepāja",
+        "away": "Austria Wien",
+        "kickoff_utc": "2026-07-23T15:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72706742",
-            "home": "Sport Colombia",
-            "away": "Guairena FC",
-            "kickoff_utc": "2026-07-22T21:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68687762",
-            "home": "CSD Independiente del Valle",
-            "away": "CD Tecnico Universitario",
-            "kickoff_utc": "2026-07-22T21:30:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72039450",
-            "home": "Uniao Sao Joao EC SP",
-            "away": "EC XV de Novembro Piracicaba SP",
-            "kickoff_utc": "2026-07-22T22:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048719",
-        "home": "Levski Sofia",
-        "away": "U. Craiova",
-        "kickoff_utc": "2026-07-22T17:30:00Z",
+        "fixture_id": "2048852",
+        "home": "Alashkert",
+        "away": "CFR Cluj",
+        "kickoff_utc": "2026-07-23T15:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72706742",
-            "home": "Sport Colombia",
-            "away": "Guairena FC",
-            "kickoff_utc": "2026-07-22T21:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68687762",
-            "home": "CSD Independiente del Valle",
-            "away": "CD Tecnico Universitario",
-            "kickoff_utc": "2026-07-22T21:30:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72039450",
-            "home": "Uniao Sao Joao EC SP",
-            "away": "EC XV de Novembro Piracicaba SP",
-            "kickoff_utc": "2026-07-22T22:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048724",
-        "home": "Egnatia",
-        "away": "Celje",
-        "kickoff_utc": "2026-07-22T19:00:00Z",
+        "fixture_id": "2048842",
+        "home": "Panevėžys",
+        "away": "Tobol",
+        "kickoff_utc": "2026-07-23T15:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72706742",
-            "home": "Sport Colombia",
-            "away": "Guairena FC",
-            "kickoff_utc": "2026-07-22T21:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68687762",
-            "home": "CSD Independiente del Valle",
-            "away": "CD Tecnico Universitario",
-            "kickoff_utc": "2026-07-22T21:30:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72039450",
-            "home": "Uniao Sao Joao EC SP",
-            "away": "EC XV de Novembro Piracicaba SP",
-            "kickoff_utc": "2026-07-22T22:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048729",
-        "home": "KuPS Kuopio",
-        "away": "Sabah",
-        "kickoff_utc": "2026-07-28T15:00:00Z",
+        "fixture_id": "2048742",
+        "home": "Qarabağ",
+        "away": "CSKA Sofia",
+        "kickoff_utc": "2026-07-23T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72991060",
-            "home": "Bss Sporting Club",
-            "away": "Railway FC",
-            "kickoff_utc": "2026-07-28T09:30:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72991062",
-            "home": "Patha Chakra",
-            "away": "East BengaL FC Reserves",
-            "kickoff_utc": "2026-07-28T09:30:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "70028022",
-            "home": "Chelsea FC",
-            "away": "Western Sydney Wanderers",
-            "kickoff_utc": "2026-07-28T09:45:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048727",
-        "home": "L. Red Imps",
-        "away": "Mjällby",
-        "kickoff_utc": "2026-07-28T16:00:00Z",
+        "fixture_id": "2048814",
+        "home": "Flora Tallinn",
+        "away": "The New Saints",
+        "kickoff_utc": "2026-07-23T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "71770182",
-            "home": "Philippines",
-            "away": "Myanmar",
-            "kickoff_utc": "2026-07-28T10:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72976850",
-            "home": "Western Strikers Reserve",
-            "away": "Vipers FC Reserves",
-            "kickoff_utc": "2026-07-28T10:15:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72894612",
-            "home": "Boroondara-Carey Eagles U20",
-            "away": "Melbourne City U20",
-            "kickoff_utc": "2026-07-28T10:15:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048735",
-        "home": "GNK Dinamo",
-        "away": "Thun",
-        "kickoff_utc": "2026-07-28T18:00:00Z",
+        "fixture_id": "2048820",
+        "home": "HJK",
+        "away": "Coleraine",
+        "kickoff_utc": "2026-07-23T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72414000",
-            "home": "Derby County",
-            "away": "Valencia CF",
-            "kickoff_utc": "2026-07-28T12:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "71942996",
-            "home": "FC Zurich",
-            "away": "SC Freiburg",
-            "kickoff_utc": "2026-07-28T12:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72978078",
-            "home": "Caykur Rizespor",
-            "away": "Hull City",
-            "kickoff_utc": "2026-07-28T12:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048738",
-        "home": "Celje",
-        "away": "Egnatia",
-        "kickoff_utc": "2026-07-28T18:15:00Z",
+        "fixture_id": "2048825",
+        "home": "Debrecen",
+        "away": "Pyunik",
+        "kickoff_utc": "2026-07-23T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72226970",
-            "home": "Queens Park Rangers",
-            "away": "Hampton & Richmond Borough",
-            "kickoff_utc": "2026-07-28T13:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "71770180",
-            "home": "Malaysia",
-            "away": "Laos",
-            "kickoff_utc": "2026-07-28T13:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547122",
-            "home": "South United FC",
-            "away": "CISF FC",
-            "kickoff_utc": "2026-07-28T14:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048740",
-        "home": "Hearts",
-        "away": "Sturm Graz",
-        "kickoff_utc": "2026-07-28T18:45:00Z",
+        "fixture_id": "2048830",
+        "home": "Dila",
+        "away": "Apollon",
+        "kickoff_utc": "2026-07-23T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72226970",
-            "home": "Queens Park Rangers",
-            "away": "Hampton & Richmond Borough",
-            "kickoff_utc": "2026-07-28T13:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "71770180",
-            "home": "Malaysia",
-            "away": "Laos",
-            "kickoff_utc": "2026-07-28T13:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547122",
-            "home": "South United FC",
-            "away": "CISF FC",
-            "kickoff_utc": "2026-07-28T14:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048734",
-        "home": "Kairat Almaty",
-        "away": "Omonia",
-        "kickoff_utc": "2026-07-29T15:00:00Z",
+        "fixture_id": "2048854",
+        "home": "Paide",
+        "away": "Zire",
+        "kickoff_utc": "2026-07-23T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72964354",
-            "home": "Logan Roos FC",
-            "away": "North Lakes United",
-            "kickoff_utc": "2026-07-29T09:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72975114",
-            "home": "Newmarket SFC",
-            "away": "North Pine",
-            "kickoff_utc": "2026-07-29T09:15:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72991058",
-            "home": "United Kolkata SC",
-            "away": "Mohun Bagan SG Reserves",
-            "kickoff_utc": "2026-07-29T09:30:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048730",
-        "home": "Kauno Žalgiris",
-        "away": "Klaksvík",
-        "kickoff_utc": "2026-07-29T16:00:00Z",
+        "fixture_id": "2048760",
+        "home": "AEK Larnaca",
+        "away": "Beitar",
+        "kickoff_utc": "2026-07-23T16:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72887376",
-            "home": "Chungnam Asan FC",
-            "away": "Siheung Citizen FC",
-            "kickoff_utc": "2026-07-29T10:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72887378",
-            "home": "Bucheon FC 1995",
-            "away": "Paju Frontier FC",
-            "kickoff_utc": "2026-07-29T10:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72887380",
-            "home": "Busan IPark",
-            "away": "FC Seoul",
-            "kickoff_utc": "2026-07-29T10:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048731",
-        "home": "Lech Poznań",
-        "away": "Aarhus",
-        "kickoff_utc": "2026-07-29T17:00:00Z",
+        "fixture_id": "2048822",
+        "home": "RFS",
+        "away": "Vestri",
+        "kickoff_utc": "2026-07-23T16:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72887390",
-            "home": "Gimhae FC",
-            "away": "Seongnam Ilhwa",
-            "kickoff_utc": "2026-07-29T11:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68049890",
-            "home": "West Adelaide",
-            "away": "FFSA NTC",
-            "kickoff_utc": "2026-07-29T11:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68309572",
-            "home": "BK Hacken U19",
-            "away": "Halmstads BK U19",
-            "kickoff_utc": "2026-07-29T12:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048733",
-        "home": "U. Craiova",
-        "away": "Levski Sofia",
-        "kickoff_utc": "2026-07-29T17:30:00Z",
+        "fixture_id": "2048823",
+        "home": "Raków",
+        "away": "Valletta",
+        "kickoff_utc": "2026-07-23T16:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "68309572",
-            "home": "BK Hacken U19",
-            "away": "Halmstads BK U19",
-            "kickoff_utc": "2026-07-29T12:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68309594",
-            "home": "Kalmar FF U19",
-            "away": "AIK U19",
-            "kickoff_utc": "2026-07-29T13:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547310",
-            "home": "Indian Air Force",
-            "away": "Defenders FC",
-            "kickoff_utc": "2026-07-29T13:30:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048736",
-        "home": "H. Beer-Sheva",
-        "away": "Víkingur R.",
-        "kickoff_utc": "2026-07-29T17:30:00Z",
+        "fixture_id": "2048838",
+        "home": "DAC 1904",
+        "away": "Velež",
+        "kickoff_utc": "2026-07-23T16:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "68309572",
-            "home": "BK Hacken U19",
-            "away": "Halmstads BK U19",
-            "kickoff_utc": "2026-07-29T12:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68309594",
-            "home": "Kalmar FF U19",
-            "away": "AIK U19",
-            "kickoff_utc": "2026-07-29T13:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547310",
-            "home": "Indian Air Force",
-            "away": "Defenders FC",
-            "kickoff_utc": "2026-07-29T13:30:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048728",
-        "home": "Crvena Zvezda",
-        "away": "Larne",
-        "kickoff_utc": "2026-07-29T18:00:00Z",
+        "fixture_id": "2048741",
+        "home": "Hammarby",
+        "away": "Anderlecht",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "68309572",
-            "home": "BK Hacken U19",
-            "away": "Halmstads BK U19",
-            "kickoff_utc": "2026-07-29T12:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68309594",
-            "home": "Kalmar FF U19",
-            "away": "AIK U19",
-            "kickoff_utc": "2026-07-29T13:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547310",
-            "home": "Indian Air Force",
-            "away": "Defenders FC",
-            "kickoff_utc": "2026-07-29T13:30:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048739",
-        "home": "Górnik Zabrze",
-        "away": "Fenerbahçe",
-        "kickoff_utc": "2026-07-29T18:00:00Z",
+        "fixture_id": "2048743",
+        "home": "Tromsø",
+        "away": "Hradec Králové",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "68309572",
-            "home": "BK Hacken U19",
-            "away": "Halmstads BK U19",
-            "kickoff_utc": "2026-07-29T12:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "68309594",
-            "home": "Kalmar FF U19",
-            "away": "AIK U19",
-            "kickoff_utc": "2026-07-29T13:00:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547310",
-            "home": "Indian Air Force",
-            "away": "Defenders FC",
-            "kickoff_utc": "2026-07-29T13:30:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       },
       {
-        "fixture_id": "2048737",
-        "home": "S. Bratislava",
-        "away": "Iberia Tbilisi",
-        "kickoff_utc": "2026-07-29T18:15:00Z",
+        "fixture_id": "2048747",
+        "home": "Sheriff",
+        "away": "M. Tel-Aviv",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "68309594",
-            "home": "Kalmar FF U19",
-            "away": "AIK U19",
-            "kickoff_utc": "2026-07-29T13:00:00Z"
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "72547310",
-            "home": "Indian Air Force",
-            "away": "Defenders FC",
-            "kickoff_utc": "2026-07-29T13:30:00Z"
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           },
           {
-            "provider_event_id": "70314510",
-            "home": "PFC Shurtan",
-            "away": "Respublika Football Academy",
-            "kickoff_utc": "2026-07-29T14:00:00Z"
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048757",
+        "home": "Dynamo Kyiv",
+        "away": "PAOK",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048813",
+        "home": "ML Vitebsk",
+        "away": "Sutjeska",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048826",
+        "home": "GAIS",
+        "away": "Nordsjælland",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048832",
+        "home": "U. Cluj",
+        "away": "Brann",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048835",
+        "home": "Zimbru",
+        "away": "Noah",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048836",
+        "home": "Dinamo Tbilisi",
+        "away": "Žalgiris",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048839",
+        "home": "BATE",
+        "away": "Sion",
+        "kickoff_utc": "2026-07-23T17:00:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048855",
+        "home": "Vaduz",
+        "away": "At. Escaldes",
+        "kickoff_utc": "2026-07-23T17:30:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048821",
+        "home": "FCSB",
+        "away": "Auda",
+        "kickoff_utc": "2026-07-23T17:45:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72180194",
+            "home": "FK Panevezys",
+            "away": "Tobol Kostanay",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69109088",
+            "home": "TP-47",
+            "away": "JS Hercules",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924756",
+            "home": "Kopa",
+            "away": "Peka",
+            "kickoff_utc": "2026-07-23T15:30:00Z"
           }
         ]
       }
