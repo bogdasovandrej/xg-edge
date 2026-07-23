@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T21:47:45Z",
+  "generated_at": "2026-07-23T03:49:25Z",
   "status": "MODEL_FORECASTS_ACTIVE_CLV_BACKGROUND_AUDIT",
   "validation_protocol": {
     "mode": "MODEL_FORECAST_WITH_BACKGROUND_CLV_AUDIT",
@@ -25,7 +25,7 @@
       "away": "Sabah",
       "venue": "Kuopion Keskuskenttä",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.4602934709742516,
       "p_draw": 0.2554565616659241,
       "p_away": 0.2842499673598243,
@@ -661,8 +661,8 @@
           "probability": 0.08014771105351691
         }
       ],
-      "score_scenarios_coverage": 0.48188955829546715,
-      "other_score_probability": 0.5181104417045328,
+      "score_scenarios_coverage": 0.4818895582954671,
+      "other_score_probability": 0.5181104417045329,
       "score_display": "distribution_not_exact_score_prediction",
       "expected_goals": {
         "home": 1.5155869322463704,
@@ -678,7 +678,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048729",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "52350",
@@ -1974,7 +1974,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": {
           "status": "available",
@@ -1991,19 +1991,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "available",
@@ -2015,7 +2015,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -2169,7 +2169,7 @@
       "away": "Mjällby",
       "venue": "Europa Point Stadium",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.02784413598174132,
       "p_draw": 0.12181879509123641,
       "p_away": 0.8503370689270223,
@@ -2822,7 +2822,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048727",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "2605572",
@@ -3598,7 +3598,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -3606,19 +3606,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
@@ -3630,7 +3630,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -3682,16 +3682,16 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.44968341478821855,
-              "contribution": 11.242085369705464
+              "raw": 0.4496834147882186,
+              "contribution": 11.242085369705466
             },
             {
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.3748168198306057,
+              "raw": 0.3748168198306056,
               "sample": 11,
-              "contribution": 9.370420495765144
+              "contribution": 9.37042049576514
             },
             {
               "name": "history_sparsity",
@@ -3784,7 +3784,7 @@
       "away": "Thun",
       "venue": "Stadion Maksimir",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.6706500239899644,
       "p_draw": 0.20499401692193897,
       "p_away": 0.12435595908809666,
@@ -4437,7 +4437,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048735",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "50164",
@@ -5213,7 +5213,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -5221,19 +5221,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
@@ -5245,7 +5245,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -5304,9 +5304,9 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.40939904707283853,
+              "raw": 0.4093990470728386,
               "sample": 11,
-              "contribution": 10.234976176820963
+              "contribution": 10.234976176820965
             },
             {
               "name": "history_sparsity",
@@ -5399,7 +5399,7 @@
       "away": "Egnatia",
       "venue": "Stadion Celje",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.8387954628969945,
       "p_draw": 0.12841433416254178,
       "p_away": 0.032790202940463836,
@@ -6052,15 +6052,15 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048738",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "59030",
             "name": "Celje",
-            "elo": 1513.2596909264007,
+            "elo": 1508.1775895991582,
             "elo_meta": {
-              "rating": 1513.2596909264007,
-              "matches": 18,
+              "rating": 1508.1775895991582,
+              "matches": 19,
               "scope": "club",
               "source": "provided_prior",
               "as_of": "2026-07-28T18:15:00Z"
@@ -6069,6 +6069,71 @@
             "level_basis": "xgedge_point_in_time_elo_tier",
             "competition_level": "uefa_champions_league",
             "recent_matches": [
+              {
+                "match_id": "2048724",
+                "kickoff_utc": "2026-07-22T19:00:00Z",
+                "competition": "UEFA Champions League",
+                "competition_level": "uefa_champions_league",
+                "venue": "away",
+                "opponent_id": "88148",
+                "opponent": "Egnatia",
+                "score_90": {
+                  "for": 3,
+                  "against": 3
+                },
+                "result_90": "draw",
+                "team_elo_before": {
+                  "rating": 1513.2596909264007,
+                  "matches": 18,
+                  "scope": "club",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-22T19:00:00Z"
+                },
+                "opponent_elo_before": {
+                  "rating": 1263.5867797968601,
+                  "matches": 8,
+                  "scope": "club",
+                  "source": "provided_prior",
+                  "as_of": "2026-07-22T19:00:00Z"
+                },
+                "opponent_level": "developing",
+                "elo_expected_team_score_neutral": 0.8080257701428726,
+                "actual_team_score": 0.5,
+                "xg": {
+                  "raw": null,
+                  "non_penalty": {
+                    "status": "unknown",
+                    "value": null,
+                    "source": null,
+                    "method": null,
+                    "reason": "xg_and_npxg_missing",
+                    "assumptions": []
+                  },
+                  "penalty_credit_signal": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "non_penalty_xg_unknown",
+                    "method": "npxg_plus_scored_penalty_credit"
+                  },
+                  "red_and_opponent_adjusted_npxg": {
+                    "status": "unknown",
+                    "value": null,
+                    "reason": "xg_and_npxg_missing"
+                  },
+                  "audit": {
+                    "red_card_adjustment": null,
+                    "opponent_adjustment": null,
+                    "method_order": null
+                  }
+                },
+                "red_cards": null,
+                "provenance": {
+                  "source": "official_uefa_match_api",
+                  "provider": "UEFA",
+                  "match_url": "https://match.uefa.com/v5/matches/2048724",
+                  "xg": "not_provided"
+                }
+              },
               {
                 "match_id": "2048088",
                 "kickoff_utc": "2026-03-19T17:45:00Z",
@@ -6653,37 +6718,61 @@
                   "match_url": "https://match.uefa.com/v5/matches/2046321",
                   "xg": "not_provided"
                 }
-              },
+              }
+            ],
+            "likely_lineup": null,
+            "absences": null,
+            "coach": null,
+            "availability": {
+              "lineup": "unavailable",
+              "absences": "unavailable"
+            }
+          },
+          "away": {
+            "team_id": "88148",
+            "name": "Egnatia",
+            "elo": 1268.6688811241027,
+            "elo_meta": {
+              "rating": 1268.6688811241027,
+              "matches": 9,
+              "scope": "club",
+              "source": "provided_prior",
+              "as_of": "2026-07-28T18:15:00Z"
+            },
+            "level": "developing",
+            "level_basis": "xgedge_point_in_time_elo_tier",
+            "competition_level": "uefa_champions_league",
+            "recent_matches": [
               {
-                "match_id": "2046308",
-                "kickoff_utc": "2025-10-02T19:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
+                "match_id": "2048724",
+                "kickoff_utc": "2026-07-22T19:00:00Z",
+                "competition": "UEFA Champions League",
+                "competition_level": "uefa_champions_league",
                 "venue": "home",
-                "opponent_id": "50129",
-                "opponent": "AEK Athens",
+                "opponent_id": "59030",
+                "opponent": "Celje",
                 "score_90": {
                   "for": 3,
-                  "against": 1
+                  "against": 3
                 },
-                "result_90": "win",
+                "result_90": "draw",
                 "team_elo_before": {
-                  "rating": 1488.5841536917796,
+                  "rating": 1263.5867797968601,
                   "matches": 8,
                   "scope": "club",
                   "source": "provided_prior",
-                  "as_of": "2025-10-02T19:00:00Z"
+                  "as_of": "2026-07-22T19:00:00Z"
                 },
                 "opponent_elo_before": {
-                  "rating": 1509.5185968347707,
-                  "matches": 2,
+                  "rating": 1513.2596909264007,
+                  "matches": 18,
                   "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-02T19:00:00Z"
+                  "source": "provided_prior",
+                  "as_of": "2026-07-22T19:00:00Z"
                 },
                 "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.469909321134265,
-                "actual_team_score": 1.0,
+                "elo_expected_team_score_neutral": 0.19197422985712745,
+                "actual_team_score": 0.5,
                 "xg": {
                   "raw": null,
                   "non_penalty": {
@@ -6715,34 +6804,10 @@
                 "provenance": {
                   "source": "official_uefa_match_api",
                   "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046308",
+                  "match_url": "https://match.uefa.com/v5/matches/2048724",
                   "xg": "not_provided"
                 }
-              }
-            ],
-            "likely_lineup": null,
-            "absences": null,
-            "coach": null,
-            "availability": {
-              "lineup": "unavailable",
-              "absences": "unavailable"
-            }
-          },
-          "away": {
-            "team_id": "88148",
-            "name": "Egnatia",
-            "elo": 1263.5867797968601,
-            "elo_meta": {
-              "rating": 1263.5867797968601,
-              "matches": 8,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-07-28T18:15:00Z"
-            },
-            "level": "developing",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
+              },
               {
                 "match_id": "2048644",
                 "kickoff_utc": "2026-07-15T19:00:00Z",
@@ -7283,7 +7348,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -7291,31 +7356,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -7339,7 +7404,7 @@
           }
         ],
         "data_quality": {
-          "score": 37.0,
+          "score": 38.5,
           "label": "low",
           "sources": [
             "official_fixture",
@@ -7360,7 +7425,7 @@
         },
         "tail_risk": {
           "label": "medium",
-          "score": 43.55,
+          "score": 41.0,
           "coverage_weight": 90.0,
           "drivers": [
             {
@@ -7374,17 +7439,17 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.5059659886846194,
-              "sample": 18,
-              "contribution": 12.649149717115485
+              "raw": 0.4838604556706925,
+              "sample": 19,
+              "contribution": 12.096511391767313
             },
             {
               "name": "history_sparsity",
               "status": "available",
               "weight": 20.0,
-              "raw": 0.19999999999999996,
-              "minimum_team_matches": 8,
-              "contribution": 3.999999999999999
+              "raw": 0.09999999999999998,
+              "minimum_team_matches": 9,
+              "contribution": 1.9999999999999996
             },
             {
               "name": "missing_prematch_context",
@@ -7469,7 +7534,7 @@
       "away": "Sturm Graz",
       "venue": "Tynecastle Park",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.48970352307264625,
       "p_draw": 0.2514335749163607,
       "p_away": 0.2588629020109928,
@@ -8122,7 +8187,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048740",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "50120",
@@ -8898,7 +8963,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -8906,31 +8971,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -9084,7 +9149,7 @@
       "away": "Ararat-Armenia",
       "venue": "Tallaght Stadium",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.6007463024421721,
       "p_draw": 0.22724645685307693,
       "p_away": 0.17200724070475087,
@@ -9737,7 +9802,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048732",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "52381",
@@ -10903,7 +10968,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -10911,31 +10976,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -10987,7 +11052,7 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.8607366420009793,
+              "raw": 0.8607366420009794,
               "contribution": 21.518416050024484
             },
             {
@@ -11089,7 +11154,7 @@
       "away": "Omonia",
       "venue": "Almaty Ortalyk Stadion",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.2145968047704443,
       "p_draw": 0.2413294278288148,
       "p_away": 0.5440737674007409,
@@ -11742,7 +11807,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048734",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "79970",
@@ -13103,7 +13168,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -13111,31 +13176,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -13186,8 +13251,8 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.9143325333799779,
-              "contribution": 22.858313334499446
+              "raw": 0.9143325333799777,
+              "contribution": 22.858313334499442
             },
             {
               "name": "recent_elo_surprise",
@@ -13288,7 +13353,7 @@
       "away": "Klaksvík",
       "venue": "Jonava City Stadium",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.38160277538293375,
       "p_draw": 0.2608965036720754,
       "p_away": 0.3575007209449908,
@@ -13941,7 +14006,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048730",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "2605907",
@@ -15172,7 +15237,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -15180,31 +15245,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -15256,16 +15321,16 @@
               "name": "outcome_entropy",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.9884351455177864,
-              "contribution": 24.71087863794466
+              "raw": 0.9884351455177862,
+              "contribution": 24.710878637944656
             },
             {
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.5346421386682485,
+              "raw": 0.5346421386682484,
               "sample": 18,
-              "contribution": 13.366053466706212
+              "contribution": 13.36605346670621
             },
             {
               "name": "history_sparsity",
@@ -15358,7 +15423,7 @@
       "away": "Aarhus",
       "venue": "Poznan Stadium",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.37547832836013517,
       "p_draw": 0.26097456477582387,
       "p_away": 0.36354710686404096,
@@ -16011,7 +16076,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048731",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "64227",
@@ -16787,7 +16852,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -16795,31 +16860,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -16973,7 +17038,7 @@
       "away": "Levski Sofia",
       "venue": "Ion Oblemenco Stadium",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.517813646549167,
       "p_draw": 0.2466339405913214,
       "p_away": 0.2355524128595116,
@@ -17626,7 +17691,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048733",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "2606501",
@@ -18987,7 +19052,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -18995,31 +19060,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -19077,9 +19142,9 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.40328958789706776,
+              "raw": 0.40328958789706765,
               "sample": 20,
-              "contribution": 10.082239697426694
+              "contribution": 10.082239697426692
             },
             {
               "name": "history_sparsity",
@@ -19172,7 +19237,7 @@
       "away": "Víkingur R.",
       "venue": "Haladás Stadium",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.7503701070672004,
       "p_draw": 0.17295051907858305,
       "p_away": 0.07667937385421657,
@@ -19825,7 +19890,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048736",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "59340",
@@ -20796,7 +20861,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -20804,31 +20869,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -20887,7 +20952,7 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.4501026680102051,
+              "raw": 0.45010266801020504,
               "sample": 14,
               "contribution": 11.252566700255127
             },
@@ -20982,7 +21047,7 @@
       "away": "Larne",
       "venue": "Stadion Rajko Mitić",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.9061058596054862,
       "p_draw": 0.086925522797285,
       "p_away": 0.006968617597228839,
@@ -21635,7 +21700,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048728",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "50069",
@@ -22931,7 +22996,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -22939,31 +23004,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -23022,9 +23087,9 @@
               "name": "recent_elo_surprise",
               "status": "available",
               "weight": 25.0,
-              "raw": 0.4207933462265687,
+              "raw": 0.42079334622656867,
               "sample": 19,
-              "contribution": 10.519833655664218
+              "contribution": 10.519833655664216
             },
             {
               "name": "history_sparsity",
@@ -23117,7 +23182,7 @@
       "away": "Fenerbahçe",
       "venue": "Arena Zabrze",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.1643094583688774,
       "p_draw": 0.22416600948451199,
       "p_away": 0.6115245321466105,
@@ -23753,8 +23818,8 @@
           "probability": 0.0718016591693921
         }
       ],
-      "score_scenarios_coverage": 0.5220651884623604,
-      "other_score_probability": 0.4779348115376396,
+      "score_scenarios_coverage": 0.5220651884623605,
+      "other_score_probability": 0.4779348115376395,
       "score_display": "distribution_not_exact_score_prediction",
       "expected_goals": {
         "home": 0.8230716468899494,
@@ -23770,7 +23835,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048739",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "50063",
@@ -24546,7 +24611,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -24554,31 +24619,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -24732,7 +24797,7 @@
       "away": "Iberia Tbilisi",
       "venue": "Národný futbalový štadión",
       "model": "ClubElo–Poisson (experimental)",
-      "forecast_generated_at": "2026-07-22T20:50:59Z",
+      "forecast_generated_at": "2026-07-23T03:49:14Z",
       "p_home": 0.78384369631655,
       "p_draw": 0.15727234086029884,
       "p_away": 0.05888396282315121,
@@ -25385,7 +25450,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2048737",
-        "generated_as_of": "2026-07-22T21:47:45Z",
+        "generated_as_of": "2026-07-23T03:49:25Z",
         "teams": {
           "home": {
             "team_id": "52797",
@@ -26551,7 +26616,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-07-22T21:47:45Z"
+          "snapshot_at": "2026-07-23T03:49:25Z"
         },
         "weather": null,
         "context_availability": {
@@ -26559,31 +26624,31 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "weather": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "weather",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           },
           "coaches": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-07-22T21:47:45Z"
+            "snapshot_at": "2026-07-23T03:49:25Z"
           }
         },
         "adjustments": [
@@ -26729,6 +26794,29 @@
       }
     }
   ],
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
+    "snapshot_at": "2026-07-22T20:52:24Z",
+    "matched_forecasts": 0,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-07-22T20:52:15Z",
+        "received_at": "2026-07-22T20:52:24Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 96,
+      "limit": 100,
+      "reset": "2026-07-22T20:59:18Z"
+    }
+  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -26777,7 +26865,7 @@
     "schema_version": "paper-candidate-ranking/1.0",
     "status": "PAPER_ONLY",
     "real_money_execution": false,
-    "generated_at": "2026-07-22T21:47:45Z",
+    "generated_at": "2026-07-23T03:49:25Z",
     "policy": {
       "version": "paper-ranking-v1",
       "minimum_point_edge": 0.03,
@@ -26898,29 +26986,6 @@
     "parlays": {
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
-    }
-  },
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
-    "snapshot_at": "2026-07-22T20:52:24Z",
-    "matched_forecasts": 0,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-07-22T20:52:15Z",
-        "received_at": "2026-07-22T20:52:24Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 96,
-      "limit": 100,
-      "reset": "2026-07-22T20:59:18Z"
     }
   }
 }
