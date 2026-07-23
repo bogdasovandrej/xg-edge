@@ -567,7 +567,11 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
         )
         rows.append({
             "id": fixture_id,
-            "competition": fixture.get("competition") or "UEFA Champions League",
+            "competition": (
+                prediction.get("competition")
+                or fixture.get("competition")
+                or "UEFA club competition"
+            ),
             "stage": _uefa_stage_label(fixture, prediction),
             "kickoff_utc": prediction["kickoff_utc"],
             "home": prediction["home"],
