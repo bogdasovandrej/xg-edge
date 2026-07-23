@@ -12,6 +12,7 @@ from xgedge.experiments.ucl_qualifying import (
     ClubEloIndex,
     ClubEloRating,
     EloPoissonCalibration,
+    add_uefa_elo_fallbacks,
     build_team_goal_environment,
     clubelo_ranking_url,
     coverage_summary,
@@ -19,6 +20,7 @@ from xgedge.experiments.ucl_qualifying import (
     normalize_team_name,
     parse_clubelo_csv,
     predict_fixture,
+    predict_fixtures,
 )
 
 
@@ -189,6 +191,76 @@ def test_official_pre_match_history_produces_match_specific_goal_totals():
     )
 
 
+def test_official_uefa_elo_fills_clubelo_gap_without_future_leakage():
+    fixture = _fixture(away="Unlisted United", away_id="unlisted-id")
+    history = {"matches": [
+        {
+            "id": "past",
+            "kickoff_utc": "2026-07-01T18:00:00Z",
+            "status": "FINISHED",
+            "official": True,
+            "scope": "club",
+            "home_id": "unlisted-id",
+            "away_id": "opponent-id",
+            "home_goals_90": 2,
+            "away_goals_90": 0,
+        },
+        {
+            "id": "future-leak",
+            "kickoff_utc": "2026-07-14T19:00:00Z",
+            "status": "FINISHED",
+            "official": True,
+            "scope": "club",
+            "home_id": "unlisted-id",
+            "away_id": "opponent-id",
+            "home_goals_90": 0,
+            "away_goals_90": 9,
+        },
+    ]}
+    clubelo = [ClubEloRating("Home", "AAA", 1600.0)]
+
+    combined, summary = add_uefa_elo_fallbacks(
+        [fixture], clubelo, history, as_of=AS_OF
+    )
+    result = predict_fixtures(
+        [fixture], combined, as_of=AS_OF, simulations=1_000
+    )[0]
+
+    assert summary == {
+        "clubelo": 1,
+        "uefa_official_results": 1,
+        "uefa_cold_start_prior": 0,
+    }
+    assert result["status"] == "ok"
+    assert result["ratings"]["home"]["source"] == "clubelo"
+    assert result["ratings"]["away"]["source"] == "uefa_official_results"
+    assert result["ratings"]["away"]["matches"] == 1
+    assert result["ratings"]["away"]["elo"] > 1500
+    assert result["ratings"]["basis"] == (
+        "clubelo_with_point_in_time_uefa_fallback"
+    )
+    assert result["uncertainty_90m"]["elo_points_plus_minus"] == 75
+
+
+def test_no_history_team_uses_explicit_neutral_prior_with_wide_uncertainty():
+    fixture = _fixture(away="New Club", away_id="new-club-id")
+    combined, summary = add_uefa_elo_fallbacks(
+        [fixture],
+        [ClubEloRating("Home", "AAA", 1600.0)],
+        {"matches": []},
+        as_of=AS_OF,
+    )
+    result = predict_fixtures(
+        [fixture], combined, as_of=AS_OF, simulations=1_000
+    )[0]
+
+    assert summary["uefa_cold_start_prior"] == 1
+    assert result["ratings"]["away"]["elo"] == 1500
+    assert result["ratings"]["away"]["matches"] == 0
+    assert result["ratings"]["away"]["source"] == "uefa_cold_start_prior"
+    assert result["uncertainty_90m"]["elo_points_plus_minus"] == 150
+
+
 def test_aggregate_only_changes_separate_advancement_simulation():
     first_leg = predict_fixture(_fixture(), _ratings(), as_of=AS_OF, simulations=5_000)
     second_leg = predict_fixture(
@@ -283,7 +355,9 @@ def test_offline_cli_writes_json_and_csv_without_network(tmp_path, monkeypatch):
     assert exit_code == 0
     payload = json.loads(json_path.read_text(encoding="utf-8"))
     assert payload["coverage"]["coverage"] == 1.0
-    assert payload["sources"]["ratings"]["provider"] == "ClubElo"
+    assert payload["sources"]["ratings"]["provider"] == (
+        "ClubElo + xgedge UEFA Elo fallback"
+    )
     assert "no demonstrated betting or CLV edge" in payload["limitations"][0]
     assert csv_path.read_text(encoding="utf-8").splitlines()[1]
 

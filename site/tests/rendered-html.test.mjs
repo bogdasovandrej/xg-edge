@@ -67,6 +67,8 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /cohort gate/);
   assert.match(page, /Сценарии счёта — не точный прогноз/);
   assert.match(page, /Тотал матча индивидуальный/);
+  assert.match(page, /Источник силы команд/);
+  assert.match(page, /uefa_cold_start_prior/);
   assert.match(page, /Остальные счета/);
   assert.match(page, /Сильнейшие модельные сценарии/);
   assert.match(page, /model_market_forecasts/);
