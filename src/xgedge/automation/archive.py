@@ -347,6 +347,28 @@ def _model_market_forecasts(forecast: Mapping[str, Any]) -> list[dict[str, Any]]
             raise ValueError("invalid model market probability")
         rank_value = source.get("recommendation_rank")
         rank = rank_value if isinstance(rank_value, int) and not isinstance(rank_value, bool) and rank_value > 0 else None
+        role_value = source.get("recommendation_role")
+        role = (
+            str(role_value)
+            if role_value in {"VALUE_SINGLE", "BALANCED_SINGLE", "EXPRESS_LEG"}
+            else None
+        )
+        target_value = source.get("target_market_odds")
+        minimum_value = source.get("minimum_market_odds")
+        target_odds = (
+            float(target_value)
+            if isinstance(target_value, (int, float)) and not isinstance(target_value, bool)
+            else None
+        )
+        minimum_odds = (
+            float(minimum_value)
+            if isinstance(minimum_value, (int, float)) and not isinstance(minimum_value, bool)
+            else None
+        )
+        if target_odds is not None and (not isfinite(target_odds) or target_odds <= 1.0):
+            raise ValueError("target market odds must be finite and greater than one")
+        if minimum_odds is not None and (not isfinite(minimum_odds) or minimum_odds <= 1.0):
+            raise ValueError("minimum market odds must be finite and greater than one")
         output.append({
             "market": market,
             "selection": selection,
@@ -357,6 +379,14 @@ def _model_market_forecasts(forecast: Mapping[str, Any]) -> list[dict[str, Any]]
             "reliability_haircut": haircut,
             "conservative_fair_odds": fair,
             "recommendation_rank": rank,
+            "recommendation_role": role,
+            "target_market_odds": target_odds,
+            "minimum_market_odds": minimum_odds,
+            "price_status": (
+                "AWAITING_BOOKMAKER_PRICE"
+                if role is not None
+                else None
+            ),
             "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
             "settlement_period": "REGULATION_90_MINUTES",
         })

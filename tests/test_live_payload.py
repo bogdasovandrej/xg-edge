@@ -18,6 +18,14 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
         "fixture_id": "ucl1", "kickoff_utc": "2026-07-14T15:00:00Z",
         "home": "KuPS", "away": "Vardar", "status": "ok",
         "expected_goals_90m": {"home": 2.0, "away": .5},
+        "expected_goals_basis": {
+            "method": "official_uefa_recent_totals_bayesian_shrinkage",
+            "expected_total_goals": 2.5,
+            "prior_total_goals": 2.65,
+            "prior_matches": 5,
+            "recent_match_limit": 10,
+            "team_histories_used": [{"side": "home", "matches": 10}],
+        },
         "probabilities_90m": {"home_win": .74, "draw": .18, "away_win": .08},
         "uncertainty_90m": {"intervals": {"home_win": {"low": .68, "high": .79}}},
         "most_likely_scores_90m": [{"score": "2-0", "probability": .16}],
@@ -60,6 +68,7 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
     assert ucl_row["p_over35"] == pytest.approx(0.2424176)
     assert ucl_row["p_over45"] == pytest.approx(0.1088146)
     assert ucl_row["expected_goals"]["total"] == pytest.approx(2.5)
+    assert ucl_row["expected_goals_basis"]["expected_total_goals"] == 2.5
     assert ucl_row["top_score_probability"] == .16
     assert ucl_row["score_display"] == "distribution_not_exact_score_prediction"
     assert ucl_row["tail_probability_status"] == "RAW_POISSON_UNCALIBRATED_NO_BET"
@@ -80,6 +89,23 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
     ]
     assert sorted(row["recommendation_rank"] for row in recommended) == [1, 2, 3]
     assert len({row["recommendation_group"] for row in recommended}) == 3
+    assert [
+        row["recommendation_role"]
+        for row in sorted(recommended, key=lambda row: row["recommendation_rank"])
+    ] == ["VALUE_SINGLE", "BALANCED_SINGLE", "EXPRESS_LEG"]
+    assert [
+        row["target_market_odds"]
+        for row in sorted(recommended, key=lambda row: row["recommendation_rank"])
+    ] == [1.8, 1.5, 1.3]
+    value_single = next(
+        row for row in recommended if row["recommendation_role"] == "VALUE_SINGLE"
+    )
+    assert value_single["minimum_market_odds"] > 1.5
+    assert all(
+        row["minimum_market_odds"] >= row["conservative_fair_odds"]
+        for row in recommended
+    )
+    assert all(row["price_status"] == "AWAITING_BOOKMAKER_PRICE" for row in recommended)
     assert all(row["reliability_haircut"] == pytest.approx(.03) for row in recommended)
     assert all(
         row["conservative_probability"]

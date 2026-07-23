@@ -66,10 +66,15 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /не блокируют модельный разбор/);
   assert.match(page, /cohort gate/);
   assert.match(page, /Сценарии счёта — не точный прогноз/);
+  assert.match(page, /Тотал матча индивидуальный/);
   assert.match(page, /Остальные счета/);
   assert.match(page, /Сильнейшие модельные сценарии/);
   assert.match(page, /model_market_forecasts/);
   assert.match(page, /Модельные рекомендации по полной линии/);
+  assert.match(page, /VALUE-ординар · кэф >1\.50/);
+  assert.match(page, /Ординар · около 1\.50/);
+  assert.match(page, /Плечо экспресса · около 1\.30/);
+  assert.match(page, /Ставить только от/);
   assert.match(page, /Открыть всю линию/);
   assert.match(page, /PAPER BANKROLL/);
   assert.match(page, /PaperTradingLab/);

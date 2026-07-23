@@ -306,20 +306,46 @@ def _model_market_forecasts(
             "settlement_period": "REGULATION_90_MINUTES",
         })
 
-    # Select diverse scenarios instead of filling the top three with correlated
-    # variants of the same market.  They are forecasts, not bookmaker value bets.
-    group_best: dict[str, dict[str, Any]] = {}
-    for row in rows:
-        group = str(row["recommendation_group"])
-        current = group_best.get(group)
-        if current is None or row["conservative_probability"] > current["conservative_probability"]:
-            group_best[group] = row
-    recommended = sorted(
-        group_best.values(),
-        key=lambda row: (-row["conservative_probability"], row["conservative_fair_odds"]),
-    )[:3]
-    for rank, row in enumerate(recommended, start=1):
-        row["recommendation_rank"] = rank
+    # A bookmaker price is not available here, so these are price-watch roles,
+    # not fabricated value claims.  The actual-price layer can confirm value
+    # only when its quote clears the conservative fair threshold.
+    roles = (
+        ("VALUE_SINGLE", 1.80, 1.51),
+        ("BALANCED_SINGLE", 1.50, None),
+        ("EXPRESS_LEG", 1.30, None),
+    )
+    available = list(rows)
+    used_groups: set[str] = set()
+    for rank, (role, target_odds, odds_floor) in enumerate(roles, start=1):
+        eligible = [
+            row for row in available
+            if str(row["recommendation_group"]) not in used_groups
+            and (odds_floor is None or row["conservative_fair_odds"] >= odds_floor)
+        ]
+        if not eligible:
+            eligible = [
+                row for row in available
+                if str(row["recommendation_group"]) not in used_groups
+            ]
+        if not eligible:
+            break
+        selected = min(
+            eligible,
+            key=lambda row: (
+                abs(row["conservative_fair_odds"] - target_odds),
+                -row["conservative_probability"],
+                row["label"],
+            ),
+        )
+        selected["recommendation_rank"] = rank
+        selected["recommendation_role"] = role
+        selected["target_market_odds"] = target_odds
+        selected["minimum_market_odds"] = max(
+            odds_floor or 1.0,
+            selected["conservative_fair_odds"],
+        )
+        selected["price_status"] = "AWAITING_BOOKMAKER_PRICE"
+        used_groups.add(str(selected["recommendation_group"]))
     return rows
 
 
@@ -592,6 +618,7 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             "p_away_advance": qualification.get("away_to_advance"),
             "lambda_home": lam_h,
             "lambda_away": lam_a,
+            "expected_goals_basis": prediction.get("expected_goals_basis"),
             "model_market_forecasts": _model_market_forecasts(
                 lam_h,
                 lam_a,

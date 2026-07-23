@@ -23,6 +23,7 @@ from xgedge.experiments.ucl_qualifying import (
     CLUBELO_ATTRIBUTION_URL,
     DEFAULT_CLUBELO_URL,
     EloPoissonCalibration,
+    build_team_goal_environment,
     clubelo_ranking_url,
     coverage_summary,
     fetch_clubelo_ratings,
@@ -101,6 +102,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fixtures-json", type=Path)
     parser.add_argument("--ratings-csv", type=Path)
     parser.add_argument("--aliases-json", type=Path)
+    parser.add_argument(
+        "--history-json",
+        type=Path,
+        help="official UEFA history used only before as-of for match-specific totals",
+    )
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-csv", type=Path, required=True)
     parser.add_argument("--clubelo-url", default=DEFAULT_CLUBELO_URL)
@@ -172,12 +178,23 @@ def main(argv: list[str] | None = None) -> int:
 
     fixtures = sorted(fixtures, key=lambda row: (str(row.get("kickoff_utc", "")), str(row.get("id", ""))))[: args.limit]
     calibration = EloPoissonCalibration()
+    history_document = (
+        json.loads(args.history_json.read_text(encoding="utf-8"))
+        if args.history_json and args.history_json.exists()
+        else None
+    )
+    goal_environment = build_team_goal_environment(
+        history_document,
+        as_of=as_of,
+        calibration=calibration,
+    )
     predictions = predict_fixtures(
         fixtures,
         rating_rows,
         as_of=as_of,
         aliases=aliases,
         calibration=calibration,
+        goal_environment=goal_environment,
         simulations=args.simulations,
         seed=args.seed,
     )
@@ -207,10 +224,19 @@ def main(argv: list[str] | None = None) -> int:
                 "documentation": CLUBELO_ATTRIBUTION_URL,
                 "attribution": "Club strength ratings supplied by ClubElo.",
             },
+            "goal_environment": {
+                "provider": "UEFA",
+                "history_file": (
+                    args.history_json.name if args.history_json else None
+                ),
+                "teams_with_pre_match_history": len(goal_environment),
+                "method": "recent official 90-minute totals with Bayesian shrinkage",
+            },
         },
         "limitations": [
             "Experimental baseline; no demonstrated betting or CLV edge.",
-            "90-minute probabilities use ClubElo only and omit lineups, injuries and odds.",
+            "90-minute strength split uses ClubElo; match total uses only official pre-as-of UEFA results.",
+            "Lineups, injuries and odds are not inputs to this experimental goal model.",
             "Advancement simulation is separate and is emitted only for a second leg with a known aggregate.",
             "A missing ClubElo team produces no prediction; no rating is imputed.",
         ],

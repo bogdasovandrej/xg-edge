@@ -54,22 +54,27 @@ DEFAULT_TEAM_ALIASES: dict[str, str] = {
 
 @dataclass(frozen=True)
 class EloPoissonCalibration:
-    """Fixed v1 calibration used to translate Elo to regulation-time goals.
+    """Transparent v2 calibration used to translate Elo to regulation-time goals.
 
     ``adjusted_diff = home_elo - away_elo + home_advantage_elo``
     ``goal_ratio = 10 ** (adjusted_diff / elo_denominator)``
-    ``lambda_home = total_goals * goal_ratio / (1 + goal_ratio)``
-    ``lambda_away = total_goals / (1 + goal_ratio)``
+    ``match_total = recent UEFA goal environment shrunk to total_goals``
+    ``lambda_home = match_total * goal_ratio / (1 + goal_ratio)``
+    ``lambda_away = match_total / (1 + goal_ratio)``
 
     The constants are intentionally configurable and exposed in every output.
     They are a broad European-football baseline, not evidence of positive CLV.
     """
 
-    version: str = "clubelo-poisson-v1"
+    version: str = "clubelo-poisson-v2-team-goal-environment"
     total_goals: float = 2.65
     home_advantage_elo: float = 65.0
     elo_denominator: float = 400.0
     elo_uncertainty: float = 50.0
+    goal_history_prior_matches: int = 5
+    goal_history_recent_matches: int = 10
+    minimum_total_goals: float = 1.80
+    maximum_total_goals: float = 4.20
     max_goals: int = 10
 
     def validate(self) -> None:
@@ -78,6 +83,8 @@ class EloPoissonCalibration:
             self.home_advantage_elo,
             self.elo_denominator,
             self.elo_uncertainty,
+            self.minimum_total_goals,
+            self.maximum_total_goals,
         )
         if not all(math.isfinite(value) for value in values):
             raise ValueError("calibration values must be finite")
@@ -85,6 +92,21 @@ class EloPoissonCalibration:
             raise ValueError("total_goals and elo_denominator must be positive")
         if self.elo_uncertainty < 0:
             raise ValueError("elo_uncertainty must be non-negative")
+        if (
+            isinstance(self.goal_history_prior_matches, bool)
+            or not isinstance(self.goal_history_prior_matches, (int, np.integer))
+            or self.goal_history_prior_matches < 1
+            or isinstance(self.goal_history_recent_matches, bool)
+            or not isinstance(self.goal_history_recent_matches, (int, np.integer))
+            or self.goal_history_recent_matches < 1
+        ):
+            raise ValueError("goal-history match counts must be positive integers")
+        if not (
+            0 < self.minimum_total_goals
+            <= self.total_goals
+            <= self.maximum_total_goals
+        ):
+            raise ValueError("goal-total bounds must contain total_goals")
         if (
             isinstance(self.max_goals, bool)
             or not isinstance(self.max_goals, (int, np.integer))
@@ -238,10 +260,129 @@ def _as_utc(value: datetime | str) -> datetime:
     return value.astimezone(timezone.utc)
 
 
-def _lambdas(adjusted_diff: float, calibration: EloPoissonCalibration) -> tuple[float, float]:
+def build_team_goal_environment(
+    history: Mapping[str, Any] | None,
+    *,
+    as_of: datetime | str,
+    calibration: EloPoissonCalibration | None = None,
+) -> dict[str, dict[str, float | int]]:
+    """Build leakage-safe recent goal environments from official UEFA results."""
+    calibration = calibration or EloPoissonCalibration()
+    calibration.validate()
+    cutoff = _as_utc(as_of)
+    source_matches = history.get("matches", []) if isinstance(history, Mapping) else []
+    if not isinstance(source_matches, list):
+        raise ValueError("UEFA history matches must be an array")
+    by_team: dict[str, list[tuple[datetime, float]]] = {}
+    for match in source_matches:
+        if not isinstance(match, Mapping):
+            continue
+        try:
+            kickoff = _as_utc(str(match.get("kickoff_utc")))
+        except (TypeError, ValueError):
+            continue
+        home_goals = match.get("home_goals_90")
+        away_goals = match.get("away_goals_90")
+        if (
+            kickoff >= cutoff
+            or match.get("status") != "FINISHED"
+            or match.get("official") is not True
+            or isinstance(home_goals, bool)
+            or isinstance(away_goals, bool)
+            or not isinstance(home_goals, int)
+            or not isinstance(away_goals, int)
+            or min(home_goals, away_goals) < 0
+        ):
+            continue
+        total = float(home_goals + away_goals)
+        for field in ("home_id", "away_id"):
+            team_id = str(match.get(field) or "").strip()
+            if team_id:
+                by_team.setdefault(team_id, []).append((kickoff, total))
+
+    output: dict[str, dict[str, float | int]] = {}
+    prior = calibration.goal_history_prior_matches
+    for team_id, observations in by_team.items():
+        recent = sorted(observations, key=lambda row: row[0], reverse=True)[
+            : calibration.goal_history_recent_matches
+        ]
+        raw_average = sum(total for _, total in recent) / len(recent)
+        shrunk = (
+            sum(total for _, total in recent)
+            + prior * calibration.total_goals
+        ) / (len(recent) + prior)
+        output[team_id] = {
+            "matches": len(recent),
+            "raw_average_total_goals": raw_average,
+            "shrunk_total_goals": min(
+                calibration.maximum_total_goals,
+                max(calibration.minimum_total_goals, shrunk),
+            ),
+        }
+    return output
+
+
+def _match_total_goals(
+    fixture: Mapping[str, Any],
+    goal_environment: Mapping[str, Mapping[str, Any]] | None,
+    calibration: EloPoissonCalibration,
+) -> tuple[float, dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    environment = goal_environment if isinstance(goal_environment, Mapping) else {}
+    for side, field in (("home", "home_id"), ("away", "away_id")):
+        team_id = str(fixture.get(field) or "").strip()
+        row = environment.get(team_id)
+        if not isinstance(row, Mapping):
+            continue
+        value = row.get("shrunk_total_goals")
+        matches = row.get("matches")
+        if (
+            isinstance(value, bool)
+            or not isinstance(value, (int, float))
+            or not math.isfinite(float(value))
+            or isinstance(matches, bool)
+            or not isinstance(matches, int)
+            or matches < 1
+        ):
+            continue
+        rows.append({
+            "side": side,
+            "team_id": team_id,
+            "matches": matches,
+            "shrunk_total_goals": float(value),
+            "raw_average_total_goals": row.get("raw_average_total_goals"),
+        })
+    estimated = (
+        sum(float(row["shrunk_total_goals"]) for row in rows) / len(rows)
+        if rows else calibration.total_goals
+    )
+    estimated = min(
+        calibration.maximum_total_goals,
+        max(calibration.minimum_total_goals, estimated),
+    )
+    return estimated, {
+        "method": (
+            "official_uefa_recent_totals_bayesian_shrinkage"
+            if rows else "broad_european_baseline_no_team_history"
+        ),
+        "expected_total_goals": estimated,
+        "team_histories_used": rows,
+        "prior_total_goals": calibration.total_goals,
+        "prior_matches": calibration.goal_history_prior_matches,
+        "recent_match_limit": calibration.goal_history_recent_matches,
+    }
+
+
+def _lambdas(
+    adjusted_diff: float,
+    calibration: EloPoissonCalibration,
+    *,
+    total_goals: float | None = None,
+) -> tuple[float, float]:
     ratio = 10.0 ** (adjusted_diff / calibration.elo_denominator)
-    lam_home = calibration.total_goals * ratio / (1.0 + ratio)
-    return lam_home, calibration.total_goals - lam_home
+    match_total = calibration.total_goals if total_goals is None else float(total_goals)
+    lam_home = match_total * ratio / (1.0 + ratio)
+    return lam_home, match_total - lam_home
 
 
 def _outcomes(matrix: np.ndarray) -> dict[str, float]:
@@ -253,7 +394,10 @@ def _outcomes(matrix: np.ndarray) -> dict[str, float]:
 
 
 def _uncertainty_interval(
-    adjusted_diff: float, calibration: EloPoissonCalibration
+    adjusted_diff: float,
+    calibration: EloPoissonCalibration,
+    *,
+    total_goals: float,
 ) -> dict[str, dict[str, float]]:
     values: dict[str, list[float]] = {name: [] for name in ("home_win", "draw", "away_win")}
     for diff in np.linspace(
@@ -261,7 +405,7 @@ def _uncertainty_interval(
         adjusted_diff + calibration.elo_uncertainty,
         21,
     ):
-        lh, la = _lambdas(float(diff), calibration)
+        lh, la = _lambdas(float(diff), calibration, total_goals=total_goals)
         outcomes = _outcomes(score_matrix(lh, la, max_goals=calibration.max_goals))
         for name, probability in outcomes.items():
             values[name].append(probability)
@@ -349,6 +493,7 @@ def predict_fixture(
     *,
     as_of: datetime,
     calibration: EloPoissonCalibration | None = None,
+    goal_environment: Mapping[str, Mapping[str, Any]] | None = None,
     simulations: int = 50_000,
     seed: int = 20260713,
 ) -> dict[str, Any]:
@@ -398,7 +543,12 @@ def predict_fixture(
     adjusted_diff = (
         home_rating.elo - away_rating.elo + calibration.home_advantage_elo
     )
-    lambda_home, lambda_away = _lambdas(adjusted_diff, calibration)
+    match_total, total_basis = _match_total_goals(
+        fixture, goal_environment, calibration
+    )
+    lambda_home, lambda_away = _lambdas(
+        adjusted_diff, calibration, total_goals=match_total
+    )
     matrix = score_matrix(
         lambda_home, lambda_away, max_goals=calibration.max_goals
     )
@@ -411,11 +561,14 @@ def predict_fixture(
             "adjusted_elo_difference": adjusted_diff,
         },
         "expected_goals_90m": {"home": lambda_home, "away": lambda_away},
+        "expected_goals_basis": total_basis,
         "probabilities_90m": _outcomes(matrix),
         "uncertainty_90m": {
             "method": "recalculate over adjusted Elo difference +/- configured band",
             "elo_points_plus_minus": calibration.elo_uncertainty,
-            "intervals": _uncertainty_interval(adjusted_diff, calibration),
+            "intervals": _uncertainty_interval(
+                adjusted_diff, calibration, total_goals=match_total
+            ),
         },
         "most_likely_scores_90m": _top_scores(matrix),
         "qualification": None,
@@ -458,6 +611,7 @@ def predict_fixtures(
     as_of: datetime,
     aliases: Mapping[str, str] | None = None,
     calibration: EloPoissonCalibration | None = None,
+    goal_environment: Mapping[str, Mapping[str, Any]] | None = None,
     simulations: int = 50_000,
     seed: int = 20260713,
 ) -> list[dict[str, Any]]:
@@ -469,6 +623,7 @@ def predict_fixtures(
             index,
             as_of=as_of,
             calibration=calibration,
+            goal_environment=goal_environment,
             simulations=simulations,
             seed=seed,
         )

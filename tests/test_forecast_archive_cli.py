@@ -76,6 +76,9 @@ def _payload(kickoff: datetime) -> dict:
                 "reliability_haircut": 0.04,
                 "conservative_fair_odds": 2.0833333333,
                 "recommendation_rank": 1,
+                "recommendation_role": "VALUE_SINGLE",
+                "target_market_odds": 1.8,
+                "minimum_market_odds": 2.0833333333,
             }],
         }],
     }
@@ -104,6 +107,9 @@ def test_archive_cli_freezes_forecast_then_appends_official_result(tmp_path: Pat
     assert frozen["expected_goals"] == {"home": 1.4, "away": 0.8}
     assert frozen["model_market_forecasts"][0]["label"] == "ТБ 2.5"
     assert frozen["model_market_forecasts"][0]["recommendation_rank"] == 1
+    assert frozen["model_market_forecasts"][0]["recommendation_role"] == "VALUE_SINGLE"
+    assert frozen["model_market_forecasts"][0]["target_market_odds"] == 1.8
+    assert frozen["model_market_forecasts"][0]["minimum_market_odds"] == 2.0833333333
 
     def fake_fetcher(*args, **kwargs):
         return {
