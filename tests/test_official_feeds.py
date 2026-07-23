@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+from pathlib import Path
 
 import pytest
 import requests
@@ -199,6 +200,19 @@ def test_verified_uefa_competition_registry_is_explicit_and_resolvable() -> None
     ]
     with pytest.raises(ValueError, match="cannot be combined"):
         resolve_uefa_competitions(["all", "uel"])
+
+
+def test_live_workflow_keeps_all_three_uefa_qualifiers_enabled() -> None:
+    workflow = (
+        Path(__file__).resolve().parents[1]
+        / ".github"
+        / "workflows"
+        / "live-predictions.yml"
+    ).read_text(encoding="utf-8")
+
+    assert workflow.count("--uefa-competition all") == 2
+    assert "--limit 200" in workflow
+    assert "Champions, Europa and Conference League qualifiers" in workflow
 
 
 def test_uefa_feed_paginates_and_orients_first_leg_to_current_home() -> None:

@@ -23,6 +23,8 @@ ODDS_API_IO_DOCS = "https://docs.odds-api.io/guides/fetching-odds"
 SPORT_KEYS = {
     "FIFA World Cup 2026": "soccer_fifa_world_cup",
     "UEFA Champions League": "soccer_uefa_champs_league",
+    "UEFA Europa League": "soccer_uefa_europa_league",
+    "UEFA Conference League": "soccer_uefa_europa_conference_league",
     "Premier League": "soccer_epl",
     "La Liga": "soccer_spain_la_liga",
     "Bundesliga": "soccer_germany_bundesliga",

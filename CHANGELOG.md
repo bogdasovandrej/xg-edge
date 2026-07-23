@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.1 — 2026-07-23
+
+- Activated official UEFA fixture and ClubElo–Poisson forecast ingestion for
+  Champions League, Europa League and Conference League qualifiers.
+- Added separate ЛЧ/ЛЕ/ЛК site filters and Russian competition labels.
+- Added official The Odds API sport-key routing for Europa and Conference
+  League price discovery while retaining Odds-API.io football discovery.
+- Raised the live UEFA forecast ceiling so one competition cannot crowd the
+  other two out of the public snapshot.
+
 ## 0.8.0 — 2026-07-23
 
 - Replaced the blocking public `NO BET / WAIT / 0 of 100` panel with an active

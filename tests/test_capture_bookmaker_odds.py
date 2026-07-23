@@ -22,12 +22,33 @@ def _fixture(identity: str, competition: str, kickoff: str) -> dict:
 def test_maps_supported_competitions_without_guessing_unknowns() -> None:
     assert sport_key_for_fixture({"competition": "FIFA World Cup™"}) == "soccer_fifa_world_cup"
     assert sport_key_for_fixture({"competition": "UEFA Champions League"}) == "soccer_uefa_champs_league"
+    assert sport_key_for_fixture({"competition": "UEFA Europa League"}) == "soccer_uefa_europa_league"
+    assert sport_key_for_fixture(
+        {"competition": "UEFA Conference League"}
+    ) == "soccer_uefa_europa_conference_league"
     assert sport_key_for_fixture({"competition": "Premier League"}) == "soccer_epl"
     assert sport_key_for_fixture({"competition": "La Liga"}) == "soccer_spain_la_liga"
     assert sport_key_for_fixture({"competition": "Bundesliga"}) == "soccer_germany_bundesliga"
     assert sport_key_for_fixture({"competition": "Serie A"}) == "soccer_italy_serie_a"
     assert sport_key_for_fixture({"competition": "Ligue 1"}) == "soccer_france_ligue_one"
     assert sport_key_for_fixture({"competition": "Friendly"}) is None
+
+
+def test_required_keys_include_all_uefa_club_competitions() -> None:
+    fixtures = [
+        _fixture("ucl", "UEFA Champions League", "2026-07-20T12:00:00Z"),
+        _fixture("uel", "UEFA Europa League", "2026-07-20T13:00:00Z"),
+        _fixture("uecl", "UEFA Conference League", "2026-07-20T14:00:00Z"),
+    ]
+
+    assert required_sport_keys(
+        fixtures, {"fixtures": {}}, now=NOW,
+        closing_window_minutes=60, discovery_days=14,
+    ) == [
+        "soccer_uefa_champs_league",
+        "soccer_uefa_europa_conference_league",
+        "soccer_uefa_europa_league",
+    ]
 
 
 def test_requests_new_fixtures_and_closing_window_but_skips_tracked_future() -> None:
