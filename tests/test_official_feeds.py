@@ -211,8 +211,10 @@ def test_live_workflow_keeps_all_three_uefa_qualifiers_enabled() -> None:
     ).read_text(encoding="utf-8")
 
     assert workflow.count("--uefa-competition all") == 2
+    assert "--source uefa" in workflow
     assert "--limit 200" in workflow
     assert "Champions, Europa and Conference League qualifiers" in workflow
+    assert "Official fixture refresh unavailable" not in workflow
 
 
 def test_uefa_feed_paginates_and_orients_first_leg_to_current_home() -> None:

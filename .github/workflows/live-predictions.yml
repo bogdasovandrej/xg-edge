@@ -27,8 +27,8 @@ jobs:
         run: >-
           python scripts/fetch_current_fixtures.py
           --output-dir reports/live
+          --source uefa
           --uefa-competition all
-          || echo "Official fixture refresh unavailable; retaining checked-in snapshot"
       - name: Predict World Cup
         shell: bash
         run: |

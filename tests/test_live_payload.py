@@ -274,3 +274,32 @@ def test_live_payload_uses_verified_uefa_history_without_inventing_xg() -> None:
     assert recent[0]["match_id"] == "past"
     assert recent[0]["score_90"] == {"for": 2, "against": 0}
     assert recent[0]["xg"]["non_penalty"]["status"] == "unknown"
+
+
+def test_uefa_prediction_keeps_competition_when_fixture_snapshot_is_missing() -> None:
+    payload = build_payload(
+        {"predictions": []},
+        {"predictions": [{
+            "fixture_id": "uel-future",
+            "kickoff_utc": "2026-07-23T18:00:00Z",
+            "competition_id": "14",
+            "competition": "UEFA Europa League",
+            "round": "Second qualifying round",
+            "stage": "QUALIFYING",
+            "leg": 1,
+            "home": "Home",
+            "away": "Away",
+            "status": "ok",
+            "expected_goals_90m": {"home": 1.3, "away": 0.9},
+            "probabilities_90m": {
+                "home_win": 0.46,
+                "draw": 0.29,
+                "away_win": 0.25,
+            },
+        }]},
+        [],
+        "2026-07-23T12:00:00Z",
+    )
+
+    assert payload["forecasts"][0]["competition"] == "UEFA Europa League"
+    assert len(payload["forecasts"][0]["model_market_forecasts"]) == 40
