@@ -49,6 +49,19 @@ type Forecast = {
   betting_eligible?: boolean | null;
   first_leg?: string | null;
   probability_basis?: string | null;
+  rating_basis?: {
+    basis?: string | null;
+    home?: {
+      elo?: number | null;
+      source?: string | null;
+      matches?: number | null;
+    } | null;
+    away?: {
+      elo?: number | null;
+      source?: string | null;
+      matches?: number | null;
+    } | null;
+  } | null;
   raw_model_1x2?: { home: number; draw: number; away: number } | null;
   model_market_forecasts?: ModelMarketForecast[] | null;
   evaluation_cohort_id?: string | null;
@@ -1641,6 +1654,23 @@ function ModelAnalysisBrief({ forecast }: { forecast: Forecast }) {
     .filter((match) => finiteNumber(match.xg?.non_penalty?.value) != null).length;
   const lineupKnown = [forecast.details?.teams?.home, forecast.details?.teams?.away]
     .every((team) => (team?.likely_lineup || []).some((player) => player.status === "starter"));
+  const ratingRows = [
+    { name: forecast.home, rating: forecast.rating_basis?.home },
+    { name: forecast.away, rating: forecast.rating_basis?.away },
+  ];
+  const coldStartTeams = ratingRows
+    .filter(({ rating }) => rating?.source === "uefa_cold_start_prior")
+    .map(({ name }) => name);
+  const ratingDescription = ratingRows.map(({ name, rating }) => {
+    const source = rating?.source === "clubelo"
+      ? "ClubElo"
+      : rating?.source === "uefa_official_results"
+        ? `UEFA Elo · ${Math.trunc(finiteNumber(rating.matches) || 0)} матч.`
+        : rating?.source === "uefa_cold_start_prior"
+          ? "нейтральный prior · истории нет"
+          : "источник не указан";
+    return `${name}: ${finiteNumber(rating?.elo) == null ? "Elo —" : `Elo ${Math.round(rating!.elo!)}`} (${source})`;
+  }).join(" · ");
   const summary = leader
     ? `${leader.name === "ничья" ? "Самый вероятный отдельный исход — ничья" : `Модель отдаёт первое место исходу «${leader.name}»`} (${percent(leader.value)}), ${margin != null && margin < 0.08 ? "но преимущество небольшое — матч близкий" : "с заметным отрывом от следующего исхода"}.`
     : "Фундаментальная вероятность ещё не выпущена: данных недостаточно для численного вывода.";
@@ -1655,6 +1685,7 @@ function ModelAnalysisBrief({ forecast }: { forecast: Forecast }) {
     homeHistory.length + awayHistory.length === 0 ? "официальная история команд пока не загружена" : null,
     knownXg < 6 && homeHistory.length + awayHistory.length > 0 ? `event-level npxG подтверждён лишь для ${knownXg} из ${Math.min(10, homeHistory.length + awayHistory.length)} последних показанных матчей` : null,
     !lineupKnown ? "составы предварительные или ещё не опубликованы" : null,
+    coldStartTeams.length ? `нейтральный стартовый Elo без истории: ${coldStartTeams.join(", ")}` : null,
     forecast.details?.referee?.name ? null : "назначение судьи не подтверждено",
     forecast.details?.weather?.temperature_c == null ? "погода не подтверждена" : null,
     forecast.details?.tail_risk?.label ? `tail risk: ${levelName(forecast.details.tail_risk.label)}` : "tail risk не оценён",
@@ -1667,6 +1698,7 @@ function ModelAnalysisBrief({ forecast }: { forecast: Forecast }) {
         <div><b>Мотивация</b><p>{highStakes ? "Турнирная стадия предполагает высокую структурную мотивацию." : "По одной стадии мотивацию подтвердить нельзя."} {firstLeg ? "Первый матч пары повышает риск осторожного темпа." : "Точный стимул по таблице, ротации и заявлениям тренера пока не подтверждён."}</p></div>
         <div><b>Главные риски</b>{risks.length ? <ul>{risks.slice(0, 4).map((risk) => <li key={risk}>{risk}</li>)}</ul> : <p>Критических пробелов в загруженном срезе не обнаружено.</p>}</div>
       </div>
+      {forecast.rating_basis && <p className="audit-note">Источник силы команд: {ratingDescription}.</p>}
       <p className="audit-note">Текст собран детерминированно из вероятностей, Elo, официальной формы и аудита качества. Он не подменяет отсутствующие травмы, новости или мотивацию «мнением нейросети».</p>
     </section>
   );

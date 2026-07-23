@@ -23,6 +23,7 @@ from xgedge.experiments.ucl_qualifying import (
     CLUBELO_ATTRIBUTION_URL,
     DEFAULT_CLUBELO_URL,
     EloPoissonCalibration,
+    add_uefa_elo_fallbacks,
     build_team_goal_environment,
     clubelo_ranking_url,
     coverage_summary,
@@ -188,6 +189,13 @@ def main(argv: list[str] | None = None) -> int:
         as_of=as_of,
         calibration=calibration,
     )
+    rating_rows, rating_coverage = add_uefa_elo_fallbacks(
+        fixtures,
+        rating_rows,
+        history_document,
+        as_of=as_of,
+        aliases=aliases,
+    )
     predictions = predict_fixtures(
         fixtures,
         rating_rows,
@@ -201,7 +209,7 @@ def main(argv: list[str] | None = None) -> int:
     envelope = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "as_of_utc": as_of.isoformat(timespec="seconds").replace("+00:00", "Z"),
-        "model": "experimental ClubElo-to-Poisson UEFA qualifier baseline",
+        "model": "experimental hybrid Elo-to-Poisson UEFA qualifier baseline",
         "calibration": asdict(calibration),
         "coverage": coverage_summary(predictions),
         "sources": {
@@ -219,10 +227,15 @@ def main(argv: list[str] | None = None) -> int:
                 ],
             },
             "ratings": {
-                "provider": "ClubElo",
+                "provider": "ClubElo + xgedge UEFA Elo fallback",
                 "url": ratings_url,
                 "documentation": CLUBELO_ATTRIBUTION_URL,
-                "attribution": "Club strength ratings supplied by ClubElo.",
+                "attribution": (
+                    "ClubElo where matched; otherwise point-in-time Elo replayed "
+                    "from official UEFA regulation-time results."
+                ),
+                "fixture_team_coverage": rating_coverage,
+                "fallback_method": "xgedge_point_in_time_uefa_elo_v1",
             },
             "goal_environment": {
                 "provider": "UEFA",
@@ -235,10 +248,10 @@ def main(argv: list[str] | None = None) -> int:
         },
         "limitations": [
             "Experimental baseline; no demonstrated betting or CLV edge.",
-            "90-minute strength split uses ClubElo; match total uses only official pre-as-of UEFA results.",
+            "90-minute strength split uses ClubElo with a point-in-time official UEFA Elo fallback.",
             "Lineups, injuries and odds are not inputs to this experimental goal model.",
             "Advancement simulation is separate and is emitted only for a second leg with a known aggregate.",
-            "A missing ClubElo team produces no prediction; no rating is imputed.",
+            "A team without ClubElo or prior UEFA results uses a neutral 1500 cold-start with wider uncertainty.",
         ],
         "predictions": predictions,
     }

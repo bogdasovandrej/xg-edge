@@ -603,7 +603,7 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             "home": prediction["home"],
             "away": prediction["away"],
             "venue": fixture.get("venue"),
-            "model": "ClubElo–Poisson (experimental)",
+            "model": "Hybrid Elo–Poisson (experimental)",
             "forecast_generated_at": (
                 prediction.get("generated_as_of_utc")
                 or document.get("as_of_utc")
@@ -612,6 +612,11 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             "p_home": probs.get("home_win"),
             "p_draw": probs.get("draw"),
             "p_away": probs.get("away_win"),
+            "probability_basis": (
+                (prediction.get("ratings") or {}).get("basis")
+                or "hybrid_elo_unspecified"
+            ),
+            "rating_basis": prediction.get("ratings"),
             "p_over25": p_over,
             "p_btts": p_btts,
             "p_home_advance": qualification.get("home_to_advance"),

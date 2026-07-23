@@ -26,6 +26,15 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
             "recent_match_limit": 10,
             "team_histories_used": [{"side": "home", "matches": 10}],
         },
+        "ratings": {
+            "home": {"elo": 1600, "source": "clubelo", "matches": None},
+            "away": {
+                "elo": 1512,
+                "source": "uefa_official_results",
+                "matches": 4,
+            },
+            "basis": "clubelo_with_point_in_time_uefa_fallback",
+        },
         "probabilities_90m": {"home_win": .74, "draw": .18, "away_win": .08},
         "uncertainty_90m": {"intervals": {"home_win": {"low": .68, "high": .79}}},
         "most_likely_scores_90m": [{"score": "2-0", "probability": .16}],
@@ -69,6 +78,10 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
     assert ucl_row["p_over45"] == pytest.approx(0.1088146)
     assert ucl_row["expected_goals"]["total"] == pytest.approx(2.5)
     assert ucl_row["expected_goals_basis"]["expected_total_goals"] == 2.5
+    assert ucl_row["probability_basis"] == (
+        "clubelo_with_point_in_time_uefa_fallback"
+    )
+    assert ucl_row["rating_basis"]["away"]["source"] == "uefa_official_results"
     assert ucl_row["top_score_probability"] == .16
     assert ucl_row["score_display"] == "distribution_not_exact_score_prediction"
     assert ucl_row["tail_probability_status"] == "RAW_POISSON_UNCALIBRATED_NO_BET"
