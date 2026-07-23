@@ -49,6 +49,10 @@ def sport_key_for_fixture(fixture: Mapping[str, Any]) -> str | None:
         return SPORT_KEYS["FIFA World Cup 2026"]
     if "Champions League" in competition:
         return SPORT_KEYS["UEFA Champions League"]
+    if "Europa League" in competition:
+        return SPORT_KEYS["UEFA Europa League"]
+    if "Conference League" in competition:
+        return SPORT_KEYS["UEFA Conference League"]
     for name in ("Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1"):
         if name in competition:
             return SPORT_KEYS[name]

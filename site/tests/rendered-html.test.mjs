@@ -28,6 +28,8 @@ test("server-renders the xg-edge live dashboard", async () => {
   assert.match(html, /Поправка надёжности/);
   assert.match(html, /Прошедшие матчи не показываются как будущие/);
   assert.match(html, /Поиск матча/);
+  assert.match(html, />ЛЕ</);
+  assert.match(html, />ЛК</);
   assert.match(html, /Сильнейшие модельные сценарии/);
   assert.match(html, /Модель считает сейчас/);
   assert.match(html, /Пустые карточки ROI скрыты/);
@@ -48,6 +50,10 @@ test("uses the public snapshot and contains no disposable starter", async () => 
 
   assert.match(page, /SITE_DATA_ROOT = "\/xg-edge\/data"/);
   assert.match(page, /live_predictions\.json/);
+  assert.match(page, /\["uel", "ЛЕ"\]/);
+  assert.match(page, /\["uecl", "ЛК"\]/);
+  assert.match(page, /Лига Европы/);
+  assert.match(page, /Лига конференций/);
   assert.match(page, /market_anchored|market_fair/);
   assert.match(page, /Tail risk/);
   assert.match(page, /PAPER-кандидат не является рекомендацией/);

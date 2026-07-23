@@ -27,7 +27,7 @@ jobs:
         run: >-
           python scripts/fetch_current_fixtures.py
           --output-dir reports/live
-          --uefa-competition ucl
+          --uefa-competition all
           || echo "Official fixture refresh unavailable; retaining checked-in snapshot"
       - name: Predict World Cup
         shell: bash
@@ -42,10 +42,11 @@ jobs:
             --draws 2000 --seed 20260713 \
             --output-json reports/world_cup_2026_semifinals.json \
             --output-csv reports/world_cup_2026_semifinals.csv
-      - name: Predict Champions League qualifiers
+      - name: Predict Champions, Europa and Conference League qualifiers
         run: >-
           python scripts/predict_ucl_qualifying.py
-          --mode live --limit 14 --simulations 100000 --seed 20260713
+          --mode live --uefa-competition all
+          --limit 200 --simulations 100000 --seed 20260713
           --output-json reports/ucl_qualifying_predictions.json
           --output-csv reports/ucl_qualifying_predictions.csv
       - name: Fetch official UEFA club history

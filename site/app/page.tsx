@@ -508,6 +508,8 @@ const archiveDate = (iso: string) =>
 const competitionName = (name: string) => {
   if (name.includes("World Cup")) return "ЧМ-2026";
   if (name.includes("Champions")) return "Лига чемпионов";
+  if (name.includes("Europa League")) return "Лига Европы";
+  if (name.includes("Conference League")) return "Лига конференций";
   if (name.includes("Premier")) return "АПЛ";
   if (name.includes("La Liga")) return "Ла Лига";
   if (name.includes("Bundesliga")) return "Бундеслига";
@@ -1818,6 +1820,8 @@ export default function Home() {
       const inCompetition = filter === "all" ||
         (filter === "world-cup" && item.competition.includes("World Cup")) ||
         (filter === "ucl" && item.competition.includes("Champions")) ||
+        (filter === "uel" && item.competition.includes("Europa League")) ||
+        (filter === "uecl" && item.competition.includes("Conference League")) ||
         (filter === "top-five" && isTopFiveCompetition(item.competition));
       const needle = query.trim().toLocaleLowerCase("ru-RU");
       if (!needle) return isFuture && inCompetition;
@@ -1847,7 +1851,7 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">Лига чемпионов · Top-5 2026/27 · 90 минут</p>
+          <p className="eyebrow">ЛЧ · ЛЕ · ЛК · Top-5 2026/27 · 90 минут</p>
           <h1>Вероятности<br />без обещаний.</h1>
           <p className="lead">
             Модель публикует полный набор прогнозов до матча и сразу показывает три наиболее устойчивых сценария.
@@ -1887,7 +1891,7 @@ export default function Home() {
             <h2>Прогнозы и календарь</h2>
           </div>
           <div className="filters" role="group" aria-label="Фильтр соревнований">
-            {[["all", "Все"], ["ucl", "ЛЧ"], ["top-five", "Top-5"], ["world-cup", "ЧМ"]].map(([value, label]) => (
+            {[["all", "Все"], ["ucl", "ЛЧ"], ["uel", "ЛЕ"], ["uecl", "ЛК"], ["top-five", "Top-5"], ["world-cup", "ЧМ"]].map(([value, label]) => (
               <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>
             ))}
           </div>
