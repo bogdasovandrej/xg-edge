@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-07-23T21:48:02Z",
+  "updated_at": "2026-07-24T18:26:39Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -27,6 +27,63 @@
         "competition_or_sport": "uefa conference league",
         "model": "clubelo–poisson (experimental)",
         "probability_basis": "unspecified_probability_basis"
+      },
+      "decision": {
+        "status": "pending",
+        "locked": false,
+        "horizon": 100,
+        "locked_at": null,
+        "fixture_ids": [],
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "clv": null
+      }
+    },
+    "cohort-8f0bc14a3486372bf4117fac": {
+      "id": "cohort-8f0bc14a3486372bf4117fac",
+      "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+      "dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "decision": {
+        "status": "pending",
+        "locked": false,
+        "horizon": 100,
+        "locked_at": null,
+        "fixture_ids": [],
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "clv": null
+      }
+    },
+    "cohort-dd3fbf52e49523eb3616502d": {
+      "id": "cohort-dd3fbf52e49523eb3616502d",
+      "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+      "dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo"
+      },
+      "decision": {
+        "status": "pending",
+        "locked": false,
+        "horizon": 100,
+        "locked_at": null,
+        "fixture_ids": [],
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "clv": null
+      }
+    },
+    "cohort-49f37faa0783a78f68c262ae": {
+      "id": "cohort-49f37faa0783a78f68c262ae",
+      "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+      "dimensions": {
+        "competition_or_sport": "uefa champions league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo"
       },
       "decision": {
         "status": "pending",
@@ -86,6 +143,166 @@
                 "home": 10.0,
                 "draw": 5.8,
                 "away": 1.24
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2048807": {
+      "fixture_id": "2048807",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "CSKA 1948",
+      "away": "Spartak Trnava",
+      "kickoff_utc": "2026-07-28T17:30:00Z",
+      "provider_event_id": "72180340",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-24T14:17:11Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.45611528395996487,
+          "draw": 0.26016010455756305,
+          "away": 0.28372461148247213
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-24T18:26:39Z",
+          "phase": "opening",
+          "provider_event_id": "72180340",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-24T00:49:00Z",
+              "odds": {
+                "home": 1.89,
+                "draw": 3.35,
+                "away": 3.9
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2048766": {
+      "fixture_id": "2048766",
+      "evaluation_cohort_id": "cohort-dd3fbf52e49523eb3616502d",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo"
+      },
+      "home": "Drita",
+      "away": "Floriana",
+      "kickoff_utc": "2026-07-28T18:00:00Z",
+      "provider_event_id": "72180068",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-24T14:17:11Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo",
+        "probabilities": {
+          "home": 0.780612022053261,
+          "draw": 0.147662981282546,
+          "away": 0.07172499666419302
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-24T18:26:39Z",
+          "phase": "opening",
+          "provider_event_id": "72180068",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-24T01:05:56Z",
+              "odds": {
+                "home": 1.5,
+                "draw": 4.0,
+                "away": 6.1
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2048732": {
+      "fixture_id": "2048732",
+      "evaluation_cohort_id": "cohort-49f37faa0783a78f68c262ae",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa champions league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo"
+      },
+      "home": "Shamrock Rovers",
+      "away": "Ararat-Armenia",
+      "kickoff_utc": "2026-07-28T19:00:00Z",
+      "provider_event_id": "72176802",
+      "sport_key": "international-clubs-uefa-champions-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-24T14:17:11Z",
+        "competition": "UEFA Champions League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo",
+        "probabilities": {
+          "home": 0.6104866565320877,
+          "draw": 0.21868709867550645,
+          "away": 0.17082624479240582
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-24T18:26:39Z",
+          "phase": "opening",
+          "provider_event_id": "72176802",
+          "sport_key": "international-clubs-uefa-champions-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-07-24T18:25:52Z",
+              "odds": {
+                "home": 1.85,
+                "draw": 3.7,
+                "away": 3.75
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-24T01:49:58Z",
+              "odds": {
+                "home": 1.78,
+                "draw": 3.55,
+                "away": 4.2
               }
             }
           ]
@@ -180,10 +397,145 @@
         "fixture_ids": [
           "2048850"
         ]
+      },
+      "cohort-49f37faa0783a78f68c262ae": {
+        "id": "cohort-49f37faa0783a78f68c262ae",
+        "dimensions": {
+          "competition_or_sport": "uefa champions league",
+          "model": "hybrid elo–poisson (experimental)",
+          "probability_basis": "clubelo"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 1,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2048732"
+        ]
+      },
+      "cohort-8f0bc14a3486372bf4117fac": {
+        "id": "cohort-8f0bc14a3486372bf4117fac",
+        "dimensions": {
+          "competition_or_sport": "uefa conference league",
+          "model": "hybrid elo–poisson (experimental)",
+          "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 1,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2048807"
+        ]
+      },
+      "cohort-dd3fbf52e49523eb3616502d": {
+        "id": "cohort-dd3fbf52e49523eb3616502d",
+        "dimensions": {
+          "competition_or_sport": "uefa conference league",
+          "model": "hybrid elo–poisson (experimental)",
+          "probability_basis": "clubelo"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 1,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2048766"
+        ]
       }
     },
-    "cohort_count": 1,
-    "tracked_fixtures": 1,
+    "cohort_count": 4,
+    "tracked_fixtures": 4,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
