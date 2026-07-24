@@ -463,8 +463,18 @@ def ingest_odds_snapshot(
             continue
         until_kickoff = kickoff - captured
         dimensions = _cohort_dimensions(forecast, fixture=fixture, record=record)
-        cohort_id = _register_cohort(output, dimensions)
+        cohort_id = _cohort_id(dimensions)
         existing = output["fixtures"].get(fixture_id)
+        if existing is not None and (
+            existing.get("evaluation_cohort_id") != cohort_id
+            or existing.get("cohort_dimensions") != dimensions
+        ):
+            # Prospective evidence is immutable: a refreshed model must never
+            # rewrite or append prices to the forecast frozen for this fixture.
+            # Skip only the conflicting record so the rest of the snapshot can
+            # still be ingested.
+            continue
+        cohort_id = _register_cohort(output, dimensions)
         if existing is None:
             existing = {
                 "fixture_id": fixture_id,
@@ -493,13 +503,6 @@ def ingest_odds_snapshot(
                 "clv": None,
             }
             output["fixtures"][fixture_id] = existing
-        elif (
-            existing.get("evaluation_cohort_id") != cohort_id
-            or existing.get("cohort_dimensions") != dimensions
-        ):
-            raise ValueError(
-                f"forecast policy changed for already tracked fixture {fixture_id}"
-            )
         if not existing.get("provider_event_id"):
             existing["provider_event_id"] = record.get("provider_event_id")
         phase = (
