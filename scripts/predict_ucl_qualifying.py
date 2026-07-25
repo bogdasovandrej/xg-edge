@@ -232,10 +232,11 @@ def main(argv: list[str] | None = None) -> int:
                 "documentation": CLUBELO_ATTRIBUTION_URL,
                 "attribution": (
                     "ClubElo where matched; otherwise point-in-time Elo replayed "
-                    "from official UEFA regulation-time results."
+                    "from official UEFA regulation-time results, anchored to "
+                    "ClubElo opponents and its lower-quartile population prior."
                 ),
                 "fixture_team_coverage": rating_coverage,
-                "fallback_method": "xgedge_point_in_time_uefa_elo_v1",
+                "fallback_method": "xgedge_clubelo_anchored_uefa_elo_v2",
             },
             "goal_environment": {
                 "provider": "UEFA",
@@ -251,7 +252,7 @@ def main(argv: list[str] | None = None) -> int:
             "90-minute strength split uses ClubElo with a point-in-time official UEFA Elo fallback.",
             "Lineups, injuries and odds are not inputs to this experimental goal model.",
             "Advancement simulation is separate and is emitted only for a second leg with a known aggregate.",
-            "A team without ClubElo or prior UEFA results uses a neutral 1500 cold-start with wider uncertainty.",
+            "A team without ClubElo or prior UEFA results uses the lower quartile of the current ClubElo population with wider uncertainty.",
         ],
         "predictions": predictions,
     }

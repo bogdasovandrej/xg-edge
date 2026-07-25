@@ -273,6 +273,27 @@ def test_duplicate_snapshot_is_idempotent_and_post_kickoff_is_ignored() -> None:
     assert len(later["fixtures"]["m1"]["observations"]) == 1
 
 
+def test_model_refresh_preserves_frozen_fixture_and_skips_new_observation() -> None:
+    ledger = ingest_odds_snapshot(
+        None,
+        _snapshot("2026-07-14T12:00:00Z", (2.2, 4.0, 4.0)),
+        fixtures=[_fixture()],
+        live_payload=_payload(_forecast(model="test-model-v1")),
+    )
+    frozen = deepcopy(ledger["fixtures"]["m1"])
+    cohort_ids = set(ledger["cohorts"])
+
+    refreshed = ingest_odds_snapshot(
+        ledger,
+        _snapshot("2026-07-14T12:30:00Z", (2.1, 4.0, 4.0)),
+        fixtures=[_fixture()],
+        live_payload=_payload(_forecast(model="test-model-v2")),
+    )
+
+    assert refreshed["fixtures"]["m1"] == frozen
+    assert set(refreshed["cohorts"]) == cohort_ids
+
+
 def test_different_models_are_never_mixed_into_one_cohort_or_global_gate() -> None:
     fixtures = [_fixture("a"), _fixture("b")]
     payload = _payload(

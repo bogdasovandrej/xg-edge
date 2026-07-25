@@ -59,6 +59,8 @@ def _ratings():
 
 def test_name_normalization_and_explicit_aliases():
     assert normalize_team_name("  Győri ETO FC ") == "gyori eto"
+    assert normalize_team_name("Tromsø") == "tromso"
+    assert normalize_team_name("Nordsjælland") == "nordsjaelland"
     index = ClubEloIndex(
         [ClubEloRating("Gyoer", "HUN", 1450.0)],
         {"Győri ETO": "Gyoer"},
@@ -75,6 +77,9 @@ def test_verified_default_aliases_cover_current_uefa_names():
         ClubEloRating("Gornik", "POL", 1452.0),
         ClubEloRating("Beer-Sheva", "ISR", 1466.1),
         ClubEloRating("Slovan Bratislava", "SLK", 1366.5),
+        ClubEloRating("Steaua", "ROM", 1426.0),
+        ClubEloRating("Rapid Wien", "AUT", 1382.0),
+        ClubEloRating("Universitatea Cluj", "ROM", 1426.0),
     ]
     index = ClubEloIndex(ratings)
 
@@ -84,6 +89,9 @@ def test_verified_default_aliases_cover_current_uefa_names():
     assert index.lookup("Górnik Zabrze").club == "Gornik"
     assert index.lookup("H. Beer-Sheva").club == "Beer-Sheva"
     assert index.lookup("S. Bratislava").club == "Slovan Bratislava"
+    assert index.lookup("FCSB").club == "Steaua"
+    assert index.lookup("SK Rapid").club == "Rapid Wien"
+    assert index.lookup("U. Cluj").club == "Universitatea Cluj"
 
 
 def test_csv_parser_and_dated_url():
@@ -217,7 +225,14 @@ def test_official_uefa_elo_fills_clubelo_gap_without_future_leakage():
             "away_goals_90": 9,
         },
     ]}
-    clubelo = [ClubEloRating("Home", "AAA", 1600.0)]
+    clubelo = [
+        ClubEloRating("Home", "AAA", 1600.0),
+        ClubEloRating("Anchor", "BBB", 1100.0),
+        ClubEloRating("Low", "CCC", 1200.0),
+        ClubEloRating("Mid", "DDD", 1400.0),
+    ]
+    history["matches"][0]["away"] = "Anchor"
+    history["matches"][1]["away"] = "Anchor"
 
     combined, summary = add_uefa_elo_fallbacks(
         [fixture], clubelo, history, as_of=AS_OF
@@ -230,12 +245,13 @@ def test_official_uefa_elo_fills_clubelo_gap_without_future_leakage():
         "clubelo": 1,
         "uefa_official_results": 1,
         "uefa_cold_start_prior": 0,
+        "fallback_prior_elo": 1175,
     }
     assert result["status"] == "ok"
     assert result["ratings"]["home"]["source"] == "clubelo"
     assert result["ratings"]["away"]["source"] == "uefa_official_results"
     assert result["ratings"]["away"]["matches"] == 1
-    assert result["ratings"]["away"]["elo"] > 1500
+    assert 1175 < result["ratings"]["away"]["elo"] < 1200
     assert result["ratings"]["basis"] == (
         "clubelo_with_point_in_time_uefa_fallback"
     )
@@ -246,7 +262,12 @@ def test_no_history_team_uses_explicit_neutral_prior_with_wide_uncertainty():
     fixture = _fixture(away="New Club", away_id="new-club-id")
     combined, summary = add_uefa_elo_fallbacks(
         [fixture],
-        [ClubEloRating("Home", "AAA", 1600.0)],
+        [
+            ClubEloRating("Home", "AAA", 1600.0),
+            ClubEloRating("Anchor", "BBB", 1100.0),
+            ClubEloRating("Low", "CCC", 1200.0),
+            ClubEloRating("Mid", "DDD", 1400.0),
+        ],
         {"matches": []},
         as_of=AS_OF,
     )
@@ -255,7 +276,8 @@ def test_no_history_team_uses_explicit_neutral_prior_with_wide_uncertainty():
     )[0]
 
     assert summary["uefa_cold_start_prior"] == 1
-    assert result["ratings"]["away"]["elo"] == 1500
+    assert summary["fallback_prior_elo"] == 1175
+    assert result["ratings"]["away"]["elo"] == 1175
     assert result["ratings"]["away"]["matches"] == 0
     assert result["ratings"]["away"]["source"] == "uefa_cold_start_prior"
     assert result["uncertainty_90m"]["elo_points_plus_minus"] == 150
