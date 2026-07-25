@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-07-24T22:30:40Z",
+  "updated_at": "2026-07-25T14:21:35Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -214,6 +214,24 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-07-25T14:21:35Z",
+          "phase": "monitoring",
+          "provider_event_id": "72180340",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-25T06:28:00Z",
+              "odds": {
+                "home": 1.89,
+                "draw": 3.35,
+                "away": 3.9
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -267,6 +285,24 @@
         },
         {
           "snapshot_at": "2026-07-24T22:30:40Z",
+          "phase": "monitoring",
+          "provider_event_id": "72180068",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-24T01:05:56Z",
+              "odds": {
+                "home": 1.5,
+                "draw": 4.0,
+                "away": 6.1
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-07-25T14:21:35Z",
           "phase": "monitoring",
           "provider_event_id": "72180068",
           "sport_key": "international-clubs-uefa-conference-league-qualification",
@@ -367,6 +403,184 @@
                 "home": 1.78,
                 "draw": 3.55,
                 "away": 4.2
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-07-25T14:21:35Z",
+          "phase": "monitoring",
+          "provider_event_id": "72176802",
+          "sport_key": "international-clubs-uefa-champions-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-07-25T14:19:00Z",
+              "odds": {
+                "home": 1.85,
+                "draw": 3.7,
+                "away": 3.75
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-24T01:49:58Z",
+              "odds": {
+                "home": 1.78,
+                "draw": 3.55,
+                "away": 4.2
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2048801": {
+      "fixture_id": "2048801",
+      "evaluation_cohort_id": "cohort-dd3fbf52e49523eb3616502d",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo"
+      },
+      "home": "SK Rapid",
+      "away": "FC Santa Coloma",
+      "kickoff_utc": "2026-07-29T18:30:00Z",
+      "provider_event_id": "72180310",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-25T14:18:41Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo",
+        "probabilities": {
+          "home": 0.909391190741496,
+          "draw": 0.0790434770778865,
+          "away": 0.011565332180617486
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-25T14:21:35Z",
+          "phase": "opening",
+          "provider_event_id": "72180310",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-25T12:20:06Z",
+              "odds": {
+                "home": 1.14,
+                "draw": 7.5,
+                "away": 15.0
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2048777": {
+      "fixture_id": "2048777",
+      "evaluation_cohort_id": "cohort-dd3fbf52e49523eb3616502d",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo"
+      },
+      "home": "Nordsjælland",
+      "away": "GAIS",
+      "kickoff_utc": "2026-07-30T17:00:00Z",
+      "provider_event_id": "72180122",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-25T14:18:41Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo",
+        "probabilities": {
+          "home": 0.6957293932508232,
+          "draw": 0.20740415010784477,
+          "away": 0.09686645664133206
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-25T14:21:35Z",
+          "phase": "opening",
+          "provider_event_id": "72180122",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-25T12:52:41Z",
+              "odds": {
+                "home": 1.55,
+                "draw": 3.9,
+                "away": 5.5
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2048775": {
+      "fixture_id": "2048775",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Austria Wien",
+      "away": "Liepāja",
+      "kickoff_utc": "2026-07-30T18:30:00Z",
+      "provider_event_id": "72180112",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-07-25T14:18:41Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.680602933963671,
+          "draw": 0.19695224843865097,
+          "away": 0.12244481759767803
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-07-25T14:21:35Z",
+          "phase": "opening",
+          "provider_event_id": "72180112",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-07-25T13:10:52Z",
+              "odds": {
+                "home": 1.19,
+                "draw": 6.4,
+                "away": 12.5
               }
             }
           ]
@@ -543,12 +757,13 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 1,
+        "tracked_fixtures": 2,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
         "post_horizon_ready": 0,
         "fixture_ids": [
+          "2048775",
           "2048807"
         ]
       },
@@ -588,18 +803,20 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 1,
+        "tracked_fixtures": 3,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
         "post_horizon_ready": 0,
         "fixture_ids": [
-          "2048766"
+          "2048766",
+          "2048777",
+          "2048801"
         ]
       }
     },
     "cohort_count": 4,
-    "tracked_fixtures": 4,
+    "tracked_fixtures": 7,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
