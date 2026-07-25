@@ -306,46 +306,10 @@ def _model_market_forecasts(
             "settlement_period": "REGULATION_90_MINUTES",
         })
 
-    # A bookmaker price is not available here, so these are price-watch roles,
-    # not fabricated value claims.  The actual-price layer can confirm value
-    # only when its quote clears the conservative fair threshold.
-    roles = (
-        ("VALUE_SINGLE", 1.80, 1.51),
-        ("BALANCED_SINGLE", 1.50, None),
-        ("EXPRESS_LEG", 1.30, None),
-    )
-    available = list(rows)
-    used_groups: set[str] = set()
-    for rank, (role, target_odds, odds_floor) in enumerate(roles, start=1):
-        eligible = [
-            row for row in available
-            if str(row["recommendation_group"]) not in used_groups
-            and (odds_floor is None or row["conservative_fair_odds"] >= odds_floor)
-        ]
-        if not eligible:
-            eligible = [
-                row for row in available
-                if str(row["recommendation_group"]) not in used_groups
-            ]
-        if not eligible:
-            break
-        selected = min(
-            eligible,
-            key=lambda row: (
-                abs(row["conservative_fair_odds"] - target_odds),
-                -row["conservative_probability"],
-                row["label"],
-            ),
-        )
-        selected["recommendation_rank"] = rank
-        selected["recommendation_role"] = role
-        selected["target_market_odds"] = target_odds
-        selected["minimum_market_odds"] = max(
-            odds_floor or 1.0,
-            selected["conservative_fair_odds"],
-        )
-        selected["price_status"] = "AWAITING_BOOKMAKER_PRICE"
-        used_groups.add(str(selected["recommendation_group"]))
+    # These rows are model probabilities and fair prices, not bookmaker odds.
+    # Ranking them as "top-3 bets" before a verified quote exists makes a fixed
+    # target (1.80/1.50/1.30) look like a real available coefficient.  Only the
+    # bookmaker-value layer is allowed to create ranked betting candidates.
     return rows
 
 

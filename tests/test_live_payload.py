@@ -100,30 +100,19 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
         row for row in ucl_row["model_market_forecasts"]
         if row["recommendation_rank"] is not None
     ]
-    assert sorted(row["recommendation_rank"] for row in recommended) == [1, 2, 3]
-    assert len({row["recommendation_group"] for row in recommended}) == 3
-    assert [
-        row["recommendation_role"]
-        for row in sorted(recommended, key=lambda row: row["recommendation_rank"])
-    ] == ["VALUE_SINGLE", "BALANCED_SINGLE", "EXPRESS_LEG"]
-    assert [
-        row["target_market_odds"]
-        for row in sorted(recommended, key=lambda row: row["recommendation_rank"])
-    ] == [1.8, 1.5, 1.3]
-    value_single = next(
-        row for row in recommended if row["recommendation_role"] == "VALUE_SINGLE"
-    )
-    assert value_single["minimum_market_odds"] > 1.5
+    assert recommended == []
+    assert all(row["status"] == "MODEL_ONLY_NO_BOOKMAKER_PRICE" for row in ucl_row["model_market_forecasts"])
+    assert all("target_market_odds" not in row for row in ucl_row["model_market_forecasts"])
     assert all(
-        row["minimum_market_odds"] >= row["conservative_fair_odds"]
-        for row in recommended
+        0 < row["reliability_haircut"] <= .03
+        for row in ucl_row["model_market_forecasts"]
     )
-    assert all(row["price_status"] == "AWAITING_BOOKMAKER_PRICE" for row in recommended)
-    assert all(row["reliability_haircut"] == pytest.approx(.03) for row in recommended)
     assert all(
         row["conservative_probability"]
-        == pytest.approx(row["theoretical_probability"] - .03)
-        for row in recommended
+        == pytest.approx(
+            row["theoretical_probability"] - row["reliability_haircut"]
+        )
+        for row in ucl_row["model_market_forecasts"]
     )
     assert payload["forecasts"][1]["home"] == "Франция"
     assert payload["forecasts"][1]["score_scenarios_coverage"] == .14

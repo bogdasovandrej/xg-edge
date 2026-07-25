@@ -652,12 +652,13 @@ function ProspectiveClvPanel({
     0,
   );
   const modelPicks = forecasts.reduce(
-    (sum, forecast) => sum + (forecast.model_market_forecasts || [])
-      .filter((row) => finiteNumber(row.recommendation_rank) != null).length,
+    (sum, forecast) => sum + [
+      ...(forecast.details?.market_candidates || []),
+      ...(forecast.details?.expanded_market_candidates || []),
+    ].filter((row) => finiteNumber(row.market_odds) != null).length,
     0,
   );
   const haircuts = forecasts.flatMap((forecast) => forecast.model_market_forecasts || [])
-    .filter((row) => finiteNumber(row.recommendation_rank) != null)
     .map((row) => finiteNumber(row.reliability_haircut))
     .filter((value): value is number => value != null);
   const minimumHaircut = haircuts.length ? Math.min(...haircuts) : 0.03;
@@ -671,7 +672,7 @@ function ProspectiveClvPanel({
       <dl>
         <div><dt>Матчи с моделью</dt><dd>{forecasts.filter((row) => (row.model_market_forecasts || []).length > 0).length}</dd></div>
         <div><dt>Рассчитано рынков</dt><dd>{modelLines}</dd></div>
-        <div><dt>Сценариев в топ-3</dt><dd>{modelPicks}</dd></div>
+        <div><dt>Исходов с реальной ценой</dt><dd>{modelPicks}</dd></div>
         <div><dt>Поправка надёжности</dt><dd>−{(minimumHaircut * 100).toFixed(0)}…−{(maximumHaircut * 100).toFixed(0)} п.п.</dd></div>
       </dl>
       <small>
@@ -684,11 +685,9 @@ function ProspectiveClvPanel({
 
 function PaperCandidateBoard({
   ranking,
-  forecasts,
   nowMs,
 }: {
   ranking?: PaperCandidateRanking | null;
-  forecasts: Forecast[];
   nowMs: number;
 }) {
   const candidatePool = (ranking?.candidates || [])
@@ -723,33 +722,19 @@ function PaperCandidateBoard({
     balancedCandidate && { candidate: balancedCandidate, role: "Ординар · около 1.50" },
     expressCandidate && { candidate: expressCandidate, role: "Плечо экспресса · около 1.30" },
   ].filter((row): row is { candidate: PaperCandidate; role: string } => Boolean(row));
-  const modelPool = forecasts.flatMap((forecast) =>
-    (forecast.model_market_forecasts || [])
-      .filter((row) => finiteNumber(row.recommendation_rank) != null)
-      .map((row) => ({ forecast, row }))
-  );
-  const modelCandidates = ["VALUE_SINGLE", "BALANCED_SINGLE", "EXPRESS_LEG"].flatMap((role) =>
-    modelPool.filter(({ row }) => row.recommendation_role === role)
-      .sort((left, right) =>
-        (finiteNumber(right.row.conservative_probability) || 0) -
-        (finiteNumber(left.row.conservative_probability) || 0)
-      )
-      .slice(0, 2)
-  );
   const hasBookmakerCandidates = candidates.length > 0;
   return (
     <section className="paper-board" id="paper-picks" aria-label="Прогнозные сценарии ближайших матчей">
       <div className="paper-board-heading">
         <div>
           <p className="eyebrow">Полная линия · вероятность со штрафом за надёжность</p>
-          <h2>{hasBookmakerCandidates ? "Bookmaker-value кандидаты" : "Сильнейшие модельные сценарии"}</h2>
+          <h2>{hasBookmakerCandidates ? "Bookmaker-value кандидаты" : "Нет подтверждённых коэффициентов"}</h2>
         </div>
-        <span className="paper-only-badge">{hasBookmakerCandidates ? "PAPER VALUE" : "MODEL FORECAST"}</span>
+        <span className="paper-only-badge">{hasBookmakerCandidates ? "PAPER VALUE" : "NO VERIFIED PRICE"}</span>
       </div>
       <p className="paper-board-intro">
-        Модельные сценарии публикуются сразу и не ждут CLV-гейта. Если API даст свежую котировку,
-        блок автоматически переключится на сравнение с ценой букмекера. До этого fair означает только
-        консервативную расчётную границу модели.
+        В этот блок попадают только свежие коэффициенты из букмекерского API. Модельный fair
+        не выдаётся за доступную котировку и сам по себе не создаёт ставку.
       </p>
       {hasBookmakerCandidates ? (
         <div className="paper-candidate-list">
@@ -770,29 +755,10 @@ function PaperCandidateBoard({
             </a>
           ))}
         </div>
-      ) : modelCandidates.length ? (
-        <div className="paper-candidate-list">
-          {modelCandidates.map(({ forecast, row }, index) => (
-            <a className="paper-candidate" href={`#match-${forecast.id}`} key={`${forecast.id}-${row.market}-${row.selection}-${row.line}`}>
-              <b>#{index + 1}</b>
-              <div>
-                <strong>{forecast.home} — {forecast.away}</strong>
-                <span>{recommendationRoleName(row.recommendation_role)} · {row.label} · {marketName(row.market)}</span>
-              </div>
-              <dl>
-                <div><dt>Теория</dt><dd>{percent(row.theoretical_probability)}</dd></div>
-                <div><dt>Надёжно</dt><dd>{percent(row.conservative_probability)}</dd></div>
-                <div><dt>Мин. кэф</dt><dd>{decimal(row.minimum_market_odds || row.conservative_fair_odds)}</dd></div>
-                <div><dt>Штраф</dt><dd>−{((finiteNumber(row.reliability_haircut) || 0) * 100).toFixed(0)} п.п.</dd></div>
-              </dl>
-              <small>{localTime(forecast.kickoff_utc)} YEKT</small>
-            </a>
-          ))}
-        </div>
       ) : (
         <div className="paper-empty">
-          <strong>Матчи загружены, но распределение счёта ещё не рассчитано.</strong>
-          <span>Календарная запись без ожидаемых голов не превращается в выдуманную рекомендацию.</span>
+          <strong>Сейчас нет ставки с проверенной рыночной ценой.</strong>
+          <span>Матчи и вероятности рассчитаны ниже; топ-3 появится только после сопоставления реального коэффициента.</span>
         </div>
       )}
     </section>
@@ -814,7 +780,10 @@ function PaperTradingLab({ summary, forecasts }: { summary?: PaperTradingSummary
   const hasLedgerActivity = enrolled > 0 || settled > 0 || open > 0;
   const modelLines = forecasts.reduce((sum, row) => sum + (row.model_market_forecasts || []).length, 0);
   const modelPicks = forecasts.reduce(
-    (sum, row) => sum + (row.model_market_forecasts || []).filter((market) => finiteNumber(market.recommendation_rank) != null).length,
+    (sum, forecast) => sum + [
+      ...(forecast.details?.market_candidates || []),
+      ...(forecast.details?.expanded_market_candidates || []),
+    ].filter((market) => finiteNumber(market.market_odds) != null).length,
     0,
   );
   return (
@@ -859,7 +828,7 @@ function PaperTradingLab({ summary, forecasts }: { summary?: PaperTradingSummary
           );
         })}
       </div> : <div className="model-tracker-active">
-        <strong>{forecasts.length} матчей · {modelLines} модельных исходов · {modelPicks} сценариев в топ-3</strong>
+        <strong>{forecasts.length} матчей · {modelLines} модельных исходов · {modelPicks} исходов с реальной ценой</strong>
         <span>Пустые карточки ROI скрыты: без букмекерской цены нельзя честно рассчитать денежный результат. Модельные прогнозы уже доступны выше и внутри каждого матча.</span>
       </div>}
       <div className="paper-lab-note">
@@ -1227,12 +1196,6 @@ const marketName = (value?: string | null) => ({
   draw_no_bet: "DNB",
 }[String(value || "1x2")] || value || "рынок");
 
-const recommendationRoleName = (role?: string | null) => ({
-  VALUE_SINGLE: "VALUE-ординар · кэф >1.50",
-  BALANCED_SINGLE: "Ординар · около 1.50",
-  EXPRESS_LEG: "Плечо экспресса · около 1.30",
-}[role || ""] || "Модельный кандидат");
-
 const selectPricedCandidateRoles = (source: CandidateBet[]) => {
   const pool = source.filter((candidate) => (finiteNumber(candidate.point_edge) || 0) > 0);
   const selected: Array<{ bet: CandidateBet; role: string }> = [];
@@ -1455,37 +1418,20 @@ function ModelMarketBoard({ forecast }: { forecast: Forecast }) {
       finiteNumber(row.conservative_fair_odds) != null
     );
   if (!rows.length) return null;
-  const recommendations = rows
-    .filter((row) => finiteNumber(row.recommendation_rank) != null)
-    .sort((left, right) => (finiteNumber(left.recommendation_rank) || 99) - (finiteNumber(right.recommendation_rank) || 99))
-    .slice(0, 3);
   const markets = Array.from(new Set(rows.map((row) => row.market).filter(Boolean)));
   const haircut = finiteNumber(rows[0]?.reliability_haircut);
 
   return (
     <section className="model-market-section" aria-label="Полная модельная линия">
       <div className="dossier-title">
-        <h4>Модельные рекомендации по полной линии</h4>
-        <span className="model-forecast-badge">MODEL FORECAST</span>
+        <h4>Расчётная линия вероятностей</h4>
+        <span className="model-forecast-badge">НЕ КОТИРОВКА БУКМЕКЕРА</span>
       </div>
       <p className="model-market-intro">
         Вероятность для решения уже уменьшена на {haircut == null ? "несколько" : (haircut * 100).toFixed(0)} п.п.
-        из-за неопределённости. Без реальной котировки это лист ожидания: ставка появляется только
-        если цена букмекера не ниже указанного минимального коэффициента.
+        из-за неопределённости. Ниже показан математический fair = 1 / вероятность, а не доступный
+        коэффициент. Ставка появляется только в блоке реальных котировок.
       </p>
-      <div className="candidate-grid model-recommendation-grid">
-        {recommendations.map((row, index) => (
-          <div key={`${row.market}-${row.selection}-${row.line}-${index}`}>
-            <b>#{row.recommendation_rank || index + 1} · {recommendationRoleName(row.recommendation_role)}</b>
-            <span><strong>{row.label}</strong></span>
-            <span>{marketName(row.market)} · 90 минут</span>
-            <span>Теория {percent(row.theoretical_probability)}</span>
-            <strong>Консервативно {percent(row.conservative_probability)}</strong>
-            <span>Искомый кэф ≈ {decimal(row.target_market_odds)}</span>
-            <span>Ставить только от {decimal(row.minimum_market_odds || row.conservative_fair_odds)}</span>
-          </div>
-        ))}
-      </div>
       <details className="full-model-line">
         <summary>Открыть всю линию · {rows.length} исходов · {markets.length} типов рынка</summary>
         <div className="market-line-grid">
@@ -1495,7 +1441,7 @@ function ModelMarketBoard({ forecast }: { forecast: Forecast }) {
               <span>{marketName(row.market)}</span>
               <span>Теория <strong>{percent(row.theoretical_probability)}</strong></span>
               <span>После штрафа <strong>{percent(row.conservative_probability)}</strong></span>
-              <span>Мин. безубыточный кэф <strong>{decimal(row.conservative_fair_odds)}</strong></span>
+              <span>Модельный fair, не цена букмекера <strong>{decimal(row.conservative_fair_odds)}</strong></span>
             </div>
           ))}
         </div>
@@ -1667,7 +1613,7 @@ function ModelAnalysisBrief({ forecast }: { forecast: Forecast }) {
       : rating?.source === "uefa_official_results"
         ? `UEFA Elo · ${Math.trunc(finiteNumber(rating.matches) || 0)} матч.`
         : rating?.source === "uefa_cold_start_prior"
-          ? "нейтральный prior · истории нет"
+          ? "нижний квартиль ClubElo · истории нет"
           : "источник не указан";
     return `${name}: ${finiteNumber(rating?.elo) == null ? "Elo —" : `Elo ${Math.round(rating!.elo!)}`} (${source})`;
   }).join(" · ");
@@ -1685,7 +1631,7 @@ function ModelAnalysisBrief({ forecast }: { forecast: Forecast }) {
     homeHistory.length + awayHistory.length === 0 ? "официальная история команд пока не загружена" : null,
     knownXg < 6 && homeHistory.length + awayHistory.length > 0 ? `event-level npxG подтверждён лишь для ${knownXg} из ${Math.min(10, homeHistory.length + awayHistory.length)} последних показанных матчей` : null,
     !lineupKnown ? "составы предварительные или ещё не опубликованы" : null,
-    coldStartTeams.length ? `нейтральный стартовый Elo без истории: ${coldStartTeams.join(", ")}` : null,
+    coldStartTeams.length ? `консервативный стартовый Elo без истории: ${coldStartTeams.join(", ")}` : null,
     forecast.details?.referee?.name ? null : "назначение судьи не подтверждено",
     forecast.details?.weather?.temperature_c == null ? "погода не подтверждена" : null,
     forecast.details?.tail_risk?.label ? `tail risk: ${levelName(forecast.details.tail_risk.label)}` : "tail risk не оценён",
@@ -1989,11 +1935,11 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">ЛЧ · ЛЕ · ЛК · Top-5 2026/27 · 90 минут</p>
-          <h1>Вероятности<br />без обещаний.</h1>
-          <p className="lead">
-            Модель публикует полный набор прогнозов до матча и сразу показывает три наиболее устойчивых сценария.
-            Bookmaker-value и CLV считаются отдельно и больше не блокируют модельный разбор.
-          </p>
+              <h1>Вероятности<br />без обещаний.</h1>
+              <p className="lead">
+                Модель публикует полный набор вероятностей до матча. Топ-3 появляется только по свежим
+                коэффициентам букмекеров; расчётный fair не маскируется под доступную цену.
+              </p>
           <div className="hero-actions">
             <a href="#forecasts" className="primary-action">Смотреть матчи</a>
             <a href="#paper-bank" className="secondary-action">PAPER-банк</a>
@@ -2015,7 +1961,7 @@ export default function Home() {
         <span>PAPER BANKROLL</span>
       </section>
 
-      <PaperCandidateBoard ranking={payload.paper_candidate_ranking} forecasts={payload.forecasts} nowMs={nowMs} />
+      <PaperCandidateBoard ranking={payload.paper_candidate_ranking} nowMs={nowMs} />
 
       <PaperTradingLab summary={payload.paper_trading} forecasts={payload.forecasts} />
 
