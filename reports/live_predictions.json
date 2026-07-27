@@ -8821,12 +8821,477 @@
         "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
         "market_snapshot": {
           "source_provider": "odds_api_io",
-          "status": "REJECTED",
-          "reason": "captured_before_forecast",
-          "captured_at_utc": "2026-07-26T15:14:48Z",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-07-27T17:13:16Z",
+          "bookmakers": 3,
+          "best_1x2": {
+            "home": {
+              "odds": 1.9,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 3.35,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "away": {
+              "odds": 3.9,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 1.5,
+              "over": {
+                "odds": 1.3,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 3.15,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.25,
+              "over": {
+                "odds": 1.8,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 2.0,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": 2.5,
+              "over": {
+                "odds": 1.95,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.73,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 3.5,
+              "over": {
+                "odds": 3.35,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.26,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 4.5,
+              "over": {
+                "odds": 6.1,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.08,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 1.833,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 1.87,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -0.5,
+              "home": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.4,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 2.75,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": {
+            "home_draw": {
+              "odds": 1.2,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "home_away": {
+              "odds": 1.26,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "draw_away": {
+              "odds": 1.8,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_team_totals": [],
           "source_url": "https://docs.odds-api.io/guides/fetching-odds"
         },
-        "market_candidates": []
+        "market_candidates": [
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.30461507052320275,
+            "fair_odds": 3.2828316677911356,
+            "market_odds": 3.9,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.18799877504049078,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.26256831952372767,
+            "fair_odds": 3.808532582353799,
+            "market_odds": 3.35,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.12039612959551227,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.43281660995306964,
+            "fair_odds": 2.310447374254953,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.17764844108916766,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "Spartak Trnava DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.4130754964172127,
+            "fair_odds": 2.420864971835522,
+            "market_odds": 2.75,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.13595761514733495,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Spartak Trnava +0.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.5671832196458014,
+            "fair_odds": 1.763098704902601,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.0776481173270227,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.5671832196458014,
+            "fair_odds": 1.763098704902601,
+            "market_odds": 1.8,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.02092979536244255,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          },
+          {
+            "selection": "ТМ 4.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.8812255953082567,
+            "fair_odds": 1.1347831989040167,
+            "market_odds": 1.08,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.048276357067082665,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 4
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5186540110019114,
+            "fair_odds": 1.9280676111387762,
+            "market_odds": 1.833,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.04930719783349635,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 5
+          },
+          {
+            "selection": "ТБ 1.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.727341289597526,
+            "fair_odds": 1.3748703865737495,
+            "market_odds": 1.3,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.054456323523216166,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 6
+          },
+          {
+            "selection": "ТМ 3.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.7418816417516028,
+            "fair_odds": 1.3479239055423622,
+            "market_odds": 1.26,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.06522913139298048,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 7
+          },
+          {
+            "selection": "12",
+            "outcome": "home_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.7374317782136158,
+            "fair_odds": 1.3560576443049959,
+            "market_odds": 1.26,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.07083595945084409,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 8
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.47475025367853385,
+            "fair_odds": 2.1063706490973817,
+            "market_odds": 1.95,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.07423700532685906,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 9
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5252497463214661,
+            "fair_odds": 1.9038562264968228,
+            "market_odds": 1.73,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.09131793886386352,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 10
+          },
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.48134598899808856,
+            "fair_odds": 2.0775077031003804,
+            "market_odds": 1.87,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.09988300057357435,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 11
+          },
+          {
+            "selection": "ТБ 3.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.2581183582483973,
+            "fair_odds": 3.8741916955696007,
+            "market_odds": 3.35,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.13530349986786905,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 12
+          },
+          {
+            "selection": "ТМ 1.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.272658710402474,
+            "fair_odds": 3.6675886808233296,
+            "market_odds": 3.15,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.1411250622322069,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
+          },
+          {
+            "selection": "1X",
+            "outcome": "home_draw",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.6953850021405826,
+            "fair_odds": 1.4380522975355094,
+            "market_odds": 1.2,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.16553799743130082,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 14
+          },
+          {
+            "selection": "CSKA 1948 -0.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -0.5,
+            "probability": 0.4328167803541985,
+            "fair_odds": 2.3104464646256164,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.1776481173270229,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 15
+          },
+          {
+            "selection": "CSKA 1948 DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.5869245035827871,
+            "fair_odds": 1.7037966448762307,
+            "market_odds": 1.4,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.1783056949840981,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
+            "selection": "ТБ 4.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.11877440469174325,
+            "fair_odds": 8.41932234975467,
+            "market_odds": 6.1,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.2754761313803662,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -12567,12 +13032,554 @@
         "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
         "market_snapshot": {
           "source_provider": "odds_api_io",
-          "status": "REJECTED",
-          "reason": "captured_before_forecast",
-          "captured_at_utc": "2026-07-26T15:14:48Z",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-07-27T17:13:16Z",
+          "bookmakers": 3,
+          "best_1x2": {
+            "home": {
+              "odds": 1.55,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 3.8,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 5.8,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 1.5,
+              "over": {
+                "odds": 1.26,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 3.35,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.5,
+              "over": {
+                "odds": 2.0,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.83,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 3.5,
+              "over": {
+                "odds": 3.1,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.3,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 4.5,
+              "over": {
+                "odds": 5.6,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.1,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 2.1,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 1.78,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -1.5,
+              "home": {
+                "odds": 2.45,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 1.46,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": -1.0,
+              "home": {
+                "odds": 1.95,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.85,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": -0.5,
+              "home": {
+                "odds": 1.5,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 2.33,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.2,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 4.333,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": {
+            "home_draw": {
+              "odds": 1.1,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "home_away": {
+              "odds": 1.21,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "draw_away": {
+              "odds": 2.25,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_team_totals": [],
           "source_url": "https://docs.odds-api.io/guides/fetching-odds"
         },
-        "market_candidates": []
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.780612022053261,
+            "fair_odds": 1.2810461173396714,
+            "market_odds": 1.55,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.2099486341825545,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.147662981282546,
+            "fair_odds": 6.772178045671096,
+            "market_odds": 3.8,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.43888067112632523,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.07172499666419302,
+            "fair_odds": 13.942140766933294,
+            "market_odds": 5.8,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.5839950193476805,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "Drita -1",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.0,
+            "probability": 0.7167806833276393,
+            "fair_odds": 1.3951268822668614,
+            "market_odds": 1.95,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.39772233248889677,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Drita -1.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.5,
+            "probability": 0.555206215309817,
+            "fair_odds": 1.8011325745731765,
+            "market_odds": 2.45,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.3602552275090516,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5865399401565374,
+            "fair_odds": 1.704913734831284,
+            "market_odds": 2.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.17307988031307486,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "Drita -0.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -0.5,
+            "probability": 0.7806230991294484,
+            "fair_odds": 1.2810279392387964,
+            "market_odds": 1.5,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.17093464869417252,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 4
+          },
+          {
+            "selection": "ТБ 3.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.3625688725596365,
+            "fair_odds": 2.7580966698555094,
+            "market_odds": 3.1,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.12396350493487307,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 5
+          },
+          {
+            "selection": "Drita DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.9158540033959853,
+            "fair_odds": 1.0918770855311015,
+            "market_odds": 1.2,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.09902480407518244,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 6
+          },
+          {
+            "selection": "ТБ 4.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.19214090463754427,
+            "fair_odds": 5.204513853447322,
+            "market_odds": 5.6,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.0759890659702478,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 7
+          },
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5881753394368243,
+            "fair_odds": 1.7001732866894697,
+            "market_odds": 1.78,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.04695210419754736,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 8
+          },
+          {
+            "selection": "12",
+            "outcome": "home_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.8523444743757181,
+            "fair_odds": 1.173234566613961,
+            "market_odds": 1.21,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.03133681399461885,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 9
+          },
+          {
+            "selection": "1X",
+            "outcome": "home_draw",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.9282786247537302,
+            "fair_odds": 1.0772627671624964,
+            "market_odds": 1.1,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.021106487229103355,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 10
+          },
+          {
+            "selection": "ТБ 1.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.8072916684883813,
+            "fair_odds": 1.2387096746241129,
+            "market_odds": 1.26,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.01718750229536048,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 11
+          },
+          {
+            "selection": "ТМ 4.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.8078590953624557,
+            "fair_odds": 1.2378396254254438,
+            "market_odds": 1.1,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.11135499510129865,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 12
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.4118246605631756,
+            "fair_odds": 2.4282178697907186,
+            "market_odds": 2.1,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.13516821281733116,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
+          },
+          {
+            "selection": "ТМ 3.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.6374311274403635,
+            "fair_odds": 1.568796936565602,
+            "market_odds": 1.3,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.17133953432752747,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 14
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.41346005984346257,
+            "fair_odds": 2.418613300589671,
+            "market_odds": 1.83,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.24336809048646346,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 15
+          },
+          {
+            "selection": "Floriana +1.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.5,
+            "probability": 0.444793784690183,
+            "fair_odds": 2.248232854010181,
+            "market_odds": 1.46,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.3506010743523329,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
+            "selection": "ТМ 1.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.1927083315116187,
+            "fair_odds": 5.189189238243746,
+            "market_odds": 3.35,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.35442708943607737,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          },
+          {
+            "selection": "Floriana +1",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.0,
+            "probability": 0.2832193166723604,
+            "fair_odds": 3.5308326132176946,
+            "market_odds": 1.85,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.4760442641561332,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 18
+          },
+          {
+            "selection": "Floriana +0.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.21937690087055156,
+            "fair_odds": 4.558365060458545,
+            "market_odds": 2.33,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.48885182097161484,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 19
+          },
+          {
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.21937690087055156,
+            "fair_odds": 4.558365060458545,
+            "market_odds": 2.25,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.506401973041259,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 20
+          },
+          {
+            "selection": "Floriana DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.08414599660401462,
+            "fair_odds": 11.88410667599473,
+            "market_odds": 4.333,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.6353953967148047,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 21
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -18507,12 +19514,477 @@
         "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
         "market_snapshot": {
           "source_provider": "odds_api_io",
-          "status": "REJECTED",
-          "reason": "captured_before_forecast",
-          "captured_at_utc": "2026-07-26T15:14:48Z",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-07-27T17:13:16Z",
+          "bookmakers": 3,
+          "best_1x2": {
+            "home": {
+              "odds": 1.85,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 3.7,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 4.2,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 1.5,
+              "over": {
+                "odds": 1.23,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 3.6,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.5,
+              "over": {
+                "odds": 1.76,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.91,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.75,
+              "over": {
+                "odds": 1.975,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.825,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": 3.5,
+              "over": {
+                "odds": 2.9,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.34,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 4.5,
+              "over": {
+                "odds": 5.2,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.11,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 1.7,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "no": {
+              "odds": 2.1,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -0.5,
+              "home": {
+                "odds": 1.8,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 2.0,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.363,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 3.0,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": {
+            "home_draw": {
+              "odds": 1.18,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "home_away": {
+              "odds": 1.24,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "draw_away": {
+              "odds": 1.9,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_team_totals": [],
           "source_url": "https://docs.odds-api.io/guides/fetching-odds"
         },
-        "market_candidates": []
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.6104864582352065,
+            "fair_odds": 1.6380379720310239,
+            "market_odds": 1.85,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.1293999477351322,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.21868715462990504,
+            "fair_odds": 4.57274228882967,
+            "market_odds": 3.7,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.19085752786935128,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.17082638713488843,
+            "fair_odds": 5.853896559963989,
+            "market_odds": 4.2,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.28252917403346856,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "Shamrock Rovers -0.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -0.5,
+            "probability": 0.6104884375820319,
+            "fair_odds": 1.638032661127393,
+            "market_odds": 1.8,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.09887918764765735,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Shamrock Rovers DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.7813612326444654,
+            "fair_odds": 1.279817782379049,
+            "market_odds": 1.363,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.06499536009440643,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.4995258264411504,
+            "fair_odds": 2.001898494667344,
+            "market_odds": 2.1,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.04900423552641597,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "1X",
+            "outcome": "home_draw",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.8291744792277453,
+            "fair_odds": 1.2060187874225865,
+            "market_odds": 1.18,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.021574114511260567,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 4
+          },
+          {
+            "selection": "12",
+            "outcome": "home_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.7813139583542864,
+            "fair_odds": 1.2798952192103938,
+            "market_odds": 1.24,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.031170691640684867,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 5
+          },
+          {
+            "selection": "ТМ 4.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.8499401231980024,
+            "fair_odds": 1.1765534685400887,
+            "market_odds": 1.11,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.0565664632502173,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 6
+          },
+          {
+            "selection": "ТБ 1.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.7664270194682399,
+            "fair_odds": 1.3047556709232628,
+            "market_odds": 1.23,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.057294766054064916,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 7
+          },
+          {
+            "selection": "ТМ 3.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.6951802552302047,
+            "fair_odds": 1.4384758377075255,
+            "market_odds": 1.34,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.06845845799152572,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 8
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5270627871886109,
+            "fair_odds": 1.897307160184973,
+            "market_odds": 1.76,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.07236949454804487,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 9
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.4729372128113891,
+            "fair_odds": 2.1144455815931056,
+            "market_odds": 1.91,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.09668992353024686,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 10
+          },
+          {
+            "selection": "ТБ 3.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.3048197447697954,
+            "fair_odds": 3.2806273778465878,
+            "market_odds": 2.9,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.1160227401675934,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 11
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5004741735588496,
+            "fair_odds": 1.998105102784914,
+            "market_odds": 1.7,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.14919390494995566,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 12
+          },
+          {
+            "selection": "ТМ 1.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.23357298053176012,
+            "fair_odds": 4.281317118629759,
+            "market_odds": 3.6,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.15913727008566358,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
+          },
+          {
+            "selection": "ТБ 4.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.1500598768019976,
+            "fair_odds": 6.664006537333689,
+            "market_odds": 5.2,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.21968864062961246,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 14
+          },
+          {
+            "selection": "Ararat-Armenia +0.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.38951156241796814,
+            "fair_odds": 2.567317883434081,
+            "market_odds": 2.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.22097687516406372,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 15
+          },
+          {
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.38951156241796814,
+            "fair_odds": 2.567317883434081,
+            "market_odds": 1.9,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.2599280314058606,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
+            "selection": "Ararat-Armenia DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.21863876735553456,
+            "fair_odds": 4.573754289301642,
+            "market_odds": 3.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.3440836979333963,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -40112,12 +41584,503 @@
         "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
         "market_snapshot": {
           "source_provider": "odds_api_io",
-          "status": "REJECTED",
-          "reason": "captured_before_forecast",
-          "captured_at_utc": "2026-07-26T15:14:48Z",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-07-27T17:13:16Z",
+          "bookmakers": 3,
+          "best_1x2": {
+            "home": {
+              "odds": 1.142,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 7.5,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "away": {
+              "odds": 15.0,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 1.5,
+              "over": {
+                "odds": 1.09,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 5.75,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.5,
+              "over": {
+                "odds": 1.36,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              },
+              "under": {
+                "odds": 3.0,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              }
+            },
+            {
+              "line": 3.5,
+              "over": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": 4.5,
+              "over": {
+                "odds": 3.0,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.32,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 5.5,
+              "over": {
+                "odds": 5.0,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.12,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 2.08,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "no": {
+              "odds": 1.727,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -2.5,
+              "home": {
+                "odds": 2.02,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 1.67,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": -2.25,
+              "home": {
+                "odds": 1.95,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.85,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": -1.5,
+              "home": {
+                "odds": 1.41,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 2.63,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.05,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 8.5,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": null,
+          "best_team_totals": [],
           "source_url": "https://docs.odds-api.io/guides/fetching-odds"
         },
-        "market_candidates": []
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.909391162332463,
+            "fair_odds": 1.099636813530426,
+            "market_odds": 1.142,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.03852470738367253,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.07904349570491348,
+            "fair_odds": 12.651262334515378,
+            "market_odds": 7.5,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.4071737822131489,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.011565341962623607,
+            "fair_odds": 86.46523407883299,
+            "market_odds": 15.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.8265198705606459,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.8578421348728782,
+            "fair_odds": 1.165715647842581,
+            "market_odds": 1.727,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.48149336692546063,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.4340106783213563,
+            "fair_odds": 2.3040907746043193,
+            "market_odds": 3.0,
+            "bookmaker": "Bet365 (no latency)",
+            "bookmaker_key": "bet365_no_latency",
+            "point_edge": 0.30203203496406905,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "ТМ 3.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.6579660238107077,
+            "fair_odds": 1.5198353164322254,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.2501354452403446,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "ТМ 1.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.20642044484832434,
+            "fair_odds": 4.844481372641115,
+            "market_odds": 5.75,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.18691755787786501,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 4
+          },
+          {
+            "selection": "ТМ 4.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.8232496475486761,
+            "fair_odds": 1.2146983639502538,
+            "market_odds": 1.32,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.08668953476425245,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 5
+          },
+          {
+            "selection": "SK Rapid DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.9874441800934923,
+            "fair_odds": 1.0127154730967363,
+            "market_odds": 1.05,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.03681638909816698,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 6
+          },
+          {
+            "selection": "ТМ 5.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 5.5,
+            "probability": 0.9208358537306349,
+            "fair_odds": 1.0859698782889946,
+            "market_odds": 1.12,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.0313361561783112,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 7
+          },
+          {
+            "selection": "SK Rapid -1.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.5,
+            "probability": 0.7278111509583217,
+            "fair_odds": 1.3739827957888284,
+            "market_odds": 1.41,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.02621372285123358,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 8
+          },
+          {
+            "selection": "SK Rapid -2.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -2.5,
+            "probability": 0.4920330961513899,
+            "fair_odds": 2.0323836096023866,
+            "market_odds": 2.02,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.006093145774192399,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 9
+          },
+          {
+            "selection": "ТБ 1.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.7935795551516757,
+            "fair_odds": 1.2601131083938668,
+            "market_odds": 1.09,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.13499828488467347,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 10
+          },
+          {
+            "selection": "FC Santa Coloma +2.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 2.5,
+            "probability": 0.5079669038486101,
+            "fair_odds": 1.9686321932068847,
+            "market_odds": 1.67,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.15169527057282117,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 11
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5659893216786437,
+            "fair_odds": 1.7668177855973368,
+            "market_odds": 1.36,
+            "bookmaker": "Bet365 (no latency)",
+            "bookmaker_key": "bet365_no_latency",
+            "point_edge": -0.23025452251704448,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 12
+          },
+          {
+            "selection": "FC Santa Coloma +1.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.5,
+            "probability": 0.27218884904167834,
+            "fair_odds": 3.673919793264114,
+            "market_odds": 2.63,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.284143327020386,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
+          },
+          {
+            "selection": "ТБ 3.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.34203397618929227,
+            "fair_odds": 2.923686152882569,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.3501354452403447,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 14
+          },
+          {
+            "selection": "ТБ 4.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.17675035245132387,
+            "fair_odds": 5.657697346178672,
+            "market_odds": 3.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.4697489426460284,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 15
+          },
+          {
+            "selection": "ТБ 5.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 5.5,
+            "probability": 0.07916414626936505,
+            "fair_odds": 12.631981106666467,
+            "market_odds": 5.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.6041792686531747,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.14215786512712178,
+            "fair_odds": 7.034433157150822,
+            "market_odds": 2.08,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.7043116405355867,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          },
+          {
+            "selection": "FC Santa Coloma DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.01255581990650783,
+            "fair_odds": 79.64434082729143,
+            "market_odds": 8.5,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.8932755307946835,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 18
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -64645,12 +66608,567 @@
         "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
         "market_snapshot": {
           "source_provider": "odds_api_io",
-          "status": "REJECTED",
-          "reason": "captured_before_forecast",
-          "captured_at_utc": "2026-07-26T15:14:48Z",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-07-27T17:13:16Z",
+          "bookmakers": 3,
+          "best_1x2": {
+            "home": {
+              "odds": 1.55,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "draw": {
+              "odds": 4.333,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 5.5,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 1.5,
+              "over": {
+                "odds": 1.22,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 3.7,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.5,
+              "over": {
+                "odds": 1.73,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.95,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.75,
+              "over": {
+                "odds": 1.95,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.85,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": 3.5,
+              "over": {
+                "odds": 2.8,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.36,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 4.5,
+              "over": {
+                "odds": 5.0,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.12,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 1.833,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 1.88,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -1.5,
+              "home": {
+                "odds": 2.43,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 1.48,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": -1.0,
+              "home": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": -0.5,
+              "home": {
+                "odds": 1.52,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 2.32,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.222,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 4.0,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": {
+            "home_draw": {
+              "odds": 1.11,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "home_away": {
+              "odds": 1.2,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "draw_away": {
+              "odds": 2.25,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_team_totals": [],
           "source_url": "https://docs.odds-api.io/guides/fetching-odds"
         },
-        "market_candidates": []
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.6957293932508235,
+            "fair_odds": 1.4373404511881551,
+            "market_odds": 1.55,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.07838055953877654,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.20740415010784466,
+            "fair_odds": 4.8215042923684335,
+            "market_odds": 4.333,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.10131781758270908,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.09686645664133194,
+            "fair_odds": 10.323491068768073,
+            "market_odds": 5.5,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.46723448847267435,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.6566849413553748,
+            "fair_odds": 1.5228002608618296,
+            "market_odds": 1.88,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.2345676897481046,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "ТМ 1.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.31392390152643157,
+            "fair_odds": 3.1854853839977606,
+            "market_odds": 3.7,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.16151843564779678,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5762538276879386,
+            "fair_odds": 1.735346390690761,
+            "market_odds": 1.95,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.12369496399148039,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "Nordsjælland -1",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.0,
+            "probability": 0.5830225797937113,
+            "fair_odds": 1.7151994359357854,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.10774290160805133,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 4
+          },
+          {
+            "selection": "Nordsjælland DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.8777864426467694,
+            "fair_odds": 1.1392292605758672,
+            "market_odds": 1.222,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.07265503291435227,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 5
+          },
+          {
+            "selection": "ТМ 3.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.7839316873476891,
+            "fair_odds": 1.2756213534158114,
+            "market_odds": 1.36,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.0661470947928573,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 6
+          },
+          {
+            "selection": "Nordsjælland -0.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -0.5,
+            "probability": 0.6957306338201581,
+            "fair_odds": 1.4373378882415195,
+            "market_odds": 1.52,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.0575105634066404,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 7
+          },
+          {
+            "selection": "Nordsjælland -1.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.5,
+            "probability": 0.4254328945068701,
+            "fair_odds": 2.3505469673639716,
+            "market_odds": 2.43,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.03380193365169437,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 8
+          },
+          {
+            "selection": "ТМ 4.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.9072404160406207,
+            "fair_odds": 1.1022436636632666,
+            "market_odds": 1.12,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.016109265965495334,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 9
+          },
+          {
+            "selection": "1X",
+            "outcome": "home_draw",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.9031339382932398,
+            "fair_odds": 1.1072554773988668,
+            "market_odds": 1.11,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.0024786715054962993,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 10
+          },
+          {
+            "selection": "12",
+            "outcome": "home_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.7925966955269182,
+            "fair_odds": 1.2616757118009432,
+            "market_odds": 1.2,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.04888396536769812,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 11
+          },
+          {
+            "selection": "GAIS +1.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.5,
+            "probability": 0.5745671054931301,
+            "fair_odds": 1.740440743021194,
+            "market_odds": 1.48,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.1496406838701675,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 12
+          },
+          {
+            "selection": "ТБ 1.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.6860760984735684,
+            "fair_odds": 1.4575642588699302,
+            "market_odds": 1.22,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.16298715986224654,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
+          },
+          {
+            "selection": "GAIS +1",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.0,
+            "probability": 0.4169774202062888,
+            "fair_odds": 2.3982113935696465,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.2077429016080513,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 14
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.42374617231206135,
+            "fair_odds": 2.3599033226512907,
+            "market_odds": 1.73,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.2669191219001339,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 15
+          },
+          {
+            "selection": "GAIS +0.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.304269366179842,
+            "fair_odds": 3.2865615508888864,
+            "market_odds": 2.32,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.2940950704627666,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.304269366179842,
+            "fair_odds": 3.2865615508888864,
+            "market_odds": 2.25,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.31539392609535544,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.3433150586446252,
+            "fair_odds": 2.9127763982969572,
+            "market_odds": 1.833,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.370703497504402,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 18
+          },
+          {
+            "selection": "ТБ 3.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.2160683126523109,
+            "fair_odds": 4.628165915328652,
+            "market_odds": 2.8,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.39500872457352953,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 19
+          },
+          {
+            "selection": "GAIS DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.12221355735323076,
+            "fair_odds": 8.18239826789204,
+            "market_odds": 4.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.511145770587077,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 20
+          },
+          {
+            "selection": "ТБ 4.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.09275958395937928,
+            "fair_odds": 10.780557192213303,
+            "market_odds": 5.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.5362020802031036,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 21
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -101480,12 +103998,580 @@
         "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
         "market_snapshot": {
           "source_provider": "odds_api_io",
-          "status": "REJECTED",
-          "reason": "captured_before_forecast",
-          "captured_at_utc": "2026-07-26T15:14:48Z",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-07-27T17:13:16Z",
+          "bookmakers": 3,
+          "best_1x2": {
+            "home": {
+              "odds": 1.19,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "draw": {
+              "odds": 6.25,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            },
+            "away": {
+              "odds": 13.0,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 1.5,
+              "over": {
+                "odds": 1.12,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 5.0,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 2.5,
+              "over": {
+                "odds": 1.53,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              },
+              "under": {
+                "odds": 2.5,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 3.0,
+              "over": {
+                "odds": 1.825,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.975,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": 3.5,
+              "over": {
+                "odds": 2.15,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.6,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 4.5,
+              "over": {
+                "odds": 3.55,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.24,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": 5.5,
+              "over": {
+                "odds": 6.0,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "under": {
+                "odds": 1.08,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 2.25,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 1.66,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -2.5,
+              "home": {
+                "odds": 2.38,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 1.49,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            },
+            {
+              "line": -2.0,
+              "home": {
+                "odds": 1.975,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.825,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            },
+            {
+              "line": -1.5,
+              "home": {
+                "odds": 1.55,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              },
+              "away": {
+                "odds": 2.25,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.05,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 9.0,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
+            }
+          },
+          "best_double_chance": null,
+          "best_team_totals": [],
           "source_url": "https://docs.odds-api.io/guides/fetching-odds"
         },
-        "market_candidates": []
+        "market_candidates": [
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.12030355488850086,
+            "fair_odds": 8.312306323174033,
+            "market_odds": 13.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.5639462135505111,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.19573785721360432,
+            "fair_odds": 5.108873746935538,
+            "market_odds": 6.25,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.22336160758502688,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.6839585878978949,
+            "fair_odds": 1.4620768240858546,
+            "market_odds": 1.19,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.18608928040150519,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "Liepāja DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.14958060852402372,
+            "fair_odds": 6.685358549262706,
+            "market_odds": 9.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.3462254767162134,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Liepāja +2",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 2.0,
+            "probability": 0.7160050450023836,
+            "fair_odds": 1.3966382038504646,
+            "market_odds": 1.825,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.30670920712935,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "Liepāja +1.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.5,
+            "probability": 0.5659319468641688,
+            "fair_odds": 1.7669969075628333,
+            "market_odds": 2.25,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.2733468804443797,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "ТМ 3",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.0,
+            "probability": 0.6139058710536359,
+            "fair_odds": 1.6289142149491378,
+            "market_odds": 1.975,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.2124640953309309,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 4
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.47768779335935185,
+            "fair_odds": 2.093417528983678,
+            "market_odds": 2.5,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.1942194833983797,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 5
+          },
+          {
+            "selection": "ТМ 1.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.23699620642243224,
+            "fair_odds": 4.219476822416123,
+            "market_odds": 5.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.18498103211216121,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 6
+          },
+          {
+            "selection": "Liepāja +2.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 2.5,
+            "probability": 0.7755297690941996,
+            "fair_odds": 1.289441153455626,
+            "market_odds": 1.49,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.15553935595035728,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 7
+          },
+          {
+            "selection": "ТМ 3.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.6995753548751433,
+            "fair_odds": 1.429438577318772,
+            "market_odds": 1.6,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.11932056780022937,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 8
+          },
+          {
+            "selection": "ТМ 4.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.8529897999745991,
+            "fair_odds": 1.172346961276417,
+            "market_odds": 1.24,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.05770735196850296,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 9
+          },
+          {
+            "selection": "ТМ 5.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 5.5,
+            "probability": 0.9378471649202356,
+            "fair_odds": 1.0662718163519218,
+            "market_odds": 1.08,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.012874938113854428,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 10
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.44653027216019825,
+            "fair_odds": 2.239489822632311,
+            "market_odds": 2.25,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.004693112360446117,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 11
+          },
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5534697278398018,
+            "fair_odds": 1.8067835505710685,
+            "market_odds": 1.66,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.08124025178592909,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 12
+          },
+          {
+            "selection": "Austria Wien DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.8504193914759762,
+            "fair_odds": 1.1758904018691456,
+            "market_odds": 1.05,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.10705963895022497,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
+          },
+          {
+            "selection": "ТБ 1.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 1.5,
+            "probability": 0.7630037935775678,
+            "fair_odds": 1.3106094732651403,
+            "market_odds": 1.12,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.14543575119312402,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 14
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5223122066406481,
+            "fair_odds": 1.9145637174204546,
+            "market_odds": 1.53,
+            "bookmaker": "Bet365 (no latency)",
+            "bookmaker_key": "bet365_no_latency",
+            "point_edge": -0.2008623238398083,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 15
+          },
+          {
+            "selection": "ТБ 3",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.0,
+            "probability": 0.3860941289463641,
+            "fair_odds": 2.590041974295132,
+            "market_odds": 1.825,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.2953782146728856,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
+            "selection": "Austria Wien -1.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.5,
+            "probability": 0.43406805313583113,
+            "fair_odds": 2.3037862214823583,
+            "market_odds": 1.55,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.3271945176394617,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          },
+          {
+            "selection": "ТБ 3.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 3.5,
+            "probability": 0.3004246451248566,
+            "fair_odds": 3.3286217233755893,
+            "market_odds": 2.15,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.3540870129815583,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 18
+          },
+          {
+            "selection": "Austria Wien -2",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -2.0,
+            "probability": 0.2839949549976163,
+            "fair_odds": 3.521189311297426,
+            "market_odds": 1.975,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.4391099638797078,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 19
+          },
+          {
+            "selection": "Austria Wien -2.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -2.5,
+            "probability": 0.22447023090580032,
+            "fair_odds": 4.454933716443021,
+            "market_odds": 2.38,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.46576085044419524,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 20
+          },
+          {
+            "selection": "ТБ 4.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 4.5,
+            "probability": 0.1470102000254009,
+            "fair_odds": 6.802249094465668,
+            "market_odds": 3.55,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.4781137899098268,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 21
+          },
+          {
+            "selection": "ТБ 5.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 5.5,
+            "probability": 0.06215283507976449,
+            "fair_odds": 16.089370641204695,
+            "market_odds": 6.0,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.6270829895214131,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 22
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -124490,41 +127576,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
-    "snapshot_at": "2026-07-26T15:14:48Z",
-    "matched_forecasts": 0,
-    "rejected_forecasts": 6,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league",
-      "soccer_uefa_europa_conference_league",
-      "soccer_uefa_europa_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-07-26T15:14:35Z",
-        "received_at": "2026-07-26T15:14:48Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-07-26T15:14:35Z",
-        "received_at": "2026-07-26T15:14:48Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-07-26T15:14:35Z",
-        "received_at": "2026-07-26T15:14:48Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-07-26T16:14:35Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -124778,7 +127829,8 @@
     "eligible_matches": 0,
     "displayed_candidates": 0,
     "rejection_counts": {
-      "missing_verified_market_candidates": 72
+      "data_quality_below_threshold": 6,
+      "missing_verified_market_candidates": 66
     },
     "candidates": []
   },
@@ -124883,5 +127935,41 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-07-27T17:13:16Z",
+    "matched_forecasts": 6,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league",
+      "soccer_uefa_europa_conference_league",
+      "soccer_uefa_europa_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-07-27T17:13:07Z",
+        "received_at": "2026-07-27T17:13:16Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-07-27T17:13:07Z",
+        "received_at": "2026-07-27T17:13:16Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-07-27T17:13:07Z",
+        "received_at": "2026-07-27T17:13:16Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 98,
+      "limit": 100,
+      "reset": "2026-07-27T18:13:07Z"
+    }
+  },
+  "odds_snapshot_at": "2026-07-27T17:13:16Z"
 }
