@@ -50,7 +50,7 @@
     },
     "real_money_execution": false
   },
-  "updated_at": "2026-07-27T04:07:45Z",
+  "updated_at": "2026-07-27T12:01:09Z",
   "status": "PAPER_ONLY_WAITING_FOR_ELIGIBLE_PRIMARY_COHORT",
   "fixtures": {},
   "rejections": {},
@@ -58,6 +58,15 @@
   "gate": {
     "allowed": false,
     "action": "NO BET",
-    "reason": "primary_horizon_and_replication_not_complete"
+    "reason": "primary_horizon_not_reached"
+  },
+  "monitor": {
+    "checked_at": "2026-07-27T12:01:09Z",
+    "eligible_enrolled": 0,
+    "confirmatory_ready": 0,
+    "horizon": 350,
+    "alerts": 0,
+    "mean_clv": null,
+    "interim_inference_hidden": true
   }
 }
