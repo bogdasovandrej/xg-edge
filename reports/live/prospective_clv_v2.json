@@ -1,0 +1,63 @@
+{
+  "schema_version": "prospective-clv/2.0",
+  "policy_hash": "f3c3de658583d3882cd151e98495a3b6267a2ab25b66db661e7bd751bbdabeec",
+  "policy": {
+    "primary_cohort": {
+      "competitions": [
+        "Premier League",
+        "La Liga",
+        "Bundesliga",
+        "Serie A",
+        "Ligue 1"
+      ],
+      "model_version": "market-residual-v1",
+      "probability_basis": "betfair_exchange_residual",
+      "market_family": "1X2",
+      "settlement_period": "REGULATION_90_MINUTES"
+    },
+    "sharp_benchmark": {
+      "provider": "odds_api_io_paid",
+      "bookmaker_key": "betfair_exchange",
+      "method": "commission_adjusted_proportional_devig",
+      "commission_rate": 0.05,
+      "liquidity_required": true
+    },
+    "capture_schedule": {
+      "initial_after_forecast_seconds": [
+        60,
+        300
+      ],
+      "poll_interval_minutes": 15,
+      "closing_window_minutes": 60
+    },
+    "selection": {
+      "rule": "LCB95(execution_EV)>0",
+      "z_score_one_sided_95": 1.6448536269514722,
+      "default_probability_std_error": 0.02,
+      "default_calibration_error": 0.015,
+      "expected_slippage_rate": 0.005,
+      "maximum_flat_stake_fraction": 0.0025,
+      "kelly_allowed": false
+    },
+    "promotion": {
+      "primary_horizon": 350,
+      "requires_log_loss_not_worse_than_benchmark": true,
+      "requires_brier_not_worse_than_benchmark": true,
+      "requires_mean_clv_above_zero": true,
+      "requires_cluster_bootstrap_lcb95_above_zero": true,
+      "requires_positive_replication_cohort": true,
+      "roi_is_not_accuracy_evidence": true
+    },
+    "real_money_execution": false
+  },
+  "updated_at": "2026-07-27T04:07:45Z",
+  "status": "PAPER_ONLY_WAITING_FOR_ELIGIBLE_PRIMARY_COHORT",
+  "fixtures": {},
+  "rejections": {},
+  "alerts": [],
+  "gate": {
+    "allowed": false,
+    "action": "NO BET",
+    "reason": "primary_horizon_and_replication_not_complete"
+  }
+}

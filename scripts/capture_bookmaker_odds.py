@@ -25,6 +25,11 @@ from xgedge.evaluation.prospective import (
     new_ledger,
     prospective_summary,
 )
+from xgedge.evaluation.prospective_v2 import (
+    audit_capture_health as audit_capture_health_v2,
+    ingest_snapshot as ingest_snapshot_v2,
+    new_ledger as new_ledger_v2,
+)
 from xgedge.decision.ranking import rank_paper_candidates
 
 
@@ -167,6 +172,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--top-five-fixtures", type=Path)
     parser.add_argument("--live-payload", type=Path, required=True)
     parser.add_argument("--ledger", type=Path, required=True)
+    parser.add_argument("--ledger-v2", type=Path)
     parser.add_argument("--snapshot-output", type=Path, required=True)
     parser.add_argument("--now")
     parser.add_argument("--closing-window-minutes", type=int, default=60)
@@ -193,6 +199,38 @@ def main(argv: list[str] | None = None) -> None:
         ]
     live_payload = _read(args.live_payload)
     ledger = _read(args.ledger) if args.ledger.exists() else new_ledger(updated_at=now)
+    ledger_v2 = (
+        _read(args.ledger_v2)
+        if args.ledger_v2 and args.ledger_v2.exists()
+        else new_ledger_v2(updated_at=now)
+    )
+
+    def update_v2(snapshot: Mapping[str, Any] | None = None) -> None:
+        nonlocal ledger_v2
+        if args.ledger_v2 is None:
+            return
+        ledger_v2 = (
+            ingest_snapshot_v2(
+                ledger_v2,
+                snapshot,
+                fixtures=fixtures,
+                live_payload=live_payload,
+            )
+            if snapshot is not None
+            else audit_capture_health_v2(
+                ledger_v2, live_payload=live_payload, now=now
+            )
+        )
+        _write(args.ledger_v2, ledger_v2)
+        for alert in ledger_v2.get("alerts", []):
+            if not isinstance(alert, Mapping):
+                continue
+            print(
+                "::warning title=Prospective CLV v2 capture::"
+                f"{alert.get('kind', 'capture_alert')} for fixture "
+                f"{alert.get('fixture_id', 'unknown')}; "
+                f"deadline={alert.get('deadline', 'unknown')}"
+            )
     finalized = finalize_clv_after_kickoff(ledger, finalized_at=now)
     if finalized != ledger:
         ledger = finalized
@@ -207,6 +245,7 @@ def main(argv: list[str] | None = None) -> None:
     odds_api_io_key = os.getenv("ODDS_API_IO_KEY")
     legacy_api_key = os.getenv("THE_ODDS_API_KEY")
     if not odds_api_io_key and not legacy_api_key:
+        update_v2()
         print(
             "ODDS_API_IO_KEY and THE_ODDS_API_KEY are not configured; "
             "no odds request was made"
@@ -250,6 +289,7 @@ def main(argv: list[str] | None = None) -> None:
     if args.force and not keys:
         keys = sorted({key for fixture in fixtures for key in [sport_key_for_fixture(fixture)] if key})
     if not keys:
+        update_v2()
         if last_snapshot is not None:
             refreshed = apply_odds_snapshot_to_live_payload(
                 live_payload, last_snapshot, now=now
@@ -284,6 +324,7 @@ def main(argv: list[str] | None = None) -> None:
         if snapshot.get("status") == "available"
         else ledger
     )
+    update_v2(snapshot)
     _write(args.ledger, updated)
     public_now = now if args.now else datetime.now(timezone.utc)
     public = apply_odds_snapshot_to_live_payload(
@@ -298,7 +339,9 @@ def main(argv: list[str] | None = None) -> None:
     )
     print(
         f"Captured {matched} matched events; quota_mode={quota_mode}; "
-        f"prospective CLV n={updated['gate']['clv']['n']}"
+        f"prospective CLV n={updated['gate']['clv']['n']}; "
+        f"v2 enrolled={ledger_v2.get('monitor', {}).get('eligible_enrolled', 0)}; "
+        f"v2 alerts={ledger_v2.get('monitor', {}).get('alerts', 0)}"
     )
 
 

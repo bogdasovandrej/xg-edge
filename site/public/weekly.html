@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Рейтинг недели — xg-edge</title>
+    <style>
+      :root {
+        --ink: #edf4ed;
+        --muted: #9eaca4;
+        --line: rgba(255,255,255,.11);
+        --panel: rgba(13,23,19,.86);
+        --green: #8cf0b5;
+        --amber: #ffcf70;
+        --red: #ff8b8b;
+        --blue: #8cc8ff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font: 15px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at 15% -10%, rgba(41,120,78,.35), transparent 36rem),
+          radial-gradient(circle at 100% 0, rgba(50,93,121,.28), transparent 32rem),
+          #07100c;
+      }
+      a { color: inherit; }
+      .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+      header { padding: 26px 0 22px; border-bottom: 1px solid var(--line); }
+      .top { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+      .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
+      .mark { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid rgba(140,240,181,.45); border-radius: 10px; color: var(--green); }
+      .back { color: var(--muted); text-decoration: none; }
+      .back:hover { color: var(--ink); }
+      .hero { padding: 54px 0 28px; }
+      .eyebrow { color: var(--green); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 800; }
+      h1 { max-width: 850px; margin: 12px 0 14px; font-size: clamp(36px, 6vw, 68px); line-height: .98; letter-spacing: -.055em; }
+      .lead { max-width: 760px; margin: 0; color: var(--muted); font-size: 17px; }
+      .notice { margin-top: 22px; padding: 14px 16px; border: 1px solid rgba(255,207,112,.25); border-radius: 14px; color: #eadbb8; background: rgba(98,70,20,.15); }
+      .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 30px 0 18px; }
+      .summary article { padding: 17px; border: 1px solid var(--line); border-radius: 17px; background: var(--panel); }
+      .summary span { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+      .summary strong { display: block; margin-top: 5px; font-size: 25px; }
+      .controls { display: grid; grid-template-columns: minmax(220px, 1.5fr) 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+      input, select {
+        width: 100%; padding: 12px 13px; color: var(--ink); border: 1px solid var(--line);
+        border-radius: 12px; background: #0d1713; font: inherit; outline: none;
+      }
+      input:focus, select:focus { border-color: rgba(140,240,181,.55); box-shadow: 0 0 0 3px rgba(140,240,181,.08); }
+      .list { display: grid; gap: 12px; padding-bottom: 64px; }
+      .card { display: grid; grid-template-columns: 72px 1.4fr 1fr; gap: 20px; padding: 20px; border: 1px solid var(--line); border-radius: 20px; background: var(--panel); backdrop-filter: blur(12px); }
+      .rank { color: var(--muted); font-size: 12px; }
+      .rank strong { display: block; color: var(--ink); font-size: 30px; line-height: 1; }
+      .badge { display: inline-flex; margin-bottom: 8px; padding: 5px 8px; border-radius: 999px; color: #07100c; background: var(--blue); font-size: 11px; font-weight: 900; letter-spacing: .05em; }
+      .badge.paper { background: var(--green); }
+      .badge.scenario { background: var(--amber); }
+      .match h2 { margin: 0; font-size: 22px; letter-spacing: -.025em; }
+      .meta { margin-top: 6px; color: var(--muted); }
+      .reasons { margin: 14px 0 0; padding-left: 18px; color: #c5d0c9; }
+      .reasons li + li { margin-top: 4px; }
+      .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; align-content: start; }
+      .metric { padding: 11px; border: 1px solid var(--line); border-radius: 12px; }
+      .metric span { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+      .metric strong { display: block; margin-top: 3px; font-size: 19px; }
+      .paper-line { grid-column: 1 / -1; padding: 11px; border: 1px solid rgba(140,240,181,.28); border-radius: 12px; color: #c8f5d9; background: rgba(40,112,70,.14); }
+      .empty, .error { padding: 32px; text-align: center; border: 1px dashed var(--line); border-radius: 18px; color: var(--muted); }
+      .error { color: var(--red); }
+      footer { padding: 24px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+      @media (max-width: 820px) {
+        .summary { grid-template-columns: 1fr 1fr; }
+        .controls { grid-template-columns: 1fr; }
+        .card { grid-template-columns: 48px 1fr; }
+        .metrics { grid-column: 2; }
+      }
+      @media (max-width: 540px) {
+        .shell { width: min(100% - 20px, 1180px); }
+        .hero { padding-top: 38px; }
+        .card { grid-template-columns: 1fr; gap: 14px; }
+        .rank { display: flex; align-items: baseline; gap: 7px; }
+        .rank strong { display: inline; font-size: 22px; }
+        .metrics { grid-column: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="shell top">
+        <a class="brand" href="/xg-edge/"><span class="mark">xG</span> xg-edge</a>
+        <a class="back" href="/xg-edge/">← К матчам</a>
+      </div>
+    </header>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">Weekly research radar</div>
+        <h1>Какие матчи разбирать в первую очередь</h1>
+        <p class="lead">Рейтинг объединяет срочность, качество досье, свежесть подтверждённой линии и сценарную хрупкость. Он определяет очередь исследования, а не вероятность выигрыша ставки.</p>
+        <div class="notice">Шкала 0–100 — приоритет разбора. Она не является процентом прохода. PAPER-сигналы не разрешают ставки реальными деньгами.</div>
+      </section>
+      <section class="summary" aria-label="Сводка">
+        <article><span>Матчей за 7 дней</span><strong id="total">—</strong></article>
+        <article><span>PAPER-кандидаты</span><strong id="paper">—</strong></article>
+        <article><span>Со свежей линией</span><strong id="priced">—</strong></article>
+        <article><span>Источник обновлён</span><strong id="updated">—</strong></article>
+      </section>
+      <section class="controls" aria-label="Фильтры">
+        <label><span hidden>Поиск</span><input id="search" type="search" placeholder="Команда, турнир или стадия" autocomplete="off" /></label>
+        <label><span hidden>Категория</span><select id="bucket"><option value="">Все категории</option></select></label>
+        <label><span hidden>Турнир</span><select id="competition"><option value="">Все турниры</option></select></label>
+      </section>
+      <section id="ratings" class="list" aria-live="polite"><div class="empty">Загружаем свежий недельный рейтинг…</div></section>
+    </main>
+    <footer><div class="shell">xg-edge · исследовательская система · котировки старше 6 часов автоматически исключаются из решения</div></footer>
+    <script type="module">
+      import { buildWeeklyRatings } from "/xg-edge/weekly-ratings.js";
+
+      const root = document.querySelector("#ratings");
+      const search = document.querySelector("#search");
+      const bucket = document.querySelector("#bucket");
+      const competition = document.querySelector("#competition");
+      let model = null;
+
+      const escapeHtml = (value) => String(value ?? "")
+        .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+      const formatDate = (value) => {
+        const parsed = new Date(value);
+        return Number.isFinite(parsed.getTime())
+          ? new Intl.DateTimeFormat("ru-RU", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Yekaterinburg" }).format(parsed)
+          : "—";
+      };
+      const badgeClass = (value) =>
+        value === "PAPER CANDIDATE" ? "paper" : value === "SCENARIO REVIEW" ? "scenario" : "";
+
+      function addOptions(select, values) {
+        [...values].sort((a, b) => a.localeCompare(b, "ru")).forEach((value) => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = value;
+          select.append(option);
+        });
+      }
+
+      function render() {
+        if (!model) return;
+        const query = search.value.trim().toLocaleLowerCase("ru");
+        const rows = model.ratings.filter((row) => {
+          const haystack = `${row.home} ${row.away} ${row.competition} ${row.stage}`.toLocaleLowerCase("ru");
+          return (!query || haystack.includes(query)) &&
+            (!bucket.value || row.bucket === bucket.value) &&
+            (!competition.value || row.competition === competition.value);
+        });
+        if (!rows.length) {
+          root.innerHTML = '<div class="empty">По выбранным фильтрам матчей нет.</div>';
+          return;
+        }
+        root.innerHTML = rows.map((row) => `
+          <article class="card">
+            <div class="rank">место <strong>${row.rank}</strong></div>
+            <div class="match">
+              <span class="badge ${badgeClass(row.bucket)}">${escapeHtml(row.bucket)}</span>
+              <h2>${escapeHtml(row.home)} — ${escapeHtml(row.away)}</h2>
+              <div class="meta">${escapeHtml(row.competition)} · ${escapeHtml(row.stage || "стадия не указана")} · ${escapeHtml(formatDate(row.kickoffUtc))} YEKT</div>
+              <ul class="reasons">${row.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>
+            </div>
+            <div class="metrics">
+              <div class="metric"><span>Приоритет разбора</span><strong>${row.researchScore}</strong></div>
+              <div class="metric"><span>Качество данных</span><strong>${row.dataConfidence}</strong></div>
+              <div class="metric"><span>Рыночные данные</span><strong>${row.marketEvidence.score}</strong></div>
+              <div class="metric"><span>Хрупкость сценария</span><strong>${row.scenarioFragility}</strong></div>
+              ${row.paperCandidate ? `<div class="paper-line">PAPER · ${escapeHtml(row.paperCandidate.selection)} @ ${row.paperCandidate.odds.toFixed(2)} · ${escapeHtml(row.paperCandidate.bookmaker)} · robust edge ${(row.paperCandidate.robustEdge * 100).toFixed(1)} п.п.</div>` : ""}
+            </div>
+          </article>`).join("");
+      }
+
+      async function boot() {
+        try {
+          const response = await fetch("/xg-edge/data/live_predictions.json", { cache: "no-store" });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const payload = await response.json();
+          model = buildWeeklyRatings(payload, new Date());
+          document.querySelector("#total").textContent = model.ratings.length;
+          document.querySelector("#paper").textContent = model.ratings.filter((row) => row.paperCandidate).length;
+          document.querySelector("#priced").textContent = model.ratings.filter((row) => row.marketEvidence.eligible).length;
+          document.querySelector("#updated").textContent = formatDate(model.sourceGeneratedAt);
+          addOptions(bucket, new Set(model.ratings.map((row) => row.bucket)));
+          addOptions(competition, new Set(model.ratings.map((row) => row.competition)));
+          render();
+        } catch (error) {
+          root.innerHTML = `<div class="error">Не удалось построить рейтинг: ${escapeHtml(error?.message || error)}. Данные не заменены заглушкой.</div>`;
+        }
+      }
+      [search, bucket, competition].forEach((control) => control.addEventListener("input", render));
+      boot();
+    </script>
+  </body>
+</html>

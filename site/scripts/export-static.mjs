@@ -24,6 +24,7 @@ await cp(`${root}dist/client`, output, { recursive: true });
 await mkdir(`${output}data`, { recursive: true });
 await cp(`${repository}reports/live_predictions.json`, `${output}data/live_predictions.json`);
 await cp(`${repository}reports/live/prospective_clv.json`, `${output}data/prospective_clv.json`);
+await cp(`${repository}reports/live/prospective_clv_v2.json`, `${output}data/prospective_clv_v2.json`);
 await cp(`${repository}reports/live/forecast_archive.json`, `${output}data/forecast_archive.json`);
 await writeFile(`${output}index.html`, html, "utf8");
 await writeFile(`${output}.nojekyll`, "", "utf8");
