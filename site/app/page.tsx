@@ -1942,6 +1942,7 @@ export default function Home() {
               </p>
           <div className="hero-actions">
             <a href="#forecasts" className="primary-action">Смотреть матчи</a>
+            <a href="/xg-edge/weekly.html" className="secondary-action">Рейтинг недели</a>
             <a href="#paper-bank" className="secondary-action">PAPER-банк</a>
             <a href="#completed-archive" className="secondary-action">Архив качества</a>
             <a href="https://github.com/bogdasovandrej/xg-edge" className="secondary-action">Открытый код ↗</a>

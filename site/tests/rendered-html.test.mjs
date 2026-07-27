@@ -28,6 +28,7 @@ test("server-renders the xg-edge live dashboard", async () => {
   assert.match(html, /Поправка надёжности/);
   assert.match(html, /Прошедшие матчи не показываются как будущие/);
   assert.match(html, /Поиск матча/);
+  assert.match(html, /Рейтинг недели/);
   assert.match(html, />ЛЕ</);
   assert.match(html, />ЛК</);
   assert.match(html, /Нет подтверждённых коэффициентов/);
@@ -49,6 +50,7 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   ]);
 
   assert.match(page, /SITE_DATA_ROOT = "\/xg-edge\/data"/);
+  assert.match(page, /\/xg-edge\/weekly\.html/);
   assert.match(page, /live_predictions\.json/);
   assert.match(page, /\["uel", "ЛЕ"\]/);
   assert.match(page, /\["uecl", "ЛК"\]/);
@@ -138,18 +140,26 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
 });
 
-test("static export prefixes every asset URL for GitHub Pages", async () => {
+test("static export prefixes every asset URL and includes weekly radar", async () => {
   await import(`../scripts/export-static.mjs?test=${Date.now()}`);
-  const [html, livePayload, prospectiveLedger, forecastArchive] = await Promise.all([
+  const [html, weeklyHtml, weeklyEngine, livePayload, prospectiveLedger, prospectiveLedgerV2, forecastArchive] = await Promise.all([
     readFile(new URL("../out-static/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../out-static/weekly.html", import.meta.url), "utf8"),
+    readFile(new URL("../out-static/weekly-ratings.js", import.meta.url), "utf8"),
     readFile(new URL("../out-static/data/live_predictions.json", import.meta.url), "utf8"),
     readFile(new URL("../out-static/data/prospective_clv.json", import.meta.url), "utf8"),
+    readFile(new URL("../out-static/data/prospective_clv_v2.json", import.meta.url), "utf8"),
     readFile(new URL("../out-static/data/forecast_archive.json", import.meta.url), "utf8"),
   ]);
 
   assert.doesNotMatch(html, /["'(]\/assets\//);
   assert.match(html, /import\("\/xg-edge\/assets\//);
+  assert.match(html, /\/xg-edge\/weekly\.html/);
+  assert.match(weeklyHtml, /Weekly research radar/);
+  assert.match(weeklyHtml, /Шкала 0–100 — приоритет разбора/);
+  assert.match(weeklyEngine, /weekly-research-radar\/1\.0/);
   assert.ok(Array.isArray(JSON.parse(livePayload).forecasts));
   assert.match(JSON.parse(prospectiveLedger).schema_version, /^prospective-clv\//);
+  assert.equal(JSON.parse(prospectiveLedgerV2).schema_version, "prospective-clv/2.0");
   assert.equal(JSON.parse(forecastArchive).schema_version, "match-evidence-archive/1.0");
 });

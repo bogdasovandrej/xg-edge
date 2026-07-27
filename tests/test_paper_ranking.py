@@ -53,6 +53,14 @@ def test_ranks_one_strict_candidate_per_match_without_mutating_payload() -> None
     assert all(row["selection"] == "П1" for row in result["candidates"])
     assert result["candidates"][0]["probability_edge"] == pytest.approx(.05)
     assert result["candidates"][0]["robust_edge"] < .10
+    assert result["policy"]["version"] == "paper-ranking-v2-lcb95"
+    assert result["candidates"][0]["ev_lcb95"] > 0
+    assert result["candidates"][0]["probability_lcb95"] < .55
+    assert result["candidates"][0]["staking"] == {
+        "method": "flat",
+        "maximum_bankroll_fraction": .0025,
+        "kelly_allowed": False,
+    }
 
 
 def test_fails_closed_on_low_quality_stale_or_weak_candidates() -> None:
@@ -139,3 +147,24 @@ def test_expanded_total_can_become_the_single_paper_candidate() -> None:
     assert candidate["market"] == "totals"
     assert candidate["line"] == 2.5
     assert candidate["outcome"] == "over"
+
+
+def test_large_point_edge_is_rejected_when_lcb95_is_not_positive() -> None:
+    row = _forecast("uncertain")
+    row["uncertainty"] = "высокая"
+    row["details"]["market_candidates"] = [{
+        "selection": "П1",
+        "outcome": "home",
+        "probability": .53,
+        "market_odds": 2.0,
+        "point_edge": .06,
+        "bookmaker": "Book A",
+    }]
+    result = rank_paper_candidates({
+        "generated_at": "2026-07-29T15:00:00Z",
+        "forecasts": [row],
+    })
+    assert result["candidates"] == []
+    assert result["rejection_counts"] == {
+        "no_candidate_survived_strict_filter": 1,
+    }
