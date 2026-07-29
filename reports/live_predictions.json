@@ -91120,41 +91120,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-07-29T17:52:27Z",
-    "matched_forecasts": 3,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league",
-      "soccer_uefa_europa_conference_league",
-      "soccer_uefa_europa_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-07-29T17:52:24Z",
-        "received_at": "2026-07-29T17:52:27Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-07-29T17:52:24Z",
-        "received_at": "2026-07-29T17:52:27Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-07-29T17:52:24Z",
-        "received_at": "2026-07-29T17:52:27Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-07-29T18:52:24Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -91513,6 +91478,41 @@
     "parlays": {
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
+    }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-07-29T17:52:27Z",
+    "matched_forecasts": 3,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league",
+      "soccer_uefa_europa_conference_league",
+      "soccer_uefa_europa_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-07-29T17:52:24Z",
+        "received_at": "2026-07-29T17:52:27Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-07-29T17:52:24Z",
+        "received_at": "2026-07-29T17:52:27Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-07-29T17:52:24Z",
+        "received_at": "2026-07-29T17:52:27Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 98,
+      "limit": 100,
+      "reset": "2026-07-29T18:52:24Z"
     }
   }
 }
