@@ -51726,7 +51726,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-07-30T15:27:56Z",
+          "captured_at_utc": "2026-07-30T17:07:38Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -51773,14 +51773,14 @@
               }
             },
             {
-              "line": 3.0,
+              "line": 3.25,
               "over": {
-                "odds": 1.825,
+                "odds": 2.0,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "under": {
-                "odds": 1.975,
+                "odds": 1.8,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -51827,14 +51827,14 @@
           ],
           "best_btts": {
             "yes": {
-              "odds": 2.02,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
-            },
-            "no": {
-              "odds": 1.727,
+              "odds": 2.1,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 1.68,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
             }
           },
           "best_spreads": [
@@ -51855,11 +51855,11 @@
               "line": -1.75,
               "home": {
                 "odds": 1.825,
-                "bookmaker_key": "bet365_no_latency",
-                "bookmaker": "Bet365 (no latency)"
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
               },
               "away": {
-                "odds": 2.0,
+                "odds": 1.975,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -51978,22 +51978,6 @@
             "rank": 2
           },
           {
-            "selection": "ТМ 3",
-            "outcome": "under",
-            "market": "totals",
-            "line": 3.0,
-            "probability": 0.6139058715400599,
-            "fair_odds": 1.628914213658479,
-            "market_odds": 1.975,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.21246409629161844,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 3
-          },
-          {
             "selection": "ТМ 2.5",
             "outcome": "under",
             "market": "totals",
@@ -52007,7 +51991,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 4
+            "rank": 3
           },
           {
             "selection": "ТМ 1.5",
@@ -52023,7 +52007,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 5
+            "rank": 4
           },
           {
             "selection": "Liepāja +2.5",
@@ -52039,7 +52023,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 6
+            "rank": 5
           },
           {
             "selection": "ТМ 3.5",
@@ -52055,7 +52039,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 7
+            "rank": 6
           },
           {
             "selection": "ТМ 4.5",
@@ -52071,7 +52055,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 8
+            "rank": 7
           },
           {
             "selection": "ТМ 5.5",
@@ -52087,7 +52071,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 9
+            "rank": 8
           },
           {
             "selection": "ОЗ — нет",
@@ -52096,10 +52080,26 @@
             "line": null,
             "probability": 0.5598212531969595,
             "fair_odds": 1.7862844511338591,
-            "market_odds": 1.727,
+            "market_odds": 1.68,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.059500294629108,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 9
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.4401787468030405,
+            "fair_odds": 2.2718043687089997,
+            "market_odds": 2.1,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.03318869572885086,
+            "point_edge": -0.075624631713615,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -52122,22 +52122,6 @@
             "rank": 11
           },
           {
-            "selection": "ОЗ — да",
-            "outcome": "yes",
-            "market": "btts",
-            "line": null,
-            "probability": 0.4401787468030405,
-            "fair_odds": 2.2718043687089997,
-            "market_odds": 2.02,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.11083893145785828,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 12
-          },
-          {
             "selection": "ТБ 1.5",
             "outcome": "over",
             "market": "totals",
@@ -52151,7 +52135,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 13
+            "rank": 12
           },
           {
             "selection": "ТБ 2.5",
@@ -52167,23 +52151,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 14
-          },
-          {
-            "selection": "ТБ 3",
-            "outcome": "over",
-            "market": "totals",
-            "line": 3.0,
-            "probability": 0.38609412845994007,
-            "fair_odds": 2.5900419775582186,
-            "market_odds": 1.825,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.2953782155606094,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 15
+            "rank": 13
           },
           {
             "selection": "Austria Wien -1.5",
@@ -52199,7 +52167,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 16
+            "rank": 14
           },
           {
             "selection": "ТБ 3.5",
@@ -52215,7 +52183,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 17
+            "rank": 15
           },
           {
             "selection": "Austria Wien -2.5",
@@ -52231,7 +52199,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 18
+            "rank": 16
           },
           {
             "selection": "ТБ 4.5",
@@ -52247,7 +52215,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 19
+            "rank": 17
           },
           {
             "selection": "ТБ 5.5",
@@ -52263,7 +52231,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 20
+            "rank": 18
           }
         ]
       },
@@ -115918,40 +115886,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-07-30T15:27:56Z",
-    "matched_forecasts": 2,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_europa_conference_league",
-      "soccer_uefa_europa_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-07-29T17:52:24Z",
-        "received_at": "2026-07-29T17:52:27Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-07-30T15:26:36Z",
-        "received_at": "2026-07-30T15:27:56Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-07-30T15:26:36Z",
-        "received_at": "2026-07-30T15:27:56Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-07-30T16:26:37Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -116311,5 +116245,40 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-07-30T17:07:38Z",
+    "matched_forecasts": 2,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_europa_conference_league",
+      "soccer_uefa_europa_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-07-29T17:52:24Z",
+        "received_at": "2026-07-29T17:52:27Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-07-30T17:06:20Z",
+        "received_at": "2026-07-30T17:07:38Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-07-30T17:06:20Z",
+        "received_at": "2026-07-30T17:07:38Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 98,
+      "limit": 100,
+      "reset": "2026-07-30T18:06:21Z"
+    }
+  },
+  "odds_snapshot_at": "2026-07-30T17:07:38Z"
 }
