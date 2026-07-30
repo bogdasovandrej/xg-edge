@@ -2,7 +2,7 @@
   "provider": "odds_api_io",
   "status": "available",
   "reason": null,
-  "snapshot_at": "2026-07-30T13:12:01Z",
+  "snapshot_at": "2026-07-30T15:27:56Z",
   "records": [
     {
       "provider": "odds_api_io",
@@ -280,9 +280,9 @@
       "sport_key": "international-clubs-uefa-conference-league-qualification",
       "fixture_id": "2048775",
       "match_status": "matched",
-      "snapshot_at": "2026-07-30T13:12:01Z",
-      "requested_at": "2026-07-30T13:12:01Z",
-      "received_at": "2026-07-30T13:12:01Z",
+      "snapshot_at": "2026-07-30T15:27:56Z",
+      "requested_at": "2026-07-30T15:27:55Z",
+      "received_at": "2026-07-30T15:27:56Z",
       "commence_time": "2026-07-30T18:30:00Z",
       "home": "FK Austria Wien",
       "away": "FK Liepaja",
@@ -290,12 +290,12 @@
         {
           "key": "bet365",
           "title": "Bet365",
-          "last_update": "2026-07-30T13:11:24Z",
+          "last_update": "2026-07-30T15:27:27Z",
           "markets": {
             "h2h": {
-              "home": 1.25,
-              "draw": 5.25,
-              "away": 10.0
+              "home": 1.222,
+              "draw": 5.5,
+              "away": 12.0
             },
             "draw_no_bet": {
               "home": 1.062,
@@ -304,15 +304,15 @@
             "spreads": [
               {
                 "line": -1.75,
-                "home": 1.875,
-                "away": 1.925
+                "home": 1.8,
+                "away": 2.0
               }
             ],
             "totals": [
               {
                 "line": 3.0,
-                "over": 1.8,
-                "under": 2.0
+                "over": 1.825,
+                "under": 1.975
               }
             ],
             "btts": {
@@ -324,13 +324,13 @@
         {
           "key": "bet365_no_latency",
           "title": "Bet365 (no latency)",
-          "last_update": "2026-07-30T06:55:08Z",
+          "last_update": "2026-07-30T15:20:57Z",
           "markets": {
-            "totals": [
+            "spreads": [
               {
-                "line": 2.5,
-                "over": 1.53,
-                "under": 2.37
+                "line": -1.75,
+                "home": 1.825,
+                "away": 1.975
               }
             ]
           }
@@ -405,9 +405,9 @@
       "sport_key": "international-clubs-uefa-conference-league-qualification",
       "fixture_id": "2048777",
       "match_status": "matched",
-      "snapshot_at": "2026-07-30T13:12:01Z",
-      "requested_at": "2026-07-30T13:12:01Z",
-      "received_at": "2026-07-30T13:12:01Z",
+      "snapshot_at": "2026-07-30T15:27:56Z",
+      "requested_at": "2026-07-30T15:27:55Z",
+      "received_at": "2026-07-30T15:27:56Z",
       "commence_time": "2026-07-30T17:00:00Z",
       "home": "FC Nordsjaelland",
       "away": "GAIS",
@@ -415,16 +415,16 @@
         {
           "key": "bet365",
           "title": "Bet365",
-          "last_update": "2026-07-30T13:10:53Z",
+          "last_update": "2026-07-30T15:27:27Z",
           "markets": {
             "h2h": {
-              "home": 1.42,
+              "home": 1.45,
               "draw": 4.75,
-              "away": 4.75
+              "away": 4.5
             },
             "draw_no_bet": {
-              "home": 1.222,
-              "away": 4.0
+              "home": 1.2,
+              "away": 4.333
             },
             "spreads": [
               {
@@ -435,27 +435,27 @@
             ],
             "totals": [
               {
-                "line": 2.75,
-                "over": 1.8,
-                "under": 2.0
+                "line": 3.0,
+                "over": 1.975,
+                "under": 1.825
               }
             ],
             "btts": {
-              "yes": 1.8,
-              "no": 1.909
+              "yes": 1.727,
+              "no": 2.0
             }
           }
         },
         {
           "key": "bet365_no_latency",
           "title": "Bet365 (no latency)",
-          "last_update": "2026-07-30T06:48:11Z",
+          "last_update": "2026-07-30T15:26:01Z",
           "markets": {
             "totals": [
               {
-                "line": 2.75,
-                "over": 1.875,
-                "under": 1.925
+                "line": 3.0,
+                "over": 2.025,
+                "under": 1.775
               }
             ]
           }
@@ -901,23 +901,24 @@
       "status": "available"
     },
     "soccer_uefa_europa_conference_league": {
-      "requested_at": "2026-07-30T13:10:54Z",
-      "received_at": "2026-07-30T13:12:01Z",
+      "requested_at": "2026-07-30T15:26:36Z",
+      "received_at": "2026-07-30T15:27:56Z",
       "status": "available"
     },
     "soccer_uefa_europa_league": {
-      "requested_at": "2026-07-29T17:52:24Z",
-      "received_at": "2026-07-29T17:52:27Z",
+      "requested_at": "2026-07-30T15:26:36Z",
+      "received_at": "2026-07-30T15:27:56Z",
       "status": "available"
     }
   },
   "requested_sport_keys": [
-    "soccer_uefa_europa_conference_league"
+    "soccer_uefa_europa_conference_league",
+    "soccer_uefa_europa_league"
   ],
   "quota": {
     "remaining": 98,
     "limit": 100,
-    "reset": "2026-07-30T14:10:54Z"
+    "reset": "2026-07-30T16:26:37Z"
   },
   "errors": [],
   "discovery": {
@@ -925,80 +926,28 @@
     "matched_events": 2,
     "unmatched_near_kickoff": [
       {
-        "fixture_id": "2048793",
-        "home": "Tobol",
-        "away": "Panevėžys",
-        "kickoff_utc": "2026-07-30T14:00:00Z",
-        "provider_candidates": [
-          {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
-          },
-          {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
-          },
-          {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
-          }
-        ]
-      },
-      {
-        "fixture_id": "2048806",
-        "home": "At. Escaldes",
-        "away": "Vaduz",
-        "kickoff_utc": "2026-07-30T14:00:00Z",
-        "provider_candidates": [
-          {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
-          },
-          {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
-          },
-          {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
-          }
-        ]
-      },
-      {
         "fixture_id": "2048755",
         "home": "M. Tel-Aviv",
         "away": "Sheriff",
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1009,22 +958,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1035,22 +984,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1061,22 +1010,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1087,22 +1036,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1113,22 +1062,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1139,22 +1088,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1165,22 +1114,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1191,22 +1140,22 @@
         "kickoff_utc": "2026-07-30T16:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1217,22 +1166,22 @@
         "kickoff_utc": "2026-07-30T16:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1243,22 +1192,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1269,22 +1218,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1295,22 +1244,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1321,22 +1270,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1347,22 +1296,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1373,22 +1322,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1399,22 +1348,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1425,22 +1374,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1451,22 +1400,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1477,22 +1426,22 @@
         "kickoff_utc": "2026-07-30T17:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1503,22 +1452,22 @@
         "kickoff_utc": "2026-07-30T17:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1529,22 +1478,22 @@
         "kickoff_utc": "2026-07-30T17:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       },
@@ -1555,22 +1504,74 @@
         "kickoff_utc": "2026-07-30T17:30:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "72547140",
-            "home": "Samaleswari SC",
-            "away": "Baghpat FC",
-            "kickoff_utc": "2026-07-30T13:30:00Z"
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72393072",
-            "home": "AFC Bournemouth",
-            "away": "FC Augsburg",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           },
           {
-            "provider_event_id": "72180192",
-            "home": "Tobol Kostanay",
-            "away": "FK Panevezys",
-            "kickoff_utc": "2026-07-30T14:00:00Z"
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048809",
+        "home": "Beitar",
+        "away": "AEK Larnaca",
+        "kickoff_utc": "2026-07-30T17:30:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
+          },
+          {
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2048758",
+        "home": "PAOK",
+        "away": "Dynamo Kyiv",
+        "kickoff_utc": "2026-07-30T17:45:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "72991820",
+            "home": "Trabzonspor",
+            "away": "Al Sadd SC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
+          },
+          {
+            "provider_event_id": "67604912",
+            "home": "JIPPO",
+            "away": "JaPS",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
+          },
+          {
+            "provider_event_id": "69924774",
+            "home": "Peka",
+            "away": "Kultsu FC",
+            "kickoff_utc": "2026-07-30T15:30:00Z"
           }
         ]
       }
