@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-07-29T19:48:30Z",
-  "as_of_utc": "2026-07-29T19:48:26Z",
+  "generated_at_utc": "2026-07-30T03:35:05Z",
+  "as_of_utc": "2026-07-30T03:35:01Z",
   "model": "experimental hybrid Elo-to-Poisson UEFA qualifier baseline",
   "calibration": {
     "version": "clubelo-poisson-v2-team-goal-environment",
@@ -48,7 +48,7 @@
     },
     "ratings": {
       "provider": "ClubElo + xgedge UEFA Elo fallback",
-      "url": "http://api.clubelo.com/2026-07-29",
+      "url": "http://api.clubelo.com/2026-07-30",
       "documentation": "http://clubelo.com/API",
       "attribution": "ClubElo where matched; otherwise point-in-time Elo replayed from official UEFA regulation-time results, anchored to ClubElo opponents and its lower-quartile population prior.",
       "fixture_team_coverage": {
@@ -140,9 +140,9 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.7163316647432898,
-        "draw": 0.19170439790025567,
-        "away_win": 0.09196393735645461
+        "home_win": 0.7163316647432897,
+        "draw": 0.19170439790025562,
+        "away_win": 0.09196393735645458
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -167,7 +167,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.15680675263390217
+          "probability": 0.15680675263390215
         },
         {
           "score": "2-0",
@@ -179,19 +179,19 @@
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.10365725590314165
+          "probability": 0.10365725590314163
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.086260653166218
+          "probability": 0.08626065316621799
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08589657457825461
+          "probability": 0.0858965745782546
         }
       ],
       "qualification": {
@@ -225,10 +225,10 @@
         "home": {
           "club": "At. Escaldes",
           "country": null,
-          "elo": 1277.7665801225935,
+          "elo": 1278.3802298613552,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 7,
           "team_id": "88371"
@@ -244,12 +244,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 62.16355278259357,
+        "adjusted_elo_difference": 62.77720252135532,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.5485379487570223,
-        "away": 1.0827120512429778
+        "home": 1.5507881053029693,
+        "away": 1.0804618946970308
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -275,25 +275,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.48069714195670704,
-        "draw": 0.25375843876373794,
-        "away_win": 0.2655444192795551
+        "home_win": 0.48179704701921966,
+        "draw": 0.2535986283872956,
+        "away_win": 0.2646043245934847
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3465045351751917,
-            "high": 0.6079934143670228
+            "low": 0.34756796769276066,
+            "high": 0.6089513936022146
           },
           "draw": {
-            "low": 0.2260321419193767,
-            "high": 0.2620709662443884
+            "low": 0.22575472722105158,
+            "high": 0.2620642245414125
           },
           "away_win": {
-            "low": 0.16597444371360032,
-            "high": 0.3917800135159471
+            "low": 0.16529387917673383,
+            "high": 0.390682473775284
           }
         }
       },
@@ -302,39 +302,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12069736896488013
+          "probability": 0.12062154871866096
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11147688697684378
+          "probability": 0.11163887343984871
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09345222807862247
+          "probability": 0.09352923149806101
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08631309494647003
+          "probability": 0.08656411850997048
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.07794279052816322
+          "probability": 0.07778080596968195
         }
       ],
       "qualification": {
-        "home_to_advance": 0.02321,
-        "away_to_advance": 0.97679,
-        "extra_time": 0.02452,
-        "home_to_advance_mc_se": 0.0004761438427618276,
-        "extra_time_mc_se": 0.0004890681915643258,
+        "home_to_advance": 0.0233,
+        "away_to_advance": 0.9767,
+        "extra_time": 0.02467,
+        "home_to_advance_mc_se": 0.000477044127937867,
+        "extra_time_mc_se": 0.0004905241186730781,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -371,20 +371,20 @@
         "away": {
           "club": "Sheriff",
           "country": null,
-          "elo": 1254.797378401446,
+          "elo": 1255.3415235298287,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 9,
           "team_id": "69606"
         },
-        "adjusted_elo_difference": 248.665023938554,
+        "adjusted_elo_difference": 248.12087881017123,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 2.323845021610487,
-        "away": 0.5553216450561793
+        "home": 2.3224397086681594,
+        "away": 0.556726957998507
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -410,25 +410,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.7725667032034943,
-        "draw": 0.1557170978530897,
-        "away_win": 0.071716198943416
+        "home_win": 0.7720174091289402,
+        "draw": 0.15596833591946901,
+        "away_win": 0.07201425495159072
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.6815071885882477,
-            "high": 0.8346051569949361
+            "low": 0.6807309852400628,
+            "high": 0.8342436600669167
           },
           "draw": {
-            "low": 0.12488489860574256,
-            "high": 0.1925786821295704
+            "low": 0.1250793830972925,
+            "high": 0.19285284616103485
           },
           "away_win": {
-            "low": 0.04050994439932133,
-            "high": 0.12591412928218212
+            "low": 0.04067695683579085,
+            "high": 0.12641616859890248
           }
         }
       },
@@ -437,39 +437,39 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.15170230209869118
+          "probability": 0.15151885154228653
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.13056146230746268
+          "probability": 0.1304824844122024
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.11751087983296458
+          "probability": 0.117297799144534
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08424357196025468
+          "probability": 0.08435462929856458
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.07250360602952054
+          "probability": 0.07264311661889306
         }
       ],
       "qualification": {
-        "home_to_advance": 0.99999,
-        "away_to_advance": 9.99999999995449e-06,
-        "extra_time": 3e-05,
-        "home_to_advance_mc_se": 9.999949999852244e-06,
-        "extra_time_mc_se": 1.732024826611905e-05,
+        "home_to_advance": 0.99998,
+        "away_to_advance": 2.0000000000020002e-05,
+        "extra_time": 5e-05,
+        "home_to_advance_mc_se": 1.4141994201674672e-05,
+        "extra_time_mc_se": 2.2360120751015635e-05,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -506,20 +506,20 @@
         "away": {
           "club": "Başakşehir",
           "country": null,
-          "elo": 1316.2744850298388,
+          "elo": 1316.8244407222114,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 7,
           "team_id": "2600288"
         },
-        "adjusted_elo_difference": -48.63935318983886,
+        "adjusted_elo_difference": -49.189308882211435,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.141156989755321,
-        "away": 1.5098846769113459
+        "home": 1.1390998677474349,
+        "away": 1.511941798919232
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -545,25 +545,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.2869569593847182,
-        "draw": 0.2557531121605785,
-        "away_win": 0.45728992845470307
+        "home_win": 0.286075511389281,
+        "draw": 0.25563751567014814,
+        "away_win": 0.45828697294057075
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.18139990678895915,
-            "high": 0.4168583253736615
+            "low": 0.18074434431110886,
+            "high": 0.4158621040121008
           },
           "draw": {
-            "low": 0.23070403573557413,
-            "high": 0.2609105945232936
+            "low": 0.23046630135804308,
+            "high": 0.26091570169414663
           },
           "away_win": {
-            "low": 0.3237463966117096,
-            "high": 0.5878960574754664
+            "low": 0.3246791834598727,
+            "high": 0.588789354330848
           }
         }
       },
@@ -572,39 +572,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1216064686093638
+          "probability": 0.12155263635829901
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.10656418853942069
+          "probability": 0.10670937623640395
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.0918058717832895
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.08054023626368918
+          "probability": 0.09189025583947091
         },
         {
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.08044981769158148
+          "probability": 0.08066918313420887
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08039504989225604
         }
       ],
       "qualification": {
-        "home_to_advance": 0.40295,
-        "away_to_advance": 0.5970500000000001,
-        "extra_time": 0.25526,
-        "home_to_advance_mc_se": 0.0015510683334398908,
-        "extra_time_mc_se": 0.0013787760238704472,
+        "home_to_advance": 0.40207,
+        "away_to_advance": 0.5979300000000001,
+        "extra_time": 0.25495,
+        "home_to_advance_mc_se": 0.0015505151244022098,
+        "extra_time_mc_se": 0.0013782252990712368,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -817,7 +817,7 @@
       "probabilities_90m": {
         "home_win": 0.36078005794048973,
         "draw": 0.2706990478182772,
-        "away_win": 0.36852089424123313
+        "away_win": 0.3685208942412332
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -866,7 +866,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08050970497854752
+          "probability": 0.08050970497854754
         }
       ],
       "qualification": {
@@ -900,7 +900,7 @@
         "home": {
           "club": "Jablonec",
           "country": "CZE",
-          "elo": 1445.09509277,
+          "elo": 1445.0949707,
           "rank": null,
           "valid_from": "2026-07-27",
           "valid_to": "2026-07-30",
@@ -919,12 +919,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 152.27246093000008,
+        "adjusted_elo_difference": 152.27233886,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 2.099932622812682,
-        "away": 0.8740257105206513
+        "home": 2.0999321891426677,
+        "away": 0.8740261441906654
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -950,25 +950,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.6564122588546812,
-        "draw": 0.19778931950225115,
-        "away_win": 0.14579842164306764
+        "home_win": 0.6564120685870483,
+        "draw": 0.19778938050325,
+        "away_win": 0.1457985509097017
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.5721391163192803,
-            "high": 0.727215634173786
+            "low": 0.572138896740791,
+            "high": 0.7272154790614955
           },
           "draw": {
-            "low": 0.17236072883268233,
-            "high": 0.22099950548626235
+            "low": 0.1723607906137421,
+            "high": 0.22099955602188465
           },
           "away_win": {
-            "low": 0.10042363699353163,
-            "high": 0.2068613781944575
+            "low": 0.10042373032476234,
+            "high": 0.20686154723732425
           }
         }
       },
@@ -977,31 +977,31 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.11267113509042018
+          "probability": 0.11267108855085729
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10730928589461768
+          "probability": 0.10730926373089895
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09847746890257277
+          "probability": 0.09847747708787083
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.0937910748495069
+          "probability": 0.09379110201465683
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.07886726407523603
+          "probability": 0.0788672152112297
         }
       ],
       "qualification": {
@@ -1170,7 +1170,7 @@
         "home": {
           "club": "Noah",
           "country": "ARM",
-          "elo": 1294.14257812,
+          "elo": 1294.14245605,
           "rank": null,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -1189,12 +1189,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 237.39440917000002,
+        "adjusted_elo_difference": 237.39428709999993,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 1.9746258006168567,
-        "away": 0.5034991993831432
+        "home": 1.9746255186973576,
+        "away": 0.5034994813026423
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -1220,25 +1220,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.7252784330810089,
-        "draw": 0.1904894351808914,
-        "away_win": 0.08423213173809985
+        "home_win": 0.7252783052736832,
+        "draw": 0.19048949039011334,
+        "away_win": 0.08423220433620353
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.6668145838737596,
-            "high": 0.771828204180709
+            "low": 0.6668144261174214,
+            "high": 0.7718281040980024
           },
           "draw": {
-            "low": 0.16908745820045817,
-            "high": 0.2137751268395754
+            "low": 0.1690875070563202,
+            "high": 0.21377518443254037
           },
           "away_win": {
-            "low": 0.059084337618832916,
-            "high": 0.119410289286665
+            "low": 0.05908438884567725,
+            "high": 0.11941038945003823
           }
         }
       },
@@ -1247,31 +1247,31 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.16567310143961045
+          "probability": 0.1656730777846691
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.1635711902854342
+          "probability": 0.16357114357737
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.1076639641917426
+          "probability": 0.1076639180767947
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.08390101121329191
+          "probability": 0.08390101121247645
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.08341627393416612
+          "probability": 0.0834163087303932
         }
       ],
       "qualification": {
@@ -1305,10 +1305,10 @@
         "home": {
           "club": "Ilves",
           "country": null,
-          "elo": 1253.126509061874,
+          "elo": 1253.775444101523,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 7,
           "team_id": "2602511"
@@ -1324,12 +1324,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 87.73771511187397,
+        "adjusted_elo_difference": 88.38665015152287,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.8092272374940561,
-        "away": 1.0918144291726108
+        "home": 1.8117696372968315,
+        "away": 1.0892720293698355
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -1355,25 +1355,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5416570759211963,
-        "draw": 0.23050463661519047,
-        "away_win": 0.22783828746361323
+        "home_win": 0.5428427163237712,
+        "draw": 0.23026608149065014,
+        "away_win": 0.2268912021855785
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.4000620153038855,
-            "high": 0.6672010520059306
+            "low": 0.40128835056967455,
+            "high": 0.6681661032508894
           },
           "draw": {
-            "low": 0.1967579521687682,
-            "high": 0.2473179844955573
+            "low": 0.19643255522686487,
+            "high": 0.24727761828653874
           },
           "away_win": {
-            "low": 0.13604099582530116,
-            "high": 0.35262000020055717
+            "low": 0.13540134152224592,
+            "high": 0.3514340311437866
           }
         }
       },
@@ -1382,39 +1382,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10857678880380466
+          "probability": 0.10847618270129399
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.0994461933298366
+          "probability": 0.09958594343421222
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09822004183174152
+          "probability": 0.09826692709403412
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08996038081872003
+          "probability": 0.0902133943078327
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.06001279803536085
+          "probability": 0.05987305475719361
         }
       ],
       "qualification": {
-        "home_to_advance": 0.44252,
-        "away_to_advance": 0.55748,
-        "extra_time": 0.23488,
-        "home_to_advance_mc_se": 0.001570656071837498,
-        "extra_time_mc_se": 0.001340564752632263,
+        "home_to_advance": 0.44395,
+        "away_to_advance": 0.5560499999999999,
+        "extra_time": 0.23489,
+        "home_to_advance_mc_se": 0.0015711728023995323,
+        "extra_time_mc_se": 0.0013405845288529923,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -1440,10 +1440,10 @@
         "home": {
           "club": "Zire",
           "country": null,
-          "elo": 1297.5066153323814,
+          "elo": 1298.0925938657158,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 5,
           "team_id": "2607480"
@@ -1451,20 +1451,20 @@
         "away": {
           "club": "Paide",
           "country": null,
-          "elo": 1288.491374442555,
+          "elo": 1289.0635779223703,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 7,
           "team_id": "2600598"
         },
-        "adjusted_elo_difference": 74.01524088982637,
+        "adjusted_elo_difference": 74.02901594334548,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.6723900935529215,
-        "away": 1.092193239780412
+        "home": 1.6724424840794658,
+        "away": 1.0921408492538676
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -1490,25 +1490,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5091995525263306,
-        "draw": 0.24260719030982186,
-        "away_win": 0.2481932571638477
+        "home_win": 0.5092246152373083,
+        "draw": 0.2426029046043517,
+        "away_win": 0.24817248015833995
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3708789955788574,
-            "high": 0.6363957294744657
+            "low": 0.37090396066090053,
+            "high": 0.636416892662593
           },
           "draw": {
-            "low": 0.21183641917632284,
-            "high": 0.2546680933063003
+            "low": 0.2118298234244125,
+            "high": 0.2546681554461768
           },
           "away_win": {
-            "low": 0.1517678513492114,
-            "high": 0.3744529111148424
+            "low": 0.15175328391299475,
+            "high": 0.3744278838929226
           }
         }
       },
@@ -1517,39 +1517,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11507857430506004
+          "probability": 0.11507665911030449
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10536466452419799
+          "probability": 0.1053679653031227
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09622813382398807
+          "probability": 0.09622954681100178
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.0881054105803978
+          "probability": 0.08811093081697675
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.06881084428130071
+          "probability": 0.06880754358117384
         }
       ],
       "qualification": {
-        "home_to_advance": 0.40628,
-        "away_to_advance": 0.59372,
-        "extra_time": 0.23588,
-        "home_to_advance_mc_se": 0.0015531148109524935,
-        "extra_time_mc_se": 0.0013425372456658325,
+        "home_to_advance": 0.40623,
+        "away_to_advance": 0.59377,
+        "extra_time": 0.23584,
+        "home_to_advance_mc_se": 0.0015530846309844161,
+        "extra_time_mc_se": 0.001342458544611341,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -1575,10 +1575,10 @@
         "home": {
           "club": "Levadia Tallinn",
           "country": null,
-          "elo": 1305.514571529304,
+          "elo": 1306.1282904629145,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 9,
           "team_id": "77482"
@@ -1586,20 +1586,20 @@
         "away": {
           "club": "IFK Göteborg",
           "country": null,
-          "elo": 1265.6905723812797,
+          "elo": 1266.358729826153,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 1,
           "team_id": "50066"
         },
-        "adjusted_elo_difference": 104.82399914802431,
+        "adjusted_elo_difference": 104.76956063676153,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.7584634153955865,
-        "away": 0.9617746798425089
+        "home": 1.7582685738247577,
+        "away": 0.9619695214133377
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -1625,25 +1625,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5611599831180702,
-        "draw": 0.23418949623735266,
-        "away_win": 0.20465052064457703
+        "home_win": 0.5610665029200252,
+        "draw": 0.23421117015390336,
+        "away_win": 0.20472232692607129
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.4258546620225895,
-            "high": 0.6777095033729925
+            "low": 0.4257544927433194,
+            "high": 0.6776349885062747
           },
           "draw": {
-            "low": 0.19970011053275233,
-            "high": 0.2550525327995
+            "low": 0.19972692490520105,
+            "high": 0.25505981659081256
           },
           "away_win": {
-            "low": 0.12259038609425514,
-            "high": 0.31909280517791055
+            "low": 0.12263808658852454,
+            "high": 0.31918569066586816
           }
         }
       },
@@ -1652,39 +1652,39 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11581105973629428
+          "probability": 0.11579822731787696
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1113841449000961
+          "probability": 0.11139436531349098
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.10182475582223316
+          "probability": 0.10180219199881929
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09793247193096995
+          "probability": 0.09793060591593289
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.06585923751518098
+          "probability": 0.065859237343918
         }
       ],
       "qualification": {
-        "home_to_advance": 0.87529,
-        "away_to_advance": 0.12470999999999999,
-        "extra_time": 0.1345,
-        "home_to_advance_mc_se": 0.0010447842643340297,
-        "extra_time_mc_se": 0.0010789335011945824,
+        "home_to_advance": 0.87524,
+        "away_to_advance": 0.12475999999999998,
+        "extra_time": 0.13459,
+        "home_to_advance_mc_se": 0.0010449638386087817,
+        "extra_time_mc_se": 0.0010792383050096026,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -1721,7 +1721,7 @@
         "away": {
           "club": "Tromso",
           "country": "NOR",
-          "elo": 1496.79077148,
+          "elo": 1496.79064941,
           "rank": null,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -1729,12 +1729,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 13.720703129999947,
+        "adjusted_elo_difference": 13.720825200000036,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 1.2343716238104325,
-        "away": 1.1406283761895675
+        "home": 1.2343720403834375,
+        "away": 1.1406279596165625
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -1760,25 +1760,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.38385346541910037,
-        "draw": 0.27795508286178094,
-        "away_win": 0.33819145171911885
+        "home_win": 0.3838536716029918,
+        "draw": 0.2779550759967822,
+        "away_win": 0.3381912524002261
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.3021278928890997,
-            "high": 0.4689558655900051
+            "low": 0.3021280834338197,
+            "high": 0.46895607234577413
           },
           "draw": {
-            "low": 0.2702568368919398,
-            "high": 0.2783381074757524
+            "low": 0.27025680689026116,
+            "high": 0.27833810811769794
           },
           "away_win": {
-            "low": 0.26078729751805513,
-            "high": 0.42220808175064417
+            "low": 0.26078712076396454,
+            "high": 0.42220787337484444
           }
         }
       },
@@ -1787,31 +1787,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1309606309015055
+          "probability": 0.13096062726920682
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11481445984975254
+          "probability": 0.11481449859709823
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.10609497850998693
+          "probability": 0.1060949397626716
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.09301450036199557
+          "probability": 0.09301450036200835
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08082704331056505
+          "probability": 0.08082706834609284
         }
       ],
       "qualification": {
@@ -1980,10 +1980,10 @@
         "home": {
           "club": "Pafos",
           "country": null,
-          "elo": 1351.18056139547,
+          "elo": 1351.6998356478941,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 15,
           "team_id": "2609532"
@@ -1991,7 +1991,7 @@
         "away": {
           "club": "Hajduk",
           "country": "CRO",
-          "elo": 1426.87255859,
+          "elo": 1426.87268066,
           "rank": null,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -1999,12 +1999,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": -10.691997194529904,
+        "adjusted_elo_difference": -10.172845012105881,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.156015459850789,
-        "away": 1.2294012068158775
+        "home": 1.1577960462459886,
+        "away": 1.2276206204206779
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -2030,25 +2030,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.3434649284826132,
-        "draw": 0.2773857841031977,
-        "away_win": 0.37914928741418913
+        "home_win": 0.34431921267802723,
+        "draw": 0.2774080877087518,
+        "away_win": 0.37827269961322085
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.23016355232894337,
-            "high": 0.47058146729278905
+            "low": 0.230862702753536,
+            "high": 0.47146237499493254
           },
           "draw": {
-            "low": 0.2633163323404766,
-            "high": 0.2776003511727784
+            "low": 0.2634795889538224,
+            "high": 0.2776066304310127
           },
           "away_win": {
-            "low": 0.2600545535739273,
-            "high": 0.50652011533058
+            "low": 0.25930314448102415,
+            "high": 0.5056577082926415
           }
         }
       },
@@ -2057,39 +2057,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.13082297915503574
+          "probability": 0.13083471547374337
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.11316715363990161
+          "probability": 0.11300324949109893
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10641194951635392
+          "probability": 0.10657585356370869
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.09205062839738225
+          "probability": 0.09205062835485385
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08041696422622466
+          "probability": 0.08030769729121985
         }
       ],
       "qualification": {
-        "home_to_advance": 0.08937,
-        "away_to_advance": 0.91063,
-        "extra_time": 0.09458,
-        "home_to_advance_mc_se": 0.0009021252856449597,
-        "extra_time_mc_se": 0.0009253897751758445,
+        "home_to_advance": 0.08991,
+        "away_to_advance": 0.91009,
+        "extra_time": 0.09469,
+        "home_to_advance_mc_se": 0.0009045783100428619,
+        "extra_time_mc_se": 0.0009258715024235275,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -2261,20 +2261,20 @@
         "away": {
           "club": "Atert Bissen",
           "country": null,
-          "elo": 1238.9418391843649,
+          "elo": 1239.5438125479195,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "2605351"
         },
-        "adjusted_elo_difference": 280.8726139356352,
+        "adjusted_elo_difference": 280.27064057208054,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 2.7098006452653443,
-        "away": 0.537967211877513
+        "home": 2.7082434460196914,
+        "away": 0.5395244111231658
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -2300,25 +2300,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.8292833967741278,
-        "draw": 0.11983993051325485,
-        "away_win": 0.05087667271261742
+        "home_win": 0.8287801773874587,
+        "draw": 0.12009342396273971,
+        "away_win": 0.05112639864980173
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.7511835887946903,
-            "high": 0.8793600405417656
+            "low": 0.7504211925380264,
+            "high": 0.8790454295875612
           },
           "draw": {
-            "low": 0.09280745264608987,
-            "high": 0.15536577326997722
+            "low": 0.0929892177963561,
+            "high": 0.15567675713255424
           },
           "away_win": {
-            "low": 0.0278325068121444,
-            "high": 0.09345063793533245
+            "low": 0.027965352616082878,
+            "high": 0.09390205032941924
           }
         }
       },
@@ -2327,39 +2327,39 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.14269567673640968
+          "probability": 0.14253163569353003
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.12889227896563268
+          "probability": 0.12867012273915637
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10531821002089757
+          "probability": 0.10525762438602702
         },
         {
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.08731809517769801
+          "probability": 0.08711750415171733
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.07676559536086121
+          "probability": 0.0768992968139734
         }
       ],
       "qualification": {
-        "home_to_advance": 0.99991,
-        "away_to_advance": 9.00000000000345e-05,
-        "extra_time": 0.00022,
-        "home_to_advance_mc_se": 2.999864996962938e-05,
-        "extra_time_mc_se": 4.689899785709712e-05,
+        "home_to_advance": 0.99997,
+        "away_to_advance": 2.999999999997449e-05,
+        "extra_time": 0.00018,
+        "home_to_advance_mc_se": 1.732024826611169e-05,
+        "extra_time_mc_se": 4.242258832273203e-05,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -2453,7 +2453,7 @@
           },
           "away_win": {
             "low": 0.06848876040053008,
-            "high": 0.1358670738295778
+            "high": 0.13586707382957777
           }
         }
       },
@@ -2723,7 +2723,7 @@
           },
           "away_win": {
             "low": 0.1764727181587879,
-            "high": 0.31634457800398086
+            "high": 0.3163445780039809
           }
         }
       },
@@ -2801,20 +2801,20 @@
         "away": {
           "club": "DAC 1904",
           "country": null,
-          "elo": 1284.174443836159,
+          "elo": 1284.8272259672965,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 1,
           "team_id": "50156"
         },
-        "adjusted_elo_difference": 7.8680366338410295,
+        "adjusted_elo_difference": 7.215254502703601,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.1584618211282502,
-        "away": 1.1071631788717498
+        "home": 1.1563344304534893,
+        "away": 1.1092905695465107
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -2840,25 +2840,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.3696881220772159,
-        "draw": 0.28612571275072857,
-        "away_win": 0.3441861651720556
+        "home_win": 0.36862102635050487,
+        "draw": 0.2861451863817996,
+        "away_win": 0.3452337872676956
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.2546134709085573,
-            "high": 0.49347945738529336
+            "low": 0.2537017900324628,
+            "high": 0.49242070338637783
           },
           "draw": {
-            "low": 0.27334523488954793,
-            "high": 0.28624793175495317
+            "low": 0.2735375200140787,
+            "high": 0.2862480393847019
           },
           "away_win": {
-            "low": 0.2331753077251587,
-            "high": 0.46775735513147376
+            "low": 0.23404177659954334,
+            "high": 0.4688316341709873
           }
         }
       },
@@ -2867,39 +2867,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.13308985597587777
+          "probability": 0.13310071044923896
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12020798606353801
+          "probability": 0.1199872369812464
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.11488497380626558
+          "probability": 0.11510572282885302
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.10376516849425813
+          "probability": 0.10376516846790595
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.07708975846375593
+          "probability": 0.07695446710513774
         }
       ],
       "qualification": {
-        "home_to_advance": 0.26482,
-        "away_to_advance": 0.73518,
-        "extra_time": 0.21662,
-        "home_to_advance_mc_se": 0.0013953149020919974,
-        "extra_time_mc_se": 0.0013026733113102454,
+        "home_to_advance": 0.26391,
+        "away_to_advance": 0.73609,
+        "extra_time": 0.21632,
+        "home_to_advance_mc_se": 0.0013937772845759827,
+        "extra_time_mc_se": 0.0013020201903196432,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -2925,10 +2925,10 @@
         "home": {
           "club": "H. Bóltfelag",
           "country": null,
-          "elo": 1271.0036953800593,
+          "elo": 1271.6286387324121,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "59025"
@@ -2944,12 +2944,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": -53.70065031994068,
+        "adjusted_elo_difference": -53.07570696758785,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.0208381646348896,
-        "away": 1.3906201686984434
+        "home": 1.0229565323385403,
+        "away": 1.3885018009947927
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -2975,25 +2975,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.2760436458028743,
-        "draw": 0.26998140878411886,
-        "away_win": 0.453974945413007
+        "home_win": 0.27698446168168545,
+        "draw": 0.2701140809041064,
+        "away_win": 0.4529014574142083
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.17699648805151597,
-            "high": 0.39825216925740753
+            "low": 0.1776994687541235,
+            "high": 0.39932280760269057
           },
           "draw": {
-            "low": 0.24547185190155807,
-            "high": 0.2758418055583998
+            "low": 0.24573103082467654,
+            "high": 0.27584411486749305
           },
           "away_win": {
-            "low": 0.32684334875847354,
-            "high": 0.577531660046926
+            "low": 0.3258284852948645,
+            "high": 0.5765695004212
           }
         }
       },
@@ -3002,39 +3002,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1273158561332627
+          "probability": 0.12738570610137548
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.12471698310652227
+          "probability": 0.1245269980437625
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.09155329327088971
+          "probability": 0.09174327754570426
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.08968443426449914
+          "probability": 0.08968443393774865
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08852399866701229
+          "probability": 0.0884376411713766
         }
       ],
       "qualification": {
-        "home_to_advance": 0.06157,
-        "away_to_advance": 0.93843,
-        "extra_time": 0.07203,
-        "home_to_advance_mc_se": 0.0007601258783912043,
-        "extra_time_mc_se": 0.0008175676063788242,
+        "home_to_advance": 0.06203,
+        "away_to_advance": 0.93797,
+        "extra_time": 0.07272,
+        "home_to_advance_mc_se": 0.0007627730927346611,
+        "extra_time_mc_se": 0.000821168689125444,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -3119,16 +3119,16 @@
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.2184695269653708,
+            "low": 0.21846952696537075,
             "high": 0.3831741053543219
           },
           "draw": {
-            "low": 0.23459963367446462,
+            "low": 0.23459963367446457,
             "high": 0.2537870787566951
           },
           "away_win": {
             "low": 0.36310855967424904,
-            "high": 0.5469308393601646
+            "high": 0.5469308393601645
           }
         }
       },
@@ -3246,7 +3246,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.3645631691866642,
-        "draw": 0.27451436587733935,
+        "draw": 0.2745143658773394,
         "away_win": 0.36092246493599645
       },
       "uncertainty_90m": {
@@ -3254,16 +3254,16 @@
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.283585897075341,
+            "low": 0.2835858970753409,
             "high": 0.45053964048576345
           },
           "draw": {
             "low": 0.2691669941269341,
-            "high": 0.27451436587733935
+            "high": 0.2745143658773394
           },
           "away_win": {
             "low": 0.28029336538730226,
-            "high": 0.44681319665983893
+            "high": 0.4468131966598389
           }
         }
       },
@@ -3330,10 +3330,10 @@
         "home": {
           "club": "Derry",
           "country": null,
-          "elo": 1257.087504548558,
+          "elo": 1257.7108240260798,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "50086"
@@ -3349,12 +3349,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": -65.41017611144207,
+        "adjusted_elo_difference": -64.78685663392025,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 0.9762891782754033,
-        "away": 1.42266915505793
+        "home": 0.9783672982547746,
+        "away": 1.4205910350785587
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -3380,25 +3380,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.2586049724027193,
-        "draw": 0.2681227631142485,
-        "away_win": 0.4732722644830323
+        "home_win": 0.25950825390468135,
+        "draw": 0.26828002367156806,
+        "away_win": 0.4722117224237503
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.1643051605534287,
-            "high": 0.377804939791078
+            "low": 0.16496548900092356,
+            "high": 0.37886031147640675
           },
           "draw": {
-            "low": 0.24148285274422682,
-            "high": 0.2766843166211955
+            "low": 0.2417513600772417,
+            "high": 0.27667811466679776
           },
           "away_win": {
-            "low": 0.3456920889049041,
-            "high": 0.5942119867023444
+            "low": 0.34466225071519374,
+            "high": 0.5932831509218347
           }
         }
       },
@@ -3407,39 +3407,39 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.12919618693766388
+          "probability": 0.12900746702328783
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12613283918168727
+          "probability": 0.12621668696626606
         },
         {
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.09190171505365632
+          "probability": 0.09163342555573775
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.0908125311344106
+          "probability": 0.0908125307267997
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08972264987183438
+          "probability": 0.08965114699079715
         }
       ],
       "qualification": {
-        "home_to_advance": 0.16521,
-        "away_to_advance": 0.83479,
-        "extra_time": 0.16657,
-        "home_to_advance_mc_se": 0.0011743749652474715,
-        "extra_time_mc_se": 0.0011782378159777421,
+        "home_to_advance": 0.16561,
+        "away_to_advance": 0.83439,
+        "extra_time": 0.16707,
+        "home_to_advance_mc_se": 0.0011755140488314039,
+        "extra_time_mc_se": 0.001179650859788607,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -3525,7 +3525,7 @@
         "intervals": {
           "home_win": {
             "low": 0.01879648532077419,
-            "high": 0.038253523474595826
+            "high": 0.03825352347459583
           },
           "draw": {
             "low": 0.10655370310084121,
@@ -3651,8 +3651,8 @@
       },
       "probabilities_90m": {
         "home_win": 0.3404356179612571,
-        "draw": 0.2693315534642021,
-        "away_win": 0.39023282857454067
+        "draw": 0.26933155346420207,
+        "away_win": 0.39023282857454056
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -3677,31 +3677,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12792703898558666
+          "probability": 0.12792703898558663
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.10662524411190451
+          "probability": 0.1066252441119045
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.098074619690618
+          "probability": 0.09807461969061798
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08343303983867166
+          "probability": 0.08343303983867165
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.0817437060109907
+          "probability": 0.08174370601099068
         }
       ],
       "qualification": {
@@ -3735,7 +3735,7 @@
         "home": {
           "club": "PAOK",
           "country": "GRE",
-          "elo": 1605.57592773,
+          "elo": 1605.5760498,
           "rank": 95,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -3754,12 +3754,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 500.34020996000004,
+        "adjusted_elo_difference": 500.3403320299999,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 2.856356213411045,
-        "away": 0.16031045325562143
+        "home": 2.856356320073454,
+        "away": 0.16031034659321275
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -3785,25 +3785,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.915338336473299,
-        "draw": 0.07410043888584422,
-        "away_win": 0.010561224640856643
+        "home_win": 0.9153383629794416,
+        "draw": 0.07410042132712091,
+        "away_win": 0.010561215693437721
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.902578728828672,
-            "high": 0.9246606089418307
+            "low": 0.9025787651489121,
+            "high": 0.9246606283363705
           },
           "draw": {
-            "low": 0.06783185182100612,
-            "high": 0.0823880090723803
+            "low": 0.06783183858067789,
+            "high": 0.08238798593711917
           },
           "away_win": {
-            "low": 0.007507539237163223,
-            "high": 0.015033262098947923
+            "low": 0.007507533082951521,
+            "high": 0.015033248913968709
           }
         }
       },
@@ -3812,31 +3812,31 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.19978240216440737
+          "probability": 0.1997824170972106
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.19021656858416308
+          "probability": 0.19021658990505613
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.13988619572474703
+          "probability": 0.13988620095694015
         },
         {
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.13583156939227556
+          "probability": 0.13583158968953182
         },
         {
           "score": "5-0",
           "home_goals": 5,
           "away_goals": 0,
-          "probability": 0.07759666944219994
+          "probability": 0.0775966839350637
         }
       ],
       "qualification": {
@@ -3881,20 +3881,20 @@
         "away": {
           "club": "Qarabağ",
           "country": null,
-          "elo": 1393.3004372729733,
+          "elo": 1393.7825629105726,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 19,
           "team_id": "60609"
         },
-        "adjusted_elo_difference": 26.93051975702656,
+        "adjusted_elo_difference": 26.44839411942735,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.6895433033950698,
-        "away": 1.4469150299382638
+        "home": 1.6873799119895112,
+        "away": 1.4490784213438224
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -3920,25 +3920,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.4346244919207145,
-        "draw": 0.2351213764192625,
-        "away_win": 0.33025413166002293
+        "home_win": 0.43366587781476346,
+        "draw": 0.23518544595661373,
+        "away_win": 0.331148676228623
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.2920852322737749,
-            "high": 0.5805905187702947
+            "low": 0.2912406926422809,
+            "high": 0.5797012261037506
           },
           "draw": {
-            "low": 0.21306573216525274,
-            "high": 0.2369149433452327
+            "low": 0.2132708747016481,
+            "high": 0.23690689197284345
           },
           "away_win": {
-            "low": 0.2063437490644526,
-            "high": 0.47668217732383955
+            "low": 0.20702789919460118,
+            "high": 0.47763926917913957
           }
         }
       },
@@ -3947,39 +3947,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10618586877449535
+          "probability": 0.10620846367141512
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.0897028117515681
+          "probability": 0.08960701404120681
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.07682096474843475
+          "probability": 0.07695219643516348
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.07338777093152873
+          "probability": 0.07329379977442578
         },
         {
           "score": "2-2",
           "home_goals": 2,
           "away_goals": 2,
-          "probability": 0.06489617327553332
+          "probability": 0.06492379522408286
         }
       ],
       "qualification": {
-        "home_to_advance": 0.55853,
-        "away_to_advance": 0.44147000000000003,
-        "extra_time": 0.23256,
-        "home_to_advance_mc_se": 0.0015702682544711907,
-        "extra_time_mc_se": 0.0013359485259544996,
+        "home_to_advance": 0.55743,
+        "away_to_advance": 0.44257,
+        "extra_time": 0.23239,
+        "home_to_advance_mc_se": 0.0015706743618586255,
+        "extra_time_mc_se": 0.001335608055905624,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -4005,10 +4005,10 @@
         "home": {
           "club": "Vestri",
           "country": null,
-          "elo": 1235.360851902042,
+          "elo": 1235.986469710365,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "2610384"
@@ -4024,12 +4024,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 78.56617417204188,
+        "adjusted_elo_difference": 79.191791980365,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.7259389692330935,
-        "away": 1.09801936410024
+        "home": 1.7283548062338792,
+        "away": 1.0956035270994544
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -4055,25 +4055,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5206898740017698,
-        "draw": 0.2378519437535819,
-        "away_win": 0.24145818224464827
+        "home_win": 0.5218335409075716,
+        "draw": 0.23764417275010807,
+        "away_win": 0.2405222863423201
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.38077909691357187,
-            "high": 0.6477477502273523
+            "low": 0.38193328813580013,
+            "high": 0.6487006500051018
           },
           "draw": {
-            "low": 0.20594605024668103,
-            "high": 0.25153767329827087
+            "low": 0.2056403518353345,
+            "high": 0.25152630691419725
           },
           "away_win": {
-            "low": 0.14630619952596666,
-            "high": 0.3676832297881573
+            "low": 0.1456589981595637,
+            "high": 0.3665404049500026
           }
         }
       },
@@ -4082,39 +4082,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11251407070173507
+          "probability": 0.11242366497057629
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10247002410010637
+          "probability": 0.10261345659246944
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.097096209605586
+          "probability": 0.09715399084316144
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08842850388631392
+          "probability": 0.08867623044293303
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.06519006332635838
+          "probability": 0.06504663542756581
         }
       ],
       "qualification": {
-        "home_to_advance": 0.09053,
-        "away_to_advance": 0.90947,
-        "extra_time": 0.07974,
-        "home_to_advance_mc_se": 0.0009073826045279907,
-        "extra_time_mc_se": 0.0008566302142698447,
+        "home_to_advance": 0.09083,
+        "away_to_advance": 0.90917,
+        "extra_time": 0.0799,
+        "home_to_advance_mc_se": 0.0009087348958854832,
+        "extra_time_mc_se": 0.0008574146604764815,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -4286,20 +4286,20 @@
         "away": {
           "club": "Vojvodina",
           "country": null,
-          "elo": 1259.2429471184607,
+          "elo": 1259.865815291634,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "52810"
         },
-        "adjusted_elo_difference": 383.78488491153917,
+        "adjusted_elo_difference": 383.162016738366,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 2.886260678845013,
-        "away": 0.31686432115498686
+        "home": 2.8852354722959888,
+        "away": 0.31788952770401124
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -4325,25 +4325,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.8900060377436694,
-        "draw": 0.08722784565130048,
-        "away_win": 0.022766116605030168
+        "home_win": 0.8897322122884822,
+        "draw": 0.08739189612409626,
+        "away_win": 0.02287589158742148
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.8477834146162827,
-            "high": 0.9160644973334506
+            "low": 0.8473426382835595,
+            "high": 0.9158961340506453
           },
           "draw": {
-            "low": 0.07098412331286169,
-            "high": 0.11108532279481974
+            "low": 0.07109333172031436,
+            "high": 0.11132006485360685
           },
           "away_win": {
-            "low": 0.012951379353687682,
-            "high": 0.04113126258889775
+            "low": 0.013010534229040365,
+            "high": 0.0413372968628335
           }
         }
       },
@@ -4352,39 +4352,39 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.16929085530413454
+          "probability": 0.16917050479471962
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.16287251298412142
+          "probability": 0.16269891376664794
         },
         {
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.11752313247268587
+          "probability": 0.11735616932588969
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11730808415536409
+          "probability": 0.11726634198081487
         },
         {
           "score": "5-0",
           "home_goals": 5,
           "away_goals": 0,
-          "probability": 0.06784047922212134
+          "probability": 0.06772003652636632
         }
       ],
       "qualification": {
-        "home_to_advance": 0.99994,
-        "away_to_advance": 5.999999999994898e-05,
-        "extra_time": 0.00023,
-        "home_to_advance_mc_se": 2.44941625698755e-05,
-        "extra_time_mc_se": 4.795279970971455e-05,
+        "home_to_advance": 0.99995,
+        "away_to_advance": 4.999999999999449e-05,
+        "extra_time": 0.00022,
+        "home_to_advance_mc_se": 2.2360120751014405e-05,
+        "extra_time_mc_se": 4.689899785709712e-05,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -4410,10 +4410,10 @@
         "home": {
           "club": "Ludogorets",
           "country": null,
-          "elo": 1297.600121462891,
+          "elo": 1298.0625858836831,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 19,
           "team_id": "2603104"
@@ -4429,12 +4429,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 29.486229862890923,
+        "adjusted_elo_difference": 29.948694283683153,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.4891546830183136,
-        "away": 1.25667865031502
+        "home": 1.4909688393231828,
+        "away": 1.2548644940101508
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -4460,25 +4460,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.42621066218191234,
-        "draw": 0.2536937915414526,
-        "away_win": 0.32009554627663506
+        "home_win": 0.42706604243732077,
+        "draw": 0.2536316533275581,
+        "away_win": 0.31930230423512124
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.29311843882858274,
-            "high": 0.5622206264857694
+            "low": 0.2938812087657967,
+            "high": 0.5630183763779237
           },
           "draw": {
-            "low": 0.23278752035543732,
-            "high": 0.25567387026584065
+            "low": 0.23260239587715725,
+            "high": 0.2556744700485492
           },
           "away_win": {
-            "low": 0.20499185315879329,
-            "high": 0.45587821536195966
+            "low": 0.20437922774491912,
+            "high": 0.45502262591229864
           }
         }
       },
@@ -4487,39 +4487,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12013347775637756
+          "probability": 0.12010619301509579
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.09559602029227035
+          "probability": 0.09571248018283973
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08944866549409303
+          "probability": 0.08953729559762177
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08067226267783235
+          "probability": 0.08055580361398924
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.07548458834226703
+          "probability": 0.07535849856268684
         }
       ],
       "qualification": {
-        "home_to_advance": 0.14978,
-        "away_to_advance": 0.85022,
-        "extra_time": 0.12731,
-        "home_to_advance_mc_se": 0.0011284766351147906,
-        "extra_time_mc_se": 0.001054050112186323,
+        "home_to_advance": 0.15044,
+        "away_to_advance": 0.84956,
+        "extra_time": 0.12757,
+        "home_to_advance_mc_se": 0.0011305211470821763,
+        "extra_time_mc_se": 0.001054968696691992,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -4556,20 +4556,20 @@
         "away": {
           "club": "Bohemians",
           "country": null,
-          "elo": 1295.7650935594368,
+          "elo": 1296.4192792430329,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "52375"
         },
-        "adjusted_elo_difference": -45.627276179436876,
+        "adjusted_elo_difference": -46.28146186303297,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.116213548032007,
-        "away": 1.451494785301326
+        "home": 1.1138379851239677,
+        "away": 1.4538703482093653
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -4595,25 +4595,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.2907092475711204,
-        "draw": 0.26138054700521807,
-        "away_win": 0.4479102054236616
+        "home_win": 0.2896697803552791,
+        "draw": 0.2612537579336447,
+        "away_win": 0.4490764617110763
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.185518277524945,
-            "high": 0.4189224735811162
+            "low": 0.18473673012598668,
+            "high": 0.41775725810557834
           },
           "draw": {
-            "low": 0.2375348636426628,
-            "high": 0.26584785571276326
+            "low": 0.23726119909249674,
+            "high": 0.26584512957592416
           },
           "away_win": {
-            "low": 0.3170990907532482,
-            "high": 0.5769468588323919
+            "low": 0.31818248361244617,
+            "high": 0.5780020707815166
           }
         }
       },
@@ -4622,39 +4622,39 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12428576695317352
+          "probability": 0.12422423572230144
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.11134586851440877
+          "probability": 0.11152810137685829
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.09020007130985362
+          "probability": 0.09030296642281235
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.08562605130363743
+          "probability": 0.08544381957806631
         },
         {
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.08080897375675569
+          "probability": 0.08107369979195117
         }
       ],
       "qualification": {
-        "home_to_advance": 0.1974,
-        "away_to_advance": 0.8026,
-        "extra_time": 0.17933,
-        "home_to_advance_mc_se": 0.0012587026654456565,
-        "extra_time_mc_se": 0.0012131395266003,
+        "home_to_advance": 0.19632,
+        "away_to_advance": 0.80368,
+        "extra_time": 0.17868,
+        "home_to_advance_mc_se": 0.0012560989515161612,
+        "extra_time_mc_se": 0.0012114184149169933,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -5085,7 +5085,7 @@
         "home": {
           "club": "Ferencvaros",
           "country": "HUN",
-          "elo": 1520.05029297,
+          "elo": 1520.0501709,
           "rank": null,
           "valid_from": "2026-07-27",
           "valid_to": "2026-07-30",
@@ -5096,7 +5096,7 @@
         "away": {
           "club": "Twente",
           "country": "NED",
-          "elo": 1567.74804688,
+          "elo": 1567.7479248,
           "rank": null,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -5104,12 +5104,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 17.302246090000153,
+        "adjusted_elo_difference": 17.302246100000048,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 1.4499792594399228,
-        "away": 1.3125207405600774
+        "home": 1.4499792594795795,
+        "away": 1.3125207405204207
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -5135,25 +5135,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.40428714879003047,
-        "draw": 0.2540929488075529,
-        "away_win": 0.34161990240241646
+        "home_win": 0.40428714880847877,
+        "draw": 0.2540929488067593,
+        "away_win": 0.34161990238476186
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.314858591484127,
-            "high": 0.4968336354252103
+            "low": 0.3148585915012173,
+            "high": 0.4968336354435275
           },
           "draw": {
-            "low": 0.24473318001353508,
-            "high": 0.2547690957295475
+            "low": 0.2447331800106624,
+            "high": 0.25476909572944134
           },
           "away_win": {
-            "low": 0.2584331845612545,
-            "high": 0.43280229880231535
+            "low": 0.25843318454581016,
+            "high": 0.4328022987837449
           }
         }
       },
@@ -5162,31 +5162,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1201516382761636
+          "probability": 0.12015163827581948
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.09154265876582844
+          "probability": 0.09154265876833215
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.0871086917440826
+          "probability": 0.08710869174621551
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08286438408958627
+          "probability": 0.08286438408708259
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.07885075862486839
+          "probability": 0.07885075862226017
         }
       ],
       "qualification": {
@@ -5231,20 +5231,20 @@
         "away": {
           "club": "Liepāja",
           "country": null,
-          "elo": 1275.8528345795166,
+          "elo": 1276.470958726433,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "2606320"
         },
-        "adjusted_elo_difference": 188.09040272048333,
+        "adjusted_elo_difference": 187.47227857356688,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 2.065953076963493,
-        "away": 0.6996719230365072
+        "home": 2.064091699579732,
+        "away": 0.7015333004202682
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -5270,25 +5270,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.692541730213418,
-        "draw": 0.19257484492330684,
-        "away_win": 0.1148834248632752
+        "home_win": 0.6917184308568387,
+        "draw": 0.1928817934667956,
+        "away_win": 0.11539977567636558
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.5782388172819595,
-            "high": 0.7771661321112793
+            "low": 0.5771877951116086,
+            "high": 0.7765880192406176
           },
           "draw": {
-            "low": 0.1568913140521409,
-            "high": 0.22807282026147105
+            "low": 0.15716381518134515,
+            "high": 0.22833300707340531
           },
           "away_win": {
-            "low": 0.0659425538365799,
-            "high": 0.19368836245656973
+            "low": 0.06624816557803732,
+            "high": 0.19447919781498613
           }
         }
       },
@@ -5297,39 +5297,39 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.13431363174283845
+          "probability": 0.13407170133714955
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.13002582995762002
+          "probability": 0.12990866768607984
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09397547701152906
+          "probability": 0.094055763132011
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.09249522025908621
+          "probability": 0.09224542862618108
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09097542249086589
+          "probability": 0.09113525639501545
         }
       ],
       "qualification": {
-        "home_to_advance": 0.98574,
-        "away_to_advance": 0.01426000000000005,
-        "extra_time": 0.02389,
-        "home_to_advance_mc_se": 0.0003749220238929696,
-        "extra_time_mc_se": 0.00048290027852549436,
+        "home_to_advance": 0.98555,
+        "away_to_advance": 0.014449999999999963,
+        "extra_time": 0.02422,
+        "home_to_advance_mc_se": 0.00037737511179196707,
+        "extra_time_mc_se": 0.0004861418681825296,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -5418,11 +5418,11 @@
             "high": 0.7178068920738694
           },
           "draw": {
-            "low": 0.18275013970897402,
+            "low": 0.182750139708974,
             "high": 0.23020306885178762
           },
           "away_win": {
-            "low": 0.09944296821715665,
+            "low": 0.09944296821715663,
             "high": 0.2005044761938112
           }
         }
@@ -5636,7 +5636,7 @@
         "away": {
           "club": "Paksi",
           "country": "HUN",
-          "elo": 1367.53369141,
+          "elo": 1367.53356934,
           "rank": null,
           "valid_from": "2026-07-27",
           "valid_to": "2026-07-30",
@@ -5644,12 +5644,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 244.10461424999994,
+        "adjusted_elo_difference": 244.10473632000003,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 1.8887333829754562,
-        "away": 0.46334995035787707
+        "home": 1.888733644427248,
+        "away": 0.4633496889060853
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -5675,25 +5675,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.7192877949532632,
-        "draw": 0.19855433537862258,
-        "away_win": 0.08215786966811413
+        "home_win": 0.7192879176531473,
+        "draw": 0.19855428195683947,
+        "away_win": 0.08215780039001344
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.6632115523658211,
-            "high": 0.7640411717548069
+            "low": 0.6632117036037974,
+            "high": 0.7640412681480131
           },
           "draw": {
-            "low": 0.17787179484132767,
-            "high": 0.22114764917272048
+            "low": 0.1778717476652671,
+            "high": 0.22114759309108517
           },
           "away_win": {
-            "low": 0.05808703340386548,
-            "high": 0.11564079846145855
+            "low": 0.05808698418671986,
+            "high": 0.11564070330511741
           }
         }
       },
@@ -5702,31 +5702,31 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.17975292643681298
+          "probability": 0.1797529513206122
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.16975267642437006
+          "probability": 0.1697527234221668
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.10687251560404615
+          "probability": 0.10687255998686658
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.09517114911880013
+          "probability": 0.09517114911939933
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.08328850954118043
+          "probability": 0.08328847407435636
         }
       ],
       "qualification": {
@@ -5771,20 +5771,20 @@
         "away": {
           "club": "LNZ Cherkasy",
           "country": null,
-          "elo": 1281.1928031977047,
+          "elo": 1281.8470986885116,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 1,
           "team_id": "2612107"
         },
-        "adjusted_elo_difference": 281.0318061822952,
+        "adjusted_elo_difference": 280.3775106914884,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.8428198752827405,
-        "away": 0.365513458050593
+        "home": 1.8416696094585463,
+        "away": 0.3666637238747872
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -5810,25 +5810,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.7370768343267264,
-        "draw": 0.19733613220512797,
-        "away_win": 0.0655870334681456
+        "home_win": 0.7365289915085429,
+        "draw": 0.19759310819053597,
+        "away_win": 0.06587790030092121
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.6624577080876606,
-            "high": 0.7893451560209601
+            "low": 0.6616980830099433,
+            "high": 0.7889715384570279
           },
           "draw": {
-            "low": 0.1711063415590289,
-            "high": 0.2290688125134121
+            "low": 0.17130619337186273,
+            "high": 0.2293586103670885
           },
           "away_win": {
-            "low": 0.03954850242001102,
-            "high": 0.10847347939892754
+            "low": 0.039722268171109396,
+            "high": 0.10894330662296811
           }
         }
       },
@@ -5837,39 +5837,39 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.20249653539879559
+          "probability": 0.20237013493943393
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.18658232005439782
+          "probability": 0.18634946368999025
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.11461253592420327
+          "probability": 0.11439804800558465
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.10988406306814276
+          "probability": 0.10988406058290286
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.0740152088968781
+          "probability": 0.07420178727793603
         }
       ],
       "qualification": {
-        "home_to_advance": 0.87161,
-        "away_to_advance": 0.12839,
-        "extra_time": 0.19607,
-        "home_to_advance_mc_se": 0.0010578563602871612,
-        "extra_time_mc_se": 0.0012554941461432627,
+        "home_to_advance": 0.8712,
+        "away_to_advance": 0.12880000000000003,
+        "extra_time": 0.19651,
+        "home_to_advance_mc_se": 0.001059294859800613,
+        "extra_time_mc_se": 0.001256558076254337,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -5945,7 +5945,7 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.7749217457846318,
+        "home_win": 0.7749217457846319,
         "draw": 0.17092318836842452,
         "away_win": 0.0541550658469437
       },
@@ -5972,7 +5972,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.18954453069233201
+          "probability": 0.18954453069233204
         },
         {
           "score": "1-0",
@@ -5996,7 +5996,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.06747628923599752
+          "probability": 0.06747628923599754
         }
       ],
       "qualification": {
@@ -6041,20 +6041,20 @@
         "away": {
           "club": "HJK",
           "country": null,
-          "elo": 1264.1176183790833,
+          "elo": 1264.6782605076457,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 5,
           "team_id": "50052"
         },
-        "adjusted_elo_difference": -142.6699865390833,
+        "adjusted_elo_difference": -143.23062866764576,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 0.9266626893129177,
-        "away": 2.1066706440204155
+        "home": 0.9245869792226199,
+        "away": 2.108746354110713
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -6080,25 +6080,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.15555895717670576,
-        "draw": 0.19930938114270938,
-        "away_win": 0.6451316616805848
+        "home_win": 0.15492816470298282,
+        "draw": 0.19903178298132584,
+        "away_win": 0.6460400523156912
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.08834321232575018,
-            "high": 0.25867315733251783
+            "low": 0.08795964966676487,
+            "high": 0.25776890536076313
           },
           "draw": {
-            "low": 0.1611184337453493,
-            "high": 0.23064399204445135
+            "low": 0.16083903018118226,
+            "high": 0.23047117396812836
           },
           "away_win": {
-            "low": 0.510682850623031,
-            "high": 0.7505383539289006
+            "low": 0.5117599206711084,
+            "high": 0.7512013201520528
           }
         }
       },
@@ -6107,38 +6107,38 @@
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.10685852335797193
+          "probability": 0.10706921613194767
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.10144777368145295
+          "probability": 0.10154774273656082
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.09902180663090548
+          "probability": 0.09899480311117131
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09400786678446342
+          "probability": 0.0938897207036725
         },
         {
           "score": "0-3",
           "home_goals": 0,
           "away_goals": 3,
-          "probability": 0.07503857140720312
+          "probability": 0.07526060638524554
         }
       ],
       "qualification": {
-        "home_to_advance": 0.00022,
-        "away_to_advance": 0.99978,
+        "home_to_advance": 0.00021,
+        "away_to_advance": 0.99979,
         "extra_time": 0.00037,
-        "home_to_advance_mc_se": 4.689899785709712e-05,
+        "home_to_advance_mc_se": 4.582094499243768e-05,
         "extra_time_mc_se": 6.081637115119579e-05,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
@@ -6254,7 +6254,7 @@
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.11988399013011315
+          "probability": 0.11988399013011318
         },
         {
           "score": "1-0",
@@ -6300,7 +6300,7 @@
         "home": {
           "club": "Benfica",
           "country": "POR",
-          "elo": 1823.50866699,
+          "elo": 1823.50878906,
           "rank": 17,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -6311,20 +6311,20 @@
         "away": {
           "club": "St. Gallen",
           "country": null,
-          "elo": 1295.4449038236671,
+          "elo": 1296.109972819524,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 1,
           "team_id": "51151"
         },
-        "adjusted_elo_difference": 593.0637631663328,
+        "adjusted_elo_difference": 592.398816240476,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 2.513124001945337,
-        "away": 0.08270933138799608
+        "home": 2.5128169494107704,
+        "away": 0.08301638392256283
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -6350,25 +6350,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.9019693563635471,
-        "draw": 0.09091689265586765,
-        "away_win": 0.007113750980585205
+        "home_win": 0.9018776800079423,
+        "draw": 0.09097854143504859,
+        "away_win": 0.0071437785570088435
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.8889563756217459,
-            "high": 0.9102985069335554
+            "low": 0.8888129578355417,
+            "high": 0.9102397290717215
           },
           "draw": {
-            "low": 0.08524663933163787,
-            "high": 0.09950876374190937
+            "low": 0.08528714227450113,
+            "high": 0.09960171772296177
           },
           "away_win": {
-            "low": 0.004454853734806814,
-            "high": 0.011534860636344828
+            "low": 0.0044731286537774565,
+            "high": 0.011585324441496566
           }
         }
       },
@@ -6377,39 +6377,39 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.23554276390123227
+          "probability": 0.23548519415071284
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.1973160578149102
+          "probability": 0.19724372906573243
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.18745017254930946
+          "probability": 0.18742725705183716
         },
         {
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.12396993021597114
+          "probability": 0.12390934639033954
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.07458850912418553
+          "probability": 0.07458850398783999
         }
       ],
       "qualification": {
-        "home_to_advance": 0.85325,
-        "away_to_advance": 0.14675000000000005,
-        "extra_time": 0.20873,
-        "home_to_advance_mc_se": 0.0011189925714677467,
-        "extra_time_mc_se": 0.0012851528590016054,
+        "home_to_advance": 0.85297,
+        "away_to_advance": 0.14703,
+        "extra_time": 0.20875,
+        "home_to_advance_mc_se": 0.0011198757926663117,
+        "extra_time_mc_se": 0.0012851981851060947,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -6446,20 +6446,20 @@
         "away": {
           "club": "ML Vitebsk",
           "country": null,
-          "elo": 1268.8960124226428,
+          "elo": 1269.5084946692573,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 3,
           "team_id": "2613945"
         },
-        "adjusted_elo_difference": -121.73890793264286,
+        "adjusted_elo_difference": -122.35139017925735,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 0.9620959415737586,
-        "away": 1.9389457250929083
+        "home": 0.9598301440334276,
+        "away": 1.9412115226332394
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -6485,25 +6485,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.18177993188518832,
-        "draw": 0.21648077924114983,
-        "away_win": 0.6017392888736619
+        "home_win": 0.18101792691981738,
+        "draw": 0.21620382983578706,
+        "away_win": 0.6027782432443956
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.10584513494159839,
-            "high": 0.2926266782664855
+            "low": 0.1053608066778268,
+            "high": 0.2915921896859052
           },
           "draw": {
-            "low": 0.17957909623670365,
-            "high": 0.24258706807356972
+            "low": 0.17927036299286206,
+            "high": 0.2424547026368349
           },
           "away_win": {
-            "low": 0.4647862536599446,
-            "high": 0.714575768821698
+            "low": 0.46595310767725995,
+            "high": 0.7153688303293111
           }
         }
       },
@@ -6512,39 +6512,39 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.10657662887114386
+          "probability": 0.10670117854250662
         },
         {
           "score": "0-2",
           "home_goals": 0,
           "away_goals": 2,
-          "probability": 0.10332314947225892
+          "probability": 0.1035647786326302
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1025369421035402
+          "probability": 0.10241500756899061
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.09940678277787915
+          "probability": 0.0994045963917475
         },
         {
           "score": "0-3",
           "home_goals": 0,
           "away_goals": 3,
-          "probability": 0.06677932632412399
+          "probability": 0.06701371387354081
         }
       ],
       "qualification": {
-        "home_to_advance": 0.00844,
-        "away_to_advance": 0.99156,
-        "extra_time": 0.0129,
-        "home_to_advance_mc_se": 0.00028928820231734307,
-        "extra_time_mc_se": 0.00035684156148072215,
+        "home_to_advance": 0.00839,
+        "away_to_advance": 0.99161,
+        "extra_time": 0.0128,
+        "home_to_advance_mc_se": 0.00028843730514619635,
+        "extra_time_mc_se": 0.0003554737683711697,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -6570,10 +6570,10 @@
         "home": {
           "club": "Dinamo City",
           "country": null,
-          "elo": 1291.9005991015383,
+          "elo": 1292.457930171661,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 9,
           "team_id": "52792"
@@ -6589,12 +6589,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 220.7332407015383,
+        "adjusted_elo_difference": 221.290571771661,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 1.7203161999489687,
-        "away": 0.48280880005103133
+        "home": 1.7215246306601635,
+        "away": 0.4816003693398365
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -6620,25 +6620,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.6784366837964424,
-        "draw": 0.2231048225015863,
-        "away_win": 0.09845849370197135
+        "home_win": 0.6790452907838775,
+        "draw": 0.2228607043946123,
+        "away_win": 0.09809400482151023
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.5841613505663554,
-            "high": 0.748316713710113
+            "low": 0.5849482148162768,
+            "high": 0.7487496986119839
           },
           "draw": {
-            "low": 0.19223565126920053,
-            "high": 0.255805475552212
+            "low": 0.19202614407282,
+            "high": 0.25557448387848786
           },
           "away_win": {
-            "low": 0.059447635020686486,
-            "high": 0.1600331738814327
+            "low": 0.059224157315196146,
+            "high": 0.15947730130523544
           }
         }
       },
@@ -6647,39 +6647,39 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.19002210937737282
+          "probability": 0.1901555923922418
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.16344905655518466
+          "probability": 0.16367876798050937
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.11045766434275843
+          "probability": 0.11045766584200524
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.09372801995275312
+          "probability": 0.09392567686485233
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09174434661165519
+          "probability": 0.09157900352813907
         }
       ],
       "qualification": {
-        "home_to_advance": 0.82257,
-        "away_to_advance": 0.17742999999999998,
-        "extra_time": 0.22352,
-        "home_to_advance_mc_se": 0.0012080918636428275,
-        "extra_time_mc_se": 0.0013174172065067314,
+        "home_to_advance": 0.82291,
+        "away_to_advance": 0.17708999999999997,
+        "extra_time": 0.22323,
+        "home_to_advance_mc_se": 0.0012071832168316456,
+        "extra_time_mc_se": 0.0013168081375052327,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
@@ -6705,7 +6705,7 @@
         "home": {
           "club": "Hibernian",
           "country": "SCO",
-          "elo": 1398.91027832,
+          "elo": 1398.91040039,
           "rank": null,
           "valid_from": "2026-07-24",
           "valid_to": "2026-07-30",
@@ -6724,12 +6724,12 @@
           "matches": null,
           "team_id": null
         },
-        "adjusted_elo_difference": 410.75256348000016,
+        "adjusted_elo_difference": 410.75268555,
         "basis": "clubelo"
       },
       "expected_goals_90m": {
-        "home": 2.6641578375440935,
-        "away": 0.2504254957892398
+        "home": 2.6641579983961177,
+        "away": 0.25042533493721564
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -6755,25 +6755,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.8821495945560138,
-        "draw": 0.09691635763048684,
-        "away_win": 0.020934047813499196
+        "home_win": 0.8821496420434984,
+        "draw": 0.09691632873001871,
+        "away_win": 0.020934029226482808
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 50.0,
         "intervals": {
           "home_win": {
-            "low": 0.859361879203666,
-            "high": 0.8988681771846412
+            "low": 0.8593619438092568,
+            "high": 0.8988682119802086
           },
           "draw": {
-            "low": 0.0864960458193524,
-            "high": 0.11035819401488375
+            "low": 0.0864960236046214,
+            "high": 0.11035815707382123
           },
           "away_win": {
-            "low": 0.01463577699600641,
-            "high": 0.030279926781450132
+            "low": 0.01463576441517013,
+            "high": 0.030279899116921947
           }
         }
       },
@@ -6782,31 +6782,31 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.19246374536136837
+          "probability": 0.19246376861257733
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.17091793188252669
+          "probability": 0.17091796285021918
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.1444837409023691
+          "probability": 0.14448374963380156
         },
         {
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.11383808695041524
+          "probability": 0.11383811444924545
         },
         {
           "score": "5-0",
           "home_goals": 5,
           "away_goals": 0,
-          "probability": 0.060656526311994946
+          "probability": 0.060656544626457996
         }
       ],
       "qualification": {
@@ -6840,7 +6840,7 @@
         "home": {
           "club": "Braga",
           "country": "POR",
-          "elo": 1698.91113281,
+          "elo": 1698.91125488,
           "rank": 53,
           "valid_from": "2026-07-23",
           "valid_to": "2026-07-30",
@@ -6851,20 +6851,20 @@
         "away": {
           "club": "Ž. Pančevo",
           "country": null,
-          "elo": 1274.501214815321,
+          "elo": 1275.163587821082,
           "rank": null,
           "valid_from": null,
-          "valid_to": "2026-07-29",
+          "valid_to": "2026-07-30",
           "source": "uefa_official_results",
           "matches": 1,
           "team_id": "77924"
         },
-        "adjusted_elo_difference": 489.40991799467906,
+        "adjusted_elo_difference": 488.74766705891784,
         "basis": "clubelo_with_point_in_time_uefa_fallback"
       },
       "expected_goals_90m": {
-        "home": 2.2921664194679514,
-        "away": 0.13700024719871529
+        "home": 2.2916727650865942,
+        "away": 0.13749390158007246
       },
       "expected_goals_basis": {
         "method": "official_uefa_recent_totals_bayesian_shrinkage",
@@ -6890,25 +6890,25 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.8669400174736159,
-        "draw": 0.11803213224143573,
-        "away_win": 0.015027850284948182
+        "home_win": 0.8667655151050087,
+        "draw": 0.11814138204807012,
+        "away_win": 0.0150931028469212
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.8421896885516522,
-            "high": 0.8828927067391078
+            "low": 0.8419195946720106,
+            "high": 0.8827804062600038
           },
           "draw": {
-            "low": 0.10782981491284044,
-            "high": 0.13304696072709898
+            "low": 0.10790315756011157,
+            "high": 0.13320563791144058
           },
           "away_win": {
-            "low": 0.009277478348051644,
-            "high": 0.024763350721248946
+            "low": 0.00931643617988473,
+            "high": 0.024874767416548826
           }
         }
       },
@@ -6917,39 +6917,39 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.23147337234184276
+          "probability": 0.23137366743286936
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.20196908075773265
+          "probability": 0.20192557240965991
         },
         {
           "score": "3-0",
           "home_goals": 3,
           "away_goals": 0,
-          "probability": 0.1768584970276579
+          "probability": 0.17674424407136988
         },
         {
           "score": "4-0",
           "home_goals": 4,
           "away_goals": 0,
-          "probability": 0.10134727697109247
+          "probability": 0.10125999263104402
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.08811274741762115
+          "probability": 0.08811274257214023
         }
       ],
       "qualification": {
-        "home_to_advance": 0.99523,
-        "away_to_advance": 0.004770000000000052,
-        "extra_time": 0.01458,
-        "home_to_advance_mc_se": 0.00021788178216638609,
-        "extra_time_mc_se": 0.0003790438444296385,
+        "home_to_advance": 0.99521,
+        "away_to_advance": 0.004789999999999961,
+        "extra_time": 0.01473,
+        "home_to_advance_mc_se": 0.00021833588573571595,
+        "extra_time_mc_se": 0.0003809596710939361,
         "simulations": 100000,
         "penalty_model": "50/50 after simulated extra time",
         "aggregate_before_kickoff": {
