@@ -20362,7 +20362,204 @@
           "allowed": false,
           "reason": "no_validated_positive_clv_edge"
         },
-        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
+        "market_snapshot": {
+          "source_provider": "odds_api_io",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-08-01T21:33:14Z",
+          "bookmakers": 2,
+          "best_1x2": {
+            "home": {
+              "odds": 3.0,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 3.2,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 2.15,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 2.25,
+              "over": {
+                "odds": 1.825,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.975,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 1.833,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 1.833,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": 0.25,
+              "home": {
+                "odds": 1.85,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.95,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 2.2,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 1.615,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": null,
+          "best_team_totals": [],
+          "source_url": "https://docs.odds-api.io/guides/fetching-odds"
+        },
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.32576222147569134,
+            "fair_odds": 3.069723663689532,
+            "market_odds": 3.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.022713335572925986,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 1
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.4144185357733265,
+            "fair_odds": 2.4130194807381096,
+            "market_odds": 2.15,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.10900014808734804,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.2598192427509821,
+            "fair_odds": 3.8488296302149854,
+            "market_odds": 3.2,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.16857842319685723,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5358644841372501,
+            "fair_odds": 1.8661434552991791,
+            "market_odds": 1.833,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.017760400576420587,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 1
+          },
+          {
+            "selection": "Larne DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.44011158146298607,
+            "fair_odds": 2.2721510683174357,
+            "market_odds": 2.2,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.031754520781430595,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "Iberia Tbilisi DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.559888418537014,
+            "fair_odds": 1.7860701648606978,
+            "market_odds": 1.615,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.09578020406272236,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          },
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.4641355158627499,
+            "fair_odds": 2.154543157812795,
+            "market_odds": 1.833,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.14923959942357945,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 4
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -20372,7 +20569,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -20380,7 +20577,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -22630,7 +22827,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -22638,7 +22835,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -30105,7 +30302,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -30113,7 +30310,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -35711,7 +35908,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -35719,7 +35916,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -45055,7 +45252,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -45063,7 +45260,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -46924,7 +47121,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -46932,7 +47129,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -65871,7 +66068,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -65879,7 +66076,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -68129,7 +68326,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -68137,7 +68334,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -69738,7 +69935,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -69746,7 +69943,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -71986,7 +72183,204 @@
           "allowed": false,
           "reason": "no_validated_positive_clv_edge"
         },
-        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
+        "market_snapshot": {
+          "source_provider": "odds_api_io",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-08-01T21:33:14Z",
+          "bookmakers": 2,
+          "best_1x2": {
+            "home": {
+              "odds": 1.666,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 3.9,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 4.2,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 2.75,
+              "over": {
+                "odds": 1.95,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.85,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 1.727,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 2.0,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -0.75,
+              "home": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.333,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 3.25,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": null,
+          "best_team_totals": [],
+          "source_url": "https://docs.odds-api.io/guides/fetching-odds"
+        },
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.6816036085036679,
+            "fair_odds": 1.4671283830132757,
+            "market_odds": 1.666,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.1355516117671105,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.19970807333699084,
+            "fair_odds": 5.007308834793989,
+            "market_odds": 3.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.2211385139857357,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.11868831815934132,
+            "fair_odds": 8.425429018696525,
+            "market_odds": 4.2,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.5015090637307664,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5701903426138148,
+            "fair_odds": 1.753800310639936,
+            "market_odds": 2.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.1403806852276297,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Salzburg DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.8516952260469629,
+            "fair_odds": 1.1741289247814328,
+            "market_odds": 1.333,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.1353097363206015,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.4298096573861852,
+            "fair_odds": 2.3266112866828794,
+            "market_odds": 1.727,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.2577187216940581,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          },
+          {
+            "selection": "Pafos DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.14830477395303712,
+            "fair_odds": 6.742871273426873,
+            "market_odds": 3.25,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.5180094846526293,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 4
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -71996,7 +72390,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -72004,7 +72398,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -75864,7 +76258,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -75872,7 +76266,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -82289,7 +82683,236 @@
           "allowed": false,
           "reason": "no_validated_positive_clv_edge"
         },
-        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
+        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge.",
+        "market_snapshot": {
+          "source_provider": "odds_api_io",
+          "status": "SHADOW_ONLY",
+          "reason": null,
+          "captured_at_utc": "2026-08-01T21:33:14Z",
+          "bookmakers": 2,
+          "best_1x2": {
+            "home": {
+              "odds": 1.363,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "draw": {
+              "odds": 4.8,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 6.5,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_totals": [
+            {
+              "line": 3.25,
+              "over": {
+                "odds": 1.875,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 1.925,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_btts": {
+            "yes": {
+              "odds": 1.666,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "no": {
+              "odds": 2.1,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_spreads": [
+            {
+              "line": -1.5,
+              "home": {
+                "odds": 1.975,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              },
+              "away": {
+                "odds": 1.825,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
+              }
+            }
+          ],
+          "best_draw_no_bet": {
+            "home": {
+              "odds": 1.142,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            },
+            "away": {
+              "odds": 5.0,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
+            }
+          },
+          "best_double_chance": null,
+          "best_team_totals": [],
+          "source_url": "https://docs.odds-api.io/guides/fetching-odds"
+        },
+        "market_candidates": [
+          {
+            "selection": "П1",
+            "outcome": "home",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.772460079905923,
+            "fair_odds": 1.2945652804760976,
+            "market_odds": 1.363,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.05286308891177316,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "X",
+            "outcome": "draw",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.15380613961852715,
+            "fair_odds": 6.50169104094426,
+            "market_odds": 4.8,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.2617305298310697,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 2
+          },
+          {
+            "selection": "П2",
+            "outcome": "away",
+            "market": "1x2",
+            "line": null,
+            "probability": 0.07373378047554988,
+            "fair_odds": 13.562304734009944,
+            "market_odds": 6.5,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.5207304269089258,
+            "source_provider": "odds_api_io",
+            "status": "SHADOW_ONLY",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 3
+          }
+        ],
+        "expanded_market_candidates": [
+          {
+            "selection": "ОЗ — нет",
+            "outcome": "no",
+            "market": "btts",
+            "line": null,
+            "probability": 0.5992510097045678,
+            "fair_odds": 1.6687497956707698,
+            "market_odds": 2.1,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.2584271203795925,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Thun -1.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -1.5,
+            "probability": 0.5409543649414165,
+            "fair_odds": 1.8485847694533284,
+            "market_odds": 1.975,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.06838487075929756,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 2
+          },
+          {
+            "selection": "Thun DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.9128681025873217,
+            "fair_odds": 1.095448506926381,
+            "market_odds": 1.142,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.042495373154721294,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "Víkingur R. +1.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 1.5,
+            "probability": 0.4590456350585835,
+            "fair_odds": 2.1784326516303327,
+            "market_odds": 1.825,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.16224171601808512,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 4
+          },
+          {
+            "selection": "ОЗ — да",
+            "outcome": "yes",
+            "market": "btts",
+            "line": null,
+            "probability": 0.40074899029543215,
+            "fair_odds": 2.4953275596846796,
+            "market_odds": 1.666,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.33235218216781004,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 5
+          },
+          {
+            "selection": "Víkingur R. DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.08713189741267836,
+            "fair_odds": 11.476853250007297,
+            "market_odds": 5.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.5643405129366081,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 6
+          }
+        ]
       },
       "decision_status": "MODEL_FORECAST_AVAILABLE",
       "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
@@ -82299,7 +82922,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -82307,7 +82930,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -100599,7 +101222,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -100607,7 +101230,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -108854,7 +109477,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -108862,7 +109485,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -157683,7 +158306,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -157691,7 +158314,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -159941,7 +160564,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -159949,7 +160572,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -161550,7 +162173,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -161558,7 +162181,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -163808,7 +164431,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -163816,7 +164439,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -165547,7 +166170,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -165555,7 +166178,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -171153,7 +171776,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -171161,7 +171784,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -172892,7 +173515,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -172900,7 +173523,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -180498,7 +181121,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -180506,7 +181129,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -188932,7 +189555,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -188940,7 +189563,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -191061,7 +191684,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -191069,7 +191692,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -195058,7 +195681,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -195066,7 +195689,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -201184,7 +201807,7 @@
       "cohort_gate": {
         "allowed": false,
         "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
+        "reason": "confirmatory_horizon_not_reached",
         "decision_status": "pending"
       },
       "prospective_clv": {
@@ -201192,7 +201815,7 @@
         "gate": {
           "allowed": false,
           "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
+          "reason": "confirmatory_horizon_not_reached",
           "decision_status": "pending"
         }
       }
@@ -201326,6 +201949,97 @@
           "2048732"
         ]
       },
+      "cohort-5b221afec550b6dfc77582ee": {
+        "id": "cohort-5b221afec550b6dfc77582ee",
+        "dimensions": {
+          "competition_or_sport": "uefa europa league",
+          "model": "hybrid elo–poisson (experimental)",
+          "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 1,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2049128"
+        ]
+      },
+      "cohort-64927acf522479e28510bae2": {
+        "id": "cohort-64927acf522479e28510bae2",
+        "dimensions": {
+          "competition_or_sport": "uefa europa league",
+          "model": "hybrid elo–poisson (experimental)",
+          "probability_basis": "clubelo"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 2,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2049119",
+          "2049124"
+        ]
+      },
       "cohort-8f0bc14a3486372bf4117fac": {
         "id": "cohort-8f0bc14a3486372bf4117fac",
         "dimensions": {
@@ -201420,8 +202134,8 @@
         ]
       }
     },
-    "cohort_count": 4,
-    "tracked_fixtures": 7,
+    "cohort_count": 6,
+    "tracked_fixtures": 10,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
@@ -201451,7 +202165,8 @@
     "eligible_matches": 0,
     "displayed_candidates": 0,
     "rejection_counts": {
-      "missing_verified_market_candidates": 106
+      "data_quality_below_threshold": 3,
+      "missing_verified_market_candidates": 103
     },
     "candidates": []
   },
@@ -201559,9 +202274,9 @@
   },
   "odds_feed": {
     "source_provider": "odds_api_io",
-    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
-    "snapshot_at": "2026-07-31T21:18:54Z",
-    "matched_forecasts": 0,
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-01T21:33:15Z",
+    "matched_forecasts": 3,
     "rejected_forecasts": 0,
     "stale_forecasts": 0,
     "requested_sport_keys": [
@@ -201571,25 +202286,26 @@
     ],
     "sport_poll_times": {
       "soccer_uefa_champs_league": {
-        "requested_at": "2026-07-31T21:16:59Z",
-        "received_at": "2026-07-31T21:18:54Z",
+        "requested_at": "2026-08-01T21:31:41Z",
+        "received_at": "2026-08-01T21:33:15Z",
         "status": "available"
       },
       "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-07-31T21:16:59Z",
-        "received_at": "2026-07-31T21:18:54Z",
+        "requested_at": "2026-08-01T21:31:41Z",
+        "received_at": "2026-08-01T21:33:15Z",
         "status": "available"
       },
       "soccer_uefa_europa_league": {
-        "requested_at": "2026-07-31T21:16:59Z",
-        "received_at": "2026-07-31T21:18:54Z",
+        "requested_at": "2026-08-01T21:31:41Z",
+        "received_at": "2026-08-01T21:33:15Z",
         "status": "available"
       }
     },
     "quota": {
-      "remaining": 98,
+      "remaining": 97,
       "limit": 100,
-      "reset": "2026-07-31T22:16:59Z"
+      "reset": "2026-08-01T22:31:41Z"
     }
-  }
+  },
+  "odds_snapshot_at": "2026-08-01T21:33:15Z"
 }
