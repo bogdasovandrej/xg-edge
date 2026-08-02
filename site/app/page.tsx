@@ -450,6 +450,7 @@ const SITE_DATA_ROOT = "/xg-edge/data";
 const DATA_URL = `${SITE_DATA_ROOT}/live_predictions.json`;
 const PROSPECTIVE_URL = `${SITE_DATA_ROOT}/prospective_clv.json`;
 const FORECAST_ARCHIVE_URL = `${SITE_DATA_ROOT}/forecast_archive.json`;
+const INITIAL_FORECAST_LIMIT = 20;
 
 const FALLBACK: LivePayload = {
   generated_at: "2026-07-21T00:00:00Z",
@@ -1853,6 +1854,7 @@ export default function Home() {
   const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [live, setLive] = useState(false);
+  const [forecastLimit, setForecastLimit] = useState(INITIAL_FORECAST_LIMIT);
 
   useEffect(() => {
     let active = true;
@@ -1933,6 +1935,11 @@ export default function Home() {
     }),
     [payload, nowMs],
   );
+  const visibleForecasts = forecasts.slice(0, forecastLimit);
+
+  useEffect(() => {
+    setForecastLimit(INITIAL_FORECAST_LIMIT);
+  }, [filter, query]);
 
   return (
     <main>
@@ -1995,11 +2002,20 @@ export default function Home() {
         <div className="match-search">
           <label htmlFor="match-search">Поиск матча</label>
           <div><input id="match-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Команда, турнир, судья или стадион" /><button type="button" onClick={() => setQuery("")} disabled={!query}>Очистить</button></div>
-          <span>Найдено: {forecasts.length}</span>
+          <span>Найдено: {forecasts.length} · показано: {visibleForecasts.length}</span>
         </div>
         <div className="forecast-grid">
-          {forecasts.map((forecast) => <ForecastCard key={forecast.id} forecast={forecast} />)}
+          {visibleForecasts.map((forecast) => <ForecastCard key={forecast.id} forecast={forecast} />)}
         </div>
+        {visibleForecasts.length < forecasts.length && (
+          <button
+            type="button"
+            className="forecast-more"
+            onClick={() => setForecastLimit((current) => current + INITIAL_FORECAST_LIMIT)}
+          >
+            Показать ещё {Math.min(INITIAL_FORECAST_LIMIT, forecasts.length - visibleForecasts.length)} матчей
+          </button>
+        )}
         {!forecasts.length && <div className="empty-search">
           {hasFutureForecasts
             ? "Матчи не найдены. Измените запрос или сбросьте фильтр."
