@@ -1852,18 +1852,16 @@ export default function Home() {
 
   useEffect(() => {
     let active = true;
-    const refresh = async () => {
+    const fetchJson = async <T,>(url: string): Promise<T | null> =>
+      fetch(url, { cache: "no-store" })
+        .then(async (response) => response.ok ? response.json() as Promise<T> : null)
+        .catch(() => null);
+
+    const refreshPrimaryData = async () => {
       const cacheBuster = Date.now();
-      const [next, nextLedger, nextArchive] = await Promise.all([
-        fetch(`${DATA_URL}?t=${cacheBuster}`, { cache: "no-store" })
-          .then(async (response) => response.ok ? response.json() as Promise<LivePayload> : null)
-          .catch(() => null),
-        fetch(`${PROSPECTIVE_URL}?t=${cacheBuster}`, { cache: "no-store" })
-          .then(async (response) => response.ok ? response.json() as Promise<ProspectiveLedger> : null)
-          .catch(() => null),
-        fetch(`${FORECAST_ARCHIVE_URL}?t=${cacheBuster}`, { cache: "no-store" })
-          .then(async (response) => response.ok ? response.json() as Promise<ForecastArchiveDocument> : null)
-          .catch(() => null),
+      const [next, nextLedger] = await Promise.all([
+        fetchJson<LivePayload>(`${DATA_URL}?t=${cacheBuster}`),
+        fetchJson<ProspectiveLedger>(`${PROSPECTIVE_URL}?t=${cacheBuster}`),
       ]);
       if (!active) return;
       setNowMs(cacheBuster);
@@ -1877,6 +1875,17 @@ export default function Home() {
         nextLedger.fixtures != null &&
         typeof nextLedger.fixtures === "object" &&
         !Array.isArray(nextLedger.fixtures);
+      if (validLedger) {
+        setProspectiveLedger(nextLedger);
+        setArchiveStatus((current) => current === "loading" ? "live" : current);
+      }
+    };
+
+    const refreshArchive = async () => {
+      const nextArchive = await fetchJson<ForecastArchiveDocument>(
+        `${FORECAST_ARCHIVE_URL}?t=${Date.now()}`,
+      );
+      if (!active) return;
       const validArchive = nextArchive &&
         nextArchive.schema_version === "match-evidence-archive/1.0" &&
         Array.isArray(nextArchive.forecasts) &&
@@ -1884,15 +1893,14 @@ export default function Home() {
       if (validArchive) {
         setForecastArchive(nextArchive);
         setArchiveStatus("live");
-      } else if (validLedger) {
-        setProspectiveLedger(nextLedger);
-        setArchiveStatus("live");
       } else {
-        setArchiveStatus("unavailable");
+        setArchiveStatus((current) => current === "live" ? current : "unavailable");
       }
     };
-    refresh();
-    const timer = window.setInterval(refresh, 5 * 60 * 1000);
+
+    void refreshPrimaryData();
+    void refreshArchive();
+    const timer = window.setInterval(refreshPrimaryData, 5 * 60 * 1000);
     return () => { active = false; window.clearInterval(timer); };
   }, []);
 
