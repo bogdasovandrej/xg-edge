@@ -92,6 +92,13 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /prospective_clv\.json/);
   assert.match(page, /FORECAST_ARCHIVE_URL/);
   assert.match(page, /forecast_archive\.json/);
+  assert.match(page, /refreshPrimaryData/);
+  assert.match(page, /refreshArchive/);
+  assert.doesNotMatch(
+    page,
+    /Promise\.all\(\[[\s\S]{0,600}FORECAST_ARCHIVE_URL/,
+    "the heavy archive must never block current forecasts",
+  );
   assert.match(page, /match-evidence-archive\/1\.0/);
   assert.match(page, /CompletedForecastArchive/);
   assert.match(page, /forecastArchive/);
@@ -162,4 +169,6 @@ test("static export prefixes every asset URL and includes weekly radar", async (
   assert.match(JSON.parse(prospectiveLedger).schema_version, /^prospective-clv\//);
   assert.equal(JSON.parse(prospectiveLedgerV2).schema_version, "prospective-clv/2.0");
   assert.equal(JSON.parse(forecastArchive).schema_version, "match-evidence-archive/1.0");
+  assert.ok(Buffer.byteLength(forecastArchive) < 8 * 1024 * 1024);
+  assert.ok(JSON.parse(forecastArchive).forecasts.length <= JSON.parse(forecastArchive).results.length);
 });
