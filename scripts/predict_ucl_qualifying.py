@@ -135,6 +135,8 @@ def main(argv: list[str] | None = None) -> int:
     as_of = args.as_of or datetime.now(timezone.utc)
     to_date = args.to_date or as_of + timedelta(days=370)
     aliases = _load_aliases(args.aliases_json)
+    ratings_status = "AVAILABLE"
+    ratings_error: str | None = None
     if args.uefa_competition and args.uefa_competition_id:
         parser.error("use either --uefa-competition or --uefa-competition-id, not both")
     if args.uefa_competition_id:
@@ -169,12 +171,28 @@ def main(argv: list[str] | None = None) -> int:
             timeout=args.timeout,
             session=session,
         )
-        rating_rows, ratings_url = fetch_clubelo_ratings(
-            as_of=as_of,
-            url_template=args.clubelo_url,
-            timeout=args.timeout,
-            session=session,
-        )
+        try:
+            rating_rows, ratings_url = fetch_clubelo_ratings(
+                as_of=as_of,
+                url_template=args.clubelo_url,
+                timeout=args.timeout,
+                session=session,
+            )
+        except (requests.RequestException, ValueError) as exc:
+            # ClubElo is useful, but it must never be a single point of failure
+            # for the public forecast pipeline. The point-in-time UEFA replay
+            # below can produce a conservative rating for every known team.
+            rating_rows = []
+            ratings_url = clubelo_ranking_url(args.clubelo_url, as_of)
+            ratings_status = "FALLBACK_ONLY"
+            status_code = getattr(getattr(exc, "response", None), "status_code", None)
+            ratings_error = type(exc).__name__
+            if status_code is not None:
+                ratings_error += f": status={status_code}"
+            print(
+                "::warning title=ClubElo unavailable::"
+                f"Using point-in-time UEFA Elo fallback ({ratings_error})"
+            )
         fixture_source = args.uefa_url
 
     fixtures = sorted(fixtures, key=lambda row: (str(row.get("kickoff_utc", "")), str(row.get("id", ""))))[: args.limit]
@@ -227,7 +245,13 @@ def main(argv: list[str] | None = None) -> int:
                 ],
             },
             "ratings": {
-                "provider": "ClubElo + xgedge UEFA Elo fallback",
+                "provider": (
+                    "ClubElo + xgedge UEFA Elo fallback"
+                    if ratings_status == "AVAILABLE"
+                    else "xgedge point-in-time UEFA Elo fallback"
+                ),
+                "status": ratings_status,
+                "fetch_error": ratings_error,
                 "url": ratings_url,
                 "documentation": CLUBELO_ATTRIBUTION_URL,
                 "attribution": (
@@ -253,7 +277,13 @@ def main(argv: list[str] | None = None) -> int:
             "Lineups, injuries and odds are not inputs to this experimental goal model.",
             "Advancement simulation is separate and is emitted only for a second leg with a known aggregate.",
             "A team without ClubElo or prior UEFA results uses the lower quartile of the current ClubElo population with wider uncertainty.",
-        ],
+        ] + (
+            [
+                "ClubElo was unavailable for this run; all club ratings use the conservative point-in-time UEFA fallback."
+            ]
+            if ratings_status == "FALLBACK_ONLY"
+            else []
+        ),
         "predictions": predictions,
     }
 

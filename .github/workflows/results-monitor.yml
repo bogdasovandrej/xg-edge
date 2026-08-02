@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: xgedge-data-writers
@@ -14,6 +16,8 @@ concurrency:
 
 jobs:
   settle:
+    outputs:
+      data_changed: ${{ steps.publish.outputs.changed }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,14 +53,26 @@ jobs:
       - name: Validate result contract
         run: python -m pytest -q tests/test_official_results.py tests/test_prospective.py tests/test_paper_markets.py tests/test_paper_ledger.py tests/test_update_paper_trading.py tests/test_forecast_archive_cli.py
       - name: Publish changed settlement
+        id: publish
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/live/prospective_clv.json reports/live/paper_trading.json reports/live/forecast_archive.json reports/live/model_registry.json reports/live_predictions.json
           if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No completed prospective fixtures"
           else
             git commit -m "data: settle prospective match results"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+  deploy-pages:
+    needs: settle
+    if: needs.settle.outputs.data_changed == 'true'
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

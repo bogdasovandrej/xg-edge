@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 import pytest
+import requests
 
 import scripts.predict_ucl_qualifying as predictor_cli
 from scripts.predict_ucl_qualifying import main as cli_main
@@ -454,6 +455,58 @@ def test_live_cli_can_predict_verified_uefa_competitions_without_hardcoding(
         "UEL",
         "UECL",
     ]
+
+
+def test_live_cli_survives_clubelo_outage_with_uefa_fallback(
+    tmp_path, monkeypatch
+):
+    json_path = tmp_path / "predictions.json"
+    csv_path = tmp_path / "predictions.csv"
+    history_path = tmp_path / "history.json"
+    history_path.write_text(
+        json.dumps({
+            "fixtures": [{
+                "id": "past-1",
+                "kickoff_utc": "2026-07-01T18:00:00Z",
+                "home": "Home",
+                "away": "Away",
+                "home_score": 2,
+                "away_score": 1,
+                "status": "FINISHED",
+            }],
+        }),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        predictor_cli,
+        "fetch_uefa_club_fixtures",
+        lambda **kwargs: [_fixture()],
+    )
+    response = requests.Response()
+    response.status_code = 502
+    monkeypatch.setattr(
+        predictor_cli,
+        "fetch_clubelo_ratings",
+        lambda **kwargs: (_ for _ in ()).throw(
+            requests.HTTPError("upstream unavailable", response=response)
+        ),
+    )
+
+    exit_code = predictor_cli.main([
+        "--mode", "live",
+        "--as-of", "2026-07-13T00:00:00Z",
+        "--history-json", str(history_path),
+        "--output-json", str(json_path),
+        "--output-csv", str(csv_path),
+        "--simulations", "1000",
+    ])
+
+    assert exit_code == 0
+    payload = json.loads(json_path.read_text(encoding="utf-8"))
+    assert payload["coverage"]["coverage"] == 1.0
+    assert payload["sources"]["ratings"]["status"] == "FALLBACK_ONLY"
+    assert payload["sources"]["ratings"]["fetch_error"] == "HTTPError: status=502"
+    assert payload["predictions"][0]["status"] == "ok"
 
 
 @pytest.mark.parametrize(
