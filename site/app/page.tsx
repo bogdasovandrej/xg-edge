@@ -1695,6 +1695,7 @@ function TeamHistory({ team, fallbackName }: { team?: TeamDetail; fallbackName: 
 }
 
 function MatchDossier({ forecast }: { forecast: Forecast }) {
+  const [expanded, setExpanded] = useState(false);
   const details = forecast.details;
   const marketSnapshotEligible = details?.market_snapshot?.status === "SHADOW_ONLY" &&
     Boolean(details.market_snapshot.captured_at_utc?.trim());
@@ -1714,9 +1715,12 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
     ? marketSnapshotReason(details.market_snapshot.status, details.market_snapshot.reason)
     : "букмекерский API пока не сопоставил событие с проверенной предматчевой линией";
   return (
-    <details className="match-dossier">
+    <details
+      className="match-dossier"
+      onToggle={(event) => setExpanded(event.currentTarget.open)}
+    >
       <summary><span>Открыть полный разбор</span><small>Elo · форма · составы · рынок · риск</small></summary>
-      <div className="dossier-content">
+      {expanded && <div className="dossier-content">
         <RecentFormHeader forecast={forecast} />
         <ModelAnalysisBrief forecast={forecast} />
 
@@ -1781,7 +1785,7 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
           )}
           <p className="audit-note">PAPER-кандидат не является рекомендацией: cohort gate — {forecast.cohort_gate?.decision_status || "pending"} ({forecast.cohort_gate?.reason || "cohort_not_yet_tracked"}).</p>
         </section>
-      </div>
+      </div>}
     </details>
   );
 }
