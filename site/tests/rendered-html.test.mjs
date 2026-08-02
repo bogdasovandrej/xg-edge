@@ -83,6 +83,9 @@ test("uses the public snapshot and contains no disposable starter", async () => 
   assert.match(page, /Открыть всю линию/);
   assert.match(page, /setExpanded\(event\.currentTarget\.open\)/);
   assert.match(page, /expanded && <div className="dossier-content">/);
+  assert.match(page, /INITIAL_FORECAST_LIMIT = 20/);
+  assert.match(page, /visibleForecasts\.map/);
+  assert.match(page, /Показать ещё/);
   assert.match(page, /PAPER BANKROLL/);
   assert.match(page, /PaperTradingLab/);
   assert.match(page, /payload\.paper_trading/);
