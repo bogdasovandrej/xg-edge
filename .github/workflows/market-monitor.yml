@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: xgedge-data-writers
@@ -14,6 +16,8 @@ concurrency:
 
 jobs:
   capture:
+    outputs:
+      data_changed: ${{ steps.publish.outputs.changed }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -65,6 +69,7 @@ jobs:
         if: steps.config.outputs.enabled == 'true'
         run: python -m pytest -q tests/test_bookmaker_odds.py tests/test_prospective.py tests/test_prospective_v2.py tests/test_capture_bookmaker_odds.py tests/test_paper_markets.py tests/test_paper_simulation.py tests/test_paper_ledger.py tests/test_update_paper_trading.py
       - name: Publish snapshots
+        id: publish
         if: steps.config.outputs.enabled == 'true'
         shell: bash
         run: |
@@ -75,8 +80,19 @@ jobs:
             git add reports/live/bookmaker_odds.json
           fi
           if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No market-data changes"
           else
             git commit -m "data: capture bookmaker odds and prospective CLV"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+  deploy-pages:
+    needs: capture
+    if: needs.capture.outputs.data_changed == 'true'
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

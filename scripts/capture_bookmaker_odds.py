@@ -68,12 +68,25 @@ def required_sport_keys(
     fixtures: list[dict], ledger: Mapping[str, Any], *, now: datetime,
     closing_window_minutes: int, discovery_days: int,
     last_snapshot: Mapping[str, Any] | None = None,
+    live_payload: Mapping[str, Any] | None = None,
     discovery_cooldown_hours: int = 24,
     include_discovery: bool = True,
 ) -> list[str]:
     tracked = ledger.get("fixtures", {}) if isinstance(ledger, Mapping) else {}
     keys: set[str] = set()
     recently_polled: set[str] = set()
+    last_poll_by_sport: dict[str, datetime] = {}
+    forecast_times: dict[str, datetime] = {}
+    if isinstance(live_payload, Mapping):
+        for row in live_payload.get("forecasts", []):
+            if not isinstance(row, Mapping):
+                continue
+            fixture_id = row.get("fixture_id") or row.get("id")
+            generated_at = row.get("forecast_generated_at")
+            if fixture_id and generated_at:
+                forecast_times[str(fixture_id)] = as_utc(
+                    generated_at, field="forecast_generated_at"
+                )
     if isinstance(last_snapshot, Mapping):
         poll_times = last_snapshot.get("sport_poll_times")
         if isinstance(poll_times, Mapping):
@@ -81,10 +94,13 @@ def required_sport_keys(
                 if not isinstance(row, Mapping) or not row.get("received_at"):
                     continue
                 previous = as_utc(row["received_at"], field="received_at")
+                last_poll_by_sport[str(sport_key)] = previous
                 if now - previous < timedelta(hours=discovery_cooldown_hours):
                     recently_polled.add(str(sport_key))
         elif last_snapshot.get("snapshot_at"):
             previous = as_utc(last_snapshot["snapshot_at"], field="snapshot_at")
+            for sport_key in last_snapshot.get("requested_sport_keys", []):
+                last_poll_by_sport[str(sport_key)] = previous
             if now - previous < timedelta(hours=discovery_cooldown_hours):
                 recently_polled = {
                     str(key) for key in last_snapshot.get("requested_sport_keys", [])
@@ -100,12 +116,23 @@ def required_sport_keys(
         needs_discovery = entry is None and kickoff - now <= timedelta(days=discovery_days)
         needs_close = kickoff - now <= timedelta(minutes=closing_window_minutes)
         key = sport_key_for_fixture(fixture)
+        forecast_at = forecast_times.get(fixture_id)
+        needs_post_forecast_price = bool(
+            key
+            and forecast_at
+            and (
+                key not in last_poll_by_sport
+                or last_poll_by_sport[key] < forecast_at
+            )
+        )
         if key and (
             needs_close
             or (
                 include_discovery
-                and needs_discovery
-                and key not in recently_polled
+                and (
+                    needs_post_forecast_price
+                    or (needs_discovery and key not in recently_polled)
+                )
             )
         ):
             keys.add(key)
@@ -273,6 +300,7 @@ def main(argv: list[str] | None = None) -> None:
         closing_window_minutes=args.closing_window_minutes,
         discovery_days=args.discovery_days,
         last_snapshot=last_snapshot,
+        live_payload=live_payload,
         discovery_cooldown_hours=args.discovery_cooldown_hours,
         include_discovery=quota_mode == "normal",
     )
@@ -282,6 +310,7 @@ def main(argv: list[str] | None = None) -> None:
             closing_window_minutes=args.closing_window_minutes,
             discovery_days=args.discovery_days,
             last_snapshot=None,
+            live_payload=live_payload,
             discovery_cooldown_hours=args.discovery_cooldown_hours,
         )[:1]
     if quota_mode == "blocked":

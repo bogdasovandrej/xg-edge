@@ -100,6 +100,64 @@ def test_per_sport_cooldown_does_not_make_another_sport_look_fresh() -> None:
     ) == ["soccer_uefa_champs_league"]
 
 
+def test_new_forecast_forces_first_post_forecast_price_despite_cooldown() -> None:
+    fixtures = [
+        _fixture("ucl", "UEFA Champions League", "2026-07-20T12:00:00Z"),
+    ]
+    snapshot = {
+        "sport_poll_times": {
+            "soccer_uefa_champs_league": {
+                "received_at": "2026-07-14T11:50:00Z"
+            },
+        },
+    }
+    live_payload = {
+        "forecasts": [{
+            "id": "ucl",
+            "forecast_generated_at": "2026-07-14T12:00:00Z",
+        }],
+    }
+
+    assert required_sport_keys(
+        fixtures,
+        {"fixtures": {"ucl": {}}},
+        now=NOW,
+        closing_window_minutes=60,
+        discovery_days=14,
+        last_snapshot=snapshot,
+        live_payload=live_payload,
+    ) == ["soccer_uefa_champs_league"]
+
+
+def test_post_forecast_price_keeps_tracked_fixture_on_cooldown() -> None:
+    fixtures = [
+        _fixture("ucl", "UEFA Champions League", "2026-07-20T12:00:00Z"),
+    ]
+    snapshot = {
+        "sport_poll_times": {
+            "soccer_uefa_champs_league": {
+                "received_at": "2026-07-14T12:05:00Z"
+            },
+        },
+    }
+    live_payload = {
+        "forecasts": [{
+            "fixture_id": "ucl",
+            "forecast_generated_at": "2026-07-14T12:00:00Z",
+        }],
+    }
+
+    assert required_sport_keys(
+        fixtures,
+        {"fixtures": {"ucl": {}}},
+        now=NOW,
+        closing_window_minutes=60,
+        discovery_days=14,
+        last_snapshot=snapshot,
+        live_payload=live_payload,
+    ) == []
+
+
 def test_quota_reserve_disables_discovery_and_zero_has_weekly_probe() -> None:
     low = {"snapshot_at": "2026-07-14T11:00:00Z", "quota": {"remaining": 25}}
     assert quota_request_mode(low, now=NOW) == "closing_only"
