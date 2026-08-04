@@ -191171,39 +191171,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-04T18:21:30Z",
-    "matched_forecasts": 7,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_europa_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-04T16:43:30Z",
-        "received_at": "2026-08-04T16:45:26Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-03T20:16:38Z",
-        "received_at": "2026-08-03T20:18:38Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-04T18:19:30Z",
-        "received_at": "2026-08-04T18:21:30Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 97,
-      "limit": 100,
-      "reset": "2026-08-04T19:19:30Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -191657,6 +191624,39 @@
     "parlays": {
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
+    }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-04T18:21:30Z",
+    "matched_forecasts": 7,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_europa_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-04T16:43:30Z",
+        "received_at": "2026-08-04T16:45:26Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-03T20:16:38Z",
+        "received_at": "2026-08-03T20:18:38Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-04T18:19:30Z",
+        "received_at": "2026-08-04T18:21:30Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 97,
+      "limit": 100,
+      "reset": "2026-08-04T19:19:30Z"
     }
   }
 }
