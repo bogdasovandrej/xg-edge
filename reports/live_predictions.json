@@ -8439,7 +8439,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-05T15:51:10Z",
+          "captured_at_utc": "2026-08-05T17:16:26Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -8453,9 +8453,9 @@
               "bookmaker": "Bet365"
             },
             "away": {
-              "odds": 3.45,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 3.5,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             }
           },
           "best_totals": [
@@ -8567,12 +8567,12 @@
             {
               "line": -0.5,
               "home": {
-                "odds": 1.975,
+                "odds": 1.9,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "away": {
-                "odds": 1.825,
+                "odds": 1.9,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -8663,10 +8663,10 @@
             "line": null,
             "probability": 0.24269559900905882,
             "fair_odds": 4.120387860690767,
-            "market_odds": 3.45,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.16270018341874704,
+            "market_odds": 3.5,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.15056540346829417,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -8787,22 +8787,6 @@
             "rank": 7
           },
           {
-            "selection": "Inter Turku -0.5",
-            "outcome": "home",
-            "market": "asian_handicap",
-            "line": -0.5,
-            "probability": 0.49110702679427654,
-            "fair_odds": 2.036216029177073,
-            "market_odds": 1.975,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.030063622081303754,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 8
-          },
-          {
             "selection": "Inter Turku +0.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -8813,6 +8797,22 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": -0.030650247846717882,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 8
+          },
+          {
+            "selection": "Vaduz +0.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.5088929732057236,
+            "fair_odds": 1.9650497307922996,
+            "market_odds": 1.9,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.033103350909125306,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -8851,16 +8851,16 @@
             "rank": 11
           },
           {
-            "selection": "Vaduz +0.5",
-            "outcome": "away",
+            "selection": "Inter Turku -0.5",
+            "outcome": "home",
             "market": "asian_handicap",
-            "line": 0.5,
-            "probability": 0.5088929732057236,
-            "fair_odds": 1.9650497307922996,
-            "market_odds": 1.825,
+            "line": -0.5,
+            "probability": 0.49110702679427654,
+            "fair_odds": 2.036216029177073,
+            "market_odds": 1.9,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.07127032389955446,
+            "point_edge": -0.06689664909087467,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -18391,7 +18391,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-05T15:51:10Z",
+          "captured_at_utc": "2026-08-05T17:16:26Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -34858,7 +34858,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-05T15:51:10Z",
+          "captured_at_utc": "2026-08-05T17:16:26Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -34894,14 +34894,14 @@
             {
               "line": 2.5,
               "over": {
-                "odds": 1.85,
-                "bookmaker_key": "bet365_no_latency",
-                "bookmaker": "Bet365 (no latency)"
-              },
-              "under": {
-                "odds": 1.975,
+                "odds": 1.825,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
+              },
+              "under": {
+                "odds": 2.0,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
               }
             },
             {
@@ -35094,22 +35094,6 @@
         ],
         "expanded_market_candidates": [
           {
-            "selection": "ТБ 2.5",
-            "outcome": "over",
-            "market": "totals",
-            "line": 2.5,
-            "probability": 0.5655150159955757,
-            "fair_odds": 1.7682996414153986,
-            "market_odds": 1.85,
-            "bookmaker": "Bet365 (no latency)",
-            "bookmaker_key": "bet365_no_latency",
-            "point_edge": 0.04620277959181518,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 1
-          },
-          {
             "selection": "Qarabağ DNB",
             "outcome": "away",
             "market": "draw_no_bet",
@@ -35120,6 +35104,22 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": 0.04078469748881375,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5655150159955757,
+            "fair_odds": 1.7682996414153986,
+            "market_odds": 1.825,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.03206490419192565,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -35334,6 +35334,22 @@
             "rank": 15
           },
           {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.43448498400442426,
+            "fair_odds": 2.3015755131132845,
+            "market_odds": 2.0,
+            "bookmaker": "Bet365 (no latency)",
+            "bookmaker_key": "bet365_no_latency",
+            "point_edge": -0.13103003199115149,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 16
+          },
+          {
             "selection": "Dynamo Kyiv +0.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -35344,22 +35360,6 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": -0.13887019907313713,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 16
-          },
-          {
-            "selection": "ТМ 2.5",
-            "outcome": "under",
-            "market": "totals",
-            "line": 2.5,
-            "probability": 0.43448498400442426,
-            "fair_odds": 2.3015755131132845,
-            "market_odds": 1.975,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.1418921565912621,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -48806,7 +48806,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-05T15:51:10Z",
+          "captured_at_utc": "2026-08-05T17:16:26Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -59762,7 +59762,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-05T15:51:10Z",
+          "captured_at_utc": "2026-08-05T17:16:26Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -64211,7 +64211,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-05T15:51:10Z",
+          "captured_at_utc": "2026-08-05T17:16:26Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -183162,39 +183162,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-05T15:51:11Z",
-    "matched_forecasts": 6,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-05T15:49:14Z",
-        "received_at": "2026-08-05T15:51:11Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-04T21:22:21Z",
-        "received_at": "2026-08-04T21:24:24Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-04T18:19:30Z",
-        "received_at": "2026-08-04T18:21:30Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 97,
-      "limit": 100,
-      "reset": "2026-08-05T16:49:15Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -183649,5 +183616,39 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-05T17:16:27Z",
+    "matched_forecasts": 6,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-05T17:14:23Z",
+        "received_at": "2026-08-05T17:16:27Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-04T21:22:21Z",
+        "received_at": "2026-08-04T21:24:24Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-04T18:19:30Z",
+        "received_at": "2026-08-04T18:21:30Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 97,
+      "limit": 100,
+      "reset": "2026-08-05T18:14:23Z"
+    }
+  },
+  "odds_snapshot_at": "2026-08-05T17:16:27Z"
 }
