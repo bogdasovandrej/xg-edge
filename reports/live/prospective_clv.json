@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-08-05T21:54:29Z",
+  "updated_at": "2026-08-06T14:43:35Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -2446,6 +2446,44 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-06T14:43:34Z",
+          "phase": "monitoring",
+          "provider_event_id": "73009106",
+          "sport_key": "international-clubs-uefa-europa-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-06T14:41:57Z",
+              "odds": {
+                "home": 1.533,
+                "draw": 4.333,
+                "away": 5.0
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-08-06T14:40:34Z",
+              "odds": {
+                "home": 1.53,
+                "draw": 4.33,
+                "away": 5.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-05T17:52:23Z",
+              "odds": {
+                "home": 1.48,
+                "draw": 4.35,
+                "away": 5.8
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -2954,10 +2992,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-06T14:43:34Z",
+          "phase": "closing_window",
+          "provider_event_id": "73011584",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-06T14:43:09Z",
+              "odds": {
+                "home": 1.909,
+                "draw": 3.8,
+                "away": 3.3
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-06T10:10:34Z",
+              "odds": {
+                "home": 1.8,
+                "draw": 3.8,
+                "away": 3.95
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-06T14:43:34Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.49943659635084586,
+          "draw": 0.24346764531915008,
+          "away": 0.2570957583300041
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null
@@ -3319,6 +3399,34 @@
                 "home": 2.07,
                 "draw": 3.45,
                 "away": 3.25
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-08-06T14:43:34Z",
+          "phase": "monitoring",
+          "provider_event_id": "73011612",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-06T14:42:55Z",
+              "odds": {
+                "home": 2.1,
+                "draw": 3.2,
+                "away": 3.2
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-06T10:10:34Z",
+              "odds": {
+                "home": 2.23,
+                "draw": 3.4,
+                "away": 3.0
               }
             }
           ]
@@ -3760,6 +3868,34 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-06T14:43:34Z",
+          "phase": "monitoring",
+          "provider_event_id": "73011590",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-06T14:43:09Z",
+              "odds": {
+                "home": 1.6,
+                "draw": 3.4,
+                "away": 5.5
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-06T14:18:33Z",
+              "odds": {
+                "home": 1.67,
+                "draw": 3.65,
+                "away": 4.9
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -4121,6 +4257,34 @@
               "key": "unibet",
               "title": "Unibet",
               "last_update": "2026-08-05T12:18:50Z",
+              "odds": {
+                "home": 1.08,
+                "draw": 9.5,
+                "away": 23.0
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-08-06T14:43:34Z",
+          "phase": "monitoring",
+          "provider_event_id": "73011624",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-06T14:41:57Z",
+              "odds": {
+                "home": 1.111,
+                "draw": 7.5,
+                "away": 21.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-06T10:51:08Z",
               "odds": {
                 "home": 1.08,
                 "draw": 9.5,
