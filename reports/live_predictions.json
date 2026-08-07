@@ -103764,39 +103764,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
-    "snapshot_at": "2026-08-07T00:22:39Z",
-    "matched_forecasts": 0,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-07T00:21:25Z",
-        "received_at": "2026-08-07T00:22:39Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-06T14:42:04Z",
-        "received_at": "2026-08-06T14:43:35Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-06T14:42:04Z",
-        "received_at": "2026-08-06T14:43:35Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-08-07T01:21:26Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -104249,6 +104216,39 @@
     "parlays": {
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
+    }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
+    "snapshot_at": "2026-08-07T00:22:39Z",
+    "matched_forecasts": 0,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-07T00:21:25Z",
+        "received_at": "2026-08-07T00:22:39Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-06T14:42:04Z",
+        "received_at": "2026-08-06T14:43:35Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-06T14:42:04Z",
+        "received_at": "2026-08-06T14:43:35Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 98,
+      "limit": 100,
+      "reset": "2026-08-07T01:21:26Z"
     }
   }
 }
