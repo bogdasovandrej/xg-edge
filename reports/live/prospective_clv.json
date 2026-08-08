@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-08-08T00:36:22Z",
+  "updated_at": "2026-08-08T15:52:28Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -4299,6 +4299,326 @@
       "result": null,
       "calibration": null,
       "clv": null
+    },
+    "2049131": {
+      "fixture_id": "2049131",
+      "evaluation_cohort_id": "cohort-5b221afec550b6dfc77582ee",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa europa league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Iberia Tbilisi",
+      "away": "Larne",
+      "kickoff_utc": "2026-08-11T16:00:00Z",
+      "provider_event_id": "73008746",
+      "sport_key": "international-clubs-uefa-europa-league-qualification",
+      "forecast": {
+        "generated_at": "2026-08-03T20:02:39Z",
+        "competition": "UEFA Europa League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.4892033428661933,
+          "draw": 0.25170957257156557,
+          "away": 0.2590870845622411
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-08T15:52:28Z",
+          "phase": "opening",
+          "provider_event_id": "73008746",
+          "sport_key": "international-clubs-uefa-europa-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-08T15:48:17Z",
+              "odds": {
+                "home": 1.833,
+                "draw": 3.25,
+                "away": 4.1
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049192": {
+      "fixture_id": "2049192",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Qarabağ",
+      "away": "Dynamo Kyiv",
+      "kickoff_utc": "2026-08-13T16:00:00Z",
+      "provider_event_id": "73011634",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-08-03T20:02:39Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5818877903213703,
+          "draw": 0.2196260692816172,
+          "away": 0.1984861403970125
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-08T15:52:28Z",
+          "phase": "opening",
+          "provider_event_id": "73011634",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-08T15:06:14Z",
+              "odds": {
+                "home": 2.05,
+                "draw": 3.35,
+                "away": 3.35
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049202": {
+      "fixture_id": "2049202",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "RFS",
+      "away": "Jablonec",
+      "kickoff_utc": "2026-08-13T16:30:00Z",
+      "provider_event_id": "73011654",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-08-03T20:02:39Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.4890504717373905,
+          "draw": 0.24469382274672963,
+          "away": 0.2662557055158799
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-08T15:52:28Z",
+          "phase": "opening",
+          "provider_event_id": "73011654",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-08-08T14:58:35Z",
+              "odds": {
+                "home": 2.1,
+                "draw": 3.2,
+                "away": 3.3
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049186": {
+      "fixture_id": "2049186",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Dinamo-Minsk",
+      "away": "Braga",
+      "kickoff_utc": "2026-08-13T17:00:00Z",
+      "provider_event_id": "73011670",
+      "sport_key": "international-clubs-uefa-conference-league-qualification",
+      "forecast": {
+        "generated_at": "2026-08-03T20:02:39Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.26570351160763156,
+          "draw": 0.2645242766285884,
+          "away": 0.4697722117637801
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-08T15:52:28Z",
+          "phase": "opening",
+          "provider_event_id": "73011670",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-08-08T14:13:52Z",
+              "odds": {
+                "home": 7.0,
+                "draw": 4.33,
+                "away": 1.38
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049140": {
+      "fixture_id": "2049140",
+      "evaluation_cohort_id": "cohort-5b221afec550b6dfc77582ee",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa europa league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Pafos",
+      "away": "Salzburg",
+      "kickoff_utc": "2026-08-13T17:00:00Z",
+      "provider_event_id": "73009108",
+      "sport_key": "international-clubs-uefa-europa-league-qualification",
+      "forecast": {
+        "generated_at": "2026-08-03T20:02:39Z",
+        "competition": "UEFA Europa League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5838479030823313,
+          "draw": 0.23029427727229357,
+          "away": 0.18585781964537515
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-08T15:52:28Z",
+          "phase": "opening",
+          "provider_event_id": "73009108",
+          "sport_key": "international-clubs-uefa-europa-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-08T15:48:17Z",
+              "odds": {
+                "home": 2.5,
+                "draw": 3.1,
+                "away": 2.7
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-08T14:46:29Z",
+              "odds": {
+                "home": 2.7,
+                "draw": 3.2,
+                "away": 2.48
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049136": {
+      "fixture_id": "2049136",
+      "evaluation_cohort_id": "cohort-5b221afec550b6dfc77582ee",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa europa league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Víkingur R.",
+      "away": "Thun",
+      "kickoff_utc": "2026-08-13T17:30:00Z",
+      "provider_event_id": "73008762",
+      "sport_key": "international-clubs-uefa-europa-league-qualification",
+      "forecast": {
+        "generated_at": "2026-08-03T20:02:39Z",
+        "competition": "UEFA Europa League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5491355424909559,
+          "draw": 0.22696816396011166,
+          "away": 0.22389629354893253
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-08T15:52:28Z",
+          "phase": "opening",
+          "provider_event_id": "73008762",
+          "sport_key": "international-clubs-uefa-europa-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-08T15:48:17Z",
+              "odds": {
+                "home": 2.5,
+                "draw": 3.7,
+                "away": 2.35
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-08T15:49:29Z",
+              "odds": {
+                "home": 2.55,
+                "draw": 3.65,
+                "away": 2.4
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
     }
   },
   "gate": {
@@ -4465,13 +4785,16 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 1,
+        "tracked_fixtures": 4,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
         "post_horizon_ready": 0,
         "fixture_ids": [
-          "2049128"
+          "2049128",
+          "2049131",
+          "2049136",
+          "2049140"
         ]
       },
       "cohort-64927acf522479e28510bae2": {
@@ -4556,7 +4879,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 6,
+        "tracked_fixtures": 9,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -4567,7 +4890,10 @@
           "2049149",
           "2049156",
           "2049162",
-          "2049172"
+          "2049172",
+          "2049186",
+          "2049192",
+          "2049202"
         ]
       },
       "cohort-dd3fbf52e49523eb3616502d": {
@@ -4619,7 +4945,7 @@
       }
     },
     "cohort_count": 6,
-    "tracked_fixtures": 14,
+    "tracked_fixtures": 20,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
