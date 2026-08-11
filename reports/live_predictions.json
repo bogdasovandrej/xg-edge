@@ -31145,7 +31145,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T16:15:31Z",
+          "captured_at_utc": "2026-08-11T17:18:41Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -37304,7 +37304,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T16:15:31Z",
+          "captured_at_utc": "2026-08-11T17:18:41Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -44359,7 +44359,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T16:15:31Z",
+          "captured_at_utc": "2026-08-11T17:18:41Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -60900,7 +60900,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T16:15:31Z",
+          "captured_at_utc": "2026-08-11T17:18:41Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -65378,7 +65378,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T16:15:31Z",
+          "captured_at_utc": "2026-08-11T17:18:41Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -72244,7 +72244,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T16:15:31Z",
+          "captured_at_utc": "2026-08-11T17:18:41Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -104952,40 +104952,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-11T16:15:31Z",
-    "matched_forecasts": 6,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league",
-      "soccer_uefa_europa_conference_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-11T16:13:34Z",
-        "received_at": "2026-08-11T16:15:31Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-11T16:13:34Z",
-        "received_at": "2026-08-11T16:15:31Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-11T15:10:13Z",
-        "received_at": "2026-08-11T15:12:17Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-08-11T17:13:35Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -105447,5 +105413,40 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-11T17:18:41Z",
+    "matched_forecasts": 6,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league",
+      "soccer_uefa_europa_conference_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-11T17:16:40Z",
+        "received_at": "2026-08-11T17:18:41Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-11T17:16:40Z",
+        "received_at": "2026-08-11T17:18:41Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-11T15:10:13Z",
+        "received_at": "2026-08-11T15:12:17Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 98,
+      "limit": 100,
+      "reset": "2026-08-11T18:16:40Z"
+    }
+  },
+  "odds_snapshot_at": "2026-08-11T17:18:41Z"
 }
