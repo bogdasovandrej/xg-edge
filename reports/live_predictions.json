@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T18:45:38Z",
+  "generated_at": "2026-08-11T19:54:33Z",
   "status": "MODEL_FORECASTS_ACTIVE_CLV_BACKGROUND_AUDIT",
   "validation_protocol": {
     "mode": "MODEL_FORECAST_WITH_BACKGROUND_CLV_AUDIT",
@@ -16,2818 +16,6 @@
     "reason": "global_gate_disabled_cohort_specific_only"
   },
   "forecasts": [
-    {
-      "id": "2049118",
-      "competition": "UEFA Champions League",
-      "stage": "3-й квалификационный раунд · ответный матч",
-      "kickoff_utc": "2026-08-11T19:00:00Z",
-      "home": "Lyon",
-      "away": "Sparta Praha",
-      "venue": "OL Stadium",
-      "model": "Hybrid Elo–Poisson (experimental)",
-      "forecast_generated_at": "2026-08-03T20:02:39Z",
-      "p_home": 0.5052855390127768,
-      "p_draw": 0.25413109890692115,
-      "p_away": 0.24058336208030204,
-      "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
-      "rating_basis": {
-        "home": {
-          "club": "Lyon",
-          "country": null,
-          "elo": 1557.0030359608668,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-08-03",
-          "source": "uefa_official_results",
-          "matches": 10,
-          "team_id": "5312"
-        },
-        "away": {
-          "club": "Sparta Praha",
-          "country": null,
-          "elo": 1543.2972598893523,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-08-03",
-          "source": "uefa_official_results",
-          "matches": 14,
-          "team_id": "50033"
-        },
-        "adjusted_elo_difference": 78.70577607151449,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "p_over25": 0.468947069109657,
-      "p_btts": 0.49653185341531214,
-      "p_home_advance": null,
-      "p_away_advance": null,
-      "lambda_home": 1.5589888108020742,
-      "lambda_away": 0.9910111891979256,
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.55,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "5312",
-            "matches": 10,
-            "shrunk_total_goals": 2.683333333333333,
-            "raw_average_total_goals": 2.7
-          },
-          {
-            "side": "away",
-            "team_id": "50033",
-            "matches": 10,
-            "shrunk_total_goals": 2.4166666666666665,
-            "raw_average_total_goals": 2.3
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "model_market_forecasts": [
-        {
-          "market": "1x2",
-          "selection": "home",
-          "line": null,
-          "label": "П1",
-          "theoretical_probability": 0.50528592386222,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.44528592386222005,
-          "theoretical_fair_odds": 1.9790774940975344,
-          "conservative_fair_odds": 2.2457480607660507,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "1x2",
-          "selection": "draw",
-          "line": null,
-          "label": "X",
-          "theoretical_probability": 0.2541308965301098,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.1941308965301098,
-          "theoretical_fair_odds": 3.9349800187775226,
-          "conservative_fair_odds": 5.151163559608347,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "1x2",
-          "selection": "away",
-          "line": null,
-          "label": "П2",
-          "theoretical_probability": 0.24058317960767026,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.18058317960767026,
-          "theoretical_fair_odds": 4.156566563093666,
-          "conservative_fair_odds": 5.537614312543233,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "double_chance",
-          "selection": "home_draw",
-          "line": null,
-          "label": "1X",
-          "theoretical_probability": 0.7594168203923297,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6994168203923297,
-          "theoretical_fair_odds": 1.3167999090188445,
-          "conservative_fair_odds": 1.4297625834035015,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "double_chance",
-          "selection": "home_away",
-          "line": null,
-          "label": "12",
-          "theoretical_probability": 0.7458691034698903,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6858691034698903,
-          "theoretical_fair_odds": 1.3407178221324039,
-          "conservative_fair_odds": 1.458004151143251,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "double_chance",
-          "selection": "draw_away",
-          "line": null,
-          "label": "X2",
-          "theoretical_probability": 0.49471407613778,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.43471407613778,
-          "theoretical_fair_odds": 2.02136961173002,
-          "conservative_fair_odds": 2.3003625943850414,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "draw_no_bet",
-          "selection": "home",
-          "line": null,
-          "label": "П1 с возвратом",
-          "theoretical_probability": 0.6774458433947155,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6174458433947154,
-          "theoretical_fair_odds": 1.4761327562199649,
-          "conservative_fair_odds": 1.6195752399951435,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "draw_no_bet",
-          "selection": "away",
-          "line": null,
-          "label": "П2 с возвратом",
-          "theoretical_probability": 0.3225541566052847,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.2625541566052847,
-          "theoretical_fair_odds": 3.100254575927595,
-          "conservative_fair_odds": 3.80873802544047,
-          "recommendation_group": "исход",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "btts",
-          "selection": "yes",
-          "line": null,
-          "label": "Обе забьют — да",
-          "theoretical_probability": 0.49653185178460174,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.43653185178460174,
-          "theoretical_fair_odds": 2.013969489380926,
-          "conservative_fair_odds": 2.2907835840886834,
-          "recommendation_group": "обе забьют",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "btts",
-          "selection": "no",
-          "line": null,
-          "label": "Обе забьют — нет",
-          "theoretical_probability": 0.5034681482153982,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.4434681482153982,
-          "theoretical_fair_odds": 1.9862229687113615,
-          "conservative_fair_odds": 2.254953380584815,
-          "recommendation_group": "обе забьют",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "over",
-          "line": 1.5,
-          "label": "ТБ 1.5",
-          "theoretical_probability": 0.7228100822976746,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6628100822976746,
-          "theoretical_fair_odds": 1.383489279536876,
-          "conservative_fair_odds": 1.5087278040995311,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "under",
-          "line": 1.5,
-          "label": "ТМ 1.5",
-          "theoretical_probability": 0.2771899177023253,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.21718991770232532,
-          "theoretical_fair_odds": 3.6076348241277,
-          "conservative_fair_odds": 4.60426529269454,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "over",
-          "line": 2.5,
-          "label": "ТБ 2.5",
-          "theoretical_probability": 0.46894706259917185,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.40894706259917185,
-          "theoretical_fair_odds": 2.1324368564277387,
-          "conservative_fair_odds": 2.445304273966987,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "under",
-          "line": 2.5,
-          "label": "ТМ 2.5",
-          "theoretical_probability": 0.5310529374008282,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.47105293740082815,
-          "theoretical_fair_odds": 1.8830514428455556,
-          "conservative_fair_odds": 2.1229036496785083,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "over",
-          "line": 3.5,
-          "label": "ТБ 3.5",
-          "theoretical_probability": 0.2531634958554444,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.1931634958554444,
-          "theoretical_fair_odds": 3.950016555984821,
-          "conservative_fair_odds": 5.176961597072973,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "under",
-          "line": 3.5,
-          "label": "ТМ 3.5",
-          "theoretical_probability": 0.7468365041445557,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6868365041445557,
-          "theoretical_fair_odds": 1.3389811484180514,
-          "conservative_fair_odds": 1.455950570427943,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "over",
-          "line": 4.5,
-          "label": "ТБ 4.5",
-          "theoretical_probability": 0.11560147205631817,
-          "reliability_haircut": 0.057800736028159085,
-          "conservative_probability": 0.057800736028159085,
-          "theoretical_fair_odds": 8.650408876392376,
-          "conservative_fair_odds": 17.300817752784752,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "totals",
-          "selection": "under",
-          "line": 4.5,
-          "label": "ТМ 4.5",
-          "theoretical_probability": 0.8843985279436818,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.8243985279436818,
-          "theoretical_fair_odds": 1.1307119679689015,
-          "conservative_fair_odds": 1.2130055623635396,
-          "recommendation_group": "тотал",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "home_over",
-          "line": 0.5,
-          "label": "ИТБ1 0.5",
-          "theoretical_probability": 0.7896513314384871,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.7296513314384871,
-          "theoretical_fair_odds": 1.2663817056805644,
-          "conservative_fair_odds": 1.3705176115125124,
-          "recommendation_group": "инд. тотал хозяев",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "home_under",
-          "line": 0.5,
-          "label": "ИТМ1 0.5",
-          "theoretical_probability": 0.21034866856151302,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.15034866856151302,
-          "theoretical_fair_odds": 4.754011550624892,
-          "conservative_fair_odds": 6.651206223291989,
-          "recommendation_group": "инд. тотал хозяев",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "away_over",
-          "line": 0.5,
-          "label": "ИТБ2 0.5",
-          "theoretical_probability": 0.6287988533877131,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.5687988533877131,
-          "theoretical_fair_odds": 1.5903336887661383,
-          "conservative_fair_odds": 1.758090745162535,
-          "recommendation_group": "инд. тотал гостей",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "away_under",
-          "line": 0.5,
-          "label": "ИТМ2 0.5",
-          "theoretical_probability": 0.37120114661228676,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.31120114661228676,
-          "theoretical_fair_odds": 2.6939571957855044,
-          "conservative_fair_odds": 3.213355769687637,
-          "recommendation_group": "инд. тотал гостей",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "home_over",
-          "line": 1.5,
-          "label": "ИТБ1 1.5",
-          "theoretical_probability": 0.46172011078397424,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.40172011078397424,
-          "theoretical_fair_odds": 2.1658142598598475,
-          "conservative_fair_odds": 2.4892953406003415,
-          "recommendation_group": "инд. тотал хозяев",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "home_under",
-          "line": 1.5,
-          "label": "ИТМ1 1.5",
-          "theoretical_probability": 0.5382798892160257,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.47827988921602566,
-          "theoretical_fair_odds": 1.857769573105255,
-          "conservative_fair_odds": 2.0908259421886917,
-          "recommendation_group": "инд. тотал хозяев",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "away_over",
-          "line": 1.5,
-          "label": "ИТБ2 1.5",
-          "theoretical_probability": 0.2609343636518373,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.2009343636518373,
-          "theoretical_fair_odds": 3.8323813927945967,
-          "conservative_fair_odds": 4.976749530671212,
-          "recommendation_group": "инд. тотал гостей",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "away_under",
-          "line": 1.5,
-          "label": "ИТМ2 1.5",
-          "theoretical_probability": 0.7390656363481627,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6790656363481626,
-          "theoretical_fair_odds": 1.353059797153003,
-          "conservative_fair_odds": 1.4726116983002386,
-          "recommendation_group": "инд. тотал гостей",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "home_over",
-          "line": 2.5,
-          "label": "ИТБ1 2.5",
-          "theoretical_probability": 0.20609955892744852,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.14609955892744853,
-          "theoretical_fair_odds": 4.8520239694060745,
-          "conservative_fair_odds": 6.844647631664578,
-          "recommendation_group": "инд. тотал хозяев",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "home_under",
-          "line": 2.5,
-          "label": "ИТМ1 2.5",
-          "theoretical_probability": 0.7939004410725514,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.7339004410725514,
-          "theoretical_fair_odds": 1.2596037843851178,
-          "conservative_fair_odds": 1.3625826393271547,
-          "recommendation_group": "инд. тотал хозяев",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "away_over",
-          "line": 2.5,
-          "label": "ИТБ2 2.5",
-          "theoretical_probability": 0.0786554509334181,
-          "reliability_haircut": 0.03932772546670905,
-          "conservative_probability": 0.03932772546670905,
-          "theoretical_fair_odds": 12.713677032333091,
-          "conservative_fair_odds": 25.427354064666183,
-          "recommendation_group": "инд. тотал гостей",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "team_totals",
-          "selection": "away_under",
-          "line": 2.5,
-          "label": "ИТМ2 2.5",
-          "theoretical_probability": 0.9213445490665819,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.8613445490665819,
-          "theoretical_fair_odds": 1.085370289554656,
-          "conservative_fair_odds": 1.1609755945906615,
-          "recommendation_group": "инд. тотал гостей",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "home",
-          "line": -1.5,
-          "label": "Ф1(-1.5)",
-          "theoretical_probability": 0.26193935769856636,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.20193935769856636,
-          "theoretical_fair_odds": 3.8176775295859757,
-          "conservative_fair_odds": 4.9519816810187836,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "away",
-          "line": -1.5,
-          "label": "Ф2(-1.5)",
-          "theoretical_probability": 0.08589369867611585,
-          "reliability_haircut": 0.042946849338057924,
-          "conservative_probability": 0.042946849338057924,
-          "theoretical_fair_odds": 11.642297577273458,
-          "conservative_fair_odds": 23.284595154546917,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "home",
-          "line": -0.5,
-          "label": "Ф1(-0.5)",
-          "theoretical_probability": 0.50528592386222,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.44528592386222005,
-          "theoretical_fair_odds": 1.9790774940975344,
-          "conservative_fair_odds": 2.2457480607660507,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "away",
-          "line": -0.5,
-          "label": "Ф2(-0.5)",
-          "theoretical_probability": 0.24058317960767026,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.18058317960767026,
-          "theoretical_fair_odds": 4.156566563093666,
-          "conservative_fair_odds": 5.537614312543233,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "home",
-          "line": 0.0,
-          "label": "Ф1(+0.0)",
-          "theoretical_probability": 0.6774458433947155,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6174458433947154,
-          "theoretical_fair_odds": 1.4761327562199649,
-          "conservative_fair_odds": 1.6195752399951435,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "away",
-          "line": 0.0,
-          "label": "Ф2(+0.0)",
-          "theoretical_probability": 0.3225541566052847,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.2625541566052847,
-          "theoretical_fair_odds": 3.100254575927595,
-          "conservative_fair_odds": 3.80873802544047,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "home",
-          "line": 0.5,
-          "label": "Ф1(+0.5)",
-          "theoretical_probability": 0.7594168203923297,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6994168203923297,
-          "theoretical_fair_odds": 1.3167999090188445,
-          "conservative_fair_odds": 1.4297625834035015,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "away",
-          "line": 0.5,
-          "label": "Ф2(+0.5)",
-          "theoretical_probability": 0.49471407613778,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.43471407613778,
-          "theoretical_fair_odds": 2.02136961173002,
-          "conservative_fair_odds": 2.3003625943850414,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "home",
-          "line": 1.5,
-          "label": "Ф1(+1.5)",
-          "theoretical_probability": 0.9141063013238843,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.8541063013238843,
-          "theoretical_fair_odds": 1.0939646718896012,
-          "conservative_fair_odds": 1.1708144506719798,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        },
-        {
-          "market": "asian_handicap",
-          "selection": "away",
-          "line": 1.5,
-          "label": "Ф2(+1.5)",
-          "theoretical_probability": 0.7380606423014339,
-          "reliability_haircut": 0.06,
-          "conservative_probability": 0.6780606423014339,
-          "theoretical_fair_odds": 1.3549022162755924,
-          "conservative_fair_odds": 1.4747943437711681,
-          "recommendation_group": "фора",
-          "recommendation_rank": null,
-          "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
-          "settlement_period": "REGULATION_90_MINUTES"
-        }
-      ],
-      "top_score": "1-0",
-      "top_score_probability": 0.12172854205521494,
-      "score_scenarios": [
-        {
-          "score": "1-0",
-          "probability": 0.12172854205521494
-        },
-        {
-          "score": "1-1",
-          "probability": 0.12063434722146828
-        },
-        {
-          "score": "2-0",
-          "probability": 0.09488671750966492
-        },
-        {
-          "score": "2-1",
-          "probability": 0.09403379875834067
-        },
-        {
-          "score": "0-0",
-          "probability": 0.07808172913863802
-        }
-      ],
-      "score_scenarios_coverage": 0.5093651346833268,
-      "other_score_probability": 0.4906348653166732,
-      "score_display": "distribution_not_exact_score_prediction",
-      "expected_goals": {
-        "home": 1.5589888108020742,
-        "away": 0.9910111891979256,
-        "total": 2.55
-      },
-      "p_over35": 0.2531629011131408,
-      "p_over45": 0.11560076776667137,
-      "tail_probability_status": "RAW_POISSON_UNCALIBRATED_NO_BET",
-      "uncertainty": "высокая",
-      "recommendation": "MODEL FORECAST",
-      "first_leg": null,
-      "details": {
-        "schema_version": "match-dossier/1.0",
-        "fixture_id": "2049118",
-        "generated_as_of": "2026-08-11T18:45:38Z",
-        "teams": {
-          "home": {
-            "team_id": "5312",
-            "name": "Lyon",
-            "elo": 1596.1397591042619,
-            "elo_meta": {
-              "rating": 1596.1397591042619,
-              "matches": 10,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-08-11T19:00:00Z"
-            },
-            "level": "average",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
-              {
-                "match_id": "2048130",
-                "kickoff_utc": "2026-03-19T17:45:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "53043",
-                "opponent": "Celta",
-                "score_90": {
-                  "for": 0,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1614.815656440605,
-                  "matches": 9,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-03-19T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1554.363023422055,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-03-19T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5861308820088208,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048130",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2048122",
-                "kickoff_utc": "2026-03-12T20:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "53043",
-                "opponent": "Celta",
-                "score_90": {
-                  "for": 1,
-                  "against": 1
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1614.9821654739692,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-03-12T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1554.1965143886907,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-03-12T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5865958352540416,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048122",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046286",
-                "kickoff_utc": "2026-01-29T20:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "50130",
-                "opponent": "PAOK",
-                "score_90": {
-                  "for": 4,
-                  "against": 2
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1605.6645841279496,
-                  "matches": 7,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-01-29T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1537.1892438472375,
-                  "matches": 11,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-01-29T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.597287519305456,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046286",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046273",
-                "kickoff_utc": "2026-01-22T17:45:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "50031",
-                "opponent": "Young Boys",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1597.3546667764983,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-01-22T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1483.0663158921789,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-01-22T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6587877379909298,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046273",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046247",
-                "kickoff_utc": "2025-12-11T20:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "64207",
-                "opponent": "Go Ahead Eagles",
-                "score_90": {
-                  "for": 2,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1591.3729376492656,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-11T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1498.4258557688215,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-11T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6306593365958538,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046247",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046238",
-                "kickoff_utc": "2025-11-27T20:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "57477",
-                "opponent": "M. Tel-Aviv",
-                "score_90": {
-                  "for": 6,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1569.9303917886532,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-27T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1471.4096370101377,
-                  "matches": 10,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-11-27T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6381009174674194,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046238",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046211",
-                "kickoff_utc": "2025-11-06T20:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "52265",
-                "opponent": "Real Betis",
-                "score_90": {
-                  "for": 0,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1585.3028673890822,
-                  "matches": 3,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-06T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1500.0,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "cold_start_prior",
-                  "as_of": "2025-11-06T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.620352053194586,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046211",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046197",
-                "kickoff_utc": "2025-10-23T16:45:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "59856",
-                "opponent": "Basel",
-                "score_90": {
-                  "for": 2,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1576.6376994190605,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-23T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1489.6768323568162,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-23T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6225972662124879,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046197",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046177",
-                "kickoff_utc": "2025-10-02T19:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "home",
-                "opponent_id": "50030",
-                "opponent": "Salzburg",
-                "score_90": {
-                  "for": 2,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1567.8076681111097,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-02T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1485.5868582976734,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-02T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6161647671512109,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046177",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046172",
-                "kickoff_utc": "2025-09-25T19:00:00Z",
-                "competition": "UEFA Europa League",
-                "competition_level": "uefa_europa_league",
-                "venue": "away",
-                "opponent_id": "52323",
-                "opponent": "Utrecht",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1557.0030359608668,
-                  "matches": 0,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-09-25T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1530.0193872872455,
-                  "matches": 2,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-09-25T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5387547020623552,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046172",
-                  "xg": "not_provided"
-                }
-              }
-            ],
-            "likely_lineup": [
-              {
-                "player_id": "250084109",
-                "player_name": "Dominik Greif",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "GOALKEEPER",
-                "detailed_field_position": "GOALKEEPER",
-                "jersey_number": 1,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250200469",
-                "player_name": "Tanner Tessmann",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 6,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250187791",
-                "player_name": "Ernest Nuamah",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": null,
-                "jersey_number": 7,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250054829",
-                "player_name": "Corentin Tolisso",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "CENTRAL_MIDFIELDER",
-                "jersey_number": 8,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250169622",
-                "player_name": "Malick Fofana",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 11,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250182143",
-                "player_name": "Abner Vinicius",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 16,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250096954",
-                "player_name": "Loïs Openda",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": "STRIKER",
-                "jersey_number": 17,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250080549",
-                "player_name": "Moussa Niakhaté",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 19,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250211851",
-                "player_name": "Ruben Kluivert",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": null,
-                "jersey_number": 21,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250124400",
-                "player_name": "Tyler Morton",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 23,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250064350",
-                "player_name": "Ainsley Maitland-Niles",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "FULL_BACK",
-                "jersey_number": 98,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250140951",
-                "player_name": "Justin Bengui",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "GOALKEEPER",
-                "detailed_field_position": null,
-                "jersey_number": 25,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250064587",
-                "player_name": "Rémy Descamps",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "GOALKEEPER",
-                "detailed_field_position": "GOALKEEPER",
-                "jersey_number": 40,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250084887",
-                "player_name": "Clinton Mata",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "FULL_BACK",
-                "jersey_number": 22,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250172227",
-                "player_name": "Julien Duranville",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 24,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250202882",
-                "player_name": "Kail Boudache",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": null,
-                "jersey_number": 26,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250202847",
-                "player_name": "Steeve Kango",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 37,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250202833",
-                "player_name": "Mathys De Carvalho",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 39,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250193815",
-                "player_name": "Rémi Himbert",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": null,
-                "jersey_number": 45,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250220729",
-                "player_name": "Mohamed Ouédraogo",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": null,
-                "jersey_number": 76,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250200898",
-                "player_name": "Noham Kamara",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": null,
-                "jersey_number": 85,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250170946",
-                "player_name": "Noah Nartey",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 99,
-                "is_late_update": false,
-                "source": "uefa"
-              }
-            ],
-            "absences": null,
-            "coach": {
-              "coach_id": "250087330",
-              "coach_name": "Paulo Fonseca",
-              "role": "coach",
-              "is_late_update": null,
-              "source": "uefa"
-            },
-            "availability": {
-              "lineup": "available",
-              "absences": "unavailable"
-            }
-          },
-          "away": {
-            "team_id": "50033",
-            "name": "Sparta Praha",
-            "elo": 1569.000139139752,
-            "elo_meta": {
-              "rating": 1569.000139139752,
-              "matches": 14,
-              "scope": "club",
-              "source": "provided_prior",
-              "as_of": "2026-08-11T19:00:00Z"
-            },
-            "level": "average",
-            "level_basis": "xgedge_point_in_time_elo_tier",
-            "competition_level": "uefa_champions_league",
-            "recent_matches": [
-              {
-                "match_id": "2048084",
-                "kickoff_utc": "2026-03-19T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "52327",
-                "opponent": "AZ Alkmaar",
-                "score_90": {
-                  "for": 0,
-                  "against": 4
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1591.4702242546603,
-                  "matches": 13,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-03-19T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1603.3402602250949,
-                  "matches": 13,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-03-19T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.48292428830498985,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048084",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2048076",
-                "kickoff_utc": "2026-03-12T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "52327",
-                "opponent": "AZ Alkmaar",
-                "score_90": {
-                  "for": 1,
-                  "against": 2
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1600.0490733120391,
-                  "matches": 12,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2026-03-12T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1594.761411167716,
-                  "matches": 12,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2026-03-12T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5076089700610886,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2048076",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046393",
-                "kickoff_utc": "2025-12-18T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "50122",
-                "opponent": "Aberdeen",
-                "score_90": {
-                  "for": 3,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1589.5965095775648,
-                  "matches": 11,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-18T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1498.8424061200083,
-                  "matches": 1,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-18T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6277140798607835,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046393",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046385",
-                "kickoff_utc": "2025-12-11T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "2606501",
-                "opponent": "U. Craiova",
-                "score_90": {
-                  "for": 2,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1579.2664024360963,
-                  "matches": 10,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-12-11T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1535.7396679461426,
-                  "matches": 10,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-12-11T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5623143373120723,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046385",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046356",
-                "kickoff_utc": "2025-11-27T20:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "50146",
-                "opponent": "Legia Warszawa",
-                "score_90": {
-                  "for": 1,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1569.9138930323033,
-                  "matches": 9,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-27T20:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1492.3862483788653,
-                  "matches": 3,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-11-27T20:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6097555965629885,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046356",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046337",
-                "kickoff_utc": "2025-11-06T17:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "60566",
-                "opponent": "Raków",
-                "score_90": {
-                  "for": 0,
-                  "against": 0
-                },
-                "result_90": "draw",
-                "team_elo_before": {
-                  "rating": 1571.718026010407,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-11-06T17:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1563.342350010311,
-                  "matches": 8,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-11-06T17:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5120512322388004,
-                "actual_team_score": 0.5,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046337",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046324",
-                "kickoff_utc": "2025-10-23T16:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "52356",
-                "opponent": "Rijeka",
-                "score_90": {
-                  "for": 0,
-                  "against": 1
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1582.949524643513,
-                  "matches": 7,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-23T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1484.9445908131931,
-                  "matches": 7,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-23T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6374149408226685,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046324",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2046302",
-                "kickoff_utc": "2025-10-02T19:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "52381",
-                "opponent": "Shamrock Rovers",
-                "score_90": {
-                  "for": 4,
-                  "against": 1
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1569.929977003981,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-10-02T19:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1536.8142600134586,
-                  "matches": 6,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-10-02T19:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5475135496067975,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2046302",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045894",
-                "kickoff_utc": "2025-08-27T16:45:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "away",
-                "opponent_id": "2607924",
-                "opponent": "Riga",
-                "score_90": {
-                  "for": 0,
-                  "against": 1
-                },
-                "result_90": "loss",
-                "team_elo_before": {
-                  "rating": 1580.5884231390946,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-27T16:45:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1502.6785141878547,
-                  "matches": 5,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-27T16:45:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.6102790847219415,
-                "actual_team_score": 0.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045894",
-                  "xg": "not_provided"
-                }
-              },
-              {
-                "match_id": "2045870",
-                "kickoff_utc": "2025-08-21T18:00:00Z",
-                "competition": "UEFA Conference League",
-                "competition_level": "uefa_conference_league",
-                "venue": "home",
-                "opponent_id": "2607924",
-                "opponent": "Riga",
-                "score_90": {
-                  "for": 2,
-                  "against": 0
-                },
-                "result_90": "win",
-                "team_elo_before": {
-                  "rating": 1570.9105978134992,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "provided_prior",
-                  "as_of": "2025-08-21T18:00:00Z"
-                },
-                "opponent_elo_before": {
-                  "rating": 1512.3563395134502,
-                  "matches": 4,
-                  "scope": "club",
-                  "source": "official_results",
-                  "as_of": "2025-08-21T18:00:00Z"
-                },
-                "opponent_level": "average",
-                "elo_expected_team_score_neutral": 0.5834774992507673,
-                "actual_team_score": 1.0,
-                "xg": {
-                  "raw": null,
-                  "non_penalty": {
-                    "status": "unknown",
-                    "value": null,
-                    "source": null,
-                    "method": null,
-                    "reason": "xg_and_npxg_missing",
-                    "assumptions": []
-                  },
-                  "penalty_credit_signal": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "non_penalty_xg_unknown",
-                    "method": "npxg_plus_scored_penalty_credit"
-                  },
-                  "red_and_opponent_adjusted_npxg": {
-                    "status": "unknown",
-                    "value": null,
-                    "reason": "xg_and_npxg_missing"
-                  },
-                  "audit": {
-                    "red_card_adjustment": null,
-                    "opponent_adjustment": null,
-                    "method_order": null
-                  }
-                },
-                "red_cards": null,
-                "provenance": {
-                  "source": "official_uefa_match_api",
-                  "provider": "UEFA",
-                  "match_url": "https://match.uefa.com/v5/matches/2045870",
-                  "xg": "not_provided"
-                }
-              }
-            ],
-            "likely_lineup": [
-              {
-                "player_id": "250127130",
-                "player_name": "Jakub Surovčík",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "GOALKEEPER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 44,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250154458",
-                "player_name": "Martin Suchomel",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": null,
-                "jersey_number": 2,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250220910",
-                "player_name": "Josimar Alcócer",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": null,
-                "jersey_number": 7,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250130777",
-                "player_name": "Adam Karabec",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "ATTACKING_MIDFIELDER",
-                "jersey_number": 10,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250113993",
-                "player_name": "Matěj Ryneš",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "CENTRAL_MIDFIELDER",
-                "jersey_number": 11,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250210371",
-                "player_name": "Jonatan Braut Brunes",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 14,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250211378",
-                "player_name": "John Mercado",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": null,
-                "jersey_number": 17,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250103431",
-                "player_name": "Andrew Irving",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": null,
-                "jersey_number": 18,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250164861",
-                "player_name": "Adam Ševínský",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 19,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250055149",
-                "player_name": "Asger Sørensen",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "CENTRE_BACK",
-                "jersey_number": 25,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250058122",
-                "player_name": "Roman Macek",
-                "status": "starter",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 28,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250118988",
-                "player_name": "Krisztián Hegyi",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "GOALKEEPER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 47,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250195736",
-                "player_name": "Lukáš Franc",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "GOALKEEPER",
-                "detailed_field_position": null,
-                "jersey_number": 54,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250004178",
-                "player_name": "Pavel Kadeřábek",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "FULL_BACK",
-                "jersey_number": 3,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250210632",
-                "player_name": "Santiago Eneme",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": null,
-                "jersey_number": 5,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250192549",
-                "player_name": "Viktor Vitályos",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": null,
-                "jersey_number": 15,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250198282",
-                "player_name": "Joao Grimaldo",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": null,
-                "jersey_number": 21,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250166785",
-                "player_name": "Dominik Hollý",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 24,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250173597",
-                "player_name": "Ebrima Singhateh",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 27,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250183857",
-                "player_name": "Matyáš Vojta",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "FORWARD",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 29,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250026229",
-                "player_name": "Jaroslav Zelený",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "DEFENDER",
-                "detailed_field_position": "FULL_BACK",
-                "jersey_number": 30,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250181436",
-                "player_name": "Garang Kuol",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 36,
-                "is_late_update": false,
-                "source": "uefa"
-              },
-              {
-                "player_id": "250195750",
-                "player_name": "Hugo Sochůrek",
-                "status": "substitute",
-                "is_confirmed": true,
-                "expected_minutes": null,
-                "field_position": "MIDFIELDER",
-                "detailed_field_position": "UNKNOWN",
-                "jersey_number": 38,
-                "is_late_update": false,
-                "source": "uefa"
-              }
-            ],
-            "absences": null,
-            "coach": {
-              "coach_id": "46125",
-              "coach_name": "Brian Priske",
-              "role": "coach",
-              "is_late_update": null,
-              "source": "uefa"
-            },
-            "availability": {
-              "lineup": "available",
-              "absences": "unavailable"
-            }
-          }
-        },
-        "referee": {
-          "status": "available",
-          "referee_id": null,
-          "name": "Szymon Marciniak",
-          "season": null,
-          "matches": null,
-          "yellow_cards_per_match": null,
-          "red_cards_per_match": null,
-          "comparison": null,
-          "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
-        },
-        "weather": {
-          "status": "available",
-          "temperature_c": 32.9,
-          "wind_kph": 7.2,
-          "precipitation_mm": 0.0,
-          "condition": "ясно",
-          "forecast_for": "2026-08-11T19:00:00Z",
-          "source": "open_meteo",
-          "snapshot_at": "2026-08-03T20:02:57Z"
-        },
-        "context_availability": {
-          "lineups": {
-            "status": "available",
-            "reason": null,
-            "provider": "uefa_lineups",
-            "snapshot_at": "2026-08-11T18:45:37Z"
-          },
-          "absences": {
-            "status": "unavailable",
-            "reason": "provider_not_configured",
-            "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
-          },
-          "referee": {
-            "status": "available",
-            "reason": null,
-            "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
-          },
-          "weather": {
-            "status": "available",
-            "reason": null,
-            "provider": "open_meteo",
-            "snapshot_at": "2026-08-03T20:02:57Z"
-          },
-          "coaches": {
-            "status": "available",
-            "reason": null,
-            "provider": "uefa_lineups",
-            "snapshot_at": "2026-08-11T18:45:37Z"
-          }
-        },
-        "adjustments": [
-          {
-            "name": "penalty_removal",
-            "method": "provider_npxg_or_raw_xg_minus_known_penalty_xg",
-            "standard_penalty_xg": 0.76
-          },
-          {
-            "name": "red_card_neutralization",
-            "method": "event_time_score_state_heuristic_v1",
-            "warning": "heuristic_not_causal_estimate"
-          },
-          {
-            "name": "opponent_strength",
-            "method": "point_in_time_elo_ratio_clamped_v1",
-            "factor_clamp": [
-              0.7,
-              1.4
-            ]
-          }
-        ],
-        "data_quality": {
-          "score": 60.0,
-          "label": "medium",
-          "sources": [
-            "official_fixture",
-            "official_uefa_match_api",
-            "open_meteo",
-            "uefa_lineups"
-          ],
-          "warnings": [
-            "some_adjusted_npxg_is_unknown",
-            "absences_unavailable"
-          ],
-          "scoring": {
-            "official_history_max": 30,
-            "adjusted_npxg_coverage_max": 30,
-            "lineup_absence_referee_weather_max": 40
-          }
-        },
-        "tail_risk": {
-          "label": "medium",
-          "score": 38.96,
-          "coverage_weight": 90.0,
-          "drivers": [
-            {
-              "name": "outcome_entropy",
-              "status": "available",
-              "weight": 25.0,
-              "raw": 0.9428400945904898,
-              "contribution": 23.571002364762244
-            },
-            {
-              "name": "recent_elo_surprise",
-              "status": "available",
-              "weight": 25.0,
-              "raw": 0.4155114988613907,
-              "sample": 20,
-              "contribution": 10.387787471534768
-            },
-            {
-              "name": "history_sparsity",
-              "status": "available",
-              "weight": 20.0,
-              "raw": 0.0,
-              "minimum_team_matches": 10,
-              "contribution": 0.0
-            },
-            {
-              "name": "missing_prematch_context",
-              "status": "available",
-              "weight": 20.0,
-              "raw": 0.25,
-              "missing": 1,
-              "total": 4,
-              "contribution": 5.0
-            },
-            {
-              "name": "recent_red_card_incidence",
-              "status": "unknown",
-              "weight": 10.0,
-              "contribution": 0.0
-            }
-          ],
-          "interpretation": "forecast_fragility_and_tail_exposure_not_black_swan_prediction"
-        },
-        "candidate_bets": [
-          {
-            "selection": "П1",
-            "probability": 0.5052855390127768,
-            "fair_odds": 1.9790790014568647,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 1
-          },
-          {
-            "selection": "X",
-            "probability": 0.25413109890692115,
-            "fair_odds": 3.93497688516376,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 2
-          },
-          {
-            "selection": "П2",
-            "probability": 0.24058336208030204,
-            "fair_odds": 4.1565634105080775,
-            "market_odds": null,
-            "point_edge": null,
-            "status": "NO_VERIFIED_MARKET_PRICE",
-            "rank": 3
-          }
-        ],
-        "betting_gate": {
-          "allowed": false,
-          "reason": "no_validated_positive_clv_edge"
-        },
-        "disclaimer": "Dossier context is descriptive; it does not establish a betting edge."
-      },
-      "decision_status": "MODEL_FORECAST_AVAILABLE",
-      "model_status": "EXPERIMENTAL_BACKGROUND_AUDIT",
-      "market_period": "REGULATION_90_MINUTES",
-      "betting_eligible": false,
-      "evaluation_cohort_id": "cohort-b013b02c74df3bc9c40b21a2",
-      "cohort_gate": {
-        "allowed": false,
-        "action": "NO BET",
-        "reason": "cohort_not_yet_tracked",
-        "decision_status": "pending"
-      },
-      "prospective_clv": {
-        "cohort_id": "cohort-b013b02c74df3bc9c40b21a2",
-        "gate": {
-          "allowed": false,
-          "action": "NO BET",
-          "reason": "cohort_not_yet_tracked",
-          "decision_status": "pending"
-        }
-      }
-    },
     {
       "id": "2049189",
       "competition": "UEFA Conference League",
@@ -3540,7 +728,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049189",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50145",
@@ -3861,7 +1049,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -3878,19 +1066,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -3902,7 +1090,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -4759,7 +1947,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049199",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50042",
@@ -5990,7 +3178,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -6007,19 +3195,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -6031,7 +3219,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -6888,7 +4076,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049201",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52709",
@@ -7729,7 +4917,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -7746,19 +4934,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -7770,7 +4958,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -8627,7 +5815,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049181",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "79969",
@@ -9338,7 +6526,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -9355,19 +6543,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -9379,7 +6567,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -10236,7 +7424,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049177",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "59341",
@@ -11077,7 +8265,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -11094,19 +8282,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -11118,7 +8306,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -11975,7 +9163,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049192",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "60609",
@@ -13336,7 +10524,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -13353,19 +10541,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -13377,7 +10565,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -15305,7 +12493,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049203",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2602511",
@@ -16536,7 +13724,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -16553,19 +13741,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -16577,7 +13765,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -17434,7 +14622,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049204",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50156",
@@ -17755,7 +14943,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -17772,19 +14960,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -17796,7 +14984,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -18653,7 +15841,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049202",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2609104",
@@ -19494,7 +16682,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -19511,19 +16699,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -19535,7 +16723,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -21451,7 +18639,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049176",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2613945",
@@ -22162,7 +19350,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -22179,19 +19367,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -22203,7 +19391,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -23060,7 +20248,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049178",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52287",
@@ -24421,7 +21609,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -24438,19 +21626,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -24462,7 +21650,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -25318,7 +22506,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049186",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50161",
@@ -26549,7 +23737,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -26566,19 +23754,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -26590,7 +23778,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -28519,7 +25707,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049187",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "79940",
@@ -29100,7 +26288,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -29117,19 +26305,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -29141,7 +26329,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -29998,7 +27186,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049191",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "53001",
@@ -30839,7 +28027,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -30856,19 +28044,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -30880,7 +28068,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -31737,7 +28925,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049195",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52343",
@@ -32838,7 +30026,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -32855,19 +30043,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -32879,7 +30067,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -33736,7 +30924,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049200",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "75795",
@@ -34707,7 +31895,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -34724,19 +31912,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -34748,7 +31936,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -35605,7 +32793,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049132",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50077",
@@ -36966,7 +34154,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -36983,19 +34171,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -37007,7 +34195,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -37863,7 +35051,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049133",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2606501",
@@ -39224,7 +36412,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -39241,19 +36429,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -39265,7 +36453,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -40121,7 +37309,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049137",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50157",
@@ -40832,7 +38020,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -40849,19 +38037,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -40873,7 +38061,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -41730,7 +38918,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049140",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2609532",
@@ -43091,7 +40279,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -43108,19 +40296,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -43132,7 +40320,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -45118,7 +42306,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049144",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50063",
@@ -45959,7 +43147,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -45976,19 +43164,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -46000,7 +43188,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -46857,7 +44045,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049179",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "57482",
@@ -47568,7 +44756,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -47585,19 +44773,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -47609,7 +44797,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -49596,7 +46784,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049194",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "64150",
@@ -50437,7 +47625,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -50454,19 +47642,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -50478,7 +47666,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -51335,7 +48523,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049135",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "57475",
@@ -52696,7 +49884,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -52713,19 +49901,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -52737,7 +49925,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -53593,7 +50781,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049136",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52697",
@@ -54434,7 +51622,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -54451,19 +51639,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -54475,7 +51663,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -56578,7 +53766,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049175",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2608290",
@@ -57549,7 +54737,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -57566,19 +54754,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -57590,7 +54778,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -58447,7 +55635,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049188",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "51151",
@@ -59288,7 +56476,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -59305,19 +56493,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -59329,7 +56517,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -60186,7 +57374,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049197",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "75807",
@@ -61417,7 +58605,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -61434,19 +58622,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -61458,7 +58646,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -62315,7 +59503,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049142",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "2608297",
@@ -63286,7 +60474,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -63303,19 +60491,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -63327,7 +60515,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -64184,7 +61372,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049185",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52824",
@@ -65025,7 +62213,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -65042,19 +62230,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -65066,7 +62254,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -65923,7 +63111,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049190",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50110",
@@ -66764,7 +63952,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -66781,19 +63969,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -66805,7 +63993,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -67662,7 +64850,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049196",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "53035",
@@ -68243,7 +65431,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -68260,19 +65448,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -68284,7 +65472,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -69141,7 +66329,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049198",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "4608",
@@ -69468,19 +66656,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "referee",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -69492,7 +66680,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -70349,7 +67537,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049138",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50121",
@@ -71710,7 +68898,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -71727,19 +68915,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -71751,7 +68939,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -72607,7 +69795,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049139",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50074",
@@ -73838,7 +71026,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -73855,19 +71043,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -73879,7 +71067,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -74736,7 +71924,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049183",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "53020",
@@ -76097,7 +73285,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -76114,19 +73302,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -76138,7 +73326,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -76994,7 +74182,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049141",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50120",
@@ -77835,7 +75023,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -77852,19 +75040,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -77876,7 +75064,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -78733,7 +75921,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049180",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52359",
@@ -79834,7 +77022,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -79851,19 +77039,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -79875,7 +77063,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -80732,7 +77920,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049184",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "52792",
@@ -81703,7 +78891,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -81720,19 +78908,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -81744,7 +78932,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -82601,7 +79789,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049134",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "88148",
@@ -83962,7 +81150,7 @@
           "red_cards_per_match": null,
           "comparison": null,
           "source": "official_fixture",
-          "snapshot_at": "2026-08-11T18:45:38Z"
+          "snapshot_at": "2026-08-11T19:54:33Z"
         },
         "weather": {
           "status": "available",
@@ -83979,19 +81167,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "available",
             "reason": null,
             "provider": "official_fixture",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "available",
@@ -84003,7 +81191,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -84852,7 +82040,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049209",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "50050",
@@ -85559,19 +82747,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "referee",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "unavailable",
@@ -85583,7 +82771,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -86433,7 +83621,7 @@
       "details": {
         "schema_version": "match-dossier/1.0",
         "fixture_id": "2049216",
-        "generated_as_of": "2026-08-11T18:45:38Z",
+        "generated_as_of": "2026-08-11T19:54:33Z",
         "teams": {
           "home": {
             "team_id": "63405",
@@ -87140,19 +84328,19 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "lineups",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "absences": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "absences",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "referee": {
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "referee",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           },
           "weather": {
             "status": "unavailable",
@@ -87164,7 +84352,7 @@
             "status": "unavailable",
             "reason": "provider_not_configured",
             "provider": "coaches",
-            "snapshot_at": "2026-08-11T18:45:38Z"
+            "snapshot_at": "2026-08-11T19:54:33Z"
           }
         },
         "adjustments": [
@@ -87310,6 +84498,39 @@
       }
     }
   ],
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-11T18:12:11Z",
+    "matched_forecasts": 6,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-11T18:10:05Z",
+        "received_at": "2026-08-11T18:12:11Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-11T17:16:40Z",
+        "received_at": "2026-08-11T17:18:41Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-11T15:10:13Z",
+        "received_at": "2026-08-11T15:12:17Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 96,
+      "limit": 100,
+      "reset": "2026-08-11T18:16:40Z"
+    }
+  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -87644,7 +84865,7 @@
     "schema_version": "paper-candidate-ranking/1.0",
     "status": "PAPER_ONLY",
     "real_money_execution": false,
-    "generated_at": "2026-08-11T18:45:38Z",
+    "generated_at": "2026-08-11T19:54:33Z",
     "policy": {
       "version": "paper-ranking-v2-lcb95",
       "maximum_odds": 6.0,
@@ -87666,7 +84887,7 @@
     "displayed_candidates": 0,
     "rejection_counts": {
       "data_quality_below_threshold": 6,
-      "missing_verified_market_candidates": 37
+      "missing_verified_market_candidates": 36
     },
     "candidates": []
   },
@@ -87770,39 +84991,6 @@
     "parlays": {
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
-    }
-  },
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-11T18:12:11Z",
-    "matched_forecasts": 6,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-11T18:10:05Z",
-        "received_at": "2026-08-11T18:12:11Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-11T17:16:40Z",
-        "received_at": "2026-08-11T17:18:41Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-11T15:10:13Z",
-        "received_at": "2026-08-11T15:12:17Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 96,
-      "limit": 100,
-      "reset": "2026-08-11T18:16:40Z"
     }
   }
 }
