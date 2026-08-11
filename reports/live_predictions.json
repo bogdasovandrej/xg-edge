@@ -23832,7 +23832,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T17:18:41Z",
+          "captured_at_utc": "2026-08-11T18:12:11Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -23990,7 +23990,7 @@
                 "bookmaker": "Bet365"
               },
               "under": {
-                "odds": 1.4,
+                "odds": 1.41,
                 "bookmaker_key": "unibet",
                 "bookmaker": "Unibet"
               }
@@ -24634,10 +24634,10 @@
             "line": 3.5,
             "probability": 0.6584324119231121,
             "fair_odds": 1.5187587699081468,
-            "market_odds": 1.4,
+            "market_odds": 1.41,
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
-            "point_edge": -0.07819462330764315,
+            "point_edge": -0.071610299188412,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -29991,7 +29991,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T17:18:41Z",
+          "captured_at_utc": "2026-08-11T18:12:11Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -37046,7 +37046,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T17:18:41Z",
+          "captured_at_utc": "2026-08-11T18:12:11Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -53587,7 +53587,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T17:18:41Z",
+          "captured_at_utc": "2026-08-11T18:12:11Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -53910,7 +53910,7 @@
             {
               "line": 0.5,
               "home": {
-                "odds": 1.63,
+                "odds": 1.62,
                 "bookmaker_key": "unibet",
                 "bookmaker": "Unibet"
               },
@@ -54127,10 +54127,10 @@
             "line": 0.5,
             "probability": 0.8141427190440639,
             "fair_odds": 1.2282858724993118,
-            "market_odds": 1.63,
+            "market_odds": 1.62,
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
-            "point_edge": 0.3270526320418241,
+            "point_edge": 0.3189112048513836,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -58065,7 +58065,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T17:18:41Z",
+          "captured_at_utc": "2026-08-11T18:12:11Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -64931,7 +64931,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-11T17:18:41Z",
+          "captured_at_utc": "2026-08-11T18:12:11Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -97639,40 +97639,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-11T17:18:41Z",
-    "matched_forecasts": 6,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_champs_league",
-      "soccer_uefa_europa_conference_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-11T17:16:40Z",
-        "received_at": "2026-08-11T17:18:41Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-11T17:16:40Z",
-        "received_at": "2026-08-11T17:18:41Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-11T15:10:13Z",
-        "received_at": "2026-08-11T15:12:17Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-08-11T18:16:40Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -98134,5 +98100,39 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-11T18:12:11Z",
+    "matched_forecasts": 6,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_champs_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-11T18:10:05Z",
+        "received_at": "2026-08-11T18:12:11Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-11T17:16:40Z",
+        "received_at": "2026-08-11T17:18:41Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-11T15:10:13Z",
+        "received_at": "2026-08-11T15:12:17Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 96,
+      "limit": 100,
+      "reset": "2026-08-11T18:16:40Z"
+    }
+  },
+  "odds_snapshot_at": "2026-08-11T18:12:11Z"
 }
