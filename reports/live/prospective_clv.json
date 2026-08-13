@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-08-13T15:45:01Z",
+  "updated_at": "2026-08-13T16:41:46Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -5876,10 +5876,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-13T16:41:46Z",
+          "phase": "closing_window",
+          "provider_event_id": "73011670",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-13T16:41:33Z",
+              "odds": {
+                "home": 8.0,
+                "draw": 4.1,
+                "away": 1.38
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-13T16:23:03Z",
+              "odds": {
+                "home": 7.5,
+                "draw": 4.25,
+                "away": 1.38
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-13T16:41:46Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.11813323799644625,
+          "draw": 0.21913038724136558,
+          "away": 0.6627363747621882
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null
@@ -6328,10 +6370,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-13T16:41:46Z",
+          "phase": "closing_window",
+          "provider_event_id": "73009108",
+          "sport_key": "international-clubs-uefa-europa-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-13T16:41:33Z",
+              "odds": {
+                "home": 2.75,
+                "draw": 3.5,
+                "away": 2.3
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-13T16:23:03Z",
+              "odds": {
+                "home": 3.15,
+                "draw": 3.4,
+                "away": 2.14
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-13T16:41:46Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.31483495605343687,
+          "draw": 0.26807932202989987,
+          "away": 0.4170857219166633
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null
@@ -6780,10 +6864,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-13T16:41:46Z",
+          "phase": "closing_window",
+          "provider_event_id": "73008762",
+          "sport_key": "international-clubs-uefa-europa-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-13T16:39:49Z",
+              "odds": {
+                "home": 2.05,
+                "draw": 3.75,
+                "away": 2.875
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-13T16:40:43Z",
+              "odds": {
+                "home": 2.18,
+                "draw": 3.6,
+                "away": 2.9
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-13T16:41:46Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.4333762153942186,
+          "draw": 0.24940318845722362,
+          "away": 0.31722059614855785
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null
@@ -7204,10 +7330,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-13T16:41:46Z",
+          "phase": "closing_window",
+          "provider_event_id": "73011684",
+          "sport_key": "international-clubs-uefa-conference-league-qualification",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-13T16:41:09Z",
+              "odds": {
+                "home": 1.75,
+                "draw": 3.9,
+                "away": 3.9
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-13T11:55:56Z",
+              "odds": {
+                "home": 1.79,
+                "draw": 3.65,
+                "away": 4.0
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-13T16:41:46Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.5215233037480197,
+          "draw": 0.24477407187879557,
+          "away": 0.23370262437318473
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null

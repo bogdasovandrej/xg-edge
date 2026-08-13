@@ -2,7 +2,7 @@
   "schema_version": "paper-trading-ledger/1.1",
   "event_schema_version": "paper-event/1.0",
   "created_at": "2026-07-20T22:30:00Z",
-  "updated_at": "2026-07-20T22:30:00Z",
+  "updated_at": "2026-08-13T16:41:47Z",
   "policy": {
     "mode": "PAPER_ONLY",
     "real_money_execution": false,
@@ -52,6 +52,20 @@
           "strategy_id": "flat_1pct",
           "cycle_id": "flat_1pct:cycle:1",
           "starting_balance_rub": 10000.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:8856a58563c3629b54a09db4",
+          "timestamp": "2026-08-13T16:41:47Z",
+          "strategy_id": "flat_1pct",
+          "cycle_id": "flat_1pct:cycle:1",
+          "bet_id": "paper-bet:8856a58563c3629b54a09db4",
+          "match_id": "2049140",
+          "odds": 3.15,
+          "model_probability": 0.5838479030823313,
+          "bookmaker_probability": 0.31746031746031744,
+          "stake_rub": 100.0
         }
       ]
     },
@@ -67,6 +81,20 @@
           "strategy_id": "fractional_kelly_025",
           "cycle_id": "fractional_kelly_025:cycle:1",
           "starting_balance_rub": 10000.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:2552f8d9bc1093ab52c1dd90",
+          "timestamp": "2026-08-13T16:41:47Z",
+          "strategy_id": "fractional_kelly_025",
+          "cycle_id": "fractional_kelly_025:cycle:1",
+          "bet_id": "paper-bet:2552f8d9bc1093ab52c1dd90",
+          "match_id": "2049140",
+          "odds": 3.15,
+          "model_probability": 0.5838479030823313,
+          "bookmaker_probability": 0.31746031746031744,
+          "stake_rub": 100.0
         }
       ]
     },
@@ -82,28 +110,100 @@
           "strategy_id": "conservative_edge_5pp",
           "cycle_id": "conservative_edge_5pp:cycle:1",
           "starting_balance_rub": 10000.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:05223cd5baf9bd3df283b632",
+          "timestamp": "2026-08-13T16:41:47Z",
+          "strategy_id": "conservative_edge_5pp",
+          "cycle_id": "conservative_edge_5pp:cycle:1",
+          "bet_id": "paper-bet:05223cd5baf9bd3df283b632",
+          "match_id": "2049140",
+          "odds": 3.15,
+          "model_probability": 0.5838479030823313,
+          "bookmaker_probability": 0.31746031746031744,
+          "stake_rub": 100.0
         }
       ]
     }
   },
-  "enrollments": {},
+  "enrollments": {
+    "2049140": {
+      "fixture_id": "2049140",
+      "competition": "UEFA Europa League",
+      "stage": "3-й квалификационный раунд · ответный матч",
+      "kickoff_utc": "2026-08-13T17:00:00Z",
+      "home": "Pafos",
+      "away": "Salzburg",
+      "selection": "П1",
+      "outcome": "home",
+      "market": "1x2",
+      "line": null,
+      "model_probability": 0.5838479030823313,
+      "bookmaker_probability": 0.31746031746031744,
+      "odds": 3.15,
+      "bookmaker": "Unibet",
+      "bookmaker_key": "unibet",
+      "quote_source": "odds_api_io",
+      "quote_captured_at": "2026-08-13T16:41:46Z",
+      "data_quality_score": 60.0,
+      "point_edge": 0.8391208947093434,
+      "robust_edge": 0.6196986447830604,
+      "market_period": "REGULATION_90_MINUTES",
+      "enrolled_at": "2026-08-13T16:41:47Z",
+      "strategy_actions": {
+        "flat_1pct": {
+          "accepted": true,
+          "bet_id": "paper-bet:8856a58563c3629b54a09db4",
+          "reason": "accepted",
+          "stake_rub": 100.0,
+          "stake_fraction": 0.01
+        },
+        "fractional_kelly_025": {
+          "accepted": true,
+          "bet_id": "paper-bet:2552f8d9bc1093ab52c1dd90",
+          "reason": "accepted",
+          "stake_rub": 100.0,
+          "stake_fraction": 0.01
+        },
+        "conservative_edge_5pp": {
+          "accepted": true,
+          "bet_id": "paper-bet:05223cd5baf9bd3df283b632",
+          "reason": "accepted",
+          "stake_rub": 100.0,
+          "stake_fraction": 0.01
+        }
+      }
+    }
+  },
   "settlements": {},
-  "update_history": [],
+  "update_history": [
+    {
+      "update_id": "paper-update:250351e18d8ca3ea30b54020",
+      "updated_at": "2026-08-13T16:41:47Z",
+      "enrolled_fixture_ids": [
+        "2049140"
+      ],
+      "settled_fixture_ids": [],
+      "event_count_after": 6
+    }
+  ],
   "paper_trading": {
     "schema_version": "paper-trading-summary/1.0",
-    "status": "PAPER_ONLY_EMPTY",
+    "status": "PAPER_ONLY_TRACKING",
     "real_money_execution": false,
-    "updated_at": "2026-07-20T22:30:00Z",
+    "updated_at": "2026-08-13T16:41:47Z",
     "starting_balance_rub": 10000.0,
     "target_balance_rub": 1000000.0,
     "target_role": "diagnostic_only_not_ranking_input",
     "totals": {
       "strategies": 3,
-      "enrolled_matches": 0,
+      "enrolled_matches": 1,
       "settled_matches": 0,
-      "open_matches": 0,
+      "open_matches": 1,
       "settled_bets": 0,
-      "open_bets": 0
+      "open_bets": 3
     },
     "leaderboard": [
       {
@@ -112,7 +212,7 @@
         "label": "Только edge от 5 п.п.",
         "score": 0.0,
         "equity_balance_rub": 10000.0,
-        "available_balance_rub": 10000.0,
+        "available_balance_rub": 9900.0,
         "pnl_rub": 0.0,
         "roi": 0.0,
         "max_drawdown": 0.0,
@@ -120,7 +220,7 @@
         "mean_clv": null,
         "total_staked_rub": 0.0,
         "settled_bets": 0,
-        "open_bets": 0,
+        "open_bets": 1,
         "wins": 0,
         "losses": 0,
         "pushes": 0,
@@ -136,7 +236,7 @@
         "label": "Фиксированные 1%",
         "score": 0.0,
         "equity_balance_rub": 10000.0,
-        "available_balance_rub": 10000.0,
+        "available_balance_rub": 9900.0,
         "pnl_rub": 0.0,
         "roi": 0.0,
         "max_drawdown": 0.0,
@@ -144,7 +244,7 @@
         "mean_clv": null,
         "total_staked_rub": 0.0,
         "settled_bets": 0,
-        "open_bets": 0,
+        "open_bets": 1,
         "wins": 0,
         "losses": 0,
         "pushes": 0,
@@ -160,7 +260,7 @@
         "label": "1/4 Kelly, лимит 1%",
         "score": 0.0,
         "equity_balance_rub": 10000.0,
-        "available_balance_rub": 10000.0,
+        "available_balance_rub": 9900.0,
         "pnl_rub": 0.0,
         "roi": 0.0,
         "max_drawdown": 0.0,
@@ -168,7 +268,7 @@
         "mean_clv": null,
         "total_staked_rub": 0.0,
         "settled_bets": 0,
-        "open_bets": 0,
+        "open_bets": 1,
         "wins": 0,
         "losses": 0,
         "pushes": 0,
@@ -179,7 +279,13 @@
         "target_hit_count": 0
       }
     ],
-    "markets": {},
+    "markets": {
+      "1x2": {
+        "enrolled": 1,
+        "settled": 0,
+        "open": 1
+      }
+    },
     "selection_policy": {
       "status": "PREREGISTERED",
       "minimum_settled_bets_for_full_evidence": 100,
