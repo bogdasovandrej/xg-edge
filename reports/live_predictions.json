@@ -5031,7 +5031,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-13T14:49:56Z",
+          "captured_at_utc": "2026-08-13T15:45:01Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -5045,7 +5045,7 @@
               "bookmaker": "Unibet"
             },
             "away": {
-              "odds": 3.7,
+              "odds": 3.75,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             }
@@ -5132,7 +5132,7 @@
             {
               "line": 2.5,
               "over": {
-                "odds": 1.9,
+                "odds": 1.95,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
@@ -5328,14 +5328,14 @@
             {
               "line": -0.5,
               "home": {
-                "odds": 1.875,
-                "bookmaker_key": "bet365_no_latency",
-                "bookmaker": "Bet365 (no latency)"
+                "odds": 1.81,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
               },
               "away": {
-                "odds": 1.925,
-                "bookmaker_key": "bet365_no_latency",
-                "bookmaker": "Bet365 (no latency)"
+                "odds": 1.85,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
               }
             },
             {
@@ -5398,7 +5398,7 @@
               "bookmaker": "Unibet"
             },
             "away": {
-              "odds": 2.75,
+              "odds": 3.0,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             }
@@ -5410,7 +5410,7 @@
               "bookmaker": "Unibet"
             },
             "home_away": {
-              "odds": 1.222,
+              "odds": 1.25,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             },
@@ -5463,10 +5463,10 @@
             "line": null,
             "probability": 0.1984861403970125,
             "fair_odds": 5.038135146362347,
-            "market_odds": 3.7,
+            "market_odds": 3.75,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.2656012805310537,
+            "point_edge": -0.2556769735112031,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -5507,6 +5507,22 @@
             "rank": 2
           },
           {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5655150159955757,
+            "fair_odds": 1.7682996414153986,
+            "market_odds": 1.95,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.10275428119137264,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
             "selection": "Qarabağ -1.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -5520,39 +5536,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 3
-          },
-          {
-            "selection": "Qarabağ -0.5",
-            "outcome": "home",
-            "market": "asian_handicap",
-            "line": -0.5,
-            "probability": 0.5818901801579428,
-            "fair_odds": 1.7185373359085891,
-            "market_odds": 1.875,
-            "bookmaker": "Bet365 (no latency)",
-            "bookmaker_key": "bet365_no_latency",
-            "point_edge": 0.0910440877961427,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
             "rank": 4
-          },
-          {
-            "selection": "ТБ 2.5",
-            "outcome": "over",
-            "market": "totals",
-            "line": 2.5,
-            "probability": 0.5655150159955757,
-            "fair_odds": 1.7682996414153986,
-            "market_odds": 1.9,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.0744785303915938,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 5
           },
           {
             "selection": "ТБ 3",
@@ -5565,6 +5549,22 @@
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
             "point_edge": 0.06732640265192913,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 5
+          },
+          {
+            "selection": "Qarabağ -0.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": -0.5,
+            "probability": 0.5818901801579428,
+            "fair_odds": 1.7185373359085891,
+            "market_odds": 1.81,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.05322122608587643,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -5731,6 +5731,22 @@
             "rank": 16
           },
           {
+            "selection": "12",
+            "outcome": "home_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.7803751930696399,
+            "fair_odds": 1.2814348903973438,
+            "market_odds": 1.25,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.024531008662950216,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          },
+          {
             "selection": "ТБ 4.5",
             "outcome": "over",
             "market": "totals",
@@ -5744,7 +5760,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 17
+            "rank": 18
           },
           {
             "selection": "ТМ 5.5",
@@ -5757,22 +5773,6 @@
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
             "point_edge": -0.04211968603930738,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 18
-          },
-          {
-            "selection": "12",
-            "outcome": "home_away",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.7803751930696399,
-            "fair_odds": 1.2814348903973438,
-            "market_odds": 1.222,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.04638151406890012,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -5923,22 +5923,6 @@
             "rank": 28
           },
           {
-            "selection": "Dynamo Kyiv +0.5",
-            "outcome": "away",
-            "market": "asian_handicap",
-            "line": 0.5,
-            "probability": 0.4181098198420573,
-            "fair_odds": 2.391716129455544,
-            "market_odds": 1.925,
-            "bookmaker": "Bet365 (no latency)",
-            "bookmaker_key": "bet365_no_latency",
-            "point_edge": -0.19513859680403967,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 29
-          },
-          {
             "selection": "ТМ 1.5",
             "outcome": "under",
             "market": "totals",
@@ -5949,6 +5933,22 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": -0.22471810386985214,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 29
+          },
+          {
+            "selection": "Dynamo Kyiv +0.5",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.4181098198420573,
+            "fair_odds": 2.391716129455544,
+            "market_odds": 1.85,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.22649683329219394,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -5971,6 +5971,22 @@
             "rank": 31
           },
           {
+            "selection": "Dynamo Kyiv DNB",
+            "outcome": "away",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.25434562076601613,
+            "fair_odds": 3.931658021035654,
+            "market_odds": 3.0,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.23696313770195165,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 32
+          },
+          {
             "selection": "ТМ 2",
             "outcome": "under",
             "market": "totals",
@@ -5984,7 +6000,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 32
+            "rank": 33
           },
           {
             "selection": "Dynamo Kyiv -0",
@@ -6000,7 +6016,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 33
+            "rank": 34
           },
           {
             "selection": "ТБ 5.5",
@@ -6013,22 +6029,6 @@
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
             "point_edge": -0.2893488708136863,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 34
-          },
-          {
-            "selection": "Dynamo Kyiv DNB",
-            "outcome": "away",
-            "market": "draw_no_bet",
-            "line": null,
-            "probability": 0.25434562076601613,
-            "fair_odds": 3.931658021035654,
-            "market_odds": 2.75,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.3005495428934556,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -11756,7 +11756,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-13T14:49:56Z",
+          "captured_at_utc": "2026-08-13T15:45:01Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -11857,12 +11857,12 @@
             {
               "line": 2.25,
               "over": {
-                "odds": 1.95,
-                "bookmaker_key": "bet365_no_latency",
-                "bookmaker": "Bet365 (no latency)"
+                "odds": 1.9,
+                "bookmaker_key": "bet365",
+                "bookmaker": "Bet365"
               },
               "under": {
-                "odds": 1.875,
+                "odds": 1.9,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -12025,14 +12025,27 @@
               }
             },
             {
+              "line": -0.25,
+              "home": {
+                "odds": 1.85,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              },
+              "away": {
+                "odds": 1.95,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              }
+            },
+            {
               "line": 0.0,
               "home": {
-                "odds": 1.5,
+                "odds": 1.475,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "away": {
-                "odds": 2.5,
+                "odds": 2.6,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -12040,9 +12053,9 @@
             {
               "line": 0.5,
               "home": {
-                "odds": 1.3,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
+                "odds": 1.27,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
               },
               "away": {
                 "odds": 3.3,
@@ -12053,25 +12066,12 @@
             {
               "line": 0.75,
               "home": {
-                "odds": 1.2,
+                "odds": 1.19,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "away": {
-                "odds": 1.55,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 1.0,
-              "home": {
-                "odds": 1.105,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "away": {
-                "odds": 1.375,
+                "odds": 1.575,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -12350,38 +12350,6 @@
             "rank": 11
           },
           {
-            "selection": "RFS +0",
-            "outcome": "home",
-            "market": "asian_handicap",
-            "line": 0.0,
-            "probability": 0.64748696935802,
-            "fair_odds": 1.5444326254032492,
-            "market_odds": 1.5,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.02876954596296999,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 12
-          },
-          {
-            "selection": "RFS +1",
-            "outcome": "home",
-            "market": "asian_handicap",
-            "line": 1.0,
-            "probability": 0.8749184474311898,
-            "fair_odds": 1.1429636704267199,
-            "market_odds": 1.105,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.03321511558853518,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 13
-          },
-          {
             "selection": "RFS -0.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -12395,7 +12363,23 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 14
+            "rank": 12
+          },
+          {
+            "selection": "RFS +0",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": 0.0,
+            "probability": 0.64748696935802,
+            "fair_odds": 1.5444326254032492,
+            "market_odds": 1.475,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.04495672019692054,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 13
           },
           {
             "selection": "ТМ 5.5",
@@ -12411,7 +12395,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 15
+            "rank": 14
           },
           {
             "selection": "RFS -1.5",
@@ -12427,23 +12411,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 16
-          },
-          {
-            "selection": "RFS +0.5",
-            "outcome": "home",
-            "market": "asian_handicap",
-            "line": 0.5,
-            "probability": 0.7337446140550615,
-            "fair_odds": 1.3628720141105637,
-            "market_odds": 1.3,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.046132001728420025,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 17
+            "rank": 15
           },
           {
             "selection": "RFS +1.5",
@@ -12459,7 +12427,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 18
+            "rank": 16
           },
           {
             "selection": "RFS DNB",
@@ -12475,7 +12443,23 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 19
+            "rank": 17
+          },
+          {
+            "selection": "RFS +0.5",
+            "outcome": "home",
+            "market": "asian_handicap",
+            "line": 0.5,
+            "probability": 0.7337446140550615,
+            "fair_odds": 1.3628720141105637,
+            "market_odds": 1.27,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.06814434015007187,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 18
           },
           {
             "selection": "Jablonec DNB",
@@ -12488,6 +12472,22 @@
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
             "point_edge": -0.07465329456480285,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 19
+          },
+          {
+            "selection": "Jablonec -0",
+            "outcome": "away",
+            "market": "asian_handicap",
+            "line": -0.0,
+            "probability": 0.35251303064197986,
+            "fair_odds": 2.8367745673935736,
+            "market_odds": 2.6,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.08346612033085232,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -12542,22 +12542,6 @@
             "rank": 23
           },
           {
-            "selection": "Jablonec -0",
-            "outcome": "away",
-            "market": "asian_handicap",
-            "line": -0.0,
-            "probability": 0.35251303064197986,
-            "fair_odds": 2.8367745673935736,
-            "market_odds": 2.5,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.11871742339505031,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 24
-          },
-          {
             "selection": "Jablonec +0.5",
             "outcome": "away",
             "market": "asian_handicap",
@@ -12571,7 +12555,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 25
+            "rank": 24
           },
           {
             "selection": "Jablonec -0.5",
@@ -12587,7 +12571,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 26
+            "rank": 25
           },
           {
             "selection": "X2",
@@ -12603,7 +12587,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 27
+            "rank": 26
           },
           {
             "selection": "ТМ 3.5",
@@ -12619,7 +12603,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 28
+            "rank": 27
           },
           {
             "selection": "ОЗ — нет",
@@ -12635,7 +12619,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 29
+            "rank": 28
           },
           {
             "selection": "ТМ 3",
@@ -12651,7 +12635,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 30
+            "rank": 29
           },
           {
             "selection": "ТМ 2.5",
@@ -12667,7 +12651,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 31
+            "rank": 30
           },
           {
             "selection": "Jablonec -1.5",
@@ -12683,7 +12667,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 32
+            "rank": 31
           },
           {
             "selection": "ТБ 5.5",
@@ -12699,7 +12683,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 33
+            "rank": 32
           },
           {
             "selection": "ТМ 1.5",
@@ -12715,7 +12699,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 34
+            "rank": 33
           },
           {
             "selection": "ТМ 2",
@@ -12731,7 +12715,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 35
+            "rank": 34
           },
           {
             "selection": "ТМ 1",
@@ -12747,7 +12731,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 36
+            "rank": 35
           },
           {
             "selection": "ТМ 0.5",
@@ -12763,7 +12747,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 37
+            "rank": 36
           },
           {
             "selection": "ТБ 6.5",
@@ -12779,23 +12763,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 38
-          },
-          {
-            "selection": "Jablonec -1",
-            "outcome": "away",
-            "market": "asian_handicap",
-            "line": -1.0,
-            "probability": 0.12508155256881015,
-            "fair_odds": 7.994784038596561,
-            "market_odds": 1.375,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.828012865217886,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 39
+            "rank": 37
           }
         ]
       },
@@ -18798,11 +18766,11 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-13T14:49:56Z",
+          "captured_at_utc": "2026-08-13T15:45:01Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
-              "odds": 8.0,
+              "odds": 8.5,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             },
@@ -18812,9 +18780,9 @@
               "bookmaker": "Unibet"
             },
             "away": {
-              "odds": 1.38,
-              "bookmaker_key": "bet365",
-              "bookmaker": "Bet365"
+              "odds": 1.37,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
             }
           },
           "best_totals": [
@@ -18845,24 +18813,11 @@
               }
             },
             {
-              "line": 2.25,
-              "over": {
-                "odds": 1.775,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 2.025,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
               "line": 2.5,
               "over": {
-                "odds": 1.78,
-                "bookmaker_key": "unibet",
-                "bookmaker": "Unibet"
+                "odds": 2.04,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
               },
               "under": {
                 "odds": 1.89,
@@ -19016,7 +18971,7 @@
           },
           "best_double_chance": {
             "home_draw": {
-              "odds": 3.0,
+              "odds": 2.75,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             },
@@ -19026,9 +18981,9 @@
               "bookmaker": "Bet365"
             },
             "draw_away": {
-              "odds": 1.071,
-              "bookmaker_key": "bet365",
-              "bookmaker": "Bet365"
+              "odds": 1.06,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
             }
           },
           "best_team_totals": [],
@@ -19042,10 +18997,10 @@
             "line": null,
             "probability": 0.26570351160763156,
             "fair_odds": 3.763593465323542,
-            "market_odds": 8.0,
+            "market_odds": 8.5,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": 1.1256280928610525,
+            "point_edge": 1.258479848664868,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -19074,10 +19029,10 @@
             "line": null,
             "probability": 0.4697722117637801,
             "fair_odds": 2.128691257078525,
-            "market_odds": 1.38,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.35171434776598354,
+            "market_odds": 1.37,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.3564120698836212,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -19118,22 +19073,6 @@
             "rank": 2
           },
           {
-            "selection": "1X",
-            "outcome": "home_draw",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.5302275860669077,
-            "fair_odds": 1.8859825974309328,
-            "market_odds": 3.0,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.590682758200723,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 3
-          },
-          {
             "selection": "Dinamo-Minsk +0.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -19144,6 +19083,22 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": 0.511148620290687,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 3
+          },
+          {
+            "selection": "1X",
+            "outcome": "home_draw",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.5302275860669077,
+            "fair_odds": 1.8859825974309328,
+            "market_odds": 2.75,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.45812586168399605,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -19342,6 +19297,22 @@
             "rank": 16
           },
           {
+            "selection": "ТБ 2.5",
+            "outcome": "over",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.44760831088181996,
+            "fair_odds": 2.2340961409539726,
+            "market_odds": 2.04,
+            "bookmaker": "Bet365 (no latency)",
+            "bookmaker_key": "bet365_no_latency",
+            "point_edge": -0.0868790458010873,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 17
+          },
+          {
             "selection": "ОЗ — нет",
             "outcome": "no",
             "market": "btts",
@@ -19355,7 +19326,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 17
+            "rank": 18
           },
           {
             "selection": "12",
@@ -19371,7 +19342,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 18
+            "rank": 19
           },
           {
             "selection": "ТБ 3.5",
@@ -19387,39 +19358,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 19
-          },
-          {
-            "selection": "ТБ 2.5",
-            "outcome": "over",
-            "market": "totals",
-            "line": 2.5,
-            "probability": 0.44760831088181996,
-            "fair_odds": 2.2340961409539726,
-            "market_odds": 1.78,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.2032572066303605,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
             "rank": 20
-          },
-          {
-            "selection": "X2",
-            "outcome": "draw_away",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.7342965836555033,
-            "fair_odds": 1.3618475453361933,
-            "market_odds": 1.071,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.21356835890495596,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 21
           },
           {
             "selection": "Braga +0.5",
@@ -19432,6 +19371,22 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": -0.21430265548861138,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 21
+          },
+          {
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.7342965836555033,
+            "fair_odds": 1.3618475453361933,
+            "market_odds": 1.06,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.2216456213251664,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -35055,7 +35010,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-13T14:49:56Z",
+          "captured_at_utc": "2026-08-13T15:45:01Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -35064,12 +35019,12 @@
               "bookmaker": "Unibet"
             },
             "draw": {
-              "odds": 3.4,
+              "odds": 3.5,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             },
             "away": {
-              "odds": 2.2,
+              "odds": 2.3,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             }
@@ -35169,12 +35124,12 @@
             {
               "line": 2.75,
               "over": {
-                "odds": 1.85,
+                "odds": 1.825,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "under": {
-                "odds": 1.95,
+                "odds": 1.975,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -35376,6 +35331,19 @@
               }
             },
             {
+              "line": 0.25,
+              "home": {
+                "odds": 1.775,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              },
+              "away": {
+                "odds": 2.025,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              }
+            },
+            {
               "line": 0.5,
               "home": {
                 "odds": 1.66,
@@ -35455,17 +35423,17 @@
           },
           "best_double_chance": {
             "home_draw": {
-              "odds": 1.62,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 1.666,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             },
             "home_away": {
-              "odds": 1.26,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 1.285,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             },
             "draw_away": {
-              "odds": 1.3,
+              "odds": 1.363,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             }
@@ -35497,10 +35465,10 @@
             "line": null,
             "probability": 0.23029427727229357,
             "fair_odds": 4.342270298004964,
-            "market_odds": 3.4,
+            "market_odds": 3.5,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.2169994572742019,
+            "point_edge": -0.1939700295469725,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -35513,10 +35481,10 @@
             "line": null,
             "probability": 0.18585781964537515,
             "fair_odds": 5.380456963866485,
-            "market_odds": 2.2,
+            "market_odds": 2.3,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.5911127967801746,
+            "point_edge": -0.5725270148156372,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -35589,6 +35557,22 @@
             "rank": 4
           },
           {
+            "selection": "1X",
+            "outcome": "home_draw",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.8141427190440639,
+            "fair_odds": 1.2282858724993118,
+            "market_odds": 1.666,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.3563617699274104,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 5
+          },
+          {
             "selection": "Pafos +0.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -35599,22 +35583,6 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": 0.3514769136131459,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 5
-          },
-          {
-            "selection": "1X",
-            "outcome": "home_draw",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.8141427190440639,
-            "fair_odds": 1.2282858724993118,
-            "market_odds": 1.62,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": 0.3189112048513836,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -35835,10 +35803,10 @@
             "line": null,
             "probability": 0.7697063943315477,
             "fair_odds": 1.299196690276233,
-            "market_odds": 1.26,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.030169943142249855,
+            "market_odds": 1.285,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.010927283283961198,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -36021,6 +35989,22 @@
             "rank": 31
           },
           {
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.4161508866243885,
+            "fair_odds": 2.40297457518716,
+            "market_odds": 1.363,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.4327863415309585,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 32
+          },
+          {
             "selection": "Salzburg +0.5",
             "outcome": "away",
             "market": "asian_handicap",
@@ -36031,22 +36015,6 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": -0.45068082965580714,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 32
-          },
-          {
-            "selection": "X2",
-            "outcome": "draw_away",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.4161508866243885,
-            "fair_odds": 2.40297457518716,
-            "market_odds": 1.3,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.4590038473882949,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -39533,7 +39501,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-13T14:49:56Z",
+          "captured_at_utc": "2026-08-13T15:45:01Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -39542,12 +39510,12 @@
               "bookmaker": "Unibet"
             },
             "draw": {
-              "odds": 3.8,
+              "odds": 3.9,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             },
             "away": {
-              "odds": 4.0,
+              "odds": 4.2,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             }
@@ -39567,19 +39535,6 @@
               }
             },
             {
-              "line": 1.25,
-              "over": {
-                "odds": 1.13,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 5.9,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
               "line": 1.5,
               "over": {
                 "odds": 1.2,
@@ -39593,55 +39548,16 @@
               }
             },
             {
-              "line": 1.75,
-              "over": {
-                "odds": 1.26,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 3.7,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 2.0,
-              "over": {
-                "odds": 1.325,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 3.3,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 2.25,
-              "over": {
-                "odds": 1.5,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 2.5,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
               "line": 2.5,
               "over": {
-                "odds": 1.675,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
+                "odds": 1.63,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
               },
               "under": {
-                "odds": 2.15,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
+                "odds": 2.1,
+                "bookmaker_key": "unibet",
+                "bookmaker": "Unibet"
               }
             },
             {
@@ -39653,19 +39569,6 @@
               },
               "under": {
                 "odds": 1.775,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 3.25,
-              "over": {
-                "odds": 2.375,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 1.55,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -39684,45 +39587,6 @@
               }
             },
             {
-              "line": 3.75,
-              "over": {
-                "odds": 3.1,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 1.35,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 4.0,
-              "over": {
-                "odds": 4.1,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 1.225,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 4.25,
-              "over": {
-                "odds": 4.4,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 1.2,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
               "line": 4.5,
               "over": {
                 "odds": 4.6,
@@ -39731,19 +39595,6 @@
               },
               "under": {
                 "odds": 1.166,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              }
-            },
-            {
-              "line": 4.75,
-              "over": {
-                "odds": 6.0,
-                "bookmaker_key": "bet365",
-                "bookmaker": "Bet365"
-              },
-              "under": {
-                "odds": 1.125,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -39828,6 +39679,19 @@
               }
             },
             {
+              "line": -0.75,
+              "home": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              },
+              "away": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              }
+            },
+            {
               "line": -0.5,
               "home": {
                 "odds": 1.73,
@@ -39907,17 +39771,17 @@
           },
           "best_double_chance": {
             "home_draw": {
-              "odds": 1.19,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 1.222,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             },
             "home_away": {
-              "odds": 1.22,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 1.25,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             },
             "draw_away": {
-              "odds": 1.909,
+              "odds": 2.0,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             }
@@ -39933,10 +39797,10 @@
             "line": null,
             "probability": 0.2759851521035414,
             "fair_odds": 3.6233833319584883,
-            "market_odds": 4.0,
+            "market_odds": 4.2,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": 0.10394060841416564,
+            "point_edge": 0.15913763883487397,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -39949,10 +39813,10 @@
             "line": null,
             "probability": 0.27196621204820587,
             "fair_odds": 3.676927337660424,
-            "market_odds": 3.8,
+            "market_odds": 3.9,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": 0.03347160578318231,
+            "point_edge": 0.06066822698800278,
             "source_provider": "odds_api_io",
             "status": "SHADOW_ONLY",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -39977,22 +39841,6 @@
         ],
         "expanded_market_candidates": [
           {
-            "selection": "ТМ 2",
-            "outcome": "under",
-            "market": "totals",
-            "line": 2.0,
-            "probability": 0.4227096228422639,
-            "fair_odds": 2.365690171129969,
-            "market_odds": 3.3,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.39494175537947074,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 1
-          },
-          {
             "selection": "ТМ 1.5",
             "outcome": "under",
             "market": "totals",
@@ -40006,7 +39854,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 2
+            "rank": 1
           },
           {
             "selection": "ТМ 3",
@@ -40022,23 +39870,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 3
-          },
-          {
-            "selection": "ТМ 2.5",
-            "outcome": "under",
-            "market": "totals",
-            "line": 2.5,
-            "probability": 0.5739368828480101,
-            "fair_odds": 1.742351868097001,
-            "market_odds": 2.15,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.23396429812322173,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 4
+            "rank": 2
           },
           {
             "selection": "Inter Turku DNB",
@@ -40054,7 +39886,23 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 5
+            "rank": 3
+          },
+          {
+            "selection": "ТМ 2.5",
+            "outcome": "under",
+            "market": "totals",
+            "line": 2.5,
+            "probability": 0.5739368828480101,
+            "fair_odds": 1.742351868097001,
+            "market_odds": 2.1,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.20526745398082125,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 4
           },
           {
             "selection": "Inter Turku -0",
@@ -40070,7 +39918,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 6
+            "rank": 5
           },
           {
             "selection": "ОЗ — нет",
@@ -40086,7 +39934,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 7
+            "rank": 6
           },
           {
             "selection": "ТМ 3.5",
@@ -40102,23 +39950,23 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 8
+            "rank": 7
           },
           {
-            "selection": "ТМ 4",
-            "outcome": "under",
-            "market": "totals",
-            "line": 4.0,
-            "probability": 0.8928556711315636,
-            "fair_odds": 1.1200018461356096,
-            "market_odds": 1.225,
+            "selection": "X2",
+            "outcome": "draw_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.5479512401176734,
+            "fair_odds": 1.8249799011044276,
+            "market_odds": 2.0,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": 0.09374819713616556,
+            "point_edge": 0.09590248023534675,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 9
+            "rank": 8
           },
           {
             "selection": "Inter Turku +0.5",
@@ -40134,7 +39982,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 10
+            "rank": 9
           },
           {
             "selection": "ТМ 4.5",
@@ -40150,7 +39998,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 11
+            "rank": 10
           },
           {
             "selection": "Inter Turku +1.5",
@@ -40166,23 +40014,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 12
-          },
-          {
-            "selection": "X2",
-            "outcome": "draw_away",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.5479512401176734,
-            "fair_odds": 1.8249799011044276,
-            "market_odds": 1.909,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.0460389173846385,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 13
+            "rank": 11
           },
           {
             "selection": "ТМ 5.5",
@@ -40198,7 +40030,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 14
+            "rank": 12
           },
           {
             "selection": "Inter Turku -0.5",
@@ -40214,7 +40046,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 15
+            "rank": 13
           },
           {
             "selection": "Inter Turku +2.5",
@@ -40230,7 +40062,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 16
+            "rank": 14
           },
           {
             "selection": "ТМ 6.5",
@@ -40246,7 +40078,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 17
+            "rank": 15
           },
           {
             "selection": "ТМ 7.5",
@@ -40262,7 +40094,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 18
+            "rank": 16
           },
           {
             "selection": "Vaduz +1.5",
@@ -40278,7 +40110,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 19
+            "rank": 17
           },
           {
             "selection": "ТБ 0.5",
@@ -40294,7 +40126,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 20
+            "rank": 18
           },
           {
             "selection": "ТМ 0.5",
@@ -40310,7 +40142,23 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 21
+            "rank": 19
+          },
+          {
+            "selection": "12",
+            "outcome": "home_away",
+            "market": "double_chance",
+            "line": null,
+            "probability": 0.7280338550217212,
+            "fair_odds": 1.3735624972689828,
+            "market_odds": 1.25,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.08995768122284842,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "BELOW_EDGE_THRESHOLD",
+            "rank": 20
           },
           {
             "selection": "Vaduz +0.5",
@@ -40326,23 +40174,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 22
-          },
-          {
-            "selection": "12",
-            "outcome": "home_away",
-            "market": "double_chance",
-            "line": null,
-            "probability": 0.7280338550217212,
-            "fair_odds": 1.3735624972689828,
-            "market_odds": 1.22,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.11179869687350008,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 23
+            "rank": 21
           },
           {
             "selection": "1X",
@@ -40351,14 +40183,14 @@
             "line": null,
             "probability": 0.7240149048606053,
             "fair_odds": 1.3811870353587958,
-            "market_odds": 1.19,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.1384222632158798,
+            "market_odds": 1.222,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.11525378626034033,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 24
+            "rank": 22
           },
           {
             "selection": "Vaduz +0",
@@ -40374,7 +40206,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 25
+            "rank": 23
           },
           {
             "selection": "Vaduz DNB",
@@ -40390,7 +40222,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 26
+            "rank": 24
           },
           {
             "selection": "ТБ 1.5",
@@ -40406,7 +40238,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 27
+            "rank": 25
           },
           {
             "selection": "ОЗ — да",
@@ -40422,7 +40254,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 28
+            "rank": 26
           },
           {
             "selection": "Vaduz -0.5",
@@ -40438,23 +40270,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 29
-          },
-          {
-            "selection": "ТБ 2",
-            "outcome": "over",
-            "market": "totals",
-            "line": 2.0,
-            "probability": 0.5772903771577361,
-            "fair_odds": 1.732230502305367,
-            "market_odds": 1.325,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.2350902502659996,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 30
+            "rank": 27
           },
           {
             "selection": "Inter Turku -1.5",
@@ -40470,7 +40286,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 31
+            "rank": 28
           },
           {
             "selection": "ТБ 2.5",
@@ -40479,14 +40295,14 @@
             "line": 2.5,
             "probability": 0.42606311715198986,
             "fair_odds": 2.3470700930051853,
-            "market_odds": 1.675,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.286344278770417,
+            "market_odds": 1.63,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": -0.30551711904225654,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 32
+            "rank": 29
           },
           {
             "selection": "Vaduz -1.5",
@@ -40502,7 +40318,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 33
+            "rank": 30
           },
           {
             "selection": "ТБ 3.5",
@@ -40518,7 +40334,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 34
+            "rank": 31
           },
           {
             "selection": "ТБ 3",
@@ -40534,23 +40350,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 35
-          },
-          {
-            "selection": "ТБ 4",
-            "outcome": "over",
-            "market": "totals",
-            "line": 4.0,
-            "probability": 0.10714432886843635,
-            "fair_odds": 9.333205131443872,
-            "market_odds": 4.1,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": -0.5607082516394111,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 36
+            "rank": 32
           },
           {
             "selection": "ТБ 4.5",
@@ -40566,7 +40366,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 37
+            "rank": 33
           },
           {
             "selection": "Vaduz -2.5",
@@ -40582,7 +40382,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 38
+            "rank": 34
           },
           {
             "selection": "ТБ 5.5",
@@ -40598,7 +40398,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 39
+            "rank": 35
           },
           {
             "selection": "ТБ 6.5",
@@ -40614,7 +40414,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 40
+            "rank": 36
           },
           {
             "selection": "ТБ 7.5",
@@ -40630,7 +40430,7 @@
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
-            "rank": 41
+            "rank": 37
           }
         ]
       },
@@ -46373,7 +46173,7 @@
           "source_provider": "odds_api_io",
           "status": "SHADOW_ONLY",
           "reason": null,
-          "captured_at_utc": "2026-08-13T14:49:56Z",
+          "captured_at_utc": "2026-08-13T15:45:01Z",
           "bookmakers": 3,
           "best_1x2": {
             "home": {
@@ -46435,12 +46235,12 @@
             {
               "line": 3.25,
               "over": {
-                "odds": 1.875,
+                "odds": 1.9,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "under": {
-                "odds": 1.925,
+                "odds": 1.9,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -46500,12 +46300,12 @@
             {
               "line": 7.5,
               "over": {
-                "odds": 15.0,
+                "odds": 13.0,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               },
               "under": {
-                "odds": 1.01,
+                "odds": 1.012,
                 "bookmaker_key": "bet365",
                 "bookmaker": "Bet365"
               }
@@ -46564,6 +46364,19 @@
               }
             },
             {
+              "line": -0.25,
+              "home": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              },
+              "away": {
+                "odds": 1.9,
+                "bookmaker_key": "bet365_no_latency",
+                "bookmaker": "Bet365 (no latency)"
+              }
+            },
+            {
               "line": 0.5,
               "home": {
                 "odds": 1.41,
@@ -46592,21 +46405,21 @@
           ],
           "best_draw_no_bet": {
             "home": {
-              "odds": 1.727,
+              "odds": 1.666,
               "bookmaker_key": "bet365",
               "bookmaker": "Bet365"
             },
             "away": {
-              "odds": 2.02,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 2.1,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             }
           },
           "best_double_chance": {
             "home_draw": {
-              "odds": 1.4,
-              "bookmaker_key": "bet365",
-              "bookmaker": "Bet365"
+              "odds": 1.38,
+              "bookmaker_key": "unibet",
+              "bookmaker": "Unibet"
             },
             "home_away": {
               "odds": 1.23,
@@ -46614,9 +46427,9 @@
               "bookmaker": "Unibet"
             },
             "draw_away": {
-              "odds": 1.56,
-              "bookmaker_key": "unibet",
-              "bookmaker": "Unibet"
+              "odds": 1.571,
+              "bookmaker_key": "bet365",
+              "bookmaker": "Bet365"
             }
           },
           "best_team_totals": [],
@@ -46674,22 +46487,6 @@
         ],
         "expanded_market_candidates": [
           {
-            "selection": "Víkingur R. DNB",
-            "outcome": "home",
-            "market": "draw_no_bet",
-            "line": null,
-            "probability": 0.7103675009388772,
-            "fair_odds": 1.4077220574960452,
-            "market_odds": 1.727,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.22680467412144112,
-            "source_provider": "odds_api_io",
-            "status": "EXPERIMENTAL_SHADOW",
-            "edge_status": "POSITIVE_SHADOW_EDGE",
-            "rank": 1
-          },
-          {
             "selection": "Víkingur R. -1.5",
             "outcome": "home",
             "market": "asian_handicap",
@@ -46700,6 +46497,22 @@
             "bookmaker": "Unibet",
             "bookmaker_key": "unibet",
             "point_edge": 0.19348737576177655,
+            "source_provider": "odds_api_io",
+            "status": "EXPERIMENTAL_SHADOW",
+            "edge_status": "POSITIVE_SHADOW_EDGE",
+            "rank": 1
+          },
+          {
+            "selection": "Víkingur R. DNB",
+            "outcome": "home",
+            "market": "draw_no_bet",
+            "line": null,
+            "probability": 0.7103675009388772,
+            "fair_odds": 1.4077220574960452,
+            "market_odds": 1.666,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": 0.18347225656416932,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -46792,10 +46605,10 @@
             "line": null,
             "probability": 0.7761045902985226,
             "fair_odds": 1.288486129962661,
-            "market_odds": 1.4,
-            "bookmaker": "Bet365",
-            "bookmaker_key": "bet365",
-            "point_edge": 0.08654642641793164,
+            "market_odds": 1.38,
+            "bookmaker": "Unibet",
+            "bookmaker_key": "unibet",
+            "point_edge": 0.07102433461196123,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "POSITIVE_SHADOW_EDGE",
@@ -46888,10 +46701,10 @@
             "line": 7.5,
             "probability": 0.9891401436408576,
             "fair_odds": 1.010979087674239,
-            "market_odds": 1.01,
+            "market_odds": 1.012,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.0009684549227338968,
+            "point_edge": 0.001009825364547856,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -47048,10 +46861,10 @@
             "line": null,
             "probability": 0.4508626511979934,
             "fair_odds": 2.2179703671237485,
-            "market_odds": 1.56,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.2966542641311303,
+            "market_odds": 1.571,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.2916947749679524,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -47080,10 +46893,10 @@
             "line": null,
             "probability": 0.2896324990611226,
             "fair_odds": 3.4526512157358593,
-            "market_odds": 2.02,
-            "bookmaker": "Unibet",
-            "bookmaker_key": "unibet",
-            "point_edge": -0.4149423518965324,
+            "market_odds": 2.1,
+            "bookmaker": "Bet365",
+            "bookmaker_key": "bet365",
+            "point_edge": -0.3917717519716425,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -47176,10 +46989,10 @@
             "line": 7.5,
             "probability": 0.010859856359142453,
             "fair_odds": 92.08224924247202,
-            "market_odds": 15.0,
+            "market_odds": 13.0,
             "bookmaker": "Bet365",
             "bookmaker_key": "bet365",
-            "point_edge": -0.8371021546128632,
+            "point_edge": -0.8588218673311481,
             "source_provider": "odds_api_io",
             "status": "EXPERIMENTAL_SHADOW",
             "edge_status": "BELOW_EDGE_THRESHOLD",
@@ -78668,39 +78481,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-13T14:49:56Z",
-    "matched_forecasts": 6,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_europa_conference_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-12T18:40:29Z",
-        "received_at": "2026-08-12T18:42:01Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-13T14:47:53Z",
-        "received_at": "2026-08-13T14:49:56Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-12T15:43:22Z",
-        "received_at": "2026-08-12T15:45:25Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-08-13T15:47:53Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -79163,5 +78943,39 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-13T15:45:01Z",
+    "matched_forecasts": 6,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_europa_conference_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-12T18:40:29Z",
+        "received_at": "2026-08-12T18:42:01Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-13T15:43:00Z",
+        "received_at": "2026-08-13T15:45:01Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-12T15:43:22Z",
+        "received_at": "2026-08-12T15:45:25Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 96,
+      "limit": 100,
+      "reset": "2026-08-13T15:47:53Z"
+    }
+  },
+  "odds_snapshot_at": "2026-08-13T15:45:01Z"
 }
