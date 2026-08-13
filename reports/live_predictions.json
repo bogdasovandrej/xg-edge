@@ -47738,40 +47738,6 @@
       }
     }
   ],
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "SHADOW_ONLY",
-    "snapshot_at": "2026-08-13T16:41:46Z",
-    "matched_forecasts": 2,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_europa_conference_league",
-      "soccer_uefa_europa_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-12T18:40:29Z",
-        "received_at": "2026-08-12T18:42:01Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-13T16:39:44Z",
-        "received_at": "2026-08-13T16:41:46Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-13T16:39:44Z",
-        "received_at": "2026-08-13T16:41:46Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-08-13T17:39:45Z"
-    }
-  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -48239,5 +48205,40 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
-  }
+  },
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "SHADOW_ONLY",
+    "snapshot_at": "2026-08-13T17:45:19Z",
+    "matched_forecasts": 2,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_europa_conference_league",
+      "soccer_uefa_europa_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-12T18:40:29Z",
+        "received_at": "2026-08-12T18:42:01Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-13T17:45:18Z",
+        "received_at": "2026-08-13T17:45:19Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-13T17:45:18Z",
+        "received_at": "2026-08-13T17:45:19Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": null,
+      "limit": null,
+      "reset": null
+    }
+  },
+  "odds_snapshot_at": "2026-08-13T17:45:19Z"
 }
