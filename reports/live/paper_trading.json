@@ -1,5 +1,5 @@
 {
-  "schema_version": "paper-trading-ledger/1.1",
+  "schema_version": "paper-trading-ledger/1.2",
   "event_schema_version": "paper-event/1.0",
   "created_at": "2026-07-20T22:30:00Z",
   "updated_at": "2026-08-13T16:41:47Z",
@@ -22,7 +22,9 @@
       "team_totals",
       "totals"
     ],
-    "one_candidate_per_match": true,
+    "one_candidate_per_match": false,
+    "maximum_candidates_per_match": 3,
+    "diversity_taxonomy": "market-taxonomy/1.0",
     "strategy_ids": [
       "flat_1pct",
       "fractional_kelly_025",
@@ -129,7 +131,7 @@
     }
   },
   "enrollments": {
-    "2049140": {
+    "candidate:0c0ee26c613b06c60938cf5e": {
       "fixture_id": "2049140",
       "competition": "UEFA Europa League",
       "stage": "3-й квалификационный раунд · ответный матч",
@@ -174,7 +176,11 @@
           "stake_rub": 100.0,
           "stake_fraction": 0.01
         }
-      }
+      },
+      "candidate_id": "candidate:0c0ee26c613b06c60938cf5e",
+      "market_family": "MATCH_RESULT",
+      "market_cluster": "HOME_RESULT",
+      "market_taxonomy_version": "market-taxonomy/1.0"
     }
   },
   "settlements": {},
@@ -202,6 +208,9 @@
       "enrolled_matches": 1,
       "settled_matches": 0,
       "open_matches": 1,
+      "enrolled_candidates": 1,
+      "settled_candidates": 0,
+      "open_candidates": 1,
       "settled_bets": 0,
       "open_bets": 3
     },
@@ -222,7 +231,9 @@
         "settled_bets": 0,
         "open_bets": 1,
         "wins": 0,
+        "half_wins": 0,
         "losses": 0,
+        "half_losses": 0,
         "pushes": 0,
         "voids": 0,
         "cycle_count": 1,
@@ -246,7 +257,9 @@
         "settled_bets": 0,
         "open_bets": 1,
         "wins": 0,
+        "half_wins": 0,
         "losses": 0,
+        "half_losses": 0,
         "pushes": 0,
         "voids": 0,
         "cycle_count": 1,
@@ -270,7 +283,9 @@
         "settled_bets": 0,
         "open_bets": 1,
         "wins": 0,
+        "half_wins": 0,
         "losses": 0,
+        "half_losses": 0,
         "pushes": 0,
         "voids": 0,
         "cycle_count": 1,

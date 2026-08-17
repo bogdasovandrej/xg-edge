@@ -11,6 +11,8 @@ from typing import Final
 
 import numpy as np
 
+from xgedge.markets.settlement import SettlementDistribution, SettlementOutcome
+
 
 SUPPORTED_SCORE_MARKETS: Final[frozenset[str]] = frozenset({
     "1x2",
@@ -37,16 +39,43 @@ def canonical_market(value: object) -> str:
 
 
 def supported_line(value: object) -> float | None:
-    """Return a whole/half line; quarter lines need half-win accounting."""
+    """Return a whole, half or quarter Asian line."""
     if value is None or isinstance(value, bool):
         return None
     try:
         line = float(value)
     except (TypeError, ValueError):
         return None
-    if not isfinite(line) or abs(line * 2.0 - round(line * 2.0)) > 1e-9:
+    if not isfinite(line) or abs(line * 4.0 - round(line * 4.0)) > 1e-9:
         return None
     return line
+
+
+def split_asian_line(line: float) -> tuple[float, ...]:
+    """Split .25/.75 prices into their two exact half-stake component lines."""
+    parsed = supported_line(line)
+    if parsed is None:
+        raise ValueError("market requires a whole, half or quarter line")
+    scaled = round(parsed * 4.0)
+    if scaled % 2 == 0:
+        return (parsed,)
+    lower = (scaled // 2) / 2.0
+    return (lower, lower + 0.5)
+
+
+def _combine_split_results(results: tuple[str, ...]) -> str:
+    if len(results) == 1:
+        return results[0]
+    states = set(results)
+    if states == {"win"}:
+        return "win"
+    if states == {"loss"}:
+        return "loss"
+    if states <= {"win", "push"}:
+        return "half_win"
+    if states <= {"loss", "push"}:
+        return "half_loss"
+    raise ValueError("invalid quarter-line settlement combination")
 
 
 def _poisson(lambda_: float, maximum: int) -> np.ndarray:
@@ -129,7 +158,12 @@ def market_probability(
 
     parsed_line = supported_line(line)
     if parsed_line is None:
-        raise ValueError("market requires a whole or half line")
+        raise ValueError("market requires a whole, half or quarter line")
+    if len(split_asian_line(parsed_line)) == 2:
+        distribution = market_settlement_distribution(
+            values, market=kind, selection=side, line=parsed_line
+        )
+        return 1.0 / distribution.fair_odds()
 
     if kind == "totals":
         if side not in {"over", "under"}:
@@ -166,7 +200,7 @@ def settle_score_market(
     home_goals: int,
     away_goals: int,
 ) -> str:
-    """Resolve a supported selection to win/loss/push from the 90-minute score."""
+    """Resolve a score market, including exact quarter-line half settlements."""
     if (
         isinstance(home_goals, bool)
         or isinstance(away_goals, bool)
@@ -211,7 +245,19 @@ def settle_score_market(
 
     parsed_line = supported_line(line)
     if parsed_line is None:
-        raise ValueError("market requires a whole or half line")
+        raise ValueError("market requires a whole, half or quarter line")
+    components = split_asian_line(parsed_line)
+    if len(components) == 2:
+        return _combine_split_results(tuple(
+            settle_score_market(
+                market=kind,
+                selection=side,
+                line=component,
+                home_goals=home_goals,
+                away_goals=away_goals,
+            )
+            for component in components
+        ))
     if kind == "totals":
         if side not in {"over", "under"}:
             raise ValueError("unsupported totals selection")
@@ -233,3 +279,33 @@ def settle_score_market(
     if metric == parsed_line:
         return "push"
     return "win" if (metric > parsed_line) == (side == "over") else "loss"
+
+
+def market_settlement_distribution(
+    matrix: np.ndarray,
+    *,
+    market: str,
+    selection: str,
+    line: float | None = None,
+) -> SettlementDistribution:
+    """Enumerate exact score mass into generic payout states."""
+    values = np.asarray(matrix, dtype=float)
+    if values.ndim != 2 or values.shape[0] != values.shape[1]:
+        raise ValueError("score matrix must be square")
+    if not np.isfinite(values).all() or abs(float(values.sum()) - 1.0) > 1e-6:
+        raise ValueError("score matrix must contain normalized finite probabilities")
+    probabilities: dict[SettlementOutcome, float] = {}
+    for home_goals in range(values.shape[0]):
+        for away_goals in range(values.shape[1]):
+            mass = float(values[home_goals, away_goals])
+            if mass <= 0.0:
+                continue
+            result = SettlementOutcome(settle_score_market(
+                market=market,
+                selection=selection,
+                line=line,
+                home_goals=home_goals,
+                away_goals=away_goals,
+            ))
+            probabilities[result] = probabilities.get(result, 0.0) + mass
+    return SettlementDistribution(probabilities)

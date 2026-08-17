@@ -4,6 +4,7 @@ from __future__ import annotations
 import pytest
 
 from xgedge.markets.paper_markets import (
+    market_settlement_distribution,
     market_probability,
     score_matrix,
     settle_score_market,
@@ -60,13 +61,42 @@ def test_settle_score_markets(
     ) == expected
 
 
-def test_quarter_lines_fail_closed_until_half_settlement_is_supported() -> None:
-    assert supported_line(2.25) is None
-    with pytest.raises(ValueError, match="whole or half"):
-        settle_score_market(
-            market="totals",
-            selection="over",
-            line=2.25,
-            home_goals=2,
-            away_goals=1,
-        )
+@pytest.mark.parametrize(
+    ("market", "selection", "line", "score", "expected"),
+    [
+        ("asian_handicap", "home", 1.25, (1, 2), "half_win"),
+        ("asian_handicap", "home", .75, (1, 2), "half_loss"),
+        ("asian_handicap", "home", -1.25, (2, 0), "win"),
+        ("asian_handicap", "home", -1.25, (1, 0), "half_loss"),
+        ("totals", "over", 2.75, (2, 1), "half_win"),
+        ("totals", "over", 2.75, (1, 1), "loss"),
+        ("totals", "under", 3.25, (2, 1), "half_win"),
+        ("totals", "under", 3.25, (2, 2), "loss"),
+    ],
+)
+def test_quarter_lines_settle_exact_half_stakes(
+    market: str,
+    selection: str,
+    line: float,
+    score: tuple[int, int],
+    expected: str,
+) -> None:
+    assert supported_line(line) == line
+    assert settle_score_market(
+        market=market,
+        selection=selection,
+        line=line,
+        home_goals=score[0],
+        away_goals=score[1],
+    ) == expected
+
+
+def test_push_aware_distribution_solves_fair_and_trigger_prices() -> None:
+    distribution = market_settlement_distribution(
+        score_matrix(1.7, 1.1), market="totals", selection="under", line=3.0
+    )
+    fair = distribution.fair_odds()
+    trigger = distribution.trigger_odds(.03)
+    assert distribution.expected_value(fair) == pytest.approx(0.0, abs=1e-9)
+    assert distribution.expected_value(trigger) == pytest.approx(.03, abs=1e-9)
+    assert trigger > fair > 1.0

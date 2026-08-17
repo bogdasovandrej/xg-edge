@@ -17,6 +17,8 @@ from enum import Enum
 from typing import Iterable, Protocol, TypeAlias
 from uuid import uuid4
 
+from xgedge.markets.settlement import SettlementOutcome, return_multiplier
+
 STARTING_BALANCE_RUB = 10_000.0
 TARGET_BALANCE_RUB = 1_000_000.0
 PAPER_ONLY = True
@@ -85,11 +87,7 @@ class EventKind(str, Enum):
     RUIN_OBSERVED = "ruin_observed"
 
 
-class SettlementResult(str, Enum):
-    WIN = "win"
-    LOSS = "loss"
-    PUSH = "push"
-    VOID = "void"
+SettlementResult = SettlementOutcome
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -351,7 +349,9 @@ class PaperMetrics:
     total_staked_rub: float
     settled_bets: int
     wins: int
+    half_wins: int
     losses: int
+    half_losses: int
     pushes: int
     voids: int
     cycle_count: int
@@ -443,7 +443,9 @@ class _ReplayState:
     cycles: list[_CycleState] = field(default_factory=list)
     placed_bet_ids: set[str] = field(default_factory=set)
     wins: int = 0
+    half_wins: int = 0
     losses: int = 0
+    half_losses: int = 0
     pushes: int = 0
     voids: int = 0
     clvs: list[float] = field(default_factory=list)
@@ -456,11 +458,7 @@ class _ReplayState:
 
 
 def _settlement_pnl(bet: BetPlaced, result: SettlementResult) -> float:
-    if result is SettlementResult.WIN:
-        return _money(bet.stake_rub * (bet.odds - 1.0))
-    if result is SettlementResult.LOSS:
-        return -bet.stake_rub
-    return 0.0
+    return _money(bet.stake_rub * (return_multiplier(result, bet.odds) - 1.0))
 
 
 def _replay(events: Iterable[PaperEvent]) -> _ReplayState:
@@ -521,13 +519,18 @@ def _replay(events: Iterable[PaperEvent]) -> _ReplayState:
             bet = cycle.open_bets.pop(event.bet_id)
             pnl = _settlement_pnl(bet, event.result)
             cycle.settled_stake = _money(cycle.settled_stake + bet.stake_rub)
+            cycle.cash = _money(
+                cycle.cash + bet.stake_rub * return_multiplier(event.result, bet.odds)
+            )
             if event.result is SettlementResult.WIN:
-                cycle.cash = _money(cycle.cash + bet.stake_rub * bet.odds)
                 state.wins += 1
+            elif event.result is SettlementResult.HALF_WIN:
+                state.half_wins += 1
             elif event.result is SettlementResult.LOSS:
                 state.losses += 1
+            elif event.result is SettlementResult.HALF_LOSS:
+                state.half_losses += 1
             else:
-                cycle.cash = _money(cycle.cash + bet.stake_rub)
                 if event.result is SettlementResult.PUSH:
                     state.pushes += 1
                 else:
@@ -778,7 +781,9 @@ class PaperSimulator:
                 else SettlementResult(result)
             )
         except (TypeError, ValueError) as exc:
-            raise ValueError("result must be win, loss, push, or void") from exc
+            raise ValueError(
+                "result must be win, half_win, push, half_loss, loss, or void"
+            ) from exc
         if closing_odds is not None:
             _odds(closing_odds, "closing_odds")
         state = _replay(self._events)
@@ -862,7 +867,9 @@ class PaperSimulator:
             total_staked_rub=total_staked,
             settled_bets=settled,
             wins=state.wins,
+            half_wins=state.half_wins,
             losses=state.losses,
+            half_losses=state.half_losses,
             pushes=state.pushes,
             voids=state.voids,
             cycle_count=len(cycles),

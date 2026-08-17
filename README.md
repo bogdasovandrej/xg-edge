@@ -5,7 +5,7 @@
 
 [![CI](https://github.com/bogdasovandrej/xg-edge/actions/workflows/ci.yml/badge.svg)](https://github.com/bogdasovandrej/xg-edge/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Version](https://img.shields.io/badge/version-0.8.1-blue)
+![Version](https://img.shields.io/badge/version-0.9.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 Исследовательский проект: калиброванные вероятности 1X2, тоталов, BTTS,
@@ -17,7 +17,21 @@ reliability и CLV против закрывающей линии.
 у модели нет преимущества над рынком. Средний CLV равен −7.13%, кластерный 95%
 CI [−8.12%, −6.16%]. Следовательно, текущий вывод системы — не ставить.
 
-## Live v0.8
+## Live v0.9
+
+### UEFA Research Workflow v2 (v0.9)
+
+Система теперь сначала сканирует все будущие официальные матчи, затем выбирает
+конфигурируемый PRELINE-пул из 20 матчей: 17 по research priority и 3
+exploration slots против tunnel vision. Для выбранного матча строится до трёх
+различных рыночных гипотез с conservative fair и trigger price; 20 матчей
+автоматически упаковываются в четыре ChatGPT-пакета по пять.
+
+PAPER-кандидат больше не откатывается к 1X2: тотал, ОЗ, DNB или Asian handicap
+сохраняет точную market identity до официального settlement и публичного
+архива. Quarter lines `.25/.75` рассчитываются как две половины ставки с
+`HALF_WIN/HALF_LOSS`. Подробный protocol:
+[`docs/UEFA_RESEARCH_WORKFLOW_V2_RU.md`](docs/UEFA_RESEARCH_WORKFLOW_V2_RU.md).
 
 Сайт прогнозов: **https://bogdasovandrej.github.io/xg-edge/**
 

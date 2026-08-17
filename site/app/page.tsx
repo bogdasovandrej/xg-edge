@@ -304,7 +304,9 @@ type PaperStrategyRow = {
   settled_bets?: number | null;
   open_bets?: number | null;
   wins?: number | null;
+  half_wins?: number | null;
   losses?: number | null;
+  half_losses?: number | null;
   pushes?: number | null;
   cycle_count?: number | null;
   ruin_count?: number | null;
@@ -338,6 +340,68 @@ type PaperTradingSummary = {
     strategy_deletion?: boolean | null;
   } | null;
   parlays?: { status?: string | null; reason?: string | null } | null;
+};
+
+type ResearchRecord = {
+  fixture_id: string;
+  competition?: string | null;
+  kickoff_utc?: string | null;
+  home?: string | null;
+  away?: string | null;
+  research_priority_score?: number | null;
+  data_quality?: number | null;
+  tail_risk?: number | null;
+  status?: string | null;
+  selection_lane?: string | null;
+  reason_codes?: string[] | null;
+  missing_data?: string[] | null;
+  decomposition?: Record<string, number> | null;
+};
+
+type PrelineHypothesis = {
+  candidate_id: string;
+  fixture_id: string;
+  market?: string | null;
+  selection?: string | null;
+  label?: string | null;
+  line?: number | null;
+  market_family?: string | null;
+  market_cluster?: string | null;
+  central_probability?: number | null;
+  pessimistic_probability?: number | null;
+  fair_odds_conservative?: number | null;
+  trigger_price?: number | null;
+  status?: string | null;
+  anti_thesis?: string[] | null;
+};
+
+type ResearchWorkflow = {
+  schema_version?: string | null;
+  workflow_status?: string | null;
+  summary?: {
+    total_fixtures?: number | null;
+    machine_scanned?: number | null;
+    preline_selected?: number | null;
+    exploitation_slots?: number | null;
+    exploration_slots?: number | null;
+    not_selected?: number | null;
+  } | null;
+  selected_fixture_ids?: string[] | null;
+  records?: ResearchRecord[] | null;
+  market_sets?: Record<string, {
+    candidates?: PrelineHypothesis[] | null;
+    checked_market_families?: string[] | null;
+    coverage_notes?: Record<string, string> | null;
+  }> | null;
+  market_coverage?: Record<string, { matches_checked?: number; hypotheses?: number }> | null;
+};
+
+type ChatResearchBatch = {
+  schema_version?: string | null;
+  batch_number?: number | null;
+  analysis_stage?: string | null;
+  instruction?: string | null;
+  fixtures?: Array<{ fixture_id?: string | null }> | null;
 };
 
 type OutcomeKey = "home" | "draw" | "away";
@@ -423,9 +487,11 @@ type ArchiveRow = {
   correct: boolean | null;
   brier: number | null;
   logloss: number | null;
-  marketSelections: Array<ModelMarketForecast & { settlement: "win" | "loss" | "push" }>;
+  marketSelections: Array<ModelMarketForecast & { settlement: "win" | "half_win" | "loss" | "half_loss" | "push" }>;
   marketWins: number;
+  marketHalfWins: number;
   marketLosses: number;
+  marketHalfLosses: number;
   marketPushes: number;
   marketBrier: number | null;
 };
@@ -443,6 +509,8 @@ type LivePayload = {
   } | null;
   paper_candidate_ranking?: PaperCandidateRanking | null;
   paper_trading?: PaperTradingSummary | null;
+  research_workflow?: ResearchWorkflow | null;
+  preline_chat_batches?: ChatResearchBatch[] | null;
   forecasts: Forecast[];
 };
 
@@ -583,11 +651,28 @@ const settleModelMarket = (
   forecast: ModelMarketForecast,
   homeGoals: number,
   awayGoals: number,
-): "win" | "loss" | "push" | null => {
+): "win" | "half_win" | "loss" | "half_loss" | "push" | null => {
   const market = forecast.market;
   const selection = forecast.selection;
   const line = finiteNumber(forecast.line);
   if (!market || !selection) return null;
+  if (
+    line != null &&
+    ["totals", "team_totals", "asian_handicap"].includes(market) &&
+    Math.abs(line * 4 - Math.round(line * 4)) < 1e-9 &&
+    Math.abs(line * 2 - Math.round(line * 2)) > 1e-9
+  ) {
+    const scaled = Math.round(line * 4);
+    const lower = Math.floor(scaled / 2) / 2;
+    const results = [lower, lower + .5].map((component) =>
+      settleModelMarket({ ...forecast, line: component }, homeGoals, awayGoals)
+    );
+    if (results.every((result) => result === "win")) return "win";
+    if (results.every((result) => result === "loss")) return "loss";
+    if (results.every((result) => result === "win" || result === "push")) return "half_win";
+    if (results.every((result) => result === "loss" || result === "push")) return "half_loss";
+    return null;
+  }
   if (market === "1x2") {
     const actual = homeGoals > awayGoals ? "home" : awayGoals > homeGoals ? "away" : "draw";
     return selection === actual ? "win" : "loss";
@@ -681,6 +766,99 @@ function ProspectiveClvPanel({
         Он влияет на будущую оценку надёжности, но больше не скрывает модельные прогнозы.
       </small>
     </aside>
+  );
+}
+
+function ResearchDayBoard({
+  workflow,
+  batches,
+}: {
+  workflow?: ResearchWorkflow | null;
+  batches?: ChatResearchBatch[] | null;
+}) {
+  const [view, setView] = useState<"selected" | "all">("selected");
+  const [auditText, setAuditText] = useState("");
+  const [auditMessage, setAuditMessage] = useState("");
+  const records = workflow?.records || [];
+  const selectedIds = new Set(workflow?.selected_fixture_ids || []);
+  const visible = view === "selected" ? records.filter((row) => selectedIds.has(row.fixture_id)) : records;
+  const summary = workflow?.summary;
+  const downloadBatches = () => {
+    const blob = new Blob([JSON.stringify(batches || [], null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "xg-edge-preline-chat-batches.json";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
+  const copyBatches = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(batches || [], null, 2));
+    setAuditMessage("4 PRELINE-пакета скопированы");
+  };
+  const validateAudit = () => {
+    try {
+      const parsed = JSON.parse(auditText) as { schema_version?: string; fixture_id?: string; candidate_updates?: Array<{ candidate_id?: string }> };
+      if (parsed.schema_version !== "human_preline_audit/1.0") throw new Error("Нужна schema human_preline_audit/1.0");
+      const marketSet = workflow?.market_sets?.[String(parsed.fixture_id || "")];
+      if (!marketSet) throw new Error("Матч отсутствует в текущем PRELINE-пуле");
+      const validIds = new Set((marketSet.candidates || []).map((row) => row.candidate_id));
+      if (!Array.isArray(parsed.candidate_updates) || parsed.candidate_updates.some((row) => !validIds.has(String(row.candidate_id || "")))) {
+        throw new Error("Есть неизвестный candidate_id");
+      }
+      setAuditMessage("JSON валиден. Для append-only импорта передайте его backend workflow.");
+    } catch (error) {
+      setAuditMessage(error instanceof Error ? error.message : "JSON не прошёл проверку");
+    }
+  };
+  if (!workflow || !records.length) return null;
+  return (
+    <section className="research-day" id="research-day" aria-label="Исследовательский игровой день">
+      <div className="research-heading">
+        <div><p className="eyebrow">53 → 20 → triggers → deep audit</p><h2>Исследовательский игровой день</h2></div>
+        <span className="paper-only-badge">PAPER · HUMAN GATE</span>
+      </div>
+      <div className="research-kpis">
+        <div><span>Всего</span><b>{Math.trunc(finiteNumber(summary?.total_fixtures) || 0)}</b></div>
+        <div><span>Machine scan</span><b>{Math.trunc(finiteNumber(summary?.machine_scanned) || 0)}</b></div>
+        <div><span>PRELINE</span><b>{Math.trunc(finiteNumber(summary?.preline_selected) || 0)}</b></div>
+        <div><span>Exploration</span><b>{Math.trunc(finiteNumber(summary?.exploration_slots) || 0)}</b></div>
+        <div><span>Под наблюдением</span><b>{Math.trunc(finiteNumber(summary?.not_selected) || 0)}</b></div>
+      </div>
+      <div className="research-actions">
+        <button type="button" onClick={copyBatches}>Копировать PRELINE packets</button>
+        <button type="button" onClick={downloadBatches}>Скачать JSON</button>
+        <button type="button" className={view === "selected" ? "active" : ""} onClick={() => setView("selected")}>Выбранные 20</button>
+        <button type="button" className={view === "all" ? "active" : ""} onClick={() => setView("all")}>Все scanned</button>
+      </div>
+      <div className="research-list">
+        {visible.map((record) => {
+          const hypotheses = workflow.market_sets?.[record.fixture_id]?.candidates || [];
+          return <details key={record.fixture_id} className="research-row">
+            <summary>
+              <span><b>{record.home} — {record.away}</b><small>{record.competition} · {record.kickoff_utc ? `${localTime(record.kickoff_utc)} YEKT` : "время неизвестно"}</small></span>
+              <span><b>{decimal(record.research_priority_score)}/100</b><small>{record.selection_lane || "MACHINE SCANNED"}</small></span>
+            </summary>
+            <div className="research-detail">
+              <p><b>Почему:</b> {(record.reason_codes || []).join(" · ") || "нет сильного положительного сигнала"}</p>
+              <p><b>Пробелы:</b> {(record.missing_data || []).join(" · ") || "критичные пробелы не отмечены"}</p>
+              {hypotheses.length ? <div className="hypothesis-grid">{hypotheses.map((candidate) => <article key={candidate.candidate_id}>
+                <span>{candidate.market_family}</span>
+                <b>{candidate.label || candidate.selection}</b>
+                <dl><div><dt>Консервативно</dt><dd>{percent(candidate.pessimistic_probability)}</dd></div><div><dt>Fair</dt><dd>{decimal(candidate.fair_odds_conservative)}</dd></div><div><dt>Trigger</dt><dd>{decimal(candidate.trigger_price)}</dd></div></dl>
+                <small>WATCH · trigger не является ставкой</small>
+              </article>)}</div> : <p>Матч просканирован; diverse hypothesis не пережила проверку данных.</p>}
+            </div>
+          </details>;
+        })}
+      </div>
+      <div className="audit-import">
+        <label htmlFor="audit-json">Проверить PRELINE audit JSON</label>
+        <textarea id="audit-json" value={auditText} onChange={(event) => setAuditText(event.target.value)} placeholder='{"schema_version":"human_preline_audit/1.0", ...}' />
+        <button type="button" onClick={validateAudit} disabled={!auditText.trim()}>Проверить import</button>
+        {auditMessage && <small>{auditMessage}</small>}
+      </div>
+    </section>
   );
 }
 
@@ -820,7 +998,7 @@ function PaperTradingLab({ summary, forecasts }: { summary?: PaperTradingSummary
                 <div><dt>ROI</dt><dd>{signedPercent(row.roi)}</dd></div>
                 <div><dt>CLV</dt><dd>{signedPercent(row.mean_clv)}</dd></div>
                 <div><dt>Max DD</dt><dd>{percent(row.max_drawdown)}</dd></div>
-                <div><dt>W–L</dt><dd>{Math.trunc(finiteNumber(row.wins) ?? 0)}–{Math.trunc(finiteNumber(row.losses) ?? 0)}</dd></div>
+                <div><dt>W–½W–½L–L</dt><dd>{Math.trunc(finiteNumber(row.wins) ?? 0)}–{Math.trunc(finiteNumber(row.half_wins) ?? 0)}–{Math.trunc(finiteNumber(row.half_losses) ?? 0)}–{Math.trunc(finiteNumber(row.losses) ?? 0)}</dd></div>
                 <div><dt>Циклы / крахи</dt><dd>{Math.trunc(finiteNumber(row.cycle_count) ?? 1)} / {Math.trunc(finiteNumber(row.ruin_count) ?? 0)}</dd></div>
               </dl>
               <div className="evidence-track"><i style={{ width: `${evidence}%` }} /></div>
@@ -915,10 +1093,13 @@ function CompletedForecastArchive({
           return settlement ? [{ ...marketForecast, settlement }] : [];
         });
         const marketWins = marketSelections.filter((row) => row.settlement === "win").length;
+        const marketHalfWins = marketSelections.filter((row) => row.settlement === "half_win").length;
         const marketLosses = marketSelections.filter((row) => row.settlement === "loss").length;
+        const marketHalfLosses = marketSelections.filter((row) => row.settlement === "half_loss").length;
         const marketPushes = marketSelections.filter((row) => row.settlement === "push").length;
         const scoredMarkets = marketSelections.filter((row) =>
-          row.settlement !== "push" && finiteNumber(row.conservative_probability) != null
+          (row.settlement === "win" || row.settlement === "loss") &&
+          finiteNumber(row.conservative_probability) != null
         );
         const marketBrier = scoredMarkets.length
           ? scoredMarkets.reduce((sum, row) => {
@@ -946,7 +1127,9 @@ function CompletedForecastArchive({
           logloss,
           marketSelections,
           marketWins,
+          marketHalfWins,
           marketLosses,
+          marketHalfLosses,
           marketPushes,
           marketBrier,
         }];
@@ -1012,7 +1195,9 @@ function CompletedForecastArchive({
         logloss: logloss != null && logloss >= 0 ? logloss : null,
         marketSelections: [],
         marketWins: 0,
+        marketHalfWins: 0,
         marketLosses: 0,
+        marketHalfLosses: 0,
         marketPushes: 0,
         marketBrier: null,
       }];
@@ -1050,17 +1235,23 @@ function CompletedForecastArchive({
     : null;
   const fullLineRows = rows.filter((row) => row.marketSelections.length > 0);
   const fullLineSelections = fullLineRows.reduce(
-    (sum, row) => sum + row.marketWins + row.marketLosses,
+    (sum, row) => sum + row.marketWins + row.marketHalfWins + row.marketHalfLosses + row.marketLosses,
     0,
   );
-  const fullLineWins = fullLineRows.reduce((sum, row) => sum + row.marketWins, 0);
+  const fullLineWins = fullLineRows.reduce(
+    (sum, row) => sum + row.marketWins + .5 * row.marketHalfWins,
+    0,
+  );
   const marketScoredRows = fullLineRows.filter((row) => row.marketBrier != null);
   const meanMarketBrier = marketScoredRows.length
     ? marketScoredRows.reduce((sum, row) => sum + (row.marketBrier || 0), 0) /
       marketScoredRows.length
     : null;
   const recommendedSettlements = fullLineRows.flatMap((row) => row.marketSelections)
-    .filter((market) => finiteNumber(market.recommendation_rank) != null && market.settlement !== "push");
+    .filter((market) =>
+      finiteNumber(market.recommendation_rank) != null &&
+      (market.settlement === "win" || market.settlement === "loss")
+    );
   const recommendationHitRate = recommendedSettlements.length
     ? recommendedSettlements.filter((market) => market.settlement === "win").length / recommendedSettlements.length
     : null;
@@ -1130,7 +1321,7 @@ function CompletedForecastArchive({
                 <small>{row.probabilities ? `П1 ${percent(row.probabilities.home)} · X ${percent(row.probabilities.draw)} · П2 ${percent(row.probabilities.away)}` : "вектор вероятностей не прошёл проверку"}</small>
                 <small className="archive-full-line">
                   {row.marketSelections.length
-                    ? `Вся линия: ${row.marketWins} выиграло · ${row.marketLosses} проиграло · ${row.marketPushes} возврат`
+                    ? `Вся линия: ${row.marketWins} W · ${row.marketHalfWins} ½W · ${row.marketHalfLosses} ½L · ${row.marketLosses} L · ${row.marketPushes} push`
                     : "Старый архив: полная линия ещё не сохранялась"}
                 </small>
                 {row.marketSelections.some((market) => finiteNumber(market.recommendation_rank) != null) && (
@@ -1138,7 +1329,7 @@ function CompletedForecastArchive({
                     Top-3: {row.marketSelections
                       .filter((market) => finiteNumber(market.recommendation_rank) != null)
                       .sort((left, right) => (finiteNumber(left.recommendation_rank) || 99) - (finiteNumber(right.recommendation_rank) || 99))
-                      .map((market) => `${market.label} ${market.settlement === "win" ? "✓" : market.settlement === "push" ? "↔" : "✕"}`)
+                      .map((market) => `${market.label} ${market.settlement === "win" ? "✓" : market.settlement === "half_win" ? "½✓" : market.settlement === "push" ? "↔" : market.settlement === "half_loss" ? "½✕" : "✕"}`)
                       .join(" · ")}
                   </small>
                 )}
@@ -1937,10 +2128,6 @@ export default function Home() {
   );
   const visibleForecasts = forecasts.slice(0, forecastLimit);
 
-  useEffect(() => {
-    setForecastLimit(INITIAL_FORECAST_LIMIT);
-  }, [filter, query]);
-
   return (
     <main>
       <header className="topbar">
@@ -1961,6 +2148,7 @@ export default function Home() {
               </p>
           <div className="hero-actions">
             <a href="#forecasts" className="primary-action">Смотреть матчи</a>
+            <a href="#research-day" className="secondary-action">Игровой день</a>
             <a href="/xg-edge/weekly.html" className="secondary-action">Рейтинг недели</a>
             <a href="#paper-bank" className="secondary-action">PAPER-банк</a>
             <a href="#completed-archive" className="secondary-action">Архив качества</a>
@@ -1981,6 +2169,8 @@ export default function Home() {
         <span>PAPER BANKROLL</span>
       </section>
 
+      <ResearchDayBoard workflow={payload.research_workflow} batches={payload.preline_chat_batches} />
+
       <PaperCandidateBoard ranking={payload.paper_candidate_ranking} nowMs={nowMs} />
 
       <PaperTradingLab summary={payload.paper_trading} forecasts={payload.forecasts} />
@@ -1995,13 +2185,13 @@ export default function Home() {
           </div>
           <div className="filters" role="group" aria-label="Фильтр соревнований">
             {[["all", "Все"], ["ucl", "ЛЧ"], ["uel", "ЛЕ"], ["uecl", "ЛК"], ["top-five", "Top-5"], ["world-cup", "ЧМ"]].map(([value, label]) => (
-              <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>
+              <button key={value} className={filter === value ? "active" : ""} onClick={() => { setFilter(value); setForecastLimit(INITIAL_FORECAST_LIMIT); }}>{label}</button>
             ))}
           </div>
         </div>
         <div className="match-search">
           <label htmlFor="match-search">Поиск матча</label>
-          <div><input id="match-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Команда, турнир, судья или стадион" /><button type="button" onClick={() => setQuery("")} disabled={!query}>Очистить</button></div>
+          <div><input id="match-search" type="search" value={query} onChange={(event) => { setQuery(event.target.value); setForecastLimit(INITIAL_FORECAST_LIMIT); }} placeholder="Команда, турнир, судья или стадион" /><button type="button" onClick={() => { setQuery(""); setForecastLimit(INITIAL_FORECAST_LIMIT); }} disabled={!query}>Очистить</button></div>
           <span>Найдено: {forecasts.length} · показано: {visibleForecasts.length}</span>
         </div>
         <div className="forecast-grid">

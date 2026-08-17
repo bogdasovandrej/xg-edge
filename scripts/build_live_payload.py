@@ -16,6 +16,8 @@ from xgedge.decision.live_market import (
 from xgedge.data.point_in_time import available_snapshot
 from xgedge.data.bookmaker_odds import apply_odds_snapshot_to_live_payload
 from xgedge.decision.ranking import rank_paper_candidates
+from xgedge.research.handoff import build_chat_batches
+from xgedge.research.preline import build_research_workflow
 from xgedge.dossier.builder import build_match_dossier
 from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
 from xgedge.markets.markets import prob_over
@@ -675,6 +677,14 @@ def build_payload(
         )
     if prospective_ledger is not None:
         payload = apply_summary_to_live_payload(payload, prospective_summary(prospective_ledger))
+    research_workflow = build_research_workflow(
+        payload["forecasts"], generated_at=generated_at
+    )
+    payload["research_workflow"] = research_workflow
+    payload["research_day"] = research_workflow["summary"]
+    payload["preline_chat_batches"] = build_chat_batches(
+        research_workflow, payload["forecasts"], batch_size=5
+    )
     payload["paper_candidate_ranking"] = rank_paper_candidates(payload)
     if paper_ledger is not None:
         payload["paper_trading"] = public_paper_summary(paper_ledger)

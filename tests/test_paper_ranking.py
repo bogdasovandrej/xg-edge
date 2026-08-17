@@ -53,7 +53,7 @@ def test_ranks_one_strict_candidate_per_match_without_mutating_payload() -> None
     assert all(row["selection"] == "П1" for row in result["candidates"])
     assert result["candidates"][0]["probability_edge"] == pytest.approx(.05)
     assert result["candidates"][0]["robust_edge"] < .10
-    assert result["policy"]["version"] == "paper-ranking-v2-lcb95"
+    assert result["policy"]["version"] == "paper-ranking-v3-multimarket-lcb95"
     assert result["candidates"][0]["ev_lcb95"] > 0
     assert result["candidates"][0]["probability_lcb95"] < .55
     assert result["candidates"][0]["staking"] == {
@@ -168,3 +168,33 @@ def test_large_point_edge_is_rejected_when_lcb95_is_not_positive() -> None:
     assert result["rejection_counts"] == {
         "no_candidate_survived_strict_filter": 1,
     }
+
+
+def test_returns_up_to_three_diverse_candidates_for_one_match() -> None:
+    row = _forecast("multi")
+    row["details"]["market_candidates"] = []
+    row["details"]["expanded_market_candidates"] = [
+        {
+            "selection": label,
+            "outcome": outcome,
+            "market": market,
+            "line": line,
+            "probability": probability,
+            "market_odds": 2.0,
+            "point_edge": probability * 2.0 - 1.0,
+            "bookmaker": "Book A",
+        }
+        for label, outcome, market, line, probability in (
+            ("Under 2.5", "under", "totals", 2.5, .60),
+            ("Under 3.0", "under", "totals", 3.0, .59),
+            ("BTTS No", "no", "btts", None, .58),
+            ("Home DNB", "home", "draw_no_bet", None, .57),
+        )
+    ]
+    result = rank_paper_candidates({
+        "generated_at": "2026-07-29T15:00:00Z", "forecasts": [row]
+    })
+    assert len(result["candidates"]) == 3
+    assert len({item["market_cluster"] for item in result["candidates"]}) == 3
+    assert sum(item["market_cluster"] == "TOTAL_UNDER" for item in result["candidates"]) == 1
+    assert all(item["fixture_id"] == "multi" for item in result["candidates"])
