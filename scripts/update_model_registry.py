@@ -14,14 +14,15 @@ from xgedge.automation.challenger import (
     register_challenger,
     validate_registry,
 )
+from xgedge.automation.storage import read_json
 from xgedge.data.point_in_time import as_utc
 from xgedge.simulation.ledger import write_json_atomic
 
 
 def _read_object(path: Path, *, name: str) -> dict[str, Any]:
     try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        value = read_json(path)
+    except ValueError as exc:
         raise ValueError(f"cannot read {name}: {exc}") from exc
     if not isinstance(value, Mapping):
         raise ValueError(f"{name} must be a JSON object")
@@ -70,7 +71,7 @@ def main(argv: list[str] | None = None) -> None:
         "--registry", type=Path, default=Path("reports/live/model_registry.json")
     )
     parser.add_argument(
-        "--archive", type=Path, default=Path("reports/live/forecast_archive.json")
+        "--archive", type=Path, default=Path("reports/live/forecast_archive.json.gz")
     )
     parser.add_argument("--evaluated-at")
     parser.add_argument(

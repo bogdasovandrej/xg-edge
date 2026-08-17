@@ -66,7 +66,7 @@ replication когорты.
   запросов, с ключом добавляет будущие матчи в поиск сайта;
 - GitHub Actions обновляет публичный JSON каждые шесть часов;
 - live-сайт читает новый snapshot без ручного перезапуска;
-- append-only `reports/live/forecast_archive.json` запоминает официальные
+- append-only `reports/live/forecast_archive.json.gz` запоминает официальные
   fixture snapshots, прогнозы, замороженные до kickoff, и результаты 90 минут;
 - `reports/live/model_registry.json` регулярно оценивает challenger-калибратор,
   но продвигает его только после заранее заданного walk-forward/калибровочного
@@ -325,12 +325,12 @@ python scripts/build_live_payload.py \
   --top-five-fixtures reports/live/top5_fixtures.json \
   --output reports/live_predictions.json
 python scripts/update_forecast_archive.py \
-  --archive reports/live/forecast_archive.json \
+  --archive reports/live/forecast_archive.json.gz \
   --fixtures reports/live/current_fixtures.json \
   --live-payload reports/live_predictions.json \
   --fetch-results
 python scripts/update_model_registry.py \
-  --archive reports/live/forecast_archive.json \
+  --archive reports/live/forecast_archive.json.gz \
   --registry reports/live/model_registry.json
 
 # малый открытый каталог; без event-файлов

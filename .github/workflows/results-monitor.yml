@@ -35,14 +35,14 @@ jobs:
       - name: Update immutable forecast archive
         run: >-
           python scripts/update_forecast_archive.py
-          --archive reports/live/forecast_archive.json
+          --archive reports/live/forecast_archive.json.gz
           --fixtures reports/live/current_fixtures.json
           --live-payload reports/live_predictions.json
           --fetch-results
       - name: Update PAPER model registry
         run: >-
           python scripts/update_model_registry.py
-          --archive reports/live/forecast_archive.json
+          --archive reports/live/forecast_archive.json.gz
           --registry reports/live/model_registry.json
       - name: Settle PAPER strategies
         run: >-
@@ -58,7 +58,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/live/prospective_clv.json reports/live/paper_trading.json reports/live/forecast_archive.json reports/live/model_registry.json reports/live_predictions.json
+          git add reports/live/prospective_clv.json reports/live/paper_trading.json reports/live/forecast_archive.json.gz reports/live/model_registry.json reports/live_predictions.json
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No completed prospective fixtures"
