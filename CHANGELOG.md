@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.9.0 — 2026-08-18
+
+- Added the UEFA Research Workflow v2: every future fixture is machine-scanned,
+  with a configurable 20-match PRELINE pool split into 17 exploitation and 3
+  exploration slots.
+- Added up to three diverse market hypotheses per match, versioned market
+  family/cluster taxonomy, push-aware fair/trigger pricing and four ChatGPT
+  export batches of five matches.
+- Added strict human-audit import validation, exact execution-quote identity,
+  trigger/near-trigger/large-move/late-wildcard states and a no-post-kickoff
+  invariant.
+- Removed the PAPER ledger's one-market-per-fixture restriction. Exact
+  candidates now retain their totals, BTTS, DNB or Asian identity through
+  placement, result, balance and public summary.
+- Added exact quarter-Asian settlement with half-win and half-loss payouts and
+  backward migration from paper ledger v1.0/v1.1 to v1.2.
+- Added the public Research Day surface with scan counts, PRELINE hypotheses,
+  ChatGPT packet export and audit JSON validation.
+
 ## 0.8.1 — 2026-07-23
 
 - Activated official UEFA fixture and ClubElo–Poisson forecast ingestion for
