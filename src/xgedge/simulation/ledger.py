@@ -38,14 +38,21 @@ from xgedge.markets.paper_markets import (
     settle_score_market,
     supported_line,
 )
+from xgedge.markets.taxonomy import TAXONOMY_VERSION, market_cluster, market_family
 
-LEDGER_SCHEMA_VERSION = "paper-trading-ledger/1.1"
-LEGACY_LEDGER_SCHEMA_VERSION = "paper-trading-ledger/1.0"
+LEDGER_SCHEMA_VERSION = "paper-trading-ledger/1.2"
+LEGACY_LEDGER_SCHEMA_VERSIONS = frozenset({
+    "paper-trading-ledger/1.0",
+    "paper-trading-ledger/1.1",
+})
 EVENT_SCHEMA_VERSION = "paper-event/1.0"
 SUMMARY_SCHEMA_VERSION = "paper-trading-summary/1.0"
 RESULTS_SCHEMA_VERSION = "paper-official-results/1.0"
 PROSPECTIVE_SCHEMA_VERSION = "prospective-clv/1.2"
-RANKING_SCHEMA_VERSION = "paper-candidate-ranking/1.0"
+RANKING_SCHEMA_VERSIONS = frozenset({
+    "paper-candidate-ranking/1.0",
+    "paper-candidate-ranking/1.1",
+})
 RUIN_THRESHOLD_RUB = 100.0
 MAX_QUOTE_AGE = timedelta(minutes=30)
 OUTCOMES = ("home", "draw", "away")
@@ -67,7 +74,9 @@ _POLICY: dict[str, Any] = {
     "maximum_quote_age_seconds": int(MAX_QUOTE_AGE.total_seconds()),
     "market": "REGULATION_SCORE_MARKETS_V1",
     "supported_markets": sorted(SUPPORTED_SCORE_MARKETS),
-    "one_candidate_per_match": True,
+    "one_candidate_per_match": False,
+    "maximum_candidates_per_match": 3,
+    "diversity_taxonomy": TAXONOMY_VERSION,
     "strategy_ids": list(STRATEGY_LABELS),
     "strategy_elimination": "disabled_until_preregistered_evidence",
     "strategy_ranking_score": {
@@ -363,7 +372,9 @@ def _public_summary_unvalidated(
             "settled_bets": metrics.settled_bets,
             "open_bets": active.open_bets,
             "wins": metrics.wins,
+            "half_wins": metrics.half_wins,
             "losses": metrics.losses,
+            "half_losses": metrics.half_losses,
             "pushes": metrics.pushes,
             "voids": metrics.voids,
             "cycle_count": metrics.cycle_count,
@@ -382,6 +393,13 @@ def _public_summary_unvalidated(
             counts["settled"] += 1
         else:
             counts["open"] += 1
+    enrolled_fixture_ids = {
+        str(row["fixture_id"]) for row in document["enrollments"].values()
+    }
+    settled_fixture_ids = {
+        str(document["enrollments"][key]["fixture_id"])
+        for key in document["settlements"]
+    }
     return {
         "schema_version": SUMMARY_SCHEMA_VERSION,
         "status": "PAPER_ONLY_TRACKING" if document["enrollments"] else "PAPER_ONLY_EMPTY",
@@ -392,9 +410,12 @@ def _public_summary_unvalidated(
         "target_role": "diagnostic_only_not_ranking_input",
         "totals": {
             "strategies": len(leaderboard),
-            "enrolled_matches": len(document["enrollments"]),
-            "settled_matches": len(document["settlements"]),
-            "open_matches": len(document["enrollments"]) - len(document["settlements"]),
+            "enrolled_matches": len(enrolled_fixture_ids),
+            "settled_matches": len(settled_fixture_ids),
+            "open_matches": len(enrolled_fixture_ids - settled_fixture_ids),
+            "enrolled_candidates": len(document["enrollments"]),
+            "settled_candidates": len(document["settlements"]),
+            "open_candidates": len(document["enrollments"]) - len(document["settlements"]),
             "settled_bets": total_settled,
             "open_bets": total_open,
         },
@@ -463,20 +484,28 @@ def _validate_action(action: Mapping[str, Any], strategy_id: str) -> None:
         raise ValueError("rejected strategy action cannot reserve a bet or stake")
 
 
-def _validate_enrollment(row: Mapping[str, Any], fixture_id: str) -> None:
+def _validate_enrollment(row: Mapping[str, Any], candidate_id: str) -> None:
     expected = {
-        "fixture_id", "competition", "stage", "kickoff_utc", "home", "away",
+        "candidate_id", "fixture_id", "competition", "stage", "kickoff_utc", "home", "away",
         "selection", "outcome", "market", "line", "model_probability", "bookmaker_probability",
         "odds", "bookmaker", "bookmaker_key", "quote_source",
         "quote_captured_at", "data_quality_score", "point_edge", "robust_edge",
-        "market_period", "enrolled_at", "strategy_actions",
+        "market_period", "market_family", "market_cluster", "market_taxonomy_version",
+        "enrolled_at", "strategy_actions",
     }
-    _exact_fields(row, expected, f"enrollment {fixture_id}")
-    if _text(row["fixture_id"], "fixture_id") != fixture_id:
-        raise ValueError(f"enrollment key/id mismatch for {fixture_id}")
+    _exact_fields(row, expected, f"enrollment {candidate_id}")
+    if _text(row["candidate_id"], "candidate_id") != candidate_id:
+        raise ValueError(f"enrollment key/id mismatch for {candidate_id}")
+    fixture_id = _text(row["fixture_id"], "fixture_id")
     market_kind = canonical_market(row["market"])
     if market_kind not in SUPPORTED_SCORE_MARKETS or market_kind != row["market"]:
         raise ValueError(f"enrollment {fixture_id} has unsupported market")
+    if row["market_family"] != market_family(market_kind):
+        raise ValueError(f"enrollment {fixture_id} has invalid market family")
+    if row["market_cluster"] != market_cluster(market_kind, row["outcome"]):
+        raise ValueError(f"enrollment {fixture_id} has invalid market cluster")
+    if row["market_taxonomy_version"] != TAXONOMY_VERSION:
+        raise ValueError(f"enrollment {fixture_id} has invalid taxonomy version")
     line = row["line"]
     if market_kind in {"totals", "team_totals", "asian_handicap"}:
         if supported_line(line) is None:
@@ -514,15 +543,16 @@ def _validate_enrollment(row: Mapping[str, Any], fixture_id: str) -> None:
         _validate_action(action, strategy_id)
 
 
-def _validate_settlement(row: Mapping[str, Any], fixture_id: str) -> None:
+def _validate_settlement(row: Mapping[str, Any], candidate_id: str) -> None:
     expected = {
-        "fixture_id", "outcome", "home_goals_90", "away_goals_90",
+        "candidate_id", "fixture_id", "outcome", "home_goals_90", "away_goals_90",
         "market", "selection", "line", "selection_result", "settled_at", "result_source",
         "closing_benchmark", "closing_odds", "strategy_results",
     }
-    _exact_fields(row, expected, f"settlement {fixture_id}")
-    if row["fixture_id"] != fixture_id or row["outcome"] not in OUTCOMES:
-        raise ValueError(f"settlement {fixture_id} has invalid identity/outcome")
+    _exact_fields(row, expected, f"settlement {candidate_id}")
+    if row["candidate_id"] != candidate_id or row["outcome"] not in OUTCOMES:
+        raise ValueError(f"settlement {candidate_id} has invalid identity/outcome")
+    fixture_id = _text(row["fixture_id"], "fixture_id")
     market_kind = canonical_market(row["market"])
     if market_kind not in SUPPORTED_SCORE_MARKETS or market_kind != row["market"]:
         raise ValueError(f"settlement {fixture_id} has invalid market")
@@ -552,7 +582,9 @@ def _validate_settlement(row: Mapping[str, Any], fixture_id: str) -> None:
         expected_result = "win" if row["selection"] == row["outcome"] else "loss"
         if row["selection_result"] != expected_result:
             raise ValueError(f"settlement {fixture_id} selection result conflicts with outcome")
-    if row["selection_result"] not in {"win", "loss", "push", "void"}:
+    if row["selection_result"] not in {
+        "win", "half_win", "push", "half_loss", "loss", "void"
+    }:
         raise ValueError(f"settlement {fixture_id} has invalid selection result")
     _timestamp(row["settled_at"], "settled_at")
     _text(row["result_source"], "result_source")
@@ -567,7 +599,9 @@ def _validate_settlement(row: Mapping[str, Any], fixture_id: str) -> None:
     if not isinstance(results, Mapping) or set(results) != set(STRATEGY_LABELS):
         raise ValueError("settlement strategy results are incomplete")
     for result in results.values():
-        if result not in {"win", "loss", "push", "void", "not_placed"}:
+        if result not in {
+            "win", "half_win", "push", "half_loss", "loss", "void", "not_placed"
+        }:
             raise ValueError("unsupported strategy settlement result")
 
 
@@ -599,21 +633,21 @@ def validate_paper_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
     settlements = source["settlements"]
     if not isinstance(enrollments, Mapping) or not isinstance(settlements, Mapping):
         raise ValueError("paper enrollments and settlements must be objects")
-    for fixture_id, row in enrollments.items():
+    for candidate_id, row in enrollments.items():
         if not isinstance(row, Mapping):
             raise ValueError("enrollment must be an object")
-        _validate_enrollment(row, str(fixture_id))
-    for fixture_id, row in settlements.items():
-        if fixture_id not in enrollments or not isinstance(row, Mapping):
-            raise ValueError(f"settlement {fixture_id} has no enrollment")
-        _validate_settlement(row, str(fixture_id))
-        enrollment = enrollments[fixture_id]
+        _validate_enrollment(row, str(candidate_id))
+    for candidate_id, row in settlements.items():
+        if candidate_id not in enrollments or not isinstance(row, Mapping):
+            raise ValueError(f"settlement {candidate_id} has no enrollment")
+        _validate_settlement(row, str(candidate_id))
+        enrollment = enrollments[candidate_id]
         if (
             row["market"] != enrollment["market"]
             or row["selection"] != enrollment["outcome"]
             or row["line"] != enrollment["line"]
         ):
-            raise ValueError(f"settlement {fixture_id} does not match enrollment")
+            raise ValueError(f"settlement {candidate_id} does not match enrollment")
     history = source["update_history"]
     if not isinstance(history, list):
         raise ValueError("update_history must be a list")
@@ -652,18 +686,18 @@ def validate_paper_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
             event.bet_id for event in simulator.events if isinstance(event, BetSettled)
         }
     referenced: dict[str, set[str]] = {strategy_id: set() for strategy_id in STRATEGY_LABELS}
-    for fixture_id, enrollment in enrollments.items():
+    for candidate_id, enrollment in enrollments.items():
         for strategy_id, action in enrollment["strategy_actions"].items():
             if not action["accepted"]:
                 continue
             bet_id = action["bet_id"]
             event = placed[strategy_id].get(bet_id)
-            if event is None or event.match_id != fixture_id:
-                raise ValueError(f"enrollment {fixture_id} has no matching placed event")
+            if event is None or event.match_id != enrollment["fixture_id"]:
+                raise ValueError(f"enrollment {candidate_id} has no matching placed event")
             referenced[strategy_id].add(bet_id)
             is_settled = bet_id in settled[strategy_id]
-            if is_settled != (fixture_id in settlements):
-                raise ValueError(f"settlement/event mismatch for {fixture_id}")
+            if is_settled != (candidate_id in settlements):
+                raise ValueError(f"settlement/event mismatch for {candidate_id}")
     for strategy_id in STRATEGY_LABELS:
         if set(placed[strategy_id]) != referenced[strategy_id]:
             raise ValueError(f"strategy {strategy_id} contains an unreferenced bet")
@@ -675,38 +709,69 @@ def validate_paper_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def _migrate_legacy_ledger(source: Mapping[str, Any]) -> dict[str, Any]:
-    """Upgrade the strict 1X2 v1.0 ledger without changing event history."""
-    if source.get("schema_version") != LEGACY_LEDGER_SCHEMA_VERSION:
+    """Upgrade v1.x ledgers without changing any immutable event."""
+    version = source.get("schema_version")
+    if version not in LEGACY_LEDGER_SCHEMA_VERSIONS:
         return deepcopy(dict(source))
     document = deepcopy(dict(source))
     policy = document.get("policy")
-    if not isinstance(policy, Mapping) or policy.get("market") != "REGULATION_1X2":
+    if not isinstance(policy, Mapping) or policy.get("market") not in {
+        "REGULATION_1X2", "REGULATION_SCORE_MARKETS_V1"
+    }:
         raise ValueError("unsupported legacy paper policy")
-    document["schema_version"] = LEDGER_SCHEMA_VERSION
-    document["policy"] = deepcopy(_POLICY)
     enrollments = document.get("enrollments")
     settlements = document.get("settlements")
     if not isinstance(enrollments, dict) or not isinstance(settlements, dict):
         raise ValueError("legacy paper ledger has invalid positions")
-    for row in enrollments.values():
+    if version == "paper-trading-ledger/1.0":
+        for row in enrollments.values():
+            if not isinstance(row, dict):
+                raise ValueError("legacy enrollment must be an object")
+            row["market"] = "1x2"
+            row["line"] = None
+        for fixture_id, row in settlements.items():
+            if not isinstance(row, dict) or fixture_id not in enrollments:
+                raise ValueError("legacy settlement must match an enrollment")
+            enrollment = enrollments[fixture_id]
+            actual = row.get("outcome")
+            row.update({
+                "home_goals_90": None,
+                "away_goals_90": None,
+                "market": "1x2",
+                "selection": enrollment.get("outcome"),
+                "line": None,
+                "selection_result": (
+                    "win" if enrollment.get("outcome") == actual else "loss"
+                ),
+            })
+
+    migrated_enrollments: dict[str, Any] = {}
+    migrated_settlements: dict[str, Any] = {}
+    for old_key, row in enrollments.items():
         if not isinstance(row, dict):
             raise ValueError("legacy enrollment must be an object")
-        row["market"] = "1x2"
-        row["line"] = None
-    for fixture_id, row in settlements.items():
-        if not isinstance(row, dict) or fixture_id not in enrollments:
-            raise ValueError("legacy settlement must match an enrollment")
-        enrollment = enrollments[fixture_id]
-        actual = row.get("outcome")
-        selection_result = "win" if enrollment.get("outcome") == actual else "loss"
-        row.update({
-            "home_goals_90": None,
-            "away_goals_90": None,
-            "market": "1x2",
-            "selection": enrollment.get("outcome"),
-            "line": None,
-            "selection_result": selection_result,
-        })
+        fixture_id = _text(row.get("fixture_id"), "fixture_id")
+        candidate_id = _stable_id(
+            "candidate", fixture_id, row.get("market"), row.get("outcome"),
+            row.get("line"), row.get("bookmaker"), row.get("quote_captured_at"),
+        )
+        row["candidate_id"] = candidate_id
+        row["market_family"] = market_family(row.get("market"))
+        row["market_cluster"] = market_cluster(row.get("market"), row.get("outcome"))
+        row["market_taxonomy_version"] = TAXONOMY_VERSION
+        migrated_enrollments[candidate_id] = row
+        if old_key in settlements:
+            settlement = settlements[old_key]
+            if not isinstance(settlement, dict):
+                raise ValueError("legacy settlement must be an object")
+            settlement["candidate_id"] = candidate_id
+            migrated_settlements[candidate_id] = settlement
+    if set(settlements) - set(enrollments):
+        raise ValueError("legacy settlement must match an enrollment")
+    document["enrollments"] = migrated_enrollments
+    document["settlements"] = migrated_settlements
+    document["schema_version"] = LEDGER_SCHEMA_VERSION
+    document["policy"] = deepcopy(_POLICY)
     simulators = _simulators(document)
     document["paper_trading"] = _public_summary_unvalidated(document, simulators)
     return document
@@ -750,22 +815,16 @@ def _candidate_rows(
     ranking = live_payload.get("paper_candidate_ranking")
     if not isinstance(ranking, Mapping):
         raise ValueError("live payload has no paper_candidate_ranking object")
-    if ranking.get("schema_version") != RANKING_SCHEMA_VERSION:
+    if ranking.get("schema_version") not in RANKING_SCHEMA_VERSIONS:
         raise ValueError("unsupported paper candidate ranking schema")
     if ranking.get("status") != "PAPER_ONLY" or ranking.get("real_money_execution") is not False:
         raise ValueError("candidate ranking must be PAPER_ONLY")
     rows = ranking.get("candidates")
     if not isinstance(rows, list):
         raise ValueError("paper candidate ranking candidates must be a list")
-    raw_ids = [
-        str(row.get("fixture_id"))
-        for row in rows
-        if isinstance(row, Mapping) and row.get("fixture_id") is not None
-    ]
-    if len(raw_ids) != len(set(raw_ids)):
-        raise ValueError("paper ranking contains more than one candidate for a match")
     accepted: list[dict[str, Any]] = []
     rejections: dict[str, int] = {}
+    fixture_clusters: dict[str, set[str]] = {}
 
     def reject(reason: str) -> None:
         rejections[reason] = rejections.get(reason, 0) + 1
@@ -848,7 +907,28 @@ def _candidate_rows(
         if now >= kickoff:
             reject("match_already_started")
             continue
+        family = market_family(market_kind)
+        cluster = market_cluster(market_kind, outcome)
+        seen_clusters = fixture_clusters.setdefault(fixture_id, set())
+        if cluster in seen_clusters:
+            reject("duplicate_market_cluster")
+            continue
+        if len(seen_clusters) >= int(_POLICY["maximum_candidates_per_match"]):
+            reject("per_match_candidate_limit")
+            continue
+        candidate_id = source.get("candidate_id")
+        if candidate_id is None:
+            candidate_id = _stable_id(
+                "candidate", fixture_id, market_kind, outcome, line,
+                source.get("bookmaker_key") or bookmaker, _iso(quoted),
+            )
+        else:
+            candidate_id = _text(candidate_id, "candidate_id")
+        if any(row["candidate_id"] == candidate_id for row in accepted):
+            raise ValueError("paper ranking contains duplicate candidate_id")
+        seen_clusters.add(cluster)
         accepted.append({
+            "candidate_id": candidate_id,
             "fixture_id": fixture_id,
             "competition": source.get("competition"),
             "stage": source.get("stage"),
@@ -859,6 +939,9 @@ def _candidate_rows(
             "outcome": outcome,
             "market": market_kind,
             "line": line,
+            "market_family": family,
+            "market_cluster": cluster,
+            "market_taxonomy_version": TAXONOMY_VERSION,
             "model_probability": model,
             "bookmaker_probability": market,
             "odds": odds,
@@ -871,7 +954,9 @@ def _candidate_rows(
             "robust_edge": robust_edge,
             "market_period": "REGULATION_90_MINUTES",
         })
-    accepted.sort(key=lambda row: (row["kickoff_utc"], row["fixture_id"]))
+    accepted.sort(key=lambda row: (
+        row["kickoff_utc"], row["fixture_id"], row["candidate_id"]
+    ))
     return accepted, dict(sorted(rejections.items()))
 
 
@@ -1050,10 +1135,13 @@ def update_paper_ledger(
     newly_settled: list[str] = []
     newly_enrolled: list[str] = []
 
-    for fixture_id in sorted(document["enrollments"]):
-        if fixture_id in document["settlements"] or fixture_id not in results:
+    for candidate_id in sorted(document["enrollments"]):
+        if candidate_id in document["settlements"]:
             continue
-        enrollment = document["enrollments"][fixture_id]
+        enrollment = document["enrollments"][candidate_id]
+        fixture_id = enrollment["fixture_id"]
+        if fixture_id not in results:
+            continue
         if when < _timestamp(enrollment["kickoff_utc"], "kickoff_utc"):
             raise ValueError(f"official result for {fixture_id} precedes kickoff")
         match_result = results[fixture_id]
@@ -1087,10 +1175,11 @@ def update_paper_ledger(
                 result=selection_result,
                 closing_odds=close,
                 timestamp=when,
-                event_id=_stable_id("event:settled", strategy_id, fixture_id),
+                event_id=_stable_id("event:settled", strategy_id, candidate_id),
             )
             strategy_results[strategy_id] = selection_result
-        document["settlements"][fixture_id] = {
+        document["settlements"][candidate_id] = {
+            "candidate_id": candidate_id,
             "fixture_id": fixture_id,
             "outcome": outcome,
             "home_goals_90": home_goals,
@@ -1105,12 +1194,13 @@ def update_paper_ledger(
             "closing_odds": close,
             "strategy_results": strategy_results,
         }
-        newly_settled.append(fixture_id)
+        newly_settled.append(candidate_id)
 
     existing = set(document["enrollments"])
     for candidate in candidates:
+        candidate_id = candidate["candidate_id"]
         fixture_id = candidate["fixture_id"]
-        if fixture_id in existing:
+        if candidate_id in existing:
             continue
         actions: dict[str, Any] = {}
         for strategy_id, simulator in simulators.items():
@@ -1120,8 +1210,7 @@ def update_paper_ledger(
                 bookmaker_probability=candidate["bookmaker_probability"],
             )
             bet_id = _stable_id(
-                "paper-bet", strategy_id, fixture_id, candidate["market"],
-                candidate["outcome"], candidate["line"],
+                "paper-bet", strategy_id, candidate_id,
             )
             placed = simulator.place_bet(
                 bet_id=bet_id,
@@ -1131,8 +1220,7 @@ def update_paper_ledger(
                 bookmaker_probability=candidate["bookmaker_probability"],
                 timestamp=when,
                 event_id=_stable_id(
-                    "event:placed", strategy_id, fixture_id, candidate["market"],
-                    candidate["outcome"], candidate["line"],
+                    "event:placed", strategy_id, candidate_id,
                 ),
             )
             actions[strategy_id] = {
@@ -1142,13 +1230,13 @@ def update_paper_ledger(
                 "stake_rub": decision.stake_rub if placed is not None else 0.0,
                 "stake_fraction": decision.stake_fraction if placed is not None else 0.0,
             }
-        document["enrollments"][fixture_id] = {
+        document["enrollments"][candidate_id] = {
             **candidate,
             "enrolled_at": _iso(when),
             "strategy_actions": actions,
         }
-        existing.add(fixture_id)
-        newly_enrolled.append(fixture_id)
+        existing.add(candidate_id)
+        newly_enrolled.append(candidate_id)
 
     changed = bool(newly_enrolled or newly_settled)
     if changed:
@@ -1177,7 +1265,7 @@ def update_paper_ledger(
 
 def public_paper_summary(ledger: Mapping[str, Any]) -> dict[str, Any]:
     """Return a validated defensive copy suitable for the public site payload."""
-    return deepcopy(validate_paper_ledger(ledger)["paper_trading"])
+    return deepcopy(validate_paper_ledger(_migrate_legacy_ledger(ledger))["paper_trading"])
 
 
 def read_json_object(path: Path, *, name: str) -> dict[str, Any]:

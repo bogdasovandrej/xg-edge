@@ -4,20 +4,25 @@ from __future__ import annotations
 from copy import deepcopy
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
+from hashlib import sha256
 from math import isfinite
 from typing import Any, Mapping
+
+from xgedge.markets.taxonomy import TAXONOMY_VERSION, market_cluster, market_family
 
 
 @dataclass(frozen=True)
 class PaperRankingConfig:
     """Frozen v2 selector based on a one-sided 95% lower EV bound."""
 
-    version: str = "paper-ranking-v2-lcb95"
+    version: str = "paper-ranking-v3-multimarket-lcb95"
     maximum_odds: float = 6.0
     minimum_data_quality: float = 60.0
     quality_target: float = 85.0
     maximum_quality_probability_error: float = 0.02
-    maximum_candidates: int = 10
+    maximum_matches: int = 10
+    maximum_candidates_per_match: int = 3
+    maximum_candidates: int = 30
     z_score_one_sided_95: float = 1.6448536269514722
     probability_se_low: float = 0.01
     probability_se_medium: float = 0.02
@@ -63,12 +68,15 @@ class PaperRankingConfig:
         )
         if any(not 0 <= value < 1 for value in rates) or self.z_score_one_sided_95 <= 0:
             raise ValueError("LCB errors, frictions and stake cap must be in valid ranges")
-        if (
-            isinstance(self.maximum_candidates, bool)
-            or not isinstance(self.maximum_candidates, int)
-            or self.maximum_candidates < 1
+        for field, value in (
+            ("maximum_matches", self.maximum_matches),
+            ("maximum_candidates_per_match", self.maximum_candidates_per_match),
+            ("maximum_candidates", self.maximum_candidates),
         ):
-            raise ValueError("maximum_candidates must be a positive integer")
+            if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+                raise ValueError(f"{field} must be a positive integer")
+        if self.maximum_candidates_per_match > self.maximum_candidates:
+            raise ValueError("per-match candidate limit cannot exceed the global limit")
 
 
 def _finite(value: Any) -> float | None:
@@ -127,7 +135,7 @@ def rank_paper_candidates(
     payload: Mapping[str, Any],
     config: PaperRankingConfig | None = None,
 ) -> dict[str, Any]:
-    """Rank at most one PAPER candidate per match and fail closed on weak data.
+    """Rank up to three diverse PAPER candidates per match and fail closed.
 
     This function does not claim that the model probability is the true
     probability.  It requires the one-sided 95% lower bound of execution EV to
@@ -144,7 +152,7 @@ def rank_paper_candidates(
     if generated_at is None:
         raise ValueError("live payload generated_at must be a timezone-aware ISO timestamp")
 
-    eligible: list[dict[str, Any]] = []
+    eligible_matches: list[list[dict[str, Any]]] = []
     rejection_counts: dict[str, int] = {}
 
     def reject(reason: str) -> None:
@@ -265,7 +273,20 @@ def rank_paper_candidates(
             bookmaker = source.get("bookmaker") or market.get("bookmaker")
             if not isinstance(bookmaker, str) or not bookmaker.strip():
                 continue
+            family = market_family(source.get("market") or "1x2")
+            cluster = market_cluster(
+                source.get("market") or "1x2", source.get("outcome")
+            )
+            identity = "|".join((
+                str(forecast["id"]),
+                str(source.get("market") or "1x2"),
+                str(source.get("outcome") or ""),
+                str(source.get("line")),
+                str(source.get("bookmaker_key") or bookmaker),
+                str(captured_at),
+            ))
             match_rows.append({
+                "candidate_id": f"candidate:{sha256(identity.encode('utf-8')).hexdigest()[:24]}",
                 "fixture_id": str(forecast["id"]),
                 "competition": forecast.get("competition"),
                 "stage": forecast.get("stage"),
@@ -276,6 +297,9 @@ def rank_paper_candidates(
                 "outcome": source.get("outcome"),
                 "market": source.get("market") or "1x2",
                 "line": source.get("line"),
+                "market_family": family,
+                "market_cluster": cluster,
+                "market_taxonomy_version": TAXONOMY_VERSION,
                 "model_probability": probability,
                 "break_even_probability": 1.0 / odds,
                 "probability_edge": probability - 1.0 / odds,
@@ -316,26 +340,45 @@ def rank_paper_candidates(
         match_rows.sort(
             key=lambda row: (-row["ev_lcb95"], -row["point_edge"], str(row["selection"]))
         )
-        eligible.append(match_rows[0])
+        diverse: list[dict[str, Any]] = []
+        clusters: set[str] = set()
+        for row in match_rows:
+            if row["market_cluster"] in clusters:
+                continue
+            diverse.append(row)
+            clusters.add(row["market_cluster"])
+            if len(diverse) >= cfg.maximum_candidates_per_match:
+                break
+        eligible_matches.append(diverse)
 
-    eligible.sort(
-        key=lambda row: (
-            -row["robust_edge"],
-            -row["data_quality_score"],
-            str(row.get("kickoff_utc") or ""),
-            row["fixture_id"],
+    eligible_matches.sort(
+        key=lambda rows: (
+            -rows[0]["robust_edge"],
+            -rows[0]["data_quality_score"],
+            str(rows[0].get("kickoff_utc") or ""),
+            rows[0]["fixture_id"],
         )
     )
-    selected = eligible[: cfg.maximum_candidates]
+    selected: list[dict[str, Any]] = []
+    for match_rank, rows in enumerate(eligible_matches[: cfg.maximum_matches], 1):
+        for within_match_rank, row in enumerate(rows, 1):
+            if len(selected) >= cfg.maximum_candidates:
+                break
+            row["match_rank"] = match_rank
+            row["within_match_rank"] = within_match_rank
+            selected.append(row)
+        if len(selected) >= cfg.maximum_candidates:
+            break
     for rank, row in enumerate(selected, 1):
         row["rank"] = rank
     return {
-        "schema_version": "paper-candidate-ranking/1.0",
+        "schema_version": "paper-candidate-ranking/1.1",
         "status": "PAPER_ONLY",
         "real_money_execution": False,
         "generated_at": payload.get("generated_at"),
         "policy": asdict(cfg),
-        "eligible_matches": len(eligible),
+        "eligible_matches": len(eligible_matches),
+        "selected_matches": len({row["fixture_id"] for row in selected}),
         "displayed_candidates": len(selected),
         "rejection_counts": dict(sorted(rejection_counts.items())),
         "candidates": deepcopy(selected),

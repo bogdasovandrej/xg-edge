@@ -91,7 +91,9 @@ def test_conservative_strategy_requires_strict_probability_edge() -> None:
     ("result", "expected_balance", "counter"),
     [
         (SettlementResult.WIN, 10_100.0, "wins"),
+        (SettlementResult.HALF_WIN, 10_050.0, "half_wins"),
         (SettlementResult.LOSS, 9_900.0, "losses"),
+        (SettlementResult.HALF_LOSS, 9_950.0, "half_losses"),
         (SettlementResult.PUSH, 10_000.0, "pushes"),
         (SettlementResult.VOID, 10_000.0, "voids"),
     ],
