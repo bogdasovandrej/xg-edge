@@ -138,7 +138,9 @@ def test_archive_cli_freezes_forecast_then_appends_official_result(tmp_path: Pat
 
 
 def test_model_registry_blocks_self_learning_until_fixed_evidence_threshold(tmp_path: Path) -> None:
-    archive_path = tmp_path / "forecast_archive.json"
+    # Production keeps append-only evidence compressed to avoid GitHub's
+    # single-file size ceiling; both automation CLIs must read that format.
+    archive_path = tmp_path / "forecast_archive.json.gz"
     registry_path = tmp_path / "model_registry.json"
     fixtures_path = tmp_path / "fixtures.json"
     payload_path = tmp_path / "live.json"

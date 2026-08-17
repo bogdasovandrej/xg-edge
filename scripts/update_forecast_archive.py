@@ -9,13 +9,13 @@ from typing import Any, Callable, Mapping
 
 from xgedge.automation.archive import empty_archive, update_archive, validate_archive
 from xgedge.data.official_results import fetch_tracked_results
-from xgedge.simulation.ledger import write_json_atomic
+from xgedge.automation.storage import read_json, write_json_atomic
 
 
 def _read_object(path: Path, *, name: str) -> dict[str, Any]:
     try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        value = read_json(path)
+    except ValueError as exc:
         raise ValueError(f"cannot read {name}: {exc}") from exc
     if not isinstance(value, Mapping):
         raise ValueError(f"{name} must be a JSON object")
@@ -75,7 +75,7 @@ def update_files(
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--archive", type=Path, default=Path("reports/live/forecast_archive.json")
+        "--archive", type=Path, default=Path("reports/live/forecast_archive.json.gz")
     )
     parser.add_argument("--fixtures", type=Path, default=Path("reports/live/current_fixtures.json"))
     parser.add_argument("--live-payload", type=Path, default=Path("reports/live_predictions.json"))

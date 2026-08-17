@@ -108,7 +108,7 @@ jobs:
       - name: Freeze forecast evidence
         run: >-
           python scripts/update_forecast_archive.py
-          --archive reports/live/forecast_archive.json
+          --archive reports/live/forecast_archive.json.gz
           --fixtures reports/live/current_fixtures.json
           --live-payload reports/live_predictions.json
       - name: Settle completed prospective forecasts
@@ -120,7 +120,7 @@ jobs:
       - name: Update PAPER model registry
         run: >-
           python scripts/update_model_registry.py
-          --archive reports/live/forecast_archive.json
+          --archive reports/live/forecast_archive.json.gz
           --registry reports/live/model_registry.json
       - name: Update PAPER strategy ledger
         run: >-

@@ -1,5 +1,9 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { gunzip } from "node:zlib";
+import { promisify } from "node:util";
+
+const gunzipAsync = promisify(gunzip);
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const repository = fileURLToPath(new URL("../../", import.meta.url));
@@ -73,7 +77,9 @@ await mkdir(`${output}data`, { recursive: true });
 await cp(`${repository}reports/live_predictions.json`, `${output}data/live_predictions.json`);
 await cp(`${repository}reports/live/prospective_clv.json`, `${output}data/prospective_clv.json`);
 await cp(`${repository}reports/live/prospective_clv_v2.json`, `${output}data/prospective_clv_v2.json`);
-const archive = JSON.parse(await readFile(`${repository}reports/live/forecast_archive.json`, "utf8"));
+const archive = JSON.parse(
+  (await gunzipAsync(await readFile(`${repository}reports/live/forecast_archive.json.gz`))).toString("utf8"),
+);
 await writeFile(
   `${output}data/forecast_archive.json`,
   `${JSON.stringify(compactForecastArchive(archive))}\n`,
