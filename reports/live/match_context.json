@@ -1,22 +1,1982 @@
 {
-  "generated_at": "2026-08-13T19:42:34Z",
+  "generated_at": "2026-08-17T22:24:21+00:00",
   "fixtures": {
+    "2049208": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049208",
+            "forecast_for": "2026-08-18T19:00:00Z",
+            "temperature_c": 23.7,
+            "precipitation_mm": 0.0,
+            "wind_kph": 5.5,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 42.6876,
+            "longitude": 23.335369,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049210": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049210",
+            "forecast_for": "2026-08-18T19:00:00Z",
+            "temperature_c": 24.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 4.1,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 45.8188722,
+            "longitude": 16.0180528,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049213": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049213",
+            "forecast_for": "2026-08-18T19:00:00Z",
+            "temperature_c": 23.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 1.6,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 40.9877861,
+            "longitude": 29.0366528,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
     "2049209": {
       "weather": {
         "provider": "open_meteo",
-        "status": "unavailable",
-        "reason": "HTTPError: 400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=55.8496722&longitude=-4.2057556&hourly=temperature_2m%2Cprecipitation%2Cweather_code%2Cwind_speed_10m&timezone=UTC&start_date=2026-08-19&end_date=2026-08-19",
-        "snapshot_at": "2026-08-03T20:02:57Z",
-        "records": null
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049209",
+            "forecast_for": "2026-08-19T19:00:00Z",
+            "temperature_c": 14.2,
+            "precipitation_mm": 0.8,
+            "wind_kph": 11.9,
+            "weather_code": 53,
+            "condition": "морось",
+            "latitude": 55.8496722,
+            "longitude": -4.2057556,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049211": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049211",
+            "forecast_for": "2026-08-19T19:00:00Z",
+            "temperature_c": 26.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.8,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 48.17758,
+            "longitude": 17.154043,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049212": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049212",
+            "forecast_for": "2026-08-19T19:00:00Z",
+            "temperature_c": 26.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.8,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 44.455138,
+            "longitude": 26.056977,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049214": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049214",
+            "forecast_for": "2026-08-19T19:00:00Z",
+            "temperature_c": 16.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 8.6,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 51.8224944,
+            "longitude": 5.8366556,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049229": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049229",
+            "forecast_for": "2026-08-20T15:00:00Z",
+            "temperature_c": 28.7,
+            "precipitation_mm": 0.0,
+            "wind_kph": 4.5,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 43.238494,
+            "longitude": 76.924158,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049227": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049227",
+            "forecast_for": "2026-08-20T16:00:00Z",
+            "temperature_c": 22.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 10.8,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 53.182996,
+            "longitude": 23.1427,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049228": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049228",
+            "forecast_for": "2026-08-20T16:00:00Z",
+            "temperature_c": 19.5,
+            "precipitation_mm": 0.2,
+            "wind_kph": 17.8,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 56.0119778,
+            "longitude": 14.7162833,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049250": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049250",
+            "forecast_for": "2026-08-20T16:00:00Z",
+            "temperature_c": 26.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 22.0,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 36.110556,
+            "longitude": -5.345833,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049253": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049253",
+            "forecast_for": "2026-08-20T16:00:00Z",
+            "temperature_c": 14.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 9.0,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 60.4428833,
+            "longitude": 22.2914806,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049222": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049222",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 24.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 4.0,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 40.998521,
+            "longitude": 39.6459478,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049223": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049223",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 33.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 8.8,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 44.312993,
+            "longitude": 23.791859,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049226": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049226",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 29.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.9,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 41.0767,
+            "longitude": 19.6616028,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049230": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049230",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 23.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.0,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 52.3976861,
+            "longitude": 16.8582806,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049231": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049231",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 24.9,
+            "precipitation_mm": 0.0,
+            "wind_kph": 11.8,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 41.040268,
+            "longitude": 28.994417,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049255": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049255",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 13.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 4.0,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 69.6489667,
+            "longitude": 18.9345528,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049261": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049261",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 17.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 11.4,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 56.1169028,
+            "longitude": 8.9516889,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049263": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049263",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 17.6,
+            "precipitation_mm": 0.0,
+            "wind_kph": 8.3,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 55.8160583,
+            "longitude": 12.3530222,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049249": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049249",
+            "forecast_for": "2026-08-20T17:00:00Z",
+            "temperature_c": 9.4,
+            "precipitation_mm": 0.1,
+            "wind_kph": 20.4,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 62.2249333,
+            "longitude": -6.5797556,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049259": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049259",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 29.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.4,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 40.6138083,
+            "longitude": 22.9723028,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049224": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049224",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 19.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 12.2,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 50.813475,
+            "longitude": 5.1663417,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049225": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049225",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 32.9,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.2,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 44.7832028,
+            "longitude": 20.4649167,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049233": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049233",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 24.6,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.1,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 35.3366833,
+            "longitude": 25.1061056,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049246": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049246",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 12.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 9.4,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 64.1170056,
+            "longitude": -21.8528,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049248": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049248",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 29.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 11.8,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 42.66311,
+            "longitude": 21.157107,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049252": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049252",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 23.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.3,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 50.2963417,
+            "longitude": 18.768525,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049267": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049267",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 17.6,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.8,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 52.2365611,
+            "longitude": 6.8377,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049265": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049265",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 23.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 2.2,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 46.2333528,
+            "longitude": 7.3759194,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049251": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049251",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 13.7,
+            "precipitation_mm": 0.2,
+            "wind_kph": 10.4,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 55.7803806,
+            "longitude": -3.9801833,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049257": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049257",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 29.0,
+            "precipitation_mm": 0.0,
+            "wind_kph": 5.0,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 38.0361361,
+            "longitude": 23.7875639,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049258": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049258",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 18.7,
+            "precipitation_mm": 0.0,
+            "wind_kph": 10.4,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 51.016111,
+            "longitude": 3.734167,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049260": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049260",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 21.7,
+            "precipitation_mm": 2.2,
+            "wind_kph": 2.5,
+            "weather_code": 80,
+            "condition": "ливни",
+            "latitude": 45.70915,
+            "longitude": 9.6807167,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049269": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049269",
+            "forecast_for": "2026-08-20T18:00:00Z",
+            "temperature_c": 20.5,
+            "precipitation_mm": 0.9,
+            "wind_kph": 2.9,
+            "weather_code": 80,
+            "condition": "ливни",
+            "latitude": 46.0224718,
+            "longitude": 8.9631829,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049254": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049254",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 14.0,
+            "precipitation_mm": 0.3,
+            "wind_kph": 11.2,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 55.9389972,
+            "longitude": -3.2324556,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049262": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049262",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 15.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 10.1,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 55.8532417,
+            "longitude": -4.3093694,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049232": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049232",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 21.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 19.2,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 38.751488,
+            "longitude": -9.188022,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049247": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049247",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 15.9,
+            "precipitation_mm": 0.0,
+            "wind_kph": 16.6,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 53.283511,
+            "longitude": -6.373739,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049256": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049256",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 28.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 2.6,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 43.5194556,
+            "longitude": 16.4317,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049264": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049264",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 27.6,
+            "precipitation_mm": 0.0,
+            "wind_kph": 1.5,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 41.116675,
+            "longitude": 20.0919361,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049266": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049266",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 20.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 12.7,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 41.5625056,
+            "longitude": -8.4297861,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049268": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049268",
+            "forecast_for": "2026-08-20T19:00:00Z",
+            "temperature_c": 26.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 16.1,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 40.3257083,
+            "longitude": -3.7149583,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049219": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049219",
+            "forecast_for": "2026-08-25T17:00:00Z",
+            "temperature_c": 29.0,
+            "precipitation_mm": 0.0,
+            "wind_kph": 16.8,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 40.3973806,
+            "longitude": 49.8523917,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
       }
     },
     "2049216": {
       "weather": {
         "provider": "open_meteo",
-        "status": "unavailable",
-        "reason": "HTTPError: 400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=48.292726&longitude=14.275684&hourly=temperature_2m%2Cprecipitation%2Cweather_code%2Cwind_speed_10m&timezone=UTC&start_date=2026-08-25&end_date=2026-08-25",
-        "snapshot_at": "2026-08-03T20:02:57Z",
-        "records": null
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049216",
+            "forecast_for": "2026-08-25T19:00:00Z",
+            "temperature_c": 17.5,
+            "precipitation_mm": 0.1,
+            "wind_kph": 19.6,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 48.292726,
+            "longitude": 14.275684,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049221": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049221",
+            "forecast_for": "2026-08-25T19:00:00Z",
+            "temperature_c": 10.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 7.1,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 67.2767083,
+            "longitude": 14.3844028,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049278": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049278",
+            "forecast_for": "2026-08-26T17:00:00Z",
+            "temperature_c": 20.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 7.0,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 48.197412,
+            "longitude": 16.26562,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049215": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049215",
+            "forecast_for": "2026-08-26T19:00:00Z",
+            "temperature_c": 31.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.6,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 38.0372424,
+            "longitude": 23.7416954,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049217": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049217",
+            "forecast_for": "2026-08-26T19:00:00Z",
+            "temperature_c": 14.7,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.1,
+            "weather_code": 45,
+            "condition": "туман",
+            "latitude": 58.914908,
+            "longitude": 5.728382,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049218": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049218",
+            "forecast_for": "2026-08-26T19:00:00Z",
+            "temperature_c": 19.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 5.0,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 46.2464694,
+            "longitude": 15.2699694,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049220": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049220",
+            "forecast_for": "2026-08-26T19:00:00Z",
+            "temperature_c": 20.0,
+            "precipitation_mm": 0.0,
+            "wind_kph": 4.1,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 45.765,
+            "longitude": 4.982,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049271": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049271",
+            "forecast_for": "2026-08-27T15:00:00Z",
+            "temperature_c": 10.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 14.0,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 62.895198,
+            "longitude": 27.666192,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049235": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049235",
+            "forecast_for": "2026-08-27T16:00:00Z",
+            "temperature_c": 30.7,
+            "precipitation_mm": 0.0,
+            "wind_kph": 5.4,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 40.1719306,
+            "longitude": 44.5256806,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049239": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049239",
+            "forecast_for": "2026-08-27T16:00:00Z",
+            "temperature_c": 28.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 11.0,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 41.7098278,
+            "longitude": 44.7462056,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049286": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049286",
+            "forecast_for": "2026-08-27T16:00:00Z",
+            "temperature_c": 15.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 2.1,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 50.7149028,
+            "longitude": 15.1622556,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049291": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049291",
+            "forecast_for": "2026-08-27T16:00:00Z",
+            "temperature_c": 28.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 14.3,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 40.3973806,
+            "longitude": 49.8523917,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049293": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049293",
+            "forecast_for": "2026-08-27T16:00:00Z",
+            "temperature_c": 26.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 2.8,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 41.635273,
+            "longitude": 41.618973,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049275": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049275",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 18.8,
+            "precipitation_mm": 0.2,
+            "wind_kph": 5.4,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 48.0212831,
+            "longitude": 7.829094,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049276": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049276",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 24.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 7.6,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 43.7276,
+            "longitude": 7.4155861,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049236": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049236",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 29.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 9.5,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 35.1145611,
+            "longitude": 33.3628472,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049237": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049237",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 18.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 13.6,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 49.7500583,
+            "longitude": 13.3854833,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049238": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049238",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 13.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 6.4,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 59.962764,
+            "longitude": 11.063433,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049240": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049240",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 18.8,
+            "precipitation_mm": 0.6,
+            "wind_kph": 11.1,
+            "weather_code": 53,
+            "condition": "морось",
+            "latitude": 47.8162861,
+            "longitude": 12.9981972,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049243": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049243",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 15.4,
+            "precipitation_mm": 0.1,
+            "wind_kph": 5.4,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 54.8973667,
+            "longitude": 23.9371222,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049272": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049272",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 18.2,
+            "precipitation_mm": 0.0,
+            "wind_kph": 12.3,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 42.5338241,
+            "longitude": 1.573593,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049273": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049273",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 14.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 9.1,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 56.961378,
+            "longitude": 24.116383,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049277": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049277",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 16.6,
+            "precipitation_mm": 0.0,
+            "wind_kph": 8.6,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 55.7027611,
+            "longitude": 12.572275,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049280": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049280",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 16.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 0.6,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 50.776684,
+            "longitude": 19.159283,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049281": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049281",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 17.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 13.3,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 50.2064139,
+            "longitude": 15.8454306,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049283": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049283",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 15.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 7.0,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 60.3669611,
+            "longitude": 5.3574806,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049288": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049288",
+            "forecast_for": "2026-08-27T17:00:00Z",
+            "temperature_c": 28.7,
+            "precipitation_mm": 0.0,
+            "wind_kph": 7.2,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 34.698092,
+            "longitude": 33.040767,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049242": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049242",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 18.3,
+            "precipitation_mm": 1.4,
+            "wind_kph": 1.0,
+            "weather_code": 95,
+            "condition": "гроза",
+            "latitude": 46.746742,
+            "longitude": 7.616429,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049244": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049244",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 14.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 12.9,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 56.4658917,
+            "longitude": 10.0103389,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049245": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049245",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 24.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.7,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 42.6876,
+            "longitude": 23.335369,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049284": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049284",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 21.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.9,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
+            "latitude": 48.0996972,
+            "longitude": 20.7176917,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049287": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049287",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 16.5,
+            "precipitation_mm": 0.8,
+            "wind_kph": 9.3,
+            "weather_code": 53,
+            "condition": "морось",
+            "latitude": 47.4070194,
+            "longitude": 9.3041861,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049289": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049289",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 19.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 11.7,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 52.314172,
+            "longitude": 4.94185,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049234": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049234",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 25.1,
+            "precipitation_mm": 0.0,
+            "wind_kph": 7.8,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 47.4759361,
+            "longitude": 19.0965083,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049241": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049241",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 16.7,
+            "precipitation_mm": 1.0,
+            "wind_kph": 11.6,
+            "weather_code": 55,
+            "condition": "сильная морось",
+            "latitude": 50.8342306,
+            "longitude": 4.298375,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049270": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049270",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 25.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 5.2,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 44.775846,
+            "longitude": 17.198414,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049279": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049279",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 17.6,
+            "precipitation_mm": 0.3,
+            "wind_kph": 6.1,
+            "weather_code": 51,
+            "condition": "слабая морось",
+            "latitude": 50.861822,
+            "longitude": -0.083278,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049290": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049290",
+            "forecast_for": "2026-08-27T18:00:00Z",
+            "temperature_c": 23.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 13.4,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 48.162414,
+            "longitude": 16.386578,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049285": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049285",
+            "forecast_for": "2026-08-27T19:00:00Z",
+            "temperature_c": 21.8,
+            "precipitation_mm": 0.0,
+            "wind_kph": 3.1,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 45.346535,
+            "longitude": 14.405458,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049274": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049274",
+            "forecast_for": "2026-08-27T19:00:00Z",
+            "temperature_c": 17.1,
+            "precipitation_mm": 1.5,
+            "wind_kph": 14.9,
+            "weather_code": 80,
+            "condition": "ливни",
+            "latitude": 54.849825,
+            "longitude": -5.8262583,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049282": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049282",
+            "forecast_for": "2026-08-27T19:00:00Z",
+            "temperature_c": 15.9,
+            "precipitation_mm": 0.0,
+            "wind_kph": 17.7,
+            "weather_code": 2,
+            "condition": "переменная облачность",
+            "latitude": 55.961775,
+            "longitude": -3.1652944,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
+      }
+    },
+    "2049292": {
+      "weather": {
+        "provider": "open_meteo",
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-08-17T22:24:21Z",
+        "records": [
+          {
+            "fixture_id": "2049292",
+            "forecast_for": "2026-08-27T19:00:00Z",
+            "temperature_c": 25.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 9.6,
+            "weather_code": 0,
+            "condition": "ясно",
+            "latitude": 44.7888528,
+            "longitude": 20.4591,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
       }
     }
   }
