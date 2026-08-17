@@ -61,15 +61,19 @@
 
 ## Точная очередь продолжения
 
-1. Основная доработка уже в `main` через PR #26; Pages включён и первый
-   deployment завершился успешно.
-2. Live/data workflow выполнил расчёты и тесты, но публикация обнаружила
-   инфраструктурный лимит архива; завершить описанное ниже исправление.
-3. Повторить live/data workflow, проверить GitHub Pages и опубликовать тот же
-   проверенный source через Sites.
-4. Следующая backend-фаза: qualification contract + tournament Monte Carlo +
+1. Основная доработка находится в `main`: PR #26, archive fix PR #27,
+   cross-deployment live feed PR #28 и восстановление Sites PR #29.
+2. Live Predictions run `32075746978` и Market Monitor run `32076022043`
+   прошли полностью, включая push данных, проверки и Pages deployment.
+3. GitHub Pages: `https://bogdasovandrej.github.io/xg-edge/`.
+   Sites version 1: `https://xg-edge-research-live.dennisluther91572.chatgpt.site`.
+4. Последний production snapshot: 86 будущих матчей, machine scan 86,
+   PRELINE 20 (17 exploitation + 3 exploration), 60 model hypotheses.
+   Odds feed сопоставил 5 матчей; строгих PAPER-кандидатов 0, потому что эти
+   пять не прошли minimum data quality 60, а не из-за отсутствия UI/расчёта.
+5. Следующая backend-фаза: qualification contract + tournament Monte Carlo +
    official `qualified_team_id` settlement.
-5. Затем: joint markets, deep audit/Final XI gate, portfolio exposure и trends.
+6. Затем: joint markets, deep audit/Final XI gate, portfolio exposure и trends.
 
 ## Инцидент автоматического обновления 18.08.2026
 
@@ -77,7 +81,7 @@
   `forecast_archive.json`: файл вырос до 102,4 МБ и превысил лимит 100 МБ.
 - Причина не в модели и не в API: append-only архив хранит много неизменяемых
   снимков прогнозов и всех рассчитанных рынков.
-- Исправление: канонический внутренний архив переносится в детерминированный
+- Исправление: канонический внутренний архив перенесён в детерминированный
   `forecast_archive.json.gz`; CLI читает обычный JSON и gzip, запись атомарна,
   повторный запуск не создаёт ложный diff из-за gzip-заголовка.
 - Статический сайт по-прежнему получает компактный публичный
@@ -86,8 +90,9 @@
   Sites читает тот же CORS-enabled feed по абсолютному URL, поэтому не зависит
   от включённого ноутбука и не застревает на пустом локальном fallback.
 - Старая привязка Sites `appgprj_6a67165c69908191bc9d5311f277664f`
-  подтверждённо отвечает `404 project_not_found`; для публикации создаётся одна
-  новая привязка, а её точный ID сохраняется в `site/.openai/hosting.json`.
+  подтверждённо отвечала `404 project_not_found`; новая привязка
+  `appgprj_6a838c8f9b908191981958f6e6267e16` сохранена в
+  `site/.openai/hosting.json`, Sites version 1 опубликована успешно.
 
 ## Намеренно не обещать
 
