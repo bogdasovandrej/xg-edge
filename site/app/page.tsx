@@ -514,7 +514,10 @@ type LivePayload = {
   forecasts: Forecast[];
 };
 
-const SITE_DATA_ROOT = "/xg-edge/data";
+// GitHub Actions owns the continuously refreshed public snapshots.  An
+// absolute, CORS-enabled origin keeps both GitHub Pages and Sites on the same
+// live feed instead of leaving the Sites deployment on an empty fallback.
+const SITE_DATA_ROOT = "https://bogdasovandrej.github.io/xg-edge/data";
 const DATA_URL = `${SITE_DATA_ROOT}/live_predictions.json`;
 const PROSPECTIVE_URL = `${SITE_DATA_ROOT}/prospective_clv.json`;
 const FORECAST_ARCHIVE_URL = `${SITE_DATA_ROOT}/forecast_archive.json`;

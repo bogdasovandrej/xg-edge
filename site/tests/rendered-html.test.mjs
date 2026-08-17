@@ -49,7 +49,7 @@ test("uses the public snapshot and contains no disposable starter", async () => 
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
-  assert.match(page, /SITE_DATA_ROOT = "\/xg-edge\/data"/);
+  assert.match(page, /SITE_DATA_ROOT = "https:\/\/bogdasovandrej\.github\.io\/xg-edge\/data"/);
   assert.match(page, /\/xg-edge\/weekly\.html/);
   assert.match(page, /live_predictions\.json/);
   assert.match(page, /\["uel", "ЛЕ"\]/);
