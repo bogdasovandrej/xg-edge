@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-08-17T20:36:57Z",
+  "updated_at": "2026-08-17T22:28:47Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -7379,6 +7379,316 @@
       "result": null,
       "calibration": null,
       "clv": null
+    },
+    "2049253": {
+      "fixture_id": "2049253",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Inter Turku",
+      "away": "Copenhagen",
+      "kickoff_utc": "2026-08-20T16:00:00Z",
+      "provider_event_id": "73399178",
+      "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+      "forecast": {
+        "generated_at": "2026-08-17T22:23:49Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.47916369543332105,
+          "draw": 0.22580484629083333,
+          "away": 0.29503145827584565
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-17T22:28:47Z",
+          "phase": "opening",
+          "provider_event_id": "73399178",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-17T22:28:33Z",
+              "odds": {
+                "home": 5.75,
+                "draw": 4.1,
+                "away": 1.48
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-08-17T16:58:51Z",
+              "odds": {
+                "home": 5.75,
+                "draw": 4.1,
+                "away": 1.48
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-17T17:20:30Z",
+              "odds": {
+                "home": 5.6,
+                "draw": 4.5,
+                "away": 1.46
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049251": {
+      "fixture_id": "2049251",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Motherwell",
+      "away": "Freiburg",
+      "kickoff_utc": "2026-08-20T18:30:00Z",
+      "provider_event_id": "73399166",
+      "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+      "forecast": {
+        "generated_at": "2026-08-17T22:23:49Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.45012859080409595,
+          "draw": 0.2605701274760215,
+          "away": 0.2893012817198826
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-17T22:28:47Z",
+          "phase": "opening",
+          "provider_event_id": "73399166",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-17T22:27:47Z",
+              "odds": {
+                "home": 5.25,
+                "draw": 4.1,
+                "away": 1.533
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-17T22:08:07Z",
+              "odds": {
+                "home": 6.25,
+                "draw": 4.6,
+                "away": 1.41
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049264": {
+      "fixture_id": "2049264",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Dinamo City",
+      "away": "Pafos",
+      "kickoff_utc": "2026-08-20T19:00:00Z",
+      "provider_event_id": "73399226",
+      "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+      "forecast": {
+        "generated_at": "2026-08-17T22:23:49Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5046282177091345,
+          "draw": 0.25984974443064446,
+          "away": 0.235522037860221
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-17T22:28:47Z",
+          "phase": "opening",
+          "provider_event_id": "73399226",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-17T22:28:18Z",
+              "odds": {
+                "home": 3.6,
+                "draw": 3.4,
+                "away": 1.909
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-17T17:20:30Z",
+              "odds": {
+                "home": 3.75,
+                "draw": 3.3,
+                "away": 1.9
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049266": {
+      "fixture_id": "2049266",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Braga",
+      "away": "Austria Wien",
+      "kickoff_utc": "2026-08-20T19:00:00Z",
+      "provider_event_id": "73399234",
+      "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+      "forecast": {
+        "generated_at": "2026-08-17T22:23:49Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.6222125578757072,
+          "draw": 0.20979645479100276,
+          "away": 0.16799098733329007
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-17T22:28:47Z",
+          "phase": "opening",
+          "provider_event_id": "73399234",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-17T22:28:33Z",
+              "odds": {
+                "home": 1.38,
+                "draw": 4.75,
+                "away": 6.5
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-17T17:20:30Z",
+              "odds": {
+                "home": 1.37,
+                "draw": 4.8,
+                "away": 6.75
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049250": {
+      "fixture_id": "2049250",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "L. Red Imps",
+      "away": "Larne",
+      "kickoff_utc": "2026-08-20T16:00:00Z",
+      "provider_event_id": "73399094",
+      "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+      "forecast": {
+        "generated_at": "2026-08-17T22:23:49Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.41600049497502023,
+          "draw": 0.27344279704644486,
+          "away": 0.31055670797853485
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-08-17T22:28:47Z",
+          "phase": "opening",
+          "provider_event_id": "73399094",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-17T22:28:18Z",
+              "odds": {
+                "home": 2.05,
+                "draw": 3.5,
+                "away": 3.2
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-17T17:20:30Z",
+              "odds": {
+                "home": 2.07,
+                "draw": 3.3,
+                "away": 3.25
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
     }
   },
   "gate": {
@@ -7639,7 +7949,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 10,
+        "tracked_fixtures": 15,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -7654,7 +7964,12 @@
           "2049179",
           "2049186",
           "2049192",
-          "2049202"
+          "2049202",
+          "2049250",
+          "2049251",
+          "2049253",
+          "2049264",
+          "2049266"
         ]
       },
       "cohort-dd3fbf52e49523eb3616502d": {
@@ -7706,7 +8021,7 @@
       }
     },
     "cohort_count": 6,
-    "tracked_fixtures": 21,
+    "tracked_fixtures": 26,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
