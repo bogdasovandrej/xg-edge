@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-08-20T14:49:23Z",
+  "updated_at": "2026-08-20T15:19:53Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -7862,10 +7862,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-20T15:19:53Z",
+          "phase": "closing_window",
+          "provider_event_id": "73399178",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-20T15:19:35Z",
+              "odds": {
+                "home": 4.75,
+                "draw": 3.9,
+                "away": 1.571
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-20T15:02:30Z",
+              "odds": {
+                "home": 5.75,
+                "draw": 4.7,
+                "away": 1.43
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-20T15:19:53Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.17546448819226518,
+          "draw": 0.21414358400247768,
+          "away": 0.6103919278052571
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null
@@ -8325,6 +8367,34 @@
               "key": "bet365",
               "title": "Bet365",
               "last_update": "2026-08-20T14:48:17Z",
+              "odds": {
+                "home": 5.5,
+                "draw": 3.9,
+                "away": 1.5
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-20T14:44:40Z",
+              "odds": {
+                "home": 5.5,
+                "draw": 4.25,
+                "away": 1.49
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-08-20T15:19:53Z",
+          "phase": "monitoring",
+          "provider_event_id": "73399166",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-20T15:19:07Z",
               "odds": {
                 "home": 5.5,
                 "draw": 3.9,
@@ -8805,6 +8875,34 @@
               "key": "bet365",
               "title": "Bet365",
               "last_update": "2026-08-20T14:48:44Z",
+              "odds": {
+                "home": 3.6,
+                "draw": 3.25,
+                "away": 1.95
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-20T14:44:40Z",
+              "odds": {
+                "home": 3.7,
+                "draw": 3.4,
+                "away": 1.91
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-08-20T15:19:53Z",
+          "phase": "monitoring",
+          "provider_event_id": "73399226",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-20T15:18:20Z",
               "odds": {
                 "home": 3.6,
                 "draw": 3.25,
@@ -9322,6 +9420,34 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-20T15:19:53Z",
+          "phase": "monitoring",
+          "provider_event_id": "73399234",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-20T15:19:25Z",
+              "odds": {
+                "home": 1.42,
+                "draw": 4.0,
+                "away": 8.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-20T14:44:40Z",
+              "odds": {
+                "home": 1.4,
+                "draw": 4.6,
+                "away": 6.75
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -9812,10 +9938,52 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-08-20T15:19:53Z",
+          "phase": "closing_window",
+          "provider_event_id": "73399094",
+          "sport_key": "international-clubs-uefa-conference-league-playoff-round",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-08-20T15:19:07Z",
+              "odds": {
+                "home": 1.85,
+                "draw": 3.4,
+                "away": 3.8
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-08-20T15:02:30Z",
+              "odds": {
+                "home": 2.04,
+                "draw": 3.25,
+                "away": 3.45
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
-      "closing": null,
+      "closing": {
+        "snapshot_at": "2026-08-20T15:19:53Z",
+        "method": "median_bookmaker_proportional_devig",
+        "benchmark": "non_pinnacle_consensus",
+        "evaluation_tier": "diagnostic",
+        "bookmakers": [
+          "bet365",
+          "unibet"
+        ],
+        "probabilities": {
+          "home": 0.47151608775311843,
+          "draw": 0.2753918570707004,
+          "away": 0.25309205517618116
+        }
+      },
       "result": null,
       "calibration": null,
       "clv": null
