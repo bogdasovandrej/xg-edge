@@ -2,7 +2,7 @@
   "schema_version": "paper-trading-ledger/1.2",
   "event_schema_version": "paper-event/1.0",
   "created_at": "2026-07-20T22:30:00Z",
-  "updated_at": "2026-08-13T16:41:47Z",
+  "updated_at": "2026-08-20T18:23:01Z",
   "policy": {
     "mode": "PAPER_ONLY",
     "real_money_execution": false,
@@ -68,6 +68,48 @@
           "model_probability": 0.5838479030823313,
           "bookmaker_probability": 0.31746031746031744,
           "stake_rub": 100.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:d14ef23693eeb52c4ddc054c",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "flat_1pct",
+          "cycle_id": "flat_1pct:cycle:1",
+          "bet_id": "paper-bet:d14ef23693eeb52c4ddc054c",
+          "match_id": "2049264",
+          "odds": 3.8,
+          "model_probability": 0.5046282177091345,
+          "bookmaker_probability": 0.2631578947368421,
+          "stake_rub": 99.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:5790e5833811f4efca0b0bfb",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "flat_1pct",
+          "cycle_id": "flat_1pct:cycle:1",
+          "bet_id": "paper-bet:5790e5833811f4efca0b0bfb",
+          "match_id": "2049264",
+          "odds": 4.65,
+          "model_probability": 0.4347288592093425,
+          "bookmaker_probability": 0.2150537634408602,
+          "stake_rub": 98.01
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:a40e1dd5605f15a0ae93025d",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "flat_1pct",
+          "cycle_id": "flat_1pct:cycle:1",
+          "bet_id": "paper-bet:a40e1dd5605f15a0ae93025d",
+          "match_id": "2049264",
+          "odds": 2.65,
+          "model_probability": 0.6817918334452914,
+          "bookmaker_probability": 0.37735849056603776,
+          "stake_rub": 97.03
         }
       ]
     },
@@ -97,6 +139,48 @@
           "model_probability": 0.5838479030823313,
           "bookmaker_probability": 0.31746031746031744,
           "stake_rub": 100.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:fa572d5b073e39abe68dd8a8",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "fractional_kelly_025",
+          "cycle_id": "fractional_kelly_025:cycle:1",
+          "bet_id": "paper-bet:fa572d5b073e39abe68dd8a8",
+          "match_id": "2049264",
+          "odds": 3.8,
+          "model_probability": 0.5046282177091345,
+          "bookmaker_probability": 0.2631578947368421,
+          "stake_rub": 99.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:08cf490f216ad91dd0173a2b",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "fractional_kelly_025",
+          "cycle_id": "fractional_kelly_025:cycle:1",
+          "bet_id": "paper-bet:08cf490f216ad91dd0173a2b",
+          "match_id": "2049264",
+          "odds": 4.65,
+          "model_probability": 0.4347288592093425,
+          "bookmaker_probability": 0.2150537634408602,
+          "stake_rub": 98.01
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:02d7494225cdb51816b32497",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "fractional_kelly_025",
+          "cycle_id": "fractional_kelly_025:cycle:1",
+          "bet_id": "paper-bet:02d7494225cdb51816b32497",
+          "match_id": "2049264",
+          "odds": 2.65,
+          "model_probability": 0.6817918334452914,
+          "bookmaker_probability": 0.37735849056603776,
+          "stake_rub": 97.03
         }
       ]
     },
@@ -126,6 +210,48 @@
           "model_probability": 0.5838479030823313,
           "bookmaker_probability": 0.31746031746031744,
           "stake_rub": 100.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:842425d3c91120a04c952ecd",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "conservative_edge_5pp",
+          "cycle_id": "conservative_edge_5pp:cycle:1",
+          "bet_id": "paper-bet:842425d3c91120a04c952ecd",
+          "match_id": "2049264",
+          "odds": 3.8,
+          "model_probability": 0.5046282177091345,
+          "bookmaker_probability": 0.2631578947368421,
+          "stake_rub": 99.0
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:7140a388f748fac45f0d2f48",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "conservative_edge_5pp",
+          "cycle_id": "conservative_edge_5pp:cycle:1",
+          "bet_id": "paper-bet:7140a388f748fac45f0d2f48",
+          "match_id": "2049264",
+          "odds": 4.65,
+          "model_probability": 0.4347288592093425,
+          "bookmaker_probability": 0.2150537634408602,
+          "stake_rub": 98.01
+        },
+        {
+          "schema_version": "paper-event/1.0",
+          "kind": "bet_placed",
+          "event_id": "event:placed:775ea4a0fd25676a4ace187d",
+          "timestamp": "2026-08-20T18:23:01Z",
+          "strategy_id": "conservative_edge_5pp",
+          "cycle_id": "conservative_edge_5pp:cycle:1",
+          "bet_id": "paper-bet:775ea4a0fd25676a4ace187d",
+          "match_id": "2049264",
+          "odds": 2.65,
+          "model_probability": 0.6817918334452914,
+          "bookmaker_probability": 0.37735849056603776,
+          "stake_rub": 97.03
         }
       ]
     }
@@ -181,6 +307,159 @@
       "market_family": "MATCH_RESULT",
       "market_cluster": "HOME_RESULT",
       "market_taxonomy_version": "market-taxonomy/1.0"
+    },
+    "candidate:3e2b353d204ef798a0a0ea5c": {
+      "candidate_id": "candidate:3e2b353d204ef798a0a0ea5c",
+      "fixture_id": "2049264",
+      "competition": "UEFA Conference League",
+      "stage": "Play-Offs · первый матч",
+      "kickoff_utc": "2026-08-20T19:00:00Z",
+      "home": "Dinamo City",
+      "away": "Pafos",
+      "selection": "П1",
+      "outcome": "home",
+      "market": "1x2",
+      "line": null,
+      "market_family": "MATCH_RESULT",
+      "market_cluster": "HOME_RESULT",
+      "market_taxonomy_version": "market-taxonomy/1.0",
+      "model_probability": 0.5046282177091345,
+      "bookmaker_probability": 0.2631578947368421,
+      "odds": 3.8,
+      "bookmaker": "Bet365",
+      "bookmaker_key": "bet365",
+      "quote_source": "odds_api_io",
+      "quote_captured_at": "2026-08-20T18:18:11Z",
+      "data_quality_score": 60.0,
+      "point_edge": 0.9175872272947108,
+      "robust_edge": 0.6534641156140175,
+      "market_period": "REGULATION_90_MINUTES",
+      "enrolled_at": "2026-08-20T18:23:01Z",
+      "strategy_actions": {
+        "flat_1pct": {
+          "accepted": true,
+          "bet_id": "paper-bet:d14ef23693eeb52c4ddc054c",
+          "reason": "accepted",
+          "stake_rub": 99.0,
+          "stake_fraction": 0.01
+        },
+        "fractional_kelly_025": {
+          "accepted": true,
+          "bet_id": "paper-bet:fa572d5b073e39abe68dd8a8",
+          "reason": "accepted",
+          "stake_rub": 99.0,
+          "stake_fraction": 0.01
+        },
+        "conservative_edge_5pp": {
+          "accepted": true,
+          "bet_id": "paper-bet:842425d3c91120a04c952ecd",
+          "reason": "accepted",
+          "stake_rub": 99.0,
+          "stake_fraction": 0.01
+        }
+      }
+    },
+    "candidate:ada0e6f7b04cf1810629bb8e": {
+      "candidate_id": "candidate:ada0e6f7b04cf1810629bb8e",
+      "fixture_id": "2049264",
+      "competition": "UEFA Conference League",
+      "stage": "Play-Offs · первый матч",
+      "kickoff_utc": "2026-08-20T19:00:00Z",
+      "home": "Dinamo City",
+      "away": "Pafos",
+      "selection": "Dinamo City -0.75",
+      "outcome": "home",
+      "market": "asian_handicap",
+      "line": -0.75,
+      "market_family": "ASIAN_HANDICAP",
+      "market_cluster": "HANDICAP_HOME",
+      "market_taxonomy_version": "market-taxonomy/1.0",
+      "model_probability": 0.4347288592093425,
+      "bookmaker_probability": 0.2150537634408602,
+      "odds": 4.65,
+      "bookmaker": "Bet365",
+      "bookmaker_key": "bet365",
+      "quote_source": "odds_api_io",
+      "quote_captured_at": "2026-08-20T18:18:11Z",
+      "data_quality_score": 60.0,
+      "point_edge": 1.0214891953234426,
+      "robust_edge": 0.6990731279102225,
+      "market_period": "REGULATION_90_MINUTES",
+      "enrolled_at": "2026-08-20T18:23:01Z",
+      "strategy_actions": {
+        "flat_1pct": {
+          "accepted": true,
+          "bet_id": "paper-bet:5790e5833811f4efca0b0bfb",
+          "reason": "accepted",
+          "stake_rub": 98.01,
+          "stake_fraction": 0.01
+        },
+        "fractional_kelly_025": {
+          "accepted": true,
+          "bet_id": "paper-bet:08cf490f216ad91dd0173a2b",
+          "reason": "accepted",
+          "stake_rub": 98.01,
+          "stake_fraction": 0.01
+        },
+        "conservative_edge_5pp": {
+          "accepted": true,
+          "bet_id": "paper-bet:7140a388f748fac45f0d2f48",
+          "reason": "accepted",
+          "stake_rub": 98.01,
+          "stake_fraction": 0.01
+        }
+      }
+    },
+    "candidate:fdaf333b870f59bc295f36c5": {
+      "candidate_id": "candidate:fdaf333b870f59bc295f36c5",
+      "fixture_id": "2049264",
+      "competition": "UEFA Conference League",
+      "stage": "Play-Offs · первый матч",
+      "kickoff_utc": "2026-08-20T19:00:00Z",
+      "home": "Dinamo City",
+      "away": "Pafos",
+      "selection": "Dinamo City DNB",
+      "outcome": "home",
+      "market": "draw_no_bet",
+      "line": null,
+      "market_family": "DRAW_NO_BET",
+      "market_cluster": "DNB_HOME",
+      "market_taxonomy_version": "market-taxonomy/1.0",
+      "model_probability": 0.6817918334452914,
+      "bookmaker_probability": 0.37735849056603776,
+      "odds": 2.65,
+      "bookmaker": "Unibet",
+      "bookmaker_key": "unibet",
+      "quote_source": "odds_api_io",
+      "quote_captured_at": "2026-08-20T18:18:11Z",
+      "data_quality_score": 60.0,
+      "point_edge": 0.8067483586300221,
+      "robust_edge": 0.6217564846241175,
+      "market_period": "REGULATION_90_MINUTES",
+      "enrolled_at": "2026-08-20T18:23:01Z",
+      "strategy_actions": {
+        "flat_1pct": {
+          "accepted": true,
+          "bet_id": "paper-bet:a40e1dd5605f15a0ae93025d",
+          "reason": "accepted",
+          "stake_rub": 97.03,
+          "stake_fraction": 0.01
+        },
+        "fractional_kelly_025": {
+          "accepted": true,
+          "bet_id": "paper-bet:02d7494225cdb51816b32497",
+          "reason": "accepted",
+          "stake_rub": 97.03,
+          "stake_fraction": 0.01
+        },
+        "conservative_edge_5pp": {
+          "accepted": true,
+          "bet_id": "paper-bet:775ea4a0fd25676a4ace187d",
+          "reason": "accepted",
+          "stake_rub": 97.03,
+          "stake_fraction": 0.01
+        }
+      }
     }
   },
   "settlements": {},
@@ -193,26 +472,37 @@
       ],
       "settled_fixture_ids": [],
       "event_count_after": 6
+    },
+    {
+      "update_id": "paper-update:e31859af4a2af02a265a748c",
+      "updated_at": "2026-08-20T18:23:01Z",
+      "enrolled_fixture_ids": [
+        "candidate:3e2b353d204ef798a0a0ea5c",
+        "candidate:ada0e6f7b04cf1810629bb8e",
+        "candidate:fdaf333b870f59bc295f36c5"
+      ],
+      "settled_fixture_ids": [],
+      "event_count_after": 15
     }
   ],
   "paper_trading": {
     "schema_version": "paper-trading-summary/1.0",
     "status": "PAPER_ONLY_TRACKING",
     "real_money_execution": false,
-    "updated_at": "2026-08-13T16:41:47Z",
+    "updated_at": "2026-08-20T18:23:01Z",
     "starting_balance_rub": 10000.0,
     "target_balance_rub": 1000000.0,
     "target_role": "diagnostic_only_not_ranking_input",
     "totals": {
       "strategies": 3,
-      "enrolled_matches": 1,
+      "enrolled_matches": 2,
       "settled_matches": 0,
-      "open_matches": 1,
-      "enrolled_candidates": 1,
+      "open_matches": 2,
+      "enrolled_candidates": 4,
       "settled_candidates": 0,
-      "open_candidates": 1,
+      "open_candidates": 4,
       "settled_bets": 0,
-      "open_bets": 3
+      "open_bets": 12
     },
     "leaderboard": [
       {
@@ -221,7 +511,7 @@
         "label": "Только edge от 5 п.п.",
         "score": 0.0,
         "equity_balance_rub": 10000.0,
-        "available_balance_rub": 9900.0,
+        "available_balance_rub": 9605.96,
         "pnl_rub": 0.0,
         "roi": 0.0,
         "max_drawdown": 0.0,
@@ -229,7 +519,7 @@
         "mean_clv": null,
         "total_staked_rub": 0.0,
         "settled_bets": 0,
-        "open_bets": 1,
+        "open_bets": 4,
         "wins": 0,
         "half_wins": 0,
         "losses": 0,
@@ -247,7 +537,7 @@
         "label": "Фиксированные 1%",
         "score": 0.0,
         "equity_balance_rub": 10000.0,
-        "available_balance_rub": 9900.0,
+        "available_balance_rub": 9605.96,
         "pnl_rub": 0.0,
         "roi": 0.0,
         "max_drawdown": 0.0,
@@ -255,7 +545,7 @@
         "mean_clv": null,
         "total_staked_rub": 0.0,
         "settled_bets": 0,
-        "open_bets": 1,
+        "open_bets": 4,
         "wins": 0,
         "half_wins": 0,
         "losses": 0,
@@ -273,7 +563,7 @@
         "label": "1/4 Kelly, лимит 1%",
         "score": 0.0,
         "equity_balance_rub": 10000.0,
-        "available_balance_rub": 9900.0,
+        "available_balance_rub": 9605.96,
         "pnl_rub": 0.0,
         "roi": 0.0,
         "max_drawdown": 0.0,
@@ -281,7 +571,7 @@
         "mean_clv": null,
         "total_staked_rub": 0.0,
         "settled_bets": 0,
-        "open_bets": 1,
+        "open_bets": 4,
         "wins": 0,
         "half_wins": 0,
         "losses": 0,
@@ -296,6 +586,16 @@
     ],
     "markets": {
       "1x2": {
+        "enrolled": 2,
+        "settled": 0,
+        "open": 2
+      },
+      "asian_handicap": {
+        "enrolled": 1,
+        "settled": 0,
+        "open": 1
+      },
+      "draw_no_bet": {
         "enrolled": 1,
         "settled": 0,
         "open": 1
