@@ -25,7 +25,7 @@
     "real_money_execution": false
   },
   "created_at": "2026-07-20T22:30:00Z",
-  "updated_at": "2026-08-20T19:44:35Z",
+  "updated_at": "2026-08-20T20:45:03Z",
   "champion": {
     "candidate_id": null,
     "model_family": "identity_1x2",
@@ -9234,6 +9234,152 @@
       },
       "decision_reason": "one_or_more_promotion_guardrails_failed",
       "content_hash": "8e0d5945f2a6f338194c73976d1cc6a3a9831d3c8b9bd8cc5498eca3d4519a24"
+    },
+    {
+      "candidate_id": "candidate-0abe52b19dafd00c626c89cb",
+      "status": "blocked",
+      "deployment_scope": "PAPER_ONLY",
+      "real_money_execution": false,
+      "evaluated_at": "2026-08-20T20:44:07Z",
+      "valid_for_forecasts_after": "2026-08-20T20:44:07Z",
+      "source_model": "Hybrid Elo–Poisson (experimental)",
+      "model": {
+        "family": "temperature_scaling_1x2",
+        "temperature": 1.955841641903225,
+        "fit_scope": "all eligible completed evidence at evaluation cutoff"
+      },
+      "training": {
+        "n_settled": 254,
+        "training_cutoff_utc": "2026-08-20T18:45:00Z",
+        "data_fingerprint": "a2bbe9db6d1675411883cf9fc9b4ec7c24587c4a956b5a14fa8e592ba489f102",
+        "archive_event_chain_head": "3e62bb1bfc994cb582bb61384d1bbb6c1753c20dd89eabb8a50bcd8c5e9c7a14",
+        "source_archive_schema": "match-evidence-archive/1.0",
+        "official_results_only": true,
+        "regulation_time_only": true,
+        "point_in_time_cutoff": "2026-08-20T20:44:07Z",
+        "quality": {
+          "source_model": "Hybrid Elo–Poisson (experimental)",
+          "rejected": {
+            "post_kickoff_archive": 0,
+            "post_kickoff_generation": 0,
+            "result_before_kickoff": 0,
+            "missing_official_result": 669
+          },
+          "model_counts": {
+            "ClubElo–Poisson (experimental)": 71,
+            "Hybrid Elo–Poisson (experimental)": 254
+          }
+        }
+      },
+      "evaluation": {
+        "method": "expanding_window_walk_forward",
+        "n_oos": 171,
+        "folds": [
+          {
+            "fold": 1,
+            "n_train": 83,
+            "n_test": 21,
+            "train_end_utc": "2026-07-30T17:00:00Z",
+            "test_start_utc": "2026-07-30T17:30:00Z",
+            "test_end_utc": "2026-07-30T18:30:00Z",
+            "temperature": 2.9999959022447444
+          },
+          {
+            "fold": 2,
+            "n_train": 104,
+            "n_test": 20,
+            "train_end_utc": "2026-07-30T18:30:00Z",
+            "test_start_utc": "2026-07-30T18:45:00Z",
+            "test_end_utc": "2026-08-05T17:00:00Z",
+            "temperature": 2.692900862797332
+          },
+          {
+            "fold": 3,
+            "n_train": 124,
+            "n_test": 24,
+            "train_end_utc": "2026-08-05T17:00:00Z",
+            "test_start_utc": "2026-08-05T18:00:00Z",
+            "test_end_utc": "2026-08-06T17:00:00Z",
+            "temperature": 2.341780508094189
+          },
+          {
+            "fold": 4,
+            "n_train": 148,
+            "n_test": 20,
+            "train_end_utc": "2026-08-06T17:00:00Z",
+            "test_start_utc": "2026-08-06T17:30:00Z",
+            "test_end_utc": "2026-08-11T16:00:00Z",
+            "temperature": 2.2558937199705458
+          },
+          {
+            "fold": 5,
+            "n_train": 168,
+            "n_test": 30,
+            "train_end_utc": "2026-08-11T16:00:00Z",
+            "test_start_utc": "2026-08-11T17:00:00Z",
+            "test_end_utc": "2026-08-13T17:00:00Z",
+            "temperature": 2.0019310606443694
+          },
+          {
+            "fold": 6,
+            "n_train": 198,
+            "n_test": 22,
+            "train_end_utc": "2026-08-13T17:00:00Z",
+            "test_start_utc": "2026-08-13T17:30:00Z",
+            "test_end_utc": "2026-08-18T19:00:00Z",
+            "temperature": 1.8977166417031581
+          },
+          {
+            "fold": 7,
+            "n_train": 220,
+            "n_test": 26,
+            "train_end_utc": "2026-08-18T19:00:00Z",
+            "test_start_utc": "2026-08-19T19:00:00Z",
+            "test_end_utc": "2026-08-20T18:00:00Z",
+            "temperature": 1.9206396507919492
+          },
+          {
+            "fold": 8,
+            "n_train": 246,
+            "n_test": 8,
+            "train_end_utc": "2026-08-20T18:00:00Z",
+            "test_start_utc": "2026-08-20T18:15:00Z",
+            "test_end_utc": "2026-08-20T18:45:00Z",
+            "temperature": 1.9073301957105464
+          }
+        ],
+        "champion": {
+          "logloss": 1.0166670975890824,
+          "brier": 0.6064628041663069,
+          "ece_top_label_10bin": 0.06148386006936277
+        },
+        "challenger": {
+          "logloss": 1.0390629548990815,
+          "brier": 0.6243167377448786,
+          "ece_top_label_10bin": 0.08643042975261518
+        },
+        "mean_logloss_improvement": -0.02239585730999926,
+        "mean_brier_improvement": -0.01785393357857168,
+        "ece_degradation": 0.024946569683252415,
+        "paired_logloss_improvement_ci95": {
+          "low": -0.060586881216960764,
+          "high": 0.018068951603842965,
+          "bootstrap_unit": "match"
+        }
+      },
+      "guardrails": {
+        "minimum_total_settled": true,
+        "minimum_oos_predictions": true,
+        "minimum_walk_forward_folds": true,
+        "logloss_score_improves": false,
+        "brier_score_not_worse": false,
+        "calibration_below_ceiling": false,
+        "calibration_not_materially_worse": false,
+        "paired_improvement_ci_above_zero": false,
+        "point_in_time_integrity": true
+      },
+      "decision_reason": "one_or_more_promotion_guardrails_failed",
+      "content_hash": "66645cca55c4c5045e4ee4142ba1f027368a8514af0d5bbdf49cfb500d20d32e"
     }
   ],
   "promotion_events": []
