@@ -25,3 +25,7 @@ htmlcov/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
+
+# SQLite write-ahead/journal sidecars; the store itself is tracked.
+reports/live/xgedge.db-wal
+reports/live/xgedge.db-shm
