@@ -58,6 +58,15 @@ jobs:
           --ledger-v2 reports/live/prospective_clv_v2.json
           --snapshot-output reports/live/bookmaker_odds.json
           ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+      - name: Capture multi-bookmaker snapshot for the consensus
+        if: steps.config.outputs.enabled == 'true'
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: >-
+          python scripts/capture_consensus_odds.py
+          --fixtures reports/live/current_fixtures.json
+          --top-five-fixtures reports/live/top5_fixtures.json
+          --output reports/live/consensus_odds.json
       - name: Record quote history and screen for movement
         if: steps.config.outputs.enabled == 'true'
         run: >-
@@ -98,7 +107,7 @@ jobs:
           # The price-history store and its screened feed. Every writer shares
           # the xgedge-data-writers concurrency group, so only one process
           # ever appends to the SQLite file.
-          for artefact in reports/live/xgedge.db reports/live/screener_feed.json reports/live/calibration.json; do
+          for artefact in reports/live/xgedge.db reports/live/screener_feed.json reports/live/calibration.json reports/live/consensus_odds.json; do
             if [ -f "$artefact" ]; then
               git add "$artefact"
             fi

@@ -931,6 +931,7 @@ def build_payload(
     top_five_fixtures: dict | None = None,
     extra_fixtures: dict | None = None,
     screener_feed: dict | None = None,
+    consensus_odds: dict | None = None,
     configured_api_keys: set[str] | None = None,
 ) -> dict:
     fixture_by_id = _fixture_index(fixtures)
@@ -1003,7 +1004,10 @@ def build_payload(
     )
     payload["paper_candidate_ranking"] = rank_paper_candidates(payload)
     payload = _apply_value_gate(payload)
-    payload = _apply_market_consensus(payload, odds_snapshot)
+    # The consensus prefers the multi-book snapshot when one exists: the
+    # primary capture is limited to two books by the connected plan, which is
+    # not enough to judge whether any single book is out of line.
+    payload = _apply_market_consensus(payload, consensus_odds or odds_snapshot)
     # The movement feed is produced by scripts/record_quotes.py against the
     # stored price history; an absent store means no feed, never a fake delta.
     if isinstance(screener_feed, dict):
@@ -1031,6 +1035,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--top-five-fixtures", type=Path)
     parser.add_argument("--extra-fixtures", type=Path)
     parser.add_argument("--screener-feed", type=Path)
+    parser.add_argument("--consensus-odds", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--generated-at")
     args = parser.parse_args(argv)
@@ -1073,6 +1078,11 @@ def main(argv: list[str] | None = None) -> None:
         screener_feed=(
             _read(args.screener_feed)
             if args.screener_feed and args.screener_feed.exists()
+            else None
+        ),
+        consensus_odds=(
+            _read(args.consensus_odds)
+            if args.consensus_odds and args.consensus_odds.exists()
             else None
         ),
         # Only the names are read, never the values: this decides whether an
