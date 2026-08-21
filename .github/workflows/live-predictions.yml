@@ -88,6 +88,9 @@ jobs:
           --paper-ledger reports/live/paper_trading.json
           --uefa-history reports/live/uefa_club_history.json
           --top-five-fixtures reports/live/top5_fixtures.json
+          --extra-fixtures reports/live/extra_fixtures.json
+          --screener-feed reports/live/screener_feed.json
+          --consensus-odds reports/live/consensus_odds.json
           --output reports/live_predictions.json
       - name: Capture first v2 price after frozen forecast
         if: vars.CLV_V2_ENABLED == 'true'
