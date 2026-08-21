@@ -21,6 +21,31 @@
   `value_verdict` that says "не рекомендую" or names the best available
   market, so an empty table is distinguishable from an unexamined fixture.
 - Wired the deep-audit queue and the portfolio engine into the live payload.
+- Added a competition coverage registry declaring all sixteen tracked
+  competitions with their feed and key status, so an empty competition reads
+  as a configuration gap rather than as "no fixtures". Added an api-football
+  adapter for the Russian Premier League and the five domestic cups, which
+  football-data.org's free tier does not carry; league ids are verified
+  against the league name the provider returns and fail closed on a mismatch.
+- Replaced flat portfolio staking with quarter-Kelly bounded by the minimum of
+  a 3% per-bet cap, a 10% in-play cap, a 15% per-archetype daily cap and the
+  cash reserve, with the binding constraint reported per ticket. Removed the
+  rule that let a human value rating unlock a larger stake, and removed that
+  rating from every ordering decision in the module.
+- Added a leave-one-out bookmaker consensus: a book's fair price is built from
+  every other book, so an out-of-line price surfaces as a candidate without
+  any paid analysis layer. Enforces that a book never votes on its own price,
+  and refuses to report a result below three books.
+- Added a SQLite store for price history, versioned analyses, value
+  calculations and settlements, serialised by the existing
+  `xgedge-data-writers` concurrency group. Added a line screener that
+  classifies DRIFT/STEAM/LARGE_MOVE/FROZEN against a stored reference and
+  ranks its own feed by delta rather than by value.
+- Added the value top, consensus feed, movement feed and collector to the
+  site, plus a one-line verdict on every fixture that states "не рекомендую"
+  rather than leaving a card blank.
+- Journalled value calculations and settlements with the fair price believed
+  at entry, so calibration cannot be silently rewritten by a later model.
 
 - Added the deep-audit state machine (`xgedge.research.deep_audit`): collects
   TRIGGER_HIT/NEAR_TRIGGER/LARGE_MOVE_REAUDIT/LATE_WILDCARD candidates into a
