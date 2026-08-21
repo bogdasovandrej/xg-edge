@@ -2214,8 +2214,20 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
     >
       <summary><span>Открыть полный разбор</span><small>Elo · форма · составы · рынок · риск</small></summary>
       {expanded && <div className="dossier-content">
-        <RecentFormHeader forecast={forecast} />
+        {/* Essentials first: the verdict, the brief and the actual bets. The
+            deep evidence is one more click away, so the default view answers
+            "what do I do about this match" rather than presenting everything
+            at once. */}
+        {forecast.value_verdict ? (
+          <p className={`verdict verdict-${String(forecast.value_verdict.status || "").toLowerCase()}`}>
+            {forecast.value_verdict.text}
+          </p>
+        ) : null}
         <ModelAnalysisBrief forecast={forecast} />
+
+        <details className="dossier-deep">
+        <summary>Подробные данные · форма, составы, судья, погода, вся линия</summary>
+        <RecentFormHeader forecast={forecast} />
 
         <div className="team-comparison">
           <TeamHistory team={details?.teams?.home} fallbackName={forecast.home} />
@@ -2246,6 +2258,7 @@ function MatchDossier({ forecast }: { forecast: Forecast }) {
         <ModelMarketBoard forecast={forecast} />
         <BookmakerSnapshot details={details} />
         <ScoreDistribution forecast={forecast} />
+        </details>
 
         <section className="candidate-section">
           <div className="dossier-title">
