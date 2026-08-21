@@ -172,6 +172,17 @@ def rank_paper_candidates(
         if forecast_generated is None or forecast_generated >= kickoff:
             reject("invalid_forecast_timestamp")
             continue
+        # A collapsed rating ladder makes every strength gap look small, so the
+        # model reads a heavy favourite as near-even and reports an enormous
+        # edge against a bookmaker who priced it correctly. The arithmetic is
+        # self-consistent, so no EV threshold can catch it — the rating basis
+        # itself has to be refused.
+        rating_quality = forecast.get("rating_quality")
+        if isinstance(rating_quality, Mapping) and not rating_quality.get(
+            "betting_eligible", True
+        ):
+            reject("degraded_rating_basis")
+            continue
         details = forecast.get("details")
         if not isinstance(details, Mapping):
             reject("missing_dossier")

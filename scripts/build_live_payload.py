@@ -15,6 +15,7 @@ from xgedge.decision.live_market import (
     market_index,
 )
 from xgedge.data.coverage import coverage_report
+from xgedge.experiments.rating_quality import assess_rating_quality
 from xgedge.data.point_in_time import available_snapshot
 from xgedge.data.bookmaker_odds import apply_odds_snapshot_to_live_payload
 from xgedge.decision.ranking import rank_paper_candidates
@@ -584,6 +585,10 @@ def _world_cup_rows(
 
 
 def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dict]) -> list[dict]:
+    # A collapsed rating ladder produces confident wrong probabilities, and the
+    # resulting "edge" is arithmetically indistinguishable from a real one, so
+    # the refusal has to happen here rather than at a downstream gate.
+    quality = assess_rating_quality(document.get("predictions", []))
     rows = []
     for prediction in document.get("predictions", []):
         fixture_id = str(prediction["fixture_id"])
@@ -630,6 +635,7 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
             "home": prediction["home"],
             "away": prediction["away"],
             "venue": fixture.get("venue"),
+            "rating_quality": quality,
             "model": "Hybrid Elo–Poisson (experimental)",
             "forecast_generated_at": (
                 prediction.get("generated_as_of_utc")
@@ -689,6 +695,21 @@ def _apply_value_gate(payload: dict) -> dict:
     for forecast in payload.get("forecasts", []):
         if not isinstance(forecast, dict):
             continue
+        # A fixture whose ratings collapsed is still shown, but it may not
+        # produce betting candidates: its "edge" is an artefact of the missing
+        # ratings, not a disagreement with the bookmaker.
+        rating_quality = forecast.get("rating_quality")
+        if isinstance(rating_quality, dict) and not rating_quality.get("betting_eligible", True):
+            forecast["value_verdict"] = {
+                "status": "NO_BET_DEGRADED_RATINGS",
+                "text": (
+                    "Не рекомендую ставить: рейтинги вырождены "
+                    f"({', '.join(rating_quality.get('reasons') or []) or 'нет причин'}). "
+                    "Вероятности показаны, но эдж по ним считать нельзя."
+                ),
+            }
+            continue
+
         best: dict | None = None
         approved: list[dict] = []
         for candidate in _candidate_rows(forecast):

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import io
 import json
 from dataclasses import asdict
 from datetime import datetime, timedelta, timezone
@@ -50,6 +51,37 @@ def _load_fixture_json(path: Path) -> list[dict[str, Any]]:
     if not isinstance(payload, list) or not all(isinstance(row, dict) for row in payload):
         raise ValueError("fixture JSON must be a list or an object with a fixtures list")
     return payload
+
+
+def _clubelo_csv(ratings: list[Any]) -> str:
+    """Serialise ratings back to the ClubElo CSV shape the parser expects."""
+    buffer = io.StringIO()
+    writer = csv.writer(buffer)
+    writer.writerow(["Rank", "Club", "Country", "Elo", "From", "To"])
+    for rating in ratings:
+        writer.writerow([
+            rating.rank if rating.rank is not None else "",
+            rating.club,
+            rating.country or "",
+            f"{rating.elo:.6f}",
+            rating.valid_from or "",
+            rating.valid_to or "",
+        ])
+    return buffer.getvalue()
+
+
+def _load_clubelo_cache(path: Path | None) -> list[Any]:
+    """Return the last good ClubElo ranking, or an empty list if unusable.
+
+    A stale ranking still ranks clubs correctly relative to one another, which
+    is what the goal model needs; a missing one collapses the ladder entirely.
+    """
+    if path is None or not path.exists():
+        return []
+    try:
+        return parse_clubelo_csv(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
 
 
 def _load_aliases(path: Path | None) -> dict[str, str]:
@@ -111,6 +143,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-csv", type=Path, required=True)
     parser.add_argument("--clubelo-url", default=DEFAULT_CLUBELO_URL)
+    parser.add_argument(
+        "--clubelo-cache", type=Path,
+        default=Path("reports/live/clubelo_ratings.csv"),
+        help="last good ClubElo ranking, used when the live fetch fails",
+    )
     parser.add_argument("--uefa-url", default=UEFA_MATCHES_URL)
     parser.add_argument(
         "--uefa-competition",
@@ -178,10 +215,16 @@ def main(argv: list[str] | None = None) -> int:
                 timeout=args.timeout,
                 session=session,
             )
+            # Keep the last good ranking on disk. A single read timeout used to
+            # drop every team to the UEFA replay, whose ladder is too flat to
+            # rank clubs at all, and the model then reported enormous edges
+            # against correctly priced markets.
+            if rating_rows and args.clubelo_cache is not None:
+                args.clubelo_cache.parent.mkdir(parents=True, exist_ok=True)
+                args.clubelo_cache.write_text(
+                    _clubelo_csv(rating_rows), encoding="utf-8"
+                )
         except (requests.RequestException, ValueError) as exc:
-            # ClubElo is useful, but it must never be a single point of failure
-            # for the public forecast pipeline. The point-in-time UEFA replay
-            # below can produce a conservative rating for every known team.
             rating_rows = []
             ratings_url = clubelo_ranking_url(args.clubelo_url, as_of)
             ratings_status = "FALLBACK_ONLY"
@@ -189,10 +232,20 @@ def main(argv: list[str] | None = None) -> int:
             ratings_error = type(exc).__name__
             if status_code is not None:
                 ratings_error += f": status={status_code}"
-            print(
-                "::warning title=ClubElo unavailable::"
-                f"Using point-in-time UEFA Elo fallback ({ratings_error})"
-            )
+            cached = _load_clubelo_cache(args.clubelo_cache)
+            if cached:
+                rating_rows = cached
+                ratings_status = "CACHED_CLUBELO"
+                ratings_url = f"cache:{args.clubelo_cache}"
+                print(
+                    "::warning title=ClubElo unavailable::"
+                    f"Using cached ClubElo ranking ({ratings_error})"
+                )
+            else:
+                print(
+                    "::warning title=ClubElo unavailable::"
+                    f"No cache; falling back to point-in-time UEFA Elo ({ratings_error})"
+                )
         fixture_source = args.uefa_url
 
     fixtures = sorted(fixtures, key=lambda row: (str(row.get("kickoff_utc", "")), str(row.get("id", ""))))[: args.limit]

@@ -226,6 +226,26 @@
       "home": "Sabah",
       "away": "H. Beer-Sheva",
       "venue": "Tofiq Bahramov Republican Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4739352296567839,
@@ -4219,8 +4239,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -4231,6 +4251,26 @@
       "home": "LASK",
       "away": "Celtic",
       "venue": "Oberösterreich Arena",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4583262276163004,
@@ -7704,8 +7744,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -7716,6 +7756,26 @@
       "home": "Bodø/Glimt",
       "away": "N.E.C.",
       "venue": "Aspmyra",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5946377123829895,
@@ -11319,8 +11379,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -11331,6 +11391,26 @@
       "home": "SK Rapid",
       "away": "Hearts",
       "venue": "Weststadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.6566929788606524,
@@ -15075,8 +15155,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -15087,6 +15167,26 @@
       "home": "AEK Athens",
       "away": "Levski Sofia",
       "venue": "AEK Arena",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5179349427603596,
@@ -19144,8 +19244,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -19156,6 +19256,26 @@
       "home": "Viking",
       "away": "GNK Dinamo",
       "venue": "Viking stadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5337972959210948,
@@ -22889,8 +23009,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -22901,6 +23021,26 @@
       "home": "Celje",
       "away": "S. Bratislava",
       "venue": "Stadion Celje",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5371993520503477,
@@ -26958,8 +27098,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -26970,6 +27110,26 @@
       "home": "Lyon",
       "away": "Fenerbahçe",
       "venue": "OL Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5227749299665585,
@@ -31027,8 +31187,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -31039,6 +31199,26 @@
       "home": "KuPS Kuopio",
       "away": "Shamrock Rovers",
       "venue": "Kuopion Keskuskenttä",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4187420961481102,
@@ -35107,8 +35287,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -35119,6 +35299,26 @@
       "home": "Jablonec",
       "away": "Rangers",
       "venue": "Stadion Střelnice",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.6018338185463988,
@@ -38863,8 +39063,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -38875,6 +39075,26 @@
       "home": "Qarabağ",
       "away": "Twente",
       "venue": "Tofiq Bahramov Republican Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5444125378740781,
@@ -42619,8 +42839,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -42631,6 +42851,26 @@
       "home": "M. Tel-Aviv",
       "away": "Lugano",
       "venue": "Batumi Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.3277693043160776,
@@ -46635,8 +46875,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -46647,6 +46887,26 @@
       "home": "Ararat-Armenia",
       "away": "U. Craiova",
       "venue": "Republican Stadium after Vazgen Sargsyan",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4041744300214677,
@@ -50715,8 +50975,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -50727,6 +50987,26 @@
       "home": "Iberia Tbilisi",
       "away": "Jagiellonia",
       "venue": "Mikheil Meskhi I Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.30170922800652467,
@@ -54795,8 +55075,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -54807,6 +55087,26 @@
       "home": "Freiburg",
       "away": "Motherwell",
       "venue": "Stadion am Wolfswinkel",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5801308377996646,
@@ -58551,8 +58851,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -58563,6 +58863,26 @@
       "home": "Monaco",
       "away": "Górnik Zabrze",
       "venue": "Stade Louis II",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5257933509566398,
@@ -62307,8 +62627,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -62319,6 +62639,26 @@
       "home": "Inter Escaldes",
       "away": "Drita",
       "venue": "Estadi FAF",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5377209753396781,
@@ -66323,8 +66663,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -66335,6 +66675,26 @@
       "home": "Riga",
       "away": "Klaksvík",
       "venue": "Skonto Stadions",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4890241988793502,
@@ -70403,8 +70763,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -70415,6 +70775,26 @@
       "home": "Copenhagen",
       "away": "Inter Turku",
       "venue": "Parken",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5403193134350134,
@@ -74289,8 +74669,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -74301,6 +74681,26 @@
       "home": "Raków",
       "away": "Hajduk Split",
       "venue": "Municipal Sport Stadium “Raków” Częstochowa",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.6037001022870561,
@@ -78369,8 +78769,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -78381,6 +78781,26 @@
       "home": "Hradec Králové",
       "away": "Panathinaikos",
       "venue": "Malsovicka Arena",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4686619218605798,
@@ -82125,8 +82545,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -82137,6 +82557,26 @@
       "home": "Brann",
       "away": "PAOK",
       "venue": "Brann Stadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.48625852853017704,
@@ -86205,8 +86645,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -86217,6 +86657,26 @@
       "home": "Pafos",
       "away": "Dinamo City",
       "venue": "Limassol Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4550780013064102,
@@ -90285,8 +90745,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -90297,6 +90757,26 @@
       "home": "Omonia",
       "away": "Sint-Truidense",
       "venue": "GSP",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4769405554342744,
@@ -93781,8 +94261,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -93793,6 +94273,26 @@
       "home": "Viktoria Plzeň",
       "away": "Crvena Zvezda",
       "venue": "Stadion města Plzně",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.3881893147406049,
@@ -97861,8 +98361,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -97873,6 +98373,26 @@
       "home": "Lillestrøm",
       "away": "Egnatia",
       "venue": "Åråsen",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4342921807753747,
@@ -101357,8 +101877,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -101369,6 +101889,26 @@
       "home": "Salzburg",
       "away": "Mjällby",
       "venue": "Stadion Salzburg",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5072644282748568,
@@ -105113,8 +105653,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -105125,6 +105665,26 @@
       "home": "Kauno Žalgiris",
       "away": "Beşiktaş",
       "venue": "Dariaus ir Girėno Stadionas",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.341826304029358,
@@ -109193,8 +109753,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -109205,6 +109765,26 @@
       "home": "H. Tel-Aviv",
       "away": "Atalanta",
       "venue": "DVTK Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5528415786775844,
@@ -112949,8 +113529,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -112961,6 +113541,26 @@
       "home": "St. Gallen",
       "away": "Nordsjælland",
       "venue": "Sitterstadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.42017447500801147,
@@ -116380,8 +116980,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -116392,6 +116992,26 @@
       "home": "Ajax",
       "away": "Sion",
       "venue": "Johan Cruijff ArenA",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5240359684022325,
@@ -120136,8 +120756,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -120148,6 +120768,26 @@
       "home": "Thun",
       "away": "Lech Poznań",
       "venue": "Arena Thun",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.324253682413825,
@@ -123892,8 +124532,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -123904,6 +124544,26 @@
       "home": "Aarhus",
       "away": "Benfica",
       "venue": "Randers Stadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4172986922703023,
@@ -127648,8 +128308,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -127660,6 +128320,26 @@
       "home": "CSKA Sofia",
       "away": "OFI Crete",
       "venue": "Natsionalen Stadion Vasil Levski",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4597795763101197,
@@ -130949,8 +131629,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -130961,6 +131641,26 @@
       "home": "Borac",
       "away": "Víkingur R.",
       "venue": "Gradski Stadion Banja Luka",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5235876676829172,
@@ -134965,8 +135665,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -134977,6 +135677,26 @@
       "home": "Brighton",
       "away": "Tromsø",
       "venue": "Brighton & Hove Albion Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4623610076518484,
@@ -138136,8 +138856,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -138148,6 +138868,26 @@
       "home": "Austria Wien",
       "away": "Braga",
       "venue": "Franz-Horr-Stadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.33633022138538277,
@@ -142152,8 +142892,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -142164,6 +142904,26 @@
       "home": "Ferencváros",
       "away": "Trabzonspor",
       "venue": "Ferencváros Stadion",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.622019463584206,
@@ -145648,8 +146408,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -145660,6 +146420,26 @@
       "home": "Anderlecht",
       "away": "Kairat Almaty",
       "venue": "RSC Anderlecht Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.671439009625538,
@@ -149728,8 +150508,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -149740,6 +150520,26 @@
       "home": "Rijeka",
       "away": "Midtjylland",
       "venue": "Stadion HNK Rijeka",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.3686154733786312,
@@ -153808,8 +154608,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -153820,6 +154620,26 @@
       "home": "Larne",
       "away": "L. Red Imps",
       "venue": "Inver Park",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5830557758483979,
@@ -157888,8 +158708,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -157900,6 +158720,26 @@
       "home": "Hibernian",
       "away": "Gent",
       "venue": "Easter Road Stadium",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.4634935830914439,
@@ -161644,8 +162484,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     },
     {
@@ -161656,6 +162496,26 @@
       "home": "Partizan",
       "away": "Getafe",
       "venue": "Stadion FK Partizan",
+      "rating_quality": {
+        "schema_version": "rating-quality/1.0",
+        "status": "DEGRADED",
+        "betting_eligible": false,
+        "reasons": [
+          "insufficient_trusted_rating_coverage",
+          "collapsed_elo_ladder"
+        ],
+        "rated_teams": 86,
+        "trusted_share": 0.0,
+        "elo_spread": 203.78560084966307,
+        "source_counts": {
+          "uefa_official_results": 86
+        },
+        "policy": {
+          "minimum_trusted_share": 0.5,
+          "minimum_elo_spread": 300.0
+        },
+        "note": "Прогноз остаётся виден, но вырожденная лестница рейтингов не допускается к созданию ставочных кандидатов: она порождает мнимый эдж, неотличимый от настоящего по арифметике."
+      },
       "model": "Hybrid Elo–Poisson (experimental)",
       "forecast_generated_at": "2026-08-21T07:11:29Z",
       "p_home": 0.5792837459810212,
@@ -165140,8 +166000,8 @@
         }
       },
       "value_verdict": {
-        "status": "NO_QUOTE",
-        "text": "Не рекомендую ставить: нет подтверждённой котировки."
+        "status": "NO_BET_DEGRADED_RATINGS",
+        "text": "Не рекомендую ставить: рейтинги вырождены (insufficient_trusted_rating_coverage, collapsed_elo_ladder). Вероятности показаны, но эдж по ним считать нельзя."
       }
     }
   ],
@@ -225008,7 +225868,7 @@
     "selected_matches": 0,
     "displayed_candidates": 0,
     "rejection_counts": {
-      "missing_verified_market_candidates": 43
+      "degraded_rating_basis": 43
     },
     "candidates": []
   },

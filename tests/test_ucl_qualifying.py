@@ -436,6 +436,7 @@ def test_live_cli_can_predict_verified_uefa_competitions_without_hardcoding(
         "--uefa-competition", "all",
         "--output-json", str(json_path),
         "--output-csv", str(csv_path),
+        "--clubelo-cache", str(tmp_path / "clubelo_cache.csv"),
         "--simulations", "1000",
     ])
 
@@ -498,6 +499,7 @@ def test_live_cli_survives_clubelo_outage_with_uefa_fallback(
         "--history-json", str(history_path),
         "--output-json", str(json_path),
         "--output-csv", str(csv_path),
+        "--clubelo-cache", str(tmp_path / "clubelo_cache.csv"),
         "--simulations", "1000",
     ])
 
@@ -507,6 +509,75 @@ def test_live_cli_survives_clubelo_outage_with_uefa_fallback(
     assert payload["sources"]["ratings"]["status"] == "FALLBACK_ONLY"
     assert payload["sources"]["ratings"]["fetch_error"] == "HTTPError: status=502"
     assert payload["predictions"][0]["status"] == "ok"
+
+
+def test_cached_clubelo_survives_an_outage_instead_of_collapsing_the_ladder(
+    tmp_path, monkeypatch
+):
+    """A read timeout must not flatten every club onto the 1500 prior.
+
+    The August 2026 incident: ClubElo timed out, all 86 clubs fell back to a
+    UEFA replay spanning 1420-1624, and the model reported enormous edges
+    against correctly priced markets.
+    """
+    cache_path = tmp_path / "clubelo_cache.csv"
+    cache_path.write_text(
+        "Rank,Club,Country,Elo,From,To\n"
+        "42,Home,AUT,1783.400000,2026-07-01,2026-07-31\n"
+        "310,Away,CYP,1451.900000,2026-07-01,2026-07-31\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        predictor_cli, "fetch_uefa_club_fixtures", lambda **kwargs: [_fixture()]
+    )
+    monkeypatch.setattr(
+        predictor_cli,
+        "fetch_clubelo_ratings",
+        lambda **kwargs: (_ for _ in ()).throw(requests.ReadTimeout("read timeout")),
+    )
+
+    json_path = tmp_path / "predictions.json"
+    exit_code = predictor_cli.main([
+        "--mode", "live",
+        "--as-of", "2026-07-13T00:00:00Z",
+        "--output-json", str(json_path),
+        "--output-csv", str(tmp_path / "predictions.csv"),
+        "--clubelo-cache", str(cache_path),
+        "--simulations", "1000",
+    ])
+
+    assert exit_code == 0
+    payload = json.loads(json_path.read_text(encoding="utf-8"))
+    assert payload["sources"]["ratings"]["status"] == "CACHED_CLUBELO"
+    prediction = payload["predictions"][0]
+    # The cached ratings keep their real separation, so the favourite is still
+    # priced as a favourite rather than as a coin flip.
+    assert prediction["ratings"]["home"]["source"] == "clubelo"
+    assert prediction["ratings"]["away"]["source"] == "clubelo"
+    assert prediction["ratings"]["adjusted_elo_difference"] > 300
+
+
+def test_a_missing_cache_still_falls_back_rather_than_failing(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        predictor_cli, "fetch_uefa_club_fixtures", lambda **kwargs: [_fixture()]
+    )
+    monkeypatch.setattr(
+        predictor_cli,
+        "fetch_clubelo_ratings",
+        lambda **kwargs: (_ for _ in ()).throw(requests.ReadTimeout("read timeout")),
+    )
+    json_path = tmp_path / "predictions.json"
+    exit_code = predictor_cli.main([
+        "--mode", "live",
+        "--as-of", "2026-07-13T00:00:00Z",
+        "--output-json", str(json_path),
+        "--output-csv", str(tmp_path / "predictions.csv"),
+        "--clubelo-cache", str(tmp_path / "absent.csv"),
+        "--simulations", "1000",
+    ])
+    assert exit_code == 0
+    payload = json.loads(json_path.read_text(encoding="utf-8"))
+    assert payload["sources"]["ratings"]["status"] == "FALLBACK_ONLY"
 
 
 @pytest.mark.parametrize(
