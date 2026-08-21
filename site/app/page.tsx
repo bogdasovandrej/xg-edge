@@ -10,6 +10,7 @@ type Forecast = {
   home: string;
   away: string;
   venue?: string | null;
+  value_verdict?: { status?: string | null; text?: string | null } | null;
   model?: string | null;
   p_home?: number | null;
   p_draw?: number | null;
@@ -511,7 +512,51 @@ type LivePayload = {
   paper_trading?: PaperTradingSummary | null;
   research_workflow?: ResearchWorkflow | null;
   preline_chat_batches?: ChatResearchBatch[] | null;
+  value_top?: ValueTop | null;
+  consensus_top?: ConsensusTop | null;
   forecasts: Forecast[];
+};
+
+type ValueRow = {
+  fixture_id?: string | null;
+  competition?: string | null;
+  kickoff_utc?: string | null;
+  home?: string | null;
+  away?: string | null;
+  label?: string | null;
+  market?: string | null;
+  bookmaker?: string | null;
+  odds: number;
+  fair: number;
+  min_entry: number;
+  value_pct: number;
+};
+
+type ValueTop = {
+  gate?: { metric?: string | null; threshold?: number | null } | null;
+  sorted_by?: string | null;
+  candidates: ValueRow[];
+};
+
+type ConsensusRow = {
+  fixture_id?: string | null;
+  home?: string | null;
+  away?: string | null;
+  kickoff_utc?: string | null;
+  bookmaker: string;
+  outcome: string;
+  odds: number;
+  consensus_probability: number;
+  consensus_books: number;
+  fair: number;
+  min_entry: number;
+  value_pct: number;
+};
+
+type ConsensusTop = {
+  markets_evaluated?: number | null;
+  insufficient_books?: number | null;
+  candidates: ConsensusRow[];
 };
 
 // GitHub Actions owns the continuously refreshed public snapshots.  An
@@ -769,6 +814,179 @@ function ProspectiveClvPanel({
         Он влияет на будущую оценку надёжности, но больше не скрывает модельные прогнозы.
       </small>
     </aside>
+  );
+}
+
+// Sorted strictly by value_pct — the arithmetic. A human value_rating is a
+// display column elsewhere and must never order this table.
+function ValueTopTable({ top }: { top?: ValueTop | null }) {
+  const rows = top?.candidates || [];
+  const threshold = finiteNumber(top?.gate?.threshold) ?? 8;
+  return (
+    <section className="value-top" id="value-top" aria-label="Топ ставок по value">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Ворота: value ≥ {threshold}%</p>
+          <h2>Топ по value</h2>
+        </div>
+      </div>
+      {rows.length === 0 ? (
+        <p className="value-empty">
+          Ни одна котировка не прошла ворота value ≥ {threshold}%.
+          Это результат проверки, а не отсутствие данных.
+        </p>
+      ) : (
+        <div className="table-scroll">
+          <table className="value-table">
+            <thead>
+              <tr>
+                <th>Матч</th><th>Ставка</th><th>Контора</th>
+                <th>Кэф</th><th>Fair</th><th>Мин. вход</th><th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, index) => (
+                <tr key={`${row.fixture_id}-${row.label}-${index}`}>
+                  <td><b>{row.home} — {row.away}</b><small>{competitionName(String(row.competition || ""))}</small></td>
+                  <td>{row.label}</td>
+                  <td>{row.bookmaker || "—"}</td>
+                  <td>{decimal(row.odds)}</td>
+                  <td>{decimal(row.fair)}</td>
+                  <td>{decimal(row.min_entry)}</td>
+                  <td className="value-cell">{row.value_pct >= 0 ? "+" : ""}{row.value_pct.toFixed(2)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
+// A separate feed from the value top: this one ranks bookmaker disagreement,
+// not model edge, and says so.
+function ConsensusFeed({ top }: { top?: ConsensusTop | null }) {
+  const rows = top?.candidates || [];
+  const evaluated = finiteNumber(top?.markets_evaluated) ?? 0;
+  const thin = finiteNumber(top?.insufficient_books) ?? 0;
+  return (
+    <section className="consensus-feed" id="consensus" aria-label="Расхождение букмекеров">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Рынков проверено: {evaluated} · мало контор: {thin}</p>
+          <h2>Расхождение букмекеров</h2>
+        </div>
+      </div>
+      <p className="feed-note">
+        Цена сравнивается с консенсусом <b>остальных</b> контор, поэтому книга
+        не голосует сама за себя. Расхождение — кандидат на разбор, а не
+        доказанный эдж: контора может быть просто медленнее.
+      </p>
+      {rows.length === 0 ? (
+        <p className="value-empty">
+          {thin >= evaluated && evaluated > 0
+            ? "Недостаточно контор для консенсуса. Нужно минимум три независимых книги на рынок."
+            : "Выбившихся цен нет: все конторы согласны между собой."}
+        </p>
+      ) : (
+        <div className="table-scroll">
+          <table className="value-table">
+            <thead>
+              <tr>
+                <th>Матч</th><th>Исход</th><th>Контора</th>
+                <th>Кэф</th><th>Консенсус</th><th>Fair</th><th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, index) => (
+                <tr key={`${row.fixture_id}-${row.outcome}-${index}`}>
+                  <td><b>{row.home} — {row.away}</b></td>
+                  <td>{outcomeName(isOutcomeKey(row.outcome) ? row.outcome : null)}</td>
+                  <td>{row.bookmaker}<small>против {row.consensus_books} книг</small></td>
+                  <td>{decimal(row.odds)}</td>
+                  <td>{percent(row.consensus_probability)}</td>
+                  <td>{decimal(row.fair)}</td>
+                  <td className="value-cell">+{row.value_pct.toFixed(2)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
+// The collector: the user supplies the bankroll and how many tickets they
+// want. Stakes come from quarter-Kelly under the caps, computed server-side;
+// this form only reports what the payload already decided, so the page can
+// never invent a stake the engine did not sanction.
+function CollectorForm({ top }: { top?: ValueTop | null }) {
+  const [bankroll, setBankroll] = useState(6000);
+  const [singles, setSingles] = useState(3);
+  const approved = top?.candidates || [];
+  const picked = approved.slice(0, Math.max(0, singles));
+  const kellyStake = (row: ValueRow) => {
+    const b = row.odds - 1;
+    const p = 1 / row.fair;              // fair price back to probability
+    const full = (p * b - (1 - p)) / b;
+    const quarter = Math.max(full / 4, 0);
+    // The same minimum the engine applies: quarter-Kelly, 3% per bet, and
+    // whatever the 10% in-play cap leaves.
+    return Math.min(quarter * bankroll, 0.03 * bankroll, 0.1 * bankroll);
+  };
+  const total = picked.reduce((sum, row) => sum + kellyStake(row), 0);
+  return (
+    <section className="collector" id="collector" aria-label="Собиратель ставок">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Четверть Келли под потолками 3% / 10%</p>
+          <h2>Собиратель</h2>
+        </div>
+      </div>
+      <div className="collector-inputs">
+        <label>Банк, ₽
+          <input type="number" min={100} step={100} value={bankroll}
+            onChange={(event) => setBankroll(Math.max(0, Number(event.target.value) || 0))} />
+        </label>
+        <label>Ординаров
+          <input type="number" min={0} max={20} value={singles}
+            onChange={(event) => setSingles(Math.max(0, Number(event.target.value) || 0))} />
+        </label>
+      </div>
+      {picked.length === 0 ? (
+        <p className="value-empty">
+          Нечего собирать: ни одна ставка не прошла ворота value. Пустой
+          портфель — нормальный результат, а не ошибка.
+        </p>
+      ) : (
+        <>
+          <div className="table-scroll">
+            <table className="value-table">
+              <thead>
+                <tr><th>Ставка</th><th>Матч</th><th>Кэф</th><th>Value</th><th>Ставка, ₽</th></tr>
+              </thead>
+              <tbody>
+                {picked.map((row, index) => (
+                  <tr key={`${row.fixture_id}-collector-${index}`}>
+                    <td>{row.label}</td>
+                    <td>{row.home} — {row.away}</td>
+                    <td>{decimal(row.odds)}</td>
+                    <td className="value-cell">+{row.value_pct.toFixed(2)}%</td>
+                    <td>{rub(kellyStake(row))}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="collector-total">
+            Ставим {rub(total)} из {rub(bankroll)} · не тронуто {rub(bankroll - total)}.
+            Неизрасходованный банк — это норма, а не недоработка.
+          </p>
+        </>
+      )}
+    </section>
   );
 }
 
@@ -2002,6 +2220,14 @@ function ForecastCard({ forecast }: { forecast: Forecast }) {
       </div>
       <p className="venue">{forecast.venue || "Стадион уточняется"}</p>
 
+      {/* One line, first thing on the card: what to do about this match.
+          "Nothing" is a real answer and is stated, not left blank. */}
+      {forecast.value_verdict ? (
+        <p className={`verdict verdict-${String(forecast.value_verdict.status || "").toLowerCase()}`}>
+          {forecast.value_verdict.text}
+        </p>
+      ) : null}
+
       {hasPrediction ? (
         <div className="probabilities" aria-label="Вероятности исходов за 90 минут">
           <ProbabilityBar label="П1" value={forecast.p_home} />
@@ -2153,6 +2379,8 @@ export default function Home() {
             <a href="#forecasts" className="primary-action">Смотреть матчи</a>
             <a href="#research-day" className="secondary-action">Игровой день</a>
             <a href="/xg-edge/weekly.html" className="secondary-action">Рейтинг недели</a>
+            <a href="#value-top" className="secondary-action">Топ по value</a>
+            <a href="#collector" className="secondary-action">Собиратель</a>
             <a href="#paper-bank" className="secondary-action">PAPER-банк</a>
             <a href="#completed-archive" className="secondary-action">Архив качества</a>
             <a href="https://github.com/bogdasovandrej/xg-edge" className="secondary-action">Открытый код ↗</a>
@@ -2171,6 +2399,12 @@ export default function Home() {
         <span>PROSPECTIVE CLV</span><i />
         <span>PAPER BANKROLL</span>
       </section>
+
+      <ValueTopTable top={payload.value_top} />
+
+      <ConsensusFeed top={payload.consensus_top} />
+
+      <CollectorForm top={payload.value_top} />
 
       <ResearchDayBoard workflow={payload.research_workflow} batches={payload.preline_chat_batches} />
 

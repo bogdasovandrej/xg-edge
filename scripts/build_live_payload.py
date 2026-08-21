@@ -23,6 +23,7 @@ from xgedge.research.preline import build_research_workflow
 from xgedge.dossier.builder import build_match_dossier
 from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
 from xgedge.decision.portfolio import build_portfolio
+from xgedge.decision.market_consensus import best_outliers, evaluate_market
 from xgedge.decision.pricing import VALUE_PCT_GATE, price_market, states_from_distribution
 from xgedge.research.deep_audit import build_deep_audit_batches, collect_deep_audit_queue
 from xgedge.research.triggers import evaluate_execution_quote
@@ -758,6 +759,74 @@ def _apply_value_gate(payload: dict) -> dict:
     return payload
 
 
+def _apply_market_consensus(payload: dict, odds_snapshot: dict | None) -> dict:
+    """Price each bookmaker's 1X2 against the leave-one-out consensus.
+
+    This is the one edge source that costs nothing and needs no analysis
+    layer: bookmaker prices already contain the team news, so a book that is
+    out of line with its competitors is the free version of "someone knows
+    something". It produces candidates for audit, never bets.
+    """
+    records = odds_snapshot.get("records") if isinstance(odds_snapshot, dict) else None
+    by_fixture = {str(row.get("id")): row for row in payload.get("forecasts", [])}
+    evaluations: list[dict] = []
+    for record in records if isinstance(records, list) else []:
+        if not isinstance(record, dict):
+            continue
+        books: dict[str, dict[str, float]] = {}
+        for book in record.get("bookmakers", []) or []:
+            if not isinstance(book, dict):
+                continue
+            markets = book.get("markets")
+            h2h = markets.get("h2h") if isinstance(markets, dict) else None
+            if not isinstance(h2h, dict):
+                continue
+            prices = {
+                outcome: float(h2h[outcome])
+                for outcome in ("home", "draw", "away")
+                if isinstance(h2h.get(outcome), (int, float))
+                and not isinstance(h2h.get(outcome), bool)
+                and float(h2h[outcome]) > 1.0
+            }
+            if len(prices) == 3:
+                books[str(book.get("title") or book.get("key") or "unknown")] = prices
+        if not books:
+            continue
+        evaluation = evaluate_market(books)
+        fixture_id = str(record.get("fixture_id") or "")
+        evaluation["fixture_id"] = fixture_id
+        forecast = by_fixture.get(fixture_id)
+        if isinstance(forecast, dict):
+            evaluation["home"] = forecast.get("home")
+            evaluation["away"] = forecast.get("away")
+            evaluation["kickoff_utc"] = forecast.get("kickoff_utc")
+            details = forecast.setdefault("details", {}) or {}
+            if isinstance(details, dict):
+                details["market_consensus"] = evaluation
+                forecast["details"] = details
+        evaluations.append(evaluation)
+
+    outliers = best_outliers(evaluations)
+    for row in outliers:
+        source = next(
+            (e for e in evaluations if any(c is row for c in e.get("candidates", []))), {}
+        )
+        row.setdefault("fixture_id", source.get("fixture_id"))
+        row.setdefault("home", source.get("home"))
+        row.setdefault("away", source.get("away"))
+        row.setdefault("kickoff_utc", source.get("kickoff_utc"))
+    payload["consensus_top"] = {
+        "schema_version": "consensus-top/1.0",
+        "markets_evaluated": len(evaluations),
+        "insufficient_books": sum(
+            1 for e in evaluations if e.get("status") == "INSUFFICIENT_BOOKS"
+        ),
+        "sorted_by": "value_pct",
+        "candidates": outliers,
+    }
+    return payload
+
+
 def _build_decision_layer(payload: dict, generated_at: str) -> dict:
     """Attach the deep-audit queue and the portfolio to the public payload."""
     workflow = payload.get("research_workflow") or {}
@@ -912,6 +981,7 @@ def build_payload(
     )
     payload["paper_candidate_ranking"] = rank_paper_candidates(payload)
     payload = _apply_value_gate(payload)
+    payload = _apply_market_consensus(payload, odds_snapshot)
     payload = _build_decision_layer(payload, generated_at)
     if paper_ledger is not None:
         payload["paper_trading"] = public_paper_summary(paper_ledger)

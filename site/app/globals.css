@@ -430,3 +430,100 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 30px
   html { scroll-behavior: auto; }
   .forecast-card { transition: none; }
 }
+
+/* --- Value top, consensus feed and collector ------------------------- */
+.value-top,
+.consensus-feed,
+.collector {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 0;
+}
+
+.table-scroll { overflow-x: auto; }
+
+.value-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.value-table th,
+.value-table td {
+  padding: 0.6rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.value-table th {
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.value-table td small {
+  display: block;
+  opacity: 0.6;
+  font-size: 0.76rem;
+}
+
+.value-cell { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.value-empty,
+.feed-note {
+  margin: 0.75rem 0 0;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.collector-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.collector-inputs label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+
+.collector-inputs input {
+  min-width: 8rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 1rem;
+}
+
+.collector-total {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* The one-line answer on a match card. */
+.verdict {
+  margin: 0.6rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid rgba(255, 255, 255, 0.25);
+}
+
+.verdict-recommended { border-left-color: #4ade80; }
+.verdict-no_bet_best_market { border-left-color: #fbbf24; }
+.verdict-no_quote { border-left-color: rgba(255, 255, 255, 0.2); opacity: 0.75; }
