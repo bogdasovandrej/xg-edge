@@ -20,8 +20,12 @@ from xgedge.research.handoff import build_chat_batches
 from xgedge.research.preline import build_research_workflow
 from xgedge.dossier.builder import build_match_dossier
 from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
+from xgedge.decision.portfolio import build_portfolio
+from xgedge.decision.pricing import VALUE_PCT_GATE, price_market, states_from_distribution
+from xgedge.research.deep_audit import build_deep_audit_batches, collect_deep_audit_queue
+from xgedge.research.triggers import evaluate_execution_quote
 from xgedge.markets.markets import prob_over
-from xgedge.markets.paper_markets import market_probability
+from xgedge.markets.paper_markets import market_probability, market_settlement_distribution
 from xgedge.models.dixon_coles import score_matrix
 from xgedge.simulation.ledger import public_paper_summary
 
@@ -260,31 +264,50 @@ def _model_market_forecasts(
         ("btts", "yes", None, "Обе забьют — да", "обе забьют"),
         ("btts", "no", None, "Обе забьют — нет", "обе забьют"),
     ]
-    for line in (1.5, 2.5, 3.5, 4.5):
+    # Integer and quarter lines are priced too: a whole line can push, and a
+    # market that can push is exactly where a push-blind 1/p misprices the bet.
+    for line in (1.5, 2.0, 2.5, 2.75, 3.0, 3.25, 3.5, 4.0, 4.5):
         definitions.extend([
-            ("totals", "over", line, f"ТБ {line:.1f}", "тотал"),
-            ("totals", "under", line, f"ТМ {line:.1f}", "тотал"),
+            ("totals", "over", line, f"ТБ {line:g}", "тотал"),
+            ("totals", "under", line, f"ТМ {line:g}", "тотал"),
         ])
-    for line in (0.5, 1.5, 2.5):
+    for line in (0.5, 1.0, 1.5, 2.0, 2.5):
         definitions.extend([
-            ("team_totals", "home_over", line, f"ИТБ1 {line:.1f}", "инд. тотал хозяев"),
-            ("team_totals", "home_under", line, f"ИТМ1 {line:.1f}", "инд. тотал хозяев"),
-            ("team_totals", "away_over", line, f"ИТБ2 {line:.1f}", "инд. тотал гостей"),
-            ("team_totals", "away_under", line, f"ИТМ2 {line:.1f}", "инд. тотал гостей"),
+            ("team_totals", "home_over", line, f"ИТБ1 {line:g}", "инд. тотал хозяев"),
+            ("team_totals", "home_under", line, f"ИТМ1 {line:g}", "инд. тотал хозяев"),
+            ("team_totals", "away_over", line, f"ИТБ2 {line:g}", "инд. тотал гостей"),
+            ("team_totals", "away_under", line, f"ИТМ2 {line:g}", "инд. тотал гостей"),
         ])
-    for line in (-1.5, -0.5, 0.0, 0.5, 1.5):
+    for line in (-2.0, -1.5, -1.25, -1.0, -0.75, -0.5, -0.25, 0.0,
+                 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 2.0):
         definitions.extend([
-            ("asian_handicap", "home", line, f"Ф1({line:+.1f})", "фора"),
-            ("asian_handicap", "away", line, f"Ф2({line:+.1f})", "фора"),
+            ("asian_handicap", "home", line, f"Ф1({line:+g})", "фора"),
+            ("asian_handicap", "away", line, f"Ф2({line:+g})", "фора"),
         ])
 
     rows: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
     for market, selection, line, label, recommendation_group in definitions:
         try:
             probability = market_probability(
                 matrix, market=market, selection=selection, line=line
             )
-        except ValueError:
+            states = states_from_distribution(
+                market_settlement_distribution(
+                    matrix, market=market, selection=selection, line=line
+                ).probabilities
+            )
+        except ValueError as exc:
+            # A market we intended to price but could not is not the same as a
+            # market that does not exist. Record it so the site can say which.
+            skipped.append({
+                "market": market,
+                "selection": selection,
+                "line": line,
+                "label": label,
+                "status": "SOURCE_GAP",
+                "reason": str(exc),
+            })
             continue
         # A fixed percentage-point haircut cannot be subtracted from a tail
         # probability smaller than the haircut.  Reduce such rare outcomes
@@ -292,21 +315,44 @@ def _model_market_forecasts(
         # theoretical one or become non-positive.
         applied_haircut = min(haircut, probability * 0.5)
         conservative = probability - applied_haircut
+        # Move the haircut out of the at-risk win mass only; push mass is not
+        # a probability we are uncertain about in the same way, so it is held
+        # fixed and the shaved mass goes to loss.
+        active = states["win"] + states["loss"]
+        conservative_states = {
+            "win": active * conservative,
+            "push": states["push"],
+            "loss": active * (1.0 - conservative),
+        }
+        central_pricing = price_market(states)
+        conservative_pricing = price_market(conservative_states)
         rows.append({
             "market": market,
             "selection": selection,
             "line": line,
             "label": label,
+            "calc_mode": central_pricing["calc_mode"],
+            "central": {
+                "win": states["win"], "push": states["push"], "loss": states["loss"],
+            },
+            "conservative": conservative_states,
             "theoretical_probability": probability,
             "reliability_haircut": applied_haircut,
             "conservative_probability": conservative,
+            # fair = 1 + L/W on the money actually at risk, never 1/p.
+            "fair": conservative_pricing["fair"],
+            "fair_central": central_pricing["fair"],
+            "min_entry": conservative_pricing["min_entry"],
             "theoretical_fair_odds": 1.0 / probability,
             "conservative_fair_odds": 1.0 / conservative,
+            "value_pct": None,
+            "gate_price": None,
             "recommendation_group": recommendation_group,
             "recommendation_rank": None,
             "status": "MODEL_ONLY_NO_BOOKMAKER_PRICE",
             "settlement_period": "REGULATION_90_MINUTES",
         })
+    rows.extend(skipped)
 
     # These rows are model probabilities and fair prices, not bookmaker odds.
     # Ranking them as "top-3 bets" before a verified quote exists makes a fixed
@@ -604,6 +650,165 @@ def _ucl_rows(document: dict, fixtures: dict[str, dict], dossiers: dict[str, dic
     return rows
 
 
+def _candidate_rows(forecast: dict) -> list[dict]:
+    details = forecast.get("details")
+    if not isinstance(details, dict):
+        return []
+    rows = []
+    for key in ("market_candidates", "expanded_market_candidates"):
+        source = details.get(key)
+        if isinstance(source, list):
+            rows.extend(row for row in source if isinstance(row, dict))
+    return rows
+
+
+def _apply_value_gate(payload: dict) -> dict:
+    """Compute value_pct/min_entry per quoted candidate and rank the value top.
+
+    ``point_edge`` is already expected value per unit at risk, because the
+    probability it uses is conditional on no push; ``value_pct`` is that same
+    number in percent. The gate is ``value_pct >= VALUE_PCT_GATE`` and nothing
+    else — a human ``value_rating`` never opens it.
+    """
+    top: list[dict] = []
+    for forecast in payload.get("forecasts", []):
+        if not isinstance(forecast, dict):
+            continue
+        best: dict | None = None
+        approved: list[dict] = []
+        for candidate in _candidate_rows(forecast):
+            probability = candidate.get("probability")
+            odds = candidate.get("market_odds")
+            if not isinstance(probability, (int, float)) or isinstance(probability, bool):
+                continue
+            if not isinstance(odds, (int, float)) or isinstance(odds, bool):
+                continue
+            win = float(probability)
+            if not 0.0 < win < 1.0 or float(odds) <= 1.0:
+                continue
+            priced = price_market({"win": win, "push": 0.0, "loss": 1.0 - win}, odds=float(odds))
+            candidate.update({
+                "fair": priced["fair"],
+                "min_entry": priced["min_entry"],
+                "value_pct": priced["value_pct"],
+                "gate_price": priced["gate_price"],
+                "value_status": "APPROVED" if priced["gate_price"] else "BELOW_MIN",
+            })
+            entry = {
+                "fixture_id": forecast.get("id"),
+                "competition": forecast.get("competition"),
+                "kickoff_utc": forecast.get("kickoff_utc"),
+                "home": forecast.get("home"),
+                "away": forecast.get("away"),
+                "label": candidate.get("selection"),
+                "market": candidate.get("market"),
+                "line": candidate.get("line"),
+                "bookmaker": candidate.get("bookmaker"),
+                "odds": float(odds),
+                "fair": priced["fair"],
+                "min_entry": priced["min_entry"],
+                "value_pct": priced["value_pct"],
+            }
+            if best is None or entry["value_pct"] > best["value_pct"]:
+                best = entry
+            if priced["gate_price"]:
+                approved.append(entry)
+        top.extend(approved)
+        if approved:
+            forecast["value_verdict"] = {
+                "status": "RECOMMENDED",
+                "text": f"Лучшая ставка: {approved[0]['label']} @ {approved[0]['odds']:.2f}",
+            }
+        elif best is not None:
+            forecast["value_verdict"] = {
+                "status": "NO_BET_BEST_MARKET",
+                "text": (
+                    f"Не рекомендую ставить. Лучший рынок — {best['label']} "
+                    f"@ {best['odds']:.2f} (value {best['value_pct']:+.2f}%, "
+                    f"нужен {best['min_entry']:.2f})"
+                ),
+                "best_market": best,
+            }
+        else:
+            forecast["value_verdict"] = {
+                "status": "NO_QUOTE",
+                "text": "Не рекомендую ставить: нет подтверждённой котировки.",
+            }
+    top.sort(key=lambda row: (-row["value_pct"], str(row["kickoff_utc"] or "")))
+    payload["value_top"] = {
+        "schema_version": "value-top/1.0",
+        "gate": {"metric": "value_pct", "threshold": VALUE_PCT_GATE},
+        "sorted_by": "value_pct",
+        "candidates": top,
+    }
+    return payload
+
+
+def _build_decision_layer(payload: dict, generated_at: str) -> dict:
+    """Attach the deep-audit queue and the portfolio to the public payload."""
+    workflow = payload.get("research_workflow") or {}
+    market_sets = workflow.get("market_sets", {}) if isinstance(workflow, dict) else {}
+    forecasts = {str(row.get("id")): row for row in payload.get("forecasts", [])}
+
+    evaluations: list[dict] = []
+    for fixture_id, market_set in market_sets.items():
+        forecast = forecasts.get(str(fixture_id))
+        if not isinstance(forecast, dict) or not isinstance(market_set, dict):
+            continue
+        quotes = {
+            (row.get("market"), row.get("selection"), row.get("line")): row
+            for row in _candidate_rows(forecast)
+        }
+        for candidate in market_set.get("candidates", []):
+            if not isinstance(candidate, dict):
+                continue
+            quote = quotes.get(
+                (candidate.get("market"), candidate.get("selection"), candidate.get("line"))
+            )
+            if quote is None:
+                continue
+            try:
+                evaluations.append(evaluate_execution_quote(
+                    {**candidate, "kickoff_utc": forecast.get("kickoff_utc")},
+                    {
+                        "fixture_id": candidate.get("fixture_id"),
+                        "market": candidate.get("market"),
+                        "selection": candidate.get("selection"),
+                        "line": candidate.get("line"),
+                        "odds": quote.get("market_odds"),
+                        "bookmaker": quote.get("bookmaker"),
+                        "captured_at_utc": quote.get("quote_captured_at")
+                        or forecast.get("quote_captured_at")
+                        or generated_at,
+                    },
+                    now=generated_at,
+                ))
+            except (TypeError, ValueError):
+                continue
+
+    queue = collect_deep_audit_queue(evaluations)
+    payload["deep_audit"] = {
+        "schema_version": "deep-audit-queue/1.0",
+        "queue": queue,
+        "batches": build_deep_audit_batches(queue),
+        "note": (
+            "Trigger hit не равен одобрению: каждый кандидат требует "
+            "импортированного human deep audit."
+        ),
+    }
+
+    # The portfolio only ever accepts APPROVED + FINAL_CHECK_PASSED candidates.
+    # Until a human deep audit and a Final XI check are imported, that set is
+    # empty by construction — and says so, rather than showing an empty screen.
+    portfolio = build_portfolio([])
+    portfolio["explanation"] = (
+        "Портфель пуст: нет кандидатов со статусом APPROVED + FINAL_CHECK_PASSED. "
+        "Нужны импорт deep audit и проверка стартовых составов."
+    )
+    payload["portfolio"] = portfolio
+    return payload
+
+
 def build_payload(
     world_cup: dict,
     ucl: dict,
@@ -686,6 +891,8 @@ def build_payload(
         research_workflow, payload["forecasts"], batch_size=5
     )
     payload["paper_candidate_ranking"] = rank_paper_candidates(payload)
+    payload = _apply_value_gate(payload)
+    payload = _build_decision_layer(payload, generated_at)
     if paper_ledger is not None:
         payload["paper_trading"] = public_paper_summary(paper_ledger)
     return payload

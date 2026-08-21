@@ -94,9 +94,14 @@ def _context(forecast: Mapping[str, Any]) -> tuple[float, list[str]]:
 
 def _market_breadth(forecast: Mapping[str, Any]) -> tuple[float, set[str]]:
     rows = forecast.get("model_market_forecasts")
+    # A market we failed to price (SOURCE_GAP) is recorded for transparency
+    # but must not inflate the breadth score as if it had been covered.
     families = {
         market_family(row.get("market"))
-        for row in rows if isinstance(rows, list) and isinstance(row, Mapping)
+        for row in rows
+        if isinstance(rows, list)
+        and isinstance(row, Mapping)
+        and row.get("status") != "SOURCE_GAP"
     } if isinstance(rows, list) else set()
     families.discard("UNKNOWN")
     return min(100.0, len(families) / 7.0 * 100.0), families

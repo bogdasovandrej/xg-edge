@@ -7,7 +7,7 @@ pre-kickoff market-price measurement.
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Any, Callable, Mapping
+from typing import Any, Callable, Mapping, Sequence
 
 import requests
 
@@ -172,4 +172,93 @@ def fetch_tracked_results(
         "requested_fixture_ids": requested,
         "results": results,
         "errors": errors,
+        "reconciled": reconcile_results(results),
     }
+
+
+def _parse_score(source: Mapping[str, Any]) -> tuple[int, int] | None:
+    """Read a regulation-time score from either field or ``"1:3"`` string form."""
+    home, away = source.get("home_goals_90"), source.get("away_goals_90")
+    if _integer(home) is not None and _integer(away) is not None:
+        return int(home), int(away)
+    text = source.get("score")
+    if isinstance(text, str):
+        parts = text.replace("-", ":").split(":")
+        if len(parts) == 2:
+            try:
+                parsed_home, parsed_away = int(parts[0].strip()), int(parts[1].strip())
+            except ValueError:
+                return None
+            if parsed_home >= 0 and parsed_away >= 0:
+                return parsed_home, parsed_away
+    return None
+
+
+def ingest_result(
+    *, fixture_id: str, sources: Sequence[Mapping[str, Any]]
+) -> dict[str, Any]:
+    """Agree a regulation-time score across sources, or refuse to settle.
+
+    A settlement that closes on the wrong score is invisible after the fact,
+    so disagreement is a hard stop rather than a tie-break: one provider
+    reporting 1:3 and another 0:3 is the difference between a PUSH and a LOSS
+    on Under 3.  Returns a record whose ``settled_state`` is ``None`` unless
+    every usable source agrees.
+    """
+    identity = str(fixture_id or "").strip()
+    if not identity:
+        raise ValueError("fixture_id is required")
+    observations: list[dict[str, Any]] = []
+    unusable: list[dict[str, Any]] = []
+    for index, source in enumerate(sources or ()):
+        if not isinstance(source, Mapping):
+            unusable.append({"index": index, "reason": "source_is_not_a_mapping"})
+            continue
+        score = _parse_score(source)
+        if score is None:
+            unusable.append({
+                "index": index,
+                "source": source.get("source"),
+                "reason": "no_valid_regulation_score",
+            })
+            continue
+        observations.append({
+            "source": source.get("source"),
+            "home_goals_90": score[0],
+            "away_goals_90": score[1],
+        })
+
+    distinct = {(row["home_goals_90"], row["away_goals_90"]) for row in observations}
+    if not observations:
+        status, reason = "PENDING", "no_source_reported_a_regulation_score"
+    elif len(distinct) > 1:
+        status, reason = "BLOCKED", "sources_disagree_on_regulation_score"
+    else:
+        status, reason = "CONFIRMED", None
+
+    settled = sorted(distinct)[0] if status == "CONFIRMED" else None
+    return {
+        "schema_version": "result-reconciliation/1.0",
+        "fixture_id": identity,
+        "status": status,
+        "reason": reason,
+        "source_conflict": status == "BLOCKED",
+        "settled_state": (
+            {"home_goals_90": settled[0], "away_goals_90": settled[1]}
+            if settled is not None else None
+        ),
+        "observations": observations,
+        "unusable_sources": unusable,
+    }
+
+
+def reconcile_results(results: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    """Group per-source results by fixture and reconcile each one."""
+    grouped: dict[str, list[Mapping[str, Any]]] = {}
+    for row in results:
+        if isinstance(row, Mapping) and row.get("id") is not None:
+            grouped.setdefault(str(row["id"]), []).append(row)
+    return [
+        ingest_result(fixture_id=fixture_id, sources=rows)
+        for fixture_id, rows in sorted(grouped.items())
+    ]

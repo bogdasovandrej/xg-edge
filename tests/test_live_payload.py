@@ -85,7 +85,17 @@ def test_live_payload_combines_models_and_publishes_full_line() -> None:
     assert ucl_row["top_score_probability"] == .16
     assert ucl_row["score_display"] == "distribution_not_exact_score_prediction"
     assert ucl_row["tail_probability_status"] == "RAW_POISSON_UNCALIBRATED_NO_BET"
-    assert len(ucl_row["model_market_forecasts"]) == 40
+    assert len(ucl_row["model_market_forecasts"]) == 78
+    # Whole and quarter lines are priced alongside half lines, so at least one
+    # market must be able to push. A line that can push is exactly where a
+    # push-blind 1/p would misprice the bet.
+    assert any(
+        row["calc_mode"] == "WPL_FULL" for row in ucl_row["model_market_forecasts"]
+    )
+    for row in ucl_row["model_market_forecasts"]:
+        states = row["central"]
+        assert abs(states["win"] + states["push"] + states["loss"] - 1.0) <= 0.001
+        assert row["min_entry"] > row["fair"]
     assert {
         row["market"] for row in ucl_row["model_market_forecasts"]
     } == {
@@ -330,4 +340,4 @@ def test_uefa_prediction_keeps_competition_when_fixture_snapshot_is_missing() ->
     )
 
     assert payload["forecasts"][0]["competition"] == "UEFA Europa League"
-    assert len(payload["forecasts"][0]["model_market_forecasts"]) == 40
+    assert len(payload["forecasts"][0]["model_market_forecasts"]) == 78

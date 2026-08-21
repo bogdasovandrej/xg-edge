@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+- Added `xgedge.decision.pricing` as the single source of truth for
+  `fair = 1 + L/W`, `min_entry = fair * 1.08`, `ev_at_risk`, `value_pct` and
+  the payout multipliers, so the gate arithmetic lives in one file instead of
+  being restated per call site. `value_pct` is the only admissible gate; a
+  human `value_rating` is a display column and can never open it.
+- Added the four golden invariant tests to the normal pytest run, so CI now
+  protects the arithmetic that previously produced a losing bet.
+- Added multi-source result reconciliation (`ingest_result`): sources that
+  disagree on the regulation score return `BLOCKED` with no settled state
+  instead of quietly settling on whichever feed answered first.
+- Extended the public payload's market line to whole and quarter lines
+  (integer team totals, integer/quarter totals, quarter Asian handicaps) and
+  added a `central`/`conservative` win-push-loss triple, `calc_mode`, `fair`
+  and `min_entry` per market. Markets that fail to price are emitted as
+  `SOURCE_GAP` rather than dropped silently.
+- Added `value_top` (ranked strictly by `value_pct`) and a per-fixture
+  `value_verdict` that says "не рекомендую" or names the best available
+  market, so an empty table is distinguishable from an unexamined fixture.
+- Wired the deep-audit queue and the portfolio engine into the live payload.
+
 - Added the deep-audit state machine (`xgedge.research.deep_audit`): collects
   TRIGGER_HIT/NEAR_TRIGGER/LARGE_MOVE_REAUDIT/LATE_WILDCARD candidates into a
   queue with no forced size, batches them 4-per-ChatGPT-packet, and derives
