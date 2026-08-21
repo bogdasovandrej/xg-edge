@@ -58,6 +58,13 @@ jobs:
           --ledger-v2 reports/live/prospective_clv_v2.json
           --snapshot-output reports/live/bookmaker_odds.json
           ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+      - name: Record quote history and screen for movement
+        if: steps.config.outputs.enabled == 'true'
+        run: >-
+          python scripts/record_quotes.py
+          --snapshot reports/live/bookmaker_odds.json
+          --database reports/live/xgedge.db
+          --feed-output reports/live/screener_feed.json
       - name: Update PAPER strategy ledger
         if: steps.config.outputs.enabled == 'true'
         run: >-
@@ -79,6 +86,14 @@ jobs:
           if [ -f reports/live/bookmaker_odds.json ]; then
             git add reports/live/bookmaker_odds.json
           fi
+          # The price-history store and its screened feed. Every writer shares
+          # the xgedge-data-writers concurrency group, so only one process
+          # ever appends to the SQLite file.
+          for artefact in reports/live/xgedge.db reports/live/screener_feed.json; do
+            if [ -f "$artefact" ]; then
+              git add "$artefact"
+            fi
+          done
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No market-data changes"

@@ -909,6 +909,7 @@ def build_payload(
     uefa_history: dict | None = None,
     top_five_fixtures: dict | None = None,
     extra_fixtures: dict | None = None,
+    screener_feed: dict | None = None,
     configured_api_keys: set[str] | None = None,
 ) -> dict:
     fixture_by_id = _fixture_index(fixtures)
@@ -982,6 +983,10 @@ def build_payload(
     payload["paper_candidate_ranking"] = rank_paper_candidates(payload)
     payload = _apply_value_gate(payload)
     payload = _apply_market_consensus(payload, odds_snapshot)
+    # The movement feed is produced by scripts/record_quotes.py against the
+    # stored price history; an absent store means no feed, never a fake delta.
+    if isinstance(screener_feed, dict):
+        payload["screener_feed"] = screener_feed
     payload = _build_decision_layer(payload, generated_at)
     if paper_ledger is not None:
         payload["paper_trading"] = public_paper_summary(paper_ledger)
@@ -1004,6 +1009,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--uefa-history", type=Path)
     parser.add_argument("--top-five-fixtures", type=Path)
     parser.add_argument("--extra-fixtures", type=Path)
+    parser.add_argument("--screener-feed", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--generated-at")
     args = parser.parse_args(argv)
@@ -1041,6 +1047,11 @@ def main(argv: list[str] | None = None) -> None:
         extra_fixtures=(
             _read(args.extra_fixtures)
             if args.extra_fixtures and args.extra_fixtures.exists()
+            else None
+        ),
+        screener_feed=(
+            _read(args.screener_feed)
+            if args.screener_feed and args.screener_feed.exists()
             else None
         ),
         # Only the names are read, never the values: this decides whether an

@@ -225028,6 +225028,13 @@
     "sorted_by": "value_pct",
     "candidates": []
   },
+  "screener_feed": {
+    "schema_version": "line-screener/1.0",
+    "sorted_by": "delta_pct",
+    "not_sorted_by": "value_pct",
+    "note": "Движение цены — отдельный сигнал. LARGE_MOVE помечен как NEEDS_MECHANISM и не считается автоматически хорошим или плохим.",
+    "rows": []
+  },
   "deep_audit": {
     "schema_version": "deep-audit-queue/1.0",
     "queue": [],

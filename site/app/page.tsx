@@ -514,7 +514,28 @@ type LivePayload = {
   preline_chat_batches?: ChatResearchBatch[] | null;
   value_top?: ValueTop | null;
   consensus_top?: ConsensusTop | null;
+  screener_feed?: ScreenerFeed | null;
   forecasts: Forecast[];
+};
+
+type ScreenerRow = {
+  market_id?: string | null;
+  bookmaker?: string | null;
+  state: string;
+  direction?: string | null;
+  assessment?: string | null;
+  delta_pct: number;
+  current_odds: number;
+  reference_odds: number;
+  reference_checked_at?: string | null;
+  current_checked_at?: string | null;
+};
+
+type ScreenerFeed = {
+  sorted_by?: string | null;
+  not_sorted_by?: string | null;
+  note?: string | null;
+  rows: ScreenerRow[];
 };
 
 type ValueRow = {
@@ -913,6 +934,65 @@ function ConsensusFeed({ top }: { top?: ConsensusTop | null }) {
             </tbody>
           </table>
         </div>
+      )}
+    </section>
+  );
+}
+
+// Movement, not edge. Ranked by delta and labelled as such, because a reader
+// must always know which question ordered the list they are looking at.
+function ScreenerFeedBoard({ feed }: { feed?: ScreenerFeed | null }) {
+  const rows = feed?.rows || [];
+  const stateLabel = (state: string) => ({
+    DRIFT: "Цена выросла",
+    STEAM: "Цена упала",
+    LARGE_MOVE: "Крупное движение",
+    LIMIT_SIGNAL: "Сигнал лимита",
+    FROZEN: "Без движения",
+  }[state] || state);
+  return (
+    <section className="screener-feed" id="screener" aria-label="Движение линии">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">Сортировка по дельте цены, не по value</p>
+          <h2>Движение линии</h2>
+        </div>
+      </div>
+      {rows.length === 0 ? (
+        <p className="value-empty">
+          Движения нет или ещё не с чем сравнивать: дельта появляется со
+          второго снимка цены. История копится автоматически.
+        </p>
+      ) : (
+        <>
+          <p className="feed-note">
+            Крупное движение помечается как <b>требует объяснения</b> и намеренно
+            не считается ни хорошим, ни плохим сигналом: выборки, чтобы это
+            утверждать, пока нет.
+          </p>
+          <div className="table-scroll">
+            <table className="value-table">
+              <thead>
+                <tr>
+                  <th>Контора</th><th>Было</th><th>Стало</th>
+                  <th>Дельта</th><th>Класс</th><th>Оценка</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.slice(0, 25).map((row, index) => (
+                  <tr key={`${row.market_id}-${row.bookmaker}-${index}`}>
+                    <td>{row.bookmaker || "—"}</td>
+                    <td>{decimal(row.reference_odds)}</td>
+                    <td>{decimal(row.current_odds)}</td>
+                    <td className="value-cell">{row.delta_pct >= 0 ? "+" : ""}{row.delta_pct.toFixed(2)}%</td>
+                    <td>{stateLabel(row.state)}</td>
+                    <td>{row.assessment === "NEEDS_MECHANISM" ? "Требует объяснения" : "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </section>
   );
@@ -2380,6 +2460,7 @@ export default function Home() {
             <a href="#research-day" className="secondary-action">Игровой день</a>
             <a href="/xg-edge/weekly.html" className="secondary-action">Рейтинг недели</a>
             <a href="#value-top" className="secondary-action">Топ по value</a>
+            <a href="#screener" className="secondary-action">Движение линии</a>
             <a href="#collector" className="secondary-action">Собиратель</a>
             <a href="#paper-bank" className="secondary-action">PAPER-банк</a>
             <a href="#completed-archive" className="secondary-action">Архив качества</a>
@@ -2403,6 +2484,8 @@ export default function Home() {
       <ValueTopTable top={payload.value_top} />
 
       <ConsensusFeed top={payload.consensus_top} />
+
+      <ScreenerFeedBoard feed={payload.screener_feed} />
 
       <CollectorForm top={payload.value_top} />
 
