@@ -1,5 +1,41 @@
 # Changelog
 
+## Unreleased
+
+- Added the deep-audit state machine (`xgedge.research.deep_audit`): collects
+  TRIGGER_HIT/NEAR_TRIGGER/LARGE_MOVE_REAUDIT/LATE_WILDCARD candidates into a
+  queue with no forced size, batches them 4-per-ChatGPT-packet, and derives
+  APPROVED/BORDERLINE/REJECTED decisions from the existing
+  `human_deep_audit/1.0` import contract without blending human scores into
+  the machine probability. A later large price move downgrades an already
+  approved candidate to STALE_AUDIT.
+- Added the Final XI + price gate (`xgedge.research.final_xi`): compares the
+  audited lineup assumption against the officially confirmed XI
+  (WAITING_XI -> FINAL_CHECK_PASSED/FINAL_CHECK_FAILED) and separately gates
+  on the execution price at kickoff time (PASS_PRICE), independent of how
+  positive the deep audit was.
+- Added the same-match joint-probability engine (`xgedge.markets.joint`):
+  exact score-matrix enumeration for two or more legs on one fixture,
+  replacing the naive independent-probability product with push-aware
+  combined EV and fair combo pricing.
+- Added qualification settlement (`xgedge.markets.qualification`): fail-closed
+  settlement strictly against an official confirmed `qualified_team_id`, plus
+  a versioned `CompetitionAdvanceRules` contract documenting the away-goals/
+  extra-time/penalty assumptions behind the existing two-leg Monte Carlo in
+  `xgedge.experiments.ucl_qualifying.simulate_qualification`.
+- Added a versioned cross-match archetype taxonomy and deterministic tagger
+  (`xgedge.markets.archetypes`) for portfolio exposure control.
+- Added the PAPER_ONLY portfolio engine (`xgedge.decision.portfolio`): the
+  first module in the pipeline that proposes stakes. Accepts only
+  APPROVED + FINAL_CHECK_PASSED candidates, caps distinct markets per match,
+  sizes at most one 500 RUB single per day under an explicit gate, builds
+  cross-fixture doubles, rejects same-match multi-leg tickets without a
+  supplied joint probability, caps leg reuse and per-archetype stake share,
+  and never forces the reserve to be spent.
+- These six modules are unit-tested (46 new tests) but not yet wired into
+  `build_live_payload.py`, GitHub Actions, or the public site; see
+  `docs/UEFA_RESEARCH_WORKFLOW_V2_RU.md` for what remains.
+
 ## 0.9.0 — 2026-08-18
 
 - Added the UEFA Research Workflow v2: every future fixture is machine-scanned,

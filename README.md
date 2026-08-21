@@ -33,6 +33,17 @@ PAPER-кандидат больше не откатывается к 1X2: тот
 `HALF_WIN/HALF_LOSS`. Подробный protocol:
 [`docs/UEFA_RESEARCH_WORKFLOW_V2_RU.md`](docs/UEFA_RESEARCH_WORKFLOW_V2_RU.md).
 
+Следующая фаза (пока не подключена к сайту/Actions, только модули + тесты)
+добавила: deep-audit state machine с batching по 4 и STALE_AUDIT-инвалидацией
+после позднего движения цены; Final XI + price gate; same-match
+joint-вероятность через score matrix вместо наивного произведения;
+qualification settlement строго по официальному `qualified_team_id`;
+versioned архетип-таксономию; и PAPER_ONLY portfolio engine (match-cluster
+cap, одна ставка 500 RUB/день под explicit-гейтом, doubles, лимит
+переиспользования ноги, лимит доли банка на архетип, резерв, который не
+обязан тратиться). Детали — там же, в разделе «Deep audit, Final XI и
+portfolio».
+
 Сайт прогнозов: **https://bogdasovandrej.github.io/xg-edge/**
 
 Недельный исследовательский радар:

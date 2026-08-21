@@ -92,9 +92,61 @@ Generic payout engine поддерживает `WIN`, `HALF_WIN`, `PUSH`, `HALF_
 Fair и trigger для push-aware рынков находятся по expected return всего
 settlement distribution, а не через ошибочное `1 / p`.
 
+## Deep audit, Final XI и portfolio (добавлено в этой фазе)
+
+Trigger hit, near-trigger, large-move и late-wildcard кандидаты собираются в
+deep-audit очередь (`src/xgedge/research/deep_audit.py`) без принудительного
+минимума или максимума и пакуются по 4 (не по 5, как PRELINE) для ChatGPT.
+Импорт использует уже существующую схему `human_deep_audit/1.0`
+(`xgedge.research.handoff`); решение `PASS` из схемы нормализуется в
+`REJECTED` состояния кандидата. Machine-вероятность/EV и человеческие
+`VALUE`/`ROBUSTNESS`/`ACCA QUALITY` остаются разными полями и не
+смешиваются в один скор. Более поздний `LARGE_MOVE_REAUDIT` после импорта
+audit переводит уже одобренного кандидата в `STALE_AUDIT`.
+
+`src/xgedge/research/final_xi.py` отдельно проверяет: (1) официальный состав
+против допущений audit — потеря допущенного игрока, ключевой роли
+(вратарь/центральный защитник/главный форвард) или неожиданная замена схемы
+дают `FINAL_CHECK_FAILED`, требующий новой вероятности; (2) цену исполнения —
+`final_price` ниже `minimum_entry` даёт `PASS_PRICE` независимо от того,
+насколько положительным был deep audit.
+
+`src/xgedge/decision/portfolio.py` — первый модуль конвейера, который
+предлагает реальные ставки, и остаётся строго `PAPER_ONLY`. Он принимает
+только `APPROVED` + `FINAL_CHECK_PASSED` кандидатов с положительным
+conservative EV, обрезает каждый матч до `max_distinct_markets_per_match`
+(default 2), считает singles с одной допустимой ставкой 500 RUB в день
+(`value >= 8.4`, `robustness >= 8.2`, `data_quality >= 80` как рабочая
+интерпретация "B+", conservative EV > 0, нет unresolved warning), строит
+кросс-матчевые doubles (default `accumulator_stake_rub = 250`), запрещает
+same-match ногу в одном тикете без явно переданной joint-вероятности
+(`REJECT_CORRELATED_SAME_MATCH_LEGS`), ограничивает переиспользование одной
+точной ставки (`max_ticket_uses_per_exact_leg = 2`, включая её собственный
+single), запрещает 4+ ног и предупреждает (или отклоняет, по конфигу) при
+превышении доли банка на один архетип (`archetype_exposure_cap = 0.30`) из
+`src/xgedge/markets/archetypes.py`. Резерв банка никогда не тратится
+принудительно: `unused_rub` — нормальное состояние, а не ошибка.
+
+`src/xgedge/markets/joint.py` даёт точную (не наивное произведение)
+same-match joint-вероятность через score matrix — именно её и обязан
+передать вызывающий код, чтобы включить same-match тикет в portfolio.
+
+`src/xgedge/markets/qualification.py` settle-ит рынок qualification только по
+официально подтверждённому `qualified_team_id`; вероятность по-прежнему
+считает существующий двухматчевый Monte Carlo
+(`xgedge.experiments.ucl_qualifying.simulate_qualification`, aggregate +
+extra time + 50/50 пенальти) — модуль не переизобретает эту симуляцию, а
+добавляет недостающее: fail-closed settlement и versioned
+`CompetitionAdvanceRules` контракт, документирующий допущения (away goals
+отключены с 2021/22, extra time и пенальти включены).
+
 ## Что ещё остаётся следующим этапом
 
-Qualification settlement по официальному `qualified_team_id`, tournament
-Monte Carlo, joint same-match markets, deep audit state machine, Final XI gate,
-portfolio correlation/exposure и post-match trend engine остаются отдельными
-логическими фазами. До них интерфейс не должен обещать APPROVED portfolio.
+Полный game-state engine (раздел 32 воркфлоу), post-match trend engine,
+подключение portfolio/deep-audit/Final XI к `build_live_payload.py` и
+публичному сайту, ручной ввод российской execution-цены как отдельный UI и
+провайдер (`ExecutionQuoteProvider`), а также автоматический combo-optimizer
+для triples остаются отдельными логическими фазами. До них интерфейс не
+должен обещать конечный portfolio на сайте — сейчас все шесть модулей этой
+фазы вызываются программно и покрыты тестами, но не подключены к GitHub
+Actions или публичному JSON.
