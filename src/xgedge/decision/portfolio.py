@@ -14,8 +14,10 @@ Design choices carried over verbatim from the workflow spec:
 * a same-match multi-leg ticket is illegal unless the caller supplies an
   actual joint probability (``xgedge.markets.joint``) for that pair — never
   a naive product of two markets sharing one score process;
-* at most one single per day may take the 500 RUB stake, and only when it
-  clears an explicit, documented set of gates;
+* every stake is the minimum of quarter-Kelly and the hard caps, so the edge
+  sizes the bet and the caps bound it;
+* a human ``value`` rating never gates or orders a funding decision — the
+  arithmetic does;
 * the portfolio must never force itself to spend the whole bankroll.
 """
 from __future__ import annotations
@@ -24,21 +26,24 @@ from dataclasses import asdict, dataclass
 from math import isfinite, prod
 from typing import Any, Mapping, Sequence
 
-DOUBLE_STAKE_DATA_QUALITY_NOTE = (
-    "double_stake_minimum_data_quality is this project's numeric reading of "
-    "the spec's 'Data Quality >= B+' condition; it is a configurable default, "
-    "not a validated threshold."
-)
-
 
 @dataclass(frozen=True, slots=True)
 class PortfolioConfig:
-    version: str = "portfolio-engine/1.0"
+    version: str = "portfolio-engine/2.0"
     bankroll_rub: float = 6000.0
     unit_rub: float = 250.0
     double_stake_rub: float = 500.0
     minimum_cash_reserve_rub: float = 1000.0
     accumulator_stake_rub: float = 250.0
+    # Staking caps. The stake is the MINIMUM of quarter-Kelly and every cap,
+    # never whichever happens to be convenient.
+    kelly_fraction: float = 0.25
+    max_stake_fraction_per_bet: float = 0.03
+    max_in_play_fraction: float = 0.10
+    max_archetype_fraction_per_day: float = 0.15
+    # How many tickets the user asked for. None means "as many as qualify".
+    max_singles: int | None = None
+    max_accumulators: int | None = None
     max_distinct_markets_per_match: int = 2
     max_ticket_uses_per_exact_leg: int = 2
     max_acca_legs: int = 3
@@ -46,9 +51,6 @@ class PortfolioConfig:
     short_odds_glue_threshold: float = 1.45
     archetype_exposure_cap: float = 0.30
     archetype_limit_mode: str = "warn"  # "warn" | "reject"
-    double_stake_minimum_value: float = 8.4
-    double_stake_minimum_robustness: float = 8.2
-    double_stake_minimum_data_quality: float = 80.0
 
     def validate(self) -> None:
         positives = (
@@ -77,8 +79,76 @@ class PortfolioConfig:
             raise ValueError("archetype_exposure_cap must be in (0, 1]")
         if self.archetype_limit_mode not in {"warn", "reject"}:
             raise ValueError("archetype_limit_mode must be 'warn' or 'reject'")
-        if not 0.0 <= self.double_stake_minimum_data_quality <= 100.0:
-            raise ValueError("double_stake_minimum_data_quality must be in [0, 100]")
+        fractions = (
+            self.kelly_fraction,
+            self.max_stake_fraction_per_bet,
+            self.max_in_play_fraction,
+            self.max_archetype_fraction_per_day,
+        )
+        if any(not isfinite(v) or not 0 < v <= 1 for v in fractions):
+            raise ValueError("Kelly fraction and caps must be in (0, 1]")
+        if self.max_stake_fraction_per_bet > self.max_in_play_fraction:
+            raise ValueError("a single bet cannot exceed the total in-play cap")
+        for field in ("max_singles", "max_accumulators"):
+            value = getattr(self, field)
+            if value is None:
+                continue
+            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+                raise ValueError(f"{field} must be a non-negative integer or None")
+
+
+def kelly_quarter(p: float, odds: float, *, fraction: float = 0.25) -> float:
+    """Fractional Kelly stake as a share of bankroll; zero when there is no edge."""
+    price = float(odds)
+    probability = float(p)
+    if not isfinite(price) or price <= 1.0:
+        raise ValueError("odds must be finite and above 1")
+    if not isfinite(probability) or not 0.0 < probability < 1.0:
+        raise ValueError("probability must be in (0, 1)")
+    b = price - 1.0
+    full = (probability * b - (1.0 - probability)) / b
+    return max(full * float(fraction), 0.0)
+
+
+def stake_for(
+    candidate: Mapping[str, Any],
+    *,
+    config: PortfolioConfig,
+    in_play_rub: float,
+    archetype_exposure_rub: Mapping[str, float],
+) -> dict[str, Any]:
+    """Size one stake as the minimum of quarter-Kelly and every hard cap.
+
+    Taking the minimum is the whole point: Kelly alone will happily stake far
+    more than a research bankroll should carry on one correlated idea, and a
+    flat cap alone ignores how thin the edge is.
+    """
+    bankroll = config.bankroll_rub
+    kelly_fraction = kelly_quarter(
+        float(candidate["conservative_probability"]),
+        float(candidate["odds"]),
+        fraction=config.kelly_fraction,
+    )
+    caps = {
+        "quarter_kelly": kelly_fraction * bankroll,
+        "per_bet_cap": config.max_stake_fraction_per_bet * bankroll,
+        "in_play_cap": max(0.0, config.max_in_play_fraction * bankroll - in_play_rub),
+        "reserve": max(
+            0.0, bankroll - config.minimum_cash_reserve_rub - in_play_rub
+        ),
+    }
+    for archetype in candidate.get("archetypes", []) or []:
+        used = float(archetype_exposure_rub.get(archetype, 0.0))
+        caps[f"archetype:{archetype}"] = max(
+            0.0, config.max_archetype_fraction_per_day * bankroll - used
+        )
+    binding = min(caps, key=lambda name: caps[name])
+    return {
+        "stake_rub": round(max(0.0, caps[binding]), 2),
+        "binding_constraint": binding,
+        "caps_rub": {name: round(value, 2) for name, value in caps.items()},
+        "quarter_kelly_fraction": kelly_fraction,
+    }
 
 
 def _conservative_ev(candidate: Mapping[str, Any]) -> float:
@@ -121,49 +191,57 @@ def _apply_match_cluster_cap(
     kept: list[dict[str, Any]] = []
     rejected: list[dict[str, Any]] = []
     for fixture_id, rows in by_fixture.items():
-        rows.sort(key=lambda r: (-r["conservative_ev"], -float(r.get("value") or 0), str(r["candidate_id"])))
+        rows.sort(key=lambda r: (-r["conservative_ev"], str(r["candidate_id"])))
         kept.extend(rows[: config.max_distinct_markets_per_match])
         for row in rows[config.max_distinct_markets_per_match :]:
             rejected.append({"candidate_id": row["candidate_id"], "reason": "match_market_cap_exceeded"})
     return kept, rejected
 
 
-def _double_stake_eligible(candidate: Mapping[str, Any], *, config: PortfolioConfig) -> bool:
-    value = candidate.get("value")
-    robustness = candidate.get("robustness")
-    data_quality = candidate.get("data_quality")
-    if value is None or robustness is None or data_quality is None:
-        return False
-    return (
-        float(value) >= config.double_stake_minimum_value
-        and float(robustness) >= config.double_stake_minimum_robustness
-        and float(data_quality) >= config.double_stake_minimum_data_quality
-        and candidate["conservative_ev"] > 0.0
-        and not candidate.get("has_unresolved_warning", False)
-    )
-
-
 def build_singles(
     candidates: Sequence[Mapping[str, Any]], *, config: PortfolioConfig
 ) -> dict[str, Any]:
-    """Build one single per eligible candidate, sizing at most one 500 RUB stake/day."""
-    budget = config.bankroll_rub - config.minimum_cash_reserve_rub
+    """Build singles, sized by quarter-Kelly under every hard cap.
+
+    Ordering is by conservative EV — the arithmetic — never by the human
+    ``value`` rating. A rating of 8.1 on a bet worth +0.45% must not be funded
+    ahead of a genuinely better-priced one.
+    """
     ordered = sorted(
         candidates,
-        key=lambda r: (-float(r.get("value") or 0), -r["conservative_ev"], str(r["candidate_id"])),
+        key=lambda r: (-r["conservative_ev"], str(r["candidate_id"])),
     )
-    double_eligible_id = next(
-        (row["candidate_id"] for row in ordered if _double_stake_eligible(row, config=config)), None
-    )
+    if config.max_singles is not None:
+        wanted, surplus = ordered[: config.max_singles], ordered[config.max_singles :]
+    else:
+        wanted, surplus = ordered, []
+
     singles: list[dict[str, Any]] = []
-    skipped: list[dict[str, Any]] = []
-    spent = 0.0
-    for row in ordered:
-        stake = config.double_stake_rub if row["candidate_id"] == double_eligible_id else config.unit_rub
-        if spent + stake > budget:
-            skipped.append({"candidate_id": row["candidate_id"], "reason": "SKIPPED_RESERVE_LIMIT"})
+    skipped = [
+        {"candidate_id": row["candidate_id"], "reason": "SKIPPED_USER_SINGLES_LIMIT"}
+        for row in surplus
+    ]
+    in_play = 0.0
+    archetype_exposure_rub: dict[str, float] = {}
+    for row in wanted:
+        sizing = stake_for(
+            row,
+            config=config,
+            in_play_rub=in_play,
+            archetype_exposure_rub=archetype_exposure_rub,
+        )
+        stake = sizing["stake_rub"]
+        if stake <= 0.0:
+            skipped.append({
+                "candidate_id": row["candidate_id"],
+                "reason": f"NO_ROOM:{sizing['binding_constraint']}",
+            })
             continue
-        spent += stake
+        in_play += stake
+        for archetype in row.get("archetypes", []) or []:
+            archetype_exposure_rub[archetype] = (
+                archetype_exposure_rub.get(archetype, 0.0) + stake
+            )
         singles.append({
             "ticket_type": "single",
             "candidate_id": row["candidate_id"],
@@ -171,14 +249,21 @@ def build_singles(
             "market_family": row.get("market_family"),
             "odds": row.get("odds"),
             "stake_rub": stake,
+            "binding_constraint": sizing["binding_constraint"],
+            "quarter_kelly_fraction": sizing["quarter_kelly_fraction"],
             "conservative_ev": row["conservative_ev"],
+            # Human judgement travels alongside the number; it never sizes it.
+            "value_rating": row.get("value"),
             "archetypes": list(row.get("archetypes", [])),
         })
     return {
         "singles": singles,
         "skipped": skipped,
-        "staked_rub": spent,
-        "double_stake_candidate_id": double_eligible_id,
+        "staked_rub": round(in_play, 2),
+        # The old "one 500 RUB single per day, gated on a human value >= 8.4"
+        # rule is gone: quarter-Kelly under the caps sizes every stake from the
+        # edge instead, and a human rating no longer gates any money.
+        "staking_method": "min(quarter_kelly, per_bet_cap, in_play_cap, archetype_cap, reserve)",
     }
 
 
@@ -244,7 +329,7 @@ def build_accumulators(
     by_id = {str(leg["candidate_id"]): leg for leg in eligible_legs}
     joint_map = same_match_joint_probabilities or {}
     ordered = sorted(
-        eligible_legs, key=lambda r: (-float(r.get("value") or 0), -r["conservative_ev"], str(r["candidate_id"]))
+        eligible_legs, key=lambda r: (-r["conservative_ev"], str(r["candidate_id"]))
     )
     tickets: list[dict[str, Any]] = []
     rejected: list[dict[str, Any]] = []

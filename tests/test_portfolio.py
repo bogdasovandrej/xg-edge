@@ -4,6 +4,8 @@ from __future__ import annotations
 import pytest
 
 from xgedge.decision.portfolio import (
+    kelly_quarter,
+    stake_for,
     PortfolioConfig,
     build_portfolio,
     evaluate_ticket,
@@ -168,17 +170,66 @@ def test_unused_bankroll_is_accepted_not_forced_to_zero() -> None:
     )
 
 
-def test_at_most_one_candidate_gets_the_500_rub_single() -> None:
-    strong = dict(value=9.0, robustness=9.0, data_quality=90.0)
-    candidates = [
-        _candidate("c1", "f1", **strong),
-        _candidate("c2", "f2", **strong),
-        _candidate("c3", "f3", value=5.0, robustness=5.0, data_quality=50.0),
-    ]
-    result = build_portfolio(candidates)
-    doubles = [s for s in result["singles"] if s["stake_rub"] == PortfolioConfig().double_stake_rub]
-    assert len(doubles) == 1
-    assert doubles[0]["candidate_id"] == "c1"
+def test_quarter_kelly_matches_the_contract_formula() -> None:
+    # p=0.6, odds=2.0 -> b=1, full Kelly = (0.6*1 - 0.4)/1 = 0.2, quarter = 0.05
+    assert kelly_quarter(0.6, 2.0) == pytest.approx(0.05)
+    # No edge means no stake, never a negative one.
+    assert kelly_quarter(0.4, 2.0) == 0.0
+
+
+def test_stake_is_the_minimum_of_kelly_and_every_cap() -> None:
+    cfg = PortfolioConfig(bankroll_rub=10_000.0, max_stake_fraction_per_bet=0.03)
+    # A large edge would let Kelly stake far more than the 3% per-bet cap.
+    fat = _candidate("c1", "f1", odds=3.0, probability=0.6)
+    sizing = stake_for(fat, config=cfg, in_play_rub=0.0, archetype_exposure_rub={})
+    assert sizing["binding_constraint"] == "per_bet_cap"
+    assert sizing["stake_rub"] == pytest.approx(300.0)
+
+    # A thin edge is bounded by Kelly instead, well under the cap.
+    thin = _candidate("c2", "f2", odds=2.0, probability=0.52)
+    thin_sizing = stake_for(thin, config=cfg, in_play_rub=0.0, archetype_exposure_rub={})
+    assert thin_sizing["binding_constraint"] == "quarter_kelly"
+    assert thin_sizing["stake_rub"] < 300.0
+
+
+def test_in_play_cap_binds_across_bets() -> None:
+    cfg = PortfolioConfig(bankroll_rub=10_000.0)
+    candidate = _candidate("c1", "f1", odds=3.0, probability=0.6)
+    sizing = stake_for(
+        candidate, config=cfg, in_play_rub=950.0, archetype_exposure_rub={}
+    )
+    assert sizing["binding_constraint"] == "in_play_cap"
+    assert sizing["stake_rub"] == pytest.approx(50.0)
+
+
+def test_archetype_cap_binds_per_day() -> None:
+    cfg = PortfolioConfig(bankroll_rub=10_000.0, max_archetype_fraction_per_day=0.15)
+    candidate = _candidate("c1", "f1", odds=3.0, probability=0.6,
+                           archetypes=("BIG_DOG_HANDICAP",))
+    sizing = stake_for(
+        candidate, config=cfg, in_play_rub=0.0,
+        archetype_exposure_rub={"BIG_DOG_HANDICAP": 1_480.0},
+    )
+    assert sizing["binding_constraint"] == "archetype:BIG_DOG_HANDICAP"
+    assert sizing["stake_rub"] == pytest.approx(20.0)
+
+
+def test_user_can_cap_how_many_singles_they_want() -> None:
+    candidates = [_candidate(f"c{i}", f"f{i}") for i in range(5)]
+    result = build_portfolio(candidates, config=PortfolioConfig(max_singles=2))
+    assert len(result["singles"]) == 2
+    assert any(
+        row["reason"] == "SKIPPED_USER_SINGLES_LIMIT"
+        for row in result["rejections"]["singles_skipped"]
+    )
+
+
+def test_high_value_rating_never_outranks_better_arithmetic() -> None:
+    """The incident in miniature: a great rating on a worse-priced bet."""
+    rated = _candidate("rated", "f1", odds=1.80, probability=0.58, value=9.9)
+    priced = _candidate("priced", "f2", odds=2.60, probability=0.58, value=1.0)
+    result = build_portfolio([rated, priced], config=PortfolioConfig(max_singles=1))
+    assert [row["candidate_id"] for row in result["singles"]] == ["priced"]
 
 
 def test_config_rejects_four_plus_leg_policy() -> None:
