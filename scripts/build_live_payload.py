@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,7 @@ from xgedge.decision.live_market import (
     anchor_live_1x2,
     market_index,
 )
+from xgedge.data.coverage import coverage_report
 from xgedge.data.point_in_time import available_snapshot
 from xgedge.data.bookmaker_odds import apply_odds_snapshot_to_live_payload
 from xgedge.decision.ranking import rank_paper_candidates
@@ -98,12 +100,23 @@ def _fixture_index(payload: Any) -> dict[str, dict]:
     return {str(row["id"]): row for row in rows if isinstance(row, dict) and row.get("id")}
 
 
+_CALENDAR_SCHEMAS = {"top-five-fixtures/1.0", "api-football-fixtures/1.0"}
+
+
 def _top_five_rows(document: dict | None) -> list[dict]:
-    if not isinstance(document, dict) or document.get("schema_version") != "top-five-fixtures/1.0":
+    """Calendar-only fixtures: listed and searchable, but not yet modelled.
+
+    Covers both the football-data.org top-five snapshot and the api-football
+    snapshot carrying the Russian Premier League and the domestic cups. These
+    rows deliberately have no probabilities: a fixture we can name but cannot
+    model must be visible as such, not silently absent.
+    """
+    if not isinstance(document, dict) or document.get("schema_version") not in _CALENDAR_SCHEMAS:
         return []
     fixtures = document.get("fixtures")
     if not isinstance(fixtures, list):
         return []
+    source_name = str(document.get("source") or "unknown source")
     rows = []
     for fixture in fixtures:
         if not isinstance(fixture, dict):
@@ -122,7 +135,7 @@ def _top_five_rows(document: dict | None) -> list[dict]:
             "home": home,
             "away": away,
             "venue": fixture.get("venue"),
-            "model": "Pending top-five model",
+            "model": "Pending model",
             "forecast_generated_at": document.get("generated_at"),
             "p_home": None,
             "p_draw": None,
@@ -133,20 +146,21 @@ def _top_five_rows(document: dict | None) -> list[dict]:
             "uncertainty": "не оценена",
             "recommendation": "NO BET",
             "first_leg": None,
-            "probability_basis": "calendar_only_no_validated_top5_features",
+            "probability_basis": "calendar_only_no_validated_features",
             "details": {
                 "data_quality": {
                     "score": 0,
                     "label": "low",
-                    "sources": ["football-data.org"],
+                    "sources": [source_name],
                     "warnings": [
-                        "Top-five fixture loaded, but no validated point-in-time xG feature set is attached yet."
+                        f"Fixture loaded from {source_name}, but no validated "
+                        "point-in-time xG feature set is attached yet."
                     ],
                 },
                 "candidate_bets": [],
                 "betting_gate": {
                     "allowed": False,
-                    "reason": "top_five_model_not_validated",
+                    "reason": "model_not_validated_for_this_competition",
                 },
             },
         })
@@ -825,6 +839,8 @@ def build_payload(
     paper_ledger: dict | None = None,
     uefa_history: dict | None = None,
     top_five_fixtures: dict | None = None,
+    extra_fixtures: dict | None = None,
+    configured_api_keys: set[str] | None = None,
 ) -> dict:
     fixture_by_id = _fixture_index(fixtures)
     markets = market_index(market_document)
@@ -846,6 +862,7 @@ def build_payload(
         _world_cup_rows(world_cup, fixture_by_id, markets, anchor, dossiers)
         + _ucl_rows(ucl, fixture_by_id, dossiers)
         + _top_five_rows(top_five_fixtures)
+        + _top_five_rows(extra_fixtures)
     )
     rows = _future_forecasts(rows, generated_at)
     rows.sort(key=lambda row: (row["kickoff_utc"], row["competition"], row["id"]))
@@ -874,6 +891,9 @@ def build_payload(
             "allowed": False,
             "reason": "Real-money gate remains closed; model forecasts stay visible.",
         },
+        # Which competitions the site claims to track, and which are empty
+        # because a key is missing rather than because there are no fixtures.
+        "coverage": coverage_report(configured_api_keys or set()),
         "forecasts": rows,
     }
     if odds_snapshot is not None:
@@ -913,6 +933,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--paper-ledger", type=Path)
     parser.add_argument("--uefa-history", type=Path)
     parser.add_argument("--top-five-fixtures", type=Path)
+    parser.add_argument("--extra-fixtures", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--generated-at")
     args = parser.parse_args(argv)
@@ -947,6 +968,20 @@ def main(argv: list[str] | None = None) -> None:
             if args.top_five_fixtures and args.top_five_fixtures.exists()
             else None
         ),
+        extra_fixtures=(
+            _read(args.extra_fixtures)
+            if args.extra_fixtures and args.extra_fixtures.exists()
+            else None
+        ),
+        # Only the names are read, never the values: this decides whether an
+        # empty competition is reported as "not configured" or "no fixtures".
+        configured_api_keys={
+            name for name in (
+                "FOOTBALL_DATA_API_KEY", "API_FOOTBALL_KEY",
+                "ODDS_API_IO_KEY", "THE_ODDS_API_KEY",
+            )
+            if os.environ.get(name, "").strip()
+        },
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

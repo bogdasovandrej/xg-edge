@@ -154,7 +154,7 @@ def test_live_payload_includes_top_five_calendar_without_fake_probabilities() ->
     assert row["competition"] == "Premier League"
     assert row["p_home"] is None
     assert row["betting_eligible"] is False
-    assert row["probability_basis"] == "calendar_only_no_validated_top5_features"
+    assert row["probability_basis"] == "calendar_only_no_validated_features"
 
 
 def test_live_payload_uses_verified_market_anchor() -> None:
