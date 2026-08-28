@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T22:25:02Z",
+  "generated_at": "2026-08-28T11:31:17Z",
   "status": "MODEL_FORECASTS_ACTIVE_CLV_BACKGROUND_AUDIT",
   "validation_protocol": {
     "mode": "MODEL_FORECAST_WITH_BACKGROUND_CLV_AUDIT",
@@ -16,6 +16,40 @@
     "reason": "global_gate_disabled_cohort_specific_only"
   },
   "forecasts": [],
+  "odds_feed": {
+    "source_provider": "odds_api_io",
+    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
+    "snapshot_at": "2026-08-27T14:34:40Z",
+    "matched_forecasts": 0,
+    "rejected_forecasts": 0,
+    "stale_forecasts": 0,
+    "requested_sport_keys": [
+      "soccer_uefa_europa_conference_league",
+      "soccer_uefa_europa_league"
+    ],
+    "sport_poll_times": {
+      "soccer_uefa_champs_league": {
+        "requested_at": "2026-08-26T14:21:51Z",
+        "received_at": "2026-08-26T14:21:56Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_conference_league": {
+        "requested_at": "2026-08-27T14:34:38Z",
+        "received_at": "2026-08-27T14:34:40Z",
+        "status": "available"
+      },
+      "soccer_uefa_europa_league": {
+        "requested_at": "2026-08-27T14:34:38Z",
+        "received_at": "2026-08-27T14:34:40Z",
+        "status": "available"
+      }
+    },
+    "quota": {
+      "remaining": 98,
+      "limit": 100,
+      "reset": "2026-08-27T15:34:39Z"
+    }
+  },
   "prospective_clv": {
     "action": "NO BET",
     "reason": "global_gate_disabled_cohort_specific_only",
@@ -358,7 +392,7 @@
   },
   "research_workflow": {
     "schema_version": "uefa-research-workflow/2.0",
-    "generated_at": "2026-08-27T22:25:02Z",
+    "generated_at": "2026-08-28T11:31:17Z",
     "policy": {
       "version": "research-priority/1.0",
       "preline_pool_size": 20,
@@ -402,7 +436,7 @@
     "schema_version": "paper-candidate-ranking/1.1",
     "status": "PAPER_ONLY",
     "real_money_execution": false,
-    "generated_at": "2026-08-27T22:25:02Z",
+    "generated_at": "2026-08-28T11:31:17Z",
     "policy": {
       "version": "paper-ranking-v3-multimarket-lcb95",
       "maximum_odds": 6.0,
@@ -553,40 +587,6 @@
     "parlays": {
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
-    }
-  },
-  "odds_feed": {
-    "source_provider": "odds_api_io",
-    "status": "NO_ELIGIBLE_PREMATCH_SNAPSHOT",
-    "snapshot_at": "2026-08-27T14:34:40Z",
-    "matched_forecasts": 0,
-    "rejected_forecasts": 0,
-    "stale_forecasts": 0,
-    "requested_sport_keys": [
-      "soccer_uefa_europa_conference_league",
-      "soccer_uefa_europa_league"
-    ],
-    "sport_poll_times": {
-      "soccer_uefa_champs_league": {
-        "requested_at": "2026-08-26T14:21:51Z",
-        "received_at": "2026-08-26T14:21:56Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_conference_league": {
-        "requested_at": "2026-08-27T14:34:38Z",
-        "received_at": "2026-08-27T14:34:40Z",
-        "status": "available"
-      },
-      "soccer_uefa_europa_league": {
-        "requested_at": "2026-08-27T14:34:38Z",
-        "received_at": "2026-08-27T14:34:40Z",
-        "status": "available"
-      }
-    },
-    "quota": {
-      "remaining": 98,
-      "limit": 100,
-      "reset": "2026-08-27T15:34:39Z"
     }
   }
 }
