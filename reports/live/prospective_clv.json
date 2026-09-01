@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-09-01T17:59:54Z",
+  "updated_at": "2026-09-01T23:16:34Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -120,6 +120,25 @@
       "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
       "dimensions": {
         "competition_or_sport": "uefa europa league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "decision": {
+        "status": "pending",
+        "locked": false,
+        "horizon": 100,
+        "locked_at": null,
+        "fixture_ids": [],
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "clv": null
+      }
+    },
+    "cohort-b013b02c74df3bc9c40b21a2": {
+      "id": "cohort-b013b02c74df3bc9c40b21a2",
+      "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+      "dimensions": {
+        "competition_or_sport": "uefa champions league",
         "model": "hybrid elo–poisson (experimental)",
         "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
       },
@@ -13558,6 +13577,76 @@
       "result": null,
       "calibration": null,
       "clv": null
+    },
+    "2049556": {
+      "fixture_id": "2049556",
+      "evaluation_cohort_id": "cohort-b013b02c74df3bc9c40b21a2",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa champions league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Club Brugge",
+      "away": "Aston Villa",
+      "kickoff_utc": "2026-09-08T16:45:00Z",
+      "provider_event_id": "74165870",
+      "sport_key": "international-clubs-uefa-champions-league",
+      "forecast": {
+        "generated_at": "2026-09-01T21:07:37Z",
+        "competition": "UEFA Champions League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.2914856249442606,
+          "draw": 0.22622233771469435,
+          "away": 0.482292037341045
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-09-01T23:16:34Z",
+          "phase": "opening",
+          "provider_event_id": "74165870",
+          "sport_key": "international-clubs-uefa-champions-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-09-01T23:14:09Z",
+              "odds": {
+                "home": 2.625,
+                "draw": 3.9,
+                "away": 2.4
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-09-01T10:16:23Z",
+              "odds": {
+                "home": 2.63,
+                "draw": 3.9,
+                "away": 2.4
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-09-01T23:08:48Z",
+              "odds": {
+                "home": 2.6,
+                "draw": 3.45,
+                "away": 2.28
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
     }
   },
   "gate": {
@@ -13846,6 +13935,51 @@
           "2049290"
         ]
       },
+      "cohort-b013b02c74df3bc9c40b21a2": {
+        "id": "cohort-b013b02c74df3bc9c40b21a2",
+        "dimensions": {
+          "competition_or_sport": "uefa champions league",
+          "model": "hybrid elo–poisson (experimental)",
+          "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+        },
+        "policy_hash": "37d8198d5dd4b2f62aa28cc0aa09eee19fafc286b521fa6aca7fa654572d1147",
+        "action": "NO BET",
+        "reason": "confirmatory_horizon_not_reached",
+        "min_independent_matches": 100,
+        "clv": {
+          "mean": null,
+          "median": null,
+          "share_positive": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 0,
+          "n_clusters": 0,
+          "bootstrap_unit": "cluster"
+        },
+        "calibration": {
+          "n": 0,
+          "mean_logloss": null,
+          "mean_brier": null
+        },
+        "decision": {
+          "status": "pending",
+          "locked": false,
+          "horizon": 100,
+          "locked_at": null,
+          "fixture_ids": [],
+          "action": "NO BET",
+          "reason": "confirmatory_horizon_not_reached",
+          "clv": null
+        },
+        "tracked_fixtures": 1,
+        "shadow_candidates": 0,
+        "confirmatory_ready": 0,
+        "diagnostic_closes": 0,
+        "post_horizon_ready": 0,
+        "fixture_ids": [
+          "2049556"
+        ]
+      },
       "cohort-dd3fbf52e49523eb3616502d": {
         "id": "cohort-dd3fbf52e49523eb3616502d",
         "dimensions": {
@@ -13894,8 +14028,8 @@
         ]
       }
     },
-    "cohort_count": 6,
-    "tracked_fixtures": 31,
+    "cohort_count": 7,
+    "tracked_fixtures": 32,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
