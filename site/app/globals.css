@@ -552,3 +552,16 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 30px
 .dossier-deep > summary::before { content: "▸ "; }
 .dossier-deep[open] > summary::before { content: "▾ "; }
 .dossier-deep > summary::-webkit-details-marker { display: none; }
+
+.self-audit {
+  max-width: 1180px;
+  margin: 1.5rem auto 0;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border-left: 3px solid #4ade80;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.88rem;
+}
+
+.self-audit-failed { border-left-color: #f87171; }
+.self-audit ul { margin: 0.4rem 0 0; padding-left: 1.2rem; opacity: 0.8; }

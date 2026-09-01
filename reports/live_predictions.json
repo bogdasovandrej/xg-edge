@@ -226073,5 +226073,16 @@
       "status": "DISABLED",
       "reason": "singles_require_prospective_clv_validation_before_parlay_research"
     }
+  },
+  "self_audit": {
+    "schema_version": "payload-self-audit/1.0",
+    "status": "PASSED",
+    "checked_markets": 3354,
+    "checked_candidates": 0,
+    "findings": [],
+    "findings_by_check": {},
+    "critical_count": 0,
+    "fixtures_with_critical_findings": [],
+    "policy": "Расхождение не исправляется автоматически: тихая правка скрыла бы дефект, который его породил. Матч с критичной находкой теряет ставочные поверхности до разбора."
   }
 }

@@ -23,6 +23,7 @@ from xgedge.research.handoff import build_chat_batches
 from xgedge.research.preline import build_research_workflow
 from xgedge.dossier.builder import build_match_dossier
 from xgedge.evaluation.prospective import apply_summary_to_live_payload, prospective_summary
+from xgedge.evaluation.self_audit import audit_payload, suppress_unsafe_fixtures
 from xgedge.decision.portfolio import build_portfolio
 from xgedge.decision.market_consensus import best_outliers, evaluate_market
 from xgedge.decision.pricing import VALUE_PCT_GATE, price_market, states_from_distribution
@@ -1015,6 +1016,11 @@ def build_payload(
     payload = _build_decision_layer(payload, generated_at)
     if paper_ledger is not None:
         payload["paper_trading"] = public_paper_summary(paper_ledger)
+    # Last step before publishing: re-derive the numbers just written and
+    # refuse to offer bets on any fixture whose arithmetic disagrees.
+    audit = audit_payload(payload)
+    payload["self_audit"] = audit
+    payload = suppress_unsafe_fixtures(payload, audit)
     return payload
 
 

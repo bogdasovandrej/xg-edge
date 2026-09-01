@@ -30,7 +30,15 @@ test("every fixture states a verdict, so silence is never ambiguous", async () =
   const { forecasts } = await payload();
   const withQuotes = forecasts.filter((row) => row.value_verdict);
   assert.ok(withQuotes.length > 0, "verdicts must be attached to fixtures");
-  const allowed = new Set(["RECOMMENDED", "NO_BET_BEST_MARKET", "NO_QUOTE"]);
+  // Every way the system can decline must name its reason. A fixture that is
+  // simply blank is indistinguishable from one nobody looked at.
+  const allowed = new Set([
+    "RECOMMENDED",
+    "NO_BET_BEST_MARKET",
+    "NO_QUOTE",
+    "NO_BET_DEGRADED_RATINGS",
+    "NO_BET_FAILED_SELF_AUDIT",
+  ]);
   for (const row of withQuotes) {
     assert.ok(allowed.has(row.value_verdict.status), row.value_verdict.status);
     assert.ok(String(row.value_verdict.text || "").length > 0, "verdict needs text");
@@ -64,4 +72,23 @@ test("the page renders the value top, consensus feed and collector", async () =>
   // The collector must let the user set their own bankroll and ticket count.
   assert.ok(source.includes("Банк, ₽"));
   assert.ok(source.includes("Ординаров"));
+});
+
+test("the payload publishes its own self-audit", async () => {
+  const { self_audit: audit } = await payload();
+  assert.ok(audit, "payload must expose self_audit");
+  assert.ok(["PASSED", "FAILED"].includes(audit.status));
+  assert.ok(audit.checked_markets > 0, "the audit must actually check markets");
+  // A passing audit must have no critical findings, and a failing one must say
+  // how many — a status with no count behind it is not evidence.
+  if (audit.status === "PASSED") {
+    assert.equal(audit.critical_count, 0);
+  } else {
+    assert.ok(audit.critical_count > 0);
+  }
+});
+
+test("the page renders the self-audit banner", async () => {
+  const source = await readFile(pagePath, "utf8");
+  assert.ok(source.includes("Самопроверка"), "page must show the audit result");
 });

@@ -515,7 +515,16 @@ type LivePayload = {
   value_top?: ValueTop | null;
   consensus_top?: ConsensusTop | null;
   screener_feed?: ScreenerFeed | null;
+  self_audit?: SelfAudit | null;
   forecasts: Forecast[];
+};
+
+type SelfAudit = {
+  status?: string | null;
+  checked_markets?: number | null;
+  checked_candidates?: number | null;
+  critical_count?: number | null;
+  findings_by_check?: Record<string, number> | null;
 };
 
 type ScreenerRow = {
@@ -840,6 +849,28 @@ function ProspectiveClvPanel({
 
 // Sorted strictly by value_pct — the arithmetic. A human value_rating is a
 // display column elsewhere and must never order this table.
+// Published on every build: the pipeline re-derives its own numbers and says
+// whether they still agree with the formulas.
+function SelfAuditBanner({ audit }: { audit?: SelfAudit | null }) {
+  if (!audit) return null;
+  const failed = audit.status === "FAILED";
+  const checks = Object.entries(audit.findings_by_check || {});
+  return (
+    <section className={`self-audit ${failed ? "self-audit-failed" : ""}`} aria-label="Самопроверка расчётов">
+      <b>{failed ? "Самопроверка не пройдена" : "Самопроверка пройдена"}</b>
+      <span>
+        {" "}проверено {audit.checked_markets ?? 0} рынков и {audit.checked_candidates ?? 0} котировок
+        {failed ? ` · критичных расхождений: ${audit.critical_count ?? 0}` : " · расхождений нет"}
+      </span>
+      {checks.length > 0 && (
+        <ul>
+          {checks.map(([check, count]) => <li key={check}>{check}: {count}</li>)}
+        </ul>
+      )}
+    </section>
+  );
+}
+
 function ValueTopTable({ top }: { top?: ValueTop | null }) {
   const rows = top?.candidates || [];
   const threshold = finiteNumber(top?.gate?.threshold) ?? 8;
@@ -2493,6 +2524,8 @@ export default function Home() {
         <span>PROSPECTIVE CLV</span><i />
         <span>PAPER BANKROLL</span>
       </section>
+
+      <SelfAuditBanner audit={payload.self_audit} />
 
       <ValueTopTable top={payload.value_top} />
 
