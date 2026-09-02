@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-09-02T05:45:16Z",
+  "updated_at": "2026-09-02T14:22:55Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -13673,6 +13673,44 @@
               "last_update": "2026-09-02T05:44:09Z",
               "odds": {
                 "home": 2.6,
+                "draw": 3.45,
+                "away": 2.28
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-09-02T14:22:55Z",
+          "phase": "monitoring",
+          "provider_event_id": "74165870",
+          "sport_key": "international-clubs-uefa-champions-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-09-02T14:22:36Z",
+              "odds": {
+                "home": 2.625,
+                "draw": 3.9,
+                "away": 2.4
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-09-01T10:16:23Z",
+              "odds": {
+                "home": 2.63,
+                "draw": 3.9,
+                "away": 2.4
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-09-02T14:07:37Z",
+              "odds": {
+                "home": 2.55,
                 "draw": 3.45,
                 "away": 2.28
               }
