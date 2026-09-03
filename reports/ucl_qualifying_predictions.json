@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-03T16:32:15Z",
-  "as_of_utc": "2026-09-03T16:31:42Z",
+  "generated_at_utc": "2026-09-03T21:07:59Z",
+  "as_of_utc": "2026-09-03T21:07:54Z",
   "model": "experimental hybrid Elo-to-Poisson UEFA qualifier baseline",
   "calibration": {
     "version": "clubelo-poisson-v2-team-goal-environment",
@@ -49,7 +49,7 @@
     "ratings": {
       "provider": "xgedge point-in-time UEFA Elo fallback",
       "status": "FALLBACK_ONLY",
-      "fetch_error": "ReadTimeout",
+      "fetch_error": "HTTPError: status=502",
       "url": "http://api.clubelo.com/2026-09-03",
       "documentation": "http://clubelo.com/API",
       "attribution": "ClubElo where matched; otherwise point-in-time Elo replayed from official UEFA regulation-time results, anchored to ClubElo opponents and its lower-quartile population prior.",
@@ -284,7 +284,7 @@
           },
           "away_win": {
             "low": 0.09567259611783946,
-            "high": 0.2700418995581708
+            "high": 0.27004189955817076
           }
         }
       },
@@ -440,7 +440,7 @@
           "score": "3-1",
           "home_goals": 3,
           "away_goals": 1,
-          "probability": 0.07048663943508493
+          "probability": 0.07048663943508492
         }
       ],
       "qualification": null,
@@ -636,7 +636,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.556130575013376,
-        "draw": 0.23705307675777684,
+        "draw": 0.23705307675777687,
         "away_win": 0.2068163482288472
       },
       "uncertainty_90m": {
@@ -662,25 +662,25 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11816305351721146
+          "probability": 0.11816305351721147
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11274688124145706
+          "probability": 0.11274688124145707
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.10216198951486351
+          "probability": 0.10216198951486352
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09747924885459681
+          "probability": 0.09747924885459683
         },
         {
           "score": "0-0",
@@ -1141,11 +1141,11 @@
           },
           "draw": {
             "low": 0.15750113970740443,
-            "high": 0.22895514975226688
+            "high": 0.2289551497522669
           },
           "away_win": {
             "low": 0.07620801347915244,
-            "high": 0.2249501018085412
+            "high": 0.22495010180854125
           }
         }
       },
@@ -1509,12 +1509,12 @@
             "high": 0.3411354763175859
           },
           "draw": {
-            "low": 0.2143865849515176,
+            "low": 0.21438658495151758,
             "high": 0.2629212625864288
           },
           "away_win": {
             "low": 0.3959432610959852,
-            "high": 0.6486285570080469
+            "high": 0.6486285570080468
           }
         }
       },
@@ -1619,9 +1619,9 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.36825965669380384,
-        "draw": 0.23773406575323713,
-        "away_win": 0.39400627755295903
+        "home_win": 0.3682596566938039,
+        "draw": 0.2377340657532372,
+        "away_win": 0.3940062775529591
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -1652,7 +1652,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08540540010621399
+          "probability": 0.085405400106214
         },
         {
           "score": "2-1",
@@ -1664,13 +1664,13 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.07042237509177227
+          "probability": 0.07042237509177228
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.06778080058269623
+          "probability": 0.06778080058269624
         }
       ],
       "qualification": null,
@@ -1769,7 +1769,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12719570948183503
+          "probability": 0.127195709481835
         },
         {
           "score": "1-1",
@@ -1781,7 +1781,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.09374242918744738
+          "probability": 0.09374242918744737
         },
         {
           "score": "2-1",
@@ -1793,7 +1793,7 @@
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.08629362739382586
+          "probability": 0.08629362739382584
         }
       ],
       "qualification": null,
@@ -2099,7 +2099,7 @@
       "probabilities_90m": {
         "home_win": 0.3657533302589049,
         "draw": 0.24940621579745748,
-        "away_win": 0.38484045394363764
+        "away_win": 0.38484045394363753
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -2136,7 +2136,7 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08281897664065047
+          "probability": 0.08281897664065045
         },
         {
           "score": "2-1",
@@ -2214,12 +2214,12 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.23190017919778916,
+            "low": 0.23190017919778919,
             "high": 0.716445288025851
           },
           "draw": {
             "low": 0.18747515314538393,
-            "high": 0.26094402132421024
+            "high": 0.2609440213242103
           },
           "away_win": {
             "low": 0.09607955882876507,
@@ -2238,7 +2238,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11092501070335453
+          "probability": 0.11092501070335452
         },
         {
           "score": "2-1",
@@ -2250,7 +2250,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08707810293384961
+          "probability": 0.0870781029338496
         },
         {
           "score": "0-1",
@@ -2355,25 +2355,25 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12784649236609702
+          "probability": 0.12784649236609705
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12381565300245773
+          "probability": 0.12381565300245774
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.09470412664724001
+          "probability": 0.09470412664724003
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09171822445685653
+          "probability": 0.09171822445685654
         },
         {
           "score": "0-0",
@@ -2591,7 +2591,7 @@
             "high": 0.24857528886578587
           },
           "away_win": {
-            "low": 0.1928282001165253,
+            "low": 0.19282820011652532,
             "high": 0.445228755622423
           }
         }
@@ -2741,7 +2741,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.06140636395719527
+          "probability": 0.06140636395719526
         }
       ],
       "qualification": null,
@@ -3292,7 +3292,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.5247465671274218,
-        "draw": 0.2436698610407727,
+        "draw": 0.24366986104077268,
         "away_win": 0.23158357183180556
       },
       "uncertainty_90m": {
@@ -3318,13 +3318,13 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11589011777770997
+          "probability": 0.11589011777770995
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11373728799868496
+          "probability": 0.11373728799868495
         },
         {
           "score": "2-1",
@@ -3421,7 +3421,7 @@
           },
           "draw": {
             "low": 0.17634899173357912,
-            "high": 0.26341962906260863
+            "high": 0.2634196290626087
           },
           "away_win": {
             "low": 0.07749434874425329,
@@ -3434,31 +3434,31 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12196549661496434
+          "probability": 0.12196549661496432
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11626511435912744
+          "probability": 0.11626511435912742
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.10085817947922907
+          "probability": 0.10085817947922908
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09614430389460843
+          "probability": 0.09614430389460844
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.0737450469626927
+          "probability": 0.07374504696269271
         }
       ],
       "qualification": null,
@@ -3770,12 +3770,12 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.23190017919778916,
+            "low": 0.23190017919778919,
             "high": 0.716445288025851
           },
           "draw": {
             "low": 0.18747515314538393,
-            "high": 0.26094402132421024
+            "high": 0.2609440213242103
           },
           "away_win": {
             "low": 0.09607955882876507,
@@ -3794,7 +3794,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11092501070335453
+          "probability": 0.11092501070335452
         },
         {
           "score": "2-1",
@@ -3806,7 +3806,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08707810293384961
+          "probability": 0.0870781029338496
         },
         {
           "score": "0-1",
@@ -4021,7 +4021,7 @@
           },
           "draw": {
             "low": 0.21425066767772585,
-            "high": 0.24069438084758965
+            "high": 0.24069438084758968
           },
           "away_win": {
             "low": 0.30384625352370626,
@@ -4139,7 +4139,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.34757850278078095,
+            "low": 0.34757850278078106,
             "high": 0.6204419591624704
           },
           "draw": {
@@ -4147,8 +4147,8 @@
             "high": 0.25024218395135145
           },
           "away_win": {
-            "low": 0.16628924216431626,
-            "high": 0.40270548984696725
+            "low": 0.16628924216431623,
+            "high": 0.4027054898469673
           }
         }
       },
@@ -4386,7 +4386,7 @@
             "high": 0.29294756162897195
           },
           "away_win": {
-            "low": 0.10154445891839979,
+            "low": 0.10154445891839978,
             "high": 0.48801200889158325
           }
         }
@@ -4871,7 +4871,7 @@
             "high": 0.25129687100959014
           },
           "away_win": {
-            "low": 0.06580261688185884,
+            "low": 0.06580261688185886,
             "high": 0.1800811464420773
           }
         }
@@ -4988,7 +4988,7 @@
           },
           "away_win": {
             "low": 0.0633157492322968,
-            "high": 0.4799455405039531
+            "high": 0.47994554050395316
           }
         }
       },
@@ -5095,7 +5095,7 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.24684655742474293,
+            "low": 0.24684655742474287,
             "high": 0.7896372743577499
           },
           "draw": {
@@ -5209,7 +5209,7 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.39663338396639064,
+        "home_win": 0.3966333839663906,
         "draw": 0.25107406404950877,
         "away_win": 0.3522925519841007
       },
@@ -5473,7 +5473,7 @@
           },
           "away_win": {
             "low": 0.2851576303240654,
-            "high": 0.6070275493363684
+            "high": 0.6070275493363683
           }
         }
       },
@@ -5572,7 +5572,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.43125728311701433,
-        "draw": 0.22951797636363663,
+        "draw": 0.2295179763636366,
         "away_win": 0.33922474051934887
       },
       "uncertainty_90m": {
@@ -5585,10 +5585,10 @@
           },
           "draw": {
             "low": 0.17077931454204393,
-            "high": 0.23078147697369553
+            "high": 0.23078147697369558
           },
           "away_win": {
-            "low": 0.1205488289112074,
+            "low": 0.12054882891120738,
             "high": 0.6337371725468236
           }
         }
@@ -5604,7 +5604,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08808983513359
+          "probability": 0.08808983513358998
         },
         {
           "score": "1-2",
@@ -5616,7 +5616,7 @@
           "score": "2-2",
           "home_goals": 2,
           "away_goals": 2,
-          "probability": 0.06749926988383899
+          "probability": 0.06749926988383897
         },
         {
           "score": "1-0",
@@ -5818,7 +5818,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.30504094477867905,
-        "draw": 0.2322106948062547,
+        "draw": 0.23221069480625472,
         "away_win": 0.4627483604150662
       },
       "uncertainty_90m": {
@@ -5827,14 +5827,14 @@
         "intervals": {
           "home_win": {
             "low": 0.18719713900853407,
-            "high": 0.44949939068207156
+            "high": 0.4494993906820717
           },
           "draw": {
-            "low": 0.20625166079353835,
+            "low": 0.2062516607935384,
             "high": 0.2363341359034542
           },
           "away_win": {
-            "low": 0.31706267597077614,
+            "low": 0.3170626759707762,
             "high": 0.6065512001979276
           }
         }
@@ -5850,7 +5850,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.09222282645993805
+          "probability": 0.09222282645993807
         },
         {
           "score": "0-1",
@@ -5957,8 +5957,8 @@
             "high": 0.2335840788662715
           },
           "away_win": {
-            "low": 0.17180339929868618,
-            "high": 0.4286258894769505
+            "low": 0.17180339929868615,
+            "high": 0.42862588947695046
           }
         }
       },
@@ -6483,7 +6483,7 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.07408388610622355
+          "probability": 0.07408388610622353
         }
       ],
       "qualification": null,
@@ -6564,7 +6564,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3595242194298315,
+            "low": 0.35952421942983154,
             "high": 0.6205566560342202
           },
           "draw": {
@@ -6573,7 +6573,7 @@
           },
           "away_win": {
             "low": 0.1579571197184597,
-            "high": 0.3795472384481999
+            "high": 0.37954723844819993
           }
         }
       },
@@ -6678,7 +6678,7 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.4385305967836483,
+        "home_win": 0.43853059678364825,
         "draw": 0.25421385200438423,
         "away_win": 0.3072555512119675
       },
@@ -6711,7 +6711,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.0992495161876545
+          "probability": 0.09924951618765447
         },
         {
           "score": "2-1",
@@ -6729,7 +6729,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.07451777361312299
+          "probability": 0.07451777361312298
         }
       ],
       "qualification": null,
@@ -6802,7 +6802,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.5563419369680989,
-        "draw": 0.252528297182917,
+        "draw": 0.2525282971829171,
         "away_win": 0.19112976584898395
       },
       "uncertainty_90m": {
@@ -6834,25 +6834,25 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1172914756980535
+          "probability": 0.11729147569805351
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.11470696965513155
+          "probability": 0.11470696965513157
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09248694184673883
+          "probability": 0.09248694184673885
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.09224267162909432
+          "probability": 0.09224267162909433
         }
       ],
       "qualification": null,
@@ -6927,15 +6927,15 @@
         "intervals": {
           "home_win": {
             "low": 0.1847062003647762,
-            "high": 0.7182196426923828
+            "high": 0.718219642692383
           },
           "draw": {
-            "low": 0.16903229627297003,
+            "low": 0.16903229627297006,
             "high": 0.23356462137981696
           },
           "away_win": {
-            "low": 0.11274806103464688,
-            "high": 0.6128685724937237
+            "low": 0.1127480610346469,
+            "high": 0.6128685724937236
           }
         }
       },
@@ -7035,7 +7035,7 @@
       "probabilities_90m": {
         "home_win": 0.5132323896124862,
         "draw": 0.22824814999804807,
-        "away_win": 0.2585194603894658
+        "away_win": 0.25851946038946577
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -7084,7 +7084,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.06523012131248078
+          "probability": 0.06523012131248077
         }
       ],
       "qualification": null,
@@ -7165,7 +7165,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.39587032521184207,
+            "low": 0.395870325211842,
             "high": 0.6366137026108407
           },
           "draw": {
@@ -7519,12 +7519,12 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.23190017919778916,
+            "low": 0.23190017919778919,
             "high": 0.716445288025851
           },
           "draw": {
             "low": 0.18747515314538393,
-            "high": 0.26094402132421024
+            "high": 0.2609440213242103
           },
           "away_win": {
             "low": 0.09607955882876507,
@@ -7543,7 +7543,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11092501070335453
+          "probability": 0.11092501070335452
         },
         {
           "score": "2-1",
@@ -7555,7 +7555,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08707810293384961
+          "probability": 0.0870781029338496
         },
         {
           "score": "0-1",
@@ -7765,7 +7765,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3523245351695905,
+            "low": 0.35232453516959045,
             "high": 0.6263745647280434
           },
           "draw": {
@@ -7889,7 +7889,7 @@
         "intervals": {
           "home_win": {
             "low": 0.33961844873524705,
-            "high": 0.6045221311403781
+            "high": 0.6045221311403779
           },
           "draw": {
             "low": 0.22470065394410632,
@@ -8015,11 +8015,11 @@
             "high": 0.5615809966234386
           },
           "draw": {
-            "low": 0.25340595416589745,
+            "low": 0.2534059541658974,
             "high": 0.2804223320973666
           },
           "away_win": {
-            "low": 0.18501304921066403,
+            "low": 0.185013049210664,
             "high": 0.4069072393148859
           }
         }
@@ -8134,15 +8134,15 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3919119572402514,
-            "high": 0.6549869103888882
+            "low": 0.39191195724025146,
+            "high": 0.6549869103888881
           },
           "draw": {
             "low": 0.2049511907341675,
             "high": 0.25318866641660587
           },
           "away_win": {
-            "low": 0.14006189887694423,
+            "low": 0.1400618988769442,
             "high": 0.3548993763431427
           }
         }
@@ -8381,10 +8381,10 @@
         "intervals": {
           "home_win": {
             "low": 0.4061719919043324,
-            "high": 0.698593508378299
+            "high": 0.6985935083782991
           },
           "draw": {
-            "low": 0.16927996749151744,
+            "low": 0.16927996749151747,
             "high": 0.2231945339258335
           },
           "away_win": {
@@ -8495,7 +8495,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.43947109104662185,
-        "draw": 0.25054118061851366,
+        "draw": 0.2505411806185136,
         "away_win": 0.3099877283348645
       },
       "uncertainty_90m": {
@@ -8618,7 +8618,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.4170924356629202,
-        "draw": 0.2609577259679337,
+        "draw": 0.26095772596793365,
         "away_win": 0.32194983836914626
       },
       "uncertainty_90m": {
@@ -8656,7 +8656,7 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08779865789542027
+          "probability": 0.08779865789542025
         },
         {
           "score": "2-1",
@@ -8741,7 +8741,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.336876446231681,
-        "draw": 0.24419255822236097,
+        "draw": 0.24419255822236094,
         "away_win": 0.4189309955459579
       },
       "uncertainty_90m": {
@@ -8767,13 +8767,13 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11342184463973025
+          "probability": 0.11342184463973022
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08890619116319398
+          "probability": 0.08890619116319397
         },
         {
           "score": "0-1",
@@ -8791,7 +8791,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.07234881324443043
+          "probability": 0.07234881324443042
         }
       ],
       "qualification": null,
@@ -8881,7 +8881,7 @@
           },
           "away_win": {
             "low": 0.09861595867476342,
-            "high": 0.29621344726809984
+            "high": 0.2962134472680998
           }
         }
       },
@@ -8987,7 +8987,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.4797878271944085,
-        "draw": 0.24641433233598284,
+        "draw": 0.2464143323359828,
         "away_win": 0.27379784046960887
       },
       "uncertainty_90m": {
@@ -8995,7 +8995,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3417806534445569,
+            "low": 0.341780653444557,
             "high": 0.6115601413078533
           },
           "draw": {
@@ -9358,7 +9358,7 @@
         "intervals": {
           "home_win": {
             "low": 0.19127338414978587,
-            "high": 0.6742546787974466
+            "high": 0.6742546787974465
           },
           "draw": {
             "low": 0.20544931983788373,
@@ -9465,8 +9465,8 @@
       },
       "probabilities_90m": {
         "home_win": 0.5053520179013216,
-        "draw": 0.2743781380710827,
-        "away_win": 0.22026984402759564
+        "draw": 0.27437813807108274,
+        "away_win": 0.22026984402759567
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -9491,13 +9491,13 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.15221376332174613
+          "probability": 0.15221376332174616
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12479221102080969
+          "probability": 0.1247922110208097
         },
         {
           "score": "0-0",
@@ -9515,7 +9515,7 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08934033468184915
+          "probability": 0.08934033468184917
         }
       ],
       "qualification": null,
@@ -9839,11 +9839,11 @@
             "high": 0.6337123560587816
           },
           "draw": {
-            "low": 0.23170447810095776,
+            "low": 0.23170447810095782,
             "high": 0.28000838246824655
           },
           "away_win": {
-            "low": 0.1345831658402606,
+            "low": 0.13458316584026062,
             "high": 0.572244927309798
           }
         }
@@ -10072,8 +10072,8 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.48255539410079606,
-        "draw": 0.2397013167672401,
+        "home_win": 0.4825553941007962,
+        "draw": 0.23970131676724007,
         "away_win": 0.2777432891319637
       },
       "uncertainty_90m": {
@@ -10085,7 +10085,7 @@
             "high": 0.6178337607051125
           },
           "draw": {
-            "low": 0.21147172142661136,
+            "low": 0.2114717214266114,
             "high": 0.24691885296815144
           },
           "away_win": {
@@ -10105,7 +10105,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09480134374316194
+          "probability": 0.09480134374316196
         },
         {
           "score": "1-0",
@@ -10123,7 +10123,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.06878865971374794
+          "probability": 0.06878865971374795
         }
       ],
       "qualification": null,
@@ -10205,7 +10205,7 @@
         "intervals": {
           "home_win": {
             "low": 0.47687676951826635,
-            "high": 0.7183844575181683
+            "high": 0.7183844575181682
           },
           "draw": {
             "low": 0.18092804547909264,
@@ -11069,7 +11069,7 @@
             "high": 0.7564690275379872
           },
           "draw": {
-            "low": 0.17406505964607985,
+            "low": 0.17406505964607988,
             "high": 0.242582539792722
           },
           "away_win": {
@@ -11180,7 +11180,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.6156090207204381,
-        "draw": 0.20277884424652423,
+        "draw": 0.20277884424652426,
         "away_win": 0.1816121350330378
       },
       "uncertainty_90m": {
@@ -11218,13 +11218,13 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.09313097557274748
+          "probability": 0.09313097557274749
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.08786443064399707
+          "probability": 0.08786443064399709
         },
         {
           "score": "3-1",
@@ -11311,16 +11311,16 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.49958369294150756,
-            "high": 0.7703765660291366
+            "low": 0.4995836929415076,
+            "high": 0.7703765660291367
           },
           "draw": {
-            "low": 0.13838538062637196,
-            "high": 0.20974987240137205
+            "low": 0.13838538062637198,
+            "high": 0.2097498724013721
           },
           "away_win": {
-            "low": 0.09123805334449134,
-            "high": 0.29066643465712033
+            "low": 0.09123805334449135,
+            "high": 0.2906664346571204
           }
         }
       },
@@ -11426,7 +11426,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.6928629212725459,
-        "draw": 0.18882797879709412,
+        "draw": 0.1888279787970941,
         "away_win": 0.11830909993036001
       },
       "uncertainty_90m": {
@@ -11439,11 +11439,11 @@
           },
           "draw": {
             "low": 0.15242241607399837,
-            "high": 0.22453202833996283
+            "high": 0.22453202833996277
           },
           "away_win": {
             "low": 0.06728849533112582,
-            "high": 0.20061278205781022
+            "high": 0.2006127820578102
           }
         }
       },
@@ -11458,7 +11458,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12058915754676154
+          "probability": 0.12058915754676151
         },
         {
           "score": "2-1",
@@ -11476,7 +11476,7 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.0897260206060692
+          "probability": 0.08972602060606917
         }
       ],
       "qualification": null,
@@ -11550,7 +11550,7 @@
       "probabilities_90m": {
         "home_win": 0.37992068729590456,
         "draw": 0.2519183206128155,
-        "away_win": 0.36816099209127995
+        "away_win": 0.36816099209127984
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -11575,13 +11575,13 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11860729136431611
+          "probability": 0.1186072913643161
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.08500276234491683
+          "probability": 0.08500276234491681
         },
         {
           "score": "2-1",
@@ -11599,7 +11599,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08274842591407283
+          "probability": 0.08274842591407282
         }
       ],
       "qualification": null,
@@ -11685,11 +11685,11 @@
           },
           "draw": {
             "low": 0.21628614658713224,
-            "high": 0.266024001092084
+            "high": 0.2660240010920841
           },
           "away_win": {
             "low": 0.13320801347524808,
-            "high": 0.33162658114771626
+            "high": 0.33162658114771637
           }
         }
       },
@@ -11698,7 +11698,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12623247801206425
+          "probability": 0.12623247801206422
         },
         {
           "score": "1-1",
@@ -11716,13 +11716,13 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09523522169788555
+          "probability": 0.09523522169788558
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.0780817547382925
+          "probability": 0.07808175473829249
         }
       ],
       "qualification": null,
@@ -11808,11 +11808,11 @@
           },
           "draw": {
             "low": 0.17401543837939384,
-            "high": 0.23832242627624792
+            "high": 0.23832242627624795
           },
           "away_win": {
             "low": 0.1035642843594923,
-            "high": 0.2910395553888417
+            "high": 0.29103955538884174
           }
         }
       },
@@ -11918,7 +11918,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.354475692217452,
-        "draw": 0.23770220487696106,
+        "draw": 0.23770220487696103,
         "away_win": 0.40782210290558685
       },
       "uncertainty_90m": {
@@ -11927,14 +11927,14 @@
         "intervals": {
           "home_win": {
             "low": 0.22566388525944195,
-            "high": 0.5014432625676722
+            "high": 0.5014432625676721
           },
           "draw": {
             "low": 0.21977109762183927,
             "high": 0.2381745046852581
           },
           "away_win": {
-            "low": 0.26945378679962845,
+            "low": 0.2694537867996285,
             "high": 0.5545650171187188
           }
         }
@@ -11956,7 +11956,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08040357936632994
+          "probability": 0.08040357936632993
         },
         {
           "score": "0-1",
@@ -12067,19 +12067,19 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10756422337560678
+          "probability": 0.1075642233756068
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09199373073306577
+          "probability": 0.09199373073306578
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.0783513835685845
+          "probability": 0.07835138356858451
         },
         {
           "score": "1-2",
@@ -12091,7 +12091,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.06700960464709771
+          "probability": 0.06700960464709772
         }
       ],
       "qualification": null,
@@ -12280,12 +12280,12 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.23190017919778916,
+            "low": 0.23190017919778919,
             "high": 0.716445288025851
           },
           "draw": {
             "low": 0.18747515314538393,
-            "high": 0.26094402132421024
+            "high": 0.2609440213242103
           },
           "away_win": {
             "low": 0.09607955882876507,
@@ -12304,7 +12304,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11092501070335453
+          "probability": 0.11092501070335452
         },
         {
           "score": "2-1",
@@ -12316,7 +12316,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08707810293384961
+          "probability": 0.0870781029338496
         },
         {
           "score": "0-1",
@@ -12394,8 +12394,8 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.4935440137722462,
-        "draw": 0.22857200015348586,
+        "home_win": 0.49354401377224627,
+        "draw": 0.22857200015348592,
         "away_win": 0.2778839860742678
       },
       "uncertainty_90m": {
@@ -12421,13 +12421,13 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10355685736551731
+          "probability": 0.10355685736551733
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09465256419718023
+          "probability": 0.09465256419718025
         },
         {
           "score": "1-0",
@@ -12439,7 +12439,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.07159967620403604
+          "probability": 0.07159967620403605
         },
         {
           "score": "1-2",
@@ -12758,22 +12758,22 @@
       "probabilities_90m": {
         "home_win": 0.5595528131378524,
         "draw": 0.22846230079300503,
-        "away_win": 0.2119848860691425
+        "away_win": 0.21198488606914248
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.41998549025358045,
-            "high": 0.680468331270258
+            "low": 0.4199854902535804,
+            "high": 0.6804683312702581
           },
           "draw": {
-            "low": 0.1936271992343527,
+            "low": 0.19362719923435273,
             "high": 0.24841102474350793
           },
           "away_win": {
-            "low": 0.1259044694953895,
+            "low": 0.12590446949538953,
             "high": 0.3316034850029118
           }
         }
@@ -12889,7 +12889,7 @@
         "intervals": {
           "home_win": {
             "low": 0.5601720446471373,
-            "high": 0.7906301530265581
+            "high": 0.790630153026558
           },
           "draw": {
             "low": 0.13733645781173817,
@@ -12995,8 +12995,8 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5679813411236995,
-        "draw": 0.1970265440976026,
+        "home_win": 0.5679813411236996,
+        "draw": 0.19702654409760262,
         "away_win": 0.23499211477869786
       },
       "uncertainty_90m": {
@@ -13022,19 +13022,19 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09026978731558198
+          "probability": 0.090269787315582
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.0783457419400268
+          "probability": 0.07834574194002682
         },
         {
           "score": "3-1",
           "home_goals": 3,
           "away_goals": 1,
-          "probability": 0.06933909701808799
+          "probability": 0.069339097018088
         },
         {
           "score": "2-2",
@@ -13046,7 +13046,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.062444317851463295
+          "probability": 0.0624443178514633
         }
       ],
       "qualification": null,
@@ -13475,7 +13475,7 @@
       "probabilities_90m": {
         "home_win": 0.642039517574506,
         "draw": 0.21335205198735135,
-        "away_win": 0.1446084304381426
+        "away_win": 0.14460843043814256
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -13596,7 +13596,7 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.38093820841664827,
+        "home_win": 0.3809382084166484,
         "draw": 0.26282277107204594,
         "away_win": 0.3562390205113056
       },
@@ -13605,11 +13605,11 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.25662117905423365,
-            "high": 0.515092282245319
+            "low": 0.2566211790542336,
+            "high": 0.5150922822453188
           },
           "draw": {
-            "low": 0.24883152194209832,
+            "low": 0.2488315219420983,
             "high": 0.26293136473014
           },
           "away_win": {
@@ -13623,25 +13623,25 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12498437960370873
+          "probability": 0.12498437960370874
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.09749929729452395
+          "probability": 0.09749929729452393
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.09363764613149006
+          "probability": 0.09363764613149007
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08341247238844586
+          "probability": 0.08341247238844587
         },
         {
           "score": "1-2",
@@ -13842,9 +13842,9 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.47710074268615266,
+        "home_win": 0.4771007426861528,
         "draw": 0.25705610978578297,
-        "away_win": 0.26584314752806426
+        "away_win": 0.26584314752806437
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -13869,31 +13869,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12221621179106489
+          "probability": 0.1222162117910649
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11496088972658222
+          "probability": 0.11496088972658224
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09266286267706358
+          "probability": 0.0926628626770636
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08716196470054671
+          "probability": 0.08716196470054673
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08059756623650949
+          "probability": 0.0805975662365095
         }
       ],
       "qualification": null,
@@ -14081,7 +14081,7 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5227559459461368,
+        "home_win": 0.5227559459461367,
         "draw": 0.24593323392122454,
         "away_win": 0.23131082013263882
       },
@@ -14095,11 +14095,11 @@
           },
           "draw": {
             "low": 0.21424833455184364,
-            "high": 0.2610314650481859
+            "high": 0.2610314650481858
           },
           "away_win": {
             "low": 0.14155116511354354,
-            "high": 0.3510617948969317
+            "high": 0.3510617948969316
           }
         }
       },
@@ -14214,11 +14214,11 @@
         "intervals": {
           "home_win": {
             "low": 0.2211482029687168,
-            "high": 0.4779893187192678
+            "high": 0.47798931871926775
           },
           "draw": {
             "low": 0.2371058295941021,
-            "high": 0.2554345761505902
+            "high": 0.2554345761505901
           },
           "away_win": {
             "low": 0.2739175731590534,
@@ -14336,7 +14336,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3339305840640478,
+            "low": 0.3339305840640479,
             "high": 0.617859452129599
           },
           "draw": {
@@ -14345,7 +14345,7 @@
           },
           "away_win": {
             "low": 0.1754889841477335,
-            "high": 0.42679931580770347
+            "high": 0.4267993158077036
           }
         }
       },
@@ -14591,7 +14591,7 @@
           },
           "away_win": {
             "low": 0.2034206021058047,
-            "high": 0.45905065813938506
+            "high": 0.4590506581393851
           }
         }
       },
@@ -14706,7 +14706,7 @@
         "intervals": {
           "home_win": {
             "low": 0.40985917839190744,
-            "high": 0.6728020201190069
+            "high": 0.6728020201190068
           },
           "draw": {
             "low": 0.1962763106294458,
@@ -14833,7 +14833,7 @@
           },
           "draw": {
             "low": 0.23502616481498168,
-            "high": 0.2719199930802156
+            "high": 0.2719199930802155
           },
           "away_win": {
             "low": 0.1614959441876872,
@@ -14942,9 +14942,9 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.633271953885532,
-        "draw": 0.211786141888787,
-        "away_win": 0.1549419042256811
+        "home_win": 0.6332719538855319,
+        "draw": 0.21178614188878697,
+        "away_win": 0.15494190422568108
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -14975,19 +14975,19 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.11655824456985203
+          "probability": 0.11655824456985202
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10072354456423524
+          "probability": 0.10072354456423523
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09812336683293188
+          "probability": 0.09812336683293187
         },
         {
           "score": "3-0",
@@ -15066,7 +15066,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.4523195933426325,
-        "draw": 0.2478828037955535,
+        "draw": 0.24788280379555347,
         "away_win": 0.29979760286181395
       },
       "uncertainty_90m": {
@@ -15098,7 +15098,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.0943548237124443
+          "probability": 0.09435482371244429
         },
         {
           "score": "2-1",
@@ -15110,7 +15110,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.07443215341011117
+          "probability": 0.07443215341011115
         },
         {
           "score": "0-1",
@@ -15188,9 +15188,9 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.4473925081475415,
-        "draw": 0.26055458141401433,
-        "away_win": 0.2920529104384439
+        "home_win": 0.44739250814754156,
+        "draw": 0.2605545814140144,
+        "away_win": 0.29205291043844395
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -15202,7 +15202,7 @@
           },
           "draw": {
             "low": 0.23676973127275364,
-            "high": 0.2649073076363478
+            "high": 0.26490730763634773
           },
           "away_win": {
             "low": 0.1862799588538281,
@@ -15215,31 +15215,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.12391790624184063
+          "probability": 0.12391790624184064
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.1100915217205869
+          "probability": 0.11009152172058691
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09032025630673726
+          "probability": 0.09032025630673728
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.08500666470216925
+          "probability": 0.08500666470216926
         },
         {
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08024259576817108
+          "probability": 0.0802425957681711
         }
       ],
       "qualification": null,
@@ -15698,7 +15698,7 @@
           },
           "away_win": {
             "low": 0.19805119209972927,
-            "high": 0.4623829728446355
+            "high": 0.4623829728446354
           }
         }
       },
@@ -15797,12 +15797,12 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.23190017919778916,
+            "low": 0.23190017919778919,
             "high": 0.716445288025851
           },
           "draw": {
             "low": 0.18747515314538393,
-            "high": 0.26094402132421024
+            "high": 0.2609440213242103
           },
           "away_win": {
             "low": 0.09607955882876507,
@@ -15821,7 +15821,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11092501070335453
+          "probability": 0.11092501070335452
         },
         {
           "score": "2-1",
@@ -15833,7 +15833,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08707810293384961
+          "probability": 0.0870781029338496
         },
         {
           "score": "0-1",
@@ -16043,7 +16043,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3711713599451665,
+            "low": 0.3711713599451666,
             "high": 0.626932035598592
           },
           "draw": {
@@ -16052,7 +16052,7 @@
           },
           "away_win": {
             "low": 0.15056719629671916,
-            "high": 0.36393073881011473
+            "high": 0.36393073881011484
           }
         }
       },
@@ -16287,7 +16287,7 @@
           },
           "draw": {
             "low": 0.19208906066506146,
-            "high": 0.24533912069188554
+            "high": 0.24533912069188551
           },
           "away_win": {
             "low": 0.13188955068300068,
@@ -16529,7 +16529,7 @@
             "high": 0.29294756162897195
           },
           "away_win": {
-            "low": 0.10154445891839979,
+            "low": 0.10154445891839978,
             "high": 0.48801200889158325
           }
         }
@@ -16645,14 +16645,14 @@
         "intervals": {
           "home_win": {
             "low": 0.5005300805493913,
-            "high": 0.6969334486916068
+            "high": 0.6969334486916069
           },
           "draw": {
-            "low": 0.21705060654512803,
+            "low": 0.21705060654512806,
             "high": 0.2782850588335906
           },
           "away_win": {
-            "low": 0.08601594476326517,
+            "low": 0.0860159447632652,
             "high": 0.22118486061701825
           }
         }
@@ -16758,8 +16758,8 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.5775566745600964,
-        "draw": 0.20257092744933253,
+        "home_win": 0.5775566745600962,
+        "draw": 0.2025709274493325,
         "away_win": 0.2198723979905713
       },
       "uncertainty_90m": {
@@ -16785,13 +16785,13 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09522066381488882
+          "probability": 0.0952206638148888
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.08699423146075541
+          "probability": 0.0869942314607554
         },
         {
           "score": "2-0",
@@ -16803,7 +16803,7 @@
           "score": "3-1",
           "home_goals": 3,
           "away_goals": 1,
-          "probability": 0.06948334132888914
+          "probability": 0.06948334132888911
         },
         {
           "score": "1-0",
@@ -16883,7 +16883,7 @@
       "probabilities_90m": {
         "home_win": 0.358186568792557,
         "draw": 0.23890788566564566,
-        "away_win": 0.4029055455417973
+        "away_win": 0.40290554554179725
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -16920,7 +16920,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.0810272303996909
+          "probability": 0.08102723039969088
         },
         {
           "score": "0-1",
@@ -17018,11 +17018,11 @@
           },
           "draw": {
             "low": 0.15337127494624886,
-            "high": 0.22533415893816028
+            "high": 0.2253341589381603
           },
           "away_win": {
             "low": 0.06750010247304265,
-            "high": 0.200677881534737
+            "high": 0.20067788153473698
           }
         }
       },
@@ -17136,7 +17136,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.23233997382798358,
+            "low": 0.23233997382798355,
             "high": 0.49944123756521663
           },
           "draw": {
@@ -17251,7 +17251,7 @@
       },
       "probabilities_90m": {
         "home_win": 0.5798283054251839,
-        "draw": 0.2376569438962556,
+        "draw": 0.23765694389625555,
         "away_win": 0.18251475067856054
       },
       "uncertainty_90m": {
@@ -17289,7 +17289,7 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11221077070925303
+          "probability": 0.112210770709253
         },
         {
           "score": "2-1",
@@ -17505,15 +17505,15 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.275774465136466,
-            "high": 0.568227885435922
+            "low": 0.2757744651364659,
+            "high": 0.5682278854359221
           },
           "draw": {
-            "low": 0.2120160785814868,
+            "low": 0.21201607858148683,
             "high": 0.2323406356829012
           },
           "away_win": {
-            "low": 0.21975603598259114,
+            "low": 0.21975603598259116,
             "high": 0.5002083675665966
           }
         }
@@ -17637,7 +17637,7 @@
           },
           "away_win": {
             "low": 0.1348523041790138,
-            "high": 0.34216364479337213
+            "high": 0.34216364479337225
           }
         }
       },
@@ -17755,7 +17755,7 @@
             "high": 0.5860807505551366
           },
           "draw": {
-            "low": 0.22393753317015908,
+            "low": 0.22393753317015902,
             "high": 0.25191782046557465
           },
           "away_win": {
@@ -17866,8 +17866,8 @@
       },
       "probabilities_90m": {
         "home_win": 0.36676079585940946,
-        "draw": 0.22807692369913457,
-        "away_win": 0.40516228044145575
+        "draw": 0.22807692369913454,
+        "away_win": 0.4051622804414558
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -17879,7 +17879,7 @@
           },
           "draw": {
             "low": 0.21070091433887717,
-            "high": 0.228305173993191
+            "high": 0.22830517399319106
           },
           "away_win": {
             "low": 0.2625421558206612,
@@ -17892,7 +17892,7 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09835995277120628
+          "probability": 0.0983599527712063
         },
         {
           "score": "1-2",
@@ -17910,13 +17910,13 @@
           "score": "2-2",
           "home_goals": 2,
           "away_goals": 2,
-          "probability": 0.06893848396181412
+          "probability": 0.06893848396181411
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.06037678788850195
+          "probability": 0.060376787888501954
         }
       ],
       "qualification": null,
@@ -17988,8 +17988,8 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.35552121717908364,
-        "draw": 0.2179969059917867,
+        "home_win": 0.3555212171790837,
+        "draw": 0.21799690599178675,
         "away_win": 0.4264818768291295
       },
       "uncertainty_90m": {
@@ -17998,7 +17998,7 @@
         "intervals": {
           "home_win": {
             "low": 0.21805310112055548,
-            "high": 0.5147139672209702
+            "high": 0.5147139672209703
           },
           "draw": {
             "low": 0.19723030500543545,
@@ -18015,19 +18015,19 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.08766663991691737
+          "probability": 0.08766663991691738
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08311816451152419
+          "probability": 0.0831181645115242
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.07541234267156804
+          "probability": 0.07541234267156806
         },
         {
           "score": "2-2",
@@ -18039,7 +18039,7 @@
           "score": "1-3",
           "home_goals": 1,
           "away_goals": 3,
-          "probability": 0.052537120758912655
+          "probability": 0.05253712075891266
         }
       ],
       "qualification": null,
@@ -18473,7 +18473,7 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.16939533464900494,
+        "home_win": 0.16939533464900497,
         "draw": 0.20180696802834108,
         "away_win": 0.6287976973226539
       },
@@ -18482,7 +18482,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.09621784391669655,
+            "low": 0.09621784391669654,
             "high": 0.27958704561370307
           },
           "draw": {
@@ -18506,7 +18506,7 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.09930053895143343
+          "probability": 0.09930053895143344
         },
         {
           "score": "0-1",
@@ -18518,7 +18518,7 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09426514868028046
+          "probability": 0.09426514868028048
         },
         {
           "score": "0-3",
@@ -18605,12 +18605,12 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.3280220609417882,
+            "low": 0.32802206094178826,
             "high": 0.5959658577410194
           },
           "draw": {
             "low": 0.22519051713716007,
-            "high": 0.25672847073104127
+            "high": 0.2567284707310413
           },
           "away_win": {
             "low": 0.17884362512182056,
@@ -18737,7 +18737,7 @@
           },
           "away_win": {
             "low": 0.14737122882274548,
-            "high": 0.35842852202207465
+            "high": 0.3584285220220746
           }
         }
       },
@@ -19089,24 +19089,24 @@
       },
       "probabilities_90m": {
         "home_win": 0.6152743429824352,
-        "draw": 0.2219956004699306,
-        "away_win": 0.16273005654763412
+        "draw": 0.22199560046993058,
+        "away_win": 0.1627300565476341
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.48759439454677245,
+            "low": 0.48759439454677256,
             "high": 0.7182724335804427
           },
           "draw": {
             "low": 0.1858311089412909,
-            "high": 0.2505053757446217
+            "high": 0.2505053757446218
           },
           "away_win": {
             "low": 0.0958964574782664,
-            "high": 0.26190022970860577
+            "high": 0.2619002297086058
           }
         }
       },
@@ -19115,7 +19115,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.12740490605454988
+          "probability": 0.12740490605454985
         },
         {
           "score": "2-0",
@@ -19127,7 +19127,7 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10531373923285163
+          "probability": 0.10531373923285162
         },
         {
           "score": "2-1",
@@ -19211,8 +19211,8 @@
         "recent_match_limit": 10
       },
       "probabilities_90m": {
-        "home_win": 0.47306953181603517,
-        "draw": 0.21475237292863275,
+        "home_win": 0.4730695318160352,
+        "draw": 0.21475237292863278,
         "away_win": 0.312178095255332
       },
       "uncertainty_90m": {
@@ -19224,8 +19224,8 @@
             "high": 0.6270930785155122
           },
           "draw": {
-            "low": 0.1872489770357495,
-            "high": 0.21882686085721065
+            "low": 0.18724897703574947,
+            "high": 0.21882686085721062
           },
           "away_win": {
             "low": 0.1856579444487384,
@@ -19238,13 +19238,13 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08718757128015273
+          "probability": 0.08718757128015274
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.08684693902590218
+          "probability": 0.0868469390259022
         },
         {
           "score": "2-2",
@@ -19256,13 +19256,13 @@
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.0698049723435935
+          "probability": 0.06980497234359348
         },
         {
           "score": "3-1",
           "home_goals": 3,
           "away_goals": 1,
-          "probability": 0.05835302637793228
+          "probability": 0.058353026377932285
         }
       ],
       "qualification": null,
@@ -19337,14 +19337,14 @@
         "intervals": {
           "home_win": {
             "low": 0.2182858941925967,
-            "high": 0.7244486011062624
+            "high": 0.7244486011062625
           },
           "draw": {
-            "low": 0.17624089739720944,
+            "low": 0.1762408973972095,
             "high": 0.24853011001372274
           },
           "away_win": {
-            "low": 0.09931050149652804,
+            "low": 0.09931050149652806,
             "high": 0.5527701924475088
           }
         }
@@ -19459,16 +19459,16 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.10114338101954967,
+            "low": 0.10114338101954964,
             "high": 0.2706172283605599
           },
           "draw": {
-            "low": 0.19360927781708875,
+            "low": 0.1936092778170887,
             "high": 0.2560523816085786
           },
           "away_win": {
             "low": 0.47333039003086136,
-            "high": 0.7052473411633616
+            "high": 0.7052473411633615
           }
         }
       },
@@ -19567,12 +19567,12 @@
         "elo_points_plus_minus": 150.0,
         "intervals": {
           "home_win": {
-            "low": 0.23190017919778916,
+            "low": 0.23190017919778919,
             "high": 0.716445288025851
           },
           "draw": {
             "low": 0.18747515314538393,
-            "high": 0.26094402132421024
+            "high": 0.2609440213242103
           },
           "away_win": {
             "low": 0.09607955882876507,
@@ -19591,7 +19591,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.11092501070335453
+          "probability": 0.11092501070335452
         },
         {
           "score": "2-1",
@@ -19603,7 +19603,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.08707810293384961
+          "probability": 0.0870781029338496
         },
         {
           "score": "0-1",
@@ -19699,7 +19699,7 @@
           },
           "away_win": {
             "low": 0.18007296118497074,
-            "high": 0.44224016692004625
+            "high": 0.4422401669200463
           }
         }
       },
@@ -19810,7 +19810,7 @@
             "high": 0.5893618947160258
           },
           "draw": {
-            "low": 0.20366134081809115,
+            "low": 0.20366134081809112,
             "high": 0.2590878745922756
           },
           "away_win": {
@@ -19927,7 +19927,7 @@
           },
           "draw": {
             "low": 0.19208906066506146,
-            "high": 0.24533912069188554
+            "high": 0.24533912069188551
           },
           "away_win": {
             "low": 0.13188955068300068,
@@ -20269,15 +20269,15 @@
       },
       "probabilities_90m": {
         "home_win": 0.5966494748037667,
-        "draw": 0.21851508888199211,
-        "away_win": 0.18483543631424132
+        "draw": 0.2185150888819921,
+        "away_win": 0.1848354363142413
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.4596384655376182,
+            "low": 0.45963846553761833,
             "high": 0.7101850164381975
           },
           "draw": {
@@ -20301,7 +20301,7 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.10355973940275637
+          "probability": 0.10355973940275635
         },
         {
           "score": "2-0",
@@ -20313,7 +20313,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09934196140607703
+          "probability": 0.09934196140607701
         },
         {
           "score": "3-0",
@@ -20509,7 +20509,7 @@
       "probabilities_90m": {
         "home_win": 0.3635863902910146,
         "draw": 0.2828623515263414,
-        "away_win": 0.35355125818264416
+        "away_win": 0.3535512581826441
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -20546,13 +20546,13 @@
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.11356538953765542
+          "probability": 0.11356538953765541
         },
         {
           "score": "0-0",
           "home_goals": 0,
           "away_goals": 0,
-          "probability": 0.0991510310432796
+          "probability": 0.09915103104327959
         },
         {
           "score": "2-1",
@@ -20639,7 +20639,7 @@
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.285370880329501,
+            "low": 0.2853708803295009,
             "high": 0.5234945019219124
           },
           "draw": {
@@ -20647,7 +20647,7 @@
             "high": 0.2915061262621497
           },
           "away_win": {
-            "low": 0.20466988371535816,
+            "low": 0.2046698837153582,
             "high": 0.4269493133728973
           }
         }
@@ -21038,7 +21038,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.08246175054853734
+          "probability": 0.08246175054853733
         },
         {
           "score": "3-0",
@@ -21135,11 +21135,11 @@
             "high": 0.6872486105873152
           },
           "draw": {
-            "low": 0.1951085395839012,
+            "low": 0.19510853958390117,
             "high": 0.25265289113325645
           },
           "away_win": {
-            "low": 0.11764284982878345,
+            "low": 0.11764284982878344,
             "high": 0.31062395077168126
           }
         }
@@ -21378,7 +21378,7 @@
         "intervals": {
           "home_win": {
             "low": 0.20193789151805464,
-            "high": 0.4518008152543368
+            "high": 0.45180081525433685
           },
           "draw": {
             "low": 0.23161282296891073,
@@ -22000,7 +22000,7 @@
             "high": 0.2507394038050807
           },
           "away_win": {
-            "low": 0.12601874444084876,
+            "low": 0.1260187444408487,
             "high": 0.3297807044471659
           }
         }
@@ -22016,7 +22016,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10798844827605637
+          "probability": 0.10798844827605636
         },
         {
           "score": "2-1",
@@ -22028,7 +22028,7 @@
           "score": "2-0",
           "home_goals": 2,
           "away_goals": 0,
-          "probability": 0.09712156683582966
+          "probability": 0.09712156683582965
         },
         {
           "score": "0-1",
@@ -22108,14 +22108,14 @@
       "probabilities_90m": {
         "home_win": 0.4503901461610673,
         "draw": 0.22817901041331537,
-        "away_win": 0.32143084342561723
+        "away_win": 0.3214308434256173
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.30300463726814075,
+            "low": 0.3030046372681407,
             "high": 0.5987859713000132
           },
           "draw": {
@@ -22139,7 +22139,7 @@
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08991750725109272
+          "probability": 0.08991750725109271
         },
         {
           "score": "1-2",
@@ -22151,7 +22151,7 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.06731373130307372
+          "probability": 0.06731373130307373
         },
         {
           "score": "2-2",
@@ -22230,8 +22230,8 @@
       },
       "probabilities_90m": {
         "home_win": 0.5961475307426459,
-        "draw": 0.2160666184084405,
-        "away_win": 0.18778585084891372
+        "draw": 0.21606661840844044,
+        "away_win": 0.1877858508489137
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
@@ -22256,13 +22256,13 @@
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.10219496129626462
+          "probability": 0.10219496129626461
         },
         {
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.1019375135623389
+          "probability": 0.10193751356233888
         },
         {
           "score": "2-0",
@@ -22353,15 +22353,15 @@
       },
       "probabilities_90m": {
         "home_win": 0.4024982827446386,
-        "draw": 0.24809061201200025,
-        "away_win": 0.34941110524336105
+        "draw": 0.2480906120120003,
+        "away_win": 0.34941110524336116
       },
       "uncertainty_90m": {
         "method": "recalculate over adjusted Elo difference +/- configured band",
         "elo_points_plus_minus": 75.0,
         "intervals": {
           "home_win": {
-            "low": 0.26944068205759936,
+            "low": 0.2694406820575994,
             "high": 0.5435333214725104
           },
           "draw": {
@@ -22379,31 +22379,31 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.11608557846347696
+          "probability": 0.11608557846347699
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.08712175129637463
+          "probability": 0.08712175129637462
         },
         {
           "score": "1-0",
           "home_goals": 1,
           "away_goals": 0,
-          "probability": 0.08397749510332742
+          "probability": 0.08397749510332743
         },
         {
           "score": "1-2",
           "home_goals": 1,
           "away_goals": 2,
-          "probability": 0.08023495765513801
+          "probability": 0.08023495765513802
         },
         {
           "score": "0-1",
           "home_goals": 0,
           "away_goals": 1,
-          "probability": 0.07733924838905777
+          "probability": 0.07733924838905779
         }
       ],
       "qualification": null,
@@ -22485,14 +22485,14 @@
         "intervals": {
           "home_win": {
             "low": 0.24678832606456097,
-            "high": 0.5051758010740599
+            "high": 0.50517580107406
           },
           "draw": {
             "low": 0.24890543872105014,
             "high": 0.26099970597658556
           },
           "away_win": {
-            "low": 0.2459187602048898,
+            "low": 0.24591876020488984,
             "high": 0.5041258326144957
           }
         }
@@ -22618,13 +22618,13 @@
           "score": "1-1",
           "home_goals": 1,
           "away_goals": 1,
-          "probability": 0.09560271003638969
+          "probability": 0.09560271003638968
         },
         {
           "score": "2-1",
           "home_goals": 2,
           "away_goals": 1,
-          "probability": 0.09364704976932756
+          "probability": 0.09364704976932754
         },
         {
           "score": "1-0",
@@ -23086,14 +23086,14 @@
         "intervals": {
           "home_win": {
             "low": 0.26863865441781765,
-            "high": 0.5493812885423088
+            "high": 0.5493812885423089
           },
           "draw": {
-            "low": 0.224156268060464,
+            "low": 0.22415626806046404,
             "high": 0.24209050702277132
           },
           "away_win": {
-            "low": 0.22646244339722704,
+            "low": 0.22646244339722707,
             "high": 0.49825839678152295
           }
         }
@@ -23705,7 +23705,7 @@
           },
           "draw": {
             "low": 0.19263329989996192,
-            "high": 0.24042216553074947
+            "high": 0.24042216553074944
           },
           "away_win": {
             "low": 0.14338408569639186,
@@ -24319,7 +24319,7 @@
             "high": 0.36714372981180116
           },
           "draw": {
-            "low": 0.21092559044544887,
+            "low": 0.2109255904454488,
             "high": 0.2554317522645481
           },
           "away_win": {
