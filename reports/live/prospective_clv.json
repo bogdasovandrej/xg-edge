@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-09-08T17:55:20Z",
+  "updated_at": "2026-09-08T23:22:27Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -14701,6 +14701,76 @@
       "result": null,
       "calibration": null,
       "clv": null
+    },
+    "2049562": {
+      "fixture_id": "2049562",
+      "evaluation_cohort_id": "cohort-b013b02c74df3bc9c40b21a2",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa champions league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Sporting CP",
+      "away": "Galatasaray",
+      "kickoff_utc": "2026-09-09T19:00:00Z",
+      "provider_event_id": "74301740",
+      "sport_key": "international-youth-uefa-youth-league",
+      "forecast": {
+        "generated_at": "2026-09-08T21:14:51Z",
+        "competition": "UEFA Champions League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5746687979741155,
+          "draw": 0.231115733398468,
+          "away": 0.1942154686274165
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-09-08T23:22:27Z",
+          "phase": "opening",
+          "provider_event_id": "74301740",
+          "sport_key": "international-youth-uefa-youth-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-09-08T23:20:57Z",
+              "odds": {
+                "home": 1.4,
+                "draw": 4.5,
+                "away": 5.75
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-09-08T22:25:34Z",
+              "odds": {
+                "home": 1.4,
+                "draw": 4.5,
+                "away": 5.75
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-09-08T19:33:34Z",
+              "odds": {
+                "home": 1.43,
+                "draw": 4.5,
+                "away": 5.25
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
     }
   },
   "gate": {
@@ -15025,13 +15095,14 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 1,
+        "tracked_fixtures": 2,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
         "post_horizon_ready": 0,
         "fixture_ids": [
-          "2049556"
+          "2049556",
+          "2049562"
         ]
       },
       "cohort-dd3fbf52e49523eb3616502d": {
@@ -15083,7 +15154,7 @@
       }
     },
     "cohort_count": 7,
-    "tracked_fixtures": 32,
+    "tracked_fixtures": 33,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
