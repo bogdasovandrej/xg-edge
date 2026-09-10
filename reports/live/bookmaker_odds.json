@@ -2,7 +2,7 @@
   "provider": "odds_api_io",
   "status": "available",
   "reason": null,
-  "snapshot_at": "2026-09-10T15:02:07Z",
+  "snapshot_at": "2026-09-10T18:21:28Z",
   "records": [
     {
       "provider": "odds_api_io",
@@ -6520,22 +6520,384 @@
         }
       ],
       "source_url": "https://docs.odds-api.io/guides/fetching-odds"
+    },
+    {
+      "provider": "odds_api_io",
+      "source_provider": "odds_api_io",
+      "status": "SHADOW_ONLY",
+      "provider_event_id": "74172930",
+      "sport_key": "international-clubs-uefa-europa-league",
+      "fixture_id": "2050062",
+      "match_status": "matched",
+      "snapshot_at": "2026-09-10T18:21:28Z",
+      "requested_at": "2026-09-10T18:21:28Z",
+      "received_at": "2026-09-10T18:21:28Z",
+      "commence_time": "2026-09-16T19:00:00Z",
+      "home": "Sunderland AFC",
+      "away": "AZ Alkmaar",
+      "bookmakers": [
+        {
+          "key": "bet365",
+          "title": "Bet365",
+          "last_update": "2026-09-10T18:21:12Z",
+          "markets": {
+            "h2h": {
+              "home": 1.666,
+              "draw": 3.9,
+              "away": 4.333
+            },
+            "draw_no_bet": {
+              "home": 1.3,
+              "away": 3.4
+            },
+            "double_chance": {
+              "home_draw": 1.2,
+              "home_away": 1.25,
+              "draw_away": 2.15
+            },
+            "spreads": [
+              {
+                "line": -2.5,
+                "home": 5.75,
+                "away": 1.14
+              },
+              {
+                "line": -2.25,
+                "home": 5.25,
+                "away": 1.16
+              },
+              {
+                "line": -2.0,
+                "home": 4.65,
+                "away": 1.18
+              },
+              {
+                "line": -1.75,
+                "home": 3.45,
+                "away": 1.3
+              },
+              {
+                "line": -1.5,
+                "home": 2.85,
+                "away": 1.4
+              },
+              {
+                "line": -1.25,
+                "home": 2.5,
+                "away": 1.5
+              },
+              {
+                "line": -1.0,
+                "home": 2.2,
+                "away": 1.65
+              },
+              {
+                "line": -0.75,
+                "home": 1.925,
+                "away": 1.925
+              },
+              {
+                "line": -0.5,
+                "home": 1.7,
+                "away": 2.1
+              },
+              {
+                "line": -0.25,
+                "home": 1.5,
+                "away": 2.5
+              },
+              {
+                "line": 0.0,
+                "home": 1.325,
+                "away": 3.3
+              },
+              {
+                "line": 0.25,
+                "home": 1.26,
+                "away": 3.7
+              },
+              {
+                "line": 0.5,
+                "home": 1.225,
+                "away": 4.1
+              },
+              {
+                "line": 0.75,
+                "home": 1.15,
+                "away": 5.5
+              }
+            ],
+            "totals": [
+              {
+                "line": 0.5,
+                "over": 1.04,
+                "under": 13.0
+              },
+              {
+                "line": 1.25,
+                "over": 1.13,
+                "under": 5.9
+              },
+              {
+                "line": 1.5,
+                "over": 1.222,
+                "under": 4.333
+              },
+              {
+                "line": 1.75,
+                "over": 1.26,
+                "under": 3.7
+              },
+              {
+                "line": 2.0,
+                "over": 1.325,
+                "under": 3.3
+              },
+              {
+                "line": 2.25,
+                "over": 1.525,
+                "under": 2.425
+              },
+              {
+                "line": 2.5,
+                "over": 1.7,
+                "under": 2.1
+              },
+              {
+                "line": 2.75,
+                "over": 1.925,
+                "under": 1.925
+              },
+              {
+                "line": 3.0,
+                "over": 2.2,
+                "under": 1.65
+              },
+              {
+                "line": 3.25,
+                "over": 2.425,
+                "under": 1.525
+              },
+              {
+                "line": 3.5,
+                "over": 2.75,
+                "under": 1.444
+              },
+              {
+                "line": 3.75,
+                "over": 3.3,
+                "under": 1.325
+              },
+              {
+                "line": 4.0,
+                "over": 4.25,
+                "under": 1.21
+              },
+              {
+                "line": 4.25,
+                "over": 4.65,
+                "under": 1.18
+              },
+              {
+                "line": 4.5,
+                "over": 5.0,
+                "under": 1.166
+              },
+              {
+                "line": 4.75,
+                "over": 6.4,
+                "under": 1.115
+              },
+              {
+                "line": 5.5,
+                "over": 10.0,
+                "under": 1.062
+              },
+              {
+                "line": 6.5,
+                "over": 21.0,
+                "under": 1.015
+              },
+              {
+                "line": 7.5,
+                "over": 41.0,
+                "under": 1.004
+              }
+            ],
+            "btts": {
+              "yes": 1.7,
+              "no": 2.05
+            }
+          }
+        },
+        {
+          "key": "bet365_no_latency",
+          "title": "Bet365 (no latency)",
+          "last_update": "2026-09-07T20:20:53Z",
+          "markets": {
+            "h2h": {
+              "home": 1.67,
+              "draw": 3.9,
+              "away": 4.33
+            },
+            "spreads": [
+              {
+                "line": -0.75,
+                "home": 1.925,
+                "away": 1.925
+              }
+            ],
+            "totals": [
+              {
+                "line": 2.5,
+                "over": 1.72,
+                "under": 2.1
+              }
+            ]
+          }
+        },
+        {
+          "key": "unibet",
+          "title": "Unibet",
+          "last_update": "2026-09-10T18:19:11Z",
+          "markets": {
+            "h2h": {
+              "home": 1.68,
+              "draw": 4.0,
+              "away": 4.7
+            },
+            "draw_no_bet": {
+              "home": 1.27,
+              "away": 3.3
+            },
+            "double_chance": {
+              "home_draw": 1.18,
+              "home_away": 1.24,
+              "draw_away": 2.14
+            },
+            "spreads": [
+              {
+                "line": -2.5,
+                "home": 5.4,
+                "away": 1.15
+              },
+              {
+                "line": -2.25,
+                "home": 5.0,
+                "away": 1.17
+              },
+              {
+                "line": -2.0,
+                "home": 4.6,
+                "away": 1.19
+              },
+              {
+                "line": -1.75,
+                "home": 3.4,
+                "away": 1.3
+              },
+              {
+                "line": -1.5,
+                "home": 2.8,
+                "away": 1.43
+              },
+              {
+                "line": -1.25,
+                "home": 2.48,
+                "away": 1.53
+              },
+              {
+                "line": -1.0,
+                "home": 2.16,
+                "away": 1.68
+              },
+              {
+                "line": -0.75,
+                "home": 1.85,
+                "away": 1.94
+              },
+              {
+                "line": -0.5,
+                "home": 1.67,
+                "away": 2.18
+              },
+              {
+                "line": -0.25,
+                "home": 1.48,
+                "away": 2.6
+              },
+              {
+                "line": 0.25,
+                "home": 1.24,
+                "away": 3.95
+              },
+              {
+                "line": 0.5,
+                "home": 1.18,
+                "away": 4.1
+              }
+            ],
+            "totals": [
+              {
+                "line": 2.25,
+                "over": 1.47,
+                "under": 2.65
+              },
+              {
+                "line": 2.5,
+                "over": 1.65,
+                "under": 2.23
+              },
+              {
+                "line": 2.75,
+                "over": 1.81,
+                "under": 1.98
+              },
+              {
+                "line": 3.0,
+                "over": 2.07,
+                "under": 1.75
+              },
+              {
+                "line": 3.25,
+                "over": 2.35,
+                "under": 1.58
+              },
+              {
+                "line": 3.5,
+                "over": 2.63,
+                "under": 1.48
+              },
+              {
+                "line": 3.75,
+                "over": 3.15,
+                "under": 1.36
+              }
+            ],
+            "btts": {
+              "yes": 1.63,
+              "no": 2.16
+            }
+          }
+        }
+      ],
+      "source_url": "https://docs.odds-api.io/guides/fetching-odds"
     }
   ],
   "sport_poll_times": {
     "soccer_uefa_champs_league": {
-      "requested_at": "2026-09-10T15:02:07Z",
-      "received_at": "2026-09-10T15:02:07Z",
+      "requested_at": "2026-09-10T18:19:54Z",
+      "received_at": "2026-09-10T18:21:28Z",
       "status": "available"
     },
     "soccer_uefa_europa_conference_league": {
-      "requested_at": "2026-09-10T15:02:07Z",
-      "received_at": "2026-09-10T15:02:07Z",
+      "requested_at": "2026-09-10T18:19:54Z",
+      "received_at": "2026-09-10T18:21:28Z",
       "status": "available"
     },
     "soccer_uefa_europa_league": {
-      "requested_at": "2026-09-10T15:02:07Z",
-      "received_at": "2026-09-10T15:02:07Z",
+      "requested_at": "2026-09-10T18:19:54Z",
+      "received_at": "2026-09-10T18:21:28Z",
       "status": "available"
     }
   },
@@ -6545,14 +6907,14 @@
     "soccer_uefa_europa_league"
   ],
   "quota": {
-    "remaining": null,
-    "limit": null,
-    "reset": null
+    "remaining": 98,
+    "limit": 100,
+    "reset": "2026-09-10T19:19:55Z"
   },
   "errors": [],
   "discovery": {
     "events_returned": 5000,
-    "matched_events": 0,
+    "matched_events": 1,
     "unmatched_near_kickoff": [
       {
         "fixture_id": "2049567",
@@ -6561,22 +6923,22 @@
         "kickoff_utc": "2026-09-10T16:45:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "73883660",
-            "home": "Esteghlal Khuzestan FC",
-            "away": "Tractor Tabriz",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "73401180",
+            "home": "LIU Sharks",
+            "away": "Njit Highlanders",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883662",
-            "home": "Esteghlal FC Tehran",
-            "away": "Paykan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "74314542",
+            "home": "FC Shinnik Yaroslavl",
+            "away": "Torpedo Moscow",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883664",
-            "home": "Shams Azar Qazvin",
-            "away": "Gol Gohar Sirjan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "72523898",
+            "home": "AS Cannes",
+            "away": "Amiens SC",
+            "kickoff_utc": "2026-09-10T18:45:00Z"
           }
         ]
       },
@@ -6587,22 +6949,22 @@
         "kickoff_utc": "2026-09-10T16:45:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "73883660",
-            "home": "Esteghlal Khuzestan FC",
-            "away": "Tractor Tabriz",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "73401180",
+            "home": "LIU Sharks",
+            "away": "Njit Highlanders",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883662",
-            "home": "Esteghlal FC Tehran",
-            "away": "Paykan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "74314542",
+            "home": "FC Shinnik Yaroslavl",
+            "away": "Torpedo Moscow",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883664",
-            "home": "Shams Azar Qazvin",
-            "away": "Gol Gohar Sirjan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "72523898",
+            "home": "AS Cannes",
+            "away": "Amiens SC",
+            "kickoff_utc": "2026-09-10T18:45:00Z"
           }
         ]
       },
@@ -6613,22 +6975,22 @@
         "kickoff_utc": "2026-09-10T19:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "73883660",
-            "home": "Esteghlal Khuzestan FC",
-            "away": "Tractor Tabriz",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "73401180",
+            "home": "LIU Sharks",
+            "away": "Njit Highlanders",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883662",
-            "home": "Esteghlal FC Tehran",
-            "away": "Paykan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "74314542",
+            "home": "FC Shinnik Yaroslavl",
+            "away": "Torpedo Moscow",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883664",
-            "home": "Shams Azar Qazvin",
-            "away": "Gol Gohar Sirjan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "72523898",
+            "home": "AS Cannes",
+            "away": "Amiens SC",
+            "kickoff_utc": "2026-09-10T18:45:00Z"
           }
         ]
       },
@@ -6639,22 +7001,22 @@
         "kickoff_utc": "2026-09-10T19:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "73883660",
-            "home": "Esteghlal Khuzestan FC",
-            "away": "Tractor Tabriz",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "73401180",
+            "home": "LIU Sharks",
+            "away": "Njit Highlanders",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883662",
-            "home": "Esteghlal FC Tehran",
-            "away": "Paykan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "74314542",
+            "home": "FC Shinnik Yaroslavl",
+            "away": "Torpedo Moscow",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883664",
-            "home": "Shams Azar Qazvin",
-            "away": "Gol Gohar Sirjan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "72523898",
+            "home": "AS Cannes",
+            "away": "Amiens SC",
+            "kickoff_utc": "2026-09-10T18:45:00Z"
           }
         ]
       },
@@ -6665,22 +7027,22 @@
         "kickoff_utc": "2026-09-10T19:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "73883660",
-            "home": "Esteghlal Khuzestan FC",
-            "away": "Tractor Tabriz",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "73401180",
+            "home": "LIU Sharks",
+            "away": "Njit Highlanders",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883662",
-            "home": "Esteghlal FC Tehran",
-            "away": "Paykan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "74314542",
+            "home": "FC Shinnik Yaroslavl",
+            "away": "Torpedo Moscow",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883664",
-            "home": "Shams Azar Qazvin",
-            "away": "Gol Gohar Sirjan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "72523898",
+            "home": "AS Cannes",
+            "away": "Amiens SC",
+            "kickoff_utc": "2026-09-10T18:45:00Z"
           }
         ]
       },
@@ -6691,22 +7053,22 @@
         "kickoff_utc": "2026-09-10T19:00:00Z",
         "provider_candidates": [
           {
-            "provider_event_id": "73883660",
-            "home": "Esteghlal Khuzestan FC",
-            "away": "Tractor Tabriz",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "73401180",
+            "home": "LIU Sharks",
+            "away": "Njit Highlanders",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883662",
-            "home": "Esteghlal FC Tehran",
-            "away": "Paykan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "74314542",
+            "home": "FC Shinnik Yaroslavl",
+            "away": "Torpedo Moscow",
+            "kickoff_utc": "2026-09-10T18:30:00Z"
           },
           {
-            "provider_event_id": "73883664",
-            "home": "Shams Azar Qazvin",
-            "away": "Gol Gohar Sirjan FC",
-            "kickoff_utc": "2026-09-10T15:30:00Z"
+            "provider_event_id": "72523898",
+            "home": "AS Cannes",
+            "away": "Amiens SC",
+            "kickoff_utc": "2026-09-10T18:45:00Z"
           }
         ]
       },
@@ -6870,32 +7232,6 @@
         "fixture_id": "2050061",
         "home": "Sturm Graz",
         "away": "Rennes",
-        "kickoff_utc": "2026-09-16T19:00:00Z",
-        "provider_candidates": [
-          {
-            "provider_event_id": "73961610",
-            "home": "Mbarara FC",
-            "away": "Entebbe UPPC FC",
-            "kickoff_utc": "2026-09-16T13:00:00Z"
-          },
-          {
-            "provider_event_id": "73961612",
-            "home": "Lugazi Municipal FC",
-            "away": "Uganda Police FC",
-            "kickoff_utc": "2026-09-16T13:00:00Z"
-          },
-          {
-            "provider_event_id": "73961616",
-            "home": "Kampala Capital City Authority FC",
-            "away": "Kataka FC",
-            "kickoff_utc": "2026-09-16T13:00:00Z"
-          }
-        ]
-      },
-      {
-        "fixture_id": "2050062",
-        "home": "Sunderland",
-        "away": "AZ Alkmaar",
         "kickoff_utc": "2026-09-16T19:00:00Z",
         "provider_candidates": [
           {
