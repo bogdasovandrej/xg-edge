@@ -1,13 +1,27 @@
 {
-  "generated_at": "2026-09-29T05:51:39+00:00",
+  "generated_at": "2026-09-29T13:03:00+00:00",
   "fixtures": {
     "2049577": {
       "weather": {
         "provider": "open_meteo",
-        "status": "unavailable",
-        "reason": "HTTPError: 400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=50.4328336&longitude=2.815&hourly=temperature_2m%2Cprecipitation%2Cweather_code%2Cwind_speed_10m&timezone=UTC&start_date=2026-10-13&end_date=2026-10-13",
-        "snapshot_at": "2026-08-29T16:47:55Z",
-        "records": null
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-09-29T13:03:00Z",
+        "records": [
+          {
+            "fixture_id": "2049577",
+            "forecast_for": "2026-10-13T17:00:00Z",
+            "temperature_c": 12.2,
+            "precipitation_mm": 0.5,
+            "wind_kph": 44.1,
+            "weather_code": 53,
+            "condition": "морось",
+            "latitude": 50.4328336,
+            "longitude": 2.815,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
       }
     },
     "2049579": {
@@ -15,16 +29,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049579",
             "forecast_for": "2026-10-13T17:00:00Z",
-            "temperature_c": 20.1,
+            "temperature_c": 19.3,
             "precipitation_mm": 0.0,
-            "wind_kph": 17.4,
-            "weather_code": 3,
-            "condition": "пасмурно",
+            "wind_kph": 9.0,
+            "weather_code": 0,
+            "condition": "ясно",
             "latitude": 40.429766,
             "longitude": 49.91979,
             "coordinate_source": "official_fixture",
@@ -38,16 +52,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049571",
             "forecast_for": "2026-10-13T19:00:00Z",
-            "temperature_c": 18.2,
-            "precipitation_mm": 0.4,
-            "wind_kph": 4.9,
-            "weather_code": 51,
-            "condition": "слабая морось",
+            "temperature_c": 15.3,
+            "precipitation_mm": 0.0,
+            "wind_kph": 4.8,
+            "weather_code": 1,
+            "condition": "преимущественно ясно",
             "latitude": 45.4797849,
             "longitude": 9.1246561,
             "coordinate_source": "official_fixture",
@@ -59,10 +73,24 @@
     "2049572": {
       "weather": {
         "provider": "open_meteo",
-        "status": "unavailable",
-        "reason": "HTTPError: 400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=51.555141&longitude=-0.108479&hourly=temperature_2m%2Cprecipitation%2Cweather_code%2Cwind_speed_10m&timezone=UTC&start_date=2026-10-13&end_date=2026-10-13",
-        "snapshot_at": "2026-08-29T20:59:54Z",
-        "records": null
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-09-29T13:03:00Z",
+        "records": [
+          {
+            "fixture_id": "2049572",
+            "forecast_for": "2026-10-13T19:00:00Z",
+            "temperature_c": 11.5,
+            "precipitation_mm": 0.0,
+            "wind_kph": 30.0,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 51.555141,
+            "longitude": -0.108479,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
       }
     },
     "2049573": {
@@ -70,16 +98,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049573",
             "forecast_for": "2026-10-13T19:00:00Z",
-            "temperature_c": 26.2,
+            "temperature_c": 17.4,
             "precipitation_mm": 0.0,
-            "wind_kph": 1.8,
-            "weather_code": 3,
-            "condition": "пасмурно",
+            "wind_kph": 9.8,
+            "weather_code": 0,
+            "condition": "ясно",
             "latitude": 40.436147,
             "longitude": -3.600571,
             "coordinate_source": "official_fixture",
@@ -93,16 +121,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049574",
             "forecast_for": "2026-10-13T19:00:00Z",
-            "temperature_c": 13.0,
+            "temperature_c": 13.7,
             "precipitation_mm": 0.0,
-            "wind_kph": 8.1,
-            "weather_code": 3,
-            "condition": "пасмурно",
+            "wind_kph": 29.1,
+            "weather_code": 0,
+            "condition": "ясно",
             "latitude": 51.3457333,
             "longitude": 12.3481806,
             "coordinate_source": "official_fixture",
@@ -116,16 +144,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049575",
             "forecast_for": "2026-10-13T19:00:00Z",
-            "temperature_c": 18.7,
+            "temperature_c": 20.5,
             "precipitation_mm": 0.0,
-            "wind_kph": 3.2,
-            "weather_code": 1,
-            "condition": "преимущественно ясно",
+            "wind_kph": 4.4,
+            "weather_code": 2,
+            "condition": "переменная облачность",
             "latitude": 39.943693,
             "longitude": -0.104022,
             "coordinate_source": "official_fixture",
@@ -139,16 +167,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049576",
             "forecast_for": "2026-10-13T19:00:00Z",
-            "temperature_c": 19.2,
-            "precipitation_mm": 0.0,
-            "wind_kph": 9.7,
-            "weather_code": 3,
-            "condition": "пасмурно",
+            "temperature_c": 21.7,
+            "precipitation_mm": 0.1,
+            "wind_kph": 20.2,
+            "weather_code": 51,
+            "condition": "слабая морось",
             "latitude": 41.104728,
             "longitude": 28.997238,
             "coordinate_source": "official_fixture",
@@ -160,10 +188,24 @@
     "2049578": {
       "weather": {
         "provider": "open_meteo",
-        "status": "unavailable",
-        "reason": "HTTPError: 400 Client Error: Bad Request for url: https://api.open-meteo.com/v1/forecast?latitude=58.914908&longitude=5.728382&hourly=temperature_2m%2Cprecipitation%2Cweather_code%2Cwind_speed_10m&timezone=UTC&start_date=2026-10-13&end_date=2026-10-13",
-        "snapshot_at": "2026-08-29T20:59:54Z",
-        "records": null
+        "status": "available",
+        "reason": null,
+        "snapshot_at": "2026-09-29T13:03:00Z",
+        "records": [
+          {
+            "fixture_id": "2049578",
+            "forecast_for": "2026-10-13T19:00:00Z",
+            "temperature_c": 10.4,
+            "precipitation_mm": 0.0,
+            "wind_kph": 24.8,
+            "weather_code": 3,
+            "condition": "пасмурно",
+            "latitude": 58.914908,
+            "longitude": 5.728382,
+            "coordinate_source": "official_fixture",
+            "provider": "open_meteo"
+          }
+        ]
       }
     },
     "2049584": {
@@ -180,14 +222,14 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049588",
             "forecast_for": "2026-10-14T17:00:00Z",
-            "temperature_c": 15.5,
+            "temperature_c": 3.8,
             "precipitation_mm": 0.0,
-            "wind_kph": 2.0,
+            "wind_kph": 9.7,
             "weather_code": 3,
             "condition": "пасмурно",
             "latitude": 48.292726,
@@ -212,16 +254,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049581",
             "forecast_for": "2026-10-14T19:00:00Z",
-            "temperature_c": 21.6,
+            "temperature_c": 9.7,
             "precipitation_mm": 0.0,
-            "wind_kph": 13.7,
-            "weather_code": 1,
-            "condition": "преимущественно ясно",
+            "wind_kph": 18.0,
+            "weather_code": 0,
+            "condition": "ясно",
             "latitude": 41.9339222,
             "longitude": 12.4546833,
             "coordinate_source": "official_fixture",
@@ -244,14 +286,14 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049583",
             "forecast_for": "2026-10-14T19:00:00Z",
-            "temperature_c": 23.3,
+            "temperature_c": 24.4,
             "precipitation_mm": 0.0,
-            "wind_kph": 14.6,
+            "wind_kph": 11.2,
             "weather_code": 3,
             "condition": "пасмурно",
             "latitude": 37.4172611,
@@ -285,16 +327,16 @@
         "provider": "open_meteo",
         "status": "available",
         "reason": null,
-        "snapshot_at": "2026-09-29T05:51:39Z",
+        "snapshot_at": "2026-09-29T13:03:00Z",
         "records": [
           {
             "fixture_id": "2049587",
             "forecast_for": "2026-10-14T19:00:00Z",
-            "temperature_c": 15.8,
+            "temperature_c": 7.0,
             "precipitation_mm": 0.0,
-            "wind_kph": 2.4,
-            "weather_code": 2,
-            "condition": "переменная облачность",
+            "wind_kph": 19.6,
+            "weather_code": 3,
+            "condition": "пасмурно",
             "latitude": 48.17758,
             "longitude": 17.154043,
             "coordinate_source": "official_fixture",
