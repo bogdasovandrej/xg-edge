@@ -2,7 +2,7 @@
   "provider": "odds_api_io",
   "status": "available",
   "reason": null,
-  "snapshot_at": "2026-10-04T12:14:47Z",
+  "snapshot_at": "2026-10-04T16:53:57Z",
   "records": [
     {
       "provider": "odds_api_io",
@@ -6886,18 +6886,18 @@
   ],
   "sport_poll_times": {
     "soccer_uefa_champs_league": {
-      "requested_at": "2026-10-04T12:14:47Z",
-      "received_at": "2026-10-04T12:14:47Z",
+      "requested_at": "2026-10-04T16:53:56Z",
+      "received_at": "2026-10-04T16:53:57Z",
       "status": "available"
     },
     "soccer_uefa_europa_conference_league": {
-      "requested_at": "2026-10-04T12:14:47Z",
-      "received_at": "2026-10-04T12:14:47Z",
+      "requested_at": "2026-10-04T16:53:56Z",
+      "received_at": "2026-10-04T16:53:57Z",
       "status": "available"
     },
     "soccer_uefa_europa_league": {
-      "requested_at": "2026-10-04T12:14:47Z",
-      "received_at": "2026-10-04T12:14:47Z",
+      "requested_at": "2026-10-04T16:53:56Z",
+      "received_at": "2026-10-04T16:53:57Z",
       "status": "available"
     }
   },
@@ -6907,15 +6907,68 @@
     "soccer_uefa_europa_league"
   ],
   "quota": {
-    "remaining": null,
-    "limit": null,
-    "reset": null
+    "remaining": 99,
+    "limit": 100,
+    "reset": "2026-10-04T17:53:57Z"
   },
   "errors": [],
   "discovery": {
     "events_returned": 5000,
     "matched_events": 0,
-    "unmatched_near_kickoff": []
+    "unmatched_near_kickoff": [
+      {
+        "fixture_id": "2049577",
+        "home": "Lens",
+        "away": "Sporting CP",
+        "kickoff_utc": "2026-10-13T16:45:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "73469148",
+            "home": "Denmark U19",
+            "away": "Switzerland U19",
+            "kickoff_utc": "2026-10-13T11:00:00Z"
+          },
+          {
+            "provider_event_id": "73469150",
+            "home": "Bosnia and Herzegovina U19",
+            "away": "England U19",
+            "kickoff_utc": "2026-10-13T11:00:00Z"
+          },
+          {
+            "provider_event_id": "73610144",
+            "home": "Faroe Islands U17",
+            "away": "Latvia U17",
+            "kickoff_utc": "2026-10-13T11:00:00Z"
+          }
+        ]
+      },
+      {
+        "fixture_id": "2049579",
+        "home": "Sabah",
+        "away": "Slavia Praha",
+        "kickoff_utc": "2026-10-13T16:45:00Z",
+        "provider_candidates": [
+          {
+            "provider_event_id": "73469148",
+            "home": "Denmark U19",
+            "away": "Switzerland U19",
+            "kickoff_utc": "2026-10-13T11:00:00Z"
+          },
+          {
+            "provider_event_id": "73469150",
+            "home": "Bosnia and Herzegovina U19",
+            "away": "England U19",
+            "kickoff_utc": "2026-10-13T11:00:00Z"
+          },
+          {
+            "provider_event_id": "73610144",
+            "home": "Faroe Islands U17",
+            "away": "Latvia U17",
+            "kickoff_utc": "2026-10-13T11:00:00Z"
+          }
+        ]
+      }
+    ]
   },
   "documentation": "https://docs.odds-api.io/guides/fetching-odds"
 }
