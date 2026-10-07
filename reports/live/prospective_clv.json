@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-10-07T13:53:58Z",
+  "updated_at": "2026-10-07T23:48:53Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -15715,6 +15715,126 @@
       "result": null,
       "calibration": null,
       "clv": null
+    },
+    "2050322": {
+      "fixture_id": "2050322",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Riga",
+      "away": "Kairat Almaty",
+      "kickoff_utc": "2026-10-15T16:45:00Z",
+      "provider_event_id": "74173170",
+      "sport_key": "international-clubs-uefa-conference-league",
+      "forecast": {
+        "generated_at": "2026-10-07T23:10:54Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.6397828632643382,
+          "draw": 0.22141803966375914,
+          "away": 0.1387990970719026
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-07T23:48:53Z",
+          "phase": "opening",
+          "provider_event_id": "74173170",
+          "sport_key": "international-clubs-uefa-conference-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-07T23:47:19Z",
+              "odds": {
+                "home": 1.833,
+                "draw": 3.5,
+                "away": 3.9
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-07T23:41:49Z",
+              "odds": {
+                "home": 1.83,
+                "draw": 3.65,
+                "away": 4.2
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2050086": {
+      "fixture_id": "2050086",
+      "evaluation_cohort_id": "cohort-5b221afec550b6dfc77582ee",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa europa league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Bournemouth",
+      "away": "Sturm Graz",
+      "kickoff_utc": "2026-10-15T19:00:00Z",
+      "provider_event_id": "74172966",
+      "sport_key": "international-clubs-uefa-europa-league",
+      "forecast": {
+        "generated_at": "2026-10-07T23:10:54Z",
+        "competition": "UEFA Europa League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5362608782671926,
+          "draw": 0.2585014847729236,
+          "away": 0.2052376369598837
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-07T23:48:53Z",
+          "phase": "opening",
+          "provider_event_id": "74172966",
+          "sport_key": "international-clubs-uefa-europa-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-07T23:47:03Z",
+              "odds": {
+                "home": 1.181,
+                "draw": 6.25,
+                "away": 12.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-07T23:41:49Z",
+              "odds": {
+                "home": 1.22,
+                "draw": 6.5,
+                "away": 12.0
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
     }
   },
   "gate": {
@@ -15881,7 +16001,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 5,
+        "tracked_fixtures": 6,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -15891,7 +16011,8 @@
           "2049131",
           "2049136",
           "2049140",
-          "2050062"
+          "2050062",
+          "2050086"
         ]
       },
       "cohort-64927acf522479e28510bae2": {
@@ -15976,7 +16097,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 20,
+        "tracked_fixtures": 21,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -16001,7 +16122,8 @@
           "2049275",
           "2049277",
           "2049288",
-          "2049290"
+          "2049290",
+          "2050322"
         ]
       },
       "cohort-b013b02c74df3bc9c40b21a2": {
@@ -16099,7 +16221,7 @@
       }
     },
     "cohort_count": 7,
-    "tracked_fixtures": 34,
+    "tracked_fixtures": 36,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
