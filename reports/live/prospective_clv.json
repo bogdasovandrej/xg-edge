@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-10-08T10:27:54Z",
+  "updated_at": "2026-10-08T17:37:21Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -15806,6 +15806,44 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-10-08T17:37:21Z",
+          "phase": "monitoring",
+          "provider_event_id": "74173170",
+          "sport_key": "international-clubs-uefa-conference-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-08T17:34:45Z",
+              "odds": {
+                "home": 1.85,
+                "draw": 3.5,
+                "away": 3.75
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-08T07:18:25Z",
+              "odds": {
+                "home": 1.85,
+                "draw": 3.5,
+                "away": 3.75
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-08T12:54:40Z",
+              "odds": {
+                "home": 1.83,
+                "draw": 3.65,
+                "away": 4.2
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -15901,6 +15939,234 @@
                 "home": 1.22,
                 "draw": 6.5,
                 "away": 12.0
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-10-08T17:37:21Z",
+          "phase": "monitoring",
+          "provider_event_id": "74172966",
+          "sport_key": "international-clubs-uefa-europa-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-08T17:35:26Z",
+              "odds": {
+                "home": 1.181,
+                "draw": 6.5,
+                "away": 12.0
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-08T07:13:30Z",
+              "odds": {
+                "home": 1.182,
+                "draw": 6.5,
+                "away": 12.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-08T12:54:40Z",
+              "odds": {
+                "home": 1.22,
+                "draw": 6.5,
+                "away": 12.0
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2050311": {
+      "fixture_id": "2050311",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Copenhagen",
+      "away": "Braga",
+      "kickoff_utc": "2026-10-15T19:00:00Z",
+      "provider_event_id": "74173188",
+      "sport_key": "international-clubs-uefa-conference-league",
+      "forecast": {
+        "generated_at": "2026-10-08T13:43:53Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.38548899091684546,
+          "draw": 0.24373710109325908,
+          "away": 0.37077390798989557
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-08T17:37:21Z",
+          "phase": "opening",
+          "provider_event_id": "74173188",
+          "sport_key": "international-clubs-uefa-conference-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-08T17:36:30Z",
+              "odds": {
+                "home": 2.25,
+                "draw": 3.3,
+                "away": 3.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-08T12:54:40Z",
+              "odds": {
+                "home": 2.38,
+                "draw": 3.4,
+                "away": 2.85
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2050310": {
+      "fixture_id": "2050310",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Freiburg",
+      "away": "Jablonec",
+      "kickoff_utc": "2026-10-15T19:00:00Z",
+      "provider_event_id": "74173204",
+      "sport_key": "international-clubs-uefa-conference-league",
+      "forecast": {
+        "generated_at": "2026-10-08T13:43:53Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.6099855204767728,
+          "draw": 0.2176819817046191,
+          "away": 0.1723324978186082
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-08T17:37:21Z",
+          "phase": "opening",
+          "provider_event_id": "74173204",
+          "sport_key": "international-clubs-uefa-conference-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-08T17:36:30Z",
+              "odds": {
+                "home": 1.3,
+                "draw": 5.0,
+                "away": 7.5
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-08T17:05:57Z",
+              "odds": {
+                "home": 1.3,
+                "draw": 5.0,
+                "away": 7.5
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-08T12:54:40Z",
+              "odds": {
+                "home": 1.3,
+                "draw": 5.5,
+                "away": 9.5
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2050319": {
+      "fixture_id": "2050319",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Brann",
+      "away": "L. Red Imps",
+      "kickoff_utc": "2026-10-15T19:00:00Z",
+      "provider_event_id": "74173208",
+      "sport_key": "international-clubs-uefa-conference-league",
+      "forecast": {
+        "generated_at": "2026-10-08T13:43:53Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.5947344329974207,
+          "draw": 0.23044287008746936,
+          "away": 0.17482269691511007
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-08T17:37:21Z",
+          "phase": "opening",
+          "provider_event_id": "74173208",
+          "sport_key": "international-clubs-uefa-conference-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-08T17:34:45Z",
+              "odds": {
+                "home": 1.142,
+                "draw": 7.5,
+                "away": 15.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-08T12:54:40Z",
+              "odds": {
+                "home": 1.18,
+                "draw": 7.5,
+                "away": 14.0
               }
             }
           ]
@@ -16173,7 +16439,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 21,
+        "tracked_fixtures": 24,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -16199,6 +16465,9 @@
           "2049277",
           "2049288",
           "2049290",
+          "2050310",
+          "2050311",
+          "2050319",
           "2050322"
         ]
       },
@@ -16297,7 +16566,7 @@
       }
     },
     "cohort_count": 7,
-    "tracked_fixtures": 36,
+    "tracked_fixtures": 39,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
