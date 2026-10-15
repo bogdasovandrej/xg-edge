@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-10-15T11:40:38Z",
-  "as_of_utc": "2026-10-15T11:40:34Z",
+  "generated_at_utc": "2026-10-15T17:08:41Z",
+  "as_of_utc": "2026-10-15T17:08:37Z",
   "model": "experimental hybrid Elo-to-Poisson UEFA qualifier baseline",
   "calibration": {
     "version": "clubelo-poisson-v2-team-goal-environment",
@@ -77,2220 +77,6 @@
     "ClubElo was unavailable for this run; all club ratings use the conservative point-in-time UEFA fallback."
   ],
   "predictions": [
-    {
-      "fixture_id": "2050076",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Lyon",
-      "away": "Crystal Palace",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Lyon",
-          "country": null,
-          "elo": 1560.5058418370706,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 15,
-          "team_id": "5312"
-        },
-        "away": {
-          "club": "Crystal Palace",
-          "country": null,
-          "elo": 1594.0481698796555,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 18,
-          "team_id": "52916"
-        },
-        "adjusted_elo_difference": 31.457671957415187,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.426470398962563,
-        "away": 1.1901962677041038
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.6166666666666667,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "5312",
-            "matches": 10,
-            "shrunk_total_goals": 2.75,
-            "raw_average_total_goals": 2.8
-          },
-          {
-            "side": "away",
-            "team_id": "52916",
-            "matches": 10,
-            "shrunk_total_goals": 2.4833333333333334,
-            "raw_average_total_goals": 2.4
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.424690908867408,
-        "draw": 0.2607583433675605,
-        "away_win": 0.3145507477650315
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.2947273341616082,
-            "high": 0.5570717501053395
-          },
-          "draw": {
-            "low": 0.24002688040671924,
-            "high": 0.262927168640646
-          },
-          "away_win": {
-            "low": 0.20290136948794119,
-            "high": 0.44647390135523535
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.12401597327155581
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.10419791813898341
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.08845255743520335
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.08693904434452308
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.07431762292939205
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050077",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "AZ Alkmaar",
-      "away": "H. Beer-Sheva",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "AZ Alkmaar",
-          "country": null,
-          "elo": 1566.6453292448396,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 19,
-          "team_id": "52327"
-        },
-        "away": {
-          "club": "H. Beer-Sheva",
-          "country": null,
-          "elo": 1523.6120278000906,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 11,
-          "team_id": "59340"
-        },
-        "adjusted_elo_difference": 108.03330144474899,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.4856467307503003,
-        "away": 0.7976866025830329
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.283333333333333,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "52327",
-            "matches": 10,
-            "shrunk_total_goals": 2.55,
-            "raw_average_total_goals": 2.5
-          },
-          {
-            "side": "away",
-            "team_id": "59340",
-            "matches": 10,
-            "shrunk_total_goals": 2.0166666666666666,
-            "raw_average_total_goals": 1.7
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5349972566647481,
-        "draw": 0.26362771933996604,
-        "away_win": 0.20137502399528606
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.4121294264996548,
-            "high": 0.6423708191979012
-          },
-          "draw": {
-            "low": 0.2322940900686832,
-            "high": 0.28276818322056746
-          },
-          "away_win": {
-            "low": 0.1253350907334158,
-            "high": 0.3051023902797777
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.15145258957998198
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.12081170163445826
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.11250252228658361
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.1019438783427965
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.08974175478480681
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050080",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Union SG",
-      "away": "Real Sociedad",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Union SG",
-          "country": null,
-          "elo": 1491.001101243558,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 11,
-          "team_id": "64125"
-        },
-        "away": {
-          "club": "Real Sociedad",
-          "country": null,
-          "elo": 1488.430064953105,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 1,
-          "team_id": "50123"
-        },
-        "adjusted_elo_difference": 67.57103629045287,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.7458851507044504,
-        "away": 1.1832815159622163
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.9291666666666667,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "64125",
-            "matches": 10,
-            "shrunk_total_goals": 3.15,
-            "raw_average_total_goals": 3.4
-          },
-          {
-            "side": "away",
-            "team_id": "50123",
-            "matches": 1,
-            "shrunk_total_goals": 2.7083333333333335,
-            "raw_average_total_goals": 3.0
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5056013108816444,
-        "draw": 0.23579192659243597,
-        "away_win": 0.25860676252591974
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.362979306134079,
-            "high": 0.6380054635231907
-          },
-          "draw": {
-            "low": 0.20510296737119343,
-            "high": 0.2463397902384582
-          },
-          "away_win": {
-            "low": 0.1568915691056158,
-            "high": 0.3908135436632154
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11040376237895742
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09637614465966217
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.09330303980044825
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.08144819585159443
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.06531936565785251
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050082",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Salzburg",
-      "away": "Milan",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Salzburg",
-          "country": null,
-          "elo": 1515.0034867210811,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 17,
-          "team_id": "50030"
-        },
-        "away": {
-          "club": "Milan",
-          "country": null,
-          "elo": 1485.6292161810434,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 1,
-          "team_id": "50058"
-        },
-        "adjusted_elo_difference": 94.37427054003774,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.6947628925975133,
-        "away": 0.9844037740691534
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.6791666666666667,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "50030",
-            "matches": 10,
-            "shrunk_total_goals": 2.816666666666667,
-            "raw_average_total_goals": 2.9
-          },
-          {
-            "side": "away",
-            "team_id": "50058",
-            "matches": 1,
-            "shrunk_total_goals": 2.5416666666666665,
-            "raw_average_total_goals": 2.0
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5404893189545391,
-        "draw": 0.24068889757073186,
-        "away_win": 0.21882178347472903
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.4052268430656405,
-            "high": 0.659819120285009
-          },
-          "draw": {
-            "low": 0.2076028152655887,
-            "high": 0.25850056024353935
-          },
-          "away_win": {
-            "low": 0.13257806444940226,
-            "high": 0.3362725966908201
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.11629536871086138
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11448159986573568
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.0985465377360569
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09700958366882265
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.06862043606148285
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050083",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Sparta Praha",
-      "away": "Lillestrøm",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Sparta Praha",
-          "country": null,
-          "elo": 1549.9982432765814,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 17,
-          "team_id": "50033"
-        },
-        "away": {
-          "club": "Lillestrøm",
-          "country": null,
-          "elo": 1489.9251930728371,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 3,
-          "team_id": "52314"
-        },
-        "adjusted_elo_difference": 125.07305020374429,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.6471748853687462,
-        "away": 0.8017834479645873
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.4489583333333336,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "50033",
-            "matches": 10,
-            "shrunk_total_goals": 2.6166666666666667,
-            "raw_average_total_goals": 2.6
-          },
-          {
-            "side": "away",
-            "team_id": "52314",
-            "matches": 3,
-            "shrunk_total_goals": 2.28125,
-            "raw_average_total_goals": 1.6666666666666667
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5749267749098974,
-        "draw": 0.24414456073089094,
-        "away_win": 0.18092866435921162
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.44974407110069375,
-            "high": 0.6800334336284604
-          },
-          "draw": {
-            "low": 0.21016900357175844,
-            "high": 0.2681703214021889
-          },
-          "away_win": {
-            "low": 0.10979756279978106,
-            "high": 0.28208560749711725
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.1422889612561091
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.11718740172313473
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11408493396322271
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09395891901158616
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.0863836393573081
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050085",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Lech Poznań",
-      "away": "Leverkusen",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Lech Poznań",
-          "country": null,
-          "elo": 1564.7231174360145,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 23,
-          "team_id": "64227"
-        },
-        "away": {
-          "club": "Leverkusen",
-          "country": null,
-          "elo": 1523.3028573323124,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 13,
-          "team_id": "50109"
-        },
-        "adjusted_elo_difference": 106.42026010370205,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.8050880817666735,
-        "away": 0.9782452515666598
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.783333333333333,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "64227",
-            "matches": 10,
-            "shrunk_total_goals": 3.35,
-            "raw_average_total_goals": 3.7
-          },
-          {
-            "side": "away",
-            "team_id": "50109",
-            "matches": 10,
-            "shrunk_total_goals": 2.216666666666667,
-            "raw_average_total_goals": 2.0
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5679451311838138,
-        "draw": 0.2297949784972403,
-        "away_win": 0.20225989031894598
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.43122470615914965,
-            "high": 0.6849558085182166
-          },
-          "draw": {
-            "low": 0.19472868636306143,
-            "high": 0.2514090031853617
-          },
-          "away_win": {
-            "low": 0.12031550511872188,
-            "high": 0.3173662906554887
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.11161266740731476
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.10918456190589457
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.10073534785556576
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09854387570462292
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.061832255464274836
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050087",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Celje",
-      "away": "Omonia",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Celje",
-          "country": null,
-          "elo": 1524.1438750786992,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 25,
-          "team_id": "59030"
-        },
-        "away": {
-          "club": "Omonia",
-          "country": null,
-          "elo": 1541.7605921855832,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 21,
-          "team_id": "50077"
-        },
-        "adjusted_elo_difference": 47.383282893116075,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.4288887899789398,
-        "away": 1.0877778766877269
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.5166666666666666,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "59030",
-            "matches": 10,
-            "shrunk_total_goals": 2.8833333333333333,
-            "raw_average_total_goals": 3.0
-          },
-          {
-            "side": "away",
-            "team_id": "50077",
-            "matches": 10,
-            "shrunk_total_goals": 2.15,
-            "raw_average_total_goals": 1.9
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.4485227560522723,
-        "draw": 0.26425468883069686,
-        "away_win": 0.2872225551170308
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.31896307196255436,
-            "high": 0.5759398481491442
-          },
-          "draw": {
-            "low": 0.24034993557225176,
-            "high": 0.26898270088564075
-          },
-          "away_win": {
-            "low": 0.18371021627860412,
-            "high": 0.4136717224090031
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.1254770687868166
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.1153517381405964
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.08964638849444928
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.08781443991079668
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.08241240276684215
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050091",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "14",
-      "competition": "UEFA Europa League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Torreense",
-      "away": "Sunderland",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Torreense",
-          "country": null,
-          "elo": 1511.6130888293312,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 1,
-          "team_id": "2603107"
-        },
-        "away": {
-          "club": "Sunderland",
-          "country": null,
-          "elo": 1510.6405612120448,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 1,
-          "team_id": "53360"
-        },
-        "adjusted_elo_difference": 65.97252761728646,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.5092854895628132,
-        "away": 1.0323811771038538
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.541666666666667,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "2603107",
-            "matches": 1,
-            "shrunk_total_goals": 2.7083333333333335,
-            "raw_average_total_goals": 3.0
-          },
-          {
-            "side": "away",
-            "team_id": "53360",
-            "matches": 1,
-            "shrunk_total_goals": 2.375,
-            "raw_average_total_goals": 1.0
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.48257161084601746,
-        "draw": 0.2583381425096654,
-        "away_win": 0.2590902466443171
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.3507486821116253,
-            "high": 0.6068780838595209
-          },
-          "draw": {
-            "low": 0.23053144727453412,
-            "high": 0.26743508133679056
-          },
-          "away_win": {
-            "low": 0.1625904688659452,
-            "high": 0.3819876177553846
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.12268173987477758
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.11883376275702501
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09258088491366072
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.08967703689966387
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.08128464808226188
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050312",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Gent",
-      "away": "Aarhus",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Gent",
-          "country": null,
-          "elo": 1518.8527108443393,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 6,
-          "team_id": "4608"
-        },
-        "away": {
-          "club": "Aarhus",
-          "country": null,
-          "elo": 1474.2515494345212,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 6,
-          "team_id": "50019"
-        },
-        "adjusted_elo_difference": 109.60116140981813,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.7059123704470867,
-        "away": 0.9077239931892771
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.6136363636363638,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "4608",
-            "matches": 6,
-            "shrunk_total_goals": 1.9318181818181819,
-            "raw_average_total_goals": 1.3333333333333333
-          },
-          {
-            "side": "away",
-            "team_id": "50019",
-            "matches": 6,
-            "shrunk_total_goals": 3.2954545454545454,
-            "raw_average_total_goals": 3.8333333333333335
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5621273593476768,
-        "draw": 0.2389794648200303,
-        "away_win": 0.19889317583229293
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.43022611144945516,
-            "high": 0.6752363811010327
-          },
-          "draw": {
-            "low": 0.20482378313467206,
-            "high": 0.2604868074776856
-          },
-          "away_win": {
-            "low": 0.11993983576429533,
-            "high": 0.30928708107285924
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.12498839412145252
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11345496421424005
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.10660962384705092
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09677211347085184
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.07326776936888937
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050313",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Panathinaikos",
-      "away": "Borac",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Panathinaikos",
-          "country": null,
-          "elo": 1515.7120498993063,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 24,
-          "team_id": "50084"
-        },
-        "away": {
-          "club": "Borac",
-          "country": null,
-          "elo": 1518.4164577738754,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 10,
-          "team_id": "50104"
-        },
-        "adjusted_elo_difference": 62.29559212543086,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.6974242073173915,
-        "away": 1.1859091260159418
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.8833333333333333,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "50084",
-            "matches": 10,
-            "shrunk_total_goals": 2.75,
-            "raw_average_total_goals": 2.8
-          },
-          {
-            "side": "away",
-            "team_id": "50104",
-            "matches": 10,
-            "shrunk_total_goals": 3.0166666666666666,
-            "raw_average_total_goals": 3.2
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.49347962690925007,
-        "draw": 0.23965577806608926,
-        "away_win": 0.2668645950246607
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.3523245351695905,
-            "high": 0.6263745647280434
-          },
-          "draw": {
-            "low": 0.21026504181138997,
-            "high": 0.24856380202881176
-          },
-          "away_win": {
-            "low": 0.1633603934605666,
-            "high": 0.39948237511852314
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11262293763919319
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09558445032398176
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.09496759504461326
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.08060014736972085
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.06678028477252176
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050315",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Lugano",
-      "away": "Crvena Zvezda",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Lugano",
-          "country": null,
-          "elo": 1537.5418788684256,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 10,
-          "team_id": "8538"
-        },
-        "away": {
-          "club": "Crvena Zvezda",
-          "country": null,
-          "elo": 1545.0367283427493,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 22,
-          "team_id": "50069"
-        },
-        "adjusted_elo_difference": 57.5051505256763,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.5617243103179226,
-        "away": 1.121609023015411
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.6833333333333336,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "8538",
-            "matches": 10,
-            "shrunk_total_goals": 2.816666666666667,
-            "raw_average_total_goals": 2.9
-          },
-          {
-            "side": "away",
-            "team_id": "50069",
-            "matches": 10,
-            "shrunk_total_goals": 2.55,
-            "raw_average_total_goals": 2.5
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.4749514910699152,
-        "draw": 0.2518520231012738,
-        "away_win": 0.27319648582881106
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.33961844873524705,
-            "high": 0.6045221311403781
-          },
-          "draw": {
-            "low": 0.22470065394410632,
-            "high": 0.2590958732411059
-          },
-          "away_win": {
-            "low": 0.17077721491551567,
-            "high": 0.401960500537217
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.1196986830507437
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.10672050651744716
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09346817161669317
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.08333400471886977
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.07664520700607937
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050316",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "KuPS Kuopio",
-      "away": "Trabzonspor",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "KuPS Kuopio",
-          "country": null,
-          "elo": 1460.1752726598334,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 24,
-          "team_id": "52350"
-        },
-        "away": {
-          "club": "Trabzonspor",
-          "country": null,
-          "elo": 1478.2960067646436,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 2,
-          "team_id": "52731"
-        },
-        "adjusted_elo_difference": 46.87926589518975,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.329886556750921,
-        "away": 1.0153515384871743
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.3452380952380953,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "52350",
-            "matches": 10,
-            "shrunk_total_goals": 2.0833333333333335,
-            "raw_average_total_goals": 1.8
-          },
-          {
-            "side": "away",
-            "team_id": "52731",
-            "matches": 2,
-            "shrunk_total_goals": 2.607142857142857,
-            "raw_average_total_goals": 2.5
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.43868969705371585,
-        "draw": 0.27603336137445755,
-        "away_win": 0.28527694157182626
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.31426257288113596,
-            "high": 0.5615809966234386
-          },
-          "draw": {
-            "low": 0.25340595416589745,
-            "high": 0.2804223320973666
-          },
-          "away_win": {
-            "low": 0.18501304921066403,
-            "high": 0.4069072393148859
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.1293919157908243
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.12743558352569406
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.0972954536114305
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.09582440162192113
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.0860382846812322
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050321",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Univ. Craiova",
-      "away": "Getafe",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Univ. Craiova",
-          "country": null,
-          "elo": 1522.972243543929,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 20,
-          "team_id": "2606501"
-        },
-        "away": {
-          "club": "Getafe",
-          "country": null,
-          "elo": 1502.8162629701535,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 2,
-          "team_id": "87960"
-        },
-        "adjusted_elo_difference": 85.15598057377542,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.72904532860398,
-        "away": 1.059049909491258
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.788095238095238,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "2606501",
-            "matches": 10,
-            "shrunk_total_goals": 2.683333333333333,
-            "raw_average_total_goals": 2.7
-          },
-          {
-            "side": "away",
-            "team_id": "87960",
-            "matches": 2,
-            "shrunk_total_goals": 2.892857142857143,
-            "raw_average_total_goals": 3.5
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5306661291040042,
-        "draw": 0.2375998912632777,
-        "away_win": 0.23173397963271808
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.3919119572402514,
-            "high": 0.6549869103888882
-          },
-          "draw": {
-            "low": 0.2049511907341675,
-            "high": 0.25318866641660587
-          },
-          "away_win": {
-            "low": 0.14006189887694423,
-            "high": 0.3548993763431427
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.112685845253902
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.10640277124241819
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09741946716802509
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.09198760728361051
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.06517229096873003
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050322",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Riga",
-      "away": "Kairat Almaty",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Riga",
-          "country": null,
-          "elo": 1519.5522364109577,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 14,
-          "team_id": "2607924"
-        },
-        "away": {
-          "club": "Kairat Almaty",
-          "country": null,
-          "elo": 1419.7256275265563,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 24,
-          "team_id": "79970"
-        },
-        "adjusted_elo_difference": 164.82660888440137,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.8142082559927613,
-        "away": 0.7024584106739054
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.5166666666666666,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "2607924",
-            "matches": 10,
-            "shrunk_total_goals": 2.4833333333333334,
-            "raw_average_total_goals": 2.4
-          },
-          {
-            "side": "away",
-            "team_id": "79970",
-            "matches": 10,
-            "shrunk_total_goals": 2.55,
-            "raw_average_total_goals": 2.5
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.6397828632643381,
-        "draw": 0.2214180396637591,
-        "away_win": 0.13879909707190258
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.5222680576804876,
-            "high": 0.7315697626245755
-          },
-          "draw": {
-            "low": 0.18620267770317397,
-            "high": 0.25272769334458345
-          },
-          "away_win": {
-            "low": 0.08222755967225055,
-            "high": 0.22500424897492885
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.14645835549430947
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.13285297884844952
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.10288090363044647
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09332369237517582
-        },
-        {
-          "score": "0-0",
-          "home_goals": 0,
-          "away_goals": 0,
-          "probability": 0.08072852441858462
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050323",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Hajduk Split",
-      "away": "Ajax",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Hajduk Split",
-          "country": null,
-          "elo": 1536.334318082129,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 12,
-          "team_id": "52359"
-        },
-        "away": {
-          "club": "Ajax",
-          "country": null,
-          "elo": 1517.7075404662005,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 14,
-          "team_id": "50143"
-        },
-        "adjusted_elo_difference": 83.6267776159284,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 2.1529685465821347,
-        "away": 1.3303647867511987
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 3.4833333333333334,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "52359",
-            "matches": 10,
-            "shrunk_total_goals": 3.0166666666666666,
-            "raw_average_total_goals": 3.2
-          },
-          {
-            "side": "away",
-            "team_id": "50143",
-            "matches": 10,
-            "shrunk_total_goals": 3.95,
-            "raw_average_total_goals": 4.6
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.5622542727233921,
-        "draw": 0.20570368054057692,
-        "away_win": 0.2320420467360309
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.4061719919043324,
-            "high": 0.698593508378299
-          },
-          "draw": {
-            "low": 0.16927996749151744,
-            "high": 0.2231945339258335
-          },
-          "away_win": {
-            "low": 0.1321265241301835,
-            "high": 0.3706334741698341
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09467401923411117
-        },
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.08794742439169155
-        },
-        {
-          "score": "2-0",
-          "home_goals": 2,
-          "away_goals": 0,
-          "probability": 0.07116395456114613
-        },
-        {
-          "score": "3-1",
-          "home_goals": 3,
-          "away_goals": 1,
-          "probability": 0.0679433951965178
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.06610775124803364
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050324",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "CSKA Sofia",
-      "away": "Monaco",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "CSKA Sofia",
-          "country": null,
-          "elo": 1480.1301792639117,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 8,
-          "team_id": "2608297"
-        },
-        "away": {
-          "club": "Monaco",
-          "country": null,
-          "elo": 1509.3697556042098,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 12,
-          "team_id": "50023"
-        },
-        "adjusted_elo_difference": 35.76042365970193,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.5365230535899947,
-        "away": 1.2506564335894923
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.787179487179487,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "2608297",
-            "matches": 8,
-            "shrunk_total_goals": 2.5576923076923075,
-            "raw_average_total_goals": 2.5
-          },
-          {
-            "side": "away",
-            "team_id": "50023",
-            "matches": 10,
-            "shrunk_total_goals": 3.0166666666666666,
-            "raw_average_total_goals": 3.2
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.43947109104662185,
-        "draw": 0.25054118061851366,
-        "away_win": 0.3099877283348645
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.30408316682650893,
-            "high": 0.5756646917512176
-          },
-          "draw": {
-            "low": 0.22777655847801975,
-            "high": 0.2534688671753527
-          },
-          "away_win": {
-            "low": 0.1965587497707627,
-            "high": 0.4459665651049616
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11836431077350416
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.09464174780102347
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.09093474611288986
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.07703386584207311
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.07401654338813453
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050325",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Mjällby",
-      "away": "Inter Escaldes",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Mjällby",
-          "country": null,
-          "elo": 1462.0634790309482,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 6,
-          "team_id": "74233"
-        },
-        "away": {
-          "club": "Inter Escaldes",
-          "country": null,
-          "elo": 1499.9600257932482,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 10,
-          "team_id": "63401"
-        },
-        "adjusted_elo_difference": 27.103453237700023,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.4134561130443333,
-        "away": 1.2092711596829397
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.622727272727273,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "74233",
-            "matches": 6,
-            "shrunk_total_goals": 2.2954545454545454,
-            "raw_average_total_goals": 2.0
-          },
-          {
-            "side": "away",
-            "team_id": "63401",
-            "matches": 10,
-            "shrunk_total_goals": 2.95,
-            "raw_average_total_goals": 3.1
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.4170924356629202,
-        "draw": 0.2609577259679337,
-        "away_win": 0.32194983836914626
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.2878091527342056,
-            "high": 0.5501273075203095
-          },
-          "draw": {
-            "low": 0.2413230969736759,
-            "high": 0.2625588057238278
-          },
-          "away_win": {
-            "low": 0.20854959550601454,
-            "high": 0.45460663232800247
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.1240995497193699
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.10262342628919366
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.08779865789542027
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.08770463358844627
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.07503500320263654
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
-    {
-      "fixture_id": "2050326",
-      "kickoff_utc": "2026-10-15T16:45:00Z",
-      "competition_id": "2019",
-      "competition": "UEFA Conference League",
-      "season_id": "2027",
-      "round": "League Phase",
-      "stage": "TOURNAMENT",
-      "leg": null,
-      "home": "Egnatia",
-      "away": "Midtjylland",
-      "status": "ok",
-      "ratings": {
-        "home": {
-          "club": "Egnatia",
-          "country": null,
-          "elo": 1528.369444466189,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 14,
-          "team_id": "88148"
-        },
-        "away": {
-          "club": "Midtjylland",
-          "country": null,
-          "elo": 1615.2356988582967,
-          "rank": null,
-          "valid_from": null,
-          "valid_to": "2026-10-15",
-          "source": "uefa_official_results",
-          "matches": 22,
-          "team_id": "75795"
-        },
-        "adjusted_elo_difference": -21.86625439210775,
-        "basis": "clubelo_with_point_in_time_uefa_fallback"
-      },
-      "expected_goals_90m": {
-        "home": 1.3822915670152793,
-        "away": 1.5677084329847208
-      },
-      "expected_goals_basis": {
-        "method": "official_uefa_recent_totals_bayesian_shrinkage",
-        "expected_total_goals": 2.95,
-        "team_histories_used": [
-          {
-            "side": "home",
-            "team_id": "88148",
-            "matches": 10,
-            "shrunk_total_goals": 3.0833333333333335,
-            "raw_average_total_goals": 3.3
-          },
-          {
-            "side": "away",
-            "team_id": "75795",
-            "matches": 10,
-            "shrunk_total_goals": 2.816666666666667,
-            "raw_average_total_goals": 2.9
-          }
-        ],
-        "prior_total_goals": 2.65,
-        "prior_matches": 5,
-        "recent_match_limit": 10
-      },
-      "probabilities_90m": {
-        "home_win": 0.336876446231681,
-        "draw": 0.24419255822236097,
-        "away_win": 0.4189309955459579
-      },
-      "uncertainty_90m": {
-        "method": "recalculate over adjusted Elo difference +/- configured band",
-        "elo_points_plus_minus": 75.0,
-        "intervals": {
-          "home_win": {
-            "low": 0.21454969117100767,
-            "high": 0.47906518153808675
-          },
-          "draw": {
-            "low": 0.22444129444769678,
-            "high": 0.2453422503339958
-          },
-          "away_win": {
-            "low": 0.2822460742313358,
-            "high": 0.5610090143812957
-          }
-        }
-      },
-      "most_likely_scores_90m": [
-        {
-          "score": "1-1",
-          "home_goals": 1,
-          "away_goals": 1,
-          "probability": 0.11342184463973025
-        },
-        {
-          "score": "1-2",
-          "home_goals": 1,
-          "away_goals": 2,
-          "probability": 0.08890619116319398
-        },
-        {
-          "score": "0-1",
-          "home_goals": 0,
-          "away_goals": 1,
-          "probability": 0.08205348809631889
-        },
-        {
-          "score": "2-1",
-          "home_goals": 2,
-          "away_goals": 1,
-          "probability": 0.07839102968040812
-        },
-        {
-          "score": "1-0",
-          "home_goals": 1,
-          "away_goals": 0,
-          "probability": 0.07234881324443043
-        }
-      ],
-      "qualification": null,
-      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
-    },
     {
       "fixture_id": "2050075",
       "kickoff_utc": "2026-10-15T19:00:00Z",
@@ -24672,6 +22458,2220 @@
           "home_goals": 3,
           "away_goals": 0,
           "probability": 0.065487686233528
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049643",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Bayern München",
+      "away": "Slavia Praha",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Bayern München",
+          "country": null,
+          "elo": 1632.940271254936,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 16,
+          "team_id": "50037"
+        },
+        "away": {
+          "club": "Slavia Praha",
+          "country": null,
+          "elo": 1412.4585427483394,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 10,
+          "team_id": "52498"
+        },
+        "adjusted_elo_difference": 285.4817285065967,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 2.974872609105567,
+        "away": 0.5751273908944334
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.5500000000000003,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50037",
+            "matches": 10,
+            "shrunk_total_goals": 4.15,
+            "raw_average_total_goals": 4.9
+          },
+          {
+            "side": "away",
+            "team_id": "52498",
+            "matches": 10,
+            "shrunk_total_goals": 2.95,
+            "raw_average_total_goals": 3.1
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.8516152278394332,
+        "draw": 0.10337421175913093,
+        "away_win": 0.045010560401436125
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.7760615233231172,
+            "high": 0.898563104318242
+          },
+          "draw": {
+            "low": 0.07751578640963347,
+            "high": 0.13855163149212826
+          },
+          "away_win": {
+            "low": 0.023921109272124597,
+            "high": 0.08538684518475465
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.1271392749041427
+        },
+        {
+          "score": "3-0",
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.1260743821512923
+        },
+        {
+          "score": "4-0",
+          "home_goals": 4,
+          "away_goals": 0,
+          "probability": 0.0937638065429468
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08547544154663397
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0731212794558297
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049644",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Barcelona",
+      "away": "Man City",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Barcelona",
+          "country": null,
+          "elo": 1582.580752289101,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "50080"
+        },
+        "away": {
+          "club": "Man City",
+          "country": null,
+          "elo": 1514.978632287611,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 12,
+          "team_id": "52919"
+        },
+        "adjusted_elo_difference": 132.60212000149,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 2.330419245855232,
+        "away": 1.0862474208114348
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.416666666666667,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50080",
+            "matches": 10,
+            "shrunk_total_goals": 3.816666666666667,
+            "raw_average_total_goals": 4.4
+          },
+          {
+            "side": "away",
+            "team_id": "52919",
+            "matches": 10,
+            "shrunk_total_goals": 3.0166666666666666,
+            "raw_average_total_goals": 3.2
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.6512954291811509,
+        "draw": 0.1858772357435714,
+        "away_win": 0.16282733507527758
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.5064827596787302,
+            "high": 0.7643114203674723
+          },
+          "draw": {
+            "low": 0.14614658665756955,
+            "high": 0.21722617975758116
+          },
+          "away_win": {
+            "low": 0.08954199297495813,
+            "high": 0.27629106056368846
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09681481212084639
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08912777168992035
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.08308789269830859
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07649076177897052
+        },
+        {
+          "score": "3-1",
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.07520636715009296
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049645",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Roma",
+      "away": "Sporting CP",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Roma",
+          "country": null,
+          "elo": 1536.6672096926031,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 12,
+          "team_id": "50137"
+        },
+        "away": {
+          "club": "Sporting CP",
+          "country": null,
+          "elo": 1559.8382406207431,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "50149"
+        },
+        "adjusted_elo_difference": 41.82896907186,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.6144001303961977,
+        "away": 1.2689332029371356
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.8833333333333333,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50137",
+            "matches": 10,
+            "shrunk_total_goals": 3.0166666666666666,
+            "raw_average_total_goals": 3.2
+          },
+          {
+            "side": "away",
+            "team_id": "50149",
+            "matches": 10,
+            "shrunk_total_goals": 2.75,
+            "raw_average_total_goals": 2.8
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.4547214154139885,
+        "draw": 0.24447937336754244,
+        "away_win": 0.3007992112184692
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.31575955232090336,
+            "high": 0.5922278130171239
+          },
+          "draw": {
+            "low": 0.21966077096169476,
+            "high": 0.24855242392578974
+          },
+          "away_win": {
+            "low": 0.18811141602118148,
+            "high": 0.4382552750025102
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11461322182180236
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09251580012712303
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09032250204858139
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07290832954247031
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07271826133264205
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049646",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Aston Villa",
+      "away": "Paris",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Aston Villa",
+          "country": null,
+          "elo": 1653.0810360150033,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 17,
+          "team_id": "52683"
+        },
+        "away": {
+          "club": "Paris",
+          "country": null,
+          "elo": 1640.5246810626754,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 19,
+          "team_id": "52747"
+        },
+        "adjusted_elo_difference": 77.55635495232787,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 2.1444454771181656,
+        "away": 1.372221189548501
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.5166666666666666,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52683",
+            "matches": 10,
+            "shrunk_total_goals": 3.216666666666667,
+            "raw_average_total_goals": 3.5
+          },
+          {
+            "side": "away",
+            "team_id": "52747",
+            "matches": 10,
+            "shrunk_total_goals": 3.816666666666667,
+            "raw_average_total_goals": 4.4
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.5513943690505371,
+        "draw": 0.206765400625906,
+        "away_win": 0.24184023032355695
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.39419604459764424,
+            "high": 0.6907061946373418
+          },
+          "draw": {
+            "low": 0.1711017092418829,
+            "high": 0.22219809141109195
+          },
+          "away_win": {
+            "low": 0.1381920961207751,
+            "high": 0.38360586399126384
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0937048643430563
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.08739309564445773
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.06828699706487396
+        },
+        {
+          "score": "3-1",
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.06698165750814611
+        },
+        {
+          "score": "2-2",
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06429190020765485
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049647",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Man Utd",
+      "away": "Leipzig",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Man Utd",
+          "country": null,
+          "elo": 1508.299884607133,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 2,
+          "team_id": "52682"
+        },
+        "away": {
+          "club": "Leipzig",
+          "country": null,
+          "elo": 1493.9612675461046,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 2,
+          "team_id": "2603790"
+        },
+        "adjusted_elo_difference": 79.33861706102834,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.6836417339419087,
+        "away": 1.0663582660580913
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.75,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52682",
+            "matches": 2,
+            "shrunk_total_goals": 2.75,
+            "raw_average_total_goals": 3.0
+          },
+          {
+            "side": "away",
+            "team_id": "2603790",
+            "matches": 2,
+            "shrunk_total_goals": 2.75,
+            "raw_average_total_goals": 3.0
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.5180432874275762,
+        "draw": 0.24173413331358287,
+        "away_win": 0.24022257925884105
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.3801454165709331,
+            "high": 0.6434001743257023
+          },
+          "draw": {
+            "low": 0.21020414572703422,
+            "high": 0.2554070558748138
+          },
+          "away_win": {
+            "low": 0.1463956799472634,
+            "high": 0.364447527554253
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11477405564593905
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10763179627257337
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09661919502963699
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09060669205181886
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06817011798419767
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049648",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Napoli",
+      "away": "Club Brugge",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Napoli",
+          "country": null,
+          "elo": 1451.750736708578,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 10,
+          "team_id": "50136"
+        },
+        "away": {
+          "club": "Club Brugge",
+          "country": null,
+          "elo": 1519.1673769661843,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 16,
+          "team_id": "50043"
+        },
+        "adjusted_elo_difference": -2.416640257606332,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.6964509565681818,
+        "away": 1.7202157100984852
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.416666666666667,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50136",
+            "matches": 10,
+            "shrunk_total_goals": 2.816666666666667,
+            "raw_average_total_goals": 2.9
+          },
+          {
+            "side": "away",
+            "team_id": "50043",
+            "matches": 10,
+            "shrunk_total_goals": 4.016666666666667,
+            "raw_average_total_goals": 4.7
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.3821725401629269,
+        "draw": 0.22579921758353536,
+        "away_win": 0.3920282422535377
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.24242246752721536,
+            "high": 0.5371282380160317
+          },
+          "draw": {
+            "low": 0.2106914617770312,
+            "high": 0.22579921758353536
+          },
+          "away_win": {
+            "low": 0.2504423894048058,
+            "high": 0.5468860706957535
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09578255130392413
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08238332475316222
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08124520039104151
+        },
+        {
+          "score": "2-2",
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.0698796350413846
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.05646054837782429
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049650",
+      "kickoff_utc": "2026-12-08T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "AEK Athens",
+      "away": "Galatasaray",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "AEK Athens",
+          "country": null,
+          "elo": 1565.1437974294863,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 20,
+          "team_id": "50129"
+        },
+        "away": {
+          "club": "Galatasaray",
+          "country": null,
+          "elo": 1461.2787275230512,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "50067"
+        },
+        "adjusted_elo_difference": 168.8650699064351,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 2.0919477184688193,
+        "away": 0.791385614864514
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.8833333333333333,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50129",
+            "matches": 10,
+            "shrunk_total_goals": 2.8833333333333333,
+            "raw_average_total_goals": 3.0
+          },
+          {
+            "side": "away",
+            "team_id": "50067",
+            "matches": 10,
+            "shrunk_total_goals": 2.8833333333333333,
+            "raw_average_total_goals": 3.0
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.6749124228116421,
+        "draw": 0.19474198088389288,
+        "away_win": 0.13034559630446518
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.5517893401654866,
+            "high": 0.7680016048724814
+          },
+          "draw": {
+            "low": 0.1576749847395685,
+            "high": 0.22915300078386264
+          },
+          "away_win": {
+            "low": 0.07432341038795029,
+            "high": 0.2190576590506509
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.12242252881250913
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.1170416714831813
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09688342823755622
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.0926250951514879
+        },
+        {
+          "score": "3-0",
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.08536717661283727
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049655",
+      "kickoff_utc": "2026-12-09T17:45:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Real Betis",
+      "away": "Como",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Real Betis",
+          "country": null,
+          "elo": 1555.1033353710136,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "52265"
+        },
+        "away": {
+          "club": "Como",
+          "country": null,
+          "elo": 1504.2207157874611,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 2,
+          "team_id": "79946"
+        },
+        "adjusted_elo_difference": 115.88261958355247,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 2.1603424867986694,
+        "away": 1.1087051322489496
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.269047619047619,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52265",
+            "matches": 10,
+            "shrunk_total_goals": 3.216666666666667,
+            "raw_average_total_goals": 3.5
+          },
+          {
+            "side": "away",
+            "team_id": "79946",
+            "matches": 2,
+            "shrunk_total_goals": 3.3214285714285716,
+            "raw_average_total_goals": 5.0
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.613346118627045,
+        "draw": 0.2006439274379494,
+        "away_win": 0.18600995393500563
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.4669728782802079,
+            "high": 0.7329194328470339
+          },
+          "draw": {
+            "low": 0.16210312231005533,
+            "high": 0.22720123357398336
+          },
+          "away_win": {
+            "low": 0.1049774448429107,
+            "high": 0.3058258881458089
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09842586456588977
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09112061181719698
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08877551091175893
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08218651575316842
+        },
+        {
+          "score": "3-1",
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.07087785900719447
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049657",
+      "kickoff_utc": "2026-12-09T17:45:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "S. Bratislava",
+      "away": "Shakhtar",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "S. Bratislava",
+          "country": null,
+          "elo": 1483.5322873505804,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 20,
+          "team_id": "52797"
+        },
+        "away": {
+          "club": "Shakhtar",
+          "country": null,
+          "elo": 1573.3927689562927,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 22,
+          "team_id": "52707"
+        },
+        "adjusted_elo_difference": -24.860481605712266,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.2613043937266175,
+        "away": 1.4553622729400493
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.716666666666667,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52797",
+            "matches": 10,
+            "shrunk_total_goals": 2.6166666666666667,
+            "raw_average_total_goals": 2.6
+          },
+          {
+            "side": "away",
+            "team_id": "52707",
+            "matches": 10,
+            "shrunk_total_goals": 2.816666666666667,
+            "raw_average_total_goals": 2.9
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.32754177467593054,
+        "draw": 0.25586048124234007,
+        "away_win": 0.4165977440817292
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.21128093569641776,
+            "high": 0.4630908085441505
+          },
+          "draw": {
+            "low": 0.23634988962493242,
+            "high": 0.2572478163567362
+          },
+          "away_win": {
+            "low": 0.28525296362274005,
+            "high": 0.55236917467865
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12132712369446265
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09619178708796268
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08828745925462583
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08336558254280133
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07651521709701926
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049652",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Liverpool",
+      "away": "Porto",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Liverpool",
+          "country": null,
+          "elo": 1563.2904115020199,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "7889"
+        },
+        "away": {
+          "club": "Porto",
+          "country": null,
+          "elo": 1521.8963599506635,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "50064"
+        },
+        "adjusted_elo_difference": 106.39405155135637,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.9346924148563251,
+        "away": 1.0486409184770082
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.9833333333333334,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "7889",
+            "matches": 10,
+            "shrunk_total_goals": 3.283333333333333,
+            "raw_average_total_goals": 3.6
+          },
+          {
+            "side": "away",
+            "team_id": "50064",
+            "matches": 10,
+            "shrunk_total_goals": 2.683333333333333,
+            "raw_average_total_goals": 2.7
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.5800689343330399,
+        "draw": 0.2187823761697961,
+        "away_win": 0.20114868949716413
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.43840454644053767,
+            "high": 0.7000940297453625
+          },
+          "draw": {
+            "low": 0.1824578887754693,
+            "high": 0.24139403559980277
+          },
+          "away_win": {
+            "low": 0.11744808147916837,
+            "high": 0.3202014179596597
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1027060881808068
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09935234488148591
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09794209473531873
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09474391388978039
+        },
+        {
+          "score": "3-1",
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.0640720760134668
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049653",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Arsenal",
+      "away": "Real Madrid",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Arsenal",
+          "country": null,
+          "elo": 1643.7740049244542,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 17,
+          "team_id": "52280"
+        },
+        "away": {
+          "club": "Real Madrid",
+          "country": null,
+          "elo": 1576.9302880547912,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 16,
+          "team_id": "50051"
+        },
+        "adjusted_elo_difference": 131.843716869663,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 2.0093230916718317,
+        "away": 0.9406769083281685
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.95,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52280",
+            "matches": 10,
+            "shrunk_total_goals": 2.15,
+            "raw_average_total_goals": 1.9
+          },
+          {
+            "side": "away",
+            "team_id": "50051",
+            "matches": 10,
+            "shrunk_total_goals": 3.75,
+            "raw_average_total_goals": 4.3
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.6218930214006675,
+        "draw": 0.20908654125056392,
+        "away_win": 0.1690204373487686
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.4861689981251253,
+            "high": 0.7311506004700306
+          },
+          "draw": {
+            "low": 0.17149519566402893,
+            "high": 0.2377542718568001
+          },
+          "away_win": {
+            "low": 0.09735420386594032,
+            "high": 0.27607673001807465
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.10565853906976727
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10516829225493589
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09939054787061968
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09892938401252638
+        },
+        {
+          "score": "3-0",
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.0707673807950646
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049654",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "B. Dortmund",
+      "away": "Inter",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "B. Dortmund",
+          "country": null,
+          "elo": 1496.2110984623746,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 12,
+          "team_id": "52758"
+        },
+        "away": {
+          "club": "Inter",
+          "country": null,
+          "elo": 1493.3093609081193,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 12,
+          "team_id": "50138"
+        },
+        "adjusted_elo_difference": 67.9017375542553,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.9187192669974684,
+        "away": 1.2979473996691984
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.216666666666667,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52758",
+            "matches": 10,
+            "shrunk_total_goals": 3.283333333333333,
+            "raw_average_total_goals": 3.6
+          },
+          {
+            "side": "away",
+            "team_id": "50138",
+            "matches": 10,
+            "shrunk_total_goals": 3.15,
+            "raw_average_total_goals": 3.4
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.5192942885741038,
+        "draw": 0.22224686635742014,
+        "away_win": 0.2584588450684761
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.36927090009649005,
+            "high": 0.6571319177886534
+          },
+          "draw": {
+            "low": 0.18982807054276837,
+            "high": 0.2335838289249656
+          },
+          "away_win": {
+            "low": 0.15304001166857806,
+            "high": 0.39727412544534924
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09983675685709487
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09577935446812479
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07691895440642649
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07379293990845517
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.06479142947703616
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049656",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "PSV",
+      "away": "Atleti",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "PSV",
+          "country": null,
+          "elo": 1481.5463468435883,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 10,
+          "team_id": "50062"
+        },
+        "away": {
+          "club": "Atleti",
+          "country": null,
+          "elo": 1541.0755709065506,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 18,
+          "team_id": "50124"
+        },
+        "adjusted_elo_difference": 5.470775937037615,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.6505853936864425,
+        "away": 1.5994146063135575
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.25,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50062",
+            "matches": 10,
+            "shrunk_total_goals": 3.216666666666667,
+            "raw_average_total_goals": 3.5
+          },
+          {
+            "side": "away",
+            "team_id": "50124",
+            "matches": 10,
+            "shrunk_total_goals": 3.283333333333333,
+            "raw_average_total_goals": 3.6
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.39477624306419734,
+        "draw": 0.2321549677170119,
+        "away_win": 0.37306878921879066
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.2557555555815094,
+            "high": 0.5455140595069038
+          },
+          "draw": {
+            "low": 0.21647333692350332,
+            "high": 0.23222166703844643
+          },
+          "away_win": {
+            "low": 0.23801260356959292,
+            "high": 0.5239552308263703
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10236300615654026
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08447944140791039
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08186044359646753
+        },
+        {
+          "score": "2-2",
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06755882626051112
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0640002947031187
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049658",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Stuttgart",
+      "away": "Lille",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Stuttgart",
+          "country": null,
+          "elo": 1542.9624139784066,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "50107"
+        },
+        "away": {
+          "club": "Lille",
+          "country": null,
+          "elo": 1474.0629657981146,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 14,
+          "team_id": "75797"
+        },
+        "adjusted_elo_difference": 133.89944818029198,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.8801506699185269,
+        "away": 0.8698493300814731
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.75,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "50107",
+            "matches": 10,
+            "shrunk_total_goals": 3.15,
+            "raw_average_total_goals": 3.4
+          },
+          {
+            "side": "away",
+            "team_id": "75797",
+            "matches": 10,
+            "shrunk_total_goals": 2.35,
+            "raw_average_total_goals": 2.2
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.6115753884423554,
+        "draw": 0.21984253323699995,
+        "away_win": 0.16858207832064473
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.4807791530813109,
+            "high": 0.7177401170561376
+          },
+          "draw": {
+            "low": 0.1833533463129642,
+            "high": 0.2477108577828027
+          },
+          "away_win": {
+            "low": 0.09890653663089827,
+            "high": 0.2715099891358863
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.12019457529836004
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.11299195563389221
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10455117080270566
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09828597691273668
+        },
+        {
+          "score": "3-0",
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.07081396702682233
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049659",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "LASK",
+      "away": "Fenerbahçe",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "LASK",
+          "country": null,
+          "elo": 1476.813616964862,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 4,
+          "team_id": "63405"
+        },
+        "away": {
+          "club": "Fenerbahçe",
+          "country": null,
+          "elo": 1535.8385486268712,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 22,
+          "team_id": "52692"
+        },
+        "adjusted_elo_difference": 5.975068337990706,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.5314449893089996,
+        "away": 1.4796661218021114
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.011111111111111,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "63405",
+            "matches": 4,
+            "shrunk_total_goals": 3.4722222222222223,
+            "raw_average_total_goals": 4.5
+          },
+          {
+            "side": "away",
+            "team_id": "52692",
+            "matches": 10,
+            "shrunk_total_goals": 2.55,
+            "raw_average_total_goals": 2.5
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.3901659186010367,
+        "draw": 0.2424017203589184,
+        "away_win": 0.36743236104004495
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.2564593133792991,
+            "high": 0.5349219281245572
+          },
+          "draw": {
+            "low": 0.22732021376414427,
+            "high": 0.2424835337408702
+          },
+          "away_win": {
+            "low": 0.2377578581112984,
+            "high": 0.5122476711579492
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11157237922855757
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.085433480557429
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08254493483667713
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07540375330934225
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07285431733261273
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2049660",
+      "kickoff_utc": "2026-12-09T20:00:00Z",
+      "competition_id": "1",
+      "competition": "UEFA Champions League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Lens",
+      "away": "Bodø/Glimt",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Lens",
+          "country": null,
+          "elo": 1494.6222076533718,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 2,
+          "team_id": "52277"
+        },
+        "away": {
+          "club": "Bodø/Glimt",
+          "country": null,
+          "elo": 1544.509864411948,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 20,
+          "team_id": "59333"
+        },
+        "adjusted_elo_difference": 15.112343241423787,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.6111664572415407,
+        "away": 1.476928780853697
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 3.088095238095238,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52277",
+            "matches": 2,
+            "shrunk_total_goals": 2.892857142857143,
+            "raw_average_total_goals": 3.5
+          },
+          {
+            "side": "away",
+            "team_id": "59333",
+            "matches": 10,
+            "shrunk_total_goals": 3.283333333333333,
+            "raw_average_total_goals": 3.6
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.409887033641292,
+        "draw": 0.2384652079320445,
+        "away_win": 0.3516477584266635
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.27160484462007417,
+            "high": 0.5560397763506207
+          },
+          "draw": {
+            "low": 0.22019200090711413,
+            "high": 0.23903396052969994
+          },
+          "away_win": {
+            "low": 0.22376822274226504,
+            "high": 0.498024543505919
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1084820605887648
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08739132861653118
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08011013874493067
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07345111151944632
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06733137975978948
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2050390",
+      "kickoff_utc": "2026-12-10T15:30:00Z",
+      "competition_id": "2019",
+      "competition": "UEFA Conference League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "Kairat Almaty",
+      "away": "Univ. Craiova",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "Kairat Almaty",
+          "country": null,
+          "elo": 1419.7256275265563,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 24,
+          "team_id": "79970"
+        },
+        "away": {
+          "club": "Univ. Craiova",
+          "country": null,
+          "elo": 1522.972243543929,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 20,
+          "team_id": "2606501"
+        },
+        "adjusted_elo_difference": -38.24661601737262,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.1648875518234532,
+        "away": 1.451779114843213
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.6166666666666663,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "79970",
+            "matches": 10,
+            "shrunk_total_goals": 2.55,
+            "raw_average_total_goals": 2.5
+          },
+          {
+            "side": "away",
+            "team_id": "2606501",
+            "matches": 10,
+            "shrunk_total_goals": 2.683333333333333,
+            "raw_average_total_goals": 2.7
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.303341373184349,
+        "draw": 0.25973154390142733,
+        "away_win": 0.43692708291422366
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.19429116156037446,
+            "high": 0.4342349662939348
+          },
+          "draw": {
+            "low": 0.23731066867937636,
+            "high": 0.26293063963933955
+          },
+          "away_win": {
+            "low": 0.3057912143474742,
+            "high": 0.5683981697602492
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12353239155031774
+        },
+        {
+          "score": "0-1",
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10604662343326333
+        },
+        {
+          "score": "1-2",
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08967087302969277
+        },
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0850903489982075
+        },
+        {
+          "score": "0-2",
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.07697813655002729
+        }
+      ],
+      "qualification": null,
+      "disclaimer": "Experimental baseline; no demonstrated betting or CLV edge."
+    },
+    {
+      "fixture_id": "2050151",
+      "kickoff_utc": "2026-12-10T17:45:00Z",
+      "competition_id": "14",
+      "competition": "UEFA Europa League",
+      "season_id": "2027",
+      "round": "League Phase",
+      "stage": "TOURNAMENT",
+      "leg": null,
+      "home": "AZ Alkmaar",
+      "away": "Sturm Graz",
+      "status": "ok",
+      "ratings": {
+        "home": {
+          "club": "AZ Alkmaar",
+          "country": null,
+          "elo": 1566.6453292448396,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 19,
+          "team_id": "52327"
+        },
+        "away": {
+          "club": "Sturm Graz",
+          "country": null,
+          "elo": 1471.6493846001154,
+          "rank": null,
+          "valid_from": null,
+          "valid_to": "2026-10-15",
+          "source": "uefa_official_results",
+          "matches": 15,
+          "team_id": "50111"
+        },
+        "adjusted_elo_difference": 159.9959446447242,
+        "basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "expected_goals_90m": {
+        "home": 1.6331495920954482,
+        "away": 0.650183741237885
+      },
+      "expected_goals_basis": {
+        "method": "official_uefa_recent_totals_bayesian_shrinkage",
+        "expected_total_goals": 2.283333333333333,
+        "team_histories_used": [
+          {
+            "side": "home",
+            "team_id": "52327",
+            "matches": 10,
+            "shrunk_total_goals": 2.55,
+            "raw_average_total_goals": 2.5
+          },
+          {
+            "side": "away",
+            "team_id": "50111",
+            "matches": 10,
+            "shrunk_total_goals": 2.0166666666666666,
+            "raw_average_total_goals": 1.7
+          }
+        ],
+        "prior_total_goals": 2.65,
+        "prior_matches": 5,
+        "recent_match_limit": 10
+      },
+      "probabilities_90m": {
+        "home_win": 0.6117856430480761,
+        "draw": 0.24255402444446528,
+        "away_win": 0.1456603325074586
+      },
+      "uncertainty_90m": {
+        "method": "recalculate over adjusted Elo difference +/- configured band",
+        "elo_points_plus_minus": 75.0,
+        "intervals": {
+          "home_win": {
+            "low": 0.4982062810172914,
+            "high": 0.7025637356216022
+          },
+          "draw": {
+            "low": 0.20899468590267203,
+            "high": 0.27130292359684655
+          },
+          "away_win": {
+            "low": 0.08844157847572562,
+            "high": 0.23049079538586192
+          }
+        }
+      },
+      "most_likely_scores_90m": [
+        {
+          "score": "1-0",
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.1664897269482732
+        },
+        {
+          "score": "2-0",
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.13595131482682746
+        },
+        {
+          "score": "1-1",
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1082489135449022
+        },
+        {
+          "score": "0-0",
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.10194395403464229
+        },
+        {
+          "score": "2-1",
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08839333450031622
         }
       ],
       "qualification": null,
