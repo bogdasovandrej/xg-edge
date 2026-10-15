@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-10-15T17:27:38Z",
+  "updated_at": "2026-10-15T23:16:46Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -20280,6 +20280,114 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-10-15T23:16:46Z",
+          "phase": "monitoring",
+          "provider_event_id": "74165948",
+          "sport_key": "international-clubs-uefa-champions-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-15T22:40:04Z",
+              "odds": {
+                "home": 1.5,
+                "draw": 4.2,
+                "away": 6.0
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-15T12:35:18Z",
+              "odds": {
+                "home": 1.5,
+                "draw": 4.2,
+                "away": 6.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-15T19:50:30Z",
+              "odds": {
+                "home": 1.44,
+                "draw": 4.2,
+                "away": 5.5
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2049602": {
+      "fixture_id": "2049602",
+      "evaluation_cohort_id": "cohort-b013b02c74df3bc9c40b21a2",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa champions league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Aston Villa",
+      "away": "Viking",
+      "kickoff_utc": "2026-10-21T19:00:00Z",
+      "provider_event_id": "74165962",
+      "sport_key": "international-clubs-uefa-champions-league",
+      "forecast": {
+        "generated_at": "2026-10-15T21:30:24Z",
+        "competition": "UEFA Champions League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.7617459687522607,
+          "draw": 0.14309515906403755,
+          "away": 0.09515887218370178
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-15T23:16:46Z",
+          "phase": "opening",
+          "provider_event_id": "74165962",
+          "sport_key": "international-clubs-uefa-champions-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-15T23:01:19Z",
+              "odds": {
+                "home": 1.25,
+                "draw": 6.0,
+                "away": 11.0
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-15T20:33:53Z",
+              "odds": {
+                "home": 1.25,
+                "draw": 6.0,
+                "away": 11.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-15T19:50:30Z",
+              "odds": {
+                "home": 1.2,
+                "draw": 5.8,
+                "away": 9.5
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -20617,7 +20725,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 4,
+        "tracked_fixtures": 5,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -20626,7 +20734,8 @@
           "2049556",
           "2049562",
           "2049582",
-          "2049590"
+          "2049590",
+          "2049602"
         ]
       },
       "cohort-dd3fbf52e49523eb3616502d": {
@@ -20678,7 +20787,7 @@
       }
     },
     "cohort_count": 7,
-    "tracked_fixtures": 41,
+    "tracked_fixtures": 42,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
