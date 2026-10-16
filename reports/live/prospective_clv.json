@@ -18,7 +18,7 @@
     ],
     "decision_rule": "one_shot_95pct_cluster_bootstrap_lower_ci_above_zero"
   },
-  "updated_at": "2026-10-16T06:21:31Z",
+  "updated_at": "2026-10-16T15:33:21Z",
   "cohorts": {
     "cohort-2321dc082453574423333920": {
       "id": "cohort-2321dc082453574423333920",
@@ -20356,6 +20356,44 @@
               }
             }
           ]
+        },
+        {
+          "snapshot_at": "2026-10-16T15:33:21Z",
+          "phase": "monitoring",
+          "provider_event_id": "74165948",
+          "sport_key": "international-clubs-uefa-champions-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-16T15:14:34Z",
+              "odds": {
+                "home": 1.5,
+                "draw": 4.2,
+                "away": 6.0
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-16T15:32:42Z",
+              "odds": {
+                "home": 1.5,
+                "draw": 4.2,
+                "away": 6.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-16T08:20:55Z",
+              "odds": {
+                "home": 1.44,
+                "draw": 4.2,
+                "away": 5.5
+              }
+            }
+          ]
         }
       ],
       "shadow_candidate": null,
@@ -20461,6 +20499,144 @@
                 "home": 1.2,
                 "draw": 5.8,
                 "away": 9.5
+              }
+            }
+          ]
+        },
+        {
+          "snapshot_at": "2026-10-16T15:33:21Z",
+          "phase": "monitoring",
+          "provider_event_id": "74165962",
+          "sport_key": "international-clubs-uefa-champions-league",
+          "bookmakers": [
+            {
+              "key": "bet365",
+              "title": "Bet365",
+              "last_update": "2026-10-16T15:11:38Z",
+              "odds": {
+                "home": 1.25,
+                "draw": 6.0,
+                "away": 11.0
+              }
+            },
+            {
+              "key": "bet365_no_latency",
+              "title": "Bet365 (no latency)",
+              "last_update": "2026-10-16T10:33:46Z",
+              "odds": {
+                "home": 1.25,
+                "draw": 6.0,
+                "away": 11.0
+              }
+            },
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-16T14:21:41Z",
+              "odds": {
+                "home": 1.18,
+                "draw": 6.1,
+                "away": 10.0
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2050110": {
+      "fixture_id": "2050110",
+      "evaluation_cohort_id": "cohort-5b221afec550b6dfc77582ee",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa europa league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Ararat-Armenia",
+      "away": "AZ Alkmaar",
+      "kickoff_utc": "2026-10-22T16:45:00Z",
+      "provider_event_id": "74172986",
+      "sport_key": "international-clubs-uefa-europa-league",
+      "forecast": {
+        "generated_at": "2026-10-16T11:34:33Z",
+        "competition": "UEFA Europa League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.29976966469926564,
+          "draw": 0.2534362677250452,
+          "away": 0.4467940675756892
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-16T15:33:21Z",
+          "phase": "opening",
+          "provider_event_id": "74172986",
+          "sport_key": "international-clubs-uefa-europa-league",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-16T10:02:38Z",
+              "odds": {
+                "home": 6.5,
+                "draw": 4.5,
+                "away": 1.5
+              }
+            }
+          ]
+        }
+      ],
+      "shadow_candidate": null,
+      "closing": null,
+      "result": null,
+      "calibration": null,
+      "clv": null
+    },
+    "2050332": {
+      "fixture_id": "2050332",
+      "evaluation_cohort_id": "cohort-8f0bc14a3486372bf4117fac",
+      "cohort_dimensions": {
+        "competition_or_sport": "uefa conference league",
+        "model": "hybrid elo–poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback"
+      },
+      "home": "Pafos",
+      "away": "Riga",
+      "kickoff_utc": "2026-10-22T16:45:00Z",
+      "provider_event_id": "74173242",
+      "sport_key": "international-clubs-uefa-conference-league",
+      "forecast": {
+        "generated_at": "2026-10-16T11:34:33Z",
+        "competition": "UEFA Conference League",
+        "model": "Hybrid Elo–Poisson (experimental)",
+        "probability_basis": "clubelo_with_point_in_time_uefa_fallback",
+        "probabilities": {
+          "home": 0.431539434784379,
+          "draw": 0.26020718400275833,
+          "away": 0.3082533812128627
+        }
+      },
+      "observations": [
+        {
+          "snapshot_at": "2026-10-16T15:33:21Z",
+          "phase": "opening",
+          "provider_event_id": "74173242",
+          "sport_key": "international-clubs-uefa-conference-league",
+          "bookmakers": [
+            {
+              "key": "unibet",
+              "title": "Unibet",
+              "last_update": "2026-10-16T08:20:55Z",
+              "odds": {
+                "home": 1.57,
+                "draw": 4.1,
+                "away": 5.5
               }
             }
           ]
@@ -20637,7 +20813,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 6,
+        "tracked_fixtures": 7,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -20648,7 +20824,8 @@
           "2049136",
           "2049140",
           "2050062",
-          "2050086"
+          "2050086",
+          "2050110"
         ]
       },
       "cohort-64927acf522479e28510bae2": {
@@ -20733,7 +20910,7 @@
           "reason": "confirmatory_horizon_not_reached",
           "clv": null
         },
-        "tracked_fixtures": 24,
+        "tracked_fixtures": 25,
         "shadow_candidates": 0,
         "confirmatory_ready": 0,
         "diagnostic_closes": 0,
@@ -20762,7 +20939,8 @@
           "2050310",
           "2050311",
           "2050319",
-          "2050322"
+          "2050322",
+          "2050332"
         ]
       },
       "cohort-b013b02c74df3bc9c40b21a2": {
@@ -20863,7 +21041,7 @@
       }
     },
     "cohort_count": 7,
-    "tracked_fixtures": 42,
+    "tracked_fixtures": 44,
     "shadow_candidates": 0,
     "confirmatory_ready": 0,
     "diagnostic_closes": 0
